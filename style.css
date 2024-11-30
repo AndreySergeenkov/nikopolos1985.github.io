@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
 body {
    font-family: 'Inter', sans-serif;
    line-height: 1.5;
@@ -8,33 +7,28 @@ body {
    margin: 0 auto;
    padding: 40px 20px;
 }
-
 .header {
    display: flex;
    align-items: center; 
    margin-bottom: 20px;
 }
-
 h1 {
    font-size: 24px;
    font-weight: 300;
    margin: 0;
    margin-right: 10px;
 }
-
 h2 {
    font-size: 16px;
    font-weight: 600;
    margin-top: 30px;
    margin-bottom: 15px;
 }
-
 .asterisk {
    font-size: 16px;
    vertical-align: super;
    font-weight: 400;
 }
-
 .profile-photo {
    width: 80px;
    height: 80px;
@@ -43,21 +37,17 @@ h2 {
    vertical-align: middle;
    margin-left: 10px;
 }
-
 .profile-photo-small {
    width: 50px;
    height: 50px;
 }
-
 .profile-photo-large {
    width: 150px;
    height: 150px;
 }
-
 p {
    margin-bottom: 16px;
 }
-
 a {
    color: #333;
    text-decoration: none;
@@ -66,126 +56,80 @@ a {
    border-radius: 3px;
    transition: background-color 0.2s ease;
 }
-
 a:hover {
    background-color: #c8e6c8;
    text-decoration: underline;
 }
-
 .job-title {
    color: #666;
    font-weight: 400;
    margin-bottom: 24px;
 }
-
 .current-work {
    line-height: 1.6;
    margin-bottom: 24px;
 }
-
 .cta {
    margin-top: 24px;
    margin-bottom: 30px;
 }
-
 .cta a {
    display: inline-block;
    margin-right: 16px;
 }
-
 .research-citations {
    list-style-type: none;
    padding-left: 0;
 }
-
 .research-citations li {
    margin-bottom: 15px;
 }
-
 .research-citations a {
    display: inline-block;
    line-height: 1.4;
 }
-
 .link-highlight a {
    background-color: #fdffc8;
 }
-
 .article-list {
    list-style-type: none;
    padding-left: 0;
 }
-
 .article-list li {
    margin-bottom: 10px;
 }
-
 .article-list a {
    font-weight: 100;
    font-size: 15px;
+   background-color: #e6f3e6;
 }
-
-.article-list a[href*="forbes.com"] {
-   background-color: #c6d6e6;
-}
-
-.article-list a[href*="coindesk.com"] {
-   background-color: #e6d6c6;  
-}
-
-.article-list a[href*="coinmarketcap.com"] {
-   background-color: #d6e6c6;
-}
-
-.article-list a[href*="entrepreneur.com"] {
-   background-color: #e6c6d6;
-}
-
-.article-list a[href*="blockworks.co"] {
-   background-color: #c6e6d6;
-}
-
-.article-list a[href*="investing.com"] {
-   background-color: #e6e6c6;
-}
-
-.article-list a[href*="cointelegraph.com"] {
-   background-color: #d6c6e6;
-}
-
 .article-list a:hover {
    filter: brightness(0.95);
    text-decoration: underline;
 }
-
 .publication-name {
    font-size: 14px;
    color: #666;
    margin-left: 5px;
 }
-
 .admin-section {
    background-color: #f8f9fa;
    border-radius: 8px;
    padding: 20px;
    margin-bottom: 30px;
 }
-
 .admin-form {
    max-width: 500px;
 }
-
 .form-group {
    margin-bottom: 15px;
 }
-
 .form-control {
    width: 100%;
    padding: 8px;
    border: 1px solid #ced4da;
    border-radius: 4px;
 }
-
 .btn {
    display: inline-block;
    padding: 8px 16px;
@@ -194,27 +138,22 @@ a:hover {
    cursor: pointer;
    text-decoration: none;
 }
-
 .btn-primary {
    background-color: #007bff;
    color: white;
 }
-
 .btn-secondary {
    background-color: #6c757d;
    color: white;
 }
-
 .btn-danger {
    background-color: #dc3545;
    color: white;
 }
-
 .btn-sm {
    padding: 4px 8px;
    font-size: 0.875rem;
 }
-
 .article-item {
    display: flex;
    justify-content: space-between;
@@ -223,31 +162,25 @@ a:hover {
    border-bottom: 1px solid #dee2e6;
    cursor: move;
 }
-
 .article-title {
    font-weight: 500;
    margin-right: 10px;
 }
-
 .article-publication {
    color: #6c757d;
    font-size: 0.875rem;
 }
-
 .article-actions {
    display: flex;
    gap: 10px;
 }
-
 .search-container {
    margin-bottom: 20px;
 }
-
 .pagination-container {
    margin-top: 20px;
    text-align: center;
 }
-
 .drag-handle {
    cursor: move;
    padding-right: 10px;
