@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks - Andrey Sergeenkov</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -257,7 +257,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <a href="../" class="back-link">← Back to Home</a>
 
     <article>
         <header class="article-header">
@@ -276,24 +276,24 @@
 
         <p>The number of new addresses grew 2.7 times compared to the average 2025 level. The peak week of January 12 showed 2.7 million new addresses—170% higher than typical values.</p>
 
-        <img src="images/image1.png" alt="Sharp increase in new Ethereum addresses" class="article-image">
+        <img src="../images/image1.png" alt="Sharp increase in new Ethereum addresses" class="article-image">
         <p class="image-caption">Sharp increase in new Ethereum addresses</p>
 
         <p>The number of transactions on Ethereum network grew 63% from 10.5M per week to a record 17.1M.</p>
 
-        <img src="images/image4.png" alt="Ethereum transaction growth" class="article-image">
+        <img src="../images/image4.png" alt="Ethereum transaction growth" class="article-image">
 
         <p>I wanted to find what caused the increase in addresses, and it turned out this unusual growth is 80% driven by stablecoins.</p>
 
-        <img src="images/image8.png" alt="Stablecoin driven growth" class="article-image">
+        <img src="../images/image8.png" alt="Stablecoin driven growth" class="article-image">
 
         <p>After that, I needed to understand the nature of stablecoin transactions. I calculated how many users received less than a dollar as their first stablecoin transaction, and it turned out 67% of addresses fit this pattern. 3.86M out of 5.78M addresses received dust as their first transaction.</p>
 
-        <img src="images/image3.png" alt="Dust transaction analysis" class="article-image">
+        <img src="../images/image3.png" alt="Dust transaction analysis" class="article-image">
 
         <p>To identify dust distributor addresses, I filtered all USDT/USDC senders of transfers &lt;$1 for the period December 15, 2025 - January 18, 2026, counted unique recipients for each, and filtered those who sent to at least 10,000 addresses.</p>
 
-        <img src="images/image6.png" alt="Top contract addresses distributing dust to bait addresses" class="article-image">
+        <img src="../images/image6.png" alt="Top contract addresses distributing dust to bait addresses" class="article-image">
         <p class="image-caption">Top contract addresses distributing dust to bait addresses</p>
 
         <p>Here are the top-3 dust distributors:</p>
@@ -308,7 +308,7 @@
 
         <p>The source code of one such contract has a <code>fundPoisoners</code> function that finances hundreds of poisoning addresses in a single transaction, sending each dust tokens and some ETH for gas.</p>
 
-        <img src="images/image2.png" alt="fundPoisoners function code" class="article-image">
+        <img src="../images/image2.png" alt="fundPoisoners function code" class="article-image">
 
         <p>These poisoning addresses then distribute dust to millions of potential victims, creating false entries in transaction histories.</p>
 
@@ -318,7 +318,7 @@
             <strong>So far, over $740K has been stolen this way from 116 victims.</strong> These are conservative estimates and the number will grow. In the case of a <a href="https://www.chainalysis.com/blog/address-poisoning-scam/">previous</a> major poisoning attack, a 66-day campaign netted $68M, with the bulk stolen on day 64, almost at the very end.
         </div>
 
-        <img src="images/image7.png" alt="Top victims of poisoning attack" class="article-image">
+        <img src="../images/image7.png" alt="Top victims of poisoning attack" class="article-image">
         <p class="image-caption">Top victims of poisoning attack as of January 19, 2026</p>
 
         <h2>But why did attackers become active precisely now?</h2>
@@ -327,7 +327,7 @@
 
         <p>On December 3, 2025, Ethereum developers led by Vitalik Buterin kindly improved the infrastructure perfectly for such attacks by rolling out the Fusaka upgrade, reducing average fees approximately 6-fold.</p>
 
-        <img src="images/image5.png" alt="Change in ERC20 transfer costs in 2025" class="article-image">
+        <img src="../images/image5.png" alt="Change in ERC20 transfer costs in 2025" class="article-image">
         <p class="image-caption">Change in ERC20 transfer costs in 2025</p>
 
         <p>Now address poisoning has become disproportionately attractive for attackers.</p>
@@ -347,7 +347,7 @@
         <p><em>(I only checked stablecoin transactions because they drove the main metrics growth, but the scale is larger since dust attacks also use other tokens).</em></p>
 
         <div class="author-box">
-            <img src="500.jpg" alt="Andrey Sergeenkov" class="author-photo">
+            <img src="../500.jpg" alt="Andrey Sergeenkov" class="author-photo">
             <div class="author-info">
                 <div class="author-name">Andrey Sergeenkov</div>
                 <div class="author-bio">Author and researcher covering digital economy. Published in Forbes, CoinDesk, CoinMarketCap, and more.</div>
