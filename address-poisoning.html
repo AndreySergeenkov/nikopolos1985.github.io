@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks - Andrey Sergeenkov</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #333;
+            text-decoration: none;
+            background-color: #e6f3e6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+        .back-link:hover {
+            background-color: #c8e6c8;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+            background-color: #e6f3e6;
+            padding: 1px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s ease;
+        }
+        a:hover {
+            background-color: #c8e6c8;
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <article>
+        <header class="article-header">
+            <h1>Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</h1>
+            <div class="article-meta">By Andrey Sergeenkov · January 19, 2026</div>
+        </header>
+
+        <div class="tldr">
+            <div class="tldr-title">TL;DR</div>
+            <ul>
+                <li>Over $740K already stolen, and this number will keep growing</li>
+                <li>This became possible thanks to the Fusaka upgrade, which made spam transactions cheap enough to be profitable</li>
+                <li>This attack is ongoing right now</li>
+            </ul>
+        </div>
+
+        <p>The number of new addresses grew 2.7 times compared to the average 2025 level. The peak week of January 12 showed 2.7 million new addresses—170% higher than typical values.</p>
+
+        <img src="images/image1.png" alt="Sharp increase in new Ethereum addresses" class="article-image">
+        <p class="image-caption">Sharp increase in new Ethereum addresses</p>
+
+        <p>The number of transactions on Ethereum network grew 63% from 10.5M per week to a record 17.1M.</p>
+
+        <img src="images/image4.png" alt="Ethereum transaction growth" class="article-image">
+
+        <p>I wanted to find what caused the increase in addresses, and it turned out this unusual growth is 80% driven by stablecoins.</p>
+
+        <img src="images/image8.png" alt="Stablecoin driven growth" class="article-image">
+
+        <p>After that, I needed to understand the nature of stablecoin transactions. I calculated how many users received less than a dollar as their first stablecoin transaction, and it turned out 67% of addresses fit this pattern. 3.86M out of 5.78M addresses received dust as their first transaction.</p>
+
+        <img src="images/image3.png" alt="Dust transaction analysis" class="article-image">
+
+        <p>To identify dust distributor addresses, I filtered all USDT/USDC senders of transfers &lt;$1 for the period December 15, 2025 - January 18, 2026, counted unique recipients for each, and filtered those who sent to at least 10,000 addresses.</p>
+
+        <img src="images/image6.png" alt="Top contract addresses distributing dust to bait addresses" class="article-image">
+        <p class="image-caption">Top contract addresses distributing dust to bait addresses</p>
+
+        <p>Here are the top-3 dust distributors:</p>
+
+        <div class="code-block">
+            0x455bf23ea7575a537b6374953fa71b5f3653272c - sent dust to 690K addresses<br>
+            0x301d9bc22d66f7bc49329a9d9eb16d3ecc4a12b4 - sent to 589K<br>
+            0x2393d38400cad1d0ffae85b37d76de05bb7eddc6 - sent to 405K
+        </div>
+
+        <p>These are smart contracts that automate mass distribution of poisoning dust.</p>
+
+        <p>The source code of one such contract has a <code>fundPoisoners</code> function that finances hundreds of poisoning addresses in a single transaction, sending each dust tokens and some ETH for gas.</p>
+
+        <img src="images/image2.png" alt="fundPoisoners function code" class="article-image">
+
+        <p>These poisoning addresses then distribute dust to millions of potential victims, creating false entries in transaction histories.</p>
+
+        <p>Poisoning addresses are created to look similar to victims' legitimate addresses (matching first and last characters). The victim sees a "familiar" address in transaction history, copies it without full verification, and sends real funds to the attacker.</p>
+
+        <div class="warning-box">
+            <strong>So far, over $740K has been stolen this way from 116 victims.</strong> These are conservative estimates and the number will grow. In the case of a <a href="https://www.chainalysis.com/blog/address-poisoning-scam/">previous</a> major poisoning attack, a 66-day campaign netted $68M, with the bulk stolen on day 64, almost at the very end.
+        </div>
+
+        <img src="images/image7.png" alt="Top victims of poisoning attack" class="article-image">
+        <p class="image-caption">Top victims of poisoning attack as of January 19, 2026</p>
+
+        <h2>But why did attackers become active precisely now?</h2>
+
+        <p>Because the conversion rate for such attacks is extremely low, approximately 0.01%. And the main profit comes from just a few victims (in the screenshot above, one person lost $509K out of all $740K studied). This means attackers always faced the risk that gas spent on millions of dust transactions wouldn't pay off. Until December 2025.</p>
+
+        <p>On December 3, 2025, Ethereum developers led by Vitalik Buterin kindly improved the infrastructure perfectly for such attacks by rolling out the Fusaka upgrade, reducing average fees approximately 6-fold.</p>
+
+        <img src="images/image5.png" alt="Change in ERC20 transfer costs in 2025" class="article-image">
+        <p class="image-caption">Change in ERC20 transfer costs in 2025</p>
+
+        <p>Now address poisoning has become disproportionately attractive for attackers.</p>
+
+        <p><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">I already wrote about this</a>: you can't scale infrastructure without addressing user security first!</p>
+
+        <p>And while the crypto industry celebrates record metrics, people are losing their funds because they improved the infrastructure for mass attacks.</p>
+
+        <p>Next time, will they trust their funds to those financial instruments you so pompously revolutionize?</p>
+
+        <p>What you're doing is reckless experimentation at users' expense disguised as a revolution where ordinary people bear all the risks.</p>
+
+        <div class="highlight">
+            <strong>As of publication, the attack is not only continuing but scaling up.</strong> Over the last 4 days, new poisoning contracts have launched, with the largest already distributing dust to 78,000 addresses. All main attacker contracts remain active, with latest transactions recorded while I'm writing this.
+        </div>
+
+        <p><em>(I only checked stablecoin transactions because they drove the main metrics growth, but the scale is larger since dust attacks also use other tokens).</em></p>
+
+        <div class="author-box">
+            <img src="500.jpg" alt="Andrey Sergeenkov" class="author-photo">
+            <div class="author-info">
+                <div class="author-name">Andrey Sergeenkov</div>
+                <div class="author-bio">Author and researcher covering digital economy. Published in Forbes, CoinDesk, CoinMarketCap, and more.</div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
