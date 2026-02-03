@@ -30,9 +30,14 @@
             padding: 40px 20px;
             background: #fff;
         }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
         .back-link {
             display: inline-block;
-            margin-bottom: 30px;
             color: #333;
             text-decoration: none;
             background-color: #e6f3e6;
@@ -43,6 +48,10 @@
         }
         .back-link:hover {
             background-color: #c8e6c8;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #666;
         }
         .article-header {
             margin-bottom: 40px;
@@ -268,7 +277,10 @@
     </style>
 </head>
 <body>
-    <a href="../" class="back-link">← Back to Home</a>
+    <div class="top-nav">
+        <a href="../" class="back-link">← Back to Home</a>
+        <div class="top-follow">New articles: <a href="/feed.xml">RSS</a>, <a href="https://x.com/Nikopolos">Twitter</a></div>
+    </div>
 
     <article>
         <header class="article-header">
@@ -357,7 +369,7 @@
 
         <div class="author-box">
             <div class="author-info">
-                <div class="author-bio">Follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a>.</div>
+                <div class="author-bio">New articles: <a href="/feed.xml">RSS</a>, <a href="https://x.com/Nikopolos">Twitter</a>.</div>
             </div>
         </div>
     </article>
