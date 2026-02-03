@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Andrey Sergeenkov</title>
+    <link>https://sergeenkov.com</link>
+    <description>Independent research on the digital economy, cryptocurrencies, and blockchain technology.</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sergeenkov.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</title>
+      <link>https://sergeenkov.com/record-high-activity-ethereum-2026/</link>
+      <guid isPermaLink="true">https://sergeenkov.com/record-high-activity-ethereum-2026/</guid>
+      <pubDate>Sun, 19 Jan 2026 00:00:00 +0000</pubDate>
+      <description>Over $740K already stolen through address poisoning attacks enabled by the Fusaka upgrade which reduced transaction fees 6-fold. The attack is ongoing with millions of addresses receiving poisoning dust.</description>
+    </item>
+
+  </channel>
+</rss>
