@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Curators Took Control of $220M in Unclaimed TheDAO Funds, But Do They Have the Right? - Andrey Sergeenkov</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+    <!-- Ahrefs Web Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #333;
+            text-decoration: none;
+            background-color: #e6f3e6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+        .back-link:hover {
+            background-color: #c8e6c8;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #666;
+        }
+        .top-follow a, .author-bio a {
+            background-color: #fdffc8;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+            background-color: #e6f3e6;
+            padding: 1px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s ease;
+        }
+        a:hover {
+            background-color: #c8e6c8;
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="../" class="back-link">&larr; Back to Home</a>
+        <div class="top-follow">You can follow new articles via <a href="/feed.xml">RSS</a>, <a href="https://x.com/Nikopolos">Twitter</a> or <a href="https://buttondown.com/sergeenkov">Email</a></div>
+    </div>
+
+    <article>
+        <header class="article-header">
+            <h1>Seven Curators Took Control of $220M in Unclaimed TheDAO Funds, But Do They Have the Right?</h1>
+            <div class="article-meta">By Andrey Sergeenkov &middot; February 9, 2026</div>
+        </header>
+
+        <p>On January 29, 2026, Giveth founder Griff Green <a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">announced</a> TheDAO Security Fund, which will activate approximately 75,000 ETH ($220 million) that has remained unclaimed since the 2016 TheDAO hack.</p>
+
+        <p>Ethereum co-founder Vitalik Buterin joined as one of the 7 curators who will stake these funds and use the generated rewards to fund Ethereum security grants and cover custody operational costs.</p>
+
+        <p>In response, Timon Rapp, an original TheDAO curator who joined the multisig in 2016 to help people affected by DAO edge cases recover their funds, publicly resigned on January 30, 2026.</p>
+
+        <p>He <a href="https://x.com/timonrapp/status/2017204823599268175">stated</a>: "These are funds that belong to the original DAO investors. I see this as a violation of the original mandate and fiduciary duties. This move comes with tremendous legal risk and introduces a plethora of conflicts of interest."</p>
+
+        <img src="images/image5.png" alt="Timon Rapp resignation statement" class="article-image">
+
+        <p>Another original curator, Gian Bochsler, also <a href="https://x.com/gianbochsler/status/2019731722636787977">resigned</a>. In written responses to my questions, Bochsler confirmed he was "not aligning with the repurposing of the funds and the new process."</p>
+
+        <h2>How did curators vote to use the unclaimed funds?</h2>
+
+        <p>I asked Timon Rapp about this. In written responses, he told me there was no official voting process. Griff pulled the six curators into a Signal group and presented the plan. Vitalik seemed to be already briefed and on-board.</p>
+
+        <p>According to Timon, the initial proposal would have allowed people to claim their funds for one more year after setting up the new DAO. After that year, remaining DAO investors would be disowned and all funds would move to the new DAO.</p>
+
+        <p>Initially, Timon was the only one who opposed the plan. After a few weeks Gian Bochsler was advised by his lawyer to not sign anything in the matter under any circumstances. Bochsler later commented this: "I sought legal advice on the matter. Timon and I were in favor of requiring court approval or similar formal process for any repurposing of the funds, because we believe such a decision is not ours to make unilaterally."</p>
+
+        <p>According to Timon, Gian shared this advice with Vlad Zamfir and Alexey Akhunov, and for a few days they joined the opposition.</p>
+
+        <p>However, Griff later reframed the plan in two significant ways.</p>
+
+        <p>First, regarding claim withdrawals: The final proposal changed this to keep withdrawals open indefinitely. However, according to Timon, the new curators can change their mind about this at-will - there is nothing enforcing this long-term. Once the old curators signed the funds over, it's up to the new DAO to keep or break that promise.</p>
+
+        <p>Second, the structure was changed to a two-multisig model. Instead of only using the new DAO multisig, a second multisig (3-of-5) was created with certain controls over the funds, such as controlling the spending limit of the staking rewards. This second multisig includes Vlad and Alexey as members. According to Timon, being able to retain some control of the funds via this multisig is what made Alexey and Vlad change their minds.</p>
+
+        <p>The final vote looked as follows: "Ultimately Griff, Alexey and Vlad signed the transactions which removed Timon Rapp and Gian Bochsler from the multisig &amp; initiated the funds to move away. Them signing the ethereum transactions was the actual vote."</p>
+
+        <p>Also, according to Timon Rapp, Griff Green's plan included making the address-to-curator mapping of new curators not publicly known to provide deniability about who signed transactions.</p>
+
+        <p>In Timon's opinion, they are creating deniability to avoid legal exposure.</p>
+
+        <h2>Marshall Islands</h2>
+
+        <p>Griff founded "The DAO LLC" in the Marshall Islands.</p>
+
+        <p><em>The Marshall Islands, like many offshore jurisdictions, does not automatically recognize court judgments from the US or other major economies, a feature that makes these jurisdictions attractive for asset protection structures. According to the International Comparative Legal Guides <a href="https://iclg.com/practice-areas/enforcement-of-foreign-judgments-laws-and-regulations/usa">report</a>, if someone wins a lawsuit in a US court, they cannot simply enforce that judgment in the Marshall Islands. Instead, they would need to re-file the lawsuit and litigate their case again under Marshall Islands law.</em></p>
+
+        <p>This may create a barrier for rightful owners of the funds who seek to recover their assets or claim fees generated from staking their funds.</p>
+
+        <p>According to Timon, each new curator was asked to sign an indemnification agreement with this LLC.</p>
+
+        <p>Gian Bochsler confirmed he was asked to sign the indemnification agreement but declined: "I did not agree with choosing the Marshall Islands jurisdiction, nor with the agreement itself."</p>
+
+        <p><em>An indemnification agreement is a contract where an LLC promises to shield individuals from legal liability. If someone sues a member for actions related to the fund, the LLC would cover legal expenses, fines, and damages. Formally, they act on behalf of the company, which assumes all risks.</em></p>
+
+        <p>If so, wouldn't this create a situation where a rightful owner of the funds sues the LLC, and the funds for the legal defense would be taken from staking rewards generated by their own assets?</p>
+
+        <p>When I asked Gian Bochsler where the funding for legal defense would come from, he stated: "The funds will probably have to come from the future ETH produced by the staked funds, but this was still up for debate when I left. The source is the unclaimed ETH for sure."</p>
+
+        <h2>Are there conflicts of interest?</h2>
+
+        <p>According to <a href="https://unchainedcrypto.com/exclusive-thedao-to-become-new-220-million-ethereum-security-fund/">Unchained</a>, the Ethereum Foundation will define eligibility for grant rounds.</p>
+
+        <p>However, no formal documentation establishing this arrangement or the legal basis for Ethereum Foundation's authority over funds has been made public. The rightful owners of the funds never consented to Ethereum Foundation controlling access to their funds.</p>
+
+        <p>Also, owners' funds will be staked through DappNode, a company founded by three of the seven curators.</p>
+
+        <p>Jordi Baylina and Griff Green are currently listed as founders and Pol Lanski serves as CEO and co-founder.</p>
+
+        <img src="images/image4.png" alt="DappNode founders" class="article-image">
+
+        <p>Will the curators receive direct or indirect financial benefit from staking approximately $200 million using its infrastructure?</p>
+
+        <p>According to DappNode's technical documentation, the company <a href="https://docs.dappnode.io/docs/smooth/deep-dive-into-smooth/rewards/">collects</a> a 7% fee from all rewards distributed through its Smooth staking service.</p>
+
+        <p>When asked "How will DappNode operational costs be paid for?", curator pcaversaccio <a href="https://x.com/pcaversaccio/status/2018992687849124183">responded</a>: "via part of the staking rewards."</p>
+
+        <img src="images/image1.png" alt="pcaversaccio response about DappNode costs" class="article-image">
+
+        <h2>Curators tainted unclaimed funds with Tornado Cash</h2>
+
+        <p>On February 2, 2026, one of the curators, pcaversaccio, <a href="https://x.com/pcaversaccio/status/2018096078936318021">posted</a> that they had moved 69,420 ETH for staking using an address previously linked to Tornado Cash.</p>
+
+        <p>He wrote "That means every future withdrawal and grant tx is now beautifully, irrevocably tainted."</p>
+
+        <img src="images/image7.png" alt="pcaversaccio tainted funds statement" class="article-image">
+
+        <p>The issue is that stolen funds are regularly laundered through Tornado Cash. According to <a href="https://www.merklescience.com/blog/what-tornado-cashs-sanctions-reversal-means-for-crypto-compliance">Merkle Science</a> (chain analysis company): "The use of a mixer—while sometimes lawful—will still serve as one risk indicator among many in determining whether a transaction or address is categorized as low, medium, or high risk."</p>
+
+        <p>This means that addresses interacting with these funds can now be flagged as suspicious by both authorities and various security systems. The US Treasury Department's Office of Foreign Assets Control (OFAC) <a href="https://home.treasury.gov/news/press-releases/jy0916">called</a> Tornado Cash "a significant threat to the national security."</p>
+
+        <p>Now every rightful owner who requests their funds may face the problem that their withdrawal will have a chain of custody linked to Tornado Cash-associated addresses. Chain analysis systems and exchanges may flag these addresses as suspicious, creating a risk of account blocking or investigation.</p>
+
+        <p>What will happen to rightful owners and grant recipients from this fund if the government decides to sanction Tornado Cash again?</p>
+
+        <p>Treasury provided no guarantees that it won't return Tornado Cash to the sanctions list in the future. In its delisting statement, Treasury <a href="https://home.treasury.gov/news/press-releases/sb0057">stated</a> that it "exercised our discretion."</p>
+
+        <p>This means the decision was discretionary, not forced by court, and can be reconsidered at any time.</p>
+
+        <p>pcaversaccio <a href="https://x.com/pcaversaccio/status/2018101985975902655">wrote</a> that he tainted the rightful owners' funds intentionally to make fun of the term "tainted" and to make a statement that this is not bad money.</p>
+
+        <img src="images/image6.png" alt="pcaversaccio explanation of intentional tainting" class="article-image">
+
+        <p>Doesn't this create unnecessary compliance risks for owners of the funds?</p>
+
+        <p>Doesn't this create one more barrier for them to request the return of their funds?</p>
+
+        <h2>Do the multisig signers have the right to decide how to use these assets?</h2>
+
+        <p>When I asked this question, Griff Green <a href="https://x.com/griffgreen/status/2017004016736092257">responded</a>: "Securing $200M in crypto properly isn't free. To fund all this, we are staking some of the assets so that the underlying collateral can still be claimed."</p>
+
+        <img src="images/image2.png" alt="Griff Green response about costs" class="article-image">
+
+        <p>The curators justify taking control of these funds by <a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">arguing</a> that they announced back in August 2016 that if the funds remained unclaimed after January 31, 2017, they would be used to support Ethereum security. Additionally, they argue that custody requires funding and that rightful owners will still be able to claim their funds at any time.</p>
+
+        <p>Under US law, holding dormant customer funds for 10 years and staking them to generate income may be prohibited.</p>
+
+        <p>For cryptocurrency specifically, California SB 822 (effective January 1, 2026) requires that digital financial assets must be transferred to the State Controller's Office after 3 years of dormancy.</p>
+
+        <p>Connecticut General Statutes &sect; 3-57b (effective July 1, 2024) also requires transfer of virtual currency after 3 years of dormancy, with Connecticut requiring liquidation and delivery of proceeds within 30 days after filing the report. New York Abandoned Property Law &sect; 1319 (effective November 22, 2022) establishes a 5-year dormancy period for virtual currency.</p>
+
+        <p>Uniform Unclaimed Property Act principles, applied in most US states, establish that holders act as trustees of the property and have no proprietary interest in it.</p>
+
+        <p>TheDAO Security Fund has held the funds for ~10 years and plans to stake them to generate income for Ethereum security grants and custody operational costs.</p>
+
+        <p>While TheDAO is registered as a Marshall Islands LLC, this may not exempt the organization from US state unclaimed property laws. According to the Supreme Court decision in Texas v. New Jersey (1965), which established federal common law: "The right and power to escheat the debt should be accorded to the State of the creditor's last known address as shown by the debtor's books and records."</p>
+
+        <p>This means that if owners of the funds are US residents with last known addresses in California, Connecticut, New York, or other states, those states may have a primary claim on the property regardless of where the holder is registered.</p>
+
+        <h2>Precedent for crypto custody</h2>
+
+        <p>The TheDAO Security Fund situation creates an important precedent for the crypto industry.</p>
+
+        <p>According to a <a href="https://medium.com/curator-multisig-phf-official-channel/dao-token-holders-come-claim-your-money-b428f186572a">post</a> from the 2016 curators, the funds consist of:</p>
+
+        <ul>
+            <li>~70,500 ETH in ExtraBalance - addresses identified through blockchain analysis, can claim through withdraw contract</li>
+            <li>~4,600 ETH in Curator Multisig - edge cases that curators described as having "no clear claimants"</li>
+        </ul>
+
+        <p>TheDAO Security Fund is staking 69,420 ETH, meaning they are staking funds including those with identifiable owners from ExtraBalance.</p>
+
+        <p>Any multisig wallet (whether a corporate treasury, a DAO fund, or a personal wallet with recovery guardians) relies on the same principle: designated signers hold keys to someone else's assets for a specific, limited purpose.</p>
+
+        <p>The TheDAO curators have demonstrated that signers can expand that purpose on their own whenever they find a reason they consider sufficient.</p>
+
+        <p>As Block Enthusiast <a href="https://x.com/BlockEnthusiast/status/2016950935327568052">noted</a> on January 29, 2026:</p>
+
+        <div class="highlight">
+            "One of my core worries is Ethereum transitioning everyone to smart contract wallets. This sets a precedent that if folks don't touch funds in a smart contract for a while, they can be repurposed to support Ethereum development/security."
+        </div>
+
+        <p>Ethereum is moving toward smart contract wallets under ERC-4337, where appointing guardians with signing power is expected to become standard practice.</p>
+
+        <p>If the TheDAO precedent is accepted as legitimate, it means that any funds held in multisig or guardian-managed wallets could be "repurposed" after an arbitrary period of inactivity.</p>
+
+        <p>This also means that crypto custodians could:</p>
+
+        <ul>
+            <li>Stake clients' funds from identifiable addresses without their consent</li>
+            <li>Expose client funds to additional risks (for example, slashing penalties from staking)</li>
+            <li>Taint client funds through Tornado Cash, creating compliance risk for owners</li>
+            <li>Use staking rewards for their own operational purposes</li>
+            <li>Arbitrarily establish deadlines after which funds can be used</li>
+        </ul>
+
+        <p>Back in May 2016, before the hack even happened, Gavin Wood <a href="https://gavofyork.medium.com/why-ive-resigned-as-a-curator-of-the-dao-238528fbd447">resigned</a> as a TheDAO curator specifically warning about mission creep in the curator role:</p>
+
+        <div class="highlight">
+            "The role of the 'curators' in slock.it's DAO design is trivial and entirely algorithmic — no judgement whatsoever is required. They exist purely as a means of identity-verification. They remain in their role only at the sufferance of the DAO stakeholders and may be replaced at any time and for any reason. They have no power of oversight."
+        </div>
+
+        <p>Ten years later, the new curators of TheDAO Security Fund have done what Wood warned against. They exercised judgement, made oversight decisions, and did so without consulting the stakeholders whose funds they control.</p>
+
+        <h2>"No one among the curators is dishonest"</h2>
+
+        <img src="images/image3.png" alt="Current TheDAO Security Fund curators" class="article-image">
+
+        <p>The current curators are shown above. They include Vitalik Buterin, several prominent Ethereum Foundation alumni, respected security researchers, and Griff Green, who led the original White Hat Group rescue in 2016.</p>
+
+        <p>Gian Bochsler, one of the resigned curators, emphasized that he believes everyone involved acted with good intentions.</p>
+
+        <p>"No one among the curators is dishonest," he told me.</p>
+
+        <p>"Everyone has been trying to find the best practical solution, and honestly, what they have all done for the community to this day is remarkable. Griff has been an outstanding leader from the very beginning."</p>
+
+        <p>Regarding Griff Green's motivation, Gian stated: "Griff has a big heart and would never do anything malicious... He has always wanted to preserve the possibility for original owners to claim their funds. His main goals were to technically secure the multisig and to onboard new curators, since six was too small a number to manage such a large amount of value responsibly."</p>
+
+        <p>Gian also expressed confidence in the new structure: "I'm confident that Griff, Vitalik, and the new curators will take all necessary legal measures. They will make sure to prioritize the interests of the beneficiaries of any unclaimed funds."</p>
+
+        <p>He also noted: "The funds face potential attacks at any moment" and that "there was a clear need to upgrade the security of the multisig, because over the past 10 years Solidity has evolved significantly." He acknowledged the complexity of the situation: "It's not an easy task" and "carrying out all this work requires funding."</p>
+
+        <h2>The road not taken</h2>
+
+        <p>The curators could have gone to court, explained that they control a large sum of unclaimed funds belonging to their rightful owners, proposed their plan, and asked for direction. Courts handle this routinely.</p>
+
+        <p>In English law, this is known as a Benjamin Order, after <a href="https://www.guildhallchambers.co.uk/2023/08/11/probate-missing-persons-recent-developments-part-1/">Re Benjamin [1902] 1 Ch 723</a> — a trustee could not find a beneficiary, went to court, and received permission to distribute the estate. The missing beneficiary's right to claim was preserved.</p>
+
+        <p>Gian Bochsler referenced the Benjamin Order in our interview, calling it "a specific precedent that allows trustees to distribute funds on the presumption of certain facts, while protecting them from liability."</p>
+
+        <p>He stated: "If we had obtained a court ruling on this, we would have been able to operate in a much clearer and more secure legal environment."</p>
+
+        <p>In US law, the equivalent is a petition for instructions. In <a href="https://goldesq.com/when-can-trustees-represent-themselves-in-court/">Donkin v. Donkin (2020)</a>, California trustees petitioned the court because they didn't know how to distribute a family trust. In 2014, co-trustees of the <a href="https://berklawgroup.com/wp-content/uploads/2015/02/2014-12-19-Petition-S-Williams.pdf">Robin Williams Trust</a> did the same when they couldn't determine how to divide the estate.</p>
+
+        <p>If you hold other people's money and don't know what to do with it, you ask a court.</p>
+
+        <p>They took it upon themselves to decide how the money should be used, even though the entire idea of crypto was born as a response to a small circle of people managing other people's money without their consent.</p>
+
+        <hr>
+
+        <p>But would these funds actually help solve Ethereum's security problems? I shared my take on this question in a <a href="/will-thedao-money-improve-ethereum-security/">separate article here</a>.</p>
+
+        <div class="author-box">
+            <div class="author-info">
+                <div class="author-bio">You can follow new articles via <a href="/feed.xml">RSS</a>, <a href="https://x.com/Nikopolos">Twitter</a> or <a href="https://buttondown.com/sergeenkov">Email</a>.</div>
+            </div>
+        </div>
+    </article>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Enlarged image" id="lightbox-img">
+        <div class="lightbox-hint">Click anywhere or press Esc to close</div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.article-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
