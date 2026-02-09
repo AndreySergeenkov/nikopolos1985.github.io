@@ -155,13 +155,17 @@ h2::after {
     padding: 6px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     transition: background-color 0.15s ease;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    gap: 4px;
 }
 .article-list li:hover {
     background-color: rgba(0, 0, 0, 0.015);
 }
 .article-list a {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     background-color: #e6f3e6;
 }
 .article-list a:hover {
@@ -170,12 +174,13 @@ h2::after {
 }
 .publication-name {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
-    color: #777;
+    color: #666;
     margin-left: 6px;
     letter-spacing: 0.02em;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* ── Research citations ───────────────────────────── */
