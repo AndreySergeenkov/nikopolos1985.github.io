@@ -93,13 +93,14 @@ p {
 a {
     color: #2c2c2c;
     text-decoration: none;
-    border-bottom: 1.5px solid rgba(80, 160, 80, 0.35);
-    padding-bottom: 0.5px;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    background-color: #e6f3e6;
+    padding: 1px 3px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
 }
 a:hover {
-    border-bottom-color: rgba(80, 160, 80, 0.8);
-    color: #1a1a1a;
+    background-color: #c8e6c8;
+    text-decoration: underline;
 }
 
 /* ── Bio section ──────────────────────────────────── */
@@ -126,11 +127,10 @@ a:hover {
 
 /* ── Highlight links (contact, follow) ────────────── */
 .link-highlight a {
-    color: #2c2c2c;
-    border-bottom-color: rgba(200, 170, 50, 0.5);
+    background-color: #fdffc8;
 }
 .link-highlight a:hover {
-    border-bottom-color: rgba(200, 170, 50, 0.9);
+    background-color: #f5f7a0;
 }
 
 /* ── Section divider ──────────────────────────────── */
@@ -162,18 +162,20 @@ h2::after {
 .article-list a {
     font-weight: 400;
     font-size: 14px;
-    border-bottom-color: transparent;
+    background-color: #e6f3e6;
 }
 .article-list a:hover {
-    border-bottom-color: rgba(80, 160, 80, 0.5);
+    filter: brightness(0.95);
+    text-decoration: underline;
 }
 .publication-name {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 400;
-    color: #999;
+    color: #777;
     margin-left: 6px;
     letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
 /* ── Research citations ───────────────────────────── */
