@@ -155,10 +155,6 @@ h2::after {
     padding: 6px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     transition: background-color 0.15s ease;
-    display: flex;
-    align-items: baseline;
-    flex-wrap: nowrap;
-    gap: 4px;
 }
 .article-list li:hover {
     background-color: rgba(0, 0, 0, 0.015);
@@ -177,10 +173,9 @@ h2::after {
     font-size: 12px;
     font-weight: 400;
     color: #666;
-    margin-left: 6px;
+    margin-left: 5px;
     letter-spacing: 0.02em;
     white-space: nowrap;
-    flex-shrink: 0;
 }
 
 /* ── Research citations ───────────────────────────── */
