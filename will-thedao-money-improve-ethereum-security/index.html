@@ -303,7 +303,9 @@
 
         <p>The curators took control of $220 million to make Ethereum safer and more reliable. But the act itself (effectively using other people's money without consent, without a court ruling, without due process) makes Ethereum less reliable.</p>
 
-        <p>If funds in a smart contract can be repurposed after a period of inactivity, why would anyone trust Ethereum as long-term infrastructure?</p>
+        <div class="highlight">
+            If funds in a smart contract can be repurposed after a period of inactivity, why would anyone trust Ethereum as long-term infrastructure?
+        </div>
 
         <h2>The slippery slope</h2>
 
@@ -311,7 +313,7 @@
 
         <p>Eugene Volokh showed in the <a href="https://www2.law.ucla.edu/volokh/slippery.pdf">Harvard Law Review</a> that when gun registration was introduced in England, New York City, and Australia, it was eventually followed by gun confiscation. Not because registration logically required it, but because it made confiscation cheaper and easier to implement. Once the infrastructure existed, the next step became politically feasible.</p>
 
-        <p>Volokh called this a "cost-lowering slippery slope": decision A doesn't change anyone's mind about whether B is right or wrong, but it lowers the practical cost of B, making it more likely to happen.</p>
+        <p>Volokh called this a <em>"cost-lowering slippery slope"</em>: decision A doesn't change anyone's mind about whether B is right or wrong, but it lowers the practical cost of B, making it more likely to happen.</p>
 
         <p>Today, the justification is: these funds have been inactive for years, so the people managing them can stake them and use the rewards for the ecosystem. This justification doesn't apply only to TheDAO. It works for any smart contract wallet where funds have not moved for a long period.</p>
 
@@ -323,13 +325,13 @@
 
         <p>At best, we will see the same popularity contest among a narrow circle of recipients that happens in almost every DAO funding experiment, regardless of the mechanism.</p>
 
-        <p>As <a href="https://www.dlnews.com/articles/defi/arbitrum-dao-approves-42m-dollar-grant-for-defi-projects/">DL News</a> put it, "DAO-led grants are never far from controversy stemming from alleged insider dealing and lack of transparency." <a href="https://www.gitcoin.co/blog/towards-computer-aided-governance-of-gitcoin-grants">BlockScience</a>, which studied Gitcoin's quadratic funding rounds, found that such systems exhibit the Matthew Effect, a runaway effect of "the rich get richer", alongside persistent sybil attacks and collusion.</p>
+        <p>As <a href="https://www.dlnews.com/articles/defi/arbitrum-dao-approves-42m-dollar-grant-for-defi-projects/">DL News</a> put it, <em>"DAO-led grants are never far from controversy stemming from alleged insider dealing and lack of transparency."</em> <a href="https://www.gitcoin.co/blog/towards-computer-aided-governance-of-gitcoin-grants">BlockScience</a>, which studied Gitcoin's quadratic funding rounds, found that such systems exhibit the Matthew Effect, a runaway effect of "the rich get richer", alongside persistent sybil attacks and collusion.</p>
 
         <p>The winners will become slightly wealthier and perhaps even produce a few patches. Which hackers will bypass in short order.</p>
 
         <h2>Disconnected from reality</h2>
 
-        <p>The deeper problem is that Ethereum's leadership seems no longer capable of recognizing the consequences of their own actions. <a href="https://blockworks.co/news/ethereum-foundation-tradfi-push">Blockworks</a> described the situation as "the current narrative of Ethereum leadership being out of touch and uncompetitive." You cannot plug holes in a ship when the captains keep drilling new ones.</p>
+        <p>The deeper problem is that Ethereum's leadership seems no longer capable of recognizing the consequences of their own actions. <a href="https://blockworks.co/news/ethereum-foundation-tradfi-push">Blockworks</a> described the situation as <em>"the current narrative of Ethereum leadership being out of touch and uncompetitive."</em> You cannot plug holes in a ship when the captains keep drilling new ones.</p>
 
         <p>For example:</p>
 
@@ -337,9 +339,9 @@
 
         <p>The link between low fees and attack volume was already documented: a Carnegie Mellon University <a href="https://arxiv.org/abs/2501.16681">study</a> published ten months before the upgrade found "a higher attack prevalence in chains with lower transaction fees." According to my data, address poisoning attacks alone caused over $60 million in losses during the two months following the Fusaka upgrade.</p>
 
-        <p>EIP-7702, introduced in May 2025 as part of the Pectra upgrade, is actively being exploited by attackers to drain wallets. <a href="https://x.com/wintermute_t/status/1928501765865091400">Wintermute</a> reports that over 80% of all EIP-7702 delegations are linked to malicious contracts, calling it "ridiculous and cruel that the same copied bytecode occupies most of the EIP-7702 authorizations." By the time of Wintermute's research in mid-2025, individual attacks had already resulted in losses up to $1.54 million, with victims signing batch transactions on fraudulent DeFi sites.</p>
+        <p>EIP-7702, introduced in May 2025 as part of the Pectra upgrade, is actively being exploited by attackers to drain wallets. <a href="https://x.com/wintermute_t/status/1928501765865091400">Wintermute</a> reports that over 80% of all EIP-7702 delegations are linked to malicious contracts, calling it <em>"ridiculous and cruel that the same copied bytecode occupies most of the EIP-7702 authorizations."</em> By the time of Wintermute's research in mid-2025, individual attacks had already resulted in losses up to $1.54 million, with victims signing batch transactions on fraudulent DeFi sites.</p>
 
-        <p><a href="https://www.fireblocks.com/blog/security-first-approach-to-eip-7702">Fireblocks</a>, a security firm, warned two months before the Pectra launch: "A reckless approach would strive to allow as open and free delegations as possible, but that is likely to end very fast with losing all funds. A single malicious delegation is all that is needed."</p>
+        <p><a href="https://www.fireblocks.com/blog/security-first-approach-to-eip-7702">Fireblocks</a>, a security firm, warned two months before the Pectra launch: <em>"A reckless approach would strive to allow as open and free delegations as possible, but that is likely to end very fast with losing all funds. A single malicious delegation is all that is needed."</em></p>
 
         <p>And now they are setting a precedent that would allow declaring funds in smart contracts abandoned after a period of inactivity and using them without owners' consent. When millions of users transition to smart contract wallets through Account Abstraction, this could create risk for anyone who simply holds cryptocurrency long-term.</p>
 
@@ -351,9 +353,11 @@
 
         <p>The ERC-20 approval model (a core design choice) has been exploited for <a href="https://www.secretservice.gov/newsroom/releases/2025/04/us-secret-service-analysts-work-canadian-officials-disrupt-ethereum">$2.7 billion</a> in phishing losses between 2021 and 2024, prompting a US Secret Service operation specifically targeting Ethereum approval scams. A Frontiers in Blockchain study documented <a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2025.1713637/full">220 major incidents</a> resulting in $8.49 billion in quantified losses. A 2025 survey of 62 open-source security tools found that <a href="https://www.mdpi.com/2073-431X/14/6/226">not a single one</a> covers all known vulnerability types, and new categories keep <a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.814977/full">emerging faster</a> than tools are built to detect them.</p>
 
-        <p>As a 2025 ScienceDirect <a href="https://www.sciencedirect.com/science/article/pii/S2096720925000673">study</a> of two years of MEV activity on Ethereum concluded, attackers are becoming "more sophisticated as they tend to chain different types of attacks," and "the value extracted could hinder the adoption of Ethereum in future projects." Or as the <a href="https://dl.acm.org/doi/10.1145/3643895">ACM</a> put it more bluntly: "our capabilities in securing the Ethereum system are limited."</p>
+        <p>As a 2025 ScienceDirect <a href="https://www.sciencedirect.com/science/article/pii/S2096720925000673">study</a> of two years of MEV activity on Ethereum concluded, attackers are becoming <em>"more sophisticated as they tend to chain different types of attacks,"</em> and <em>"the value extracted could hinder the adoption of Ethereum in future projects."</em> Or as the <a href="https://dl.acm.org/doi/10.1145/3643895">ACM</a> put it more bluntly: <em>"our capabilities in securing the Ethereum system are limited."</em></p>
 
-        <p>"Code is law," cypherpunk enthusiasts like to say. But bad code is bad law. And Ethereum's code is bringing us closer not to a cypherpunk utopia, but to a cyberpunk dystopia.</p>
+        <div class="highlight">
+            "Code is law," cypherpunk enthusiasts like to say. But bad code is bad law. And Ethereum's code is bringing us closer not to a cypherpunk utopia, but to a cyberpunk dystopia.
+        </div>
 
         <p>Whether intentionally or not, the result is a system that disproportionately rewards dishonest behavior and thereby incentivizes it.</p>
 
