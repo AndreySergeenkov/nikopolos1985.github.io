@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 /* ── Base ─────────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -9,6 +12,17 @@ body {
     margin: 0 auto;
     padding: 48px 20px;
     background: #fafafa;
+    animation: pageIn 0.4s ease-out;
+}
+@keyframes pageIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Selection ────────────────────────────────────── */
+::selection {
+    background: rgba(80, 160, 80, 0.15);
+    color: #1a1a1a;
 }
 
 /* ── Header ───────────────────────────────────────── */

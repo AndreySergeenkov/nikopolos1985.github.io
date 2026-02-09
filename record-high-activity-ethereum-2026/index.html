@@ -6,7 +6,7 @@
     <title>Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks - Andrey Sergeenkov</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
     <script>
@@ -17,10 +17,12 @@
     </script>
     <!-- Ahrefs Web Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -30,6 +32,15 @@
             margin: 0 auto;
             padding: 48px 20px;
             background: #fafafa;
+            animation: pageIn 0.4s ease-out;
+        }
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::selection {
+            background: rgba(80, 160, 80, 0.15);
+            color: #1a1a1a;
         }
 
         /* ── Navigation ───────────────────────────────── */
