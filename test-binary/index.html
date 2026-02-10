@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Reveal Test - Andrey Sergeenkov</title>
+    <title>Binary Reveal Test - Andrey Sergeenkov</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -95,7 +95,6 @@
 
         .article-list a:hover {
             filter: brightness(0.95);
-            text-decoration: underline;
         }
 
         .publication-name {
@@ -104,19 +103,21 @@
             margin-left: 5px;
         }
 
-        /* ASCII decode animation */
+        /* Binary decode animation */
         .decode-char {
             display: inline-block;
             overflow: hidden;
             vertical-align: bottom;
+            font-family: 'Inter', sans-serif;
         }
 
         .decode-char.scrambled {
-            color: #888;
+            opacity: 0.7;
         }
 
         .decode-char.revealed {
             color: inherit;
+            opacity: 1;
         }
 
         .back-link {
@@ -164,18 +165,34 @@
 
     <script>
     (function() {
-        const ASCII_CHARS = '░▒▓█▄▀╬│╪╫┼┤├┬┴─';
-        const DECODE_SPEED = 12;       // ms between each batch reveal
-        const BATCH_SIZE = 6;          // chars revealed per tick
-        const SCRAMBLE_INTERVAL = 40;  // ms between scramble updates
-        const STAGGER_DELAY = 80;      // ms delay between blocks
+        // Binary and related symbols with color palette
+        const BINARY_CHARS = '01';
+        const EXTRA_CHARS = '01{}[]<>/:;|\\';
+        const ALL_CHARS = BINARY_CHARS + EXTRA_CHARS;
 
-        // Hidden canvas for measuring character widths
+        // Color palette — greens, teals, muted blues
+        const COLORS = [
+            '#2d8a4e', '#3ba55d', '#1a7a3a', // greens
+            '#2b9e8f', '#1f8a7d', '#3ab4a4', // teals
+            '#4a90b8', '#3d7fa8', '#5ba3c9', // blues
+            '#6b9e3a', '#7db84a', '#5a8d2e', // lime
+            '#d4a843', '#c49635', '#e0b955', // amber accent
+        ];
+
+        const DECODE_SPEED = 12;
+        const BATCH_SIZE = 6;
+        const SCRAMBLE_INTERVAL = 40;
+        const STAGGER_DELAY = 80;
+
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
-        function randomAscii() {
-            return ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+        function randomChar() {
+            return ALL_CHARS[Math.floor(Math.random() * ALL_CHARS.length)];
+        }
+
+        function randomColor() {
+            return COLORS[Math.floor(Math.random() * COLORS.length)];
         }
 
         function getCharWidth(char, el) {
@@ -187,9 +204,7 @@
         function prepareBlock(block) {
             const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
             const textNodes = [];
-            while (walker.nextNode()) {
-                textNodes.push(walker.currentNode);
-            }
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
 
             const chars = [];
 
@@ -210,11 +225,11 @@
                     span.className = 'decode-char scrambled';
                     span.dataset.original = ch;
 
-                    // Measure and lock width to prevent layout shift
                     const w = getCharWidth(ch, parent);
                     span.style.width = w + 'px';
+                    span.style.color = randomColor();
+                    span.textContent = randomChar();
 
-                    span.textContent = randomAscii();
                     chars.push(span);
                     fragment.appendChild(span);
                 }
@@ -229,13 +244,14 @@
             return setInterval(() => {
                 for (let i = 0; i < chars.length; i++) {
                     if (chars[i].classList.contains('scrambled')) {
-                        chars[i].textContent = randomAscii();
+                        chars[i].textContent = randomChar();
+                        chars[i].style.color = randomColor();
                     }
                 }
             }, SCRAMBLE_INTERVAL);
         }
 
-        function revealChars(chars, onComplete) {
+        function revealChars(chars) {
             let index = 0;
             const scrambleId = scrambleChars(chars);
 
@@ -245,14 +261,14 @@
                     span.textContent = span.dataset.original;
                     span.classList.remove('scrambled');
                     span.classList.add('revealed');
-                    span.style.width = '';  // release fixed width after reveal
+                    span.style.width = '';
+                    span.style.color = '';
                     index++;
                 }
 
                 if (index >= chars.length) {
                     clearInterval(interval);
                     clearInterval(scrambleId);
-                    if (onComplete) onComplete();
                 }
             }, DECODE_SPEED);
         }
@@ -266,7 +282,7 @@
             blockData.push({ block, chars, revealed: false });
         });
 
-        // Use Intersection Observer to trigger decode on scroll
+        // Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -274,20 +290,14 @@
                     if (data && !data.revealed) {
                         data.revealed = true;
                         observer.unobserve(entry.target);
-
-                        // Find visible blocks that just appeared and stagger them
                         const idx = blockData.filter(d => d.revealed).length - 1;
-                        setTimeout(() => {
-                            revealChars(data.chars);
-                        }, idx * STAGGER_DELAY);
+                        setTimeout(() => revealChars(data.chars), idx * STAGGER_DELAY);
                     }
                 }
             });
         }, { threshold: 0.1 });
 
-        blockData.forEach(data => {
-            observer.observe(data.block);
-        });
+        blockData.forEach(data => observer.observe(data.block));
     })();
     </script>
 </body>
