@@ -214,7 +214,7 @@
                     span.className = 'decode-char scrambled';
                     span.dataset.original = ch;
 
-                    const w = Math.max(getCharWidth(ch, parent), getCharWidth('0', parent));
+                    const w = getCharWidth(ch, parent);
                     span.style.width = w + 'px';
                     span.textContent = randomChar();
 
