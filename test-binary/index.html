@@ -112,12 +112,11 @@
         }
 
         .decode-char.scrambled {
-            opacity: 0.7;
+            color: inherit;
         }
 
         .decode-char.revealed {
             color: inherit;
-            opacity: 1;
         }
 
         .back-link {
@@ -168,14 +167,6 @@
         // Mostly 0s and 1s, rare symbol insertions
         const EXTRA_CHARS = '{}[]<>/:;|';
 
-        // Color palette — greens, teals, muted blues
-        const COLORS = [
-            '#2d8a4e', '#3ba55d', '#1a7a3a', // greens
-            '#2b9e8f', '#1f8a7d', '#3ab4a4', // teals
-            '#4a90b8', '#3d7fa8', '#5ba3c9', // blues
-            '#6b9e3a', '#7db84a', '#5a8d2e', // lime
-            '#d4a843', '#c49635', '#e0b955', // amber accent
-        ];
 
         const DECODE_SPEED = 12;
         const BATCH_SIZE = 6;
@@ -191,10 +182,6 @@
                 return Math.random() < 0.5 ? '0' : '1';
             }
             return EXTRA_CHARS[Math.floor(Math.random() * EXTRA_CHARS.length)];
-        }
-
-        function randomColor() {
-            return COLORS[Math.floor(Math.random() * COLORS.length)];
         }
 
         function getCharWidth(char, el) {
@@ -237,7 +224,6 @@
 
                     const w = getCharWidth(ch, parent);
                     span.style.width = w + 'px';
-                    span.style.color = randomColor();
                     span.textContent = randomChar();
 
                     chars.push(span);
@@ -255,7 +241,6 @@
                 for (let i = 0; i < chars.length; i++) {
                     if (chars[i].classList.contains('scrambled')) {
                         chars[i].textContent = randomChar();
-                        chars[i].style.color = randomColor();
                     }
                 }
             }, SCRAMBLE_INTERVAL);
@@ -272,7 +257,6 @@
                     span.classList.remove('scrambled');
                     span.classList.add('revealed');
                     span.style.width = '';
-                    span.style.color = '';
                     index++;
                 }
 
