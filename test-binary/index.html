@@ -169,17 +169,8 @@
         const SCRAMBLE_INTERVAL = 40;
         const STAGGER_DELAY = 80;
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
         function randomChar() {
             return Math.random() < 0.5 ? '0' : '1';
-        }
-
-        function getCharWidth(char, el) {
-            const style = window.getComputedStyle(el);
-            ctx.font = style.fontWeight + ' ' + style.fontSize + ' ' + style.fontFamily;
-            return ctx.measureText(char).width;
         }
 
         function prepareBlock(block) {
@@ -214,8 +205,6 @@
                     span.className = 'decode-char scrambled';
                     span.dataset.original = ch;
 
-                    const w = getCharWidth(ch, parent);
-                    span.style.width = w + 'px';
                     span.textContent = randomChar();
 
                     chars.push(span);
@@ -250,7 +239,6 @@
                     span.textContent = span.dataset.original;
                     span.classList.remove('scrambled');
                     span.classList.add('revealed');
-                    span.style.width = '';
                     index++;
                 }
 
