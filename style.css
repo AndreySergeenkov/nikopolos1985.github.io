@@ -186,3 +186,15 @@ a:hover {
    padding-right: 10px;
    color: #6c757d;
 }
+/* ASCII decode animation */
+.decode-char {
+   display: inline-block;
+   overflow: hidden;
+   vertical-align: bottom;
+}
+.decode-char.scrambled {
+   color: #888;
+}
+.decode-char.revealed {
+   color: inherit;
+}
