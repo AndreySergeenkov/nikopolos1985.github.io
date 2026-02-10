@@ -241,12 +241,14 @@
             }, SCRAMBLE_INTERVAL);
         }
 
-        function revealChars(chars, onComplete) {
+        function revealChars(chars, speed, batch, onComplete) {
+            speed = speed || DECODE_SPEED;
+            batch = batch || BATCH_SIZE;
             let index = 0;
             const scrambleId = scrambleChars(chars);
 
             const interval = setInterval(() => {
-                for (let b = 0; b < BATCH_SIZE && index < chars.length; b++) {
+                for (let b = 0; b < batch && index < chars.length; b++) {
                     const span = chars[index];
                     span.textContent = span.dataset.original;
                     span.classList.remove('scrambled');
@@ -260,7 +262,7 @@
                     clearInterval(scrambleId);
                     if (onComplete) onComplete();
                 }
-            }, DECODE_SPEED);
+            }, speed);
         }
 
         // Set up all blocks
@@ -283,8 +285,9 @@
 
                         // Find visible blocks that just appeared and stagger them
                         const idx = blockData.filter(d => d.revealed).length - 1;
+                        const isName = data.block.tagName === 'H1';
                         setTimeout(() => {
-                            revealChars(data.chars);
+                            revealChars(data.chars, isName ? 30 : null, isName ? 2 : null);
                         }, idx * STAGGER_DELAY);
                     }
                 }
