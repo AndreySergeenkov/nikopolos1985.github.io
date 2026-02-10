@@ -197,26 +197,33 @@
                 const parent = node.parentNode;
                 const text = node.textContent;
                 const fragment = document.createDocumentFragment();
+                let wordWrap = null;
 
                 for (let i = 0; i < text.length; i++) {
                     const ch = text[i];
 
                     if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+                        wordWrap = null;
                         fragment.appendChild(document.createTextNode(ch));
                         continue;
+                    }
+
+                    if (!wordWrap) {
+                        wordWrap = document.createElement('span');
+                        wordWrap.style.whiteSpace = 'nowrap';
+                        fragment.appendChild(wordWrap);
                     }
 
                     const span = document.createElement('span');
                     span.className = 'decode-char scrambled';
                     span.dataset.original = ch;
 
-                    // Measure and lock width to prevent layout shift
                     const w = getCharWidth(ch, parent);
                     span.style.width = w + 'px';
 
                     span.textContent = randomAscii();
                     chars.push(span);
-                    fragment.appendChild(span);
+                    wordWrap.appendChild(span);
                 }
 
                 parent.replaceChild(fragment, node);

@@ -165,10 +165,8 @@
 
     <script>
     (function() {
-        // Binary and related symbols with color palette
-        const BINARY_CHARS = '01';
-        const EXTRA_CHARS = '01{}[]<>/:;|\\';
-        const ALL_CHARS = BINARY_CHARS + EXTRA_CHARS;
+        // Mostly 0s and 1s, rare symbol insertions
+        const EXTRA_CHARS = '{}[]<>/:;|';
 
         // Color palette — greens, teals, muted blues
         const COLORS = [
@@ -188,7 +186,11 @@
         const ctx = canvas.getContext('2d');
 
         function randomChar() {
-            return ALL_CHARS[Math.floor(Math.random() * ALL_CHARS.length)];
+            // ~90% chance of 0 or 1, ~10% chance of a symbol
+            if (Math.random() < 0.9) {
+                return Math.random() < 0.5 ? '0' : '1';
+            }
+            return EXTRA_CHARS[Math.floor(Math.random() * EXTRA_CHARS.length)];
         }
 
         function randomColor() {
@@ -212,13 +214,21 @@
                 const parent = node.parentNode;
                 const text = node.textContent;
                 const fragment = document.createDocumentFragment();
+                let wordWrap = null;
 
                 for (let i = 0; i < text.length; i++) {
                     const ch = text[i];
 
                     if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+                        wordWrap = null;
                         fragment.appendChild(document.createTextNode(ch));
                         continue;
+                    }
+
+                    if (!wordWrap) {
+                        wordWrap = document.createElement('span');
+                        wordWrap.style.whiteSpace = 'nowrap';
+                        fragment.appendChild(wordWrap);
                     }
 
                     const span = document.createElement('span');
@@ -231,7 +241,7 @@
                     span.textContent = randomChar();
 
                     chars.push(span);
-                    fragment.appendChild(span);
+                    wordWrap.appendChild(span);
                 }
 
                 parent.replaceChild(fragment, node);
