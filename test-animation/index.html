@@ -30,6 +30,13 @@
             margin-right: 10px;
         }
 
+        h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
         .profile-photo {
             width: 80px;
             height: 80px;
@@ -72,15 +79,37 @@
             background-color: #fdffc8;
         }
 
-        /* ASCII decode animation */
-        .decode-block {
-            position: relative;
+        .article-list {
+            list-style-type: none;
+            padding-left: 0;
         }
 
+        .article-list li {
+            margin-bottom: 10px;
+        }
+
+        .article-list a {
+            font-weight: 100;
+            font-size: 15px;
+            background-color: #e6f3e6;
+        }
+
+        .article-list a:hover {
+            filter: brightness(0.95);
+            text-decoration: underline;
+        }
+
+        .publication-name {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        /* ASCII decode animation */
         .decode-char {
             display: inline-block;
-            min-width: 0.1em;
-            transition: none;
+            overflow: hidden;
+            vertical-align: bottom;
         }
 
         .decode-char.scrambled {
@@ -105,16 +134,30 @@
     <div class="container">
         <main>
             <div class="header">
-                <h1 class="decode-block" data-decode>Andrey Sergeenkov</h1>
+                <h1 data-decode>Andrey Sergeenkov</h1>
                 <img src='../500.jpg' alt='Andrey Sergeenkov' class='profile-photo'>
             </div>
-            <p class="job-title decode-block" data-decode>I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
-            <p class="current-work link-highlight decode-block" data-decode>You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a>.</p>
-            <p class="current-work decode-block" data-decode>My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
-            <p class="current-work decode-block" data-decode>My educational articles have been cited in 38 research papers from various institutions including: <a href="https://www3.weforum.org/docs/WEF_Decentralized_Autonomous_Organizations_Beyond_the_Hype_2022.pdf">World Economic Forum</a>, <a href="https://www.cato.org/sites/cato.org/files/2023-03/policy-analysis-941-updated.pdf">Cato Institute</a>, <a href="https://heinonline.org/HOL/LandingPage?handle=hein.journals/fjcf27&div=22&id=&page=">Fordham University School of Law</a>, <a href="https://arxiv.org/abs/2210.07110">Technical University of Darmstadt</a>, <a href="https://link.springer.com/article/10.1007/s12083-024-01762-3">Renmin University of China</a>, <a href="https://link.springer.com/chapter/10.1007/978-3-031-56125-2_14">Santa Clara University</a>, <a href="https://dspace.cvut.cz/handle/10467/102218">Czech Technical University</a>, <a href="https://link.springer.com/chapter/10.1007/978-981-97-3970-7_4">Birmingham City University</a>, <a href="https://dspace.lu.lv/dspace/handle/7/61014">University of Latvia</a> and <a href="https://opus4.kobv.de/opus4-hof/frontdoor/index/index/docId/129">The Royal Anthropological Institute</a>.</p>
-            <p class="current-work link-highlight decode-block" data-decode>
+            <p class="job-title" data-decode>I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
+            <p class="current-work link-highlight" data-decode>You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a>.</p>
+            <p class="current-work" data-decode>My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
+            <p class="current-work" data-decode>My educational articles have been cited in 38 research papers from various institutions including: <a href="https://www3.weforum.org/docs/WEF_Decentralized_Autonomous_Organizations_Beyond_the_Hype_2022.pdf">World Economic Forum</a>, <a href="https://www.cato.org/sites/cato.org/files/2023-03/policy-analysis-941-updated.pdf">Cato Institute</a>, <a href="https://heinonline.org/HOL/LandingPage?handle=hein.journals/fjcf27&div=22&id=&page=">Fordham University School of Law</a>, <a href="https://arxiv.org/abs/2210.07110">Technical University of Darmstadt</a>, <a href="https://link.springer.com/article/10.1007/s12083-024-01762-3">Renmin University of China</a>, <a href="https://link.springer.com/chapter/10.1007/978-3-031-56125-2_14">Santa Clara University</a>, <a href="https://dspace.cvut.cz/handle/10467/102218">Czech Technical University</a>, <a href="https://link.springer.com/chapter/10.1007/978-981-97-3970-7_4">Birmingham City University</a>, <a href="https://dspace.lu.lv/dspace/handle/7/61014">University of Latvia</a> and <a href="https://opus4.kobv.de/opus4-hof/frontdoor/index/index/docId/129">The Royal Anthropological Institute</a>.</p>
+            <p class="current-work link-highlight" data-decode>
             The best way to contact me is via email <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a>. Alternatively you can use <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> or <a href="https://t.me/Nikopolos">Telegram</a>.
             </p>
+
+            <h2 data-decode>My Articles</h2>
+<ul class="article-list">
+    <li data-decode><a href="/thedao-curators-220m-hack-victims/">Seven Curators Took Control of $220M in Unclaimed TheDAO Funds, But Do They Have the Right?</a> <span class="publication-name">(Independent Research)</span></li>
+    <li data-decode><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?</a> <span class="publication-name">(Independent Research)</span></li>
+    <li data-decode><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a> <span class="publication-name">(Independent Research)</span></li>
+    <li data-decode><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">Stop Pretending Technical And Human Vulnerabilities Are Separate Things</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/12/17/why-2025-may-be-the-right-time-to-create-national-bitcoin-reserves/">Why 2025 May Be The Right Time To Create National Bitcoin Reserves</a> <span class="publication-name">(Forbes)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/12/05/what-math-problems-do-bitcoin-miners-really-solve/">What Math Problems Do Bitcoin Miners Really Solve</a> <span class="publication-name">(Forbes)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/12/04/what-is-a-bitcoin-node-and-how-to-run-one/">What Is A Bitcoin Node And How To Run One</a> <span class="publication-name">(Forbes)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/">Tether Discontinues EURT And Sets Deadline For Token Redemption</a> <span class="publication-name">(Forbes)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/11/27/understanding-polymarket-and-prediction-markets/">Understanding Polymarket And Prediction Markets</a> <span class="publication-name">(Forbes)</span></li>
+    <li data-decode><a href="https://www.forbes.com/sites/digital-assets/2024/11/26/how-to-get-first-funding-for-web3/">How To Get First Funding For Web3</a> <span class="publication-name">(Forbes)</span></li>
+</ul>
 
             <p class="back-link"><a href="/">&larr; Back to main page</a></p>
         </main>
@@ -122,13 +165,24 @@
 
     <script>
     (function() {
-        const ASCII_CHARS = '░▒▓█▄▀╬│╪╫┼┤├┬┴─╔╗╚╝║═';
-        const DECODE_SPEED = 30;      // ms between each character reveal
-        const SCRAMBLE_INTERVAL = 50;  // ms between scramble updates
-        const STAGGER_DELAY = 150;     // ms delay between paragraphs
+        const ASCII_CHARS = '░▒▓█▄▀╬│╪╫┼┤├┬┴─';
+        const DECODE_SPEED = 12;       // ms between each batch reveal
+        const BATCH_SIZE = 6;          // chars revealed per tick
+        const SCRAMBLE_INTERVAL = 40;  // ms between scramble updates
+        const STAGGER_DELAY = 80;      // ms delay between blocks
+
+        // Hidden canvas for measuring character widths
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
         function randomAscii() {
             return ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+        }
+
+        function getCharWidth(char, el) {
+            const style = window.getComputedStyle(el);
+            ctx.font = style.fontWeight + ' ' + style.fontSize + ' ' + style.fontFamily;
+            return ctx.measureText(char).width;
         }
 
         function prepareBlock(block) {
@@ -141,26 +195,32 @@
             const chars = [];
 
             textNodes.forEach(node => {
+                const parent = node.parentNode;
                 const text = node.textContent;
                 const fragment = document.createDocumentFragment();
 
                 for (let i = 0; i < text.length; i++) {
-                    const span = document.createElement('span');
-                    span.className = 'decode-char scrambled';
-                    span.dataset.original = text[i];
+                    const ch = text[i];
 
-                    if (text[i] === ' ' || text[i] === '\n' || text[i] === '\t') {
-                        span.textContent = text[i];
-                        span.className = 'decode-char revealed';
-                    } else {
-                        span.textContent = randomAscii();
+                    if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+                        fragment.appendChild(document.createTextNode(ch));
+                        continue;
                     }
 
+                    const span = document.createElement('span');
+                    span.className = 'decode-char scrambled';
+                    span.dataset.original = ch;
+
+                    // Measure and lock width to prevent layout shift
+                    const w = getCharWidth(ch, parent);
+                    span.style.width = w + 'px';
+
+                    span.textContent = randomAscii();
                     chars.push(span);
                     fragment.appendChild(span);
                 }
 
-                node.parentNode.replaceChild(fragment, node);
+                parent.replaceChild(fragment, node);
             });
 
             return chars;
@@ -168,11 +228,11 @@
 
         function scrambleChars(chars) {
             return setInterval(() => {
-                chars.forEach(span => {
-                    if (span.classList.contains('scrambled') && span.dataset.original !== ' ') {
-                        span.textContent = randomAscii();
+                for (let i = 0; i < chars.length; i++) {
+                    if (chars[i].classList.contains('scrambled')) {
+                        chars[i].textContent = randomAscii();
                     }
-                });
+                }
             }, SCRAMBLE_INTERVAL);
         }
 
@@ -181,14 +241,12 @@
             const scrambleId = scrambleChars(chars);
 
             const interval = setInterval(() => {
-                // Reveal a few chars at a time for faster feel
-                for (let batch = 0; batch < 3 && index < chars.length; batch++) {
+                for (let b = 0; b < BATCH_SIZE && index < chars.length; b++) {
                     const span = chars[index];
-                    if (span.classList.contains('scrambled')) {
-                        span.textContent = span.dataset.original;
-                        span.classList.remove('scrambled');
-                        span.classList.add('revealed');
-                    }
+                    span.textContent = span.dataset.original;
+                    span.classList.remove('scrambled');
+                    span.classList.add('revealed');
+                    span.style.width = '';  // release fixed width after reveal
                     index++;
                 }
 
@@ -218,8 +276,8 @@
                         data.revealed = true;
                         observer.unobserve(entry.target);
 
-                        // Find index for stagger delay
-                        const idx = blockData.indexOf(data);
+                        // Find visible blocks that just appeared and stagger them
+                        const idx = blockData.filter(d => d.revealed).length - 1;
                         setTimeout(() => {
                             revealChars(data.chars);
                         }, idx * STAGGER_DELAY);
