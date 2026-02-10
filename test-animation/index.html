@@ -167,7 +167,6 @@
         const DECODE_SPEED = 12;       // ms between each batch reveal
         const BATCH_SIZE = 6;          // chars revealed per tick
         const SCRAMBLE_INTERVAL = 40;  // ms between scramble updates
-        const STAGGER_DELAY = 80;      // ms delay between blocks
 
         // Hidden canvas for measuring character widths
         const canvas = document.createElement('canvas');
@@ -265,37 +264,27 @@
             }, speed);
         }
 
-        // Set up all blocks
+        // Hide blocks, prepare lazily on viewport entry
         const blocks = document.querySelectorAll('[data-decode]');
-        const blockData = [];
 
         blocks.forEach(block => {
-            const chars = prepareBlock(block);
-            blockData.push({ block, chars, revealed: false });
+            block.style.visibility = 'hidden';
         });
 
-        // Use Intersection Observer to trigger decode on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const data = blockData.find(d => d.block === entry.target);
-                    if (data && !data.revealed) {
-                        data.revealed = true;
-                        observer.unobserve(entry.target);
-
-                        // Find visible blocks that just appeared and stagger them
-                        const idx = blockData.filter(d => d.revealed).length - 1;
-                        const isName = data.block.tagName === 'H1';
-                        setTimeout(() => {
-                            revealChars(data.chars, isName ? 30 : null, isName ? 2 : null);
-                        }, idx * STAGGER_DELAY);
-                    }
+                    observer.unobserve(entry.target);
+                    const chars = prepareBlock(entry.target);
+                    entry.target.style.visibility = '';
+                    const isName = entry.target.tagName === 'H1';
+                    revealChars(chars, isName ? 30 : null, isName ? 2 : null);
                 }
             });
         }, { threshold: 0.1 });
 
-        blockData.forEach(data => {
-            observer.observe(data.block);
+        blocks.forEach(block => {
+            observer.observe(block);
         });
     })();
     </script>
