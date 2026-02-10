@@ -306,36 +306,35 @@
 
     <script>
     (function() {
-        const ASCII_CHARS = '░▒▓█▄▀╬│╪╫┼┤├┬┴─';
-        const DECODE_SPEED = 12;
-        const BATCH_SIZE = 6;
-        const SCRAMBLE_INTERVAL = 40;
-        const STAGGER_DELAY = 80;
+        var ASCII_CHARS = '░▒▓█▄▀╬│╪╫┼┤├┬┴─';
+        var DECODE_SPEED = 12;
+        var BATCH_SIZE = 6;
+        var SCRAMBLE_INTERVAL = 40;
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
 
         function randomAscii() {
             return ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
         }
 
         function getCharWidth(char, el) {
-            const style = window.getComputedStyle(el);
+            var style = window.getComputedStyle(el);
             ctx.font = style.fontWeight + ' ' + style.fontSize + ' ' + style.fontFamily;
             return ctx.measureText(char).width;
         }
 
         function prepareBlock(block) {
-            const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
-            const textNodes = [];
+            var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+            var textNodes = [];
             while (walker.nextNode()) textNodes.push(walker.currentNode);
 
-            const chars = [];
+            var chars = [];
 
             textNodes.forEach(function(node) {
-                const parent = node.parentNode;
-                const text = node.textContent;
-                const fragment = document.createDocumentFragment();
+                var parent = node.parentNode;
+                var text = node.textContent;
+                var fragment = document.createDocumentFragment();
                 var wordWrap = null;
 
                 for (var i = 0; i < text.length; i++) {
@@ -404,38 +403,30 @@
             }, speed);
         }
 
-        // Select blocks to animate
+        // Select blocks to animate — hide them until they enter viewport
         var blocks = document.querySelectorAll(
             '.header h1, .job-title, .current-work, h2, .article-list li:nth-child(-n+15)'
         );
-        var blockData = [];
 
         blocks.forEach(function(block) {
-            var chars = prepareBlock(block);
-            blockData.push({ block: block, chars: chars, revealed: false });
+            block.style.visibility = 'hidden';
         });
 
-        // Intersection Observer
+        // Lazy init: prepare and animate only when element enters viewport
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    var data = blockData.find(function(d) { return d.block === entry.target; });
-                    if (data && !data.revealed) {
-                        data.revealed = true;
-                        observer.unobserve(entry.target);
-
-                        var idx = blockData.filter(function(d) { return d.revealed; }).length - 1;
-                        var isName = data.block.tagName === 'H1';
-                        setTimeout(function() {
-                            revealChars(data.chars, isName ? 30 : null, isName ? 2 : null);
-                        }, idx * STAGGER_DELAY);
-                    }
+                    observer.unobserve(entry.target);
+                    var chars = prepareBlock(entry.target);
+                    entry.target.style.visibility = '';
+                    var isName = entry.target.tagName === 'H1';
+                    revealChars(chars, isName ? 30 : null, isName ? 2 : null);
                 }
             });
         }, { threshold: 0.1 });
 
-        blockData.forEach(function(data) {
-            observer.observe(data.block);
+        blocks.forEach(function(block) {
+            observer.observe(block);
         });
     })();
     </script>
