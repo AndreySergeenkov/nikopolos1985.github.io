@@ -847,7 +847,8 @@
 
     function downloadChart(id, name) {
         var chart = chartInstances[id];
-        if (!chart) return;
+        var cfg = window.chartConfigs[id];
+        if (!chart || !cfg) return;
         var box = document.getElementById(id).closest('.chart-box');
         var title = box.querySelector('h3').textContent;
         var subtitle = box.querySelector('.chart-subtitle').textContent;
@@ -862,15 +863,32 @@
             });
         });
 
-        var src = chart.canvas;
-        var outW = 1400;
-        var scale = outW / (src.clientWidth || src.offsetWidth || 680);
-        var chartW = outW;
-        var chartH = Math.round(src.height * (outW / src.width));
+        var chartW = 1400;
+        var chartH = 620;
         var pad = 48;
         var topH = 110;
         var botH = 80;
 
+        // Render chart natively at target size using an offscreen canvas
+        var offCanvas = document.createElement('canvas');
+        offCanvas.width = chartW;
+        offCanvas.height = chartH;
+        var offChart = new Chart(offCanvas.getContext('2d'), {
+            type: cfg.type,
+            data: {
+                labels: chart.data.labels.slice(),
+                datasets: chart.data.datasets.map(function(ds) {
+                    return Object.assign({}, ds, { data: ds.data.slice() });
+                })
+            },
+            options: Object.assign({}, cfg.options, {
+                responsive: false,
+                animation: false,
+                devicePixelRatio: 1
+            })
+        });
+
+        // Compose final image
         var tmp = document.createElement('canvas');
         tmp.width = chartW + pad * 2;
         tmp.height = chartH + topH + botH;
@@ -887,7 +905,7 @@
         ctx.font = '20px ' + fontBase;
         ctx.fillText(subtitle, pad, pad + 58);
 
-        ctx.drawImage(src, pad, topH, chartW, chartH);
+        ctx.drawImage(offCanvas, pad, topH);
 
         var ly = topH + chartH + 36;
         var lx = pad;
@@ -918,6 +936,8 @@
         ctx.font = '18px ' + fontBase;
         ctx.textAlign = 'right';
         ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
+
+        offChart.destroy();
 
         var link = document.createElement('a');
         link.download = name + '.png';
