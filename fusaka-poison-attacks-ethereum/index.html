@@ -573,7 +573,6 @@
                     display: true,
                     content: 'Fusaka',
                     position: 'end',
-                    yAdjust: -18,
                     backgroundColor: 'rgba(220,53,69,0.12)',
                     color: '#dc3545',
                     font: { size: 11, weight: 600, family: chartFont.family },
@@ -612,6 +611,7 @@
         var commonOptions = {
             responsive: true,
             maintainAspectRatio: false,
+            layout: { padding: { top: 28 } },
             interaction: { mode: 'index', intersect: false },
             plugins: {
                 legend: { display: false },
@@ -773,6 +773,7 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: { padding: { top: 28 } },
                 interaction: { mode: 'index', intersect: false },
                 plugins: {
                     legend: { display: false },
@@ -862,15 +863,17 @@
         });
 
         var src = chart.canvas;
-        var r = src.width / (src.clientWidth || src.offsetWidth || 680);
-        if (r < 1) r = 2;
-        var pad = Math.round(24 * r);
-        var topH = Math.round(56 * r);
-        var botH = Math.round(44 * r);
+        var outW = 1400;
+        var scale = outW / (src.clientWidth || src.offsetWidth || 680);
+        var chartW = outW;
+        var chartH = Math.round(src.height * (outW / src.width));
+        var pad = 48;
+        var topH = 110;
+        var botH = 80;
 
         var tmp = document.createElement('canvas');
-        tmp.width = src.width + pad * 2;
-        tmp.height = src.height + topH + botH;
+        tmp.width = chartW + pad * 2;
+        tmp.height = chartH + topH + botH;
         var ctx = tmp.getContext('2d');
 
         ctx.fillStyle = '#fff';
@@ -878,43 +881,43 @@
 
         var fontBase = "Inter, -apple-system, sans-serif";
         ctx.fillStyle = '#333';
-        ctx.font = '600 ' + Math.round(13 * r) + 'px ' + fontBase;
-        ctx.fillText(title, pad, pad + Math.round(15 * r));
+        ctx.font = '600 26px ' + fontBase;
+        ctx.fillText(title, pad, pad + 28);
         ctx.fillStyle = '#888';
-        ctx.font = Math.round(11 * r) + 'px ' + fontBase;
-        ctx.fillText(subtitle, pad, pad + Math.round(32 * r));
+        ctx.font = '20px ' + fontBase;
+        ctx.fillText(subtitle, pad, pad + 58);
 
-        ctx.drawImage(src, pad, topH);
+        ctx.drawImage(src, pad, topH, chartW, chartH);
 
-        var ly = topH + src.height + Math.round(18 * r);
+        var ly = topH + chartH + 36;
         var lx = pad;
-        ctx.font = Math.round(10 * r) + 'px ' + fontBase;
+        ctx.font = '18px ' + fontBase;
         legendItems.forEach(function(item) {
-            var sw = Math.round(14 * r);
+            var sw = 26;
             if (item.isDash) {
                 ctx.save();
-                ctx.setLineDash([Math.round(3 * r), Math.round(2 * r)]);
+                ctx.setLineDash([6, 4]);
                 ctx.strokeStyle = '#999';
-                ctx.lineWidth = Math.round(1.5 * r);
+                ctx.lineWidth = 3;
                 ctx.beginPath();
-                ctx.moveTo(lx, ly - Math.round(4 * r));
-                ctx.lineTo(lx + sw, ly - Math.round(4 * r));
+                ctx.moveTo(lx, ly - 6);
+                ctx.lineTo(lx + sw, ly - 6);
                 ctx.stroke();
                 ctx.restore();
             } else {
                 ctx.fillStyle = item.color;
-                ctx.fillRect(lx, ly - Math.round(5 * r), sw, Math.round(3 * r));
+                ctx.fillRect(lx, ly - 10, sw, 5);
             }
-            lx += sw + Math.round(5 * r);
+            lx += sw + 8;
             ctx.fillStyle = '#555';
             ctx.fillText(item.text, lx, ly);
-            lx += ctx.measureText(item.text).width + Math.round(20 * r);
+            lx += ctx.measureText(item.text).width + 36;
         });
 
         ctx.fillStyle = '#bbb';
-        ctx.font = Math.round(10 * r) + 'px ' + fontBase;
+        ctx.font = '18px ' + fontBase;
         ctx.textAlign = 'right';
-        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - Math.round(10 * r));
+        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
 
         var link = document.createElement('a');
         link.download = name + '.png';
