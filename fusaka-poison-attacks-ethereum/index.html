@@ -573,6 +573,7 @@
                     display: true,
                     content: 'Fusaka',
                     position: 'end',
+                    yAdjust: -18,
                     backgroundColor: 'rgba(220,53,69,0.12)',
                     color: '#dc3545',
                     font: { size: 11, weight: 600, family: chartFont.family },
@@ -846,14 +847,75 @@
     function downloadChart(id, name) {
         var chart = chartInstances[id];
         if (!chart) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        var title = box.querySelector('h3').textContent;
+        var subtitle = box.querySelector('.chart-subtitle').textContent;
+        var legendItems = [];
+        box.querySelectorAll('.chart-legend > span').forEach(function(span) {
+            var line = span.querySelector('.legend-line');
+            var dash = span.querySelector('.legend-dash');
+            legendItems.push({
+                text: span.textContent.trim(),
+                color: line ? line.style.backgroundColor || line.style.background : '#999',
+                isDash: !!dash
+            });
+        });
+
         var src = chart.canvas;
+        var r = src.width / (src.clientWidth || src.offsetWidth || 680);
+        if (r < 1) r = 2;
+        var pad = Math.round(24 * r);
+        var topH = Math.round(56 * r);
+        var botH = Math.round(44 * r);
+
         var tmp = document.createElement('canvas');
-        tmp.width = src.width;
-        tmp.height = src.height;
-        var tmpCtx = tmp.getContext('2d');
-        tmpCtx.fillStyle = '#ffffff';
-        tmpCtx.fillRect(0, 0, tmp.width, tmp.height);
-        tmpCtx.drawImage(src, 0, 0);
+        tmp.width = src.width + pad * 2;
+        tmp.height = src.height + topH + botH;
+        var ctx = tmp.getContext('2d');
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, tmp.width, tmp.height);
+
+        var fontBase = "Inter, -apple-system, sans-serif";
+        ctx.fillStyle = '#333';
+        ctx.font = '600 ' + Math.round(13 * r) + 'px ' + fontBase;
+        ctx.fillText(title, pad, pad + Math.round(15 * r));
+        ctx.fillStyle = '#888';
+        ctx.font = Math.round(11 * r) + 'px ' + fontBase;
+        ctx.fillText(subtitle, pad, pad + Math.round(32 * r));
+
+        ctx.drawImage(src, pad, topH);
+
+        var ly = topH + src.height + Math.round(18 * r);
+        var lx = pad;
+        ctx.font = Math.round(10 * r) + 'px ' + fontBase;
+        legendItems.forEach(function(item) {
+            var sw = Math.round(14 * r);
+            if (item.isDash) {
+                ctx.save();
+                ctx.setLineDash([Math.round(3 * r), Math.round(2 * r)]);
+                ctx.strokeStyle = '#999';
+                ctx.lineWidth = Math.round(1.5 * r);
+                ctx.beginPath();
+                ctx.moveTo(lx, ly - Math.round(4 * r));
+                ctx.lineTo(lx + sw, ly - Math.round(4 * r));
+                ctx.stroke();
+                ctx.restore();
+            } else {
+                ctx.fillStyle = item.color;
+                ctx.fillRect(lx, ly - Math.round(5 * r), sw, Math.round(3 * r));
+            }
+            lx += sw + Math.round(5 * r);
+            ctx.fillStyle = '#555';
+            ctx.fillText(item.text, lx, ly);
+            lx += ctx.measureText(item.text).width + Math.round(20 * r);
+        });
+
+        ctx.fillStyle = '#bbb';
+        ctx.font = Math.round(10 * r) + 'px ' + fontBase;
+        ctx.textAlign = 'right';
+        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - Math.round(10 * r));
+
         var link = document.createElement('a');
         link.download = name + '.png';
         link.href = tmp.toDataURL('image/png');
