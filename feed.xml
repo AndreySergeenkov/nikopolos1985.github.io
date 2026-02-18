@@ -5,8 +5,16 @@
     <link>https://sergeenkov.com</link>
     <description>Independent research on the digital economy, cryptocurrencies, and blockchain technology.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://sergeenkov.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</title>
+      <link>https://sergeenkov.com/fusaka-address-poisoning/</link>
+      <guid isPermaLink="true">https://sergeenkov.com/fusaka-address-poisoning/</guid>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <description>Fusaka reduced gas fees 6x, helping attackers increase address poisoning volume 5.6x. In 73 days after the upgrade, victims lost $63.3M — a 13-fold increase compared to the same period before Fusaka ($4.9M).</description>
+    </item>
 
     <item>
       <title>Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Projects</title>
