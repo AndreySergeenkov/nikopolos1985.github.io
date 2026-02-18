@@ -646,9 +646,10 @@
             }
         };
 
+        window.chartConfigs = {};
+
         // Chart 1: Dust transactions
-        var ctx1 = document.getElementById('chart1').getContext('2d');
-        new Chart(ctx1, {
+        var cfg1 = {
             type: 'line',
             data: {
                 labels: labels,
@@ -686,11 +687,12 @@
                     }
                 })
             })
-        });
+        };
+        window.chartConfigs.chart1 = cfg1;
+        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
 
         // Chart 2: Unique wallets
-        var ctx2 = document.getElementById('chart2').getContext('2d');
-        new Chart(ctx2, {
+        var cfg2 = {
             type: 'line',
             data: {
                 labels: labels,
@@ -725,11 +727,12 @@
                     }
                 })
             })
-        });
+        };
+        window.chartConfigs.chart2 = cfg2;
+        new Chart(document.getElementById('chart2').getContext('2d'), cfg2);
 
         // Chart 3: Gas vs Dust (dual axis)
-        var ctx3 = document.getElementById('chart3').getContext('2d');
-        new Chart(ctx3, {
+        var cfg3 = {
             type: 'line',
             data: {
                 labels: labels,
@@ -818,7 +821,9 @@
                     }
                 }
             }
-        });
+        };
+        window.chartConfigs.chart3 = cfg3;
+        new Chart(document.getElementById('chart3').getContext('2d'), cfg3);
     })();
     </script>
 
@@ -841,16 +846,25 @@
     function downloadChart(id, name) {
         var chart = chartInstances[id];
         if (!chart) return;
+        var src = chart.canvas;
+        var tmp = document.createElement('canvas');
+        tmp.width = src.width;
+        tmp.height = src.height;
+        var tmpCtx = tmp.getContext('2d');
+        tmpCtx.fillStyle = '#ffffff';
+        tmpCtx.fillRect(0, 0, tmp.width, tmp.height);
+        tmpCtx.drawImage(src, 0, 0);
         var link = document.createElement('a');
         link.download = name + '.png';
-        link.href = chart.toBase64Image('image/png', 1);
+        link.href = tmp.toDataURL('image/png');
         link.click();
     }
 
     var modalChart = null;
     function expandChart(id) {
         var src = chartInstances[id];
-        if (!src) return;
+        var cfg = window.chartConfigs[id];
+        if (!src || !cfg) return;
         var box = document.getElementById(id).closest('.chart-box');
         document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
         document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
@@ -859,15 +873,19 @@
 
         if (modalChart) { modalChart.destroy(); modalChart = null; }
 
-        var cfg = JSON.parse(JSON.stringify(src.config));
-        cfg.data = {};
-        cfg.data.labels = src.data.labels.slice();
-        cfg.data.datasets = src.data.datasets.map(function(ds) {
-            return Object.assign({}, ds, { data: ds.data.slice() });
-        });
+        var modalCfg = {
+            type: cfg.type,
+            data: {
+                labels: src.data.labels.slice(),
+                datasets: src.data.datasets.map(function(ds) {
+                    return Object.assign({}, ds, { data: ds.data.slice() });
+                })
+            },
+            options: cfg.options
+        };
 
         var mCanvas = document.getElementById('modalCanvas');
-        modalChart = new Chart(mCanvas.getContext('2d'), cfg);
+        modalChart = new Chart(mCanvas.getContext('2d'), modalCfg);
     }
 
     function closeModal() {
