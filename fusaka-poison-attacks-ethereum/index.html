@@ -229,6 +229,94 @@
             color: #999;
             background: none;
         }
+        .chart-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #888;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+        .chart-btn:hover {
+            color: #555;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none;
+        }
+        .chart-btn svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+        }
+        .chart-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .chart-modal-overlay.active {
+            display: flex;
+        }
+        .chart-modal {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 90vh;
+            position: relative;
+        }
+        .chart-modal h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 4px;
+            color: #333;
+        }
+        .chart-modal .chart-subtitle {
+            font-size: 13px;
+            color: #666;
+            margin: 0 0 16px;
+        }
+        .chart-modal-container {
+            position: relative;
+            width: 100%;
+            height: 420px;
+        }
+        .chart-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            padding: 4px;
+        }
+        .chart-modal-close:hover {
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            .chart-modal-container {
+                height: 280px;
+            }
+        }
         .author-box {
             display: flex;
             align-items: center;
@@ -305,6 +393,10 @@
                 <span><span class="legend-line" style="background:#dc3545"></span> Dust transactions (7d avg)</span>
                 <span><span class="legend-dash"></span> Pre-Fusaka avg</span>
             </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart1','dust-transactions')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
+                <button class="chart-btn" onclick="expandChart('chart1')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
@@ -321,6 +413,10 @@
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#e8a838"></span> Median gas price, gwei (left axis)</span>
                 <span><span class="legend-line" style="background:#dc3545"></span> Dust transactions (right axis)</span>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart3','gas-vs-dust')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
+                <button class="chart-btn" onclick="expandChart('chart3')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
             </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
@@ -340,6 +436,10 @@
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#007bff"></span> Unique wallets (7d avg)</span>
                 <span><span class="legend-dash"></span> Pre-Fusaka avg</span>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart2','unique-wallets')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
+                <button class="chart-btn" onclick="expandChart('chart2')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
             </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
@@ -720,6 +820,65 @@
             }
         });
     })();
+    </script>
+
+    <div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
+        <div class="chart-modal">
+            <button class="chart-modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <p class="chart-subtitle" id="modalSubtitle"></p>
+            <div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+    var chartInstances = {};
+    document.querySelectorAll('.chart-container canvas').forEach(function(c) {
+        var inst = Chart.getChart(c);
+        if (inst) chartInstances[c.id] = inst;
+    });
+
+    function downloadChart(id, name) {
+        var chart = chartInstances[id];
+        if (!chart) return;
+        var link = document.createElement('a');
+        link.download = name + '.png';
+        link.href = chart.toBase64Image('image/png', 1);
+        link.click();
+    }
+
+    var modalChart = null;
+    function expandChart(id) {
+        var src = chartInstances[id];
+        if (!src) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
+        document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
+        document.getElementById('chartModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+
+        var cfg = JSON.parse(JSON.stringify(src.config));
+        cfg.data = {};
+        cfg.data.labels = src.data.labels.slice();
+        cfg.data.datasets = src.data.datasets.map(function(ds) {
+            return Object.assign({}, ds, { data: ds.data.slice() });
+        });
+
+        var mCanvas = document.getElementById('modalCanvas');
+        modalChart = new Chart(mCanvas.getContext('2d'), cfg);
+    }
+
+    function closeModal() {
+        document.getElementById('chartModal').classList.remove('active');
+        document.body.style.overflow = '';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
     </script>
 </body>
 </html>
