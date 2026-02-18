@@ -183,8 +183,13 @@
             color: #666;
             margin: 0 0 16px;
         }
-        .chart-box canvas {
-            width: 100% !important;
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        .chart-container canvas {
+            display: block;
         }
         .chart-legend {
             display: flex;
@@ -252,6 +257,13 @@
             .stats-box {
                 grid-template-columns: 1fr;
             }
+            .chart-container {
+                height: 220px;
+            }
+            .chart-legend {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
         }
     </style>
 </head>
@@ -288,7 +300,7 @@
         <div class="chart-box">
             <h3>Dust attack transactions before and after Fusaka upgrade</h3>
             <p class="chart-subtitle">7-day moving average. Each dust transfer = one attack transaction.</p>
-            <canvas id="chart1" height="300"></canvas>
+            <div class="chart-container"><canvas id="chart1"></canvas></div>
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#dc3545"></span> Dust transactions (7d avg)</span>
                 <span><span class="legend-dash"></span> Pre-Fusaka avg</span>
@@ -305,7 +317,7 @@
         <div class="chart-box">
             <h3>Gas price vs. dust attack volume before and after Fusaka upgrade</h3>
             <p class="chart-subtitle">7-day moving average. Median gas price (gwei) from Dune Analytics overlaid with dust transactions.</p>
-            <canvas id="chart3" height="300"></canvas>
+            <div class="chart-container"><canvas id="chart3"></canvas></div>
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#e8a838"></span> Median gas price, gwei (left axis)</span>
                 <span><span class="legend-line" style="background:#dc3545"></span> Dust transactions (right axis)</span>
@@ -324,7 +336,7 @@
         <div class="chart-box">
             <h3>Unique wallets attacked before and after Fusaka upgrade</h3>
             <p class="chart-subtitle">7-day moving average. One wallet = one attack regardless of how many dust transactions hit it.</p>
-            <canvas id="chart2" height="300"></canvas>
+            <div class="chart-container"><canvas id="chart2"></canvas></div>
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#007bff"></span> Unique wallets (7d avg)</span>
                 <span><span class="legend-dash"></span> Pre-Fusaka avg</span>
