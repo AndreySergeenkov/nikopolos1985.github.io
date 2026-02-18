@@ -1,0 +1,892 @@
+import { useMemo } from "react";
+import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, ReferenceLine } from "recharts";
+
+const RAW = `2025-09-01,12032,5917
+2025-09-02,19556,10435
+2025-09-03,20830,10035
+2025-09-04,19936,9691
+2025-09-05,23951,12360
+2025-09-06,30603,13850
+2025-09-07,28918,12757
+2025-09-08,24131,12230
+2025-09-09,35863,18287
+2025-09-10,48288,24221
+2025-09-11,52329,24617
+2025-09-12,36041,19528
+2025-09-13,32535,16077
+2025-09-14,26038,12478
+2025-09-15,21109,10391
+2025-09-16,10719,6652
+2025-09-17,17028,8854
+2025-09-18,9544,5297
+2025-09-19,19994,8842
+2025-09-20,20814,9584
+2025-09-21,20262,9135
+2025-09-22,13577,7857
+2025-09-23,17496,9573
+2025-09-24,11846,7792
+2025-09-25,4449,3515
+2025-09-26,9899,6299
+2025-09-27,11831,7399
+2025-09-28,34782,11277
+2025-09-29,15724,9037
+2025-09-30,20618,11131
+2025-10-01,35860,14162
+2025-10-02,24195,6561
+2025-10-03,17005,8790
+2025-10-04,24278,10332
+2025-10-05,26185,10540
+2025-10-06,17069,8120
+2025-10-07,16869,8065
+2025-10-08,26383,11583
+2025-10-09,24602,10984
+2025-10-10,20483,8491
+2025-10-11,2730,2073
+2025-10-12,17545,8035
+2025-10-13,18969,9080
+2025-10-14,17406,8593
+2025-10-15,21524,9880
+2025-10-16,22424,10926
+2025-10-17,8097,5464
+2025-10-18,23801,10430
+2025-10-19,20055,9171
+2025-10-20,30329,13096
+2025-10-21,33500,13116
+2025-10-22,39876,16104
+2025-10-23,48698,19547
+2025-10-24,33374,14854
+2025-10-25,26577,11674
+2025-10-26,25840,11054
+2025-10-27,27038,13070
+2025-10-28,33368,14610
+2025-10-29,41435,15501
+2025-10-30,16949,7629
+2025-10-31,30275,13033
+2025-11-01,51525,15483
+2025-11-02,46114,13435
+2025-11-03,16159,7763
+2025-11-04,8863,4534
+2025-11-05,12999,6967
+2025-11-06,8510,4778
+2025-11-07,7661,4311
+2025-11-08,21543,8911
+2025-11-09,32671,12558
+2025-11-10,36117,13970
+2025-11-11,42601,15820
+2025-11-12,39823,15505
+2025-11-13,34006,12685
+2025-11-14,26134,12252
+2025-11-15,66938,20248
+2025-11-16,49885,17555
+2025-11-17,54410,18778
+2025-11-18,42797,17386
+2025-11-19,42897,15471
+2025-11-20,25158,10241
+2025-11-21,23510,9421
+2025-11-22,33278,15107
+2025-11-23,24845,11739
+2025-11-24,38867,14638
+2025-11-25,52289,18349
+2025-11-26,88689,26450
+2025-11-27,83680,26057
+2025-11-28,79985,27289
+2025-11-29,47068,15835
+2025-11-30,47904,15245
+2025-12-01,79038,24892
+2025-12-02,84257,26424
+2025-12-03,77949,28038
+2025-12-04,77705,24659
+2025-12-05,77023,23721
+2025-12-06,85983,24551
+2025-12-07,35640,11371
+2025-12-08,30671,9811
+2025-12-09,59965,18333
+2025-12-10,62082,20120
+2025-12-11,79934,21275
+2025-12-12,50070,16757
+2025-12-13,57530,14443
+2025-12-14,72850,16125
+2025-12-15,87167,20858
+2025-12-16,111274,25974
+2025-12-17,100295,21718
+2025-12-18,95544,20442
+2025-12-19,92531,20658
+2025-12-20,100258,22466
+2025-12-21,102462,22040
+2025-12-22,102587,32526
+2025-12-23,121039,42009
+2025-12-24,152012,46226
+2025-12-25,108864,29058
+2025-12-26,141245,35913
+2025-12-27,150392,37330
+2025-12-28,146452,36766
+2025-12-29,128553,41817
+2025-12-30,129872,40903
+2025-12-31,111213,34101
+2026-01-01,122679,33643
+2026-01-02,136414,39403
+2026-01-03,115645,32154
+2026-01-04,109668,30829
+2026-01-05,128237,39356
+2026-01-06,111205,35172
+2026-01-07,128336,34863
+2026-01-08,154329,38225
+2026-01-09,199525,41107
+2026-01-10,230991,39878
+2026-01-11,212302,41103
+2026-01-12,251115,56023
+2026-01-13,314114,63122
+2026-01-14,454199,66892
+2026-01-15,473713,62659
+2026-01-16,434897,54847
+2026-01-17,510147,53423
+2026-01-18,362720,51878
+2026-01-19,421793,62610
+2026-01-20,230369,49940
+2026-01-21,172087,39569
+2026-01-22,231597,48353
+2026-01-23,220291,49717
+2026-01-24,194721,43066
+2026-01-25,214503,38937
+2026-01-26,261826,48545
+2026-01-27,244851,49446
+2026-01-28,257798,55053
+2026-01-29,168455,42993
+2026-01-30,136550,52371
+2026-01-31,134293,43755
+2026-02-01,162166,48852
+2026-02-02,146107,42700
+2026-02-03,166781,49003
+2026-02-04,185495,58395
+2026-02-05,129342,49370
+2026-02-06,177491,54531
+2026-02-07,151187,41444
+2026-02-08,191041,42983
+2026-02-09,332679,57081
+2026-02-10,352850,55154
+2026-02-11,313161,46773
+2026-02-12,202763,41736
+2026-02-13,302786,56301`;
+
+const PRE_AVG_TX = 30040;
+const PRE_AVG_VIC = 12363;
+
+const GAS_RAW = `2025-09-01,1.7201
+2025-09-02,0.6625
+2025-09-03,0.7936
+2025-09-04,0.9930
+2025-09-05,0.7066
+2025-09-06,0.3270
+2025-09-07,0.2605
+2025-09-08,0.9337
+2025-09-09,0.7039
+2025-09-10,0.8298
+2025-09-11,0.6053
+2025-09-12,0.7226
+2025-09-13,0.3605
+2025-09-14,0.2900
+2025-09-15,1.1027
+2025-09-16,1.0277
+2025-09-17,0.7874
+2025-09-18,1.3403
+2025-09-19,0.6604
+2025-09-20,0.3317
+2025-09-21,0.2478
+2025-09-22,0.7822
+2025-09-23,0.6128
+2025-09-24,0.5844
+2025-09-25,1.4301
+2025-09-26,0.8742
+2025-09-27,0.4163
+2025-09-28,0.3206
+2025-09-29,1.4763
+2025-09-30,1.0401
+2025-10-01,1.0113
+2025-10-02,0.9541
+2025-10-03,0.7462
+2025-10-04,0.2779
+2025-10-05,0.2658
+2025-10-06,1.1161
+2025-10-07,0.9822
+2025-10-08,0.5984
+2025-10-09,0.8310
+2025-10-10,1.3988
+2025-10-11,1.6760
+2025-10-12,0.7355
+2025-10-13,0.8430
+2025-10-14,0.9975
+2025-10-15,0.9178
+2025-10-16,0.7823
+2025-10-17,1.7471
+2025-10-18,0.2720
+2025-10-19,0.2435
+2025-10-20,0.2913
+2025-10-21,0.4937
+2025-10-22,0.4171
+2025-10-23,0.2717
+2025-10-24,0.3541
+2025-10-25,0.1688
+2025-10-26,0.2013
+2025-10-27,0.6271
+2025-10-28,0.3804
+2025-10-29,0.5672
+2025-10-30,0.8695
+2025-10-31,0.3830
+2025-11-01,0.1502
+2025-11-02,0.2228
+2025-11-03,1.1484
+2025-11-04,2.1645
+2025-11-05,1.0092
+2025-11-06,1.3122
+2025-11-07,1.5660
+2025-11-08,0.2331
+2025-11-09,0.1496
+2025-11-10,0.5151
+2025-11-11,0.4085
+2025-11-12,0.3369
+2025-11-13,0.8431
+2025-11-14,0.8500
+2025-11-15,0.1265
+2025-11-16,0.2288
+2025-11-17,0.7353
+2025-11-18,0.5951
+2025-11-19,0.6493
+2025-11-20,0.9943
+2025-11-21,1.4760
+2025-11-22,0.1612
+2025-11-23,0.1331
+2025-11-24,0.4478
+2025-11-25,0.3218
+2025-11-26,0.1179
+2025-11-27,0.0694
+2025-11-28,0.1363
+2025-11-29,0.0576
+2025-11-30,0.0582
+2025-12-01,0.2707
+2025-12-02,0.1660
+2025-12-03,0.0766
+2025-12-04,0.0711
+2025-12-05,0.0713
+2025-12-06,0.0374
+2025-12-07,0.4823
+2025-12-08,0.4442
+2025-12-09,0.3388
+2025-12-10,0.2292
+2025-12-11,0.1875
+2025-12-12,0.1392
+2025-12-13,0.0650
+2025-12-14,0.0744
+2025-12-15,0.1724
+2025-12-16,0.0834
+2025-12-17,0.1003
+2025-12-18,0.0893
+2025-12-19,0.1333
+2025-12-20,0.0347
+2025-12-21,0.0384
+2025-12-22,0.0502
+2025-12-23,0.0579
+2025-12-24,0.0448
+2025-12-25,0.0434
+2025-12-26,0.0516
+2025-12-27,0.0387
+2025-12-28,0.0386
+2025-12-29,0.0988
+2025-12-30,0.1000
+2025-12-31,0.1072
+2026-01-01,0.0617
+2026-01-02,0.1120
+2026-01-03,0.0676
+2026-01-04,0.0649
+2026-01-05,0.1396
+2026-01-06,0.2064
+2026-01-07,0.1177
+2026-01-08,0.1063
+2026-01-09,0.0763
+2026-01-10,0.0388
+2026-01-11,0.0414
+2026-01-12,0.0759
+2026-01-13,0.1013
+2026-01-14,0.1192
+2026-01-15,0.1382
+2026-01-16,0.0510
+2026-01-17,0.0398
+2026-01-18,0.0366
+2026-01-19,0.0617
+2026-01-20,0.1036
+2026-01-21,0.1350
+2026-01-22,0.0806
+2026-01-23,0.0860
+2026-01-24,0.0572
+2026-01-25,0.0711
+2026-01-26,0.1045
+2026-01-27,0.0962
+2026-01-28,0.1142
+2026-01-29,0.1192
+2026-01-30,0.3234
+2026-01-31,0.2526
+2026-02-01,0.1835
+2026-02-02,0.3071
+2026-02-03,0.2407
+2026-02-04,0.2733
+2026-02-05,1.3111
+2026-02-06,0.5436
+2026-02-07,0.1675
+2026-02-08,0.0733
+2026-02-09,0.0982
+2026-02-10,0.0951
+2026-02-11,0.1153
+2026-02-12,0.1348
+2026-02-13,0.0791`;
+
+function parseGas(raw) {
+  const map = {};
+  raw.split("\n").forEach(line => {
+    const [date, gwei] = line.split(",");
+    map[date] = +gwei;
+  });
+  return map;
+}
+
+function gasMA(gasMap, dates, window = 7) {
+  return dates.map((d, i) => {
+    const start = Math.max(0, i - window + 1);
+    let sum = 0, count = 0;
+    for (let j = start; j <= i; j++) {
+      const v = gasMap[dates[j]];
+      if (v !== undefined) { sum += v; count++; }
+    }
+    return count > 0 ? +(sum / count).toFixed(4) : null;
+  });
+}
+
+const TOP_PAYOFFS = [
+  { date: "Dec 19, 2025", victim: "0xcb80...0819", lookalike: "0xbaff...8b5", token: "USDT", usd: 49989964, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Jan 30, 2026", victim: "0xd674...7da", lookalike: "0x6d90...e48", token: "ETH", usd: 10537098, pricing: "Weekly ETH price" },
+  { date: "Nov 3, 2025", victim: "0x4777...9e7", lookalike: "0x1eb8...26c", token: "USDT", usd: 1256339, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Dec 2, 2025", victim: "0x8093...4a9", lookalike: "0xec6d...d74", token: "USDT", usd: 1099619, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Jan 16, 2026", victim: "0x1924...c7", lookalike: "0xe842...e6f", token: "USDT", usd: 508800, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Dec 29, 2025", victim: "0x777d...5f7", lookalike: "0xee8e...fa7", token: "TBTC", usd: 440516, pricing: "Weekly TBTC price" },
+  { date: "Feb 10, 2026", victim: "0xa0c7...0e73", lookalike: "0xacb3...7abe", token: "USDT", usd: 353903, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Oct 9, 2025", victim: "0x60a6...2ab", lookalike: "0x5507...767", token: "ETH", usd: 281520, pricing: "Weekly ETH price" },
+  { date: "Feb 4, 2026", victim: "0x2dfc...14c", lookalike: "0x85cb...8f6", token: "WBTC", usd: 268756, pricing: "Weekly WBTC price" },
+  { date: "Sep 27, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "LINK", usd: 212559, pricing: "Weekly LINK price" },
+  { date: "Dec 18, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "WBTC", usd: 210227, pricing: "Weekly WBTC price" },
+  { date: "Nov 11, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 144007, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Nov 12, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 139961, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Nov 2, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 116272, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Oct 29, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 112477, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Sep 10, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "ETH", usd: 103061, pricing: "Weekly ETH price" },
+  { date: "Nov 14, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 102711, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Nov 13, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 99999, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Nov 7, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 99970, pricing: "Stablecoin, 1:1 USD" },
+  { date: "Oct 19, 2025", victim: "0x...TBD", lookalike: "0x...TBD", token: "USDT", usd: 99967, pricing: "Stablecoin, 1:1 USD" },
+];
+
+const STOLEN_RAW = `2025-09-01,28124,28124
+2025-09-02,10000,38124
+2025-09-03,6208,44333
+2025-09-04,4834,49167
+2025-09-05,2786,51953
+2025-09-06,726,52679
+2025-09-07,0,52679
+2025-09-08,10,52689
+2025-09-09,15023,67711
+2025-09-10,114505,182217
+2025-09-11,2790,185007
+2025-09-12,7410,192417
+2025-09-13,295,192713
+2025-09-14,249,192962
+2025-09-15,3056,196018
+2025-09-16,10719,206737
+2025-09-17,3728,210465
+2025-09-18,21407,231872
+2025-09-19,41452,273325
+2025-09-20,16290,289614
+2025-09-21,1026,290640
+2025-09-22,4480,295120
+2025-09-23,39971,335091
+2025-09-24,36536,371628
+2025-09-25,3962,375589
+2025-09-26,5516,381105
+2025-09-27,216768,597873
+2025-09-28,17672,615545
+2025-09-29,81506,697050
+2025-09-30,24794,721844
+2025-10-01,3316,725160
+2025-10-02,7024,732185
+2025-10-03,12651,744835
+2025-10-04,3958,748794
+2025-10-05,2239,751032
+2025-10-06,1079,752112
+2025-10-07,6101,758213
+2025-10-08,27724,785937
+2025-10-09,321113,1107050
+2025-10-10,3902,1110952
+2025-10-11,10067,1121018
+2025-10-12,2013,1123031
+2025-10-13,3003,1126034
+2025-10-14,192,1126226
+2025-10-15,0,1126226
+2025-10-16,33,1126259
+2025-10-17,13434,1139693
+2025-10-18,798,1140491
+2025-10-19,107467,1247958
+2025-10-20,8194,1256152
+2025-10-21,15949,1272100
+2025-10-22,2708,1274808
+2025-10-23,2251,1277059
+2025-10-24,1076,1278135
+2025-10-25,1050,1279185
+2025-10-26,12075,1291260
+2025-10-27,1504,1292764
+2025-10-28,49040,1341803
+2025-10-29,113032,1454836
+2025-10-30,12343,1467179
+2025-10-31,2500,1469679
+2025-11-01,676,1470354
+2025-11-02,187080,1657434
+2025-11-03,1324916,2982350
+2025-11-04,97158,3079508
+2025-11-05,0,3079508
+2025-11-06,0,3079508
+2025-11-07,101965,3181473
+2025-11-08,2949,3184421
+2025-11-09,3288,3187709
+2025-11-10,5638,3193347
+2025-11-11,146101,3339449
+2025-11-12,141767,3481216
+2025-11-13,112742,3593957
+2025-11-14,106696,3700653
+2025-11-15,3796,3704449
+2025-11-16,3633,3708083
+2025-11-17,77956,3786039
+2025-11-18,12344,3798383
+2025-11-19,138843,3937226
+2025-11-20,3675,3940901
+2025-11-21,80951,4021852
+2025-11-22,374,4022225
+2025-11-23,500,4022725
+2025-11-24,39309,4062035
+2025-11-25,1190,4063225
+2025-11-26,116,4063341
+2025-11-27,1400,4064740
+2025-11-28,2242,4066983
+2025-11-29,338,4067320
+2025-11-30,0,4067320
+2025-12-01,14550,4081871
+2025-12-02,1110807,5192678
+2025-12-03,2227,5194905
+2025-12-04,2149,5197053
+2025-12-05,4079,5201132
+2025-12-06,17051,5218183
+2025-12-07,1412,5219595
+2025-12-08,2081,5221676
+2025-12-09,40508,5262184
+2025-12-10,1834,5264018
+2025-12-11,3010,5267028
+2025-12-12,672,5267700
+2025-12-13,522,5268222
+2025-12-14,3273,5271495
+2025-12-15,42705,5314200
+2025-12-16,788,5314989
+2025-12-17,1666,5316655
+2025-12-18,238006,5554661
+2025-12-19,50006631,55561292
+2025-12-20,251,55561542
+2025-12-21,4999,55566541
+2025-12-22,23902,55590443
+2025-12-23,7739,55598182
+2025-12-24,13655,55611837
+2025-12-25,6376,55618213
+2025-12-26,961,55619175
+2025-12-27,4352,55623527
+2025-12-28,22081,55645608
+2025-12-29,443862,56089470
+2025-12-30,3661,56093131
+2025-12-31,8275,56101406
+2026-01-01,758,56102164
+2026-01-02,2079,56104244
+2026-01-03,5191,56109435
+2026-01-04,309,56109744
+2026-01-05,4523,56114266
+2026-01-06,59418,56173684
+2026-01-07,4859,56178543
+2026-01-08,8040,56186583
+2026-01-09,321,56186904
+2026-01-10,5584,56192488
+2026-01-11,3261,56195749
+2026-01-12,7378,56203127
+2026-01-13,14261,56217388
+2026-01-14,1516,56218904
+2026-01-15,7084,56225987
+2026-01-16,533992,56759979
+2026-01-17,1097,56761076
+2026-01-18,1687,56762763
+2026-01-19,35203,56797965
+2026-01-20,430,56798396
+2026-01-21,3033,56801429
+2026-01-22,40339,56841768
+2026-01-23,352,56842120
+2026-01-24,12230,56854350
+2026-01-25,6619,56860969
+2026-01-26,20868,56881837
+2026-01-27,4944,56886781
+2026-01-28,60606,56947387
+2026-01-29,16618,56964005
+2026-01-30,10581269,67545274
+2026-01-31,11491,67556765
+2026-02-01,6520,67563286
+2026-02-02,103545,67666831
+2026-02-03,64053,67730884
+2026-02-04,286842,68017726
+2026-02-05,56611,68074336
+2026-02-06,4077,68078414
+2026-02-07,1074,68079488
+2026-02-08,0,68079488
+2026-02-09,0,68079488
+2026-02-10,371901,68451389
+2026-02-11,7998,68459387
+2026-02-12,9989,68469376
+2026-02-13,0,68469376`;
+
+function parseStolenData(raw) {
+  return raw.split("\n").map(line => {
+    const [date, daily, cumulative] = line.split(",");
+    return { date, daily: +daily, cumulative: +cumulative };
+  });
+}
+
+const StolenTip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+  const cum = payload.find(p => p.dataKey === "cumulative");
+  const day = payload.find(p => p.dataKey === "daily");
+  return (
+    <div style={{
+      background: "#fff", border: "1px solid #ddd", borderRadius: 4,
+      padding: "6px 10px", fontSize: 12, fontFamily: "Inter, sans-serif",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+    }}>
+      <div style={{ color: "#999", marginBottom: 3, fontSize: 11 }}>{label}</div>
+      {day && <div style={{ color: "#e67e22" }}>Day: <b>${fmt(day.value)}</b></div>}
+      {cum && <div style={{ color: "#c0392b" }}>Total: <b>${fmt(cum.value)}</b></div>}
+    </div>
+  );
+};
+
+const Dec19Label = ({ viewBox }) => {
+  if (!viewBox) return null;
+  return (
+    <g>
+      <rect x={viewBox.x - 28} y={40} width={56} height={32} rx={3} fill="#fff" stroke="#ddd" strokeWidth={0.5} />
+      <text x={viewBox.x} y={53} textAnchor="middle" fill="#c0392b" fontSize={10} fontWeight={600} fontFamily="Inter, sans-serif">
+        Dec 19
+      </text>
+      <text x={viewBox.x} y={66} textAnchor="middle" fill="#c0392b" fontSize={10} fontWeight={500} fontFamily="Inter, sans-serif">
+        $50M
+      </text>
+    </g>
+  );
+};
+
+const Jan30Label = ({ viewBox }) => {
+  if (!viewBox) return null;
+  return (
+    <g>
+      <rect x={viewBox.x - 28} y={80} width={56} height={32} rx={3} fill="#fff" stroke="#ddd" strokeWidth={0.5} />
+      <text x={viewBox.x} y={93} textAnchor="middle" fill="#c0392b" fontSize={10} fontWeight={600} fontFamily="Inter, sans-serif">
+        Jan 30
+      </text>
+      <text x={viewBox.x} y={106} textAnchor="middle" fill="#c0392b" fontSize={10} fontWeight={500} fontFamily="Inter, sans-serif">
+        $10.5M
+      </text>
+    </g>
+  );
+};
+
+const WEEKLY_PAYOFFS = [
+  { week: "2025-09-01", label: "Sep 01", count: 17 },
+  { week: "2025-09-08", label: "Sep 08", count: 22 },
+  { week: "2025-09-15", label: "Sep 15", count: 27 },
+  { week: "2025-09-22", label: "Sep 22", count: 26 },
+  { week: "2025-09-29", label: "Sep 29", count: 34 },
+  { week: "2025-10-06", label: "Oct 06", count: 25 },
+  { week: "2025-10-13", label: "Oct 13", count: 14 },
+  { week: "2025-10-20", label: "Oct 20", count: 31 },
+  { week: "2025-10-27", label: "Oct 27", count: 26 },
+  { week: "2025-11-03", label: "Nov 03", count: 24 },
+  { week: "2025-11-10", label: "Nov 10", count: 31 },
+  { week: "2025-11-17", label: "Nov 17", count: 36 },
+  { week: "2025-11-24", label: "Nov 24", count: 16 },
+  { week: "2025-12-01", label: "Dec 01", count: 33 },
+  { week: "2025-12-08", label: "Dec 08", count: 16 },
+  { week: "2025-12-15", label: "Dec 15", count: 29 },
+  { week: "2025-12-22", label: "Dec 22", count: 48 },
+  { week: "2025-12-29", label: "Dec 29", count: 34 },
+  { week: "2026-01-05", label: "Jan 05", count: 43 },
+  { week: "2026-01-12", label: "Jan 12", count: 73 },
+  { week: "2026-01-19", label: "Jan 19", count: 102 },
+  { week: "2026-01-26", label: "Jan 26", count: 231 },
+  { week: "2026-02-02", label: "Feb 02", count: 82 },
+  { week: "2026-02-09", label: "Feb 09", count: 5 },
+];
+
+function parseData(raw) {
+  return raw.split("\n").map(line => {
+    const [date, dustTx, dustVic] = line.split(",");
+    return { date, dustTx: +dustTx, dustVic: +dustVic };
+  });
+}
+
+function withMA(data, field, window = 7, gasMAarr = []) {
+  return data.map((d, i) => {
+    const start = Math.max(0, i - window + 1);
+    const slice = data.slice(start, i + 1);
+    return {
+      ...d,
+      ma: Math.round(slice.reduce((s, x) => s + x[field], 0) / slice.length),
+      baseline: field === "dustTx" ? PRE_AVG_TX : PRE_AVG_VIC,
+      gas: gasMAarr[i] ?? null
+    };
+  });
+}
+
+const fmt = (n) => {
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(0) + "K";
+  return n.toFixed(0);
+};
+
+const fmtUsd = (n) => {
+  if (n >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return "$" + (n / 1e3).toFixed(0) + "K";
+  return "$" + n.toFixed(0);
+};
+
+const ChartTip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{
+      background: "#fff", border: "1px solid #ddd", borderRadius: 4,
+      padding: "6px 10px", fontSize: 12, fontFamily: "Inter, sans-serif",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+    }}>
+      <div style={{ color: "#999", marginBottom: 3, fontSize: 11 }}>{label}</div>
+      {payload.filter(p => p.name !== "baseline" && p.name !== "fill").map((p, i) => (
+        <div key={i} style={{ color: p.color || p.stroke, display: "flex", gap: 12, justifyContent: "space-between" }}>
+          <span>{p.name}</span>
+          <span style={{ fontWeight: 600 }}>{p.dataKey === "gas" ? (p.value != null ? p.value.toFixed(2) + " gwei" : "—") : fmt(p.value)}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const DualTip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{
+      background: "#fff", border: "1px solid #ddd", borderRadius: 4,
+      padding: "6px 10px", fontSize: 12, fontFamily: "Inter, sans-serif",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+    }}>
+      <div style={{ color: "#999", marginBottom: 3, fontSize: 11 }}>{label}</div>
+      {payload.filter(p => p.name !== "gasFill").map((p, i) => (
+        <div key={i} style={{ color: p.stroke, display: "flex", gap: 12, justifyContent: "space-between" }}>
+          <span>{p.name}</span>
+          <span style={{ fontWeight: 600 }}>{p.dataKey === "gas" ? (p.value != null ? p.value.toFixed(2) + " gwei" : "—") : fmt(p.value)}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const FusakaLabel = ({ viewBox }) => {
+  if (!viewBox) return null;
+  return (
+    <g>
+      <rect x={viewBox.x - 38} y={8} width={76} height={20} rx={3} fill="#dc3545" fillOpacity={0.12} />
+      <text x={viewBox.x} y={22} textAnchor="middle" fill="#dc3545" fontSize={11} fontWeight={600} fontFamily="Inter, sans-serif">
+        Fusaka
+      </text>
+    </g>
+  );
+};
+
+const BaselineRightLabel = ({ viewBox }) => {
+  if (!viewBox) return null;
+  return (
+    <text x={viewBox.width + viewBox.x - 4} y={viewBox.y - 6} textAnchor="end" fill="#2a7a2a" fontSize={11} fontWeight={500} fontFamily="Inter, sans-serif">
+      Pre-Fusaka avg
+    </text>
+  );
+};
+
+export default function Dashboard() {
+  const data = useMemo(() => parseData(RAW), []);
+  const gasMap = useMemo(() => parseGas(GAS_RAW), []);
+  const dates = useMemo(() => data.map(d => d.date), [data]);
+  const gasMAarr = useMemo(() => gasMA(gasMap, dates), [gasMap, dates]);
+  const maTx = useMemo(() => withMA(data, "dustTx", 7, gasMAarr), [data, gasMAarr]);
+  const maVic = useMemo(() => withMA(data, "dustVic", 7, gasMAarr), [data, gasMAarr]);
+  const stolenData = useMemo(() => parseStolenData(STOLEN_RAW), []);
+  const weeklyPayoffs = WEEKLY_PAYOFFS;
+
+  const box = {
+    border: "1px solid #e0e0e0", borderRadius: 6,
+    padding: "20px 20px 14px", marginBottom: 32, background: "#fff"
+  };
+
+  const tdStyle = { padding: "7px 10px", borderBottom: "1px solid #f0f0f0", fontSize: 13 };
+  const thStyle = { ...tdStyle, color: "#999", fontWeight: 500, fontSize: 11, textTransform: "uppercase", letterSpacing: 0.5, borderBottom: "1px solid #ddd" };
+
+  return (
+    <div style={{
+      background: "#fff", minHeight: "100vh", color: "#333",
+      fontFamily: "Inter, -apple-system, sans-serif", padding: "40px 20px",
+      lineHeight: 1.5
+    }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');`}</style>
+
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
+
+        {/* Chart 1: Dust transactions */}
+        <div style={box}>
+          <h2 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "#333" }}>
+            Dust attack transactions before and after Fusaka upgrade
+          </h2>
+          <p style={{ fontSize: 13, color: "#666", margin: "0 0 16px" }}>
+            7-day moving average. Each dust transfer = one attack transaction.
+          </p>
+          <ResponsiveContainer width="100%" height={300}>
+            <ComposedChart data={maTx} margin={{ top: 30, right: 16, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#dc3545" stopOpacity={0.12} />
+                  <stop offset="100%" stopColor="#dc3545" stopOpacity={0.02} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+              <XAxis dataKey="date" tick={{ fill: "#999", fontSize: 10 }} tickFormatter={d => d.slice(5)} interval={14} axisLine={{ stroke: "#ddd" }} tickLine={false} />
+              <YAxis tick={{ fill: "#999", fontSize: 10 }} tickFormatter={fmt} axisLine={false} tickLine={false} domain={[0, 460000]} />
+              <Tooltip content={<ChartTip />} />
+
+              <Area type="monotone" dataKey="baseline" stroke="none" fill="#e6f3e6" fillOpacity={0.5} dot={false} activeDot={false} name="baseline" />
+              <Area type="monotone" dataKey="ma" stroke="none" fill="url(#gFill)" dot={false} activeDot={false} name="fill" legendType="none" />
+              <Line type="monotone" dataKey="ma" name="7d avg" stroke="#dc3545" strokeWidth={2} dot={false} />
+
+              <ReferenceLine y={PRE_AVG_TX} stroke="#2a7a2a" strokeDasharray="6 3" strokeWidth={1.5} label={<BaselineRightLabel />} />
+              <ReferenceLine x="2025-12-03" stroke="#dc3545" strokeDasharray="4 3" strokeWidth={1.5} label={<FusakaLabel />} />
+            </ComposedChart>
+          </ResponsiveContainer>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 10, fontSize: 12 }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 2, background: "#dc3545", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Dust transactions (7d avg)</span>
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 0, borderTop: "2px dashed #2a7a2a", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Pre-Fusaka avg</span>
+            </span>
+          </div>
+          <div style={{ textAlign: "right", marginTop: 6 }}>
+            <a href="https://sergeenkov.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#bbb", textDecoration: "none" }}>sergeenkov.com</a>
+          </div>
+        </div>
+
+        {/* Chart 2: Unique wallets */}
+        <div style={box}>
+          <h2 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "#333" }}>
+            Unique wallets attacked before and after Fusaka upgrade
+          </h2>
+          <p style={{ fontSize: 13, color: "#666", margin: "0 0 16px" }}>
+            7-day moving average. One wallet = one attack regardless of how many dust transactions hit it.
+          </p>
+          <ResponsiveContainer width="100%" height={300}>
+            <ComposedChart data={maVic} margin={{ top: 30, right: 16, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gVic" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#007bff" stopOpacity={0.12} />
+                  <stop offset="100%" stopColor="#007bff" stopOpacity={0.02} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+              <XAxis dataKey="date" tick={{ fill: "#999", fontSize: 10 }} tickFormatter={d => d.slice(5)} interval={14} axisLine={{ stroke: "#ddd" }} tickLine={false} />
+              <YAxis tick={{ fill: "#999", fontSize: 10 }} tickFormatter={fmt} axisLine={false} tickLine={false} />
+              <Tooltip content={<ChartTip />} />
+
+              <Area type="monotone" dataKey="baseline" stroke="none" fill="#e6f3e6" fillOpacity={0.5} dot={false} activeDot={false} name="baseline" />
+              <Area type="monotone" dataKey="ma" stroke="none" fill="url(#gVic)" dot={false} activeDot={false} name="fill" legendType="none" />
+              <Line type="monotone" dataKey="ma" name="7d avg wallets" stroke="#007bff" strokeWidth={2} dot={false} />
+
+              <ReferenceLine y={PRE_AVG_VIC} stroke="#2a7a2a" strokeDasharray="6 3" strokeWidth={1.5} label={<BaselineRightLabel />} />
+              <ReferenceLine x="2025-12-03" stroke="#dc3545" strokeDasharray="4 3" strokeWidth={1.5} label={<FusakaLabel />} />
+            </ComposedChart>
+          </ResponsiveContainer>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 10, fontSize: 12 }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 2, background: "#007bff", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Unique wallets (7d avg)</span>
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 0, borderTop: "2px dashed #2a7a2a", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Pre-Fusaka avg</span>
+            </span>
+          </div>
+          <div style={{ textAlign: "right", marginTop: 6 }}>
+            <a href="https://sergeenkov.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#bbb", textDecoration: "none" }}>sergeenkov.com</a>
+          </div>
+        </div>
+
+        {/* Chart 3: Gas price vs dust activity */}
+        <div style={box}>
+          <h2 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "#333" }}>
+            Gas price vs. dust attack volume before and after Fusaka upgrade
+          </h2>
+          <p style={{ fontSize: 13, color: "#666", margin: "0 0 16px" }}>
+            7-day moving average. Median gas price (gwei) from Dune Analytics overlaid with dust transactions.
+          </p>
+          <ResponsiveContainer width="100%" height={300}>
+            <ComposedChart data={maTx} margin={{ top: 30, right: 50, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gasFill3" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#e8a838" stopOpacity={0.18} />
+                  <stop offset="100%" stopColor="#e8a838" stopOpacity={0.02} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+              <XAxis dataKey="date" tick={{ fill: "#999", fontSize: 10 }} tickFormatter={d => d.slice(5)} interval={14} axisLine={{ stroke: "#ddd" }} tickLine={false} />
+              <YAxis yAxisId="left" tick={{ fill: "#e8a838", fontSize: 10 }} tickFormatter={v => v.toFixed(1)} axisLine={false} tickLine={false} domain={[0, 2.5]} />
+              <YAxis yAxisId="right" orientation="right" tick={{ fill: "#dc3545", fontSize: 10 }} tickFormatter={fmt} axisLine={false} tickLine={false} domain={[0, 460000]} />
+              <Tooltip content={<DualTip />} />
+
+              <Area yAxisId="left" type="monotone" dataKey="gas" stroke="none" fill="url(#gasFill3)" dot={false} name="gasFill" />
+              <Line yAxisId="left" type="monotone" dataKey="gas" name="Gas price" stroke="#e8a838" strokeWidth={2} dot={false} />
+              <Line yAxisId="right" type="monotone" dataKey="ma" name="Dust tx" stroke="#dc3545" strokeWidth={2} dot={false} />
+
+              <ReferenceLine yAxisId="left" x="2025-12-03" stroke="#dc3545" strokeDasharray="4 3" strokeWidth={1.5} label={<FusakaLabel />} />
+            </ComposedChart>
+          </ResponsiveContainer>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 10, fontSize: 12 }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 2, background: "#e8a838", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Median gas price, gwei (left axis)</span>
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ width: 16, height: 2, background: "#dc3545", display: "inline-block" }} />
+              <span style={{ color: "#666" }}>Dust transactions (right axis)</span>
+            </span>
+          </div>
+          <div style={{ textAlign: "right", marginTop: 6 }}>
+            <a href="https://sergeenkov.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 10, color: "#bbb", textDecoration: "none" }}>sergeenkov.com</a>
+          </div>
+        </div>
+
+
+
+        <p style={{ fontSize: 11, color: "#999", textAlign: "center" }}>
+          Source: Google BigQuery + Dune Analytics · Detector v4.4, fingerprint (3,4) · Sep 1 2025 – Feb 13 2026
+        </p>
+      </div>
+    </div>
+  );
+}
