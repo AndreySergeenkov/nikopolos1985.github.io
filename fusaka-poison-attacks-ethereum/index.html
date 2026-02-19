@@ -825,7 +825,7 @@
             var dash = span.querySelector('.legend-dash');
             legendItems.push({
                 text: span.textContent.trim(),
-                color: line ? line.style.backgroundColor || line.style.background : '#999',
+                color: line ? (line.style.backgroundColor || line.style.background) : dash ? getComputedStyle(dash).borderTopColor : '#999',
                 isDash: !!dash
             });
         });
