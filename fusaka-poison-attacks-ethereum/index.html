@@ -840,6 +840,27 @@
         var offCanvas = document.createElement('canvas');
         offCanvas.width = chartW;
         offCanvas.height = chartH;
+
+        // Deep-clone annotation labels with scaled-up fonts for download size
+        var dlPlugins = Object.assign({}, cfg.options.plugins);
+        if (dlPlugins.annotation) {
+            var dlAnn = Object.assign({}, dlPlugins.annotation);
+            var dlAnns = Object.assign({}, dlAnn.annotations);
+            Object.keys(dlAnns).forEach(function(key) {
+                var orig = dlAnns[key];
+                if (orig.label) {
+                    var lbl = Object.assign({}, orig.label);
+                    lbl.font = Object.assign({}, lbl.font, { size: 20 });
+                    if (lbl.padding === 0) lbl.padding = 0;
+                    else if (lbl.padding) lbl.padding = { top: 5, bottom: 5, left: 14, right: 14 };
+                    if (lbl.yAdjust) lbl.yAdjust = lbl.yAdjust * 1.8;
+                    dlAnns[key] = Object.assign({}, orig, { label: lbl });
+                }
+            });
+            dlAnn.annotations = dlAnns;
+            dlPlugins.annotation = dlAnn;
+        }
+
         var offChart = new Chart(offCanvas.getContext('2d'), {
             type: cfg.type,
             data: {
@@ -851,7 +872,8 @@
             options: Object.assign({}, cfg.options, {
                 responsive: false,
                 animation: false,
-                devicePixelRatio: 1
+                devicePixelRatio: 1,
+                plugins: dlPlugins
             })
         });
 
