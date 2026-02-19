@@ -904,7 +904,7 @@
             if (item.isDash) {
                 ctx.save();
                 ctx.setLineDash([6, 4]);
-                ctx.strokeStyle = '#999';
+                ctx.strokeStyle = item.color;
                 ctx.lineWidth = 3;
                 ctx.beginPath();
                 ctx.moveTo(lx, ly - 6);
