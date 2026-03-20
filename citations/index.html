@@ -114,7 +114,6 @@
             background-color: #c8e6c8;
             text-decoration: underline;
         }
-        .col-num { width: 40px; text-align: center; color: #999; }
         .col-year { width: 50px; text-align: center; }
         .col-publisher { white-space: nowrap; }
         .col-authors { max-width: 180px; }
@@ -124,7 +123,6 @@
             table { font-size: 13px; }
             th, td { padding: 8px 6px; }
             .col-authors { display: none; }
-            .col-num { display: none; }
         }
     </style>
 </head>
@@ -137,7 +135,6 @@
     <table id="citations-table">
         <thead>
             <tr>
-                <th class="col-num">#</th>
                 <th class="col-publisher">Institution</th>
                 <th class="col-authors">Authors</th>
                 <th class="col-title">Citing Work</th>
@@ -151,48 +148,48 @@
 
     <script>
     const citations = [
-        {num:1, publisher:"ACM", authors:"S Chen, J Chen, J Yu, X Luo, Y Wang", title:"The dark side of NFTs: A large-scale empirical study of wash trading", year:2024, url:"https://dl.acm.org/doi/abs/10.1145/3671016.3674808"},
-        {num:2, publisher:"ACM", authors:"K Narayanam, V Ramakrishna, et al.", title:"Atomic cross-chain exchanges of shared assets", year:2022, url:"https://dl.acm.org/doi/abs/10.1145/3558535.3559786"},
-        {num:3, publisher:"arXiv", authors:"K Narayanam, V Ramakrishna, et al.", title:"Generalized HTLC for cross-chain swapping of multiple assets with co-ownerships", year:2022, url:"https://www.academia.edu/download/106294373/2202.12855v1.pdf"},
-        {num:4, publisher:"arXiv", authors:"T Frassetto, P Jauernig, D Koisser, D Kretzler, et al.", title:"POSE: Practical off-chain smart contract execution", year:2022, url:"https://arxiv.org/abs/2210.07110"},
-        {num:5, publisher:"BEROC, Belarus", authors:"\u0410 \u041B\u0443\u0437\u0433\u0438\u043D\u0430", title:"\u041A\u0440\u0438\u043F\u0442\u043E\u0432\u0430\u043B\u044E\u0442\u044B: \u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0440\u0438\u0441\u043A\u0438 \u0438 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F", year:2024, url:"https://beleconomy.org/upload/medialibrary/579/5798909b15c5fff0542998d485d37a93.pdf"},
-        {num:6, publisher:"Carleton University", authors:"JRO Patriquin", title:"The Technologies of Global Governance: Money, Finance, and Power in the Era of Digital Currency", year:2024, url:"https://carleton.scholaris.ca/bitstreams/448ac98e-1904-49c3-bf58-ccb291f5dce0/download"},
-        {num:7, publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central bank digital currency: assessing the risks and dispelling the myths", year:2023, url:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4638953"},
-        {num:8, publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central Bank Digital Currency (Briefing Paper)", year:2022, url:"https://www.jstor.org/stable/resrep51960"},
-        {num:9, publisher:"Comillas Pontifical University", authors:"AA Arredondo", title:"An\u00e1lisis matem\u00e1tico del precio de Bitcoin ante las medidas intervencionistas chinas", year:2024, url:"https://repositorio.comillas.edu/xmlui/bitstream/handle/11531/57102/TFG-%20Aguirre%20Arredondo%2C%20Alfonso.pdf?sequence=4"},
-        {num:10, publisher:"CyberLeninka (Russia)", authors:"\u041C\u041C \u0410\u0431\u0440\u0435\u043A\u043E\u0432", title:"\u0411\u0438\u0442\u043A\u043E\u0439\u043D: \u043A\u0440\u0430\u0442\u043A\u0430\u044F \u0438\u0441\u0442\u043E\u0440\u0438\u044F \u0438 \u0446\u0435\u043D\u043D\u043E\u0441\u0442\u044C", year:2022, url:"https://cyberleninka.ru/article/n/bitkoyn-kratkaya-istoriya-i-tsennost"},
-        {num:11, publisher:"Czech Technical University Prague", authors:"K Omari", title:"Bakal\u00e1\u0159sk\u00e9 pr\u00e1ce", year:2021, url:null},
-        {num:12, publisher:"Edward Elgar Publishing", authors:"L Chatterjee, PA Albinsson, DR Bradbury, et al.", title:"Cryptocurrency communities: an overview of collaborative currency systems", year:2024, url:"https://www.elgaronline.com/edcollchap/book/9781035307531/book-part-9781035307531-25.xml"},
-        {num:13, publisher:"Elsevier", authors:"A Radic, W Quan, A Ariza-Montes, JS Lee, et al.", title:"You can\u2019t hold the tide with a broom: Cryptocurrency payments and tourism in South Korea and China", year:2022, url:"https://www.sciencedirect.com/science/article/pii/S2211973622000654"},
-        {num:14, publisher:"Emerald Publishing", authors:"HK Baker, H Benedetti, E Nikbakht, SS Smith", title:"The emerald handbook on cryptoassets: Investment opportunities and challenges", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221024/full/pdf"},
-        {num:15, publisher:"Emerald Publishing", authors:"A Brasse, S Hyun", title:"Cryptocurrency exchanges and the future of cryptoassets", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221022/full/pdf"},
-        {num:16, publisher:"Emerald Publishing", authors:"H Benedetti, E Nikbakht, G Zukhubaia", title:"Trade Settlements", year:2023, url:"https://www.emerald.com/books/edited-volume/13021/chapter/83434613"},
-        {num:17, publisher:"Erasmus University Rotterdam", authors:"ACC Marcatto", title:"Modelling the Carbon Footprint of Blockchains", year:2024, url:"https://thesis.eur.nl/pub/66808/Modelling-the-Carbon-Footprint-of-Blockchains-Master-Thesis-Andre-Marcatto-488782am.pdf"},
-        {num:18, publisher:"Frontier Tech Hub", authors:"AD Dive", title:"Blockchain for International Development and Humanitarian Use Cases", year:2023, url:"https://www.frontiertechhub.org/s/Blockchain-Deep-Dive-Final-v6-2w45.pdf"},
-        {num:19, publisher:"Frontiers", authors:"J Tharappel", title:"How Chinese fintech threatens US Dollar hegemony", year:2023, url:"https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2023.1148315/full"},
-        {num:20, publisher:"HeinOnline (Fordham Law)", authors:"G Fanti", title:"An Apparent Trilemma for Cross-Border Central Bank Digital Currencies", year:2022, url:"https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/harvardnsj14&section=7"},
-        {num:21, publisher:"HeinOnline (Fordham Law)", authors:"SD Conlon, A Vayser, R Schwaba", title:"Newly Enacted Tax Rules Subject Digital Assets, including Cryptocurrencies, to Form 1099-B Reporting and to Cash Reporting Rules on Form 8300", year:2021, url:"https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/jrlfin18&section=27"},
-        {num:22, publisher:"IEEE", authors:"J Austgen, A F\u00e1brega, M Kelkar, et al.", title:"Liquefaction: Privately liquefying blockchain assets", year:2025, url:"https://ieeexplore.ieee.org/abstract/document/11023306/"},
-        {num:23, publisher:"IEEE", authors:"H Cho, IR Jeong", title:"Rarity Defense: A Formal and Empirical Analysis of NFT Trait Systems for Wash Trading Mitigation", year:2025, url:"https://ieeexplore.ieee.org/abstract/document/11320283/"},
-        {num:24, publisher:"Korea Scholar", authors:"\uc190\uc138\ud6c8", title:"Web 3.0 \uc2dc\ub300\uc5d0 \uc815\uce58\ucca0\ud559\uc758 \uc5f0\uacb0\uacfc \uc7c1\uc810\ub4e4", year:2023, url:"https://db.koreascholar.com/Article/Detail/422205"},
-        {num:25, publisher:"Oxford University Press", authors:"A Langenohl, K Burghardt", title:"Non-traditional finance and the infrastructural imagination of Geoeconomic hegemony", year:2024, url:"https://academic.oup.com/jogss/article-pdf/doi/10.1093/jogss/ogae023/58593498/ogae023.pdf"},
-        {num:26, publisher:"ProQuest Dissertations", authors:"GM Royal", title:"Three Essays on Bitcoin, Energy, and Digital Asset Public Policy", year:2023, url:"https://search.proquest.com/openview/2d81cf347e7c64dc08332d35851db1fa/1?pq-origsite=gscholar&cbl=18750&diss=y"},
-        {num:27, publisher:"ProQuest Dissertations", authors:"JMN Braga", title:"International Remittances Transferir Utilizando Tecnologia Blockchain", year:2022, url:"https://search.proquest.com/openview/6d903626dc195fdf7f85bba5dccea485/1?pq-origsite=gscholar&cbl=2026366&diss=y"},
-        {num:28, publisher:"ResearchGate", authors:"A Wagener", title:"Governance of Things: AI & DAOs in Politics \u2014 Utopia or Dystopia?", year:2022, url:"https://www.researchgate.net/profile/Andreas-Wagener/publication/364362302_Governance_of_Things_AI_DAOs_in_Politics_AWagener_RAI22pdf/data/634feb9112cbac6a3ed88965/Governance-of-Things-AI-DAOs-in-Politics-AWagener-RAI22.pdf"},
-        {num:29, publisher:"Springer", authors:"G Cai", title:"Supply chain finance: mechanisms, risk analytics, and technology", year:2024, url:"https://link.springer.com/book/10.1007/978-3-031-56125-2"},
-        {num:30, publisher:"Springer", authors:"G Cai", title:"Blockchain Technology", year:2024, url:"https://link.springer.com/chapter/10.1007/978-3-031-56125-2_14"},
-        {num:31, publisher:"Springer", authors:"B Naysary, A Tarazi", title:"Cryptocurrency", year:2024, url:"https://link.springer.com/chapter/10.1007/978-981-97-3970-7_4"},
-        {num:32, publisher:"Springer", authors:"H Wang, J Wang, L Liu, Y Lu", title:"Temporary relay: A more flexible way to cross chains", year:2024, url:"https://link.springer.com/article/10.1007/s12083-024-01762-3"},
-        {num:33, publisher:"Taylor & Francis", authors:"N Galley", title:"Web3 and the global art market: Smokescreens and opportunities", year:2024, url:"https://api.taylorfrancis.com/content/chapters/edit/download?identifierName=doi&identifierValue=10.4324/9781003400868-19&type=chapterpdf"},
-        {num:34, publisher:"Taylor & Francis", authors:"BA Jones, AL Goodkind, RP Berrens", title:"Energy Use in Bitcoin Mining: The Environmental Impact of Cryptocurrencies", year:2025, url:"https://www.taylorfrancis.com/books/mono/10.4324/9781003437642/energy-use-bitcoin-mining-benjamin-jones-andrew-goodkind-robert-berrens"},
-        {num:35, publisher:"Taylor & Francis", authors:"A Trotta", title:"Technology and American Democracy", year:2023, url:"https://www.taylorfrancis.com/books/mono/10.4324/9781003441830/technology-american-democracy-anthony-trotta"},
-        {num:36, publisher:"Tomas Bata University", authors:"M Lehar", title:"Anal\u00fdza typ\u016f kryptom\u011bnov\u00fdch burz a jejich r\u016fzn\u00fdch funkc\u00ed a vyu\u017eit\u00ed", year:2024, url:"https://digilib.k.utb.cz/bitstream/handle/10563/55699/lehar_2024_dp.pdf?sequence=1&isAllowed=y"},
-        {num:37, publisher:"UFRGS, Brazil", authors:"TAP Oliveira", title:"O E-CNY na rota da seda digital", year:2024, url:"https://lume.ufrgs.br/handle/10183/275725"},
-        {num:38, publisher:"University of Gothenburg", authors:"M Bagley", title:"The Great DeFi Dilemma: How stakeholders can navigate the uncertain waters of decentralised finance adoption", year:2024, url:"https://gupea.ub.gu.se/server/api/core/bitstreams/67a04f4d-f819-4162-9484-21b2d0f75690/content"},
-        {num:39, publisher:"University of Helsinki", authors:"A Vennonen", title:"More than money: An ethnography of dreams, value and community in the cryptoscene", year:2024, url:"https://helda.helsinki.fi/server/api/core/bitstreams/07468db9-2472-4955-8468-eb7cdc5c5a7b/content"},
-        {num:40, publisher:"University of Pardubice", authors:"E Pour", title:"Vyu\u017eit\u00ed blockchainu p\u0159i sledov\u00e1n\u00ed aktiv", year:2023, url:"https://dk.upce.cz/items/daf589d2-5814-4ff4-a5c2-3b076ab6cc9b"},
-        {num:41, publisher:"Hochschule Hof", authors:"A Wagener", title:"Governance of Things: AI & DAOs in Politics \u2014 Utopia or Dystopia?", year:2022, url:"https://doi.org/10.57944/1051-129"},
-        {num:42, publisher:"World Economic Forum", authors:"D Gogel, B Kremer, A Slavin, K Werbach", title:"Decentralized Autonomous Organizations: Beyond the Hype", year:2022, url:"https://www3.weforum.org/docs/WEF_Decentralized_Autonomous_Organizations_Beyond_the_Hype_2022.pdf"}
+        {publisher:"World Economic Forum", authors:"D Gogel, B Kremer, A Slavin, K Werbach", title:"Decentralized Autonomous Organizations: Beyond the Hype", year:2022, url:"https://www3.weforum.org/docs/WEF_Decentralized_Autonomous_Organizations_Beyond_the_Hype_2022.pdf"},
+        {publisher:"Oxford University Press", authors:"A Langenohl, K Burghardt", title:"Non-traditional finance and the infrastructural imagination of Geoeconomic hegemony", year:2024, url:"https://academic.oup.com/jogss/article-pdf/doi/10.1093/jogss/ogae023/58593498/ogae023.pdf"},
+        {publisher:"IEEE", authors:"J Austgen, A F\u00e1brega, M Kelkar, et al.", title:"Liquefaction: Privately liquefying blockchain assets", year:2025, url:"https://ieeexplore.ieee.org/abstract/document/11023306/"},
+        {publisher:"IEEE", authors:"H Cho, IR Jeong", title:"Rarity Defense: A Formal and Empirical Analysis of NFT Trait Systems for Wash Trading Mitigation", year:2025, url:"https://ieeexplore.ieee.org/abstract/document/11320283/"},
+        {publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central bank digital currency: assessing the risks and dispelling the myths", year:2023, url:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4638953"},
+        {publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central Bank Digital Currency (Briefing Paper)", year:2022, url:"https://www.jstor.org/stable/resrep51960"},
+        {publisher:"Elsevier", authors:"A Radic, W Quan, A Ariza-Montes, JS Lee, et al.", title:"You can\u2019t hold the tide with a broom: Cryptocurrency payments and tourism in South Korea and China", year:2022, url:"https://www.sciencedirect.com/science/article/pii/S2211973622000654"},
+        {publisher:"Springer", authors:"G Cai", title:"Supply chain finance: mechanisms, risk analytics, and technology", year:2024, url:"https://link.springer.com/book/10.1007/978-3-031-56125-2"},
+        {publisher:"Springer", authors:"G Cai", title:"Blockchain Technology", year:2024, url:"https://link.springer.com/chapter/10.1007/978-3-031-56125-2_14"},
+        {publisher:"Springer", authors:"B Naysary, A Tarazi", title:"Cryptocurrency", year:2024, url:"https://link.springer.com/chapter/10.1007/978-981-97-3970-7_4"},
+        {publisher:"Springer", authors:"H Wang, J Wang, L Liu, Y Lu", title:"Temporary relay: A more flexible way to cross chains", year:2024, url:"https://link.springer.com/article/10.1007/s12083-024-01762-3"},
+        {publisher:"Taylor & Francis", authors:"BA Jones, AL Goodkind, RP Berrens", title:"Energy Use in Bitcoin Mining: The Environmental Impact of Cryptocurrencies", year:2025, url:"https://www.taylorfrancis.com/books/mono/10.4324/9781003437642/energy-use-bitcoin-mining-benjamin-jones-andrew-goodkind-robert-berrens"},
+        {publisher:"Taylor & Francis", authors:"N Galley", title:"Web3 and the global art market: Smokescreens and opportunities", year:2024, url:"https://api.taylorfrancis.com/content/chapters/edit/download?identifierName=doi&identifierValue=10.4324/9781003400868-19&type=chapterpdf"},
+        {publisher:"Taylor & Francis", authors:"A Trotta", title:"Technology and American Democracy", year:2023, url:"https://www.taylorfrancis.com/books/mono/10.4324/9781003441830/technology-american-democracy-anthony-trotta"},
+        {publisher:"ACM", authors:"S Chen, J Chen, J Yu, X Luo, Y Wang", title:"The dark side of NFTs: A large-scale empirical study of wash trading", year:2024, url:"https://dl.acm.org/doi/abs/10.1145/3671016.3674808"},
+        {publisher:"ACM", authors:"K Narayanam, V Ramakrishna, et al.", title:"Atomic cross-chain exchanges of shared assets", year:2022, url:"https://dl.acm.org/doi/abs/10.1145/3558535.3559786"},
+        {publisher:"Emerald Publishing", authors:"HK Baker, H Benedetti, E Nikbakht, SS Smith", title:"The emerald handbook on cryptoassets: Investment opportunities and challenges", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221024/full/pdf"},
+        {publisher:"Emerald Publishing", authors:"A Brasse, S Hyun", title:"Cryptocurrency exchanges and the future of cryptoassets", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221022/full/pdf"},
+        {publisher:"Emerald Publishing", authors:"H Benedetti, E Nikbakht, G Zukhubaia", title:"Trade Settlements", year:2023, url:"https://www.emerald.com/books/edited-volume/13021/chapter/83434613"},
+        {publisher:"Edward Elgar Publishing", authors:"L Chatterjee, PA Albinsson, DR Bradbury, et al.", title:"Cryptocurrency communities: an overview of collaborative currency systems", year:2024, url:"https://www.elgaronline.com/edcollchap/book/9781035307531/book-part-9781035307531-25.xml"},
+        {publisher:"Frontiers", authors:"J Tharappel", title:"How Chinese fintech threatens US Dollar hegemony", year:2023, url:"https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2023.1148315/full"},
+        {publisher:"HeinOnline (Fordham Law)", authors:"G Fanti", title:"An Apparent Trilemma for Cross-Border Central Bank Digital Currencies", year:2022, url:"https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/harvardnsj14&section=7"},
+        {publisher:"HeinOnline (Fordham Law)", authors:"SD Conlon, A Vayser, R Schwaba", title:"Newly Enacted Tax Rules Subject Digital Assets, including Cryptocurrencies, to Form 1099-B Reporting and to Cash Reporting Rules on Form 8300", year:2021, url:"https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/jrlfin18&section=27"},
+        {publisher:"Erasmus University Rotterdam", authors:"ACC Marcatto", title:"Modelling the Carbon Footprint of Blockchains", year:2024, url:"https://thesis.eur.nl/pub/66808/Modelling-the-Carbon-Footprint-of-Blockchains-Master-Thesis-Andre-Marcatto-488782am.pdf"},
+        {publisher:"Carleton University", authors:"JRO Patriquin", title:"The Technologies of Global Governance: Money, Finance, and Power in the Era of Digital Currency", year:2024, url:"https://carleton.scholaris.ca/bitstreams/448ac98e-1904-49c3-bf58-ccb291f5dce0/download"},
+        {publisher:"University of Gothenburg", authors:"M Bagley", title:"The Great DeFi Dilemma: How stakeholders can navigate the uncertain waters of decentralised finance adoption", year:2024, url:"https://gupea.ub.gu.se/server/api/core/bitstreams/67a04f4d-f819-4162-9484-21b2d0f75690/content"},
+        {publisher:"University of Helsinki", authors:"A Vennonen", title:"More than money: An ethnography of dreams, value and community in the cryptoscene", year:2024, url:"https://helda.helsinki.fi/server/api/core/bitstreams/07468db9-2472-4955-8468-eb7cdc5c5a7b/content"},
+        {publisher:"Comillas Pontifical University", authors:"AA Arredondo", title:"An\u00e1lisis matem\u00e1tico del precio de Bitcoin ante las medidas intervencionistas chinas", year:2024, url:"https://repositorio.comillas.edu/xmlui/bitstream/handle/11531/57102/TFG-%20Aguirre%20Arredondo%2C%20Alfonso.pdf?sequence=4"},
+        {publisher:"Czech Technical University Prague", authors:"K Omari", title:"Bakal\u00e1\u0159sk\u00e9 pr\u00e1ce", year:2021, url:null},
+        {publisher:"Tomas Bata University", authors:"M Lehar", title:"Anal\u00fdza typ\u016f kryptom\u011bnov\u00fdch burz a jejich r\u016fzn\u00fdch funkc\u00ed a vyu\u017eit\u00ed", year:2024, url:"https://digilib.k.utb.cz/bitstream/handle/10563/55699/lehar_2024_dp.pdf?sequence=1&isAllowed=y"},
+        {publisher:"University of Pardubice", authors:"E Pour", title:"Vyu\u017eit\u00ed blockchainu p\u0159i sledov\u00e1n\u00ed aktiv", year:2023, url:"https://dk.upce.cz/items/daf589d2-5814-4ff4-a5c2-3b076ab6cc9b"},
+        {publisher:"UFRGS, Brazil", authors:"TAP Oliveira", title:"O E-CNY na rota da seda digital", year:2024, url:"https://lume.ufrgs.br/handle/10183/275725"},
+        {publisher:"Hochschule Hof", authors:"A Wagener", title:"Governance of Things: AI & DAOs in Politics \u2014 Utopia or Dystopia?", year:2022, url:"https://doi.org/10.57944/1051-129"},
+        {publisher:"Frontier Tech Hub", authors:"AD Dive", title:"Blockchain for International Development and Humanitarian Use Cases", year:2023, url:"https://www.frontiertechhub.org/s/Blockchain-Deep-Dive-Final-v6-2w45.pdf"},
+        {publisher:"BEROC, Belarus", authors:"\u0410 \u041B\u0443\u0437\u0433\u0438\u043D\u0430", title:"\u041A\u0440\u0438\u043F\u0442\u043E\u0432\u0430\u043B\u044E\u0442\u044B: \u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0440\u0438\u0441\u043A\u0438 \u0438 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F", year:2024, url:"https://beleconomy.org/upload/medialibrary/579/5798909b15c5fff0542998d485d37a93.pdf"},
+        {publisher:"Korea Scholar", authors:"\uc190\uc138\ud6c8", title:"Web 3.0 \uc2dc\ub300\uc5d0 \uc815\uce58\ucca0\ud559\uc758 \uc5f0\uacb0\uacfc \uc7c1\uc810\ub4e4", year:2023, url:"https://db.koreascholar.com/Article/Detail/422205"},
+        {publisher:"CyberLeninka (Russia)", authors:"\u041C\u041C \u0410\u0431\u0440\u0435\u043A\u043E\u0432", title:"\u0411\u0438\u0442\u043A\u043E\u0439\u043D: \u043A\u0440\u0430\u0442\u043A\u0430\u044F \u0438\u0441\u0442\u043E\u0440\u0438\u044F \u0438 \u0446\u0435\u043D\u043D\u043E\u0441\u0442\u044C", year:2022, url:"https://cyberleninka.ru/article/n/bitkoyn-kratkaya-istoriya-i-tsennost"},
+        {publisher:"ProQuest Dissertations", authors:"GM Royal", title:"Three Essays on Bitcoin, Energy, and Digital Asset Public Policy", year:2023, url:"https://search.proquest.com/openview/2d81cf347e7c64dc08332d35851db1fa/1?pq-origsite=gscholar&cbl=18750&diss=y"},
+        {publisher:"ProQuest Dissertations", authors:"JMN Braga", title:"International Remittances Transferir Utilizando Tecnologia Blockchain", year:2022, url:"https://search.proquest.com/openview/6d903626dc195fdf7f85bba5dccea485/1?pq-origsite=gscholar&cbl=2026366&diss=y"},
+        {publisher:"arXiv", authors:"K Narayanam, V Ramakrishna, et al.", title:"Generalized HTLC for cross-chain swapping of multiple assets with co-ownerships", year:2022, url:"https://www.academia.edu/download/106294373/2202.12855v1.pdf"},
+        {publisher:"arXiv", authors:"T Frassetto, P Jauernig, D Koisser, D Kretzler, et al.", title:"POSE: Practical off-chain smart contract execution", year:2022, url:"https://arxiv.org/abs/2210.07110"},
+        {publisher:"ResearchGate", authors:"A Wagener", title:"Governance of Things: AI & DAOs in Politics \u2014 Utopia or Dystopia?", year:2022, url:"https://www.researchgate.net/profile/Andreas-Wagener/publication/364362302_Governance_of_Things_AI_DAOs_in_Politics_AWagener_RAI22pdf/data/634feb9112cbac6a3ed88965/Governance-of-Things-AI-DAOs-in-Politics-AWagener-RAI22.pdf"}
     ];
 
     function renderTable(data) {
@@ -205,7 +202,6 @@
                 : c.title;
             const yearText = c.year;
             tr.innerHTML =
-                '<td class="col-num">' + c.num + '</td>' +
                 '<td class="col-publisher">' + c.publisher + '</td>' +
                 '<td class="col-authors">' + c.authors + '</td>' +
                 '<td class="col-title">' + titleCell + '</td>' +
