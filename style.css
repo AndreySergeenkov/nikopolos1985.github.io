@@ -88,6 +88,16 @@ a:hover {
    display: inline-block;
    line-height: 1.4;
 }
+.info-card {
+   background-color: #f8faf8;
+   border: 1px solid #e0e6e0;
+   border-radius: 8px;
+   padding: 16px 18px;
+   margin-bottom: 16px;
+}
+.info-card .current-work {
+   margin-bottom: 0;
+}
 .link-highlight a {
    background-color: #fdffc8;
 }
