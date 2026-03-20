@@ -98,6 +98,10 @@ a:hover {
 .info-card .current-work {
    margin-bottom: 0;
 }
+.info-card-link {
+   margin-top: 10px;
+   margin-bottom: 0;
+}
 .link-highlight a {
    background-color: #fdffc8;
 }
