@@ -51,22 +51,10 @@
             font-size: 14px;
             margin-bottom: 24px;
         }
-        .stats {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-        .stat {
-            background-color: #f8f9fa;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-        .stat strong {
-            display: block;
-            font-size: 20px;
-            font-weight: 600;
+        .table-wrapper {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
         }
         table {
             width: 100%;
@@ -79,34 +67,39 @@
             z-index: 1;
         }
         th {
-            background-color: #f8f9fa;
+            background-color: #2d3748;
+            color: #fff;
             text-align: left;
-            padding: 10px 12px;
-            font-weight: 600;
+            padding: 12px 14px;
+            font-weight: 500;
             font-size: 13px;
-            border-bottom: 2px solid #dee2e6;
+            border-bottom: none;
             cursor: pointer;
             user-select: none;
             white-space: nowrap;
+            letter-spacing: 0.3px;
         }
         th:hover {
-            background-color: #e9ecef;
+            background-color: #4a5568;
         }
         th .sort-arrow {
             margin-left: 4px;
             font-size: 10px;
-            color: #999;
+            opacity: 0.5;
         }
-        th.sorted-asc .sort-arrow::after { content: ' \25B2'; color: #333; }
-        th.sorted-desc .sort-arrow::after { content: ' \25BC'; color: #333; }
+        th.sorted-asc .sort-arrow::after { content: ' \25B2'; opacity: 1; }
+        th.sorted-desc .sort-arrow::after { content: ' \25BC'; opacity: 1; }
         th:not(.sorted-asc):not(.sorted-desc) .sort-arrow::after { content: ' \25B4\25BE'; }
         td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #eee;
+            padding: 11px 14px;
+            border-bottom: 1px solid #eef0f2;
             vertical-align: top;
         }
-        tr:hover td {
-            background-color: #f8f9fa;
+        tbody tr:nth-child(even) td {
+            background-color: #f9fafb;
+        }
+        tbody tr:hover td {
+            background-color: #edf7ed;
         }
         td a {
             color: #333;
@@ -140,12 +133,7 @@
     <h1>Academic Citations</h1>
     <p class="subtitle">Research papers and academic works that have cited my educational articles.</p>
 
-    <div class="stats">
-        <div class="stat"><strong>42</strong> citations</div>
-        <div class="stat"><strong>2021–2025</strong> years</div>
-        <div class="stat"><strong>30+</strong> institutions</div>
-    </div>
-
+    <div class="table-wrapper">
     <table id="citations-table">
         <thead>
             <tr>
@@ -159,6 +147,7 @@
         <tbody id="citations-body">
         </tbody>
     </table>
+    </div>
 
     <script>
     const citations = [
