@@ -67,30 +67,29 @@
             z-index: 1;
         }
         th {
-            background-color: #718096;
-            color: #fff;
+            background-color: #e9ecef;
+            color: #333;
             text-align: left;
             padding: 12px 14px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 13px;
-            border-bottom: none;
+            border-bottom: 2px solid #dee2e6;
             user-select: none;
             white-space: nowrap;
-            letter-spacing: 0.3px;
         }
         th.sortable {
             cursor: pointer;
         }
         th.sortable:hover {
-            background-color: #5a6a7e;
+            background-color: #dde0e3;
         }
         th .sort-arrow {
             margin-left: 4px;
             font-size: 10px;
-            opacity: 0.5;
+            color: #999;
         }
-        th.sorted-asc .sort-arrow::after { content: ' \25B2'; opacity: 1; }
-        th.sorted-desc .sort-arrow::after { content: ' \25BC'; opacity: 1; }
+        th.sorted-asc .sort-arrow::after { content: ' \25B2'; color: #333; }
+        th.sorted-desc .sort-arrow::after { content: ' \25BC'; color: #333; }
         th.sortable:not(.sorted-asc):not(.sorted-desc) .sort-arrow::after { content: ' \25B4\25BE'; }
         td {
             padding: 11px 14px;
