@@ -67,20 +67,22 @@
             z-index: 1;
         }
         th {
-            background-color: #2d3748;
+            background-color: #718096;
             color: #fff;
             text-align: left;
             padding: 12px 14px;
             font-weight: 500;
             font-size: 13px;
             border-bottom: none;
-            cursor: pointer;
             user-select: none;
             white-space: nowrap;
             letter-spacing: 0.3px;
         }
-        th:hover {
-            background-color: #4a5568;
+        th.sortable {
+            cursor: pointer;
+        }
+        th.sortable:hover {
+            background-color: #5a6a7e;
         }
         th .sort-arrow {
             margin-left: 4px;
@@ -89,7 +91,7 @@
         }
         th.sorted-asc .sort-arrow::after { content: ' \25B2'; opacity: 1; }
         th.sorted-desc .sort-arrow::after { content: ' \25BC'; opacity: 1; }
-        th:not(.sorted-asc):not(.sorted-desc) .sort-arrow::after { content: ' \25B4\25BE'; }
+        th.sortable:not(.sorted-asc):not(.sorted-desc) .sort-arrow::after { content: ' \25B4\25BE'; }
         td {
             padding: 11px 14px;
             border-bottom: 1px solid #eef0f2;
@@ -118,7 +120,6 @@
         .col-publisher { white-space: nowrap; }
         .col-authors { max-width: 180px; }
         .col-title { min-width: 200px; }
-        .year-empty { color: #ccc; }
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
             table { font-size: 13px; }
@@ -137,11 +138,11 @@
     <table id="citations-table">
         <thead>
             <tr>
-                <th class="col-num" data-col="num" data-type="number"><span class="sort-arrow"></span>#</th>
-                <th class="col-publisher" data-col="publisher" data-type="string">Institution<span class="sort-arrow"></span></th>
-                <th class="col-authors" data-col="authors" data-type="string">Authors<span class="sort-arrow"></span></th>
-                <th class="col-title" data-col="title" data-type="string">Citing Work<span class="sort-arrow"></span></th>
-                <th class="col-year" data-col="year" data-type="number">Year<span class="sort-arrow"></span></th>
+                <th class="col-num">#</th>
+                <th class="col-publisher">Institution</th>
+                <th class="col-authors">Authors</th>
+                <th class="col-title">Citing Work</th>
+                <th class="col-year sortable" data-col="year" data-type="number">Year<span class="sort-arrow"></span></th>
             </tr>
         </thead>
         <tbody id="citations-body">
@@ -155,11 +156,11 @@
         {num:2, publisher:"ACM", authors:"K Narayanam, V Ramakrishna, et al.", title:"Atomic cross-chain exchanges of shared assets", year:2022, url:"https://dl.acm.org/doi/abs/10.1145/3558535.3559786"},
         {num:3, publisher:"arXiv", authors:"K Narayanam, V Ramakrishna, et al.", title:"Generalized HTLC for cross-chain swapping of multiple assets with co-ownerships", year:2022, url:"https://www.academia.edu/download/106294373/2202.12855v1.pdf"},
         {num:4, publisher:"arXiv", authors:"T Frassetto, P Jauernig, D Koisser, D Kretzler, et al.", title:"POSE: Practical off-chain smart contract execution", year:2022, url:"https://arxiv.org/abs/2210.07110"},
-        {num:5, publisher:"BEROC, Belarus", authors:"\u0410 \u041B\u0443\u0437\u0433\u0438\u043D\u0430", title:"\u041A\u0440\u0438\u043F\u0442\u043E\u0432\u0430\u043B\u044E\u0442\u044B: \u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0440\u0438\u0441\u043A\u0438 \u0438 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F", year:null, url:"https://beleconomy.org/upload/medialibrary/579/5798909b15c5fff0542998d485d37a93.pdf"},
+        {num:5, publisher:"BEROC, Belarus", authors:"\u0410 \u041B\u0443\u0437\u0433\u0438\u043D\u0430", title:"\u041A\u0440\u0438\u043F\u0442\u043E\u0432\u0430\u043B\u044E\u0442\u044B: \u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0440\u0438\u0441\u043A\u0438 \u0438 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0440\u0435\u0433\u0443\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F", year:2024, url:"https://beleconomy.org/upload/medialibrary/579/5798909b15c5fff0542998d485d37a93.pdf"},
         {num:6, publisher:"Carleton University", authors:"JRO Patriquin", title:"The Technologies of Global Governance: Money, Finance, and Power in the Era of Digital Currency", year:2024, url:"https://carleton.scholaris.ca/bitstreams/448ac98e-1904-49c3-bf58-ccb291f5dce0/download"},
         {num:7, publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central bank digital currency: assessing the risks and dispelling the myths", year:2023, url:"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4638953"},
         {num:8, publisher:"Cato Institute", authors:"N Anthony, N Michel", title:"Central Bank Digital Currency (Briefing Paper)", year:2022, url:"https://www.jstor.org/stable/resrep51960"},
-        {num:9, publisher:"Comillas Pontifical University", authors:"AA Arredondo", title:"An\u00e1lisis matem\u00e1tico del precio de Bitcoin ante las medidas intervencionistas chinas", year:null, url:"https://repositorio.comillas.edu/xmlui/bitstream/handle/11531/57102/TFG-%20Aguirre%20Arredondo%2C%20Alfonso.pdf?sequence=4"},
+        {num:9, publisher:"Comillas Pontifical University", authors:"AA Arredondo", title:"An\u00e1lisis matem\u00e1tico del precio de Bitcoin ante las medidas intervencionistas chinas", year:2024, url:"https://repositorio.comillas.edu/xmlui/bitstream/handle/11531/57102/TFG-%20Aguirre%20Arredondo%2C%20Alfonso.pdf?sequence=4"},
         {num:10, publisher:"CyberLeninka (Russia)", authors:"\u041C\u041C \u0410\u0431\u0440\u0435\u043A\u043E\u0432", title:"\u0411\u0438\u0442\u043A\u043E\u0439\u043D: \u043A\u0440\u0430\u0442\u043A\u0430\u044F \u0438\u0441\u0442\u043E\u0440\u0438\u044F \u0438 \u0446\u0435\u043D\u043D\u043E\u0441\u0442\u044C", year:2022, url:"https://cyberleninka.ru/article/n/bitkoyn-kratkaya-istoriya-i-tsennost"},
         {num:11, publisher:"Czech Technical University Prague", authors:"K Omari", title:"Bakal\u00e1\u0159sk\u00e9 pr\u00e1ce", year:2021, url:null},
         {num:12, publisher:"Edward Elgar Publishing", authors:"L Chatterjee, PA Albinsson, DR Bradbury, et al.", title:"Cryptocurrency communities: an overview of collaborative currency systems", year:2024, url:"https://www.elgaronline.com/edcollchap/book/9781035307531/book-part-9781035307531-25.xml"},
@@ -167,7 +168,7 @@
         {num:14, publisher:"Emerald Publishing", authors:"HK Baker, H Benedetti, E Nikbakht, SS Smith", title:"The emerald handbook on cryptoassets: Investment opportunities and challenges", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221024/full/pdf"},
         {num:15, publisher:"Emerald Publishing", authors:"A Brasse, S Hyun", title:"Cryptocurrency exchanges and the future of cryptoassets", year:2023, url:"https://www.emerald.com/insight/content/doi/10.1108/978-1-80455-320-620221022/full/pdf"},
         {num:16, publisher:"Emerald Publishing", authors:"H Benedetti, E Nikbakht, G Zukhubaia", title:"Trade Settlements", year:2023, url:"https://www.emerald.com/books/edited-volume/13021/chapter/83434613"},
-        {num:17, publisher:"Erasmus University Rotterdam", authors:"ACC Marcatto", title:"Modelling the Carbon Footprint of Blockchains", year:null, url:"https://thesis.eur.nl/pub/66808/Modelling-the-Carbon-Footprint-of-Blockchains-Master-Thesis-Andre-Marcatto-488782am.pdf"},
+        {num:17, publisher:"Erasmus University Rotterdam", authors:"ACC Marcatto", title:"Modelling the Carbon Footprint of Blockchains", year:2024, url:"https://thesis.eur.nl/pub/66808/Modelling-the-Carbon-Footprint-of-Blockchains-Master-Thesis-Andre-Marcatto-488782am.pdf"},
         {num:18, publisher:"Frontier Tech Hub", authors:"AD Dive", title:"Blockchain for International Development and Humanitarian Use Cases", year:2023, url:"https://www.frontiertechhub.org/s/Blockchain-Deep-Dive-Final-v6-2w45.pdf"},
         {num:19, publisher:"Frontiers", authors:"J Tharappel", title:"How Chinese fintech threatens US Dollar hegemony", year:2023, url:"https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2023.1148315/full"},
         {num:20, publisher:"HeinOnline (Fordham Law)", authors:"G Fanti", title:"An Apparent Trilemma for Cross-Border Central Bank Digital Currencies", year:2022, url:"https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/harvardnsj14&section=7"},
@@ -188,8 +189,8 @@
         {num:35, publisher:"Taylor & Francis", authors:"A Trotta", title:"Technology and American Democracy", year:2023, url:"https://www.taylorfrancis.com/books/mono/10.4324/9781003441830/technology-american-democracy-anthony-trotta"},
         {num:36, publisher:"Tomas Bata University", authors:"M Lehar", title:"Anal\u00fdza typ\u016f kryptom\u011bnov\u00fdch burz a jejich r\u016fzn\u00fdch funkc\u00ed a vyu\u017eit\u00ed", year:2024, url:"https://digilib.k.utb.cz/bitstream/handle/10563/55699/lehar_2024_dp.pdf?sequence=1&isAllowed=y"},
         {num:37, publisher:"UFRGS, Brazil", authors:"TAP Oliveira", title:"O E-CNY na rota da seda digital", year:2024, url:"https://lume.ufrgs.br/handle/10183/275725"},
-        {num:38, publisher:"University of Gothenburg", authors:"M Bagley", title:"The Great DeFi Dilemma: How stakeholders can navigate the uncertain waters of decentralised finance adoption", year:null, url:"https://gupea.ub.gu.se/server/api/core/bitstreams/67a04f4d-f819-4162-9484-21b2d0f75690/content"},
-        {num:39, publisher:"University of Helsinki", authors:"A Vennonen", title:"More than money: An ethnography of dreams, value and community in the cryptoscene", year:null, url:"https://helda.helsinki.fi/server/api/core/bitstreams/07468db9-2472-4955-8468-eb7cdc5c5a7b/content"},
+        {num:38, publisher:"University of Gothenburg", authors:"M Bagley", title:"The Great DeFi Dilemma: How stakeholders can navigate the uncertain waters of decentralised finance adoption", year:2024, url:"https://gupea.ub.gu.se/server/api/core/bitstreams/67a04f4d-f819-4162-9484-21b2d0f75690/content"},
+        {num:39, publisher:"University of Helsinki", authors:"A Vennonen", title:"More than money: An ethnography of dreams, value and community in the cryptoscene", year:2024, url:"https://helda.helsinki.fi/server/api/core/bitstreams/07468db9-2472-4955-8468-eb7cdc5c5a7b/content"},
         {num:40, publisher:"University of Pardubice", authors:"E Pour", title:"Vyu\u017eit\u00ed blockchainu p\u0159i sledov\u00e1n\u00ed aktiv", year:2023, url:"https://dk.upce.cz/items/daf589d2-5814-4ff4-a5c2-3b076ab6cc9b"},
         {num:41, publisher:"Hochschule Hof", authors:"A Wagener", title:"Governance of Things: AI & DAOs in Politics \u2014 Utopia or Dystopia?", year:2022, url:"https://doi.org/10.57944/1051-129"},
         {num:42, publisher:"World Economic Forum", authors:"D Gogel, B Kremer, A Slavin, K Werbach", title:"Decentralized Autonomous Organizations: Beyond the Hype", year:2022, url:"https://www3.weforum.org/docs/WEF_Decentralized_Autonomous_Organizations_Beyond_the_Hype_2022.pdf"}
@@ -203,7 +204,7 @@
             const titleCell = c.url
                 ? '<a href="' + c.url + '" target="_blank" rel="noopener">' + c.title + '</a>'
                 : c.title;
-            const yearText = c.year ? c.year : '<span class="year-empty">\u2014</span>';
+            const yearText = c.year;
             tr.innerHTML =
                 '<td class="col-num">' + c.num + '</td>' +
                 '<td class="col-publisher">' + c.publisher + '</td>' +
@@ -253,7 +254,7 @@
         renderTable(sorted);
     }
 
-    document.querySelectorAll('th').forEach(function(th) {
+    document.querySelectorAll('th.sortable').forEach(function(th) {
         th.addEventListener('click', function() {
             sortTable(th.dataset.col, th.dataset.type);
         });
