@@ -101,11 +101,12 @@
             text-decoration: underline;
         }
         .col-publication { white-space: nowrap; }
-        .col-author { white-space: nowrap; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+        .col-author { max-width: 260px; }
         .col-title { min-width: 200px; }
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
-            table { font-size: 13px; }
+            .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            table { font-size: 13px; min-width: 600px; }
             th, td { padding: 8px 6px; }
         }
     </style>
