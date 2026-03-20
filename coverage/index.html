@@ -102,6 +102,7 @@
         }
         .col-num { width: 40px; text-align: center; color: #999; }
         .col-publication { white-space: nowrap; }
+        .col-author { white-space: nowrap; }
         .col-title { min-width: 200px; }
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
@@ -122,6 +123,7 @@
             <tr>
                 <th class="col-num">#</th>
                 <th class="col-publication">Publication</th>
+                <th class="col-author">Author</th>
                 <th class="col-title">Article</th>
             </tr>
         </thead>
@@ -132,41 +134,41 @@
 
     <script>
     const coverage = [
-        {num:1, publication:"AMBCrypto", title:"Ethereum Hits 1.29M Active Addresses but Security Risks Loom \u2013 Why?", url:"https://ambcrypto.com/ethereum-hits-1-29m-active-addresses-but-security-risks-loom-why/"},
-        {num:2, publication:"AMBCrypto", title:"Strategy Must Clear $209 to Confirm MSTR\u2019s Next Rally: Analyst", url:"https://ambcrypto.com/strategy-must-clear-209-to-confirm-mstrs-next-rally-analyst/"},
-        {num:3, publication:"Bits.media", title:"\u0420\u043E\u0441\u0442 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0438 \u0432 \u042D\u0444\u0438\u0440\u0438\u0443\u043C\u0435 \u043E\u0431\u044A\u044F\u0441\u043D\u0438\u043B\u0438 \u043A\u0440\u0438\u043F\u0442\u043E\u043F\u044B\u043B\u0435\u0432\u043E\u0439 \u0430\u0442\u0430\u043A\u043E\u0439", url:"https://bits.media/rost-aktivnosti-v-efiriume-obyasnili-kriptopylevoy-atakoy/"},
-        {num:4, publication:"Blockonomi", title:"Next Crypto to Explode: DeepSnitch AI Outperforms ATOM and LTC", url:"https://blockonomi.com/next-crypto-to-explode-deepsnitch-ai-outperforms-atom-and-ltc-with-140-ahead-of-its-much-awaited-january-launch/"},
-        {num:5, publication:"Coin Metrics", title:"State of the Network Issue 349", url:"https://coinmetrics.substack.com/p/state-of-the-network-issue-349"},
-        {num:6, publication:"CoinDesk", title:"Ethereum Posts Record On-Chain Activity as Research Points to Possible Spam-Driven Growth", url:"https://www.coindesk.com/markets/2026/01/20/ethereum-posts-record-on-chain-activity-as-research-points-to-possible-spam-driven-growth-asia-morning-briefing"},
-        {num:7, publication:"CoinDesk", title:"Citi Sounds the Alarm on Address Poisoning Scams Flooding the Ethereum Network", url:"https://www.coindesk.com/markets/2026/01/22/citi-sounds-the-alarm-on-address-poisoning-scams-flooding-the-ethereum-network"},
-        {num:8, publication:"CoinDesk", title:"Ethereum Blockchain Beats Its Own Speed-Ups but There\u2019s a Catch", url:"https://www.coindesk.com/tech/2026/01/23/ethereum-blockchain-beats-its-own-speed-ups-but-there-s-a-catch"},
-        {num:9, publication:"CoinSpeaker", title:"Ethereum Transaction Pumps Amid Crypto Scam", url:"https://www.coinspeaker.com/ethereum-transaction-pumps-amid-crypto-scam/"},
-        {num:10, publication:"CoinTribune", title:"Ethereum: Spike in Activity Possibly Tied to Dusting Attacks", url:"https://www.cointribune.com/en/ethereum-spike-in-activity-possibly-tied-to-dusting-attacks/"},
-        {num:11, publication:"Cointelegraph", title:"Address Poisoning Attack Adding Record Ethereum Network Activity, Says Researcher", url:"https://cointelegraph.com/news/address-poisoning-attack-adding-record-ethereum-network-activity-says-researcher"},
-        {num:12, publication:"Cointelegraph", title:"Ethereum Mainnet More Popular: Daily Addresses Beat All L2", url:"https://cointelegraph.com/news/ethereum-mainnet-more-popular-daily-addresses-all-l2"},
-        {num:13, publication:"Crypto Economy", title:"Cheaper Fees on Ethereum Fuel Surge in Address Poisoning Scams", url:"https://crypto-economy.com/cheaper-fees-on-ethereum-fuel-surge-in-address-poisoning-scams/"},
-        {num:14, publication:"Crypto Times", title:"Crypto User Loses $500K USDT in Ethereum Address Poisoning Scam", url:"https://www.cryptotimes.io/2026/01/17/crypto-user-loses-500k-usdt-in-ethereum-address-poisoning-scam/"},
-        {num:15, publication:"Crypto.news", title:"Ethereum Bulls Face Deceptive On-Chain Spike as Address Poisoning Surges", url:"https://crypto.news/ethereum-bulls-face-deceptive-on-chain-spike-as-address-poisoning-surges/"},
-        {num:16, publication:"CryptoNews", title:"Ethereum Network Activity Surge Linked to Address Poisoning Attacks: Researcher", url:"https://cryptonews.com/news/ethereum-network-activity-surge-linked-to-address-poisoning-attacks-researcher/"},
-        {num:17, publication:"CryptoSlate", title:"Ethereum\u2019s Record Activity Clouded by Address Poisoning Scams", url:"https://cryptoslate.com/ethereums-record-activity-clouded-by-address-poisoning-scams/"},
-        {num:18, publication:"Cryptopolitan", title:"Over $740K Stolen in New Wave of Ethereum Address Poisoning", url:"https://www.cryptopolitan.com/over-740k-stolen-in-new-wave-of-ethereum"},
-        {num:19, publication:"Cybernews", title:"Ethereum Surge: Address Poisoning Scams After Fusaka Upgrade", url:"https://cybernews.com/crypto/ethereum-surge-address-poisoning-scams-fusaka-upgrade/"},
-        {num:20, publication:"DL News", title:"How a Crypto Scam Pushed Ethereum Transactions to an All-Time High", url:"https://www.dlnews.com/articles/defi/how-a-crypto-scam-pushed-ethereum-transactions-to-an-all-time-high/"},
-        {num:21, publication:"Decrypt", title:"Ethereum Record Usage: Costs Drop as Network Conditions Ease", url:"https://decrypt.co/354982/ethereum-record-usage-costs-drop-network-conditions-ease"},
-        {num:22, publication:"Decrypt", title:"Signature Phishing Up 200% as January Losses Pass $6M", url:"https://decrypt.co/357450/signature-phishing-up-200-as-january-losses-pass-6m"},
-        {num:23, publication:"Dinar Detectives", title:"Ethereum Address Poisoning Attack Losses: $740K", url:"https://dinardetectives.com/ethereum-address-poisoning-attack-losses-740k/"},
-        {num:24, publication:"FXStreet", title:"Ethereum Price Forecast: ETH Falls Below $3,000 as Researcher Suggests Address Poisoning Is Inflating Activity", url:"https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-eth-falls-below-3-000-as-researcher-suggests-address-poisoning-is-inflating-activity-202601201956"},
-        {num:25, publication:"ForkLog", title:"Ethereum\u2019s Transaction Surge Linked to Spam Attack, Researcher Claims", url:"https://forklog.com/en/ethereums-transaction-surge-linked-to-spam-attack-researcher-claims/"},
-        {num:26, publication:"Galaxy Research", title:"Weekly Top Stories 01-23-26", url:"https://www.galaxy.com/insights/research/weekly-top-stories-01-23-26"},
-        {num:27, publication:"MetaMask", title:"Crypto Security Report 2026", url:"https://metamask.io/en-GB/news/crypto-security-report-2026"},
-        {num:28, publication:"Motley Fool", title:"Scam Concerns Drive an 8% Plunge in Ethereum This Week", url:"https://www.fool.com/investing/2026/01/20/scam-concerns-drive-an-8-plunge-in-ethereum-this-w/"},
-        {num:29, publication:"Protos", title:"Ethereum Address Poisoning Spike: Wallets Aren\u2019t Ready, Says Researcher", url:"https://protos.com/ethereum-address-poisoning-spike-wallets-arent-ready-says-researcher/"},
-        {num:30, publication:"Protos", title:"Inside DeFi 001", url:"https://protos.com/inside-defi-001/"},
-        {num:31, publication:"RBC", title:"\u0420\u0435\u043A\u043E\u0440\u0434\u043D\u0430\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C \u0432 Ethereum \u0441\u0432\u044F\u0437\u0430\u043D\u0430 \u0441 \u0430\u0442\u0430\u043A\u0430\u043C\u0438 address poisoning", url:"https://www.rbc.ru/crypto/news/699591be9a7947863225a745"},
-        {num:32, publication:"The Decentralised", title:"Scams Push ETH Txns Higher", url:"https://thedecentralised.beehiiv.com/p/scams-push-eth-txns-higher"},
-        {num:33, publication:"The Defiant", title:"Ethereum Mainnet ATH Activity: Address Poisoning Scam", url:"https://thedefiant.io/news/blockchains/ethereum-mainnet-ath-activity-address-poisoning-scam"},
-        {num:34, publication:"The Defiant", title:"Fusaka Falls Short on Ethereum Revenue Expectations: Bitwise", url:"https://thedefiant.io/news/blockchains/fusaka-falls-short-on-ethereum-revenue-expectations-bitwise"},
-        {num:35, publication:"The Defiant", title:"Fusaka Upgrade Fuels Record Address Poisoning on Ethereum", url:"https://thedefiant.io/news/blockchains/fusaka-upgrade-fuels-record-address-poisoning-on-ethereum"}
+        {num:1, publication:"AMBCrypto", author:"Aaryamann Shrivastava", title:"Ethereum Hits 1.29M Active Addresses but Security Risks Loom \u2013 Why?", url:"https://ambcrypto.com/ethereum-hits-1-29m-active-addresses-but-security-risks-loom-why/"},
+        {num:2, publication:"AMBCrypto", author:"Aaryamann Shrivastava", title:"Strategy Must Clear $209 to Confirm MSTR\u2019s Next Rally: Analyst", url:"https://ambcrypto.com/strategy-must-clear-209-to-confirm-mstrs-next-rally-analyst/"},
+        {num:3, publication:"Bits.media", author:"\u0412\u0438\u043A\u0442\u043E\u0440\u0438\u044F \u041C\u044B\u0441\u043E\u0432\u0430", title:"\u0420\u043E\u0441\u0442 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0438 \u0432 \u042D\u0444\u0438\u0440\u0438\u0443\u043C\u0435 \u043E\u0431\u044A\u044F\u0441\u043D\u0438\u043B\u0438 \u043A\u0440\u0438\u043F\u0442\u043E\u043F\u044B\u043B\u0435\u0432\u043E\u0439 \u0430\u0442\u0430\u043A\u043E\u0439", url:"https://bits.media/rost-aktivnosti-v-efiriume-obyasnili-kriptopylevoy-atakoy/"},
+        {num:4, publication:"Blockonomi", author:"Michelle DG", title:"Next Crypto to Explode: DeepSnitch AI Outperforms ATOM and LTC", url:"https://blockonomi.com/next-crypto-to-explode-deepsnitch-ai-outperforms-atom-and-ltc-with-140-ahead-of-its-much-awaited-january-launch/"},
+        {num:5, publication:"Coin Metrics", author:"Tanay Ved", title:"State of the Network Issue 349", url:"https://coinmetrics.substack.com/p/state-of-the-network-issue-349"},
+        {num:6, publication:"CoinDesk", author:"Sam Reynolds, Aoyon Ashraf", title:"Ethereum Posts Record On-Chain Activity as Research Points to Possible Spam-Driven Growth", url:"https://www.coindesk.com/markets/2026/01/20/ethereum-posts-record-on-chain-activity-as-research-points-to-possible-spam-driven-growth-asia-morning-briefing"},
+        {num:7, publication:"CoinDesk", author:"Jamie Crawley", title:"Citi Sounds the Alarm on Address Poisoning Scams Flooding the Ethereum Network", url:"https://www.coindesk.com/markets/2026/01/22/citi-sounds-the-alarm-on-address-poisoning-scams-flooding-the-ethereum-network"},
+        {num:8, publication:"CoinDesk", author:"Jamie Crawley", title:"Ethereum Blockchain Beats Its Own Speed-Ups but There\u2019s a Catch", url:"https://www.coindesk.com/tech/2026/01/23/ethereum-blockchain-beats-its-own-speed-ups-but-there-s-a-catch"},
+        {num:9, publication:"CoinSpeaker", author:"Felix Mollen", title:"Ethereum Transaction Pumps Amid Crypto Scam", url:"https://www.coinspeaker.com/ethereum-transaction-pumps-amid-crypto-scam/"},
+        {num:10, publication:"CoinTribune", author:"Evans S.", title:"Ethereum: Spike in Activity Possibly Tied to Dusting Attacks", url:"https://www.cointribune.com/en/ethereum-spike-in-activity-possibly-tied-to-dusting-attacks/"},
+        {num:11, publication:"Cointelegraph", author:"Ezra Reguerra", title:"Address Poisoning Attack Adding Record Ethereum Network Activity, Says Researcher", url:"https://cointelegraph.com/news/address-poisoning-attack-adding-record-ethereum-network-activity-says-researcher"},
+        {num:12, publication:"Cointelegraph", author:"Ezra Reguerra", title:"Ethereum Mainnet More Popular: Daily Addresses Beat All L2", url:"https://cointelegraph.com/news/ethereum-mainnet-more-popular-daily-addresses-all-l2"},
+        {num:13, publication:"Crypto Economy", author:"Isai Alexei", title:"Cheaper Fees on Ethereum Fuel Surge in Address Poisoning Scams", url:"https://crypto-economy.com/cheaper-fees-on-ethereum-fuel-surge-in-address-poisoning-scams/"},
+        {num:14, publication:"Crypto Times", author:"Ronak Kumar", title:"Crypto User Loses $500K USDT in Ethereum Address Poisoning Scam", url:"https://www.cryptotimes.io/2026/01/17/crypto-user-loses-500k-usdt-in-ethereum-address-poisoning-scam/"},
+        {num:15, publication:"Crypto.news", author:"Dorian Batycka", title:"Ethereum Bulls Face Deceptive On-Chain Spike as Address Poisoning Surges", url:"https://crypto.news/ethereum-bulls-face-deceptive-on-chain-spike-as-address-poisoning-surges/"},
+        {num:16, publication:"CryptoNews", author:"Amin Ayan", title:"Ethereum Network Activity Surge Linked to Address Poisoning Attacks: Researcher", url:"https://cryptonews.com/news/ethereum-network-activity-surge-linked-to-address-poisoning-attacks-researcher/"},
+        {num:17, publication:"CryptoSlate", author:"Oluwapelumi Adejumo", title:"Ethereum\u2019s Record Activity Clouded by Address Poisoning Scams", url:"https://cryptoslate.com/ethereums-record-activity-clouded-by-address-poisoning-scams/"},
+        {num:18, publication:"Cryptopolitan", author:"Hristina Vasileva", title:"Over $740K Stolen in New Wave of Ethereum Address Poisoning", url:"https://www.cryptopolitan.com/over-740k-stolen-in-new-wave-of-ethereum"},
+        {num:19, publication:"Cybernews", author:"Linas Kmieliauskas", title:"Ethereum Surge: Address Poisoning Scams After Fusaka Upgrade", url:"https://cybernews.com/crypto/ethereum-surge-address-poisoning-scams-fusaka-upgrade/"},
+        {num:20, publication:"DL News", author:"Tim Craig", title:"How a Crypto Scam Pushed Ethereum Transactions to an All-Time High", url:"https://www.dlnews.com/articles/defi/how-a-crypto-scam-pushed-ethereum-transactions-to-an-all-time-high/"},
+        {num:21, publication:"Decrypt", author:"Andr\u00E9 Beganski", title:"Ethereum Record Usage: Costs Drop as Network Conditions Ease", url:"https://decrypt.co/354982/ethereum-record-usage-costs-drop-network-conditions-ease"},
+        {num:22, publication:"Decrypt", author:"Andr\u00E9 Beganski", title:"Signature Phishing Up 200% as January Losses Pass $6M", url:"https://decrypt.co/357450/signature-phishing-up-200-as-january-losses-pass-6m"},
+        {num:23, publication:"Dinar Detectives", author:"Editorial", title:"Ethereum Address Poisoning Attack Losses: $740K", url:"https://dinardetectives.com/ethereum-address-poisoning-attack-losses-740k/"},
+        {num:24, publication:"FXStreet", author:"Ekta Mourya", title:"Ethereum Price Forecast: ETH Falls Below $3,000 as Researcher Suggests Address Poisoning Is Inflating Activity", url:"https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-eth-falls-below-3-000-as-researcher-suggests-address-poisoning-is-inflating-activity-202601201956"},
+        {num:25, publication:"ForkLog", author:"Editorial", title:"Ethereum\u2019s Transaction Surge Linked to Spam Attack, Researcher Claims", url:"https://forklog.com/en/ethereums-transaction-surge-linked-to-spam-attack-researcher-claims/"},
+        {num:26, publication:"Galaxy Research", author:"Alex Thorn, Zack Pokorny, Lucas Tcheyan, Christopher Rosa", title:"Weekly Top Stories 01-23-26", url:"https://www.galaxy.com/insights/research/weekly-top-stories-01-23-26"},
+        {num:27, publication:"MetaMask", author:"Luker", title:"Crypto Security Report 2026", url:"https://metamask.io/en-GB/news/crypto-security-report-2026"},
+        {num:28, publication:"Motley Fool", author:"Will Healy", title:"Scam Concerns Drive an 8% Plunge in Ethereum This Week", url:"https://www.fool.com/investing/2026/01/20/scam-concerns-drive-an-8-plunge-in-ethereum-this-w/"},
+        {num:29, publication:"Protos", author:"Jake Harrison", title:"Ethereum Address Poisoning Spike: Wallets Aren\u2019t Ready, Says Researcher", url:"https://protos.com/ethereum-address-poisoning-spike-wallets-arent-ready-says-researcher/"},
+        {num:30, publication:"Protos", author:"Jake Harrison", title:"Inside DeFi 001", url:"https://protos.com/inside-defi-001/"},
+        {num:31, publication:"RBC", author:"\u041E\u043B\u0435\u0433 \u0413\u043E\u0440\u0434\u044B\u0448\u0435\u0432", title:"\u0420\u0435\u043A\u043E\u0440\u0434\u043D\u0430\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C \u0432 Ethereum \u0441\u0432\u044F\u0437\u0430\u043D\u0430 \u0441 \u0430\u0442\u0430\u043A\u0430\u043C\u0438 address poisoning", url:"https://www.rbc.ru/crypto/news/699591be9a7947863225a745"},
+        {num:32, publication:"The Decentralised", author:"Tim Craig", title:"Scams Push ETH Txns Higher", url:"https://thedecentralised.beehiiv.com/p/scams-push-eth-txns-higher"},
+        {num:33, publication:"The Defiant", author:"Yohan Yun", title:"Ethereum Mainnet ATH Activity: Address Poisoning Scam", url:"https://thedefiant.io/news/blockchains/ethereum-mainnet-ath-activity-address-poisoning-scam"},
+        {num:34, publication:"The Defiant", author:"Yohan Yun", title:"Fusaka Falls Short on Ethereum Revenue Expectations: Bitwise", url:"https://thedefiant.io/news/blockchains/fusaka-falls-short-on-ethereum-revenue-expectations-bitwise"},
+        {num:35, publication:"The Defiant", author:"Yohan Yun", title:"Fusaka Upgrade Fuels Record Address Poisoning on Ethereum", url:"https://thedefiant.io/news/blockchains/fusaka-upgrade-fuels-record-address-poisoning-on-ethereum"}
     ];
 
     function renderTable(data) {
@@ -177,6 +179,7 @@
             tr.innerHTML =
                 '<td class="col-num">' + (i + 1) + '</td>' +
                 '<td class="col-publication">' + c.publication + '</td>' +
+                '<td class="col-author">' + c.author + '</td>' +
                 '<td class="col-title"><a href="' + c.url + '" target="_blank" rel="noopener">' + c.title + '</a></td>';
             tbody.appendChild(tr);
         });
