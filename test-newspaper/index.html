@@ -6,245 +6,165 @@
     <title>The Sergeenkov Gazette</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: #d4c9a8;
-            font-family: 'Lora', 'Georgia', serif;
+            font-family: 'Lora', Georgia, serif;
             color: #1a1a1a;
-            padding: 30px 20px;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .newspaper {
-            max-width: 960px;
+            max-width: 900px;
             margin: 0 auto;
             background: #f5f0e1;
-            border: 2px solid #8a7e6b;
-            box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
-            padding: 30px 40px;
-            position: relative;
+            border: 1px solid #8a7e6b;
+            padding: 24px 32px;
         }
 
-        .newspaper::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 28px,
-                rgba(0,0,0,0.02) 28px,
-                rgba(0,0,0,0.02) 29px
-            );
-            pointer-events: none;
-        }
-
-        /* Masthead */
         .masthead {
             text-align: center;
-            border-bottom: 3px double #1a1a1a;
-            padding-bottom: 10px;
-            margin-bottom: 6px;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .masthead-title {
+        .masthead h1 {
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 64px;
+            font-size: 56px;
             font-weight: 400;
-            letter-spacing: 2px;
-            line-height: 1.1;
-            margin-bottom: 2px;
         }
 
-        .masthead-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #555;
-        }
-
-        /* Date bar */
         .dateline {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 6px 0;
-            margin-bottom: 16px;
-            font-family: 'Playfair Display', serif;
-            font-size: 11px;
-            text-transform: uppercase;
+            font-size: 10px;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 4px 0;
+            margin-bottom: 14px;
         }
 
-        .price-tag { font-weight: 700; }
-
-        /* Headlines */
-        .main-headline {
+        .headline {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 900;
             text-align: center;
-            line-height: 1.15;
-            margin-bottom: 4px;
-            letter-spacing: -0.5px;
+            margin-bottom: 14px;
         }
 
-        .main-subheadline {
-            font-family: 'IM Fell English', serif;
-            font-size: 15px;
-            font-style: italic;
-            text-align: center;
-            color: #444;
-            margin-bottom: 16px;
-        }
-
-        .section-rule {
+        hr {
             border: none;
             border-top: 1px solid #1a1a1a;
-            margin: 16px 0;
+            margin: 14px 0;
         }
-        .section-rule.thick {
-            border-top: 3px double #1a1a1a;
-        }
+        hr.double { border-top: 3px double #1a1a1a; }
 
-        /* Column layouts */
-        .columns-3 {
+        /* Columns — populated by Pretext-driven JS */
+        .cols {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
             gap: 0;
         }
-        .columns-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-        .column {
-            padding: 0 14px;
+        .cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
+        .cols.c2 { grid-template-columns: 1fr 1fr; }
+
+        .col {
+            padding: 0 12px;
             border-right: 1px solid #c5b99a;
         }
-        .column:first-child { padding-left: 0; }
-        .column:last-child { padding-right: 0; border-right: none; }
+        .col:first-child { padding-left: 0; }
+        .col:last-child { padding-right: 0; border-right: none; }
 
-        /* Canvas columns rendered by Pretext */
-        .pretext-column {
-            padding: 0 14px;
-            border-right: 1px solid #c5b99a;
-            position: relative;
-        }
-        .pretext-column:first-child { padding-left: 0; }
-        .pretext-column:last-child { padding-right: 0; border-right: none; }
-        .pretext-column canvas { display: block; }
+        .col p { margin-bottom: 10px; text-align: justify; }
 
-        /* Section headline */
-        .section-headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 700;
+        .col .photo {
             text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin: 12px 0 8px;
-            line-height: 1.2;
+            margin-bottom: 10px;
         }
-
-        /* Photo area */
-        .photo-block {
-            text-align: center;
-            margin: 12px 0;
-        }
-        .photo-block img {
+        .col .photo img {
             width: 100%;
-            max-width: 280px;
-            filter: sepia(40%) contrast(1.05);
+            max-width: 220px;
+            filter: sepia(30%);
             border: 1px solid #8a7e6b;
         }
-        .photo-caption {
-            font-family: 'IM Fell English', serif;
-            font-size: 11px;
-            font-style: italic;
-            color: #555;
-            margin-top: 4px;
-        }
 
-        .featured-header {
+        .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
-        /* Contact strip */
-        .contact-strip {
+        /* Article entries in columns */
+        .entry {
+            margin-bottom: 6px;
+            padding-bottom: 6px;
+            border-bottom: 1px dotted #c5b99a;
+        }
+        .entry:last-child { border-bottom: none; }
+        .entry-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .entry-pub {
+            font-size: 10px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .footer {
             background: #1a1a1a;
             color: #f5f0e1;
             text-align: center;
-            padding: 10px;
-            margin-top: 16px;
-            font-size: 13px;
-            letter-spacing: 1px;
+            padding: 8px;
+            margin-top: 14px;
+            font-size: 12px;
         }
-        .contact-strip a {
-            color: #f5f0e1;
-            text-decoration: underline;
-        }
+        .footer a { color: #f5f0e1; }
     </style>
 </head>
 <body>
     <div class="newspaper">
-        <!-- Masthead -->
-        <div class="masthead">
-            <div class="masthead-title">The Sergeenkov Gazette</div>
-            <div class="masthead-subtitle">Independent Research &bull; Digital Economy &bull; Investigative Journalism</div>
-        </div>
-
-        <!-- Dateline -->
+        <div class="masthead"><h1>The Sergeenkov Gazette</h1></div>
         <div class="dateline">
             <span>Sunday, March 30th, 2026</span>
-            <span class="price-tag">sergeenkov.com</span>
+            <span>sergeenkov.com</span>
         </div>
 
-        <!-- Main headline -->
-        <h1 class="main-headline">Andrey Sergeenkov</h1>
-        <p class="main-subheadline">I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
+        <div class="headline">Andrey Sergeenkov</div>
 
-        <hr class="section-rule thick">
+        <hr class="double">
 
-        <!-- 3-column body: all text rendered to canvas via Pretext -->
-        <div class="columns-3" id="main-columns">
-            <div class="pretext-column" id="col-left">
-                <canvas id="canvas-left"></canvas>
-            </div>
-            <div class="pretext-column" id="col-center">
-                <div class="photo-block">
-                    <img src="/500.jpg" alt="Andrey Sergeenkov">
-                    <div class="photo-caption">Andrey Sergeenkov, Author &amp; Researcher</div>
-                </div>
-                <canvas id="canvas-center"></canvas>
-            </div>
-            <div class="pretext-column" id="col-right">
-                <canvas id="canvas-right"></canvas>
-            </div>
+        <!-- Top section: 3 columns. Pretext balances which content goes where -->
+        <div class="cols c3" id="top-cols">
+            <div class="col" id="top-col-0"></div>
+            <div class="col" id="top-col-1"></div>
+            <div class="col" id="top-col-2"></div>
         </div>
 
-        <hr class="section-rule thick">
+        <hr class="double">
 
-        <!-- Articles rendered as canvas columns via Pretext -->
-        <div class="featured-header">My Articles</div>
-        <div class="columns-3" id="articles-section">
-            <div class="pretext-column" id="acol-left"><canvas id="canvas-articles-left"></canvas></div>
-            <div class="pretext-column" id="acol-center"><canvas id="canvas-articles-center"></canvas></div>
-            <div class="pretext-column" id="acol-right"><canvas id="canvas-articles-right"></canvas></div>
+        <div class="section-title">My Articles</div>
+
+        <!-- Articles: 3 balanced columns -->
+        <div class="cols c3" id="article-cols">
+            <div class="col" id="art-col-0"></div>
+            <div class="col" id="art-col-1"></div>
+            <div class="col" id="art-col-2"></div>
         </div>
 
-        <!-- Contact strip -->
-        <div class="contact-strip">
+        <div class="footer">
             <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a> &bull;
             <a href="https://x.com/Nikopolos">Twitter</a> &bull;
             <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> &bull;
@@ -254,20 +174,24 @@
     </div>
 
     <script type="module">
-        import { prepareWithSegments, layoutWithLines, layout, prepare } from 'https://esm.sh/@chenglou/pretext'
+        import { prepare, layout } from 'https://esm.sh/@chenglou/pretext'
 
-        // ---- Original texts from the site, unchanged ----
-        const bioText = "My works have been published in Forbes, CoinDesk, Blockworks and Cointelegraph."
+        const FONT = '14px Lora, Georgia, serif'
+        const LINE_HEIGHT = 21
 
-        const citationsText = "My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.\n\nFull list of citations: sergeenkov.com/citations"
+        // ---- Original texts from the site ----
+        const blocks = [
+            { type: 'paragraph', text: "I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects." },
+            { type: 'photo' },
+            { type: 'paragraph', text: "My works have been published in Forbes, CoinDesk, Blockworks and Cointelegraph." },
+            { type: 'paragraph', text: "You can follow new articles via RSS or Twitter." },
+            { type: 'paragraph', text: "My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more." },
+            { type: 'paragraph', text: "Full list of citations: sergeenkov.com/citations" },
+            { type: 'paragraph', text: "My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research." },
+            { type: 'paragraph', text: "Full list of media coverage: sergeenkov.com/coverage" },
+            { type: 'paragraph', text: "The best way to contact me is via email andrey@sergeenkov.com. Alternatively you can use LinkedIn or Telegram." },
+        ]
 
-        const coverageText = "My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.\n\nFull list of media coverage: sergeenkov.com/coverage"
-
-        const followText = "You can follow new articles via RSS or Twitter."
-
-        const contactText = "The best way to contact me is via email andrey@sergeenkov.com. Alternatively you can use LinkedIn or Telegram."
-
-        // ---- Articles from the site, unchanged ----
         const articles = [
             ["Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade", "Independent Research"],
             ["Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends", "Independent Research"],
@@ -404,188 +328,102 @@
             ["Ex-OpenSea Employee Accused of Profiting from NFT Insider Trading", "CoinMarketCap"],
         ]
 
-        // ---- Pretext rendering engine ----
+        // ---- Use Pretext to measure heights, then distribute blocks into columns ----
 
-        const BODY_FONT = '14px Lora, Georgia, serif'
-        const BODY_LINE_HEIGHT = 22
-        const TITLE_FONT = 'bold 13px "Playfair Display", serif'
-        const TITLE_LINE_HEIGHT = 17
-        const PUB_FONT = 'italic 11px "IM Fell English", serif'
-        const PUB_LINE_HEIGHT = 15
-
-        // Render multi-paragraph text to a canvas using Pretext for line breaking
-        function renderBodyText(canvas, paragraphs, font, lineHeight) {
-            const container = canvas.parentElement
-            const style = getComputedStyle(container)
-            const maxWidth = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
-            if (maxWidth <= 0) return
-
-            const dpr = window.devicePixelRatio || 1
-
-            // Use Pretext to measure height of all paragraphs first
-            let totalLines = []
-            for (const para of paragraphs) {
-                const prepared = prepareWithSegments(para, font)
-                const result = layoutWithLines(prepared, maxWidth, lineHeight)
-                totalLines.push(...result.lines)
-                totalLines.push(null) // paragraph break
-            }
-            totalLines.pop() // remove trailing break
-
-            const lineCount = totalLines.filter(l => l !== null).length
-            const paraBreaks = totalLines.filter(l => l === null).length
-            const totalHeight = lineCount * lineHeight + paraBreaks * (lineHeight * 0.5)
-
-            canvas.width = maxWidth * dpr
-            canvas.height = totalHeight * dpr
-            canvas.style.width = maxWidth + 'px'
-            canvas.style.height = totalHeight + 'px'
-
-            const ctx = canvas.getContext('2d')
-            ctx.scale(dpr, dpr)
-            ctx.font = font
-            ctx.fillStyle = '#1a1a1a'
-            ctx.textBaseline = 'alphabetic'
-
-            let y = lineHeight * 0.75
-            for (const line of totalLines) {
-                if (line === null) {
-                    y += lineHeight * 0.5
-                    continue
-                }
-                // Use line.width from Pretext to decide justification
-                const trimmed = line.text.trimEnd()
-                const slack = maxWidth - line.width
-                // Justify if line is reasonably full (>75% width) and has spaces
-                if (slack > 0 && slack < maxWidth * 0.25 && trimmed.includes(' ')) {
-                    const words = trimmed.split(/(\s+)/).filter(w => w.trim().length > 0)
-                    if (words.length > 1) {
-                        let wordsWidth = 0
-                        for (const w of words) wordsWidth += ctx.measureText(w).width
-                        const gap = (maxWidth - wordsWidth) / (words.length - 1)
-                        let x = 0
-                        for (const w of words) {
-                            ctx.fillText(w, x, y)
-                            x += ctx.measureText(w).width + gap
-                        }
-                        y += lineHeight
-                        continue
-                    }
-                }
-                ctx.fillText(trimmed, 0, y)
-                y += lineHeight
-            }
+        // Measure the pixel height a paragraph will occupy at a given column width
+        function measureBlockHeight(block, colWidth) {
+            if (block.type === 'photo') return 200 // fixed photo height estimate
+            const prepared = prepare(block.text, FONT)
+            const result = layout(prepared, colWidth, LINE_HEIGHT)
+            return result.height + 10 // +10 for paragraph margin
         }
 
-        // Render article list to canvas — each entry: bold title + italic pub
-        // Pretext handles line-breaking for each title
-        function renderArticleColumn(canvas, articleSlice) {
-            const container = canvas.parentElement
-            const style = getComputedStyle(container)
-            const maxWidth = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
-            if (maxWidth <= 0) return
+        // Measure an article entry height (title + pub line)
+        function measureArticleHeight(title, colWidth) {
+            const titleFont = 'bold 13px "Playfair Display", serif'
+            const prepared = prepare(title, titleFont)
+            const result = layout(prepared, colWidth, 17)
+            return result.height + 15 + 12 // pub line + spacing/border
+        }
 
-            const dpr = window.devicePixelRatio || 1
+        // Greedy column balancer: assign items to the shortest column
+        function balanceIntoColumns(items, heights, numCols) {
+            const cols = Array.from({ length: numCols }, () => [])
+            const colHeights = new Array(numCols).fill(0)
+            for (let i = 0; i < items.length; i++) {
+                let shortest = 0
+                for (let c = 1; c < numCols; c++) {
+                    if (colHeights[c] < colHeights[shortest]) shortest = c
+                }
+                cols[shortest].push(i)
+                colHeights[shortest] += heights[i]
+            }
+            return cols
+        }
 
-            // Pre-measure total height using Pretext's layout()
-            let totalHeight = 0
-            const entryData = []
-            for (const [title, pub] of articleSlice) {
-                const prepTitle = prepareWithSegments(title, TITLE_FONT)
-                const titleResult = layoutWithLines(prepTitle, maxWidth, TITLE_LINE_HEIGHT)
+        // ---- Render to DOM ----
 
-                const prepPub = prepare(pub, PUB_FONT)
-                const pubResult = layout(prepPub, maxWidth, PUB_LINE_HEIGHT)
+        function renderBlock(block) {
+            if (block.type === 'photo') {
+                const div = document.createElement('div')
+                div.className = 'photo'
+                div.innerHTML = '<img src="/500.jpg" alt="Andrey Sergeenkov">'
+                return div
+            }
+            const p = document.createElement('p')
+            p.textContent = block.text
+            return p
+        }
 
-                entryData.push({ titleLines: titleResult.lines, pub, titleH: titleResult.height, pubH: pubResult.height })
-                totalHeight += titleResult.height + pubResult.height + 10 // 10px gap between entries
+        function renderArticle(title, pub) {
+            const div = document.createElement('div')
+            div.className = 'entry'
+            div.innerHTML = `<div class="entry-title">${title}</div><div class="entry-pub">${pub}</div>`
+            return div
+        }
+
+        function doLayout() {
+            // Measure column width from actual DOM
+            const topCol = document.getElementById('top-col-0')
+            const colWidth = topCol.clientWidth - 24 // account for padding
+
+            // 1. Measure all top blocks
+            const blockHeights = blocks.map(b => measureBlockHeight(b, colWidth))
+
+            // 2. Balance blocks across 3 columns using Pretext-measured heights
+            const topAssignment = balanceIntoColumns(blocks, blockHeights, 3)
+
+            // 3. Render top columns
+            for (let c = 0; c < 3; c++) {
+                const el = document.getElementById(`top-col-${c}`)
+                el.innerHTML = ''
+                for (const idx of topAssignment[c]) {
+                    el.appendChild(renderBlock(blocks[idx]))
+                }
             }
 
-            canvas.width = maxWidth * dpr
-            canvas.height = totalHeight * dpr
-            canvas.style.width = maxWidth + 'px'
-            canvas.style.height = totalHeight + 'px'
+            // 4. Measure all article heights
+            const artHeights = articles.map(([title]) => measureArticleHeight(title, colWidth))
 
-            const ctx = canvas.getContext('2d')
-            ctx.scale(dpr, dpr)
-            ctx.textBaseline = 'alphabetic'
+            // 5. Balance articles across 3 columns
+            const artAssignment = balanceIntoColumns(articles, artHeights, 3)
 
-            let y = 0
-            for (let i = 0; i < entryData.length; i++) {
-                const entry = entryData[i]
-
-                // Draw title lines
-                ctx.font = TITLE_FONT
-                ctx.fillStyle = '#1a1a1a'
-                for (const line of entry.titleLines) {
-                    y += TITLE_LINE_HEIGHT * 0.8
-                    ctx.fillText(line.text, 0, y)
-                    y += TITLE_LINE_HEIGHT * 0.2
-                }
-
-                // Draw publication name
-                ctx.font = PUB_FONT
-                ctx.fillStyle = '#777'
-                y += PUB_LINE_HEIGHT * 0.8
-                ctx.fillText(entry.pub, 0, y)
-                y += PUB_LINE_HEIGHT * 0.2
-
-                // Dotted separator
-                if (i < entryData.length - 1) {
-                    y += 5
-                    ctx.strokeStyle = '#c5b99a'
-                    ctx.setLineDash([2, 3])
-                    ctx.beginPath()
-                    ctx.moveTo(0, y)
-                    ctx.lineTo(maxWidth, y)
-                    ctx.stroke()
-                    ctx.setLineDash([])
-                    y += 5
+            // 6. Render article columns
+            for (let c = 0; c < 3; c++) {
+                const el = document.getElementById(`art-col-${c}`)
+                el.innerHTML = ''
+                for (const idx of artAssignment[c]) {
+                    el.appendChild(renderArticle(articles[idx][0], articles[idx][1]))
                 }
             }
         }
 
-        // Split articles into 3 roughly equal groups
-        function splitIntoThirds(arr) {
-            const third = Math.ceil(arr.length / 3)
-            return [arr.slice(0, third), arr.slice(third, third * 2), arr.slice(third * 2)]
-        }
+        document.fonts.ready.then(doLayout)
 
-        function renderAll() {
-            // Left column: bio + follow
-            renderBodyText(
-                document.getElementById('canvas-left'),
-                [bioText, followText, contactText],
-                BODY_FONT, BODY_LINE_HEIGHT
-            )
-
-            // Center column: citations
-            renderBodyText(
-                document.getElementById('canvas-center'),
-                [citationsText],
-                BODY_FONT, BODY_LINE_HEIGHT
-            )
-
-            // Right column: coverage
-            renderBodyText(
-                document.getElementById('canvas-right'),
-                [coverageText],
-                BODY_FONT, BODY_LINE_HEIGHT
-            )
-
-            // Article columns
-            const [a1, a2, a3] = splitIntoThirds(articles)
-            renderArticleColumn(document.getElementById('canvas-articles-left'), a1)
-            renderArticleColumn(document.getElementById('canvas-articles-center'), a2)
-            renderArticleColumn(document.getElementById('canvas-articles-right'), a3)
-        }
-
-        document.fonts.ready.then(renderAll)
-
-        let resizeTimer
+        let timer
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer)
-            resizeTimer = setTimeout(renderAll, 100)
+            clearTimeout(timer)
+            timer = setTimeout(doLayout, 150)
         })
     </script>
 </body>
