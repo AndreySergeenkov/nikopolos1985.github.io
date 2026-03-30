@@ -110,6 +110,28 @@
         #v-shrinkwrap .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #999; margin: 24px 0 12px; }
         #v-shrinkwrap .links { font-size: 14px; margin-top: 24px; text-align: center; color: #666; }
         #v-shrinkwrap .links a { color: #111; margin: 0 8px; }
+
+        /* ================================================
+           VERSION 4: ADAPTIVE
+           Pretext tests 1-4 column layouts and picks the one
+           with the most balanced column heights
+           ================================================ */
+        #v-adaptive { background: #f5f5f0; padding: 20px; font-size: 14px; line-height: 1.6; }
+        #v-adaptive .wrap { max-width: 1000px; margin: 0 auto; }
+        #v-adaptive .header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        #v-adaptive .header img { width: 56px; height: 56px; border-radius: 50%; }
+        #v-adaptive .header h1 { font-size: 22px; font-weight: 600; }
+        #v-adaptive .header p { font-size: 13px; color: #666; }
+        #v-adaptive .bio-section { margin-bottom: 20px; font-size: 14px; line-height: 1.6; }
+        #v-adaptive .bio-section p { margin-bottom: 8px; }
+        #v-adaptive .col-info { text-align: center; font-size: 12px; color: #999; margin-bottom: 12px; }
+        #v-adaptive .grid { display: grid; gap: 10px; }
+        #v-adaptive .grid-col { min-width: 0; }
+        #v-adaptive .a-entry { padding: 8px 10px; background: #fff; border-radius: 6px; border: 1px solid #e8e8e4; margin-bottom: 6px; }
+        #v-adaptive .a-title { font-weight: 500; font-size: 13px; line-height: 1.35; }
+        #v-adaptive .a-pub { font-size: 10px; color: #999; margin-top: 2px; }
+        #v-adaptive .links { font-size: 13px; margin-top: 16px; text-align: center; }
+        #v-adaptive .links a { color: #111; margin: 0 8px; }
     </style>
 </head>
 <body>
@@ -117,6 +139,7 @@
         <button data-v="newspaper" class="active">Newspaper</button>
         <button data-v="masonry">Masonry</button>
         <button data-v="shrinkwrap">Shrinkwrap</button>
+        <button data-v="adaptive">Adaptive</button>
     </div>
 
     <div class="layout-root">
@@ -169,6 +192,28 @@
             </div>
         </div>
     </div>
+
+        <!-- VERSION 4: ADAPTIVE -->
+        <div id="v-adaptive" class="hidden">
+            <div class="wrap">
+                <div class="header">
+                    <img src="/500.jpg" alt="Andrey Sergeenkov">
+                    <div>
+                        <h1>Andrey Sergeenkov</h1>
+                        <p>I research the digital economy and share my findings publicly.</p>
+                    </div>
+                </div>
+                <div class="bio-section" id="ad-bio"></div>
+                <div class="col-info" id="ad-info"></div>
+                <div class="grid" id="ad-grid"></div>
+                <div class="links">
+                    <a href="mailto:andrey@sergeenkov.com">Email</a>
+                    <a href="https://x.com/Nikopolos">Twitter</a>
+                    <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
+                    <a href="/feed.xml">RSS</a>
+                </div>
+            </div>
+        </div>
 
         <!-- VERSION 3: SHRINKWRAP -->
         <div id="v-shrinkwrap" class="hidden">
@@ -377,9 +422,87 @@
             }
         }
 
+        // ---- VERSION 4: ADAPTIVE ----
+        // Tests 1-4 column layouts using Pretext height measurements.
+        // Picks the column count where the difference between tallest
+        // and shortest column is minimized — the most balanced layout.
+        function layoutAdaptive() {
+            const wrap = document.querySelector('#v-adaptive .wrap')
+            const wrapWidth = wrap.clientWidth
+            const entryFont = '500 13px Inter, sans-serif'
+            const entryLH = 18
+
+            // Bio
+            const bioEl = document.getElementById('ad-bio')
+            bioEl.innerHTML = blocks.filter(b => b.type === 'paragraph').map(b => `<p>${b.text}</p>`).join('')
+
+            // Measure each article card height
+            const gap = 10
+            const cardPad = 26 // padding + pub line + margins
+
+            function measureForCols(numCols) {
+                const colWidth = (wrapWidth - gap * (numCols - 1)) / numCols
+                const textW = colWidth - 22 // card padding
+                const heights = articles.map(([title]) =>
+                    layout(prepare(title, entryFont), textW, entryLH).height + cardPad
+                )
+                // Assign to columns
+                const colH = new Array(numCols).fill(0)
+                for (let i = 0; i < heights.length; i++) {
+                    let shortest = 0
+                    for (let c = 1; c < numCols; c++) {
+                        if (colH[c] < colH[shortest]) shortest = c
+                    }
+                    colH[shortest] += heights[i] + 6
+                }
+                const maxH = Math.max(...colH)
+                const minH = Math.min(...colH)
+                return { imbalance: maxH - minH, maxH, numCols }
+            }
+
+            // Test 1-4 columns, pick the most balanced
+            const maxCols = wrapWidth > 800 ? 4 : wrapWidth > 500 ? 3 : wrapWidth > 300 ? 2 : 1
+            let best = { imbalance: Infinity, numCols: 1 }
+            for (let n = 1; n <= maxCols; n++) {
+                const result = measureForCols(n)
+                if (result.imbalance < best.imbalance) best = result
+            }
+
+            const numCols = best.numCols
+            const infoEl = document.getElementById('ad-info')
+            infoEl.textContent = `Pretext chose ${numCols} column${numCols > 1 ? 's' : ''} for optimal balance (imbalance: ${Math.round(best.imbalance)}px)`
+
+            // Now render with the chosen column count
+            const gridEl = document.getElementById('ad-grid')
+            gridEl.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`
+            gridEl.innerHTML = ''
+
+            const colEls = []
+            for (let c = 0; c < numCols; c++) {
+                const div = document.createElement('div')
+                div.className = 'grid-col'
+                gridEl.appendChild(div)
+                colEls.push(div)
+            }
+
+            const colWidth = (wrapWidth - gap * (numCols - 1)) / numCols
+            const textW = colWidth - 22
+            const colH = new Array(numCols).fill(0)
+            for (let i = 0; i < articles.length; i++) {
+                const [title, pub] = articles[i]
+                const h = layout(prepare(title, entryFont), textW, entryLH).height + cardPad
+                let shortest = 0
+                for (let c = 1; c < numCols; c++) {
+                    if (colH[c] < colH[shortest]) shortest = c
+                }
+                colH[shortest] += h + 6
+                colEls[shortest].innerHTML += `<div class="a-entry"><div class="a-title">${title}</div><div class="a-pub">${pub}</div></div>`
+            }
+        }
+
         // ---- Switcher ----
         let currentVersion = 'newspaper'
-        const versions = { newspaper: layoutNewspaper, masonry: layoutMasonry, shrinkwrap: layoutShrinkwrap }
+        const versions = { newspaper: layoutNewspaper, masonry: layoutMasonry, shrinkwrap: layoutShrinkwrap, adaptive: layoutAdaptive }
 
         function switchTo(v) {
             currentVersion = v
