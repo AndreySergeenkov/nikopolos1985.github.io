@@ -3,350 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sergeenkov Gazette</title>
+    <title>Andrey Sergeenkov — Portfolio</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600&family=Lora:wght@400;700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #f0f0f0; }
 
-        body {
-            background: #d4c9a8;
-            font-family: 'Lora', Georgia, serif;
-            color: #1a1a1a;
-            padding: 20px;
-            font-size: 14px;
-            line-height: 1.5;
+        /* ---- Switcher ---- */
+        .switcher {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: #111; color: #fff; display: flex; justify-content: center; gap: 2px;
+            padding: 6px 12px; font-size: 13px;
         }
+        .switcher button {
+            background: #333; color: #aaa; border: none; padding: 6px 16px;
+            cursor: pointer; font-size: 13px; font-family: inherit; border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .switcher button:hover { background: #444; color: #fff; }
+        .switcher button.active { background: #fff; color: #111; }
 
-        .newspaper {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #f5f0e1;
-            border: 1px solid #8a7e6b;
-            padding: 24px 32px;
-        }
+        .layout-root { padding-top: 44px; }
 
-        .masthead {
-            text-align: center;
-            border-bottom: 2px solid #1a1a1a;
-            padding-bottom: 8px;
-            margin-bottom: 4px;
-        }
+        /* ---- Shared ---- */
+        .hidden { display: none !important; }
 
-        .masthead h1 {
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 56px;
-            font-weight: 400;
-        }
+        /* ================================================
+           VERSION 1: NEWSPAPER
+           ================================================ */
+        #v-newspaper { font-family: 'Lora', Georgia, serif; background: #d4c9a8; padding: 20px; font-size: 14px; line-height: 1.5; }
+        #v-newspaper .wrap { max-width: 900px; margin: 0 auto; background: #f5f0e1; border: 1px solid #8a7e6b; padding: 24px 32px; }
+        #v-newspaper .masthead { text-align: center; border-bottom: 2px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 4px; }
+        #v-newspaper .masthead h1 { font-family: 'UnifrakturMaguntia', cursive; font-size: 56px; font-weight: 400; }
+        #v-newspaper .dateline { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #1a1a1a; padding: 4px 0; margin-bottom: 14px; }
+        #v-newspaper .headline { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; text-align: center; margin-bottom: 14px; }
+        #v-newspaper hr { border: none; border-top: 1px solid #1a1a1a; margin: 14px 0; }
+        #v-newspaper hr.double { border-top: 3px double #1a1a1a; }
+        #v-newspaper .cols { display: grid; gap: 0; }
+        #v-newspaper .cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
+        #v-newspaper .col { padding: 0 12px; border-right: 1px solid #c5b99a; }
+        #v-newspaper .col:first-child { padding-left: 0; }
+        #v-newspaper .col:last-child { padding-right: 0; border-right: none; }
+        #v-newspaper .col p { margin-bottom: 10px; text-align: justify; }
+        #v-newspaper .photo { text-align: center; margin-bottom: 10px; }
+        #v-newspaper .photo img { width: 100%; max-width: 220px; filter: sepia(30%); border: 1px solid #8a7e6b; }
+        #v-newspaper .section-title { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 10px; }
+        #v-newspaper .entry { margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dotted #c5b99a; }
+        #v-newspaper .entry:last-child { border-bottom: none; }
+        #v-newspaper .entry-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; line-height: 1.3; }
+        #v-newspaper .entry-pub { font-size: 10px; color: #777; font-style: italic; }
+        #v-newspaper .footer { background: #1a1a1a; color: #f5f0e1; text-align: center; padding: 8px; margin-top: 14px; font-size: 12px; }
+        #v-newspaper .footer a { color: #f5f0e1; }
 
-        .dateline {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 4px 0;
-            margin-bottom: 14px;
+        /* ================================================
+           VERSION 2: MASONRY
+           ================================================ */
+        #v-masonry { background: #fafafa; padding: 20px; font-size: 14px; line-height: 1.6; }
+        #v-masonry .wrap { max-width: 1000px; margin: 0 auto; }
+        #v-masonry .header { text-align: center; margin-bottom: 24px; }
+        #v-masonry .header h1 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 600; }
+        #v-masonry .header p { color: #666; font-size: 14px; margin-top: 6px; }
+        #v-masonry .masonry { position: relative; }
+        #v-masonry .card {
+            position: absolute; width: 100%;
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+            padding: 16px; transition: box-shadow 0.15s;
         }
-
-        .headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 14px;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #1a1a1a;
-            margin: 14px 0;
-        }
-        hr.double { border-top: 3px double #1a1a1a; }
-
-        /* Columns — populated by Pretext-driven JS */
-        .cols {
-            display: grid;
-            gap: 0;
-        }
-        .cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
-        .cols.c2 { grid-template-columns: 1fr 1fr; }
-
-        .col {
-            padding: 0 12px;
-            border-right: 1px solid #c5b99a;
-        }
-        .col:first-child { padding-left: 0; }
-        .col:last-child { padding-right: 0; border-right: none; }
-
-        .col p { margin-bottom: 10px; text-align: justify; }
-
-        .col .photo {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .col .photo img {
-            width: 100%;
-            max-width: 220px;
-            filter: sepia(30%);
-            border: 1px solid #8a7e6b;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        /* Article entries in columns */
-        .entry {
-            margin-bottom: 6px;
-            padding-bottom: 6px;
-            border-bottom: 1px dotted #c5b99a;
-        }
-        .entry:last-child { border-bottom: none; }
-        .entry-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        .entry-pub {
-            font-size: 10px;
-            color: #777;
-            font-style: italic;
-        }
-
-        .footer {
-            background: #1a1a1a;
-            color: #f5f0e1;
-            text-align: center;
-            padding: 8px;
-            margin-top: 14px;
-            font-size: 12px;
-        }
-        .footer a { color: #f5f0e1; }
+        #v-masonry .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        #v-masonry .card-title { font-weight: 600; font-size: 14px; line-height: 1.4; margin-bottom: 4px; }
+        #v-masonry .card-pub { font-size: 11px; color: #999; }
+        #v-masonry .card-bio { font-size: 14px; line-height: 1.6; color: #333; }
+        #v-masonry .card-bio img { width: 100%; border-radius: 6px; margin-bottom: 10px; }
+        #v-masonry .card-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; }
+        #v-masonry .links { margin-top: 8px; font-size: 13px; }
+        #v-masonry .links a { color: #111; margin-right: 12px; }
     </style>
 </head>
 <body>
-    <div class="newspaper">
-        <div class="masthead"><h1>The Sergeenkov Gazette</h1></div>
-        <div class="dateline">
-            <span>Sunday, March 30th, 2026</span>
-            <span>sergeenkov.com</span>
+    <div class="switcher">
+        <button data-v="newspaper" class="active">Newspaper</button>
+        <button data-v="masonry">Masonry</button>
+    </div>
+
+    <div class="layout-root">
+        <!-- VERSION 1: NEWSPAPER -->
+        <div id="v-newspaper">
+            <div class="wrap">
+                <div class="masthead"><h1>The Sergeenkov Gazette</h1></div>
+                <div class="dateline">
+                    <span>Sunday, March 30th, 2026</span>
+                    <span>sergeenkov.com</span>
+                </div>
+                <div class="headline">Andrey Sergeenkov</div>
+                <hr class="double">
+                <div class="cols c3" id="np-top">
+                    <div class="col" id="np-top-0"></div>
+                    <div class="col" id="np-top-1"></div>
+                    <div class="col" id="np-top-2"></div>
+                </div>
+                <hr class="double">
+                <div class="section-title">My Articles</div>
+                <div class="cols c3" id="np-art">
+                    <div class="col" id="np-art-0"></div>
+                    <div class="col" id="np-art-1"></div>
+                    <div class="col" id="np-art-2"></div>
+                </div>
+                <div class="footer">
+                    <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a> &bull;
+                    <a href="https://x.com/Nikopolos">Twitter</a> &bull;
+                    <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> &bull;
+                    <a href="https://t.me/Nikopolos">Telegram</a> &bull;
+                    <a href="/feed.xml">RSS</a>
+                </div>
+            </div>
         </div>
 
-        <div class="headline">Andrey Sergeenkov</div>
-
-        <hr class="double">
-
-        <!-- Top section: 3 columns. Pretext balances which content goes where -->
-        <div class="cols c3" id="top-cols">
-            <div class="col" id="top-col-0"></div>
-            <div class="col" id="top-col-1"></div>
-            <div class="col" id="top-col-2"></div>
-        </div>
-
-        <hr class="double">
-
-        <div class="section-title">My Articles</div>
-
-        <!-- Articles: 3 balanced columns -->
-        <div class="cols c3" id="article-cols">
-            <div class="col" id="art-col-0"></div>
-            <div class="col" id="art-col-1"></div>
-            <div class="col" id="art-col-2"></div>
-        </div>
-
-        <div class="footer">
-            <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a> &bull;
-            <a href="https://x.com/Nikopolos">Twitter</a> &bull;
-            <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> &bull;
-            <a href="https://t.me/Nikopolos">Telegram</a> &bull;
-            <a href="/feed.xml">RSS</a>
+        <!-- VERSION 2: MASONRY -->
+        <div id="v-masonry" class="hidden">
+            <div class="wrap">
+                <div class="header">
+                    <h1>Andrey Sergeenkov</h1>
+                    <p>I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
+                    <div class="links">
+                        <a href="mailto:andrey@sergeenkov.com">Email</a>
+                        <a href="https://x.com/Nikopolos">Twitter</a>
+                        <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
+                        <a href="/feed.xml">RSS</a>
+                    </div>
+                </div>
+                <div class="masonry" id="ms-grid"></div>
+            </div>
         </div>
     </div>
 
     <script type="module">
         import { prepare, layout } from './pretext.bundle.js'
+        import { blocks, articles } from './data.js'
 
-        const FONT = '14px Lora, Georgia, serif'
-        const LINE_HEIGHT = 21
+        const BODY_FONT = '14px Inter, sans-serif'
+        const BODY_LH = 22
+        const TITLE_FONT = '600 14px Inter, sans-serif'
+        const TITLE_LH = 20
+        const NP_FONT = '14px Lora, Georgia, serif'
+        const NP_LH = 21
+        const NP_TITLE_FONT = 'bold 13px "Playfair Display", serif'
+        const NP_TITLE_LH = 17
 
-        // ---- Original texts from the site ----
-        const blocks = [
-            { type: 'paragraph', text: "I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects." },
-            { type: 'photo' },
-            { type: 'paragraph', text: "My works have been published in Forbes, CoinDesk, Blockworks and Cointelegraph." },
-            { type: 'paragraph', text: "You can follow new articles via RSS or Twitter." },
-            { type: 'paragraph', text: "My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more." },
-            { type: 'paragraph', text: "Full list of citations: sergeenkov.com/citations" },
-            { type: 'paragraph', text: "My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research." },
-            { type: 'paragraph', text: "Full list of media coverage: sergeenkov.com/coverage" },
-            { type: 'paragraph', text: "The best way to contact me is via email andrey@sergeenkov.com. Alternatively you can use LinkedIn or Telegram." },
-        ]
-
-        const articles = [
-            ["Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade", "Independent Research"],
-            ["Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends", "Independent Research"],
-            ["Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?", "Independent Research"],
-            ["Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks", "Independent Research"],
-            ["Stop Pretending Technical And Human Vulnerabilities Are Separate Things", "Cointelegraph"],
-            ["Why 2025 May Be The Right Time To Create National Bitcoin Reserves", "Forbes"],
-            ["What Math Problems Do Bitcoin Miners Really Solve", "Forbes"],
-            ["What Is A Bitcoin Node And How To Run One", "Forbes"],
-            ["Tether Discontinues EURT And Sets Deadline For Token Redemption", "Forbes"],
-            ["Understanding Polymarket And Prediction Markets", "Forbes"],
-            ["How To Get First Funding For Web3", "Forbes"],
-            ["What You Need To Know Before Buying Your First Bitcoin", "Forbes"],
-            ["Russia Approves Cryptocurrency Tax Framework", "Forbes"],
-            ["Crypto Fear And Greed Index", "Forbes"],
-            ["Digital ID Trials Test Anonymous KYC For Mainland Chinese In Hong Kong", "Forbes"],
-            ["Bitcoin Outperformed Nvidia, Google, Amazon In Rewards Per Risk In October 2024", "Forbes"],
-            ["How To Mine Dogecoin", "Forbes"],
-            ["Tesla, AMD And Nvidia Show Higher Volatility Than Bitcoin In October 2024", "Forbes"],
-            ["MicroStrategy Announces $42 Billion Bitcoin Investment Plan", "Forbes"],
-            ["What Is Ripple (XRP)", "Forbes"],
-            ["Tesla Bitcoin Moves May No Longer Shake The Market", "Forbes"],
-            ["Pennsylvania House Passes Crypto Protection Bill In Bipartisan Vote", "Forbes"],
-            ["Russia Launches BRICS Mining Infrastructure Project", "Forbes"],
-            ["What Are Stablecoins & How To Use Them", "Forbes"],
-            ["China Bets On Massive Blockchain Infrastructure", "Forbes"],
-            ["Legal Status Of Cryptocurrencies In Malaysia", "Forbes"],
-            ["Ireland To Streamline Licensing Process For Crypto Businesses", "Forbes"],
-            ["Louisiana Accepts First Cryptocurrency Payment For State Services", "Forbes"],
-            ["How Bhutan Quietly Built $750 Million In Bitcoin Holdings", "Forbes"],
-            ["UK Introduces Bill To Recognize Digital Assets As Personal Property", "Forbes"],
-            ["Ryan Selkis Leaves Messari For New Political Initiative", "Forbes"],
-            ["Crypto Unites Voters And Attracts Gamblers During The 2024 Elections", "Forbes"],
-            ["How To Mine Bitcoin", "Forbes"],
-            ["How To Buy Bitcoin: eToro", "Forbes"],
-            ["Cryptocurrency Trading Causes Lower Quality Of Life And Higher Stress", "Forbes"],
-            ["What Are Autonomous Economic Agents", "Forbes"],
-            ["What Is NFT Art And How To Create It", "Forbes"],
-            ["What Are AI-To-AI Crypto Transactions?", "Forbes"],
-            ["Why TRX Has Grown 44% In The Last 90 Days", "Forbes"],
-            ["What Are NFT DApps?", "Forbes"],
-            ["How Volatile Is Bitcoin Compared To Other Assets", "Forbes"],
-            ["What Is The Genesis Block Explained", "Cointelegraph"],
-            ["Bonding Curves In DeFi Explained", "Cointelegraph"],
-            ["Want To Improve Blockchain Infrastructure? Work Under Layer Two Solutions", "Cointelegraph"],
-            ["Decentralized Parties: The Future Of On-Chain Governance", "Cointelegraph"],
-            ["The Use Of Blockchain Tech Should Be More Environmentally Friendly", "Cointelegraph"],
-            ["Institutional Investors Won't Take Bitcoin Mainstream — You Will", "Cointelegraph"],
-            ["How To Manage Risk When Trading Cryptocurrency", "CoinDesk"],
-            ["What Are Dynamic NFTs? Understanding The Evolving NFT", "CoinDesk"],
-            ["Web3 Marketing Tips", "CoinDesk"],
-            ["NFT Project Launch Tips", "CoinDesk"],
-            ["What Is Counterparty Risk In Crypto?", "CoinDesk"],
-            ["Crypto Arbitrage Trading: How To Make Low-Risk Gains", "CoinDesk"],
-            ["How Does Ethereum Staking Work?", "CoinDesk"],
-            ["What Are Soulbound Tokens? The Non-Transferrable NFT Explained", "CoinDesk"],
-            ["What Is NFT Wash Trading?", "CoinDesk"],
-            ["Everything You Need To Know About Bitcoin ETFs", "CoinDesk"],
-            ["What's The Crypto Travel Rule And What Does It Mean For You?", "CoinDesk"],
-            ["What We Know So Far About SHIB: The Metaverse", "CoinDesk"],
-            ["What Is PancakeSwap? Here's How To Start Using It", "CoinDesk"],
-            ["Want To Play Axie Infinity? Here's What You Need To Know", "CoinDesk"],
-            ["How To Check Your Ethereum Transaction", "CoinDesk"],
-            ["What's The Story Behind Bored Ape Yacht Club Creator Yuga Labs?", "CoinDesk"],
-            ["Bitcoin Mining Difficulty: Everything You Need To Know", "CoinDesk"],
-            ["Investing In Crypto: Alternatives To Bitcoin And Ether", "CoinDesk"],
-            ["OpenSea Marketplace: How To Buy, Sell And Mint NFTs", "CoinDesk"],
-            ["How To Buy Crypto On The Apps You Already Have", "CoinDesk"],
-            ["What Is Bitcoin?", "CoinDesk"],
-            ["What Is A Crypto Airdrop?", "CoinDesk"],
-            ["Crypto Discord: Where To Go, What To Know", "CoinDesk"],
-            ["Top 6 Crypto Passive Income Generators For 2021", "CoinDesk"],
-            ["Someone Gave You Crypto As A Gift. Now What?", "CoinDesk"],
-            ["Investing In Meme Coins: 3 Things Every Crypto Trader Should Know", "CoinDesk"],
-            ["How To Buy A Tom Brady NFT", "CoinDesk"],
-            ["Shiba Inu (SHIB): A Complete Beginner's Guide", "CoinDesk"],
-            ["What Is ShibaSwap?", "CoinDesk"],
-            ["5 Ways To Earn Passive Income From NFTs", "CoinDesk"],
-            ["What Is CityCoins And How Does It Work?", "CoinDesk"],
-            ["What Is Cryptocurrency?", "CoinDesk"],
-            ["How To Buy Shiba Inu Coin (SHIB)", "CoinDesk"],
-            ["Paying Off Student Loans? You Can Do It With Crypto", "CoinDesk"],
-            ["What Is A Perpetual Swap Contract?", "CoinDesk"],
-            ["How To Send Bitcoin Tips On Twitter", "CoinDesk"],
-            ["China Crypto Bans: A Complete History", "CoinDesk"],
-            ["5 Reasons Why Bitcoin Remains Below $50,000", "CoinDesk"],
-            ["What Is A Bitcoin Futures ETF?", "CoinDesk"],
-            ["How To Set Up A Bitcoin Miner", "CoinDesk"],
-            ["How Does Ethereum Work?", "CoinDesk"],
-            ["Solana", "CoinDesk"],
-            ["What Is An Automated Market Maker?", "CoinDesk"],
-            ["A Beginner's Guide To Atomic Swaps", "CoinDesk"],
-            ["What Does Liquidation Mean And How To Avoid It", "CoinDesk"],
-            ["Crypto Has An Influencer Problem", "Blockworks"],
-            ["Gold, Bitcoin Or Notes: Staying Safe During Periods Of Economic Uncertainty", "Investing.com"],
-            ["Bringing Machine Learning Closer to Clients, Will Blockchain Eliminate Barriers?", "Investing.com"],
-            ["How Does Ethereum Staking Work?", "Nasdaq"],
-            ["What Is an Automated Market Maker?", "Nasdaq"],
-            ["A Beginner's Guide to Atomic Swaps", "Nasdaq"],
-            ["Decentralized Parties Poised To Bring Blockchain To Politics", "Entrepreneur"],
-            ["Common Mistakes That May Cause Investors To Walk Away", "Entrepreneur"],
-            ["DeFi Is The New Lemonade Stand", "Entrepreneur"],
-            ["You Can Leverage Cryptocurrencies To Upset The Balance Of Power", "Entrepreneur"],
-            ["Rammstein Soloist Till Lindemann Accused of Illegal NFT Sales of Hermitage Museum Images", "CoinMarketCap"],
-            ["What's Russia Up To? A Weekly Russian Crypto News Recap", "CoinMarketCap"],
-            ["Cryptocurrency Market Cap Reclaims $2 Trillion as Market Rebounds", "CoinMarketCap"],
-            ["How Bitcoin Miners Operate", "CoinMarketCap"],
-            ["5 of the Biggest Crypto Ponzi Schemes", "CoinMarketCap"],
-            ["Who Are Bitcoin Core's Developers?", "CoinMarketCap"],
-            ["What Is Dollar-Cost Averaging (DCA)?", "CoinMarketCap"],
-            ["Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain", "CoinMarketCap"],
-            ["The Beginner's Guide to ERC20 Tokens and Addresses", "CoinMarketCap"],
-            ["What Is Plasma Finance?", "CoinMarketCap"],
-            ["Crypto's Role in Times of Political and Economic Uncertainty", "CoinMarketCap"],
-            ["What Is Smart Contract Risk?", "CoinMarketCap"],
-            ["What Is Coin98?", "CoinMarketCap"],
-            ["What Is Polkaswap?", "CoinMarketCap"],
-            ["What Is Polkarare?", "CoinMarketCap"],
-            ["What Is Safe Earth?", "CoinMarketCap"],
-            ["How to Mine Ethereum", "CoinMarketCap"],
-            ["SEC Revises Stance on Digital Asset Classification", "CoinMarketCap"],
-            ["Coinbase Halts Issuance of New Loans on Coinbase Borrow", "CoinMarketCap"],
-            ["French Senate Considers Proposal to Allow Influencers to Promote Cryptocurrencies", "CoinMarketCap"],
-            ["Study Finds 36% of Top Crypto Projects Silent on Blogging This Year", "CoinMarketCap"],
-            ["Texas Securities Board Targets Alleged AI-Powered Crypto Scam", "CoinMarketCap"],
-            ["Australian Crypto Exchange Coinjar Initiates US Expansion", "CoinMarketCap"],
-            ["Poloniex To Pay $76 Million Fine for Sanctions Violation Charges", "CoinMarketCap"],
-            ["Revolut Expands Crypto Investment Services to Brazil", "CoinMarketCap"],
-            ["Level Finance Confirms $1 Million Exploit Due to Software Bug", "CoinMarketCap"],
-            ["Binance Japan To Launch in June Following Acquisition of TaoTao", "CoinMarketCap"],
-            ["Sotheby's Launches On-Chain Secondary NFT Marketplace", "CoinMarketCap"],
-            ["MicroStrategy Reports Increased Revenue in Q1 2023 and Maintains Bitcoin Strategy", "CoinMarketCap"],
-            ["Binance Launchpool Adds SUI Token: Staking BNB and TUSD for Rewards", "CoinMarketCap"],
-            ["Ex-OpenSea Employee Accused of Profiting from NFT Insider Trading", "CoinMarketCap"],
-        ]
-
-        // ---- Use Pretext to measure heights, then distribute blocks into columns ----
-
-        // Measure the pixel height a paragraph will occupy at a given column width
-        function measureBlockHeight(block, colWidth) {
-            if (block.type === 'photo') return 200 // fixed photo height estimate
-            const prepared = prepare(block.text, FONT)
-            const result = layout(prepared, colWidth, LINE_HEIGHT)
-            return result.height + 10 // +10 for paragraph margin
-        }
-
-        // Measure an article entry height (title + pub line)
-        function measureArticleHeight(title, colWidth) {
-            const titleFont = 'bold 13px "Playfair Display", serif'
-            const prepared = prepare(title, titleFont)
-            const result = layout(prepared, colWidth, 17)
-            return result.height + 15 + 12 // pub line + spacing/border
-        }
-
-        // Greedy column balancer: assign items to the shortest column
+        // ---- Shared helpers ----
         function balanceIntoColumns(items, heights, numCols) {
             const cols = Array.from({ length: numCols }, () => [])
             const colHeights = new Array(numCols).fill(0)
@@ -361,69 +166,137 @@
             return cols
         }
 
-        // ---- Render to DOM ----
+        // ---- VERSION 1: NEWSPAPER ----
+        function layoutNewspaper() {
+            const col0 = document.getElementById('np-top-0')
+            const colWidth = col0.clientWidth - 24
 
-        function renderBlock(block) {
-            if (block.type === 'photo') {
+            const blockHeights = blocks.map(b => {
+                if (b.type === 'photo') return 200
+                return layout(prepare(b.text, NP_FONT), colWidth, NP_LH).height + 10
+            })
+            const topAssign = balanceIntoColumns(blocks, blockHeights, 3)
+            for (let c = 0; c < 3; c++) {
+                const el = document.getElementById(`np-top-${c}`)
+                el.innerHTML = ''
+                for (const idx of topAssign[c]) {
+                    const b = blocks[idx]
+                    if (b.type === 'photo') {
+                        el.innerHTML += '<div class="photo"><img src="/500.jpg" alt="Andrey Sergeenkov"></div>'
+                    } else {
+                        const p = document.createElement('p')
+                        p.textContent = b.text
+                        el.appendChild(p)
+                    }
+                }
+            }
+
+            const artHeights = articles.map(([t]) =>
+                layout(prepare(t, NP_TITLE_FONT), colWidth, NP_TITLE_LH).height + 27
+            )
+            const artAssign = balanceIntoColumns(articles, artHeights, 3)
+            for (let c = 0; c < 3; c++) {
+                const el = document.getElementById(`np-art-${c}`)
+                el.innerHTML = ''
+                for (const idx of artAssign[c]) {
+                    el.innerHTML += `<div class="entry"><div class="entry-title">${articles[idx][0]}</div><div class="entry-pub">${articles[idx][1]}</div></div>`
+                }
+            }
+        }
+
+        // ---- VERSION 2: MASONRY ----
+        // Pretext measures each card's text height BEFORE rendering.
+        // Cards are placed into columns by height, then absolutely positioned — no render-measure-reposition cycle.
+        function layoutMasonry() {
+            const grid = document.getElementById('ms-grid')
+            const containerWidth = grid.clientWidth
+            const gap = 12
+            const numCols = containerWidth > 700 ? 3 : containerWidth > 450 ? 2 : 1
+            const colWidth = (containerWidth - gap * (numCols - 1)) / numCols
+            const cardPadding = 32 // 16px padding * 2
+            const textWidth = colWidth - cardPadding
+
+            // Build card data: bio cards + article cards
+            // Each card: { html, height }
+            const cards = []
+
+            // Bio card with photo
+            const bioText = blocks.filter(b => b.type === 'paragraph').map(b => b.text)
+            let bioHeight = 0
+            for (const t of bioText) {
+                bioHeight += layout(prepare(t, BODY_FONT), textWidth, BODY_LH).height + 8
+            }
+            bioHeight += textWidth * 0.7 + 10 // photo
+            cards.push({
+                html: `<div class="card-label">About</div><img src="/500.jpg" alt="Andrey Sergeenkov" style="width:100%;border-radius:6px;margin-bottom:10px;">${bioText.map(t => '<p style="margin-bottom:8px;">' + t + '</p>').join('')}`,
+                height: bioHeight + cardPadding + 24,
+                type: 'bio'
+            })
+
+            // Article cards
+            for (const [title, pub] of articles) {
+                const h = layout(prepare(title, TITLE_FONT), textWidth, TITLE_LH).height
+                cards.push({
+                    html: `<div class="card-title">${title}</div><div class="card-pub">${pub}</div>`,
+                    height: h + 20 + cardPadding, // 20 for pub line
+                    type: 'article'
+                })
+            }
+
+            // Place cards into columns (shortest column first)
+            const colHeights = new Array(numCols).fill(0)
+            const placements = [] // { cardIdx, col, top }
+
+            for (let i = 0; i < cards.length; i++) {
+                let shortest = 0
+                for (let c = 1; c < numCols; c++) {
+                    if (colHeights[c] < colHeights[shortest]) shortest = c
+                }
+                placements.push({ cardIdx: i, col: shortest, top: colHeights[shortest] })
+                colHeights[shortest] += cards[i].height + gap
+            }
+
+            const maxH = Math.max(...colHeights)
+            grid.style.height = maxH + 'px'
+            grid.innerHTML = ''
+
+            for (const p of placements) {
+                const card = cards[p.cardIdx]
                 const div = document.createElement('div')
-                div.className = 'photo'
-                div.innerHTML = '<img src="/500.jpg" alt="Andrey Sergeenkov">'
-                return div
-            }
-            const p = document.createElement('p')
-            p.textContent = block.text
-            return p
-        }
-
-        function renderArticle(title, pub) {
-            const div = document.createElement('div')
-            div.className = 'entry'
-            div.innerHTML = `<div class="entry-title">${title}</div><div class="entry-pub">${pub}</div>`
-            return div
-        }
-
-        function doLayout() {
-            // Measure column width from actual DOM
-            const topCol = document.getElementById('top-col-0')
-            const colWidth = topCol.clientWidth - 24 // account for padding
-
-            // 1. Measure all top blocks
-            const blockHeights = blocks.map(b => measureBlockHeight(b, colWidth))
-
-            // 2. Balance blocks across 3 columns using Pretext-measured heights
-            const topAssignment = balanceIntoColumns(blocks, blockHeights, 3)
-
-            // 3. Render top columns
-            for (let c = 0; c < 3; c++) {
-                const el = document.getElementById(`top-col-${c}`)
-                el.innerHTML = ''
-                for (const idx of topAssignment[c]) {
-                    el.appendChild(renderBlock(blocks[idx]))
-                }
-            }
-
-            // 4. Measure all article heights
-            const artHeights = articles.map(([title]) => measureArticleHeight(title, colWidth))
-
-            // 5. Balance articles across 3 columns
-            const artAssignment = balanceIntoColumns(articles, artHeights, 3)
-
-            // 6. Render article columns
-            for (let c = 0; c < 3; c++) {
-                const el = document.getElementById(`art-col-${c}`)
-                el.innerHTML = ''
-                for (const idx of artAssignment[c]) {
-                    el.appendChild(renderArticle(articles[idx][0], articles[idx][1]))
-                }
+                div.className = 'card' + (card.type === 'bio' ? ' card-bio' : '')
+                div.style.left = (p.col * (colWidth + gap)) + 'px'
+                div.style.top = p.top + 'px'
+                div.style.width = colWidth + 'px'
+                div.innerHTML = card.html
+                grid.appendChild(div)
             }
         }
 
-        document.fonts.ready.then(doLayout)
+        // ---- Switcher ----
+        let currentVersion = 'newspaper'
+        const versions = { newspaper: layoutNewspaper, masonry: layoutMasonry }
+
+        function switchTo(v) {
+            currentVersion = v
+            document.querySelectorAll('.switcher button').forEach(b => {
+                b.classList.toggle('active', b.dataset.v === v)
+            })
+            document.getElementById('v-newspaper').classList.toggle('hidden', v !== 'newspaper')
+            document.getElementById('v-masonry').classList.toggle('hidden', v !== 'masonry')
+            // Need to wait a frame for layout to settle before measuring
+            requestAnimationFrame(() => versions[v]())
+        }
+
+        document.querySelectorAll('.switcher button').forEach(b => {
+            b.addEventListener('click', () => switchTo(b.dataset.v))
+        })
+
+        document.fonts.ready.then(() => switchTo('newspaper'))
 
         let timer
         window.addEventListener('resize', () => {
             clearTimeout(timer)
-            timer = setTimeout(doLayout, 150)
+            timer = setTimeout(() => versions[currentVersion](), 150)
         })
     </script>
 </body>
