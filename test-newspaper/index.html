@@ -79,12 +79,44 @@
         #v-masonry .card-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; }
         #v-masonry .links { margin-top: 8px; font-size: 13px; }
         #v-masonry .links a { color: #111; margin-right: 12px; }
+
+        /* ================================================
+           VERSION 3: SHRINKWRAP
+           Uses walkLineRanges to binary-search the tightest
+           container width where each text block has balanced
+           line lengths (like CSS text-wrap:balance but better)
+           ================================================ */
+        #v-shrinkwrap { background: #fff; padding: 20px; font-size: 15px; line-height: 1.65; }
+        #v-shrinkwrap .wrap { max-width: 640px; margin: 0 auto; }
+        #v-shrinkwrap .header { text-align: center; margin-bottom: 32px; }
+        #v-shrinkwrap .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+        #v-shrinkwrap .header img { width: 72px; height: 72px; border-radius: 50%; margin-bottom: 12px; }
+        #v-shrinkwrap .bio-block {
+            max-width: 100%; margin: 0 auto 20px;
+            padding: 16px 20px; background: #f7f7f7; border-radius: 8px;
+            font-size: 15px; line-height: 1.65;
+            transition: max-width 0.3s ease;
+        }
+        #v-shrinkwrap .bio-block p { margin-bottom: 8px; }
+        #v-shrinkwrap .bio-block p:last-child { margin-bottom: 0; }
+        #v-shrinkwrap .articles-list { list-style: none; }
+        #v-shrinkwrap .articles-list li {
+            padding: 8px 0; border-bottom: 1px solid #eee;
+            transition: max-width 0.3s ease;
+        }
+        #v-shrinkwrap .articles-list li:last-child { border-bottom: none; }
+        #v-shrinkwrap .art-title { font-weight: 500; font-size: 15px; line-height: 1.4; }
+        #v-shrinkwrap .art-pub { font-size: 12px; color: #999; }
+        #v-shrinkwrap .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #999; margin: 24px 0 12px; }
+        #v-shrinkwrap .links { font-size: 14px; margin-top: 24px; text-align: center; color: #666; }
+        #v-shrinkwrap .links a { color: #111; margin: 0 8px; }
     </style>
 </head>
 <body>
     <div class="switcher">
         <button data-v="newspaper" class="active">Newspaper</button>
         <button data-v="masonry">Masonry</button>
+        <button data-v="shrinkwrap">Shrinkwrap</button>
     </div>
 
     <div class="layout-root">
@@ -138,8 +170,28 @@
         </div>
     </div>
 
+        <!-- VERSION 3: SHRINKWRAP -->
+        <div id="v-shrinkwrap" class="hidden">
+            <div class="wrap">
+                <div class="header">
+                    <img src="/500.jpg" alt="Andrey Sergeenkov">
+                    <h1>Andrey Sergeenkov</h1>
+                </div>
+                <div class="bio-block" id="sw-bio"></div>
+                <div class="section-label">Articles</div>
+                <ul class="articles-list" id="sw-articles"></ul>
+                <div class="links">
+                    <a href="mailto:andrey@sergeenkov.com">Email</a>
+                    <a href="https://x.com/Nikopolos">Twitter</a>
+                    <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
+                    <a href="/feed.xml">RSS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
-        import { prepare, layout } from './pretext.bundle.js'
+        import { prepare, layout, prepareWithSegments, walkLineRanges } from './pretext.bundle.js'
         import { blocks, articles } from './data.js'
 
         const BODY_FONT = '14px Inter, sans-serif'
@@ -272,17 +324,71 @@
             }
         }
 
+        // ---- VERSION 3: SHRINKWRAP ----
+        // Uses walkLineRanges to binary-search the narrowest width that keeps
+        // the same line count — giving "balanced" text where no line is much
+        // longer than others. This is like CSS text-wrap:balance but works
+        // for any number of lines and is controllable.
+        function findBalancedWidth(text, font, maxWidth, lineHeight) {
+            const prepared = prepareWithSegments(text, font)
+            // Get line count at full width
+            let targetLines = 0
+            walkLineRanges(prepared, maxWidth, () => { targetLines++ })
+            if (targetLines <= 1) return maxWidth
+
+            // Binary search: find the narrowest width that still produces targetLines
+            let lo = 40, hi = maxWidth
+            for (let i = 0; i < 20; i++) {
+                const mid = (lo + hi) / 2
+                let lines = 0
+                walkLineRanges(prepared, mid, () => { lines++ })
+                if (lines <= targetLines) {
+                    hi = mid
+                } else {
+                    lo = mid
+                }
+            }
+            return Math.ceil(hi)
+        }
+
+        function layoutShrinkwrap() {
+            const wrapWidth = document.querySelector('#v-shrinkwrap .wrap').clientWidth
+
+            // Bio block: shrinkwrap each paragraph, use max as block width
+            const bioEl = document.getElementById('sw-bio')
+            const bioTexts = blocks.filter(b => b.type === 'paragraph').map(b => b.text)
+            let maxBalancedW = 0
+            for (const t of bioTexts) {
+                const w = findBalancedWidth(t, '15px Inter, sans-serif', wrapWidth - 40, 25)
+                if (w > maxBalancedW) maxBalancedW = w
+            }
+            bioEl.style.maxWidth = (maxBalancedW + 40) + 'px' // +padding
+            bioEl.innerHTML = bioTexts.map(t => `<p>${t}</p>`).join('')
+
+            // Articles: shrinkwrap each title
+            const listEl = document.getElementById('sw-articles')
+            listEl.innerHTML = ''
+            for (const [title, pub] of articles) {
+                const w = findBalancedWidth(title, '500 15px Inter, sans-serif', wrapWidth, 21)
+                const li = document.createElement('li')
+                li.style.maxWidth = w + 'px'
+                li.innerHTML = `<div class="art-title">${title}</div><div class="art-pub">${pub}</div>`
+                listEl.appendChild(li)
+            }
+        }
+
         // ---- Switcher ----
         let currentVersion = 'newspaper'
-        const versions = { newspaper: layoutNewspaper, masonry: layoutMasonry }
+        const versions = { newspaper: layoutNewspaper, masonry: layoutMasonry, shrinkwrap: layoutShrinkwrap }
 
         function switchTo(v) {
             currentVersion = v
             document.querySelectorAll('.switcher button').forEach(b => {
                 b.classList.toggle('active', b.dataset.v === v)
             })
-            document.getElementById('v-newspaper').classList.toggle('hidden', v !== 'newspaper')
-            document.getElementById('v-masonry').classList.toggle('hidden', v !== 'masonry')
+            document.querySelectorAll('.layout-root > div').forEach(el => {
+                el.classList.toggle('hidden', el.id !== 'v-' + v)
+            })
             // Need to wait a frame for layout to settle before measuring
             requestAnimationFrame(() => versions[v]())
         }
