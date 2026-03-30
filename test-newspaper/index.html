@@ -80,6 +80,8 @@
             letter-spacing: 2px;
         }
 
+        .price-tag { font-weight: 700; }
+
         /* Headlines */
         .main-headline {
             font-family: 'Playfair Display', serif;
@@ -105,7 +107,6 @@
             border-top: 1px solid #1a1a1a;
             margin: 16px 0;
         }
-
         .section-rule.thick {
             border-top: 3px double #1a1a1a;
         }
@@ -116,18 +117,15 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 0;
         }
-
         .columns-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
         }
-
         .column {
             padding: 0 14px;
             border-right: 1px solid #c5b99a;
         }
-
         .column:first-child { padding-left: 0; }
         .column:last-child { padding-right: 0; border-right: none; }
 
@@ -139,31 +137,7 @@
         }
         .pretext-column:first-child { padding-left: 0; }
         .pretext-column:last-child { padding-right: 0; border-right: none; }
-        .pretext-column canvas {
-            display: block;
-            width: 100%;
-        }
-
-        /* Drop cap */
-        .drop-cap {
-            float: left;
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 62px;
-            line-height: 0.8;
-            padding: 4px 8px 0 0;
-            color: #1a1a1a;
-        }
-
-        /* Body text */
-        .body-text {
-            font-family: 'Lora', 'Georgia', serif;
-            font-size: 14px;
-            line-height: 1.55;
-            text-align: justify;
-            hyphens: auto;
-        }
-
-        .body-text p { margin-bottom: 8px; }
+        .pretext-column canvas { display: block; }
 
         /* Section headline */
         .section-headline {
@@ -182,14 +156,12 @@
             text-align: center;
             margin: 12px 0;
         }
-
         .photo-block img {
             width: 100%;
             max-width: 280px;
             filter: sepia(40%) contrast(1.05);
             border: 1px solid #8a7e6b;
         }
-
         .photo-caption {
             font-family: 'IM Fell English', serif;
             font-size: 11px;
@@ -198,54 +170,14 @@
             margin-top: 4px;
         }
 
-        /* Article list as newspaper items */
-        .article-entry {
-            margin-bottom: 6px;
-            padding-bottom: 6px;
-            border-bottom: 1px dotted #c5b99a;
-        }
-
-        .article-entry:last-child { border-bottom: none; }
-
-        .article-entry a {
+        .featured-header {
             font-family: 'Playfair Display', serif;
             font-size: 13px;
             font-weight: 700;
-            color: #1a1a1a;
-            text-decoration: none;
-            line-height: 1.3;
-        }
-
-        .article-entry a:hover {
-            text-decoration: underline;
-        }
-
-        .article-pub {
-            font-size: 10px;
-            color: #777;
-            font-style: italic;
-        }
-
-        /* Info cards */
-        .info-box {
-            border: 1px solid #8a7e6b;
-            padding: 10px 12px;
-            margin: 10px 0;
-            background: #ede8d6;
-        }
-
-        .info-box p {
-            font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 4px;
-        }
-
-        .info-box p:last-child { margin-bottom: 0; }
-
-        .info-box a {
-            color: #1a1a1a;
-            font-weight: 700;
-            text-decoration: underline;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 12px;
         }
 
         /* Contact strip */
@@ -258,39 +190,9 @@
             font-size: 13px;
             letter-spacing: 1px;
         }
-
         .contact-strip a {
             color: #f5f0e1;
             text-decoration: underline;
-        }
-
-        /* Loading state */
-        .pretext-loading {
-            text-align: center;
-            padding: 40px;
-            font-style: italic;
-            color: #888;
-        }
-
-        /* Price tag */
-        .price-tag {
-            font-weight: 700;
-        }
-
-        /* Full width section */
-        .full-width-section {
-            padding: 0;
-        }
-
-        /* Featured articles header */
-        .featured-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 12px;
         }
     </style>
 </head>
@@ -309,12 +211,12 @@
         </div>
 
         <!-- Main headline -->
-        <h1 class="main-headline">Author and Researcher of the Digital Economy</h1>
+        <h1 class="main-headline">Andrey Sergeenkov</h1>
         <p class="main-subheadline">I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
 
         <hr class="section-rule thick">
 
-        <!-- 3-column body rendered via Pretext to canvas -->
+        <!-- 3-column body: all text rendered to canvas via Pretext -->
         <div class="columns-3" id="main-columns">
             <div class="pretext-column" id="col-left">
                 <canvas id="canvas-left"></canvas>
@@ -324,7 +226,6 @@
                     <img src="/500.jpg" alt="Andrey Sergeenkov">
                     <div class="photo-caption">Andrey Sergeenkov, Author &amp; Researcher</div>
                 </div>
-                <div class="section-headline">Published Works</div>
                 <canvas id="canvas-center"></canvas>
             </div>
             <div class="pretext-column" id="col-right">
@@ -334,190 +235,353 @@
 
         <hr class="section-rule thick">
 
-        <!-- Info boxes row -->
-        <div class="columns-2">
-            <div class="column">
-                <div class="info-box">
-                    <p><strong>Academic Citations:</strong> My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.</p>
-                    <p>Full list: <a href="/citations/">sergeenkov.com/citations</a></p>
-                </div>
-            </div>
-            <div class="column">
-                <div class="info-box">
-                    <p><strong>Media Coverage:</strong> My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.</p>
-                    <p>Full list: <a href="/coverage/">sergeenkov.com/coverage</a></p>
-                </div>
-            </div>
-        </div>
-
-        <hr class="section-rule">
-
-        <!-- Featured investigative articles -->
-        <div class="featured-header">Latest Investigative Research</div>
-        <div class="columns-2">
-            <div class="column">
-                <div class="section-headline" style="font-size:15px; text-align:left;">Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</div>
-                <div class="body-text"><p>Independent research uncovering how address poisoning attack losses exploded following Ethereum's Fusaka upgrade, analyzing on-chain data and attack patterns.</p></div>
-                <div class="article-pub" style="margin-top:4px;"><a href="/fusaka-poison-attacks-ethereum/" style="color:#1a1a1a;">Read full investigation &rarr;</a></div>
-            </div>
-            <div class="column">
-                <div class="section-headline" style="font-size:15px; text-align:left;">Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds</div>
-                <div class="body-text"><p>An investigation into how TheDAO curators established a precedent for using funds belonging to hack victims for their own ends, and questions about its legality.</p></div>
-                <div class="article-pub" style="margin-top:4px;"><a href="/thedao-curators-220m-hack-victims/" style="color:#1a1a1a;">Read full investigation &rarr;</a></div>
-            </div>
-        </div>
-
-        <hr class="section-rule">
-
-        <!-- Articles index in newspaper style -->
-        <div class="featured-header">Complete Article Index</div>
-        <div class="columns-3" id="articles-columns">
-            <div class="column" id="articles-col-1"></div>
-            <div class="column" id="articles-col-2"></div>
-            <div class="column" id="articles-col-3"></div>
+        <!-- Articles rendered as canvas columns via Pretext -->
+        <div class="featured-header">My Articles</div>
+        <div class="columns-3" id="articles-section">
+            <div class="pretext-column" id="acol-left"><canvas id="canvas-articles-left"></canvas></div>
+            <div class="pretext-column" id="acol-center"><canvas id="canvas-articles-center"></canvas></div>
+            <div class="pretext-column" id="acol-right"><canvas id="canvas-articles-right"></canvas></div>
         </div>
 
         <!-- Contact strip -->
         <div class="contact-strip">
-            Contact: <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a> &bull;
+            <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a> &bull;
             <a href="https://x.com/Nikopolos">Twitter</a> &bull;
             <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> &bull;
             <a href="https://t.me/Nikopolos">Telegram</a> &bull;
-            Follow via <a href="/feed.xml">RSS</a>
+            <a href="/feed.xml">RSS</a>
         </div>
     </div>
 
     <script type="module">
-        import { prepareWithSegments, layoutWithLines } from 'https://esm.sh/@chenglou/pretext'
+        import { prepareWithSegments, layoutWithLines, layout, prepare } from 'https://esm.sh/@chenglou/pretext'
 
-        // Texts for three canvas columns
-        const leftText = `My works have been published in Forbes, CoinDesk, Blockworks and Cointelegraph. My research spans the digital economy, blockchain technology, cryptocurrency markets, and the intersection of technology and finance.\n\nI don't invest in or hold any cryptocurrencies, nor do I participate in any projects. This independence allows me to research and report without conflicts of interest, providing objective analysis of the rapidly evolving digital economy landscape.\n\nMy investigative work has uncovered significant findings in areas such as address poisoning attacks on Ethereum, TheDAO's fund management practices, and broader security vulnerabilities in the cryptocurrency ecosystem.`
+        // ---- Original texts from the site, unchanged ----
+        const bioText = "My works have been published in Forbes, CoinDesk, Blockworks and Cointelegraph."
 
-        const centerText = `My works have been featured in some of the most respected publications in the industry. From Forbes to CoinDesk, from Blockworks to Cointelegraph, each article aims to bring clarity to complex topics in the digital economy.\n\nWhether it's explaining how Bitcoin mining works, analyzing the legal status of cryptocurrencies across different jurisdictions, or investigating security incidents, my goal is always to make the complex accessible.`
+        const citationsText = "My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.\n\nFull list of citations: sergeenkov.com/citations"
 
-        const rightText = `My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, and Oxford University Press. This recognition from academic institutions validates the rigor and relevance of the research.\n\nMy investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, and Protos. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.\n\nYou can follow new articles via RSS or Twitter.`
+        const coverageText = "My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.\n\nFull list of media coverage: sergeenkov.com/coverage"
 
-        const FONT = '14px Lora, Georgia, serif'
-        const LINE_HEIGHT = 22
+        const followText = "You can follow new articles via RSS or Twitter."
 
-        function renderTextToCanvas(canvasId, text) {
-            const canvas = document.getElementById(canvasId)
+        const contactText = "The best way to contact me is via email andrey@sergeenkov.com. Alternatively you can use LinkedIn or Telegram."
+
+        // ---- Articles from the site, unchanged ----
+        const articles = [
+            ["Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade", "Independent Research"],
+            ["Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends", "Independent Research"],
+            ["Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?", "Independent Research"],
+            ["Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks", "Independent Research"],
+            ["Stop Pretending Technical And Human Vulnerabilities Are Separate Things", "Cointelegraph"],
+            ["Why 2025 May Be The Right Time To Create National Bitcoin Reserves", "Forbes"],
+            ["What Math Problems Do Bitcoin Miners Really Solve", "Forbes"],
+            ["What Is A Bitcoin Node And How To Run One", "Forbes"],
+            ["Tether Discontinues EURT And Sets Deadline For Token Redemption", "Forbes"],
+            ["Understanding Polymarket And Prediction Markets", "Forbes"],
+            ["How To Get First Funding For Web3", "Forbes"],
+            ["What You Need To Know Before Buying Your First Bitcoin", "Forbes"],
+            ["Russia Approves Cryptocurrency Tax Framework", "Forbes"],
+            ["Crypto Fear And Greed Index", "Forbes"],
+            ["Digital ID Trials Test Anonymous KYC For Mainland Chinese In Hong Kong", "Forbes"],
+            ["Bitcoin Outperformed Nvidia, Google, Amazon In Rewards Per Risk In October 2024", "Forbes"],
+            ["How To Mine Dogecoin", "Forbes"],
+            ["Tesla, AMD And Nvidia Show Higher Volatility Than Bitcoin In October 2024", "Forbes"],
+            ["MicroStrategy Announces $42 Billion Bitcoin Investment Plan", "Forbes"],
+            ["What Is Ripple (XRP)", "Forbes"],
+            ["Tesla Bitcoin Moves May No Longer Shake The Market", "Forbes"],
+            ["Pennsylvania House Passes Crypto Protection Bill In Bipartisan Vote", "Forbes"],
+            ["Russia Launches BRICS Mining Infrastructure Project", "Forbes"],
+            ["What Are Stablecoins & How To Use Them", "Forbes"],
+            ["China Bets On Massive Blockchain Infrastructure", "Forbes"],
+            ["Legal Status Of Cryptocurrencies In Malaysia", "Forbes"],
+            ["Ireland To Streamline Licensing Process For Crypto Businesses", "Forbes"],
+            ["Louisiana Accepts First Cryptocurrency Payment For State Services", "Forbes"],
+            ["How Bhutan Quietly Built $750 Million In Bitcoin Holdings", "Forbes"],
+            ["UK Introduces Bill To Recognize Digital Assets As Personal Property", "Forbes"],
+            ["Ryan Selkis Leaves Messari For New Political Initiative", "Forbes"],
+            ["Crypto Unites Voters And Attracts Gamblers During The 2024 Elections", "Forbes"],
+            ["How To Mine Bitcoin", "Forbes"],
+            ["How To Buy Bitcoin: eToro", "Forbes"],
+            ["Cryptocurrency Trading Causes Lower Quality Of Life And Higher Stress", "Forbes"],
+            ["What Are Autonomous Economic Agents", "Forbes"],
+            ["What Is NFT Art And How To Create It", "Forbes"],
+            ["What Are AI-To-AI Crypto Transactions?", "Forbes"],
+            ["Why TRX Has Grown 44% In The Last 90 Days", "Forbes"],
+            ["What Are NFT DApps?", "Forbes"],
+            ["How Volatile Is Bitcoin Compared To Other Assets", "Forbes"],
+            ["What Is The Genesis Block Explained", "Cointelegraph"],
+            ["Bonding Curves In DeFi Explained", "Cointelegraph"],
+            ["Want To Improve Blockchain Infrastructure? Work Under Layer Two Solutions", "Cointelegraph"],
+            ["Decentralized Parties: The Future Of On-Chain Governance", "Cointelegraph"],
+            ["The Use Of Blockchain Tech Should Be More Environmentally Friendly", "Cointelegraph"],
+            ["Institutional Investors Won't Take Bitcoin Mainstream — You Will", "Cointelegraph"],
+            ["How To Manage Risk When Trading Cryptocurrency", "CoinDesk"],
+            ["What Are Dynamic NFTs? Understanding The Evolving NFT", "CoinDesk"],
+            ["Web3 Marketing Tips", "CoinDesk"],
+            ["NFT Project Launch Tips", "CoinDesk"],
+            ["What Is Counterparty Risk In Crypto?", "CoinDesk"],
+            ["Crypto Arbitrage Trading: How To Make Low-Risk Gains", "CoinDesk"],
+            ["How Does Ethereum Staking Work?", "CoinDesk"],
+            ["What Are Soulbound Tokens? The Non-Transferrable NFT Explained", "CoinDesk"],
+            ["What Is NFT Wash Trading?", "CoinDesk"],
+            ["Everything You Need To Know About Bitcoin ETFs", "CoinDesk"],
+            ["What's The Crypto Travel Rule And What Does It Mean For You?", "CoinDesk"],
+            ["What We Know So Far About SHIB: The Metaverse", "CoinDesk"],
+            ["What Is PancakeSwap? Here's How To Start Using It", "CoinDesk"],
+            ["Want To Play Axie Infinity? Here's What You Need To Know", "CoinDesk"],
+            ["How To Check Your Ethereum Transaction", "CoinDesk"],
+            ["What's The Story Behind Bored Ape Yacht Club Creator Yuga Labs?", "CoinDesk"],
+            ["Bitcoin Mining Difficulty: Everything You Need To Know", "CoinDesk"],
+            ["Investing In Crypto: Alternatives To Bitcoin And Ether", "CoinDesk"],
+            ["OpenSea Marketplace: How To Buy, Sell And Mint NFTs", "CoinDesk"],
+            ["How To Buy Crypto On The Apps You Already Have", "CoinDesk"],
+            ["What Is Bitcoin?", "CoinDesk"],
+            ["What Is A Crypto Airdrop?", "CoinDesk"],
+            ["Crypto Discord: Where To Go, What To Know", "CoinDesk"],
+            ["Top 6 Crypto Passive Income Generators For 2021", "CoinDesk"],
+            ["Someone Gave You Crypto As A Gift. Now What?", "CoinDesk"],
+            ["Investing In Meme Coins: 3 Things Every Crypto Trader Should Know", "CoinDesk"],
+            ["How To Buy A Tom Brady NFT", "CoinDesk"],
+            ["Shiba Inu (SHIB): A Complete Beginner's Guide", "CoinDesk"],
+            ["What Is ShibaSwap?", "CoinDesk"],
+            ["5 Ways To Earn Passive Income From NFTs", "CoinDesk"],
+            ["What Is CityCoins And How Does It Work?", "CoinDesk"],
+            ["What Is Cryptocurrency?", "CoinDesk"],
+            ["How To Buy Shiba Inu Coin (SHIB)", "CoinDesk"],
+            ["Paying Off Student Loans? You Can Do It With Crypto", "CoinDesk"],
+            ["What Is A Perpetual Swap Contract?", "CoinDesk"],
+            ["How To Send Bitcoin Tips On Twitter", "CoinDesk"],
+            ["China Crypto Bans: A Complete History", "CoinDesk"],
+            ["5 Reasons Why Bitcoin Remains Below $50,000", "CoinDesk"],
+            ["What Is A Bitcoin Futures ETF?", "CoinDesk"],
+            ["How To Set Up A Bitcoin Miner", "CoinDesk"],
+            ["How Does Ethereum Work?", "CoinDesk"],
+            ["Solana", "CoinDesk"],
+            ["What Is An Automated Market Maker?", "CoinDesk"],
+            ["A Beginner's Guide To Atomic Swaps", "CoinDesk"],
+            ["What Does Liquidation Mean And How To Avoid It", "CoinDesk"],
+            ["Crypto Has An Influencer Problem", "Blockworks"],
+            ["Gold, Bitcoin Or Notes: Staying Safe During Periods Of Economic Uncertainty", "Investing.com"],
+            ["Bringing Machine Learning Closer to Clients, Will Blockchain Eliminate Barriers?", "Investing.com"],
+            ["How Does Ethereum Staking Work?", "Nasdaq"],
+            ["What Is an Automated Market Maker?", "Nasdaq"],
+            ["A Beginner's Guide to Atomic Swaps", "Nasdaq"],
+            ["Decentralized Parties Poised To Bring Blockchain To Politics", "Entrepreneur"],
+            ["Common Mistakes That May Cause Investors To Walk Away", "Entrepreneur"],
+            ["DeFi Is The New Lemonade Stand", "Entrepreneur"],
+            ["You Can Leverage Cryptocurrencies To Upset The Balance Of Power", "Entrepreneur"],
+            ["Rammstein Soloist Till Lindemann Accused of Illegal NFT Sales of Hermitage Museum Images", "CoinMarketCap"],
+            ["What's Russia Up To? A Weekly Russian Crypto News Recap", "CoinMarketCap"],
+            ["Cryptocurrency Market Cap Reclaims $2 Trillion as Market Rebounds", "CoinMarketCap"],
+            ["How Bitcoin Miners Operate", "CoinMarketCap"],
+            ["5 of the Biggest Crypto Ponzi Schemes", "CoinMarketCap"],
+            ["Who Are Bitcoin Core's Developers?", "CoinMarketCap"],
+            ["What Is Dollar-Cost Averaging (DCA)?", "CoinMarketCap"],
+            ["Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain", "CoinMarketCap"],
+            ["The Beginner's Guide to ERC20 Tokens and Addresses", "CoinMarketCap"],
+            ["What Is Plasma Finance?", "CoinMarketCap"],
+            ["Crypto's Role in Times of Political and Economic Uncertainty", "CoinMarketCap"],
+            ["What Is Smart Contract Risk?", "CoinMarketCap"],
+            ["What Is Coin98?", "CoinMarketCap"],
+            ["What Is Polkaswap?", "CoinMarketCap"],
+            ["What Is Polkarare?", "CoinMarketCap"],
+            ["What Is Safe Earth?", "CoinMarketCap"],
+            ["How to Mine Ethereum", "CoinMarketCap"],
+            ["SEC Revises Stance on Digital Asset Classification", "CoinMarketCap"],
+            ["Coinbase Halts Issuance of New Loans on Coinbase Borrow", "CoinMarketCap"],
+            ["French Senate Considers Proposal to Allow Influencers to Promote Cryptocurrencies", "CoinMarketCap"],
+            ["Study Finds 36% of Top Crypto Projects Silent on Blogging This Year", "CoinMarketCap"],
+            ["Texas Securities Board Targets Alleged AI-Powered Crypto Scam", "CoinMarketCap"],
+            ["Australian Crypto Exchange Coinjar Initiates US Expansion", "CoinMarketCap"],
+            ["Poloniex To Pay $76 Million Fine for Sanctions Violation Charges", "CoinMarketCap"],
+            ["Revolut Expands Crypto Investment Services to Brazil", "CoinMarketCap"],
+            ["Level Finance Confirms $1 Million Exploit Due to Software Bug", "CoinMarketCap"],
+            ["Binance Japan To Launch in June Following Acquisition of TaoTao", "CoinMarketCap"],
+            ["Sotheby's Launches On-Chain Secondary NFT Marketplace", "CoinMarketCap"],
+            ["MicroStrategy Reports Increased Revenue in Q1 2023 and Maintains Bitcoin Strategy", "CoinMarketCap"],
+            ["Binance Launchpool Adds SUI Token: Staking BNB and TUSD for Rewards", "CoinMarketCap"],
+            ["Ex-OpenSea Employee Accused of Profiting from NFT Insider Trading", "CoinMarketCap"],
+        ]
+
+        // ---- Pretext rendering engine ----
+
+        const BODY_FONT = '14px Lora, Georgia, serif'
+        const BODY_LINE_HEIGHT = 22
+        const TITLE_FONT = 'bold 13px "Playfair Display", serif'
+        const TITLE_LINE_HEIGHT = 17
+        const PUB_FONT = 'italic 11px "IM Fell English", serif'
+        const PUB_LINE_HEIGHT = 15
+
+        // Render multi-paragraph text to a canvas using Pretext for line breaking
+        function renderBodyText(canvas, paragraphs, font, lineHeight) {
             const container = canvas.parentElement
-            const dpr = window.devicePixelRatio || 1
-
-            // Compute available width accounting for padding
             const style = getComputedStyle(container)
-            const paddingLeft = parseFloat(style.paddingLeft)
-            const paddingRight = parseFloat(style.paddingRight)
-            const maxWidth = container.clientWidth - paddingLeft - paddingRight
-
+            const maxWidth = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
             if (maxWidth <= 0) return
 
-            const prepared = prepareWithSegments(text, FONT)
-            const { lines, height } = layoutWithLines(prepared, maxWidth, LINE_HEIGHT)
+            const dpr = window.devicePixelRatio || 1
+
+            // Use Pretext to measure height of all paragraphs first
+            let totalLines = []
+            for (const para of paragraphs) {
+                const prepared = prepareWithSegments(para, font)
+                const result = layoutWithLines(prepared, maxWidth, lineHeight)
+                totalLines.push(...result.lines)
+                totalLines.push(null) // paragraph break
+            }
+            totalLines.pop() // remove trailing break
+
+            const lineCount = totalLines.filter(l => l !== null).length
+            const paraBreaks = totalLines.filter(l => l === null).length
+            const totalHeight = lineCount * lineHeight + paraBreaks * (lineHeight * 0.5)
 
             canvas.width = maxWidth * dpr
-            canvas.height = height * dpr
+            canvas.height = totalHeight * dpr
             canvas.style.width = maxWidth + 'px'
-            canvas.style.height = height + 'px'
+            canvas.style.height = totalHeight + 'px'
 
             const ctx = canvas.getContext('2d')
             ctx.scale(dpr, dpr)
-            ctx.font = FONT
+            ctx.font = font
             ctx.fillStyle = '#1a1a1a'
-            ctx.textBaseline = 'top'
+            ctx.textBaseline = 'alphabetic'
 
-            // Justified text rendering
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i]
-                const y = i * LINE_HEIGHT + 3 // small offset for baseline
-                const isLastLine = i === lines.length - 1
-                const lineText = line.text.trimEnd()
-
-                if (!isLastLine && lineText.includes(' ')) {
-                    // Justify: distribute extra space between words
-                    const words = lineText.split(/\s+/)
+            let y = lineHeight * 0.75
+            for (const line of totalLines) {
+                if (line === null) {
+                    y += lineHeight * 0.5
+                    continue
+                }
+                // Use line.width from Pretext to decide justification
+                const trimmed = line.text.trimEnd()
+                const slack = maxWidth - line.width
+                // Justify if line is reasonably full (>75% width) and has spaces
+                if (slack > 0 && slack < maxWidth * 0.25 && trimmed.includes(' ')) {
+                    const words = trimmed.split(/(\s+)/).filter(w => w.trim().length > 0)
                     if (words.length > 1) {
-                        let totalWordWidth = 0
-                        for (const word of words) {
-                            totalWordWidth += ctx.measureText(word).width
-                        }
-                        const extraSpace = (maxWidth - totalWordWidth) / (words.length - 1)
+                        let wordsWidth = 0
+                        for (const w of words) wordsWidth += ctx.measureText(w).width
+                        const gap = (maxWidth - wordsWidth) / (words.length - 1)
                         let x = 0
-                        for (let w = 0; w < words.length; w++) {
-                            ctx.fillText(words[w], x, y)
-                            x += ctx.measureText(words[w]).width + extraSpace
+                        for (const w of words) {
+                            ctx.fillText(w, x, y)
+                            x += ctx.measureText(w).width + gap
                         }
-                    } else {
-                        ctx.fillText(lineText, 0, y)
+                        y += lineHeight
+                        continue
                     }
-                } else {
-                    ctx.fillText(lineText, 0, y)
+                }
+                ctx.fillText(trimmed, 0, y)
+                y += lineHeight
+            }
+        }
+
+        // Render article list to canvas — each entry: bold title + italic pub
+        // Pretext handles line-breaking for each title
+        function renderArticleColumn(canvas, articleSlice) {
+            const container = canvas.parentElement
+            const style = getComputedStyle(container)
+            const maxWidth = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
+            if (maxWidth <= 0) return
+
+            const dpr = window.devicePixelRatio || 1
+
+            // Pre-measure total height using Pretext's layout()
+            let totalHeight = 0
+            const entryData = []
+            for (const [title, pub] of articleSlice) {
+                const prepTitle = prepareWithSegments(title, TITLE_FONT)
+                const titleResult = layoutWithLines(prepTitle, maxWidth, TITLE_LINE_HEIGHT)
+
+                const prepPub = prepare(pub, PUB_FONT)
+                const pubResult = layout(prepPub, maxWidth, PUB_LINE_HEIGHT)
+
+                entryData.push({ titleLines: titleResult.lines, pub, titleH: titleResult.height, pubH: pubResult.height })
+                totalHeight += titleResult.height + pubResult.height + 10 // 10px gap between entries
+            }
+
+            canvas.width = maxWidth * dpr
+            canvas.height = totalHeight * dpr
+            canvas.style.width = maxWidth + 'px'
+            canvas.style.height = totalHeight + 'px'
+
+            const ctx = canvas.getContext('2d')
+            ctx.scale(dpr, dpr)
+            ctx.textBaseline = 'alphabetic'
+
+            let y = 0
+            for (let i = 0; i < entryData.length; i++) {
+                const entry = entryData[i]
+
+                // Draw title lines
+                ctx.font = TITLE_FONT
+                ctx.fillStyle = '#1a1a1a'
+                for (const line of entry.titleLines) {
+                    y += TITLE_LINE_HEIGHT * 0.8
+                    ctx.fillText(line.text, 0, y)
+                    y += TITLE_LINE_HEIGHT * 0.2
+                }
+
+                // Draw publication name
+                ctx.font = PUB_FONT
+                ctx.fillStyle = '#777'
+                y += PUB_LINE_HEIGHT * 0.8
+                ctx.fillText(entry.pub, 0, y)
+                y += PUB_LINE_HEIGHT * 0.2
+
+                // Dotted separator
+                if (i < entryData.length - 1) {
+                    y += 5
+                    ctx.strokeStyle = '#c5b99a'
+                    ctx.setLineDash([2, 3])
+                    ctx.beginPath()
+                    ctx.moveTo(0, y)
+                    ctx.lineTo(maxWidth, y)
+                    ctx.stroke()
+                    ctx.setLineDash([])
+                    y += 5
                 }
             }
         }
 
-        // Article data extracted from the main page
-        const articles = [
-            { title: "Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade", pub: "Independent Research", href: "/fusaka-poison-attacks-ethereum/" },
-            { title: "Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends", pub: "Independent Research", href: "/thedao-curators-220m-hack-victims/" },
-            { title: "Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?", pub: "Independent Research", href: "/will-thedao-money-improve-ethereum-security/" },
-            { title: "Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks", pub: "Independent Research", href: "/record-high-activity-ethereum-2026/" },
-            { title: "Stop Pretending Technical And Human Vulnerabilities Are Separate Things", pub: "Cointelegraph", href: "https://cointelegraph.com/news/technical-and-human-vulnerabilities" },
-            { title: "Why 2025 May Be The Right Time To Create National Bitcoin Reserves", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/12/17/why-2025-may-be-the-right-time-to-create-national-bitcoin-reserves/" },
-            { title: "What Math Problems Do Bitcoin Miners Really Solve", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/12/05/what-math-problems-do-bitcoin-miners-really-solve/" },
-            { title: "What Is A Bitcoin Node And How To Run One", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/12/04/what-is-a-bitcoin-node-and-how-to-run-one/" },
-            { title: "Tether Discontinues EURT And Sets Deadline For Token Redemption", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/" },
-            { title: "Understanding Polymarket And Prediction Markets", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/27/understanding-polymarket-and-prediction-markets/" },
-            { title: "How To Get First Funding For Web3", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/26/how-to-get-first-funding-for-web3/" },
-            { title: "What You Need To Know Before Buying Your First Bitcoin", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/15/what-you-need-to-know-before-buying-your-first-bitcoin/" },
-            { title: "Russia Approves Cryptocurrency Tax Framework", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/13/russia-approves-cryptocurrency-tax-framework/" },
-            { title: "Crypto Fear And Greed Index", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/article/crypto-fear-and-greed-index/" },
-            { title: "Digital ID Trials Test Anonymous KYC For Mainland Chinese In Hong Kong", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/08/digital-id-trials-test-anonymous-kyc-for-mainland-chinese-in-hong-kong/" },
-            { title: "Bitcoin Outperformed Nvidia, Google, Amazon In Rewards Per Risk In October 2024", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/04/bitcoin-outperformed-nvidia-google-amazon-in-rewards-per-risk-in-october-2024/" },
-            { title: "How To Mine Dogecoin", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/article/how-to-mine-dogecoin/" },
-            { title: "Tesla, AMD And Nvidia Show Higher Volatility Than Bitcoin In October 2024", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/11/02/tesla-amd-and-nvidia-show-higher-volatility-than-bitcoin-in-october-2024/" },
-            { title: "MicroStrategy Announces $42 Billion Bitcoin Investment Plan", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/10/31/microstrategy-announces-42-billion-bitcoin-investment-plan/" },
-            { title: "How Bhutan Quietly Built $750 Million In Bitcoin Holdings", pub: "Forbes", href: "https://www.forbes.com/sites/digital-assets/2024/09/17/how-bhutan-quietly-built-750-million-in-bitcoin-holdings/" },
-            { title: "Crypto Has An Influencer Problem", pub: "Blockworks", href: "https://blockworks.co/news/crypto-twitter-financial-influencer-problem" },
-            { title: "How To Manage Risk When Trading Cryptocurrency", pub: "CoinDesk", href: "https://www.coindesk.com/learn/how-to-manage-risk-when-trading-cryptocurrency/" },
-            { title: "What Are Dynamic NFTs? Understanding The Evolving NFT", pub: "CoinDesk", href: "https://www.coindesk.com/learn/what-are-dynamic-nfts-understanding-the-evolving-nft/" },
-            { title: "What Is Bitcoin?", pub: "CoinDesk", href: "https://www.coindesk.com/learn/what-is-bitcoin/" },
-            { title: "What Is Cryptocurrency?", pub: "CoinDesk", href: "https://www.coindesk.com/learn/what-is-cryptocurrency/" },
-            { title: "How Does Ethereum Work?", pub: "CoinDesk", href: "https://www.coindesk.com/learn/how-does-ethereum-work/" },
-            { title: "What Is An Automated Market Maker?", pub: "CoinDesk", href: "https://www.coindesk.com/learn/what-is-an-automated-market-maker/" },
-            { title: "China Crypto Bans: A Complete History", pub: "CoinDesk", href: "https://www.coindesk.com/learn/china-crypto-bans-a-complete-history/" },
-            { title: "Decentralized Parties: The Future Of On-Chain Governance", pub: "Cointelegraph", href: "https://cointelegraph.com/news/decentralized-parties-the-future-of-on-chain-governance" },
-            { title: "DeFi Is The New Lemonade Stand", pub: "Entrepreneur", href: "https://www.entrepreneur.com/money-finance/defi-is-the-new-lemonade-stand/366444" },
-        ]
-
-        function populateArticles() {
-            const cols = [
-                document.getElementById('articles-col-1'),
-                document.getElementById('articles-col-2'),
-                document.getElementById('articles-col-3'),
-            ]
-            articles.forEach((a, i) => {
-                const div = document.createElement('div')
-                div.className = 'article-entry'
-                div.innerHTML = `<a href="${a.href}">${a.title}</a><br><span class="article-pub">${a.pub}</span>`
-                cols[i % 3].appendChild(div)
-            })
+        // Split articles into 3 roughly equal groups
+        function splitIntoThirds(arr) {
+            const third = Math.ceil(arr.length / 3)
+            return [arr.slice(0, third), arr.slice(third, third * 2), arr.slice(third * 2)]
         }
 
         function renderAll() {
-            renderTextToCanvas('canvas-left', leftText)
-            renderTextToCanvas('canvas-center', centerText)
-            renderTextToCanvas('canvas-right', rightText)
+            // Left column: bio + follow
+            renderBodyText(
+                document.getElementById('canvas-left'),
+                [bioText, followText, contactText],
+                BODY_FONT, BODY_LINE_HEIGHT
+            )
+
+            // Center column: citations
+            renderBodyText(
+                document.getElementById('canvas-center'),
+                [citationsText],
+                BODY_FONT, BODY_LINE_HEIGHT
+            )
+
+            // Right column: coverage
+            renderBodyText(
+                document.getElementById('canvas-right'),
+                [coverageText],
+                BODY_FONT, BODY_LINE_HEIGHT
+            )
+
+            // Article columns
+            const [a1, a2, a3] = splitIntoThirds(articles)
+            renderArticleColumn(document.getElementById('canvas-articles-left'), a1)
+            renderArticleColumn(document.getElementById('canvas-articles-center'), a2)
+            renderArticleColumn(document.getElementById('canvas-articles-right'), a3)
         }
 
-        // Wait for fonts then render
-        document.fonts.ready.then(() => {
-            populateArticles()
-            renderAll()
-        })
+        document.fonts.ready.then(renderAll)
 
-        // Re-render on resize
         let resizeTimer
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer)
