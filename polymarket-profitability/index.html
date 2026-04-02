@@ -280,7 +280,8 @@
             padding: 8px 12px;
             border-bottom: 1px solid #eee;
         }
-        .table-wrap tbody tr:hover { background: #f8f9fa; }
+        .table-wrap tbody tr:nth-child(even) { background: #f8f9fa; }
+        .table-wrap tbody tr:hover { background: #eef3ee; }
         .author-box {
             display: flex;
             align-items: center;
@@ -350,7 +351,7 @@
                 </div>
             </div>
             <div class="chart-actions">
-                <button class="chart-btn" onclick="downloadChart('chart1','profitable-traders')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
+                <button class="chart-btn" onclick="downloadChart('chart1','profitable-traders')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
                 <button class="chart-btn" onclick="expandChart('chart1')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
                 <button class="chart-btn" onclick="downloadCSV('chart1')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download CSV</button>
             </div>
@@ -507,11 +508,8 @@
                     ctx.save();
                     ctx.font = '600 10px Inter, sans-serif';
                     ctx.textBaseline = 'middle';
-                    // Left label
+                    // Right label only
                     ctx.fillStyle = ds.borderColor;
-                    ctx.textAlign = 'right';
-                    ctx.fillText(fmtPct(firstVal), firstPt.x - 6, firstPt.y);
-                    // Right label
                     ctx.textAlign = 'left';
                     ctx.fillText(fmtPct(lastVal), lastPt.x + 6, lastPt.y);
                     ctx.restore();
@@ -523,7 +521,7 @@
             responsive: true,
             maintainAspectRatio: false,
             events: ['mousemove', 'mouseout', 'click'],
-            layout: { padding: { top: 10, left: 45, right: 45 } },
+            layout: { padding: { top: 10, left: 0, right: 45 } },
             interaction: { mode: 'index', intersect: false },
             plugins: {
                 legend: { display: false },
