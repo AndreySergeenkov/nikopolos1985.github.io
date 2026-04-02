@@ -275,14 +275,25 @@
 
         <p>Only 2% of 2.5 million traders have made more than $1,000 over their entire trading history. More than $10,000 was earned by 0.32%, about 8,000 addresses. More than $100,000 was earned by about 840 addresses, or 0.033% of all traders. About 120 addresses crossed the one million dollar mark.</p>
 
-        <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026. Each line represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
+        <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026.</p>
 
         <div class="chart-box">
             <h3>Share of profitable traders over time</h3>
-            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026</p>
-            <div class="chart-container"><canvas id="chart1"></canvas></div>
+            <p class="chart-subtitle">Percentage of all traders with cumulative profit &gt;$0, April 2024 &ndash; April 2026</p>
+            <div class="chart-container"><canvas id="chart1a"></canvas></div>
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</span>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
+
+        <p>Each line below represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
+
+        <div class="chart-box">
+            <h3>Profitable traders by earnings threshold</h3>
+            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026</p>
+            <div class="chart-container"><canvas id="chart1b"></canvas></div>
+            <div class="chart-legend">
                 <span><span class="legend-line" style="background:#28a745"></span> &gt;$1K</span>
                 <span><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</span>
                 <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</span>
@@ -460,14 +471,28 @@
 
         window.chartConfigs = {};
 
-        // Chart 1: Share of profitable traders
-        var cfg1 = {
+        // Chart 1a: Overall share of profitable traders
+        var cfg1a = {
             type: 'line',
             data: {
                 labels: LABELS,
                 datasets: [
-                    makeFill(pct_gt_0, 'rgba(0,123,255,0.06)'),
-                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff'),
+                    makeFill(pct_gt_0, 'rgba(0,123,255,0.08)'),
+                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff')
+                ]
+            },
+            options: commonOpts
+        };
+        window.chartConfigs.chart1a = cfg1a;
+        new Chart(document.getElementById('chart1a').getContext('2d'), cfg1a);
+
+        // Chart 1b: By earnings threshold (zoomed in)
+        var cfg1b = {
+            type: 'line',
+            data: {
+                labels: LABELS,
+                datasets: [
+                    makeFill(pct_gt_1k, 'rgba(40,167,69,0.06)'),
                     makeLine('>$1K', pct_gt_1k, '#28a745'),
                     makeLine('>$5K', pct_gt_5k, '#e8a838'),
                     makeLine('>$10K', pct_gt_10k, '#dc3545'),
@@ -476,8 +501,8 @@
             },
             options: commonOpts
         };
-        window.chartConfigs.chart1 = cfg1;
-        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
+        window.chartConfigs.chart1b = cfg1b;
+        new Chart(document.getElementById('chart1b').getContext('2d'), cfg1b);
     })();
     </script>
 </body>
