@@ -143,6 +143,34 @@
             height: 2px;
             display: inline-block;
         }
+        .legend-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-family: 'Inter', sans-serif;
+            color: #666;
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .legend-toggle.active {
+            background: #fff;
+            border-color: var(--lc);
+            color: #333;
+        }
+        .legend-toggle:not(.active) {
+            opacity: 0.45;
+        }
+        .legend-toggle:not(.active) .legend-line {
+            background: #ccc !important;
+        }
+        .legend-toggle:hover {
+            opacity: 1;
+        }
         .view-toggle {
             display: flex;
             gap: 0;
@@ -303,12 +331,12 @@
             </div>
             <div id="chart1-chart" class="view-panel">
                 <div class="chart-container"><canvas id="chart1"></canvas></div>
-                <div class="chart-legend">
-                    <span><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</span>
-                    <span><span class="legend-line" style="background:#28a745"></span> &gt;$1K</span>
-                    <span><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</span>
-                    <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</span>
-                    <span><span class="legend-line" style="background:#6f42c1"></span> &gt;$100K</span>
+                <div class="chart-legend" id="chart1-legend">
+                    <button class="legend-toggle active" data-chart="chart1" data-index="0" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="1" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> &gt;$1K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="2" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="3" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> &gt;$100K</button>
                 </div>
             </div>
             <div id="chart1-table" class="view-panel" style="display:none">
@@ -540,10 +568,18 @@
             type: 'logarithmic',
             min: 0.01,
             max: 50,
-            ticks: {
-                display: false
+            afterBuildTicks: function(axis) {
+                axis.ticks = [0.1, 1, 10].map(function(v) { return { value: v }; });
             },
-            grid: { display: false },
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) {
+                    if ([0.1, 1, 10].indexOf(v) !== -1) return v + '%';
+                    return '';
+                }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
             border: { display: false }
         };
 
@@ -584,6 +620,17 @@
         }
         window.chartCSV.chart1 = csv1;
     })();
+
+    function toggleDataset(btn) {
+        var chartId = btn.getAttribute('data-chart');
+        var idx = +btn.getAttribute('data-index');
+        var chart = chartInstances[chartId];
+        if (!chart) return;
+        var meta = chart.getDatasetMeta(idx);
+        meta.hidden = !meta.hidden;
+        btn.classList.toggle('active');
+        chart.update();
+    }
 
     function toggleView(chartId, view) {
         var chartPanel = document.getElementById(chartId + '-chart');
