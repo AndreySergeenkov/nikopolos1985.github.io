@@ -461,9 +461,30 @@
         <p>The chart below shows how many traders out of 2.5 million managed to earn more than $5,000 consistently, up to 12 consecutive months.</p>
 
         <div class="chart-box">
-            <h3>Consecutive months earning &ge;$5,000</h3>
+            <h3>Consecutive months earning &ge;$5,000 on Polymarket</h3>
             <p class="chart-subtitle">Number of traders (out of 2.5M) who earned &ge;$5K/month for N consecutive months</p>
-            <div class="chart-container"><canvas id="chart3"></canvas></div>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart3','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart3','table')">Table</button>
+            </div>
+            <div id="chart3-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart3"></canvas></div>
+            </div>
+            <div id="chart3-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table id="chart3-tbl">
+                        <thead>
+                            <tr><th>Consecutive months</th><th>Traders</th><th>% of all</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart3','consecutive-months')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart3')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+                <button class="chart-btn" onclick="downloadCSV('chart3')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download CSV</button>
+            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
@@ -706,6 +727,82 @@
             csv2 += DATES[n] + ',' + TOTAL[n] + ',' + pct_avg_1k[n] + '%,' + pct_avg_5k[n] + '%,' + pct_avg_10k[n] + '%\n';
         }
         window.chartCSV.chart2 = csv2;
+
+        // Chart 3: Consecutive months earning ≥$5K
+        var consLabels = ['1+','2+','3+','4+','5+','6+','9+','12+'];
+        var consValues = [24692,2530,745,370,205,140,72,35];
+        var consPct = [0.9775,0.1002,0.0295,0.0146,0.0081,0.0055,0.0029,0.0014];
+
+        var barLabelPlugin = {
+            id: 'barLabels',
+            afterDraw: function(chart) {
+                var ctx = chart.ctx;
+                var meta = chart.getDatasetMeta(0);
+                ctx.save();
+                ctx.font = '600 11px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillStyle = '#333';
+                meta.data.forEach(function(bar, i) {
+                    var v = consValues[i];
+                    var label = v >= 1000 ? (v / 1000).toFixed(1).replace('.0','') + 'K' : v.toString();
+                    ctx.fillText(label, bar.x, bar.y - 4);
+                });
+                ctx.restore();
+            }
+        };
+
+        var barOpts = JSON.parse(JSON.stringify(commonOpts));
+        barOpts.layout = { padding: { top: 25 } };
+        barOpts.scales.y = {
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) {
+                    if (v >= 1000) return (v/1000).toFixed(0) + 'K';
+                    return v;
+                }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+        barOpts.plugins.tooltip.callbacks = {
+            label: function(ctx) {
+                return ctx.parsed.y.toLocaleString('en-US') + ' traders (' + consPct[ctx.dataIndex] + '%)';
+            }
+        };
+
+        var cfg3 = {
+            type: 'bar',
+            data: {
+                labels: consLabels,
+                datasets: [{
+                    label: 'Traders',
+                    data: consValues,
+                    backgroundColor: '#dc3545',
+                    borderRadius: 3,
+                    maxBarThickness: 50
+                }]
+            },
+            options: barOpts,
+            plugins: [barLabelPlugin]
+        };
+        window.chartConfigs.chart3 = cfg3;
+        new Chart(document.getElementById('chart3').getContext('2d'), cfg3);
+
+        // Populate chart3 table
+        var tbody3 = document.querySelector('#chart3-tbl tbody');
+        for (var p = 0; p < consLabels.length; p++) {
+            var tr3 = document.createElement('tr');
+            tr3.innerHTML = '<td>' + consLabels[p] + ' months</td><td>' + consValues[p].toLocaleString('en-US') + '</td><td>' + consPct[p] + '%</td>';
+            tbody3.appendChild(tr3);
+        }
+
+        var csv3 = 'Consecutive months,Traders,% of all\n';
+        for (var q = 0; q < consLabels.length; q++) {
+            csv3 += consLabels[q] + ' months,' + consValues[q] + ',' + consPct[q] + '%\n';
+        }
+        window.chartCSV.chart3 = csv3;
     })();
 
     function toggleDataset(btn) {
