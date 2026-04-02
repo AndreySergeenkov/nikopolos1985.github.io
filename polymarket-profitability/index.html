@@ -445,7 +445,9 @@
                     callbacks: {
                         label: function(ctx) {
                             if (ctx.dataset.label === 'fill') return null;
-                            return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + '%';
+                            var v = ctx.parsed.y;
+                            var s = v >= 1 ? v.toFixed(1) : v >= 0.1 ? v.toFixed(2) : v.toFixed(3);
+                            return ctx.dataset.label + ': ' + s.replace(',', '.') + '%';
                         }
                     }
                 }
