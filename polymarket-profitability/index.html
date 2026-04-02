@@ -422,47 +422,54 @@
         <div class="chart-box">
             <h3>How long do profitable Polymarket traders stay active?</h3>
             <p class="chart-subtitle">Activity duration breakdown by average monthly profit threshold</p>
-            <div class="chart-container"><canvas id="chart4"></canvas></div>
-            <div class="chart-legend" id="chart4-legend">
-                <button class="legend-toggle active" data-chart="chart4" data-index="0" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> 1 month</button>
-                <button class="legend-toggle active" data-chart="chart4" data-index="1" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> 2 months</button>
-                <button class="legend-toggle active" data-chart="chart4" data-index="2" style="--lc:#c49a2a" onclick="toggleDataset(this)"><span class="legend-line" style="background:#c49a2a"></span> 3 months</button>
-                <button class="legend-toggle active" data-chart="chart4" data-index="3" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> 4&ndash;6 months</button>
-                <button class="legend-toggle active" data-chart="chart4" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> 7&ndash;12 months</button>
-                <button class="legend-toggle active" data-chart="chart4" data-index="5" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> 13+ months</button>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart4','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart4','table')">Table</button>
+            </div>
+            <div id="chart4-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart4"></canvas></div>
+                <div class="chart-legend" id="chart4-legend">
+                    <button class="legend-toggle active" data-chart="chart4" data-index="0" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> 1 month</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="1" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> 2 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="2" style="--lc:#c49a2a" onclick="toggleDataset(this)"><span class="legend-line" style="background:#c49a2a"></span> 3 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="3" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> 4&ndash;6 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> 7&ndash;12 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="5" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> 13+ months</button>
+                </div>
+            </div>
+            <div id="chart4-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity duration</th>
+                                <th colspan="2">avg &gt;$1K/mo</th>
+                                <th colspan="2">avg &gt;$5K/mo</th>
+                                <th colspan="2">avg &gt;$10K/mo</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Addresses</th><th>%</th>
+                                <th>Addresses</th><th>%</th>
+                                <th>Addresses</th><th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 month</td><td>16,779</td><td>53%</td><td>3,517</td><td>53.4%</td><td>1,700</td><td>52.2%</td></tr>
+                            <tr><td>2 months</td><td>6,323</td><td>20%</td><td>1,314</td><td>20%</td><td>680</td><td>20.9%</td></tr>
+                            <tr><td>3 months</td><td>3,082</td><td>9.7%</td><td>593</td><td>9%</td><td>266</td><td>8.2%</td></tr>
+                            <tr><td>4&ndash;6 months</td><td>3,199</td><td>10.1%</td><td>671</td><td>10.2%</td><td>330</td><td>10.1%</td></tr>
+                            <tr><td>7&ndash;12 months</td><td>1,852</td><td>5.8%</td><td>316</td><td>4.8%</td><td>175</td><td>5.4%</td></tr>
+                            <tr><td>13+ months</td><td>431</td><td>1.4%</td><td>172</td><td>2.6%</td><td>104</td><td>3.2%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="chart-actions">
                 <button class="chart-btn" onclick="downloadChart('chart4','duration-breakdown')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
                 <button class="chart-btn" onclick="expandChart('chart4')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
             </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
-        </div>
-
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Activity duration</th>
-                        <th colspan="2">avg &gt;$1K/mo</th>
-                        <th colspan="2">avg &gt;$5K/mo</th>
-                        <th colspan="2">avg &gt;$10K/mo</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>Addresses</th><th>%</th>
-                        <th>Addresses</th><th>%</th>
-                        <th>Addresses</th><th>%</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1 month</td><td>16,779</td><td>53%</td><td>3,517</td><td>53.4%</td><td>1,700</td><td>52.2%</td></tr>
-                    <tr><td>2 months</td><td>6,323</td><td>20%</td><td>1,314</td><td>20%</td><td>680</td><td>20.9%</td></tr>
-                    <tr><td>3 months</td><td>3,082</td><td>9.7%</td><td>593</td><td>9%</td><td>266</td><td>8.2%</td></tr>
-                    <tr><td>4&ndash;6 months</td><td>3,199</td><td>10.1%</td><td>671</td><td>10.2%</td><td>330</td><td>10.1%</td></tr>
-                    <tr><td>7&ndash;12 months</td><td>1,852</td><td>5.8%</td><td>316</td><td>4.8%</td><td>175</td><td>5.4%</td></tr>
-                    <tr><td>13+ months</td><td>431</td><td>1.4%</td><td>172</td><td>2.6%</td><td>104</td><td>3.2%</td></tr>
-                </tbody>
-            </table>
         </div>
 
         <h2>What if You Quit Your Job for Polymarket?</h2>
