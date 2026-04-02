@@ -567,13 +567,13 @@
             min: 0.01,
             max: 50,
             afterBuildTicks: function(axis) {
-                axis.ticks = [0.1, 1, 10].map(function(v) { return { value: v }; });
+                axis.ticks = [0.1, 1, 10, 40].map(function(v) { return { value: v }; });
             },
             ticks: {
                 color: '#ccc',
                 font: { size: 9, family: chartFont.family },
                 callback: function(v) {
-                    if ([0.1, 1, 10].indexOf(v) !== -1) return v + '%';
+                    if ([0.1, 1, 10, 40].indexOf(v) !== -1) return v + '%';
                     return '';
                 }
             },
