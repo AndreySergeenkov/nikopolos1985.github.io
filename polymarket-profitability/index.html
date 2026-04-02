@@ -417,7 +417,26 @@
 
         <p>Most traders show up, trade for a short period, and leave. Only 172 addresses out of 6,600 with average profit above $5,000 were active for more than a year. That&rsquo;s 2.6%.</p>
 
-        <p>The table below provides a breakdown by number of addresses and percentages for each threshold and each activity range.</p>
+        <p>The chart and table below provide a breakdown by number of addresses and percentages for each threshold and each activity range.</p>
+
+        <div class="chart-box">
+            <h3>How long do profitable Polymarket traders stay active?</h3>
+            <p class="chart-subtitle">Activity duration breakdown by average monthly profit threshold</p>
+            <div class="chart-container"><canvas id="chart4"></canvas></div>
+            <div class="chart-legend" id="chart4-legend">
+                <button class="legend-toggle active" data-chart="chart4" data-index="0" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> 1 month</button>
+                <button class="legend-toggle active" data-chart="chart4" data-index="1" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> 2 months</button>
+                <button class="legend-toggle active" data-chart="chart4" data-index="2" style="--lc:#c49a2a" onclick="toggleDataset(this)"><span class="legend-line" style="background:#c49a2a"></span> 3 months</button>
+                <button class="legend-toggle active" data-chart="chart4" data-index="3" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> 4&ndash;6 months</button>
+                <button class="legend-toggle active" data-chart="chart4" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> 7&ndash;12 months</button>
+                <button class="legend-toggle active" data-chart="chart4" data-index="5" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> 13+ months</button>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart4','duration-breakdown')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart4')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
 
         <div class="table-wrap">
             <table>
@@ -803,6 +822,59 @@
             csv3 += consLabels[q] + ' months,' + consValues[q] + ',' + consPct[q] + '%\n';
         }
         window.chartCSV.chart3 = csv3;
+
+        // Chart 4: Duration breakdown (stacked bar)
+        var durLabels = ['Avg >$1K/mo (31,666)', 'Avg >$5K/mo (6,583)', 'Avg >$10K/mo (3,255)'];
+        var durColors = ['#dc3545','#e8a838','#c49a2a','#007bff','#6f42c1','#28a745'];
+        var durNames = ['1 month','2 months','3 months','4-6 months','7-12 months','13+ months'];
+        var durData = [
+            [53, 53.4, 52.2],
+            [20, 20, 20.9],
+            [9.7, 9, 8.2],
+            [10.1, 10.2, 10.1],
+            [5.8, 4.8, 5.4],
+            [1.4, 2.6, 3.2]
+        ];
+
+        var durDatasets = durNames.map(function(name, i) {
+            return {
+                label: name,
+                data: durData[i],
+                backgroundColor: durColors[i],
+                borderRadius: 0
+            };
+        });
+
+        var stackOpts = JSON.parse(JSON.stringify(commonOpts));
+        stackOpts.layout = { padding: { top: 5 } };
+        stackOpts.scales.x.stacked = true;
+        stackOpts.scales.y = {
+            stacked: true,
+            max: 100,
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) { return v + '%'; }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+        stackOpts.plugins.tooltip.callbacks = {
+            label: function(ctx) {
+                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+            }
+        };
+
+        var cfg4 = {
+            type: 'bar',
+            data: {
+                labels: durLabels,
+                datasets: durDatasets
+            },
+            options: stackOpts
+        };
+        window.chartConfigs.chart4 = cfg4;
+        new Chart(document.getElementById('chart4').getContext('2d'), cfg4);
     })();
 
     function toggleDataset(btn) {
