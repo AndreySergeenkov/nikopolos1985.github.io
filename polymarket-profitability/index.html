@@ -259,16 +259,6 @@
             <div class="article-meta">By Andrey Sergeenkov &middot; April 2, 2026</div>
         </header>
 
-        <div class="tldr">
-            <div class="tldr-title">TL;DR</div>
-            <ul>
-                <li>15.9% of Polymarket traders are in profit, but only 2% have made more than $1,000</li>
-                <li>Only 6,600 addresses average more than $5,000/month, and 73% of them were active for two months or less</li>
-                <li>In any single month, 0.98% earned above $5,000. Two months in a row drops to 0.1%. Three months: 0.03%</li>
-                <li>Only 172 addresses out of 6,600 with avg profit above $5K/month were active for more than a year</li>
-            </ul>
-        </div>
-
         <p>If you look at the rough ratio of winners to losers, 15.9% of Polymarket traders are in profit as of the end of March 2026.</p>
 
         <p>But&hellip;</p>
@@ -507,12 +497,7 @@
             min: 0.01,
             max: 50,
             ticks: {
-                color: '#999',
-                font: { size: 10, family: chartFont.family },
-                callback: function(v) {
-                    if ([0.01, 0.1, 1, 10, 100].indexOf(v) !== -1) return v + '%';
-                    return '';
-                }
+                display: false
             },
             grid: { color: '#eee', drawBorder: false },
             border: { display: false }
