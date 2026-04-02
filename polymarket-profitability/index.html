@@ -124,6 +124,25 @@
             height: 300px;
         }
         .chart-container canvas { display: block; }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .chart-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        .legend-line {
+            width: 16px;
+            height: 2px;
+            display: inline-block;
+        }
         .chart-source { text-align: right; margin-top: 6px; }
         .chart-source a { font-size: 10px; color: #bbb; background: none; padding: 0; }
         .chart-source a:hover { color: #999; background: none; }
@@ -262,6 +281,13 @@
             <h3>Share of profitable traders over time</h3>
             <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026</p>
             <div class="chart-container"><canvas id="chart1"></canvas></div>
+            <div class="chart-legend">
+                <span><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</span>
+                <span><span class="legend-line" style="background:#28a745"></span> &gt;$1K</span>
+                <span><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</span>
+                <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</span>
+                <span><span class="legend-line" style="background:#6f42c1"></span> &gt;$100K</span>
+            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
@@ -358,7 +384,101 @@
     </article>
 
     <script>
-    /* Charts will be added in next steps */
+    (function() {
+        var LABELS = ['Apr 24','May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'];
+        var pct_gt_0 = [44.23,43.33,34.12,25.53,21.58,17.54,15.24,11.8,12.17,11.21,10.67,10.68,11.33,11.8,11.8,12.21,12.74,13.05,13.06,12.98,14.29,15.03,15.13,15.57,15.93];
+        var pct_gt_1k = [9.76,9.57,7.48,5.29,4.09,3.01,2.37,1.35,1.38,1.07,0.87,0.82,0.8,0.82,0.9,0.94,0.94,0.94,0.94,1.11,1.38,1.65,1.78,1.94,2.07];
+        var pct_gt_5k = [4.324,4.228,3.294,2.301,1.757,1.266,0.973,0.532,0.515,0.396,0.317,0.298,0.293,0.3,0.319,0.335,0.332,0.33,0.333,0.384,0.444,0.491,0.506,0.56,0.577];
+        var pct_gt_10k = [3.213,3.126,2.413,1.676,1.259,0.906,0.692,0.371,0.34,0.256,0.201,0.188,0.185,0.194,0.204,0.213,0.21,0.208,0.212,0.231,0.253,0.26,0.274,0.306,0.318];
+        var pct_gt_100k = [0.9532,0.9283,0.7126,0.4898,0.3559,0.2534,0.1919,0.0998,0.0777,0.0561,0.0437,0.0387,0.0365,0.0364,0.0364,0.0367,0.0365,0.0358,0.0354,0.0329,0.032,0.0322,0.0319,0.0328,0.0333];
+
+        var chartFont = { family: "'Inter', sans-serif" };
+
+        function makeLine(label, data, color, width) {
+            return {
+                label: label,
+                data: data,
+                borderColor: color,
+                borderWidth: width || 2,
+                fill: false,
+                pointRadius: 0,
+                tension: 0.3
+            };
+        }
+
+        function makeFill(data, color) {
+            return {
+                label: 'fill',
+                data: data,
+                backgroundColor: color,
+                borderWidth: 0,
+                fill: true,
+                pointRadius: 0,
+                tension: 0.3
+            };
+        }
+
+        var commonOpts = {
+            responsive: true,
+            maintainAspectRatio: false,
+            events: ['mousemove', 'mouseout', 'click'],
+            layout: { padding: { top: 10 } },
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#999',
+                    bodyColor: '#333',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    titleFont: { size: 11, family: chartFont.family },
+                    bodyFont: { size: 12, family: chartFont.family },
+                    padding: { top: 6, bottom: 6, left: 10, right: 10 },
+                    boxPadding: 4,
+                    callbacks: {
+                        label: function(ctx) {
+                            if (ctx.dataset.label === 'fill') return null;
+                            return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
+                    grid: { display: false },
+                    border: { color: '#ddd' }
+                },
+                y: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: function(v) { return v + '%'; } },
+                    grid: { color: '#eee', drawBorder: false },
+                    border: { display: false }
+                }
+            }
+        };
+
+        window.chartConfigs = {};
+
+        // Chart 1: Share of profitable traders
+        var cfg1 = {
+            type: 'line',
+            data: {
+                labels: LABELS,
+                datasets: [
+                    makeFill(pct_gt_0, 'rgba(0,123,255,0.06)'),
+                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff'),
+                    makeLine('>$1K', pct_gt_1k, '#28a745'),
+                    makeLine('>$5K', pct_gt_5k, '#e8a838'),
+                    makeLine('>$10K', pct_gt_10k, '#dc3545'),
+                    makeLine('>$100K', pct_gt_100k, '#6f42c1')
+                ]
+            },
+            options: commonOpts
+        };
+        window.chartConfigs.chart1 = cfg1;
+        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
+    })();
     </script>
 </body>
 </html>
