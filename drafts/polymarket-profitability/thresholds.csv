@@ -1,0 +1,27 @@
+result_type,threshold,label,value,pct
+consecutive,≥$5K/mo,1+ months,24692,0.9775
+consecutive,≥$5K/mo,2+ months,2530,0.1002
+consecutive,≥$5K/mo,3+ months,745,0.0295
+consecutive,≥$5K/mo,4+ months,370,0.0146
+consecutive,≥$5K/mo,5+ months,205,0.0081
+consecutive,≥$5K/mo,6+ months,140,0.0055
+consecutive,≥$5K/mo,9+ months,72,0.0029
+consecutive,≥$5K/mo,12+ months,35,0.0014
+duration,avg >$10K/mo,1 month,1700,52.2
+duration,avg >$10K/mo,2 months,680,20.9
+duration,avg >$10K/mo,4-6 months,330,10.1
+duration,avg >$10K/mo,3 months,266,8.2
+duration,avg >$10K/mo,7-12 months,175,5.4
+duration,avg >$10K/mo,13+ months,104,3.2
+duration,avg >$1K/mo,1 month,16779,53
+duration,avg >$1K/mo,2 months,6323,20
+duration,avg >$1K/mo,4-6 months,3199,10.1
+duration,avg >$1K/mo,3 months,3082,9.7
+duration,avg >$1K/mo,7-12 months,1852,5.8
+duration,avg >$1K/mo,13+ months,431,1.4
+duration,avg >$5K/mo,1 month,3517,53.4
+duration,avg >$5K/mo,2 months,1314,20
+duration,avg >$5K/mo,4-6 months,671,10.2
+duration,avg >$5K/mo,3 months,593,9
+duration,avg >$5K/mo,7-12 months,316,4.8
+duration,avg >$5K/mo,13+ months,172,2.6
