@@ -275,32 +275,27 @@
 
         <p>Only 2% of 2.5 million traders have made more than $1,000 over their entire trading history. More than $10,000 was earned by 0.32%, about 8,000 addresses. More than $100,000 was earned by about 840 addresses, or 0.033% of all traders. About 120 addresses crossed the one million dollar mark.</p>
 
-        <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026.</p>
+        <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026. Each line represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
 
         <div class="chart-box">
             <h3>Share of profitable traders over time</h3>
-            <p class="chart-subtitle">Percentage of all traders with cumulative profit &gt;$0, April 2024 &ndash; April 2026</p>
-            <div class="chart-container"><canvas id="chart1a"></canvas></div>
+            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026. Logarithmic scale.</p>
+            <div class="chart-container"><canvas id="chart1"></canvas></div>
             <div class="chart-legend">
                 <span><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</span>
-            </div>
-            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
-        </div>
-
-        <p>Each line below represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
-
-        <div class="chart-box">
-            <h3>Profitable traders by earnings threshold</h3>
-            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026</p>
-            <div class="chart-container"><canvas id="chart1b"></canvas></div>
-            <div class="chart-legend">
                 <span><span class="legend-line" style="background:#28a745"></span> &gt;$1K</span>
                 <span><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</span>
                 <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</span>
                 <span><span class="legend-line" style="background:#6f42c1"></span> &gt;$100K</span>
             </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart1','profitable-traders')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
+                <button class="chart-btn" onclick="expandChart('chart1')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
+
+        <div class="note">The chart uses a logarithmic scale. The gap between &ldquo;any profit&rdquo; and &ldquo;meaningful profit&rdquo; is so large that on a linear scale, every line below &gt;$5K merges into a single unreadable strip at the bottom.</div>
 
         <h2>What Is the Average Monthly Income on Polymarket?</h2>
 
@@ -471,39 +466,146 @@
 
         window.chartConfigs = {};
 
-        // Chart 1a: Overall share of profitable traders
-        var cfg1a = {
-            type: 'line',
-            data: {
-                labels: LABELS,
-                datasets: [
-                    makeFill(pct_gt_0, 'rgba(0,123,255,0.08)'),
-                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff')
-                ]
+        var logOpts = JSON.parse(JSON.stringify(commonOpts));
+        logOpts.scales.y = {
+            type: 'logarithmic',
+            min: 0.01,
+            max: 100,
+            ticks: {
+                color: '#999',
+                font: { size: 10, family: chartFont.family },
+                callback: function(v) {
+                    if ([0.01, 0.1, 1, 10, 100].indexOf(v) !== -1) return v + '%';
+                    return '';
+                }
             },
-            options: commonOpts
+            grid: { color: '#eee', drawBorder: false },
+            border: { display: false }
         };
-        window.chartConfigs.chart1a = cfg1a;
-        new Chart(document.getElementById('chart1a').getContext('2d'), cfg1a);
 
-        // Chart 1b: By earnings threshold (zoomed in)
-        var cfg1b = {
+        // Chart 1: Share of profitable traders (log scale)
+        var cfg1 = {
             type: 'line',
             data: {
                 labels: LABELS,
                 datasets: [
-                    makeFill(pct_gt_1k, 'rgba(40,167,69,0.06)'),
+                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff'),
                     makeLine('>$1K', pct_gt_1k, '#28a745'),
                     makeLine('>$5K', pct_gt_5k, '#e8a838'),
                     makeLine('>$10K', pct_gt_10k, '#dc3545'),
                     makeLine('>$100K', pct_gt_100k, '#6f42c1')
                 ]
             },
-            options: commonOpts
+            options: logOpts
         };
-        window.chartConfigs.chart1b = cfg1b;
-        new Chart(document.getElementById('chart1b').getContext('2d'), cfg1b);
+        window.chartConfigs.chart1 = cfg1;
+        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
     })();
+    </script>
+
+    <div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
+        <div class="chart-modal">
+            <button class="chart-modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <p class="chart-subtitle" id="modalSubtitle"></p>
+            <div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+    var chartInstances = {};
+    document.querySelectorAll('.chart-container canvas').forEach(function(c) {
+        var inst = Chart.getChart(c);
+        if (inst) chartInstances[c.id] = inst;
+    });
+
+    function downloadChart(id, name) {
+        var chart = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!chart || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        var title = box.querySelector('h3').textContent;
+        var subtitle = box.querySelector('.chart-subtitle').textContent;
+        var legendItems = [];
+        box.querySelectorAll('.chart-legend > span').forEach(function(span) {
+            var line = span.querySelector('.legend-line');
+            legendItems.push({
+                text: span.textContent.trim(),
+                color: line ? (line.style.backgroundColor || line.style.background) : '#999'
+            });
+        });
+
+        var chartW = 1400, chartH = 620, pad = 48, topH = 110, botH = 80;
+        var offCanvas = document.createElement('canvas');
+        offCanvas.width = chartW;
+        offCanvas.height = chartH;
+        var offChart = new Chart(offCanvas.getContext('2d'), {
+            type: cfg.type,
+            data: { labels: chart.data.labels.slice(), datasets: chart.data.datasets.map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
+            options: Object.assign({}, cfg.options, { responsive: false, animation: false, devicePixelRatio: 1 })
+        });
+
+        var tmp = document.createElement('canvas');
+        tmp.width = chartW + pad * 2;
+        tmp.height = chartH + topH + botH;
+        var ctx = tmp.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, tmp.width, tmp.height);
+        var fontBase = "Inter, -apple-system, sans-serif";
+        ctx.fillStyle = '#333'; ctx.font = '600 26px ' + fontBase;
+        ctx.fillText(title, pad, pad + 28);
+        ctx.fillStyle = '#888'; ctx.font = '20px ' + fontBase;
+        ctx.fillText(subtitle, pad, pad + 58);
+        ctx.drawImage(offCanvas, pad, topH);
+
+        var ly = topH + chartH + 36, lx = pad;
+        ctx.font = '18px ' + fontBase;
+        legendItems.forEach(function(item) {
+            var sw = 26;
+            ctx.fillStyle = item.color;
+            ctx.fillRect(lx, ly - 10, sw, 5);
+            lx += sw + 8;
+            ctx.fillStyle = '#555';
+            ctx.fillText(item.text, lx, ly);
+            lx += ctx.measureText(item.text).width + 36;
+        });
+        ctx.fillStyle = '#bbb'; ctx.font = '18px ' + fontBase; ctx.textAlign = 'right';
+        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
+        offChart.destroy();
+
+        var link = document.createElement('a');
+        link.download = name + '.png';
+        link.href = tmp.toDataURL('image/png');
+        link.click();
+    }
+
+    var modalChart = null;
+    function expandChart(id) {
+        var src = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!src || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
+        document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
+        document.getElementById('chartModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+        modalChart = new Chart(document.getElementById('modalCanvas').getContext('2d'), {
+            type: cfg.type,
+            data: { labels: src.data.labels.slice(), datasets: src.data.datasets.map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
+            options: cfg.options
+        });
+    }
+
+    function closeModal() {
+        document.getElementById('chartModal').classList.remove('active');
+        document.body.style.overflow = '';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
     </script>
 </body>
 </html>
