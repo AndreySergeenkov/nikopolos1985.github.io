@@ -295,7 +295,7 @@
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
-        <div class="note">I used a logarithmic scale under the Y axis. The gap between &ldquo;any profit&rdquo; and &ldquo;meaningful profit&rdquo; is so large that on a linear scale, every line below &gt;$5K merges into a single unreadable strip at the bottom.</div>
+        <div class="note">The chart uses a logarithmic scale on the Y axis. I had to use this format because the gap between any profit and meaningful profits is so large that on a linear scale, every line below &gt;$5K merges into a single unreadable strip at the bottom.</div>
 
         <h2>What Is the Average Monthly Income on Polymarket?</h2>
 
@@ -424,11 +424,44 @@
             };
         }
 
+        function fmtPct(v) {
+            if (v >= 1) return v.toFixed(1) + '%';
+            if (v >= 0.1) return v.toFixed(2) + '%';
+            return v.toFixed(3) + '%';
+        }
+
+        var endLabelsPlugin = {
+            id: 'endLabels',
+            afterDraw: function(chart) {
+                var ctx = chart.ctx;
+                chart.data.datasets.forEach(function(ds, i) {
+                    if (ds.label === 'fill') return;
+                    var meta = chart.getDatasetMeta(i);
+                    if (meta.hidden) return;
+                    var firstPt = meta.data[0];
+                    var lastPt = meta.data[meta.data.length - 1];
+                    var firstVal = ds.data[0];
+                    var lastVal = ds.data[ds.data.length - 1];
+                    ctx.save();
+                    ctx.font = '600 10px Inter, sans-serif';
+                    ctx.textBaseline = 'middle';
+                    // Left label
+                    ctx.fillStyle = ds.borderColor;
+                    ctx.textAlign = 'right';
+                    ctx.fillText(fmtPct(firstVal), firstPt.x - 6, firstPt.y);
+                    // Right label
+                    ctx.textAlign = 'left';
+                    ctx.fillText(fmtPct(lastVal), lastPt.x + 6, lastPt.y);
+                    ctx.restore();
+                });
+            }
+        };
+
         var commonOpts = {
             responsive: true,
             maintainAspectRatio: false,
             events: ['mousemove', 'mouseout', 'click'],
-            layout: { padding: { top: 10 } },
+            layout: { padding: { top: 10, left: 45, right: 45 } },
             interaction: { mode: 'index', intersect: false },
             plugins: {
                 legend: { display: false },
@@ -498,7 +531,8 @@
                     makeLine('>$100K', pct_gt_100k, '#6f42c1')
                 ]
             },
-            options: logOpts
+            options: logOpts,
+            plugins: [endLabelsPlugin]
         };
         window.chartConfigs.chart1 = cfg1;
         new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
