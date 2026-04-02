@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How Many Traders Are Profitable on Polymarket - Andrey Sergeenkov</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,161 +13,9 @@
       gtag('js', new Date());
       gtag('config', 'G-6FZQZRN4S3');
     </script>
-    <!-- Ahrefs Web Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: #333;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: #fff;
-        }
-        .top-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .back-link {
-            display: inline-block;
-            color: #333;
-            text-decoration: none;
-            background-color: #e6f3e6;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: background-color 0.2s ease;
-        }
-        .back-link:hover { background-color: #c8e6c8; }
-        .top-follow { font-size: 14px; color: #666; }
-        .top-follow a, .author-bio a { background-color: #fdffc8; }
-        .article-header { margin-bottom: 40px; }
-        h1 { font-size: 32px; font-weight: 600; line-height: 1.3; margin: 0 0 20px 0; }
-        .article-meta { color: #666; font-size: 14px; margin-bottom: 20px; }
-        .tldr {
-            background: #f8f9fa;
-            border-left: 4px solid #dc3545;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        .tldr-title { font-weight: 600; font-size: 14px; text-transform: uppercase; color: #dc3545; margin-bottom: 12px; }
-        .tldr ul { margin: 0; padding-left: 20px; }
-        .tldr li { margin-bottom: 8px; font-style: italic; color: #555; }
-        h2 { font-size: 24px; font-weight: 600; margin-top: 50px; margin-bottom: 20px; color: #222; }
-        p { margin-bottom: 20px; font-size: 16px; }
-        a {
-            color: #333;
-            text-decoration: none;
-            background-color: #e6f3e6;
-            padding: 1px 4px;
-            border-radius: 3px;
-            transition: background-color 0.2s ease;
-        }
-        a:hover { background-color: #c8e6c8; text-decoration: underline; }
-        .note {
-            background: #f8f9fa;
-            padding: 16px 20px;
-            border-radius: 6px;
-            margin: 20px 0;
-            color: #555;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-        .note a { color: #555; }
-        .highlight {
-            background: #fff3cd;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-        }
-        .chart-box {
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 20px 20px 14px;
-            margin: 30px 0;
-            background: #fff;
-        }
-        .chart-box h3 { font-size: 16px; font-weight: 600; margin: 0 0 2px; color: #333; }
-        .chart-box .chart-subtitle { font-size: 13px; color: #666; margin: 0 0 16px; }
-        .chart-container { position: relative; width: 100%; height: 300px; }
-        .chart-container canvas { display: block; }
-        .chart-legend {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 10px;
-            font-size: 12px;
-            flex-wrap: wrap;
-        }
-        .chart-legend span { display: flex; align-items: center; gap: 5px; color: #666; }
-        .legend-line { width: 16px; height: 2px; display: inline-block; }
-        .chart-source { text-align: right; margin-top: 6px; }
-        .chart-source a { font-size: 10px; color: #bbb; background: none; padding: 0; }
-        .chart-source a:hover { color: #999; background: none; }
-        .chart-actions { display: flex; gap: 8px; margin-top: 10px; }
-        .chart-btn {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 4px 10px; font-size: 11px; color: #888;
-            background: #f5f5f5; border: 1px solid #e0e0e0;
-            border-radius: 4px; cursor: pointer; transition: all 0.15s; text-decoration: none;
-        }
-        .chart-btn:hover { color: #555; background: #eee; border-color: #ccc; text-decoration: none; }
-        .chart-btn svg { width: 13px; height: 13px; fill: currentColor; }
-        .chart-modal-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.85); z-index: 9999;
-            justify-content: center; align-items: center; padding: 20px;
-        }
-        .chart-modal-overlay.active { display: flex; }
-        .chart-modal {
-            background: #fff; border-radius: 8px; padding: 24px;
-            max-width: 960px; width: 100%; max-height: 90vh; position: relative;
-        }
-        .chart-modal h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; color: #333; }
-        .chart-modal .chart-subtitle { font-size: 13px; color: #666; margin: 0 0 16px; }
-        .chart-modal-container { position: relative; width: 100%; height: 420px; }
-        .chart-modal-close {
-            position: absolute; top: 12px; right: 16px; font-size: 24px;
-            color: #999; cursor: pointer; background: none; border: none; line-height: 1; padding: 4px;
-        }
-        .chart-modal-close:hover { color: #333; }
-        table.data-table {
-            width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;
-        }
-        table.data-table th {
-            background: #f8f9fa; font-weight: 600; text-align: left;
-            padding: 10px 12px; border-bottom: 2px solid #dee2e6;
-        }
-        table.data-table td {
-            padding: 8px 12px; border-bottom: 1px solid #eee;
-        }
-        table.data-table tr:last-child td { border-bottom: none; }
-        table.data-table td:not(:first-child),
-        table.data-table th:not(:first-child) { text-align: right; }
-        .author-box {
-            display: flex; align-items: center; gap: 15px;
-            margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee;
-        }
-        .author-info { flex: 1; }
-        .author-bio { font-size: 14px; color: #666; }
-        @media (max-width: 600px) {
-            body { padding: 20px 15px; }
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            .chart-box { padding: 16px 10px 12px; }
-            .chart-container { height: 220px; }
-            .chart-legend { flex-wrap: wrap; gap: 8px; }
-            .chart-modal-container { height: 280px; }
-            table.data-table { font-size: 12px; }
-            table.data-table th, table.data-table td { padding: 6px 8px; }
-        }
-    </style>
+    <style>/* styles will be added */</style>
 </head>
 <body>
     <div class="top-nav">
@@ -186,10 +32,10 @@
         <div class="tldr">
             <div class="tldr-title">TL;DR</div>
             <ul>
-                <li>15.9% of 2.5 million Polymarket traders are in profit, but only 2% made more than $1,000</li>
-                <li>More than $100,000 was earned by about 840 addresses (0.033%)</li>
-                <li>73% of profitable traders were active for only 1&ndash;2 months</li>
-                <li>The probability of earning &ge;$5K/month for 3 consecutive months is 0.03%</li>
+                <li>15.9% of Polymarket traders are in profit, but only 2% have made more than $1,000</li>
+                <li>Only 6,600 addresses average more than $5,000/month, and 73% of them were active for two months or less</li>
+                <li>In any single month, 0.98% earned above $5,000. Two months in a row drops to 0.1%. Three months: 0.03%</li>
+                <li>Only 172 addresses out of 6,600 with avg profit above $5K/month were active for more than a year</li>
             </ul>
         </div>
 
@@ -197,135 +43,85 @@
 
         <p>But&hellip;</p>
 
-        <p>Only 2% of 2.5 million traders have made more than $1,000 over their entire trading history.</p>
-
-        <p>More than $10,000 was earned by 0.32%, about 8,000 addresses.</p>
-
-        <p>More than $100,000 was earned by about 840 addresses, or 0.033% of all traders.</p>
-
-        <p>About 120 addresses crossed the one million dollar mark.</p>
+        <p>Only 2% of 2.5 million traders have made more than $1,000 over their entire trading history. More than $10,000 was earned by 0.32%, about 8,000 addresses. More than $100,000 was earned by about 840 addresses, or 0.033% of all traders. About 120 addresses crossed the one million dollar mark.</p>
 
         <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026. Each line represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
 
         <div class="chart-box">
             <h3>Share of profitable traders over time</h3>
-            <p class="chart-subtitle">Percentage of all traders who earned more than a given amount over their entire history. April 2024 &ndash; April 2026.</p>
+            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026</p>
             <div class="chart-container"><canvas id="chart1"></canvas></div>
-            <div class="chart-legend">
-                <span><span class="legend-line" style="background:#4CAF50"></span> &gt;$0 (in profit)</span>
-                <span><span class="legend-line" style="background:#2196F3"></span> &gt;$1K</span>
-                <span><span class="legend-line" style="background:#FF9800"></span> &gt;$5K</span>
-                <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</span>
-                <span><span class="legend-line" style="background:#9C27B0"></span> &gt;$100K</span>
-            </div>
-            <div class="chart-actions">
-                <button class="chart-btn" onclick="downloadChart('chart1','profitable-traders-share')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
-                <button class="chart-btn" onclick="expandChart('chart1')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
-            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
         <h2>What Is the Average Monthly Income on Polymarket?</h2>
 
-        <p>1.25% of traders have an average monthly profit above $1,000.</p>
-
-        <p>Above $5,000 is 0.26%, about 6,600 addresses.</p>
-
-        <p>Above $10,000 per month is roughly 3,250 addresses, or 0.13% of all traders.</p>
+        <p>1.25% of traders have an average monthly profit above $1,000. Above $5,000 is 0.26%, about 6,600 addresses. Above $10,000 per month is roughly 3,250 addresses, or 0.13% of all traders.</p>
 
         <p>This chart shows the percentage of traders at each level of average monthly profit. This chart looks at average income per active trading month.</p>
 
         <div class="chart-box">
-            <h3>Average monthly profit above thresholds</h3>
-            <p class="chart-subtitle">Percentage of all traders with average monthly profit above a given level. April 2024 &ndash; April 2026.</p>
+            <h3>Traders by average monthly profit</h3>
+            <p class="chart-subtitle">Percentage of all traders above each average monthly profit threshold, April 2024 &ndash; April 2026</p>
             <div class="chart-container"><canvas id="chart2"></canvas></div>
-            <div class="chart-legend">
-                <span><span class="legend-line" style="background:#2196F3"></span> &gt;$1K/mo</span>
-                <span><span class="legend-line" style="background:#FF9800"></span> &gt;$5K/mo</span>
-                <span><span class="legend-line" style="background:#dc3545"></span> &gt;$10K/mo</span>
-                <span><span class="legend-line" style="background:#9C27B0"></span> &gt;$100K/mo</span>
-            </div>
-            <div class="chart-actions">
-                <button class="chart-btn" onclick="downloadChart('chart2','avg-monthly-profit')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
-                <button class="chart-btn" onclick="expandChart('chart2')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
-            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
         <h2>But How Long Do These Profitable Traders Actually Stay Active?</h2>
 
-        <p>But the monthly profit figures above are inflated by short-term activity. More than half the addresses in each threshold were active for exactly one month. For the $1K threshold that's 53%, for $5K also 53%, and for $10K it's 52%.</p>
+        <p>But the monthly profit figures above are inflated by short-term activity. More than half the addresses in each threshold were active for exactly one month. For the $1K threshold that&rsquo;s 53%, for $5K also 53%, and for $10K it&rsquo;s 52%.</p>
 
         <p>If you combine one and two months of activity, the number is the same across all three thresholds at 73%. The consistency of this proportion shows that traders behave the same way whether they earn $1K or $10K per month.</p>
 
-        <p>Most traders show up, trade for a short period, and leave. Only 172 addresses out of 6,600 with average profit above $5,000 were active for more than a year. That's 2.6%.</p>
+        <p>Most traders show up, trade for a short period, and leave. Only 172 addresses out of 6,600 with average profit above $5,000 were active for more than a year. That&rsquo;s 2.6%.</p>
 
         <p>The table below provides a breakdown by number of addresses and percentages for each threshold and each activity range.</p>
 
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Duration</th>
-                    <th>avg &gt;$1K/mo</th>
-                    <th>avg &gt;$5K/mo</th>
-                    <th>avg &gt;$10K/mo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>1 month</td><td>16,779 (53%)</td><td>3,517 (53.4%)</td><td>1,700 (52.2%)</td></tr>
-                <tr><td>2 months</td><td>6,323 (20%)</td><td>1,314 (20%)</td><td>680 (20.9%)</td></tr>
-                <tr><td>3 months</td><td>3,082 (9.7%)</td><td>593 (9%)</td><td>266 (8.2%)</td></tr>
-                <tr><td>4&ndash;6 months</td><td>3,199 (10.1%)</td><td>671 (10.2%)</td><td>330 (10.1%)</td></tr>
-                <tr><td>7&ndash;12 months</td><td>1,852 (5.8%)</td><td>316 (4.8%)</td><td>175 (5.4%)</td></tr>
-                <tr><td>13+ months</td><td>431 (1.4%)</td><td>172 (2.6%)</td><td>104 (3.2%)</td></tr>
-            </tbody>
-        </table>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Activity duration</th>
+                        <th colspan="2">avg &gt;$1K/mo</th>
+                        <th colspan="2">avg &gt;$5K/mo</th>
+                        <th colspan="2">avg &gt;$10K/mo</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Addresses</th><th>%</th>
+                        <th>Addresses</th><th>%</th>
+                        <th>Addresses</th><th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1 month</td><td>16,779</td><td>53%</td><td>3,517</td><td>53.4%</td><td>1,700</td><td>52.2%</td></tr>
+                    <tr><td>2 months</td><td>6,323</td><td>20%</td><td>1,314</td><td>20%</td><td>680</td><td>20.9%</td></tr>
+                    <tr><td>3 months</td><td>3,082</td><td>9.7%</td><td>593</td><td>9%</td><td>266</td><td>8.2%</td></tr>
+                    <tr><td>4&ndash;6 months</td><td>3,199</td><td>10.1%</td><td>671</td><td>10.2%</td><td>330</td><td>10.1%</td></tr>
+                    <tr><td>7&ndash;12 months</td><td>1,852</td><td>5.8%</td><td>316</td><td>4.8%</td><td>175</td><td>5.4%</td></tr>
+                    <tr><td>13+ months</td><td>431</td><td>1.4%</td><td>172</td><td>2.6%</td><td>104</td><td>3.2%</td></tr>
+                </tbody>
+            </table>
+        </div>
 
         <h2>What if You Quit Your Job for Polymarket?</h2>
 
-        <p>Let's say you read this article about how Logan Sudeith quit his job and made $100k in a month. You decide to follow his lead and want to consistently earn the average US salary of $5,000 per month trading on Polymarket. I calculated the odds of earning that amount on a regular basis.</p>
+        <p>Let&rsquo;s say you read this article about how Logan Sudeith quit his job and made $100k in a month. You decide to follow his lead and want to consistently earn the average US salary of $5,000 per month trading on Polymarket. I calculated the odds of earning that amount on a regular basis.</p>
 
-        <p>In any single month, 0.98% managed to earn more than $5,000.</p>
-
-        <p>Two months in a row drops to 0.1%.</p>
-
-        <p>Three months in a row is 0.03%.</p>
-
-        <p>Four months in a row is 0.015%.</p>
+        <p>In any single month, 0.98% managed to earn more than $5,000. Two months in a row drops to 0.1%. Three months in a row is 0.03%. Four months in a row is 0.015%.</p>
 
         <p>The chart below shows how many traders out of 2.5 million managed to earn more than $5,000 consistently, up to 12 consecutive months.</p>
 
         <div class="chart-box">
-            <h3>Traders earning &ge;$5K for consecutive months</h3>
-            <p class="chart-subtitle">Number of addresses (out of 2.5 million) that earned &ge;$5,000 for N consecutive months.</p>
+            <h3>Consecutive months earning &ge;$5,000</h3>
+            <p class="chart-subtitle">Number of traders (out of 2.5M) who earned &ge;$5K/month for N consecutive months</p>
             <div class="chart-container"><canvas id="chart3"></canvas></div>
-            <div class="chart-legend">
-                <span><span class="legend-line" style="background:#dc3545;height:10px;width:10px;border-radius:2px"></span> Traders</span>
-            </div>
-            <div class="chart-actions">
-                <button class="chart-btn" onclick="downloadChart('chart3','consecutive-months-5k')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
-                <button class="chart-btn" onclick="expandChart('chart3')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
-            </div>
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
-        <p>This calculation has a limitation. Every number in the table represents addresses, not necessarily people. One trader can use multiple wallets, and the real number of people consistently earning on Polymarket could be higher (because one person might switch wallets mid-period, and their six-month streak looks like two addresses with three-month streaks) or lower (because one person could trade from multiple wallets at the same time, and each one gets counted separately).</p>
+        <div class="note">This calculation has a limitation. Every number in the table represents addresses, not necessarily people. One trader can use multiple wallets, and the real number of people consistently earning on Polymarket could be higher (because one person might switch wallets mid-period, and their six-month streak looks like two addresses with three-month streaks) or lower (because one person could trade from multiple wallets at the same time, and each one gets counted separately).</div>
 
         <p>Polymarket has very different types of participants. 80% of addresses average fewer than 10 trades per active day. About 4% make more than 50 trades per day, which is nearly impossible for a human doing it manually. All of these participants with different strategies and tools compete in the same markets. Among them are bots, market makers, and potential insiders.</p>
-
-        <div class="chart-box">
-            <h3>Distribution of traders by number of trades</h3>
-            <p class="chart-subtitle">Percentage of all 2.5 million addresses by total number of trades.</p>
-            <div class="chart-container"><canvas id="chart4"></canvas></div>
-            <div class="chart-legend">
-                <span><span class="legend-line" style="background:#2196F3;height:10px;width:10px;border-radius:2px"></span> Share of traders</span>
-            </div>
-            <div class="chart-actions">
-                <button class="chart-btn" onclick="downloadChart('chart4','trades-distribution')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download</button>
-                <button class="chart-btn" onclick="expandChart('chart4')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
-            </div>
-            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
-        </div>
 
         <h2>My Take</h2>
 
@@ -337,11 +133,11 @@
 
         <p>All data comes from on-chain transactions on the Polygon blockchain via Dune Analytics. Polymarket uses a hybrid architecture: orders are matched off-chain through a CLOB, but every trade settles on-chain through the CTF Exchange and NegRisk CTF Exchange smart contracts.</p>
 
-        <p>PnL for each address is calculated as the sum of all USDC flows across five types of on-chain events: buys and sells of outcome tokens on both exchange contracts (OrderFilled), redemption of winning tokens (PayoutRedemption), splitting USDC into YES/NO token pairs (PositionsSplit), and merging them back (PositionsMerge). Ten system addresses were excluded: three Polymarket contracts and seven infrastructure wallets from DeFi Oasis's list.</p>
+        <p>PnL for each address is calculated as the sum of all USDC flows across five types of on-chain events: buys and sells of outcome tokens on both exchange contracts (OrderFilled), redemption of winning tokens (PayoutRedemption), splitting USDC into YES/NO token pairs (PositionsSplit), and merging them back (PositionsMerge). Ten system addresses were excluded: three Polymarket contracts and seven infrastructure wallets from DeFi Oasis&rsquo;s list.</p>
 
-        <p>In early iterations I calculated PnL without splits and merges. That gave 10,800 addresses with monthly profit above $5,000. After adding splits and merges the number dropped to 6,600, because splits subtract USDC from a trader's balance.</p>
+        <p>In early iterations I calculated PnL without splits and merges. That gave 10,800 addresses with monthly profit above $5,000. After adding splits and merges the number dropped to 6,600, because splits subtract USDC from a trader&rsquo;s balance.</p>
 
-        <p>Limitations. I only count realized PnL. If a trader bought tokens on an unresolved market and hasn't sold them, my data shows that as a loss even though the funds are simply locked. I verified that 96% of trading volume comes from already resolved markets, and the unrealized balance on resolved markets (traders who forgot to redeem winning tokens) is about $43 million, which is minimal relative to total volume. All calculations use data through April 1, 2026.</p>
+        <p>Limitations. I only count realized PnL. If a trader bought tokens on an unresolved market and hasn&rsquo;t sold them, my data shows that as a loss even though the funds are simply locked. I verified that 96% of trading volume comes from already resolved markets, and the unrealized balance on resolved markets (traders who forgot to redeem winning tokens) is about $43 million, which is minimal relative to total volume. All calculations use data through April 1, 2026.</p>
 
         <div class="author-box">
             <div class="author-info">
@@ -351,277 +147,7 @@
     </article>
 
     <script>
-    (function() {
-        // === DATA from CSV files ===
-        var tsLabels = ['Apr 2024','May 2024','Jun 2024','Jul 2024','Aug 2024','Sep 2024','Oct 2024','Nov 2024','Dec 2024','Jan 2025','Feb 2025','Mar 2025','Apr 2025','May 2025','Jun 2025','Jul 2025','Aug 2025','Sep 2025','Oct 2025','Nov 2025','Dec 2025','Jan 2026','Feb 2026','Mar 2026','Apr 2026'];
-        var pctGt0   = [44.23,43.33,34.12,25.53,21.58,17.54,15.24,11.8,12.17,11.21,10.67,10.68,11.33,11.8,11.8,12.21,12.74,13.05,13.06,12.98,14.29,15.03,15.13,15.57,15.93];
-        var pctGt1k  = [9.76,9.57,7.48,5.29,4.09,3.01,2.37,1.35,1.38,1.07,0.87,0.82,0.8,0.82,0.9,0.94,0.94,0.94,0.94,1.11,1.38,1.65,1.78,1.94,2.07];
-        var pctGt5k  = [4.324,4.228,3.294,2.301,1.757,1.266,0.973,0.532,0.515,0.396,0.317,0.298,0.293,0.3,0.319,0.335,0.332,0.33,0.333,0.384,0.444,0.491,0.506,0.56,0.577];
-        var pctGt10k = [3.213,3.126,2.413,1.676,1.259,0.906,0.692,0.371,0.34,0.256,0.201,0.188,0.185,0.194,0.204,0.213,0.21,0.208,0.212,0.231,0.253,0.26,0.274,0.306,0.318];
-        var pctGt100k= [0.9532,0.9283,0.7126,0.4898,0.3559,0.2534,0.1919,0.0998,0.0777,0.0561,0.0437,0.0387,0.0365,0.0364,0.0364,0.0367,0.0365,0.0358,0.0354,0.0329,0.032,0.0322,0.0319,0.0328,0.0333];
-
-        var pctAvg1k  = [6.925,6.767,5.253,3.715,2.805,2.023,1.554,0.834,0.825,0.612,0.481,0.448,0.436,0.443,0.484,0.507,0.498,0.495,0.497,0.588,0.758,0.89,0.959,1.068,1.254];
-        var pctAvg5k  = [2.524,2.464,1.902,1.335,0.997,0.718,0.545,0.288,0.274,0.201,0.156,0.146,0.14,0.14,0.143,0.148,0.146,0.145,0.144,0.161,0.175,0.187,0.195,0.224,0.261];
-        var pctAvg10k = [1.6688,1.6252,1.2482,0.8664,0.6427,0.4565,0.3481,0.183,0.1676,0.1217,0.0945,0.0871,0.0828,0.0824,0.0839,0.0868,0.0858,0.0854,0.0846,0.0871,0.0876,0.0901,0.0917,0.1085,0.1288];
-        var pctAvg100k= [0.33852,0.32967,0.24921,0.17297,0.12482,0.08913,0.06765,0.0363,0.0289,0.02048,0.01561,0.01434,0.01398,0.01377,0.01351,0.01329,0.01333,0.01318,0.01323,0.01245,0.01205,0.01161,0.01189,0.01271,0.0135];
-
-        // Consecutive months ≥$5K data
-        var consLabels = ['1+','2+','3+','4+','5+','6+','9+','12+'];
-        var consValues = [24692,2530,745,370,205,140,72,35];
-        var consPct    = [0.9775,0.1002,0.0295,0.0146,0.0081,0.0055,0.0029,0.0014];
-
-        // Trades buckets
-        var bucketLabels = ['1-5','6-10','11-50','51-100','101-1K','1K-10K','10K+'];
-        var bucketPct    = [21.8,11.6,37.4,13.2,13.6,2.1,0.4];
-
-        var chartFont = { family: "'Inter', sans-serif" };
-
-        function fmtK(n) {
-            if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
-            if (n >= 1e3) return (n / 1e3).toFixed(0) + 'K';
-            return n.toString();
-        }
-
-        var commonTooltip = {
-            backgroundColor: '#fff', titleColor: '#999', bodyColor: '#333',
-            borderColor: '#ddd', borderWidth: 1,
-            titleFont: { size: 11, family: chartFont.family },
-            bodyFont: { size: 12, family: chartFont.family },
-            padding: { top: 6, bottom: 6, left: 10, right: 10 }, boxPadding: 4
-        };
-
-        var commonScaleX = {
-            ticks: { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
-            grid: { display: false }, border: { color: '#ddd' }
-        };
-
-        var commonScaleY = {
-            ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: function(v) { return v + '%'; } },
-            grid: { color: '#eee', drawBorder: false }, border: { display: false }
-        };
-
-        function makeLineDataset(label, data, color) {
-            return { label: label, data: data, borderColor: color, borderWidth: 2, fill: false, pointRadius: 0, tension: 0.3 };
-        }
-
-        window.chartConfigs = {};
-
-        // ======== CHART 1: Share of profitable traders ========
-        var cfg1 = {
-            type: 'line',
-            data: {
-                labels: tsLabels,
-                datasets: [
-                    makeLineDataset('>$0 (in profit)', pctGt0, '#4CAF50'),
-                    makeLineDataset('>$1K', pctGt1k, '#2196F3'),
-                    makeLineDataset('>$5K', pctGt5k, '#FF9800'),
-                    makeLineDataset('>$10K', pctGt10k, '#dc3545'),
-                    makeLineDataset('>$100K', pctGt100k, '#9C27B0')
-                ]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { display: false }, tooltip: Object.assign({}, commonTooltip, {
-                    callbacks: { label: function(ctx) { return ctx.dataset.label + ': ' + ctx.parsed.y + '%'; } }
-                }) },
-                scales: { x: commonScaleX, y: Object.assign({}, commonScaleY, { max: 50 }) }
-            }
-        };
-        window.chartConfigs.chart1 = cfg1;
-        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
-
-        // ======== CHART 2: Avg monthly profit ========
-        var cfg2 = {
-            type: 'line',
-            data: {
-                labels: tsLabels,
-                datasets: [
-                    makeLineDataset('>$1K/mo', pctAvg1k, '#2196F3'),
-                    makeLineDataset('>$5K/mo', pctAvg5k, '#FF9800'),
-                    makeLineDataset('>$10K/mo', pctAvg10k, '#dc3545'),
-                    makeLineDataset('>$100K/mo', pctAvg100k, '#9C27B0')
-                ]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { display: false }, tooltip: Object.assign({}, commonTooltip, {
-                    callbacks: { label: function(ctx) { return ctx.dataset.label + ': ' + ctx.parsed.y + '%'; } }
-                }) },
-                scales: { x: commonScaleX, y: Object.assign({}, commonScaleY, { max: 8 }) }
-            }
-        };
-        window.chartConfigs.chart2 = cfg2;
-        new Chart(document.getElementById('chart2').getContext('2d'), cfg2);
-
-        // ======== CHART 3: Consecutive months ≥$5K ========
-        var cfg3 = {
-            type: 'bar',
-            data: {
-                labels: consLabels.map(function(l) { return l + ' mo'; }),
-                datasets: [{
-                    label: 'Traders',
-                    data: consValues,
-                    backgroundColor: '#dc3545',
-                    borderRadius: 4,
-                    maxBarThickness: 48
-                }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false }, tooltip: Object.assign({}, commonTooltip, {
-                    callbacks: {
-                        label: function(ctx) {
-                            return fmtK(ctx.parsed.y) + ' traders (' + consPct[ctx.dataIndex] + '%)';
-                        }
-                    }
-                }) },
-                scales: {
-                    x: { ticks: { color: '#999', font: { size: 11, family: chartFont.family } }, grid: { display: false }, border: { color: '#ddd' } },
-                    y: {
-                        ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: fmtK },
-                        grid: { color: '#eee', drawBorder: false }, border: { display: false }
-                    }
-                }
-            }
-        };
-        window.chartConfigs.chart3 = cfg3;
-        new Chart(document.getElementById('chart3').getContext('2d'), cfg3);
-
-        // ======== CHART 4: Trades distribution ========
-        var cfg4 = {
-            type: 'bar',
-            data: {
-                labels: bucketLabels,
-                datasets: [{
-                    label: 'Share of traders',
-                    data: bucketPct,
-                    backgroundColor: '#2196F3',
-                    borderRadius: 4,
-                    maxBarThickness: 48
-                }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false }, tooltip: Object.assign({}, commonTooltip, {
-                    callbacks: { label: function(ctx) { return ctx.parsed.y + '% of traders'; } }
-                }) },
-                scales: {
-                    x: {
-                        title: { display: true, text: 'Number of trades', color: '#999', font: { size: 11, family: chartFont.family } },
-                        ticks: { color: '#999', font: { size: 11, family: chartFont.family } },
-                        grid: { display: false }, border: { color: '#ddd' }
-                    },
-                    y: {
-                        ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: function(v) { return v + '%'; } },
-                        grid: { color: '#eee', drawBorder: false }, border: { display: false },
-                        max: 42
-                    }
-                }
-            }
-        };
-        window.chartConfigs.chart4 = cfg4;
-        new Chart(document.getElementById('chart4').getContext('2d'), cfg4);
-    })();
-    </script>
-
-    <div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
-        <div class="chart-modal">
-            <button class="chart-modal-close" onclick="closeModal()">&times;</button>
-            <h3 id="modalTitle"></h3>
-            <p class="chart-subtitle" id="modalSubtitle"></p>
-            <div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
-        </div>
-    </div>
-
-    <script>
-    var chartInstances = {};
-    document.querySelectorAll('.chart-container canvas').forEach(function(c) {
-        var inst = Chart.getChart(c);
-        if (inst) chartInstances[c.id] = inst;
-    });
-
-    function downloadChart(id, name) {
-        var chart = chartInstances[id];
-        var cfg = window.chartConfigs[id];
-        if (!chart || !cfg) return;
-        var box = document.getElementById(id).closest('.chart-box');
-        var title = box.querySelector('h3').textContent;
-        var subtitle = box.querySelector('.chart-subtitle').textContent;
-        var legendItems = [];
-        box.querySelectorAll('.chart-legend > span').forEach(function(span) {
-            var line = span.querySelector('.legend-line');
-            legendItems.push({
-                text: span.textContent.trim(),
-                color: line ? (line.style.backgroundColor || line.style.background) : '#999'
-            });
-        });
-
-        var chartW = 1400, chartH = 620, pad = 48, topH = 110, botH = 80;
-        var offCanvas = document.createElement('canvas');
-        offCanvas.width = chartW; offCanvas.height = chartH;
-
-        var offChart = new Chart(offCanvas.getContext('2d'), {
-            type: cfg.type,
-            data: { labels: chart.data.labels.slice(), datasets: chart.data.datasets.map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
-            options: Object.assign({}, cfg.options, { responsive: false, animation: false, devicePixelRatio: 1 })
-        });
-
-        var tmp = document.createElement('canvas');
-        tmp.width = chartW + pad * 2; tmp.height = chartH + topH + botH;
-        var ctx = tmp.getContext('2d');
-        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, tmp.width, tmp.height);
-
-        var fontBase = "Inter, -apple-system, sans-serif";
-        ctx.fillStyle = '#333'; ctx.font = '600 26px ' + fontBase;
-        ctx.fillText(title, pad, pad + 28);
-        ctx.fillStyle = '#888'; ctx.font = '20px ' + fontBase;
-        ctx.fillText(subtitle, pad, pad + 58);
-        ctx.drawImage(offCanvas, pad, topH);
-
-        var ly = topH + chartH + 36, lx = pad;
-        ctx.font = '18px ' + fontBase;
-        legendItems.forEach(function(item) {
-            ctx.fillStyle = item.color; ctx.fillRect(lx, ly - 10, 20, 5);
-            lx += 28;
-            ctx.fillStyle = '#555'; ctx.fillText(item.text, lx, ly);
-            lx += ctx.measureText(item.text).width + 36;
-        });
-
-        ctx.fillStyle = '#bbb'; ctx.font = '18px ' + fontBase; ctx.textAlign = 'right';
-        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
-        offChart.destroy();
-
-        var link = document.createElement('a');
-        link.download = name + '.png'; link.href = tmp.toDataURL('image/png'); link.click();
-    }
-
-    var modalChart = null;
-    function expandChart(id) {
-        var src = chartInstances[id];
-        var cfg = window.chartConfigs[id];
-        if (!src || !cfg) return;
-        var box = document.getElementById(id).closest('.chart-box');
-        document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
-        document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
-        document.getElementById('chartModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-        if (modalChart) { modalChart.destroy(); modalChart = null; }
-        modalChart = new Chart(document.getElementById('modalCanvas').getContext('2d'), {
-            type: cfg.type,
-            data: { labels: src.data.labels.slice(), datasets: src.data.datasets.map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
-            options: cfg.options
-        });
-    }
-
-    function closeModal() {
-        document.getElementById('chartModal').classList.remove('active');
-        document.body.style.overflow = '';
-        if (modalChart) { modalChart.destroy(); modalChart = null; }
-    }
-
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+    /* Charts will be added in next steps */
     </script>
 </body>
 </html>
