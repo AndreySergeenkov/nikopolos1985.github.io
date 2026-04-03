@@ -678,14 +678,19 @@
             type: 'logarithmic',
             min: 0.01,
             max: 50,
-            afterBuildTicks: function(axis) {
-                axis.ticks = [0.1, 1, 10, 40].map(function(v) { return { value: v }; });
-            },
             ticks: {
                 color: '#ccc',
                 font: { size: 9, family: chartFont.family },
+                autoSkip: false,
+                maxTicksLimit: 30,
                 callback: function(v) {
-                    if ([0.1, 1, 10, 40].indexOf(v) !== -1) return v + '%';
+                    var allowed = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 40];
+                    for (var i = 0; i < allowed.length; i++) {
+                        if (Math.abs(v - allowed[i]) < 0.001) {
+                            if (v >= 1) return v.toFixed(0) + '%';
+                            return v + '%';
+                        }
+                    }
                     return '';
                 }
             },
