@@ -353,7 +353,7 @@
 
         <div class="chart-box">
             <h3>Share of profitable Polymarket traders over time</h3>
-            <p class="chart-subtitle">Percentage of all traders above each cumulative profit threshold, April 2024 &ndash; April 2026. Logarithmic scale.</p>
+            <p class="chart-subtitle">April 2024 &ndash; April 2026. Logarithmic scale.</p>
             <div class="view-toggle">
                 <button class="view-btn active" onclick="toggleView('chart1','chart')">Chart</button>
                 <button class="view-btn" onclick="toggleView('chart1','table')">Table</button>
@@ -742,7 +742,7 @@
             ticks: {
                 color: '#ccc',
                 font: { size: 9, family: chartFont.family },
-                callback: function(v) { return v + '%'; }
+                callback: function(v) { return (v % 1 === 0 ? v : v.toFixed(1)) + '%'; }
             },
             grid: { color: '#f0f0f0', drawBorder: false },
             border: { display: false }
@@ -886,7 +886,7 @@
             ticks: {
                 color: '#ccc',
                 font: { size: 9, family: chartFont.family },
-                callback: function(v) { return v + '%'; }
+                callback: function(v) { return v.toFixed(0) + '%'; }
             },
             grid: { color: '#f0f0f0', drawBorder: false },
             border: { display: false }
