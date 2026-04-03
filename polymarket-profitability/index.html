@@ -1045,6 +1045,20 @@
         if (dlOpts.layout && dlOpts.layout.padding) {
             dlOpts.layout.padding = Object.assign({}, dlOpts.layout.padding, { right: 80 });
         }
+        // Scale up annotation label fonts for download
+        if (dlOpts.plugins && dlOpts.plugins.annotation && dlOpts.plugins.annotation.annotations) {
+            var anns = dlOpts.plugins.annotation.annotations;
+            Object.keys(anns).forEach(function(key) {
+                if (anns[key].label && anns[key].label.font) {
+                    anns[key] = Object.assign({}, anns[key], {
+                        label: Object.assign({}, anns[key].label, {
+                            font: Object.assign({}, anns[key].label.font, { size: 18 }),
+                            padding: { top: 5, bottom: 5, left: 14, right: 14 }
+                        })
+                    });
+                }
+            });
+        }
 
         var offChart = new Chart(offCanvas.getContext('2d'), {
             type: cfg.type,
