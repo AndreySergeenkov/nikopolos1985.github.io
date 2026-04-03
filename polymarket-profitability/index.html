@@ -985,7 +985,8 @@
         var offChart = new Chart(offCanvas.getContext('2d'), {
             type: cfg.type,
             data: { labels: chart.data.labels.slice(), datasets: chart.data.datasets.filter(function(ds, i) { return !chart.getDatasetMeta(i).hidden; }).map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
-            options: Object.assign({}, cfg.options, { responsive: false, animation: false, devicePixelRatio: 1 })
+            options: Object.assign({}, cfg.options, { responsive: false, animation: false, devicePixelRatio: 1 }),
+            plugins: cfg.plugins || []
         });
 
         var tmp = document.createElement('canvas');
