@@ -398,7 +398,7 @@
 
         <div class="chart-box">
             <h3>Polymarket traders by average monthly profit</h3>
-            <p class="chart-subtitle">April 2024 &ndash; April 2026</p>
+            <p class="chart-subtitle">April 2024 &ndash; April 2026. Logarithmic scale.</p>
             <div class="view-toggle">
                 <button class="view-btn active" onclick="toggleView('chart2','chart')">Chart</button>
                 <button class="view-btn" onclick="toggleView('chart2','table')">Table</button>
@@ -736,11 +736,21 @@
 
         var linearOpts2 = JSON.parse(JSON.stringify(commonOpts));
         linearOpts2.layout = { padding: { top: 10, left: 0, right: 45 } };
+        linearOpts2.scales.x.ticks = { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 };
         linearOpts2.scales.y = {
+            type: 'logarithmic',
+            min: 0.05,
+            max: 10,
+            afterBuildTicks: function(axis) {
+                axis.ticks = [0.1, 0.5, 1, 5].map(function(v) { return { value: v }; });
+            },
             ticks: {
                 color: '#ccc',
                 font: { size: 9, family: chartFont.family },
-                callback: function(v) { return (v % 1 === 0 ? v : v.toFixed(1)) + '%'; }
+                callback: function(v) {
+                    if (v >= 1) return v.toFixed(0) + '%';
+                    return v + '%';
+                }
             },
             grid: { color: '#f0f0f0', drawBorder: false },
             border: { display: false }
