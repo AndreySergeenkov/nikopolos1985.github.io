@@ -1148,12 +1148,16 @@
         };
 
         // Extract article text
-        var paragraphs = document.querySelectorAll('article p, article h2, article .note');
+        var paragraphs = document.querySelectorAll('article p, article h2, article .note, article ul');
         paragraphs.forEach(function(el) {
             if (el.tagName === 'H2') {
                 d.article.push({ type: 'heading', text: el.textContent.trim() });
             } else if (el.classList.contains('note')) {
                 d.article.push({ type: 'note', text: el.textContent.trim() });
+            } else if (el.tagName === 'UL') {
+                var items = [];
+                el.querySelectorAll('li').forEach(function(li) { items.push(li.textContent.trim()); });
+                d.article.push({ type: 'list', items: items });
             } else {
                 d.article.push({ type: 'paragraph', text: el.textContent.trim() });
             }
