@@ -997,6 +997,9 @@
             dlOpts.scales.y.ticks.font = Object.assign({}, dlOpts.scales.y.ticks.font, { size: 16 });
         }
         dlOpts._isDownload = true;
+        if (dlOpts.layout && dlOpts.layout.padding) {
+            dlOpts.layout.padding = Object.assign({}, dlOpts.layout.padding, { right: 80 });
+        }
 
         var offChart = new Chart(offCanvas.getContext('2d'), {
             type: cfg.type,
