@@ -328,7 +328,7 @@
         <div class="top-follow">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a></div>
     </div>
     <div class="llm-copy-bar">
-        <button class="llm-copy-btn" onclick="copyForLLM(this)"><svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data)</button>
+        <button class="llm-copy-btn" onclick="copyForLLM(this)"><svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data instead of charts)</button>
     </div>
 
     <article>
@@ -343,11 +343,11 @@
 
         <p>Only 2% of 2.5 million traders have made more than $1,000 over their entire trading history.</p>
 
-        <p>More than $10,000 was earned by 0.32%, roughly 8,000 addresses.</p>
-
-        <p>More than $100,000 was earned by 840 addresses, or 0.033% of all traders.</p>
-
-        <p>Around 120 addresses crossed the one million dollar mark.</p>
+        <ul>
+            <li>More than $10,000 was earned by 0.32%, roughly 8,000 addresses.</li>
+            <li>More than $100,000 was earned by 840 addresses, or 0.033% of all traders.</li>
+            <li>Around 120 addresses crossed the one million dollar mark.</li>
+        </ul>
 
         <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026. Each line represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
 
@@ -1147,7 +1147,7 @@
             btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg> Copied!';
             setTimeout(function() {
                 btn.classList.remove('copied');
-                btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data)';
+                btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data instead of charts)';
             }, 2000);
         });
     }
