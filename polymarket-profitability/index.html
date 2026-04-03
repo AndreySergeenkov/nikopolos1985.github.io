@@ -616,13 +616,14 @@
                     var lastPt = meta.data[meta.data.length - 1];
                     var firstVal = ds.data[0];
                     var lastVal = ds.data[ds.data.length - 1];
+                    var isDl = chart.options._isDownload;
                     ctx.save();
-                    ctx.font = '600 10px Inter, sans-serif';
+                    ctx.font = '600 ' + (isDl ? '18' : '10') + 'px Inter, sans-serif';
                     ctx.textBaseline = 'middle';
                     // Right label only
                     ctx.fillStyle = ds.borderColor;
                     ctx.textAlign = 'left';
-                    ctx.fillText(fmtPct(lastVal), lastPt.x + 6, lastPt.y);
+                    ctx.fillText(fmtPct(lastVal), lastPt.x + (isDl ? 10 : 6), lastPt.y);
                     ctx.restore();
                 });
             }
@@ -786,15 +787,16 @@
             afterDraw: function(chart) {
                 var ctx = chart.ctx;
                 var meta = chart.getDatasetMeta(0);
+                var isDl = chart.options._isDownload;
                 ctx.save();
-                ctx.font = '600 11px Inter, sans-serif';
+                ctx.font = '600 ' + (isDl ? '18' : '11') + 'px Inter, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'bottom';
                 ctx.fillStyle = '#333';
                 meta.data.forEach(function(bar, i) {
                     var v = consValues[i];
                     var label = v >= 1000 ? (v / 1000).toFixed(1).replace('.0','') + 'K' : v.toString();
-                    ctx.fillText(label, bar.x, bar.y - 4);
+                    ctx.fillText(label, bar.x, bar.y - (isDl ? 6 : 4));
                 });
                 ctx.restore();
             }
@@ -982,10 +984,24 @@
         var offCanvas = document.createElement('canvas');
         offCanvas.width = chartW;
         offCanvas.height = chartH;
+
+        // Scale up axis fonts for download
+        var dlOpts = JSON.parse(JSON.stringify(cfg.options));
+        dlOpts.responsive = false;
+        dlOpts.animation = false;
+        dlOpts.devicePixelRatio = 1;
+        if (dlOpts.scales && dlOpts.scales.x && dlOpts.scales.x.ticks) {
+            dlOpts.scales.x.ticks.font = Object.assign({}, dlOpts.scales.x.ticks.font, { size: 16 });
+        }
+        if (dlOpts.scales && dlOpts.scales.y && dlOpts.scales.y.ticks) {
+            dlOpts.scales.y.ticks.font = Object.assign({}, dlOpts.scales.y.ticks.font, { size: 16 });
+        }
+        dlOpts._isDownload = true;
+
         var offChart = new Chart(offCanvas.getContext('2d'), {
             type: cfg.type,
             data: { labels: chart.data.labels.slice(), datasets: chart.data.datasets.filter(function(ds, i) { return !chart.getDatasetMeta(i).hidden; }).map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
-            options: Object.assign({}, cfg.options, { responsive: false, animation: false, devicePixelRatio: 1 }),
+            options: dlOpts,
             plugins: cfg.plugins || []
         });
 
