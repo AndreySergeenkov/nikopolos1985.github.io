@@ -1045,19 +1045,25 @@
         if (dlOpts.layout && dlOpts.layout.padding) {
             dlOpts.layout.padding = Object.assign({}, dlOpts.layout.padding, { right: 80 });
         }
-        // Scale up annotation label fonts for download
-        if (dlOpts.plugins && dlOpts.plugins.annotation && dlOpts.plugins.annotation.annotations) {
-            var anns = dlOpts.plugins.annotation.annotations;
-            Object.keys(anns).forEach(function(key) {
-                if (anns[key].label && anns[key].label.font) {
-                    anns[key] = Object.assign({}, anns[key], {
-                        label: Object.assign({}, anns[key].label, {
-                            font: Object.assign({}, anns[key].label.font, { size: 18 }),
+        // Copy live annotation state (e.g. US Election toggle) and scale up fonts
+        var liveAnn = chart.options.plugins && chart.options.plugins.annotation;
+        if (liveAnn && liveAnn.annotations && Object.keys(liveAnn.annotations).length > 0) {
+            if (!dlOpts.plugins) dlOpts.plugins = {};
+            var dlAnns = {};
+            Object.keys(liveAnn.annotations).forEach(function(key) {
+                var orig = liveAnn.annotations[key];
+                if (orig.label && orig.label.font) {
+                    dlAnns[key] = Object.assign({}, orig, {
+                        label: Object.assign({}, orig.label, {
+                            font: Object.assign({}, orig.label.font, { size: 18 }),
                             padding: { top: 5, bottom: 5, left: 14, right: 14 }
                         })
                     });
+                } else {
+                    dlAnns[key] = orig;
                 }
             });
+            dlOpts.plugins.annotation = { annotations: dlAnns };
         }
 
         var offChart = new Chart(offCanvas.getContext('2d'), {
