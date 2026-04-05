@@ -447,6 +447,12 @@
         }
         .author-info { flex: 1; }
         .author-bio { font-size: 14px; color: #54595d; font-family: sans-serif; }
+        article ul:not(.other-research ul) { list-style: none; padding-left: 0; }
+        article ul:not(.other-research ul) > li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul:not(.other-research ul) > li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+        .other-research ul { list-style: none; padding-left: 0; }
+        .other-research ul li { padding-left: 0; }
+        .other-research ul li::before { content: none; }
         .other-research { margin-top: 20px; }
         .other-research-title { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 8px; }
         .other-research ul { margin: 0; padding-left: 20px; }
