@@ -100,6 +100,29 @@
             font-size: 15px;
             line-height: 1.7;
         }
+        .toc {
+            background: #f8f9fa;
+            padding: 16px 20px 16px 24px;
+            border-radius: 6px;
+            margin: 0 0 30px;
+            font-size: 15px;
+        }
+        .toc ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 6px;
+        }
+        .toc a {
+            color: #333;
+            background: none;
+            padding: 0;
+        }
+        .toc a:hover {
+            background: none;
+            color: #007bff;
+        }
         .note a { color: #555; }
         .image-pair {
             display: flex;
@@ -391,6 +414,16 @@
             <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; April 2, 2026</div>
         </header>
 
+        <div class="toc">
+            <ol>
+                <li><a href="#monthly-income">What Is the Average Monthly Income on Polymarket?</a></li>
+                <li><a href="#how-long">How Long Do These Profitable Traders Actually Stay Active?</a></li>
+                <li><a href="#quit-job">What if You Quit Your Job for Polymarket?</a></li>
+                <li><a href="#improve-odds">How Polymarket Could Improve the Odds</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+            </ol>
+        </div>
+
         <p>If you look at the rough ratio of winners to losers, 15.9% of Polymarket traders are in profit and 84.1% are in the red.</p>
 
         <p>But&hellip;</p>
@@ -443,7 +476,7 @@
 
         <p>The decline across all profit levels is driven by user growth fueled by the November 2024 US election hype and continued momentum after it. Less experienced users tend to trade less successfully.</p>
 
-        <h2>What Is the Average Monthly Income on Polymarket?</h2>
+        <h2 id="monthly-income">What Is the Average Monthly Income on Polymarket?</h2>
 
         <img src="images/tulip-king.jpg" alt="Tulip King tweet: Polymarket is the easiest place in crypto to make six figures right now" class="article-image">
 
@@ -489,7 +522,7 @@
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
-        <h2>How Long Do These Profitable Traders Actually Stay Active?</h2>
+        <h2 id="how-long">How Long Do These Profitable Traders Actually Stay Active?</h2>
 
         <p>53% of these traders earned that average in a single month and 73% of traders were active for no more than two months.</p>
 
@@ -552,7 +585,7 @@
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
-        <h2>What if You Quit Your Job for Polymarket?</h2>
+        <h2 id="quit-job">What if You Quit Your Job for Polymarket?</h2>
 
         <div class="image-pair">
             <img src="images/polymarket-meme.jpg" alt="Polymarket tweet: Big day for professional situation monitors, followed by: Become a full-time trader on Polymarket dot com" class="article-image">
@@ -601,7 +634,7 @@
 
         <div class="note">This calculation has a limitation. Every number represents addresses, not necessarily people. This can slightly skew the exact numbers in both directions. The real count could be lower because one person can trade from multiple wallets, each counted separately. It could be higher because one person might switch wallets mid-period, splitting a six-month streak into two three-month streaks.</div>
 
-        <h2>How Polymarket Could Improve the Odds</h2>
+        <h2 id="improve-odds">How Polymarket Could Improve the Odds</h2>
 
         <p>Polymarket recently launched a <a href="https://help.polymarket.com/en/articles/14174498-referral-program">referral program</a> offering 30% commission on new signups, which means a wave of influencer-driven users is coming. Most new traders lose money. It would be helpful if influencers promoting the platform at least taught their audience the basics: bankroll management, how prediction markets work, and why betting on impulse is a fast way to lose everything.</p>
 
@@ -613,7 +646,7 @@
 
         <p>And they could attract people who want to forecast events for reasons other than profit: intellectual interest, reputation, or proving their expertise.</p>
 
-        <h2>Methodology</h2>
+        <h2 id="methodology">Methodology</h2>
 
         <p>The only other public study on Polymarket trader profitability that I found was done by blockchain analyst DeFi Oasis in December 2025. <a href="https://x.com/defioasis/status/2005591714057297973?s=20">His data</a> showed 30% of 1.7 million addresses in profit. I got 16%. Both formulas calculate realized PnL as the difference between incoming and outgoing USDC flows. But I include splits and merges, which DeFi Oasis apparently did not account for. When splits are left out, an address looks more profitable because one category of expenses is simply invisible. On top of that, the number of addresses grew from 1.7 to 2.5 million in the three months between the two studies.</p>
 
