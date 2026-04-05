@@ -1287,7 +1287,7 @@
         };
 
         // Extract article text
-        var paragraphs = document.querySelectorAll('article p, article h2, article .note, article ul');
+        var paragraphs = document.querySelectorAll('article p, article h2, article .note, article ul, article img.article-image');
         paragraphs.forEach(function(el) {
             if (el.tagName === 'H2') {
                 d.article.push({ type: 'heading', text: el.textContent.trim() });
@@ -1297,6 +1297,11 @@
                 var items = [];
                 el.querySelectorAll('li').forEach(function(li) { items.push(li.textContent.trim()); });
                 d.article.push({ type: 'list', items: items });
+            } else if (el.tagName === 'IMG') {
+                var caption = el.nextElementSibling && el.nextElementSibling.classList.contains('image-caption') ? el.nextElementSibling.textContent.trim() : null;
+                var desc = { type: 'image', alt: el.alt };
+                if (caption) desc.caption = caption;
+                d.article.push(desc);
             } else {
                 d.article.push({ type: 'paragraph', text: el.textContent.trim() });
             }
