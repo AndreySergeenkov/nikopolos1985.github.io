@@ -150,6 +150,7 @@
             margin: 0 0 30px;
             font-size: 15px;
         }
+        .toc-title { font-weight: 600; font-size: 14px; margin: 0 0 8px; color: #333; }
         .toc ol {
             margin: 0;
             padding-left: 20px;
@@ -475,6 +476,7 @@
         </header>
 
         <div class="toc">
+            <p class="toc-title">In this article</p>
             <ol>
                 <li><a href="#make-money">How Many Polymarket Traders Make Money?</a></li>
                 <li><a href="#monthly-income">What Is the Average Monthly Income on Polymarket?</a></li>
@@ -1319,8 +1321,9 @@
         if (modalChart) { modalChart.destroy(); modalChart = null; }
         modalChart = new Chart(document.getElementById('modalCanvas').getContext('2d'), {
             type: cfg.type,
-            data: { labels: src.data.labels.slice(), datasets: src.data.datasets.map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
-            options: cfg.options
+            data: { labels: src.data.labels.slice(), datasets: src.data.datasets.filter(function(ds, i) { return !src.getDatasetMeta(i).hidden; }).map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
+            options: cfg.options,
+            plugins: cfg.plugins || []
         });
     }
 
