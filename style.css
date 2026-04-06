@@ -106,15 +106,6 @@ a:hover {
 }
 .article-list li {
    margin-bottom: 10px;
-   padding-left: 24px;
-   position: relative;
-}
-.article-list li::before {
-   content: '✦';
-   position: absolute;
-   left: 0;
-   color: #a2a9b1;
-   font-size: 12px;
 }
 .article-list a {
    font-weight: 400;
