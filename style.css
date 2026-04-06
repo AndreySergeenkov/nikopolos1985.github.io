@@ -88,6 +88,18 @@ a:hover {
 .link-highlight a {
    color: #0645ad;
 }
+.contact-line {
+   padding-left: 24px;
+   position: relative;
+}
+.contact-line::before {
+   content: '\2726';
+   position: absolute;
+   left: 0;
+   color: #a2a9b1;
+   font-size: 12px;
+   top: 2px;
+}
 .article-list {
    list-style-type: none;
    padding-left: 0;
