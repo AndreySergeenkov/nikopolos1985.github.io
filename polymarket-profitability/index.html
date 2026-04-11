@@ -488,6 +488,7 @@
     <article>
         <header class="article-header">
             <h1>How Many Traders Are Profitable on Polymarket</h1>
+            <img id="mobile-cover" class="article-image" src="images/og-image.jpg" alt="NYT headline 'Betting on Prediction Markets Is Their Job. They Make Millions.' with 'Make' crossed out and replaced with 'LOSE'" style="max-width:480px;margin:16px auto 24px;">
             <div id="anim-wrap" style="width:100%;max-width:700px;margin:16px 0 24px;border:1px solid #a2a9b1;display:none;">
             <canvas id="v" style="width:100%;height:280px;display:block;"></canvas>
             </div>
@@ -1465,6 +1466,8 @@
     (function(){
       var c=document.getElementById('v');
       if(!c||window.innerWidth<1024)return;
+      var mcov=document.getElementById('mobile-cover');
+      if(mcov)mcov.style.display='none';
       c.parentElement.style.display='block';
       var dpr=window.devicePixelRatio||1;
       var rect=c.getBoundingClientRect();
