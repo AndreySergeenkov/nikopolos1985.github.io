@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Case for a Loss-Based Polymarket Airdrop - Andrey Sergeenkov</title>
+    <meta name="description" content="I propose airdropping Polymarket's token only to those who lost money, proportional to their losses. This metric is impossible to farm or fake.">
+    <meta name="author" content="Andrey Sergeenkov">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="canonical" href="https://sergeenkov.com/loss-based-polymarket-airdrop/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Case for a Loss-Based Polymarket Airdrop">
+    <meta property="og:description" content="I propose airdropping Polymarket's token only to those who lost money, proportional to their losses. This metric is impossible to farm or fake.">
+    <meta property="og:url" content="https://sergeenkov.com/loss-based-polymarket-airdrop/">
+    <meta property="og:site_name" content="Andrey Sergeenkov">
+    <meta property="article:author" content="https://sergeenkov.com">
+    <meta property="article:published_time" content="2026-04-13">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Case for a Loss-Based Polymarket Airdrop">
+    <meta name="twitter:description" content="I propose airdropping Polymarket's token only to those who lost money, proportional to their losses. This metric is impossible to farm or fake.">
+    <meta name="twitter:creator" content="@Nikopolos">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Case for a Loss-Based Polymarket Airdrop",
+        "description": "I propose airdropping Polymarket's token only to those who lost money, proportional to their losses. This metric is impossible to farm or fake.",
+        "author": {
+            "@type": "Person",
+            "name": "Andrey Sergeenkov",
+            "url": "https://sergeenkov.com",
+            "description": "Independent researcher",
+            "sameAs": ["https://x.com/Nikopolos", "https://www.linkedin.com/in/sergeenkov/"]
+        },
+        "datePublished": "2026-04-13",
+        "url": "https://sergeenkov.com/loss-based-polymarket-airdrop/",
+        "publisher": {
+            "@type": "Person",
+            "name": "Andrey Sergeenkov",
+            "url": "https://sergeenkov.com"
+        },
+        "mainEntityOfPage": "https://sergeenkov.com/loss-based-polymarket-airdrop/"
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+    <!-- Ahrefs Web Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+            font-size: 17px;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .top-follow { font-size: 13px; color: #54595d; font-family: sans-serif; }
+        .top-follow a, .author-bio a { color: #0645ad; background: none; padding: 0; }
+        .top-follow a:hover, .author-bio a:hover { text-decoration: underline; background: none; }
+        .article-header { margin-bottom: 40px; }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 10px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #54595d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+        .article-meta a { color: #0645ad; }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p { margin-bottom: 16px; font-size: 17px; }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+        a:hover { text-decoration: underline; background: none; }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px;
+            border-radius: 0;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+        .note a { color: #0645ad; }
+        .highlight {
+            background: #fff3cd;
+            padding: 16px 20px;
+            border-radius: 0;
+            margin: 24px 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #a2a9b1;
+        }
+        .author-info { flex: 1; }
+        .author-bio { font-size: 14px; color: #54595d; font-family: sans-serif; }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 14px; color: #202122; margin-bottom: 8px; font-family: sans-serif; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 14px; }
+        .other-research a { background: none; padding: 0; color: #0645ad; }
+        .other-research a:hover { background: none; text-decoration: underline; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="../" class="back-link">&larr; Back to Home</a>
+        <div class="top-follow">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a></div>
+    </div>
+
+    <article>
+        <header class="article-header">
+            <h1>The Case for a Loss-Based Polymarket Airdrop</h1>
+            <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; April 13, 2026</div>
+        </header>
+
+        <p>A <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6443103">recent study</a> found that the top 1% of Polymarket users capture 84% of all trading profits, mostly at the expense of casual traders who bet on longshots. The authors concluded that &ldquo;the informational benefits of prediction markets come at a cost to unsophisticated participants.&rdquo; According to <a href="/polymarket-profitability/">my research</a>, 84.1% of traders are in the red.</p>
+
+        <p>Polymarket fully capitalizes on this, using prediction accuracy as the platform&rsquo;s main selling point. They describe themselves as &ldquo;the best source of real-time event probabilities&rdquo; and recently launched a <a href="https://news.polymarket.com/p/new-polymarket-tools-for-journalists">portal</a> that helps journalists embed Polymarket odds directly into their articles.</p>
+
+        <div class="highlight">The wisdom of the crowd is real, but the problem is that it is funded by the losses of the crowd.</div>
+
+        <p>In October 2025, Polymarket CMO Matthew Modabber <a href="https://www.coindesk.com/markets/2025/10/24/polymarket-will-launch-token-and-airdrop-after-u-s-relaunch-cmo-says">announced</a> that the platform is preparing for an airdrop: &ldquo;There will be a token, there will be an airdrop.&rdquo; Polymarket has not published an exact TGE date, official eligibility criteria, or allocation percentages.</p>
+
+        <p>Ahead of the airdrop, many groups of &ldquo;farmers&rdquo; started wash trading to meet the presumed airdrop criteria.</p>
+
+        <p>Shortly after the announcement, a <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">study</a> by Columbia Business School found that roughly 25% of all Polymarket trading volume shows signs of artificial activity. Co-author Allen Sirolly told <a href="https://decrypt.co/347842/columbia-study-25-polymarket-volume-wash-trading">Decrypt</a>: &ldquo;It is possibly related to airdrop farming.&rdquo;</p>
+
+        <p><a href="https://decrypt.co/344895/polymarket-airdrop-farmers-become-more-sophisticated-token-looms">Shady</a>, one of these airdrop farmers, shared with Decrypt that farmers are optimizing four metrics they believe will determine eligibility: trading volume, profitability, liquidity provision, and the number of markets traded.</p>
+
+        <p>The Columbia <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">study</a> notes that any &ldquo;potential future airdrop should be designed to exclude such activities&rdquo; because airdrop farmers contribute neither liquidity nor information to the prediction market.</p>
+
+        <h2>Most Airdrops End With a Rug Pull Chart</h2>
+
+        <p>According to <a href="https://keyrock.com/airdrops-in-the-barren-desert/">Keyrock</a> report, 88% of airdropped tokens lose value within three months of launch, and most DeFi tokens lose 60&ndash;90% of their launch price as farmers exit their positions.</p>
+
+        <p>A study by <a href="https://arxiv.org/abs/2312.02752">Fan et al.</a> found that up to 65.75% of tokens were sold shortly after an airdrop, and the primary beneficiaries were farmers, described as &ldquo;highly skilled users who employ sophisticated tactics to increase the share of tokens that they receive.&rdquo;</p>
+
+        <p>For example, the ETHFI (Ether.fi) airdrop in March 2024. The token launched at $4.13 and dropped 25% within hours as farmers claimed and immediately sold their allocations.</p>
+
+        <p>Another example is STRK (Starknet), which launched at $7.41 in February 2024 and dropped to $1.87 shortly after. Before the airdrop, Yearn.finance developer Banteg <a href="https://cointelegraph.com/news/starknet-strk-falls-nethermind-airdrop-hunters-dump-millions">warned</a> that over 700,000 wallets of the 1.3 million eligible for STRK were linked to accounts controlled by airdrop hunters.</p>
+
+        <p>An airdrop like this would repeat the fate of most airdrops and deal a serious blow to Polymarket&rsquo;s reputation in an already challenging regulatory environment. Polymarket is banned in <a href="https://www.thestreet.com/crypto/trading/major-prediction-market-faces-34th-country-ban">34 countries</a>, facing lawsuits in at least <a href="https://startpolymarket.com/countries/united-states/">11 US states</a>, and the <a href="https://www.federalregister.gov/documents/2026/03/16/2026-05105/prediction-markets">CFTC is actively seeking</a> public comment on whether prediction markets serve the public interest.</p>
+
+        <h2>There is One Other Way</h2>
+
+        <p>Whatever the airdrop criteria may be, I propose that the Polymarket team use this information vacuum around the terms to reconsider them.</p>
+
+        <p>Specifically, I propose airdropping the token only to those who lost money on Polymarket, proportional to their losses.</p>
+
+        <p>This metric is impossible to farm or fake, and certainly could not have been predicted.</p>
+
+        <p>It&rsquo;s a kind way of saying thank you to the people whose losses make Polymarket&rsquo;s intelligence possible.</p>
+
+        <p>The behavior of grateful users who unexpectedly receive compensation for their losses will be very different from that of farmers who deliberately exploit the platform for a one-time gain. Users who feel recognized are more likely to hold and stay.</p>
+
+        <p>And it would be best to announce this urgently, before the CFTC&rsquo;s comment period closes, which directly addresses wash trading, market manipulation, and whether prediction markets serve the public interest.</p>
+
+        <p>Right now, the Polymarket team has a chance to turn the airdrop from a typically doomed endeavor into a strategic PR and regulatory move.</p>
+
+        <div class="author-box">
+            <div class="author-info">
+                <div class="author-bio">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">Twitter</a>.</div>
+                <div class="other-research">
+                    <p class="other-research-title">My Other Research</p>
+                    <ul>
+                        <li><a href="/polymarket-profitability/">How Many Traders Are Profitable on Polymarket</a></li>
+                        <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13&times; After Ethereum&rsquo;s Fusaka Upgrade</a></li>
+                        <li><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a></li>
+                        <li><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO&rsquo;s $220M Security Fund Actually Make Ethereum Safer?</a></li>
+                        <li><a href="/thedao-curators-220m-hack-victims/">Curators of TheDAO&rsquo;s $220M Set a Precedent for Using Owners&rsquo; Funds for Their Own Ends</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
