@@ -221,6 +221,9 @@
     <article>
         <header class="article-header">
             <h1>The Case for a Loss-Based Polymarket Airdrop</h1>
+            <div id="airdrop-anim-wrap" style="width:100%;max-width:700px;margin:16px 0 24px;border:1px solid #a2a9b1;display:none;">
+            <canvas id="airdropAnim" style="width:100%;height:280px;display:block;"></canvas>
+            </div>
             <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; April 13, 2026</div>
         </header>
 
@@ -349,6 +352,167 @@
             ]},
             options:commonOpts
         });
+    })();
+    </script>
+    <script>
+    (function(){
+      var c=document.getElementById('airdropAnim');
+      if(!c||window.innerWidth<800)return;
+      c.parentElement.style.display='block';
+      var dpr=window.devicePixelRatio||1;
+      var rect=c.getBoundingClientRect();
+      var W=rect.width,H=rect.height;
+      c.width=W*dpr;c.height=H*dpr;
+      var ctx=c.getContext('2d');
+      ctx.scale(dpr,dpr);
+
+      var ground=H*0.75;
+      var ox=112.15,oy=294.25;
+      var logoX=W*0.15,logoY=H*0.18,logoDir=1,logoSpeed=0.6;
+      var coins=[],plants=[],t=0,lastDrop=0;
+      var syms=['$','$','$','\u20bf','\u20ac','\u00a3','\u00a5','\u00a2'];
+      var symCols=['#2e7d32','#2e7d32','#2e7d32','#f7931a','#0e8a6e','#6b3fa0','#d32f2f','#b8860b'];
+
+      function drawLogo(x,y,s){
+        ctx.save();ctx.translate(x,y);ctx.scale(s,-s);
+        ctx.fillStyle='#2E5CFF';ctx.beginPath();
+        ctx.moveTo(173.2-ox,363.2-oy);ctx.lineTo(51.1-ox,328.3-oy);
+        ctx.lineTo(51.1-ox,244.6-oy);ctx.lineTo(173.2-ox,209.7-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,296.2-oy);ctx.lineTo(71.6-ox,321.8-oy);
+        ctx.lineTo(161.4-ox,347.4-oy);ctx.closePath();
+        ctx.moveTo(62.9-ox,260.8-oy);ctx.lineTo(62.9-ox,312.1-oy);
+        ctx.lineTo(152.7-ox,286.5-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,225.3-oy);ctx.lineTo(71.6-ox,251-oy);
+        ctx.lineTo(161.4-ox,276.6-oy);ctx.closePath();
+        ctx.fill('evenodd');ctx.restore();
+      }
+
+      function dropCoin(){
+        var si=Math.floor(Math.random()*syms.length);
+        coins.push({
+          x:logoX+Math.random()*10-5,
+          y:logoY+12,
+          vy:0.3+Math.random()*0.5,
+          vx:(Math.random()-0.5)*0.8,
+          sym:syms[si],col:symCols[si],
+          landed:false,landY:0,alpha:0.85
+        });
+      }
+
+      function spawnPlant(x,gy){
+        plants.push({
+          x:x,baseY:gy,
+          height:0,maxH:15+Math.random()*25,
+          growSpeed:0.08+Math.random()*0.06,
+          sway:Math.random()*Math.PI*2,
+          leaves:1+Math.floor(Math.random()*3),
+          col:'#2e7d32',
+          alpha:0
+        });
+      }
+
+      function drawPlant(p){
+        if(p.height<1)return;
+        ctx.save();
+        ctx.globalAlpha=p.alpha;
+        var swayX=Math.sin(t*0.015+p.sway)*2;
+        // stem
+        ctx.strokeStyle='#4a7c3f';
+        ctx.lineWidth=1.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.baseY);
+        ctx.quadraticCurveTo(p.x+swayX*0.5,p.baseY-p.height*0.5,p.x+swayX,p.baseY-p.height);
+        ctx.stroke();
+        // leaves
+        var tipX=p.x+swayX,tipY=p.baseY-p.height;
+        for(var i=0;i<p.leaves;i++){
+          var ly=p.baseY-p.height*(0.4+i*0.25);
+          var lx=p.x+swayX*(ly-p.baseY)/(p.baseY-tipY+1);
+          var side=(i%2===0)?1:-1;
+          ctx.fillStyle=p.col;
+          ctx.beginPath();
+          ctx.ellipse(lx+side*5,ly,6,3,side*0.4,0,Math.PI*2);
+          ctx.fill();
+        }
+        // top bud
+        if(p.height>p.maxH*0.7){
+          ctx.fillStyle='#66bb6a';
+          ctx.beginPath();
+          ctx.arc(tipX,tipY,3,0,Math.PI*2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function draw(){
+        t++;
+        // move logo
+        logoX+=logoSpeed*logoDir;
+        logoY=H*0.15+Math.sin(t*0.02)*8;
+        if(logoX>W*0.85)logoDir=-1;
+        if(logoX<W*0.15)logoDir=1;
+
+        // drop coins
+        if(t-lastDrop>35+Math.random()*25){
+          dropCoin();lastDrop=t;
+        }
+
+        ctx.clearRect(0,0,W,H);
+
+        // ground line
+        ctx.strokeStyle='#d5d8dc';ctx.lineWidth=0.5;
+        ctx.beginPath();ctx.moveTo(0,ground);ctx.lineTo(W,ground);ctx.stroke();
+
+        // ground texture dots
+        ctx.fillStyle='#c8ccd0';ctx.globalAlpha=0.3;
+        for(var i=0;i<W;i+=12){
+          ctx.fillRect(i+Math.sin(i)*2,ground+1,1,1);
+        }
+        ctx.globalAlpha=1;
+
+        // logo
+        ctx.globalAlpha=0.85;
+        drawLogo(logoX,logoY,0.2);
+        ctx.globalAlpha=1;
+
+        // coins
+        for(var i=coins.length-1;i>=0;i--){
+          var co=coins[i];
+          if(!co.landed){
+            co.vy+=0.04;
+            co.y+=co.vy;
+            co.x+=co.vx;
+            if(co.y>=ground-6){
+              co.landed=true;
+              co.landY=ground-6;
+              co.y=co.landY;
+              spawnPlant(co.x,ground);
+            }
+          }else{
+            co.alpha-=0.003;
+            if(co.alpha<=0){coins.splice(i,1);continue;}
+          }
+          ctx.font='12px monospace';
+          ctx.textAlign='center';ctx.textBaseline='middle';
+          ctx.fillStyle=co.col;
+          ctx.globalAlpha=co.alpha;
+          ctx.fillText(co.sym,co.x,co.y);
+        }
+        ctx.globalAlpha=1;
+
+        // plants
+        for(var i=0;i<plants.length;i++){
+          var p=plants[i];
+          if(p.height<p.maxH)p.height+=p.growSpeed;
+          if(p.alpha<0.7)p.alpha+=0.005;
+          drawPlant(p);
+        }
+        // cap plants
+        if(plants.length>40)plants.splice(0,5);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
     })();
     </script>
 </body>
