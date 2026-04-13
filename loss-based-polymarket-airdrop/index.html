@@ -366,12 +366,10 @@
       var ctx=c.getContext('2d');
       ctx.scale(dpr,dpr);
 
-      var ground=H*0.75;
+      var ground=H-8;
       var ox=112.15,oy=294.25;
-      var logoX=W*0.15,logoY=H*0.18,logoDir=1,logoSpeed=0.6;
+      var logoX=W*0.5,logoY=H*0.15,logoDir=1,logoSpeed=0.8;
       var coins=[],plants=[],t=0,lastDrop=0;
-      var syms=['$','$','$','\u20bf','\u20ac','\u00a3','\u00a5','\u00a2'];
-      var symCols=['#2e7d32','#2e7d32','#2e7d32','#f7931a','#0e8a6e','#6b3fa0','#d32f2f','#b8860b'];
 
       function drawLogo(x,y,s){
         ctx.save();ctx.translate(x,y);ctx.scale(s,-s);
@@ -387,128 +385,124 @@
         ctx.fill('evenodd');ctx.restore();
       }
 
-      function dropCoin(){
-        var si=Math.floor(Math.random()*syms.length);
-        coins.push({
-          x:logoX+Math.random()*10-5,
-          y:logoY+12,
-          vy:0.3+Math.random()*0.5,
-          vx:(Math.random()-0.5)*0.8,
-          sym:syms[si],col:symCols[si],
-          landed:false,landY:0,alpha:0.85
-        });
+      function drawCoin(x,y,r,alpha){
+        ctx.save();ctx.globalAlpha=alpha;
+        // gold circle
+        ctx.fillStyle='#f0c030';
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+        // shine
+        ctx.fillStyle='#fde68a';
+        ctx.beginPath();ctx.arc(x-r*0.25,y-r*0.25,r*0.35,0,Math.PI*2);ctx.fill();
+        // border
+        ctx.strokeStyle='#b8860b';ctx.lineWidth=1;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+        // $ sign
+        ctx.fillStyle='#8b6914';ctx.font='bold '+(r*1.1)+'px sans-serif';
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText('$',x,y+0.5);
+        ctx.restore();
       }
 
-      function spawnPlant(x,gy){
-        plants.push({
-          x:x,baseY:gy,
-          height:0,maxH:15+Math.random()*25,
-          growSpeed:0.08+Math.random()*0.06,
-          sway:Math.random()*Math.PI*2,
-          leaves:1+Math.floor(Math.random()*3),
-          col:'#2e7d32',
-          alpha:0
-        });
-      }
+      // ASCII plant parts
+      var plantStages=[
+        [' . '],
+        [' | ',' . '],
+        ['/|\\',' | '],
+        [' @ ','/|\\','.|.'],
+        [' @ ','/|\\','.|.',' | ']
+      ];
 
-      function drawPlant(p){
-        if(p.height<1)return;
-        ctx.save();
-        ctx.globalAlpha=p.alpha;
-        var swayX=Math.sin(t*0.015+p.sway)*2;
-        // stem
-        ctx.strokeStyle='#4a7c3f';
-        ctx.lineWidth=1.5;
-        ctx.beginPath();
-        ctx.moveTo(p.x,p.baseY);
-        ctx.quadraticCurveTo(p.x+swayX*0.5,p.baseY-p.height*0.5,p.x+swayX,p.baseY-p.height);
-        ctx.stroke();
-        // leaves
-        var tipX=p.x+swayX,tipY=p.baseY-p.height;
-        for(var i=0;i<p.leaves;i++){
-          var ly=p.baseY-p.height*(0.4+i*0.25);
-          var lx=p.x+swayX*(ly-p.baseY)/(p.baseY-tipY+1);
-          var side=(i%2===0)?1:-1;
-          ctx.fillStyle=p.col;
-          ctx.beginPath();
-          ctx.ellipse(lx+side*5,ly,6,3,side*0.4,0,Math.PI*2);
-          ctx.fill();
-        }
-        // top bud
-        if(p.height>p.maxH*0.7){
-          ctx.fillStyle='#66bb6a';
-          ctx.beginPath();
-          ctx.arc(tipX,tipY,3,0,Math.PI*2);
-          ctx.fill();
+      function drawAsciiPlant(p){
+        if(p.stage<0)return;
+        ctx.save();ctx.globalAlpha=p.alpha;
+        var stage=Math.min(p.stage, plantStages.length-1);
+        var lines=plantStages[stage];
+        ctx.font='9px monospace';
+        ctx.textAlign='center';ctx.textBaseline='bottom';
+        ctx.fillStyle='#3a8a3a';
+        var swayX=Math.sin(t*0.012+p.sway)*1.5;
+        for(var i=0;i<lines.length;i++){
+          ctx.fillText(lines[i], p.x+swayX*(1-i/lines.length), p.baseY-i*8);
         }
         ctx.restore();
       }
 
+      function dropCoin(){
+        coins.push({
+          x:logoX+Math.random()*8-4,
+          y:logoY+14,
+          vy:0.4+Math.random()*0.5,
+          vx:(Math.random()-0.5)*1.2,
+          r:4+Math.random()*2,
+          landed:false,alpha:0.9,
+          rot:Math.random()*Math.PI*2
+        });
+      }
+
+      function spawnPlant(x){
+        plants.push({
+          x:x,baseY:ground,
+          stage:-1,growTimer:0,
+          maxStage:1+Math.floor(Math.random()*4),
+          sway:Math.random()*Math.PI*2,
+          alpha:0
+        });
+      }
+
       function draw(){
         t++;
-        // move logo
+        // move logo edge to edge
         logoX+=logoSpeed*logoDir;
-        logoY=H*0.15+Math.sin(t*0.02)*8;
-        if(logoX>W*0.85)logoDir=-1;
-        if(logoX<W*0.15)logoDir=1;
+        logoY=H*0.13+Math.sin(t*0.02)*6;
+        if(logoX>W-15)logoDir=-1;
+        if(logoX<15)logoDir=1;
 
-        // drop coins
-        if(t-lastDrop>35+Math.random()*25){
+        if(t-lastDrop>30+Math.random()*20){
           dropCoin();lastDrop=t;
         }
 
         ctx.clearRect(0,0,W,H);
 
-        // ground line
-        ctx.strokeStyle='#d5d8dc';ctx.lineWidth=0.5;
+        // ground
+        ctx.fillStyle='#e8e8e8';
+        ctx.fillRect(0,ground,W,H-ground);
+        ctx.strokeStyle='#c0c0c0';ctx.lineWidth=0.5;
         ctx.beginPath();ctx.moveTo(0,ground);ctx.lineTo(W,ground);ctx.stroke();
-
-        // ground texture dots
-        ctx.fillStyle='#c8ccd0';ctx.globalAlpha=0.3;
-        for(var i=0;i<W;i+=12){
-          ctx.fillRect(i+Math.sin(i)*2,ground+1,1,1);
-        }
-        ctx.globalAlpha=1;
 
         // logo
         ctx.globalAlpha=0.85;
-        drawLogo(logoX,logoY,0.2);
+        drawLogo(logoX,logoY,0.18);
         ctx.globalAlpha=1;
 
         // coins
         for(var i=coins.length-1;i>=0;i--){
           var co=coins[i];
           if(!co.landed){
-            co.vy+=0.04;
+            co.vy+=0.035;
             co.y+=co.vy;
             co.x+=co.vx;
-            if(co.y>=ground-6){
+            co.rot+=0.1;
+            if(co.y>=ground-co.r){
               co.landed=true;
-              co.landY=ground-6;
-              co.y=co.landY;
-              spawnPlant(co.x,ground);
+              co.y=ground-co.r;
+              spawnPlant(co.x);
             }
           }else{
-            co.alpha-=0.003;
+            co.alpha-=0.004;
             if(co.alpha<=0){coins.splice(i,1);continue;}
           }
-          ctx.font='12px monospace';
-          ctx.textAlign='center';ctx.textBaseline='middle';
-          ctx.fillStyle=co.col;
-          ctx.globalAlpha=co.alpha;
-          ctx.fillText(co.sym,co.x,co.y);
+          drawCoin(co.x,co.y,co.r,co.alpha);
         }
-        ctx.globalAlpha=1;
 
         // plants
         for(var i=0;i<plants.length;i++){
           var p=plants[i];
-          if(p.height<p.maxH)p.height+=p.growSpeed;
-          if(p.alpha<0.7)p.alpha+=0.005;
-          drawPlant(p);
+          p.growTimer++;
+          if(p.growTimer%40===0 && p.stage<p.maxStage)p.stage++;
+          if(p.alpha<0.65)p.alpha+=0.008;
+          drawAsciiPlant(p);
         }
-        // cap plants
-        if(plants.length>40)plants.splice(0,5);
+        if(plants.length>50)plants.splice(0,8);
 
         requestAnimationFrame(draw);
       }
