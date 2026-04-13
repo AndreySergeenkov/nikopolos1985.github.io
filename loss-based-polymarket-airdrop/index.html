@@ -430,7 +430,7 @@
       function spawnPlant(x){
         plants.push({
           x:x,baseY:ground,
-          height:0,maxH:15+Math.random()*25,
+          height:0,maxH:Math.random()<0.15 ? 50+Math.random()*30 : 15+Math.random()*25,
           growSpeed:0.08+Math.random()*0.06,
           sway:Math.random()*Math.PI*2,
           leaves:1+Math.floor(Math.random()*3),
