@@ -381,9 +381,9 @@
 
       function drawCoin(x,y,r,alpha){
         ctx.save();ctx.globalAlpha=alpha;
-        ctx.fillStyle='#daa520';
+        ctx.fillStyle='#ffd700';
         ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-        ctx.strokeStyle='#b8860b';ctx.lineWidth=0.5;
+        ctx.strokeStyle='#daa520';ctx.lineWidth=0.5;
         ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
         ctx.restore();
       }
@@ -447,12 +447,6 @@
         }
 
         ctx.clearRect(0,0,W,H);
-
-        // ground
-        ctx.fillStyle='#e8e8e8';
-        ctx.fillRect(0,ground,W,H-ground);
-        ctx.strokeStyle='#c0c0c0';ctx.lineWidth=0.5;
-        ctx.beginPath();ctx.moveTo(0,ground);ctx.lineTo(W,ground);ctx.stroke();
 
         // logo
         ctx.globalAlpha=0.85;
