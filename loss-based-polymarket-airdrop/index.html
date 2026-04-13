@@ -451,18 +451,21 @@
     <script>
     (function(){
       var c=document.getElementById('airdropAnim');
-      if(!c||window.innerWidth<800)return;
+      if(!c)return;
       c.parentElement.style.display='block';
       var dpr=window.devicePixelRatio||1;
       var rect=c.getBoundingClientRect();
-      var W=rect.width,H=rect.height;
+      var W=rect.width,H=W<500?160:W<700?200:280;
+      c.style.height=H+'px';
       c.width=W*dpr;c.height=H*dpr;
       var ctx=c.getContext('2d');
       ctx.scale(dpr,dpr);
 
-      var ground=H-8;
+      var ground=H-6;
       var ox=112.15,oy=294.25;
-      var logoX=W*0.5,logoY=H*0.15,logoDir=1,logoSpeed=0.8;
+      var logoScale=W<500?0.12:W<700?0.15:0.18;
+      var coinR=W<500?1.8:W<700?2.2:2.5;
+      var logoX=W*0.5,logoY=H*0.15,logoDir=1,logoSpeed=W<500?0.5:0.8;
       var coins=[],plants=[],t=0,lastDrop=0;
 
       function drawLogo(x,y,s){
@@ -520,7 +523,7 @@
           y:logoY+14,
           vy:0.4+Math.random()*0.5,
           vx:(Math.random()-0.5)*1.2,
-          r:2.5+Math.random()*1,
+          r:coinR+Math.random()*1,
           landed:false,alpha:0.85
         });
       }
@@ -528,7 +531,7 @@
       function spawnPlant(x){
         plants.push({
           x:x,baseY:ground,
-          height:0,maxH:Math.random()<0.15 ? 50+Math.random()*30 : 15+Math.random()*25,
+          height:0,maxH:W<500?(Math.random()<0.15?25+Math.random()*15:8+Math.random()*12):(Math.random()<0.15?50+Math.random()*30:15+Math.random()*25),
           growSpeed:0.08+Math.random()*0.06,
           sway:Math.random()*Math.PI*2,
           leaves:1+Math.floor(Math.random()*3),
@@ -553,7 +556,7 @@
 
         // logo
         ctx.globalAlpha=0.85;
-        drawLogo(logoX,logoY,0.18);
+        drawLogo(logoX,logoY,logoScale);
         ctx.globalAlpha=1;
 
         // coins
