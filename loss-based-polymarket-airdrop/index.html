@@ -455,7 +455,7 @@
       c.parentElement.style.display='block';
       var dpr=window.devicePixelRatio||1;
       var rect=c.getBoundingClientRect();
-      var W=rect.width,H=W<500?160:W<700?200:280;
+      var W=rect.width,H=280;
       c.style.height=H+'px';
       c.width=W*dpr;c.height=H*dpr;
       var ctx=c.getContext('2d');
