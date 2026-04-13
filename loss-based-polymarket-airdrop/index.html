@@ -406,8 +406,10 @@
           ctx.beginPath();ctx.ellipse(lx+side*5,ly,6,3,side*0.4,0,Math.PI*2);ctx.fill();
         }
         if(p.height>p.maxH*0.7){
-          ctx.fillStyle='#66bb6a';
-          ctx.beginPath();ctx.arc(tipX,tipY,3,0,Math.PI*2);ctx.fill();
+          ctx.fillStyle=p.flowerCol;
+          ctx.beginPath();ctx.arc(tipX,tipY,3.5,0,Math.PI*2);ctx.fill();
+          ctx.fillStyle='#ffeaa7';
+          ctx.beginPath();ctx.arc(tipX,tipY,1.5,0,Math.PI*2);ctx.fill();
         }
         ctx.restore();
       }
@@ -430,6 +432,7 @@
           growSpeed:0.08+Math.random()*0.06,
           sway:Math.random()*Math.PI*2,
           leaves:1+Math.floor(Math.random()*3),
+          flowerCol:['#e84393','#fd79a8','#a29bfe','#fdcb6e','#e17055','#00cec9','#6c5ce7','#ff6b6b','#f39c12'][Math.floor(Math.random()*9)],
           alpha:0
         });
       }
