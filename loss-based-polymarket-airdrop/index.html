@@ -59,7 +59,6 @@
     <!-- Ahrefs Web Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -336,12 +335,7 @@
             data:{labels:ethfiLabels,datasets:[
                 {label:'ETHFI',data:ethfiData,borderColor:'#dc3545',borderWidth:1.5,fill:{target:'origin',above:'rgba(220,53,69,0.08)'},pointRadius:0,tension:0.2}
             ]},
-            options:Object.assign({},commonOpts,{plugins:Object.assign({},commonOpts.plugins,{
-                annotation:{annotations:{
-                    launch:{type:'line',xMin:0,xMax:0,borderColor:'#a2a9b1',borderWidth:1,borderDash:[4,3],
-                        label:{display:true,content:'Airdrop',position:'start',backgroundColor:'#f8f9fa',color:'#54595d',font:{size:10,weight:500,family:'sans-serif'},padding:{top:2,bottom:2,left:6,right:6}}}
-                }}
-            })})
+            options:commonOpts
         });
 
         // STRK
@@ -353,12 +347,7 @@
             data:{labels:strkLabels,datasets:[
                 {label:'STRK',data:strkData,borderColor:'#6f42c1',borderWidth:1.5,fill:{target:'origin',above:'rgba(111,66,193,0.08)'},pointRadius:0,tension:0.2}
             ]},
-            options:Object.assign({},commonOpts,{plugins:Object.assign({},commonOpts.plugins,{
-                annotation:{annotations:{
-                    launch:{type:'line',xMin:0,xMax:0,borderColor:'#a2a9b1',borderWidth:1,borderDash:[4,3],
-                        label:{display:true,content:'Airdrop',position:'start',backgroundColor:'#f8f9fa',color:'#54595d',font:{size:10,weight:500,family:'sans-serif'},padding:{top:2,bottom:2,left:6,right:6}}}
-                }}
-            })})
+            options:commonOpts
         });
     })();
     </script>
