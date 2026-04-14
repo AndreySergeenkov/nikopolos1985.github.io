@@ -466,7 +466,7 @@
       var logoScale=W<500?0.12:W<700?0.15:0.18;
       var coinR=W<500?1.8:W<700?2.2:2.5;
       var logoX=W*0.5,logoY=H*0.15,logoDir=1,logoSpeed=W<500?0.5:0.8;
-      var coins=[],plants=[],t=0,lastDrop=0;
+      var coins=[],plants=[],t=0,lastBurst=0,burstQueue=0;
 
       function drawLogo(x,y,s){
         ctx.save();ctx.translate(x,y);ctx.scale(s,-s);
@@ -548,8 +548,13 @@
         if(logoX>W-15)logoDir=-1;
         if(logoX<15)logoDir=1;
 
-        if(t-lastDrop>38+Math.random()*25){
-          dropCoin();lastDrop=t;
+        // burst bombing pattern
+        if(burstQueue>0&&t%4===0){
+          dropCoin();burstQueue--;
+        }
+        if(burstQueue<=0&&t-lastBurst>80+Math.random()*60){
+          burstQueue=4+Math.floor(Math.random()*5);
+          lastBurst=t;
         }
 
         ctx.clearRect(0,0,W,H);
@@ -586,7 +591,7 @@
           if(p.alpha<0.7)p.alpha+=0.005;
           drawPlant(p);
         }
-        if(plants.length>40)plants.splice(0,8);
+        if(plants.length>45)plants.splice(0,6);
 
         requestAnimationFrame(draw);
       }
