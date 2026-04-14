@@ -548,7 +548,7 @@
         if(logoX>W-15)logoDir=-1;
         if(logoX<15)logoDir=1;
 
-        if(t-lastDrop>30+Math.random()*20){
+        if(t-lastDrop>38+Math.random()*25){
           dropCoin();lastDrop=t;
         }
 
@@ -586,7 +586,7 @@
           if(p.alpha<0.7)p.alpha+=0.005;
           drawPlant(p);
         }
-        if(plants.length>50)plants.splice(0,8);
+        if(plants.length>40)plants.splice(0,8);
 
         requestAnimationFrame(draw);
       }
