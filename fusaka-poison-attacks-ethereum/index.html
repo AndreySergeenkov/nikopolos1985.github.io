@@ -1013,6 +1013,7 @@
       var c=document.getElementById('dustAnim');
       if(!c)return;
       var dpr=window.devicePixelRatio||1;
+      var ctx=c.getContext('2d');
       var W,H;
       function resize(){
         var r=c.getBoundingClientRect();
@@ -1020,212 +1021,275 @@
         c.width=W*dpr;c.height=H*dpr;
         ctx.setTransform(dpr,0,0,dpr,0,0);
       }
-      var ctx=c.getContext('2d');
       resize();
       window.addEventListener('resize',resize);
 
       var REAL='0x1a2B3c4D5e6F7a8B9c0D1e2F3a4B5c6D7e8F7f3D';
       var FAKE='0x1a2B9f1A0bCe38D764820dF5a92E1c0B4d3A7f3D';
+      var SHORT_REAL=REAL.slice(0,6)+'…'+REAL.slice(-4);
+      var SHORT_FAKE=FAKE.slice(0,6)+'…'+FAKE.slice(-4);
 
-      // phases: show_victim, show_history, create_fake, send_dust, dust_lands, victim_copies, money_flies, reset
-      var phase='show_victim',timer=0,t=0;
-      var PHASE_DUR={show_victim:90,show_history:70,create_fake:100,send_dust:60,dust_lands:80,victim_copies:70,money_flies:100,reset:50};
+      var STEPS=[
+        {id:'intro',         dur:90,  caption:'Step 1 of 7 — Victim has a saved contact in their wallet.'},
+        {id:'history',       dur:90,  caption:'Step 2 of 7 — Past transactions appear in history with addresses shown truncated.'},
+        {id:'attacker',      dur:120, caption:'Step 3 of 7 — Attacker generates a lookalike address: same first 4 and last 4 characters.'},
+        {id:'dust_send',     dur:90,  caption:'Step 4 of 7 — Attacker sends a tiny dust transaction to the victim.'},
+        {id:'dust_landed',   dur:140, caption:'Step 5 of 7 — In the truncated view, the fake row looks identical to the real one.'},
+        {id:'victim_copies', dur:100, caption:'Step 6 of 7 — Victim copies the most recent address from history — the fake one.'},
+        {id:'funds_sent',    dur:120, caption:'Step 7 of 7 — Victim\'s payment goes to the attacker instead of the real contact.'}
+      ];
+      var stepIdx=0,timer=0,t=0;
 
-      var dustY=0,dustAlpha=0;
-      var moneyY=0,moneyAlpha=0;
-      var copyFlash=0;
-      var cursorX=0,cursorBlink=0;
+      var col={
+        match:'#2e7d32', diff:'#dc3545', addr:'#222', dim:'#888',
+        label:'#666', caption:'#202122', bg:'#ffffff', panel:'#fafafa',
+        border:'#d0d0d0', flash:'#dc3545',
+        money:'#b8860b', dust:'#666'
+      };
 
-      // layout
-      var monoSize,lineH,padX,addrY1,histY,fakeY,col;
-
-      function calcLayout(){
-        monoSize=W<500?9:12;
-        lineH=W<500?16:22;
-        padX=W<500?8:20;
-        addrY1=36;
-        histY=addrY1+lineH*2.5;
-        fakeY=histY+lineH*4;
-        col={
-          match:'#2e7d32',
-          diff:'#dc3545',
-          addr:'#333',
-          dim:'#aaa',
-          label:'#888',
-          bg:'#fafafa',
-          histBg:'#f0f0f0',
-          cursor:'#0645ad',
-          money:'#f7931a',
-          dust:'#999'
-        };
+      function layout(){
+        var small=W<500;
+        var L={};
+        L.small=small;
+        L.padX=small?10:20;
+        L.monoBig=small?10:13;
+        L.monoSm=small?9:12;
+        L.captionY=small?10:12;
+        L.captionFont=small?11:13;
+        L.labelFont=small?10:12;
+        L.victimLabelY=small?38:46;
+        L.victimAddrY=L.victimLabelY+(small?12:14);
+        L.histLabelY=L.victimAddrY+(small?22:30);
+        L.histTop=L.histLabelY+(small?12:14);
+        L.histRowH=small?16:20;
+        L.histRows=4;
+        L.histBottom=L.histTop+L.histRowH*L.histRows+6;
+        L.attLabelY=L.histBottom+(small?14:18);
+        L.attAddrY=L.attLabelY+(small?12:14);
+        return L;
       }
-      calcLayout();
 
-      function drawAddr(x,y,addr,highlightDiff,alpha){
-        ctx.globalAlpha=alpha||1;
-        ctx.font=monoSize+'px monospace';
+      function setFontMono(size){ ctx.font=size+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'; }
+      function setFontSans(size,weight){ ctx.font=(weight?weight+' ':'')+size+'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'; }
+
+      function drawAddrFull(x,y,addr,L,opts){
+        opts=opts||{};
+        setFontMono(L.monoBig);
         ctx.textBaseline='top';
         var charW=ctx.measureText('0').width;
         for(var i=0;i<addr.length;i++){
           var ch=addr[i];
-          if(highlightDiff&&i>=4&&i<addr.length-4){
-            if(addr[i]!==REAL[i]){
-              ctx.fillStyle=col.diff;
-            }else{
-              ctx.fillStyle=col.dim;
-            }
-          }else if(highlightDiff&&(i<4||i>=addr.length-4)){
-            ctx.fillStyle=col.match;
-          }else{
-            ctx.fillStyle=col.addr;
-          }
+          var color=col.addr;
+          if(opts.highlightEnds && (i<4 || i>=addr.length-4)) color=col.match;
+          else if(opts.highlightMiddleDiff && i>=4 && i<addr.length-4) color=col.diff;
+          ctx.fillStyle=color;
           ctx.fillText(ch,x+i*charW,y);
         }
-        ctx.globalAlpha=1;
-      }
-
-      function drawLabel(x,y,text,color){
-        ctx.font=(monoSize-1)+'px sans-serif';
-        ctx.fillStyle=color||col.label;
-        ctx.textBaseline='top';
-        ctx.fillText(text,x,y);
-      }
-
-      function drawBox(x,y,w,h,bg,borderCol){
-        ctx.fillStyle=bg;
-        ctx.fillRect(x,y,w,h);
-        if(borderCol){
-          ctx.strokeStyle=borderCol;
-          ctx.lineWidth=1;
-          ctx.strokeRect(x,y,w,h);
+        if(opts.cursorAt!=null){
+          var cx=x+opts.cursorAt*charW;
+          if(Math.floor(t/15)%2===0){
+            ctx.fillStyle=col.diff;
+            ctx.fillRect(cx,y,1.5,L.monoBig+2);
+          }
         }
       }
 
-      function addrWidth(){
-        ctx.font=monoSize+'px monospace';
-        return ctx.measureText(REAL).width;
+      function drawHistoryRow(x,y,L,addr,note,emphasized,faded){
+        setFontMono(L.monoSm);
+        ctx.textBaseline='top';
+        var oldAlpha=ctx.globalAlpha;
+        if(faded) ctx.globalAlpha=oldAlpha*0.6;
+        ctx.fillStyle=emphasized?col.diff:col.addr;
+        ctx.fillText(addr,x,y);
+        var addrW=ctx.measureText(addr).width;
+        setFontSans(L.monoSm,null);
+        ctx.fillStyle=col.dim;
+        ctx.fillText('  '+note,x+addrW,y);
+        ctx.globalAlpha=oldAlpha;
       }
+
+      function drawArrow(x1,y1,x2,y2,color,label){
+        ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+        var ang=Math.atan2(y2-y1,x2-x1);
+        var ah=6;
+        ctx.beginPath();
+        ctx.moveTo(x2,y2);
+        ctx.lineTo(x2-ah*Math.cos(ang-Math.PI/7),y2-ah*Math.sin(ang-Math.PI/7));
+        ctx.lineTo(x2-ah*Math.cos(ang+Math.PI/7),y2-ah*Math.sin(ang+Math.PI/7));
+        ctx.closePath(); ctx.fill();
+        if(label){
+          setFontSans(11,'600');
+          ctx.textBaseline='middle';
+          ctx.fillStyle=color;
+          ctx.fillText(label,(x1+x2)/2+8,(y1+y2)/2);
+        }
+      }
+
+      function ease(p){ return p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; }
 
       function draw(){
-        t++;timer++;
-        calcLayout();
-        var aw=addrWidth();
-        var dur=PHASE_DUR[phase];
+        t++; timer++;
+        var L=layout();
+        var step=STEPS[stepIdx];
 
-        // phase transitions
-        if(timer>=dur){
-          timer=0;
-          if(phase==='show_victim')phase='show_history';
-          else if(phase==='show_history')phase='create_fake';
-          else if(phase==='create_fake')phase='send_dust';
-          else if(phase==='send_dust')phase='dust_lands';
-          else if(phase==='dust_lands')phase='victim_copies';
-          else if(phase==='victim_copies')phase='money_flies';
-          else if(phase==='money_flies')phase='reset';
-          else if(phase==='reset'){phase='show_victim';dustY=0;moneyY=0;copyFlash=0;}
-        }
+        if(timer>=step.dur){ timer=0; stepIdx=(stepIdx+1)%STEPS.length; }
+        var prog=timer/step.dur;
+        var id=step.id;
 
-        var prog=timer/dur;
         ctx.clearRect(0,0,W,H);
+        ctx.fillStyle=col.bg; ctx.fillRect(0,0,W,H);
 
-        // Background
-        ctx.fillStyle=col.bg;
-        ctx.fillRect(0,0,W,H);
+        // ---- caption ----
+        setFontSans(L.captionFont,'600');
+        ctx.fillStyle=col.caption;
+        ctx.textBaseline='top';
+        ctx.fillText(step.caption,L.padX,L.captionY);
 
-        // ---- VICTIM SECTION (top) ----
-        var victimAlpha=phase==='show_victim'?prog:1;
-        if(phase!=='reset'){
-          drawLabel(padX,addrY1-14,'Victim\'s real contact:',col.label);
-          drawAddr(padX,addrY1,REAL,false,victimAlpha);
-        }
+        // ---- victim's saved contact ----
+        setFontSans(L.labelFont,null);
+        ctx.fillStyle=col.label;
+        ctx.textBaseline='top';
+        var victimAlpha=id==='intro'?ease(prog):1;
+        ctx.globalAlpha=victimAlpha;
+        ctx.fillText("Victim's saved contact (full address)",L.padX,L.victimLabelY);
+        drawAddrFull(L.padX,L.victimAddrY,REAL,L,{highlightEnds:true});
+        ctx.globalAlpha=1;
 
-        // ---- TRANSACTION HISTORY (middle) ----
-        var showHist=phase!=='show_victim'&&phase!=='reset';
-        if(showHist){
-          var histAlpha=phase==='show_history'?prog:1;
+        // ---- history panel ----
+        var rowY0=L.histTop+4;
+        var px=L.padX-6, py=L.histTop-2, pw=W-2*L.padX+12, ph=L.histRowH*L.histRows+8;
+        if(id!=='intro'){
+          var histAlpha=id==='history'?ease(prog):1;
           ctx.globalAlpha=histAlpha;
-          drawLabel(padX,histY-14,'Transaction history:');
-          drawBox(padX-4,histY-2,aw+8,lineH*3.5+4,col.histBg,'#ddd');
+          setFontSans(L.labelFont,null);
+          ctx.fillStyle=col.label;
+          ctx.fillText("Wallet's transaction history (addresses truncated)",L.padX,L.histLabelY);
+          ctx.fillStyle=col.panel; ctx.fillRect(px,py,pw,ph);
+          ctx.strokeStyle=col.border; ctx.lineWidth=1; ctx.strokeRect(px+0.5,py+0.5,pw-1,ph-1);
 
-          // existing transactions
-          ctx.font=(monoSize-1)+'px monospace';
-          ctx.fillStyle=col.dim;ctx.textBaseline='top';
-          ctx.fillText('0xf39F...2266  sent 1.5 ETH',padX,histY+2);
-          ctx.fillText('0x7c8A...9eB1  sent 0.3 ETH',padX,histY+2+lineH);
+          drawHistoryRow(L.padX,rowY0,L,'0xf39F…2266','sent 1.5 ETH',false,true);
+          drawHistoryRow(L.padX,rowY0+L.histRowH,L,'0x7c8A…9eB1','sent 0.3 ETH',false,true);
+          drawHistoryRow(L.padX,rowY0+L.histRowH*2,L,SHORT_REAL,'sent 200 USDT — real contact',false,false);
 
-          // real contact in history
-          ctx.fillStyle=col.addr;
-          ctx.fillText(REAL.slice(0,6)+'...'+REAL.slice(-4)+'  sent 200 USDT',padX,histY+2+lineH*2);
-
-          ctx.globalAlpha=1;
-        }
-
-        // ---- ATTACKER CREATES FAKE (bottom) ----
-        var showFake=phase==='create_fake'||phase==='send_dust'||phase==='dust_lands'||phase==='victim_copies'||phase==='money_flies';
-        if(showFake){
-          var fakeAlpha=phase==='create_fake'?prog:1;
-          drawLabel(padX,fakeY-14,'Attacker generates lookalike address:',phase==='create_fake'?col.diff:col.label);
-          var revealCount=phase==='create_fake'?Math.floor(prog*FAKE.length):FAKE.length;
-          var partial=FAKE.slice(0,revealCount);
-          drawAddr(padX,fakeY,partial,true,fakeAlpha);
-        }
-
-        // ---- DUST TRANSACTION (flying) ----
-        if(phase==='send_dust'){
-          dustY=fakeY-prog*(fakeY-histY-lineH*2.5);
-          dustAlpha=0.8;
-          ctx.globalAlpha=0.8;
-          ctx.font=(monoSize-1)+'px sans-serif';
-          ctx.fillStyle=col.dust;
-          ctx.fillText('← 0.001 USDT (dust)',padX+aw+10,dustY);
-          ctx.globalAlpha=1;
-        }
-
-        // ---- DUST LANDS IN HISTORY ----
-        if(phase==='dust_lands'||phase==='victim_copies'||phase==='money_flies'){
-          ctx.globalAlpha=phase==='dust_lands'?Math.min(1,prog*2):1;
-          ctx.font=(monoSize-1)+'px monospace';
-          ctx.fillStyle=col.diff;ctx.textBaseline='top';
-          ctx.fillText(FAKE.slice(0,6)+'...'+FAKE.slice(-4)+'  sent 0.001 USDT ⚠',padX,histY+2+lineH*3);
-
-          // extend history box
-          drawBox(padX-4,histY-2,aw+8,lineH*4.5+4,'transparent','#ddd');
-          ctx.globalAlpha=1;
-        }
-
-        // ---- VICTIM COPIES WRONG ADDRESS ----
-        if(phase==='victim_copies'){
-          copyFlash=Math.sin(t*0.15)*0.3+0.7;
-          // highlight the fake row
-          ctx.globalAlpha=copyFlash*0.3;
-          ctx.fillStyle=col.diff;
-          ctx.fillRect(padX-4,histY+lineH*3,aw+8,lineH);
-          ctx.globalAlpha=1;
-
-          // cursor + "copied!" label
-          drawLabel(padX+aw+14,histY+lineH*3+2,'← Victim copies this address!',col.diff);
-        }
-
-        // ---- MONEY FLIES TO ATTACKER ----
-        if(phase==='money_flies'){
-          var flyProg=prog;
-          var startY=histY+lineH*2;
-          var endY=fakeY;
-          moneyY=startY+flyProg*(endY-startY);
-          moneyAlpha=1-flyProg*0.3;
-
-          ctx.globalAlpha=moneyAlpha;
-          ctx.font='bold '+monoSize+'px sans-serif';
-          ctx.fillStyle=col.money;
-          ctx.fillText('$50,000 USDT →',padX,moneyY);
-
-          // flash attacker address
-          if(Math.floor(t/8)%2===0){
-            ctx.globalAlpha=0.2;
-            ctx.fillStyle=col.money;
-            ctx.fillRect(padX-4,fakeY-2,aw+8,lineH+4);
+          var showDust=(id==='dust_landed' || id==='victim_copies' || id==='funds_sent') ||
+                       (id==='dust_send' && prog>0.85);
+          if(showDust){
+            var dustAppearAlpha=1;
+            if(id==='dust_send') dustAppearAlpha=Math.min(1,(prog-0.85)/0.15);
+            else if(id==='dust_landed') dustAppearAlpha=Math.min(1,prog*3);
+            var saved=ctx.globalAlpha;
+            ctx.globalAlpha=saved*dustAppearAlpha;
+            drawHistoryRow(L.padX,rowY0+L.histRowH*3,L,SHORT_FAKE,'received 0.001 USDT — fake ⚠',true,false);
+            ctx.globalAlpha=saved;
           }
           ctx.globalAlpha=1;
+
+          // "Identical at a glance" callout linking row 3 and row 4
+          if(id==='dust_landed' && prog>0.25){
+            var calloutAlpha=Math.min(1,(prog-0.25)/0.2);
+            ctx.globalAlpha=calloutAlpha;
+            var bx=px+pw+4;
+            var by1=rowY0+L.histRowH*2-2;
+            var by2=rowY0+L.histRowH*4-4;
+            ctx.strokeStyle=col.flash; ctx.lineWidth=1.5;
+            ctx.beginPath();
+            ctx.moveTo(bx,by1); ctx.lineTo(bx+5,by1);
+            ctx.lineTo(bx+5,by2); ctx.lineTo(bx,by2);
+            ctx.stroke();
+            setFontSans(L.labelFont,'600');
+            ctx.fillStyle=col.flash;
+            var msg='Identical at a glance';
+            var msgW=ctx.measureText(msg).width;
+            if(bx+10+msgW<W-2){
+              ctx.textBaseline='middle';
+              ctx.fillText(msg,bx+10,(by1+by2)/2);
+            }else{
+              ctx.textBaseline='bottom';
+              ctx.fillText(msg,L.padX,L.histLabelY-2);
+            }
+            ctx.globalAlpha=1;
+          }
+
+          // victim copies highlight
+          if(id==='victim_copies'){
+            var pulse=0.35+0.25*Math.sin(t*0.18);
+            ctx.globalAlpha=pulse;
+            ctx.fillStyle=col.flash;
+            ctx.fillRect(px+1,rowY0+L.histRowH*3-2,pw-2,L.histRowH);
+            ctx.globalAlpha=1;
+            setFontSans(L.labelFont,'600');
+            ctx.fillStyle=col.flash;
+            ctx.textBaseline='middle';
+            var cursorMsg='✋ Copied!';
+            var cmW=ctx.measureText(cursorMsg).width;
+            if(px+pw+8+cmW<W){
+              ctx.fillText(cursorMsg,px+pw+8,rowY0+L.histRowH*3+L.histRowH/2);
+            }
+          }
+        }
+
+        // ---- attacker section ----
+        var showAtt=id==='attacker'||id==='dust_send'||id==='dust_landed'||id==='victim_copies'||id==='funds_sent';
+        if(showAtt){
+          var attAlpha=id==='attacker'?ease(prog):1;
+          ctx.globalAlpha=attAlpha;
+          setFontSans(L.labelFont,null);
+          ctx.fillStyle=col.label;
+          ctx.textBaseline='top';
+          ctx.fillText("Attacker's lookalike address (matches first 4 + last 4)",L.padX,L.attLabelY);
+          var revealCount=id==='attacker'?Math.floor(ease(prog)*FAKE.length):FAKE.length;
+          drawAddrFull(L.padX,L.attAddrY,FAKE.slice(0,revealCount),L,{
+            highlightEnds:true, highlightMiddleDiff:true,
+            cursorAt: id==='attacker' && revealCount<FAKE.length ? revealCount : null
+          });
+          ctx.globalAlpha=1;
+        }
+
+        // ---- dust send arrow (attacker -> history row 4) ----
+        if(id==='dust_send'){
+          var aStartX=L.padX+40;
+          var aStartY=L.attAddrY-4;
+          var aEndY=rowY0+L.histRowH*3+L.histRowH/2;
+          var travel=ease(Math.min(1,prog/0.85));
+          var curY=aStartY+(aEndY-aStartY)*travel;
+          ctx.strokeStyle='#e0e0e0'; ctx.lineWidth=1;
+          ctx.beginPath(); ctx.moveTo(aStartX,aStartY); ctx.lineTo(aStartX,aEndY); ctx.stroke();
+          if(travel>=1){
+            drawArrow(aStartX,aStartY,aStartX,aEndY,col.dust,'0.001 USDT (dust)');
+          }else{
+            ctx.strokeStyle=col.dust; ctx.lineWidth=1.5;
+            ctx.beginPath(); ctx.moveTo(aStartX,aStartY); ctx.lineTo(aStartX,curY); ctx.stroke();
+            setFontSans(11,'600');
+            ctx.fillStyle=col.dust; ctx.textBaseline='middle';
+            ctx.fillText('0.001 USDT (dust)',aStartX+8,curY);
+          }
+        }
+
+        // ---- funds sent arrow (history row 4 -> attacker) ----
+        if(id==='funds_sent'){
+          var sX=L.padX+40;
+          var sY=rowY0+L.histRowH*3+L.histRowH/2;
+          var eY=L.attAddrY-4;
+          var travel2=ease(Math.min(1,prog/0.8));
+          var curY2=sY+(eY-sY)*travel2;
+          ctx.strokeStyle='#f0e3c0'; ctx.lineWidth=1;
+          ctx.beginPath(); ctx.moveTo(sX,sY); ctx.lineTo(sX,eY); ctx.stroke();
+          if(travel2>=1){
+            drawArrow(sX,sY,sX,eY,col.money,'$50,000 USDT → attacker');
+            if(Math.floor(t/6)%2===0){
+              ctx.globalAlpha=0.18;
+              ctx.fillStyle=col.money;
+              ctx.fillRect(L.padX-4,L.attAddrY-2,W-2*L.padX+8,L.monoBig+6);
+              ctx.globalAlpha=1;
+            }
+          }else{
+            ctx.strokeStyle=col.money; ctx.lineWidth=1.5;
+            ctx.beginPath(); ctx.moveTo(sX,sY); ctx.lineTo(sX,curY2); ctx.stroke();
+            setFontSans(11,'700');
+            ctx.fillStyle=col.money; ctx.textBaseline='middle';
+            ctx.fillText('$50,000 USDT',sX+8,curY2);
+          }
         }
 
         requestAnimationFrame(draw);
