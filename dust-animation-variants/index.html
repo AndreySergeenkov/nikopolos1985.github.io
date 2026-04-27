@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Dust Attack Animation — Variants (preview)</title>
+    <title>Dust Attack Animation — Preview</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <style>
         * { box-sizing: border-box; }
@@ -22,15 +22,7 @@
         .top-nav a { color: #0645ad; text-decoration: none; font-size: 14px; }
         .top-nav a:hover { text-decoration: underline; }
         h1 { font-size: 26px; margin: 0 0 8px; }
-        .lead { color: #54595d; margin: 0 0 36px; font-size: 16px; }
-        h2 {
-            font-size: 19px;
-            margin: 36px 0 6px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        h2 .tag { color: #888; font-weight: normal; font-size: 14px; margin-left: 8px; }
-        .desc { font-size: 15px; color: #54595d; margin: 0 0 14px; }
+        .lead { color: #54595d; margin: 0 0 24px; font-size: 16px; }
         .anim-frame {
             width: 100%;
             border: 1px solid #e0e0e0;
@@ -44,29 +36,18 @@
 <body>
     <div class="top-nav"><a href="../">&larr; Back to Home</a></div>
 
-    <h1>Dust Attack Animation — Variants (preview)</h1>
-    <p class="lead">Three alternative ways to visualize how an address-poisoning dust attack works. Pick one (or none) for the article.</p>
+    <h1>Dust Attack Animation — Preview</h1>
+    <p class="lead">Single horizontal strip: explanation on the left, interface preview on the right.</p>
 
-    <h2>Variant A <span class="tag">Reality vs. Wallet view</span></h2>
-    <p class="desc">Two stacked panels: the real world above, the wallet's truncated display below. Drives home a single point — that 32 differing characters are hidden by truncation.</p>
-    <div class="anim-frame"><canvas id="varA" style="height:340px;"></canvas></div>
-
-    <h2>Variant B <span class="tag">Storyboard / 6-panel comic</span></h2>
-    <p class="desc">Six static frames in a 3&times;2 grid, with a glowing border cycling through them. Scannable, low cognitive load — works at a glance.</p>
-    <div class="anim-frame"><canvas id="varB" style="height:380px;"></canvas></div>
-
-    <h2>Variant C <span class="tag">Wallet UI mockup</span></h2>
-    <p class="desc">Stylized phone showing a wallet app. Animates the actual user flow: dust arrives, victim taps Send, picks the top "recent" row, and the funds vanish.</p>
-    <div class="anim-frame"><canvas id="varC" style="height:520px;"></canvas></div>
+    <div class="anim-frame"><canvas id="anim" style="height:280px;"></canvas></div>
 
     <script>
-    // -------- shared helpers --------
-    var REAL='0x1a2B3c4D5e6F7a8B9c0D1e2F3a4B5c6D7e8F7f3D';
-    var FAKE='0x1a2B9f1A0bCe38D764820dF5a92E1c0B4d3A7f3D';
-    var SHORT='0x1a2B…7f3D';
-    function ease(p){ return p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; }
-    function setupCanvas(id){
-      var c=document.getElementById(id);
+    (function(){
+      var REAL='0x1a2B3c4D5e6F7a8B9c0D1e2F3a4B5c6D7e8F7f3D';
+      var FAKE='0x1a2B9f1A0bCe38D764820dF5a92E1c0B4d3A7f3D';
+      var SHORT='0x1a2B…7f3D';
+
+      var c=document.getElementById('anim');
       var ctx=c.getContext('2d');
       var dpr=window.devicePixelRatio||1;
       var W=0,H=0;
@@ -78,501 +59,359 @@
       }
       resize();
       window.addEventListener('resize',resize);
-      return {c:c,ctx:ctx,get W(){return W;},get H(){return H;}};
-    }
-    function fontMono(ctx,s){ ctx.font=s+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'; }
-    function fontSans(ctx,s,w){ ctx.font=(w?w+' ':'')+s+'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'; }
 
-    // ============================================================
-    // Variant A — Reality vs. Wallet view
-    // ============================================================
-    (function(){
-      var s=setupCanvas('varA');
       var STEPS=[
-        {id:'show_full', dur:120, cap:'Top: the real world. Two distinct 42-character addresses.'},
-        {id:'show_diff', dur:140, cap:'Only first 4 and last 4 characters match (green). The middle 32 differ entirely (red).'},
-        {id:'collapse',  dur:160, cap:'But wallets truncate addresses for display…'},
-        {id:'show_short',dur:160, cap:'…so in the history view, the fake row is indistinguishable from the real one.'}
+        {
+          id:'intro',
+          dur:260,
+          title:'Step 1 of 5',
+          heading:'How wallets display addresses',
+          body:'Every Ethereum address is 42 hex characters long. Wallets and explorers truncate them — usually to the first 6 and last 4 characters — so they fit on screen.'
+        },
+        {
+          id:'expand',
+          dur:300,
+          title:'Step 2 of 5',
+          heading:'The full address behind a row',
+          body:'Behind that short label is a 42-character address. The wallet hides 32 of those characters from view at all times.'
+        },
+        {
+          id:'attacker',
+          dur:340,
+          title:'Step 3 of 5',
+          heading:'An attacker forges a lookalike',
+          body:'It’s cheap to generate addresses with chosen prefix and suffix. The attacker finds one whose first 6 and last 4 characters match the victim’s real contact (green) — the middle 32 characters are completely different (red).'
+        },
+        {
+          id:'collapse',
+          dur:280,
+          title:'Step 4 of 5',
+          heading:'Truncation hides the difference',
+          body:'When the wallet displays both addresses, only the first 6 and last 4 characters survive. The 32 differing characters in the middle are gone from the screen.'
+        },
+        {
+          id:'history',
+          dur:340,
+          title:'Step 5 of 5',
+          heading:'Indistinguishable in history',
+          body:'After the attacker sends a tiny dust transaction, both rows in the victim’s history read 0x1a2B…7f3D. The fake row is indistinguishable from the real one — and that’s why the attack works.'
+        }
       ];
+
+      var col={
+        text:'#202122', dim:'#54595d', label:'#888',
+        match:'#2e7d32', diff:'#dc3545', plain:'#222', fadedPlain:'#888',
+        panel:'#fafafa', border:'#d0d0d0', headerBar:'#0645ad', accent:'#b8860b'
+      };
+
       var idx=0,timer=0,t=0;
-      function draw(){
-        t++;timer++;
-        var step=STEPS[idx];
-        if(timer>=step.dur){timer=0;idx=(idx+1)%STEPS.length;}
-        var prog=timer/step.dur, id=step.id;
-        var W=s.W,H=s.H,ctx=s.ctx;
-        ctx.clearRect(0,0,W,H);
-        ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
 
-        // caption
-        fontSans(ctx,13,'600');
-        ctx.fillStyle='#202122';
-        ctx.textBaseline='top';
-        ctx.fillText(step.cap,16,12);
+      function fontMono(s){ ctx.font=s+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'; }
+      function fontSans(s,w){ ctx.font=(w?w+' ':'')+s+'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'; }
+      function ease(p){ return p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; }
+      function easeOut(p){ return 1-Math.pow(1-p,3); }
 
-        // panel A — Reality
-        var pAy=44, pAh=130;
-        ctx.fillStyle='#f7f9fb';ctx.fillRect(12,pAy,W-24,pAh);
-        ctx.strokeStyle='#d0d8e0';ctx.lineWidth=1;ctx.strokeRect(12.5,pAy+0.5,W-25,pAh-1);
-        fontSans(ctx,11,'600');
-        ctx.fillStyle='#5a6470';
-        ctx.fillText('Reality — full 42-char addresses',20,pAy+8);
-        // draw two full addresses
-        fontMono(ctx,W<500?9:12);
-        var charW=ctx.measureText('0').width;
-        var ry1=pAy+34, ry2=pAy+76;
-        fontSans(ctx,11,null);
-        ctx.fillStyle='#888';
-        ctx.fillText("Victim's real contact:",20,ry1-14);
-        ctx.fillText("Attacker's lookalike:",20,ry2-14);
-        var showDiff=(id==='show_diff'||id==='collapse'||id==='show_short');
-        function paintAddr(y,addr,isFake){
-          fontMono(ctx,W<500?9:12);
-          ctx.textBaseline='top';
-          for(var i=0;i<addr.length;i++){
-            var ch=addr[i];
-            var color='#222';
-            if(showDiff){
-              if(i<4||i>=addr.length-4) color='#2e7d32';
-              else if(isFake && addr[i]!==REAL[i]) color='#dc3545';
-              else if(!isFake) color='#222';
-              else color='#999';
-            }
-            ctx.fillStyle=color;
-            ctx.fillText(ch,20+i*charW,y);
-          }
-        }
-        paintAddr(ry1,REAL,false);
-        paintAddr(ry2,FAKE,true);
-
-        // collapse highlight
-        if(id==='collapse'){
-          // animated brackets pulling in to truncated form
-          var col=ease(prog);
-          // strikethrough through middle of both
-          ctx.strokeStyle='rgba(220,53,69,'+(0.3+0.5*col)+')';
-          ctx.lineWidth=2;
-          ctx.beginPath();
-          ctx.moveTo(20+4*charW, ry1+(W<500?5:7));
-          ctx.lineTo(20+(REAL.length-4)*charW, ry1+(W<500?5:7));
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(20+4*charW, ry2+(W<500?5:7));
-          ctx.lineTo(20+(REAL.length-4)*charW, ry2+(W<500?5:7));
-          ctx.stroke();
-          fontSans(ctx,11,'600');
-          ctx.fillStyle='#dc3545';
-          ctx.textBaseline='top';
-          var msg='32 chars hidden';
-          var mW=ctx.measureText(msg).width;
-          ctx.fillText(msg, W-mW-22, pAy+pAh-20);
-        }
-
-        // panel B — Wallet view
-        var pBy=pAy+pAh+18, pBh=H-pBy-14;
-        ctx.fillStyle='#fafafa';ctx.fillRect(12,pBy,W-24,pBh);
-        ctx.strokeStyle='#d0d0d0';ctx.lineWidth=1;ctx.strokeRect(12.5,pBy+0.5,W-25,pBh-1);
-        fontSans(ctx,11,'600');
-        ctx.fillStyle='#5a6470';
-        ctx.fillText("What the wallet shows — transaction history",20,pBy+8);
-
-        var bAlpha;
-        if(id==='show_short') bAlpha=1;
-        else if(id==='collapse') bAlpha=0.25+ease(prog)*0.6;
-        else bAlpha=0.25;
-        ctx.globalAlpha=bAlpha;
-        var rh=W<500?18:22;
-        var rowY=pBy+34;
-        fontMono(ctx,W<500?10:13);
-        var shortW=ctx.measureText(SHORT).width;
-        ctx.fillStyle='#222';
-        ctx.textBaseline='top';
-        ctx.fillText(SHORT,20,rowY);
-        fontSans(ctx,W<500?10:12,null);
-        ctx.fillStyle='#888';
-        ctx.fillText('  sent 200 USDT — real contact',20+shortW,rowY);
-
-        fontMono(ctx,W<500?10:13);
-        ctx.fillStyle='#dc3545';
-        ctx.fillText(SHORT,20,rowY+rh);
-        fontSans(ctx,W<500?10:12,null);
-        ctx.fillStyle='#888';
-        ctx.fillText('  received 0.001 USDT — fake ⚠',20+shortW,rowY+rh);
-        ctx.globalAlpha=1;
-
-        // punchline
-        if(id==='show_short' && prog>0.4){
-          var a=Math.min(1,(prog-0.4)/0.3);
-          ctx.globalAlpha=a;
-          fontSans(ctx,12,'700');
-          ctx.fillStyle='#dc3545';
-          ctx.textBaseline='top';
-          var msg='Same 10 characters on screen → indistinguishable';
-          var mw=ctx.measureText(msg).width;
-          ctx.fillText(msg, Math.max(20, (W-mw)/2), rowY+rh*2+10);
-          ctx.globalAlpha=1;
-        }
-
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    // ============================================================
-    // Variant B — Storyboard / 6-panel comic
-    // ============================================================
-    (function(){
-      var s=setupCanvas('varB');
-      var PANELS=[
-        {title:'1. Saved contact',     desc:'Victim has a contact in their wallet.', icon:'wallet_contact'},
-        {title:'2. Legit transaction', desc:'They send to that contact normally.',    icon:'send_normal'},
-        {title:'3. Attacker forges',   desc:'Generates an address with same first/last 4 chars.', icon:'forge'},
-        {title:'4. Dust delivered',    desc:'Tiny dust transaction lands in history.',icon:'dust'},
-        {title:'5. Wrong copy',        desc:'Victim copies the most recent address.', icon:'copy_wrong'},
-        {title:'6. Funds lost',        desc:'Payment goes to the attacker.',          icon:'funds_lost'}
-      ];
-      var stepDur=70, idx=0, timer=0, t=0;
-      function draw(){
-        t++;timer++;
-        if(timer>=stepDur){timer=0;idx=(idx+1)%PANELS.length;}
-        var W=s.W,H=s.H,ctx=s.ctx;
-        ctx.clearRect(0,0,W,H);
-        ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-
-        // 3 cols x 2 rows
-        var cols=W<500?2:3, rows=PANELS.length/cols;
-        var pad=12;
-        var pw=(W-pad*(cols+1))/cols;
-        var ph=(H-pad*(rows+1))/rows;
-        for(var i=0;i<PANELS.length;i++){
-          var col=i%cols, row=Math.floor(i/cols);
-          var x=pad+col*(pw+pad), y=pad+row*(ph+pad);
-          var active=(i===idx);
-          // panel bg
-          ctx.fillStyle=active?'#fff8e1':'#fafafa';
-          ctx.fillRect(x,y,pw,ph);
-          // border
-          if(active){
-            var pulse=0.6+0.4*Math.sin(t*0.18);
-            ctx.strokeStyle='rgba(184,134,11,'+pulse.toFixed(2)+')';
-            ctx.lineWidth=2;
-          }else{
-            ctx.strokeStyle='#d0d0d0';
-            ctx.lineWidth=1;
-          }
-          ctx.strokeRect(x+0.5,y+0.5,pw-1,ph-1);
-
-          // title
-          fontSans(ctx,W<500?11:12,'700');
-          ctx.fillStyle=active?'#202122':'#666';
-          ctx.textBaseline='top';
-          ctx.fillText(PANELS[i].title,x+10,y+8);
-
-          // icon area (centered)
-          drawIcon(ctx,PANELS[i].icon,x+pw/2,y+ph/2-8,Math.min(pw,ph)/2-22,active,W);
-
-          // desc
-          fontSans(ctx,W<500?10:11,null);
-          ctx.fillStyle=active?'#54595d':'#888';
-          var lines=wrap(ctx,PANELS[i].desc,pw-20);
-          for(var li=0;li<lines.length;li++){
-            ctx.fillText(lines[li],x+10,y+ph-18-(lines.length-1-li)*13);
-          }
-        }
-        requestAnimationFrame(draw);
-      }
-      function wrap(ctx,text,maxW){
+      function wrap(text,maxW){
         var words=text.split(' '), lines=[], cur='';
         for(var i=0;i<words.length;i++){
           var test=cur?cur+' '+words[i]:words[i];
-          if(ctx.measureText(test).width>maxW && cur){
-            lines.push(cur); cur=words[i];
-          }else cur=test;
+          if(ctx.measureText(test).width>maxW && cur){ lines.push(cur); cur=words[i]; }
+          else cur=test;
         }
         if(cur) lines.push(cur);
         return lines;
       }
-      function drawIcon(ctx,kind,cx,cy,r,active,W){
-        ctx.save();
-        var fg=active?'#b8860b':'#888';
-        var ok='#2e7d32', bad='#dc3545';
-        ctx.lineWidth=2;
-        if(kind==='wallet_contact'){
-          // wallet rect
-          ctx.strokeStyle=fg;
-          ctx.strokeRect(cx-r*0.7,cy-r*0.45,r*1.4,r*0.9);
-          // contact dot
-          ctx.fillStyle=ok;
-          ctx.beginPath();ctx.arc(cx+r*0.35,cy,r*0.15,0,Math.PI*2);ctx.fill();
-        } else if(kind==='send_normal'){
-          ctx.strokeStyle=fg;
-          ctx.strokeRect(cx-r*0.85,cy-r*0.3,r*0.55,r*0.6);
-          // arrow
-          ctx.beginPath();
-          ctx.moveTo(cx-r*0.25,cy);ctx.lineTo(cx+r*0.55,cy);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(cx+r*0.55,cy);ctx.lineTo(cx+r*0.4,cy-r*0.12);
-          ctx.lineTo(cx+r*0.4,cy+r*0.12);ctx.closePath();
-          ctx.fillStyle=fg;ctx.fill();
-          // contact circle
-          ctx.fillStyle=ok;
-          ctx.beginPath();ctx.arc(cx+r*0.75,cy,r*0.15,0,Math.PI*2);ctx.fill();
-        } else if(kind==='forge'){
-          // hooded figure simplified — circle + trapezoid
-          ctx.fillStyle=bad;
-          ctx.beginPath();ctx.arc(cx-r*0.4,cy-r*0.1,r*0.22,0,Math.PI*2);ctx.fill();
-          ctx.beginPath();
-          ctx.moveTo(cx-r*0.7,cy+r*0.5);ctx.lineTo(cx-r*0.1,cy+r*0.5);
-          ctx.lineTo(cx-r*0.2,cy+r*0.1);ctx.lineTo(cx-r*0.6,cy+r*0.1);
-          ctx.closePath();ctx.fill();
-          // generated address text
-          fontMono(ctx,W<500?7:9);
-          ctx.fillStyle=fg;
-          ctx.textBaseline='middle';
-          ctx.fillText('0x1a2B…7f3D',cx+r*0.05,cy);
-        } else if(kind==='dust'){
-          ctx.strokeStyle=fg;
-          ctx.strokeRect(cx-r*0.7,cy-r*0.45,r*1.4,r*0.9);
-          // dust speck
-          ctx.fillStyle=bad;
-          for(var d=0;d<5;d++){
-            var dx=cx-r*0.4+d*r*0.18, dy=cy+r*0.05+(d%2)*r*0.15;
-            ctx.beginPath();ctx.arc(dx,dy,2.5,0,Math.PI*2);ctx.fill();
-          }
-          // exclamation
-          fontSans(ctx,W<500?14:18,'700');
-          ctx.fillStyle=bad;
-          ctx.textBaseline='middle';
-          ctx.fillText('⚠',cx+r*0.45,cy-r*0.15);
-        } else if(kind==='copy_wrong'){
-          // wallet
-          ctx.strokeStyle=fg;
-          ctx.strokeRect(cx-r*0.7,cy-r*0.45,r*1.4,r*0.9);
-          // highlighted row
-          ctx.fillStyle='rgba(220,53,69,0.18)';
-          ctx.fillRect(cx-r*0.65,cy+r*0.05,r*1.3,r*0.18);
-          fontMono(ctx,W<500?7:9);
-          ctx.fillStyle=bad;
-          ctx.textBaseline='middle';
-          ctx.fillText('0x1a2B…7f3D',cx-r*0.6,cy+r*0.14);
-          // hand/finger
-          fontSans(ctx,W<500?14:18,null);
-          ctx.fillText('✋',cx+r*0.55,cy+r*0.14);
-        } else if(kind==='funds_lost'){
-          ctx.strokeStyle=fg;
-          ctx.strokeRect(cx-r*0.85,cy-r*0.3,r*0.55,r*0.6);
-          ctx.beginPath();
-          ctx.moveTo(cx-r*0.25,cy);ctx.lineTo(cx+r*0.55,cy);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(cx+r*0.55,cy);ctx.lineTo(cx+r*0.4,cy-r*0.12);
-          ctx.lineTo(cx+r*0.4,cy+r*0.12);ctx.closePath();
-          ctx.fillStyle=bad;ctx.fill();
-          // skull-ish (just X)
-          ctx.fillStyle=bad;
-          ctx.beginPath();ctx.arc(cx+r*0.75,cy,r*0.18,0,Math.PI*2);ctx.fill();
-          fontSans(ctx,W<500?12:14,'700');
-          ctx.fillStyle='#fff';
-          ctx.textBaseline='middle';
-          ctx.textAlign='center';
-          ctx.fillText('!',cx+r*0.75,cy);
-          ctx.textAlign='start';
-        }
-        ctx.restore();
-      }
-      draw();
-    })();
 
-    // ============================================================
-    // Variant C — Wallet UI mockup
-    // ============================================================
-    (function(){
-      var s=setupCanvas('varC');
-      var STEPS=[
-        {id:'idle',     dur:90,  cap:'A normal wallet with three past transactions.'},
-        {id:'dust_in',  dur:100, cap:'A dust transaction arrives, appearing at the top of "Recent".'},
-        {id:'tap_send', dur:80,  cap:'Victim taps Send.'},
-        {id:'pick_row', dur:120, cap:'They pick "From recent" and select the top row — the fake address.'},
-        {id:'confirm',  dur:120, cap:'Confirmation screen shows the truncated address — looks fine.'},
-        {id:'done',     dur:120, cap:'Funds are sent to the attacker.'}
-      ];
-      var idx=0,timer=0,t=0;
       function draw(){
-        t++;timer++;
+        t++; timer++;
         var step=STEPS[idx];
-        if(timer>=step.dur){timer=0;idx=(idx+1)%STEPS.length;}
-        var prog=timer/step.dur, id=step.id;
-        var W=s.W,H=s.H,ctx=s.ctx;
+        if(timer>=step.dur){ timer=0; idx=(idx+1)%STEPS.length; }
+        var prog=timer/step.dur;
+        var id=step.id;
+
         ctx.clearRect(0,0,W,H);
-        ctx.fillStyle='#fafafa';ctx.fillRect(0,0,W,H);
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
 
-        // caption above phone
-        fontSans(ctx,13,'600');
-        ctx.fillStyle='#202122';
-        ctx.textBaseline='top';
-        ctx.fillText(step.cap,16,10);
-
-        // phone outline (centered)
-        var phW=Math.min(280,W-40), phH=H-60;
-        var phX=(W-phW)/2, phY=42;
-        ctx.fillStyle='#fff';
-        roundRect(ctx,phX,phY,phW,phH,18,true,false);
-        ctx.strokeStyle='#222';ctx.lineWidth=2;
-        roundRect(ctx,phX,phY,phW,phH,18,false,true);
-        // notch
-        ctx.fillStyle='#222';
-        roundRect(ctx,phX+phW/2-26,phY,52,8,4,true,false);
-
-        // app header
-        var hY=phY+22;
-        ctx.fillStyle='#0645ad';
-        ctx.fillRect(phX+1,hY,phW-2,32);
-        fontSans(ctx,13,'700');
-        ctx.fillStyle='#fff';
-        ctx.textBaseline='middle';
-        ctx.fillText('MyWallet',phX+12,hY+16);
-        // balance
-        fontSans(ctx,11,null);
-        ctx.fillStyle='rgba(255,255,255,0.85)';
-        ctx.textBaseline='middle';
-        var bal='Balance: $50,128.40';
-        var bW=ctx.measureText(bal).width;
-        ctx.fillText(bal,phX+phW-bW-12,hY+16);
-
-        // recent header
-        var rY=hY+44;
-        fontSans(ctx,11,'700');
-        ctx.fillStyle='#666';
-        ctx.textBaseline='top';
-        ctx.fillText('RECENT',phX+12,rY);
-
-        // transaction rows (fixed slots: 0=dust, 1=real, 2=plain, 3=plain)
-        var rowsY=rY+18, rowH=34;
-        var rows=[
-          {addr:SHORT, note:'+0.001 USDT', tone:'fake'},
-          {addr:SHORT, note:'-200 USDT — real contact', tone:'real'},
-          {addr:'0x7c8A…9eB1', note:'-0.3 ETH', tone:'plain'},
-          {addr:'0xf39F…2266', note:'-1.5 ETH', tone:'plain'}
-        ];
-        for(var i=0;i<rows.length;i++){
-          var ry=rowsY+i*rowH;
-          var saveAlpha=1;
-          if(i===0){
-            if(id==='idle') continue;
-            if(id==='dust_in'){
-              var slide=ease(prog);
-              saveAlpha=slide;
-              ry=rowsY-(1-slide)*rowH;
-            }
-          }
-          ctx.globalAlpha=saveAlpha;
-          var picked=(i===0 && (id==='pick_row'||id==='confirm'||id==='done'));
-          if(picked){
-            if(id==='pick_row'){
-              var pulse=0.25+0.2*Math.sin(t*0.2);
-              ctx.fillStyle='rgba(220,53,69,'+pulse.toFixed(2)+')';
-            } else {
-              ctx.fillStyle='rgba(220,53,69,0.12)';
-            }
-            ctx.fillRect(phX+6,ry,phW-12,rowH-2);
-          }
-          ctx.strokeStyle='#eee';ctx.lineWidth=1;
-          ctx.beginPath();ctx.moveTo(phX+12,ry+rowH-1);ctx.lineTo(phX+phW-12,ry+rowH-1);ctx.stroke();
-          fontMono(ctx,12);
-          ctx.fillStyle=rows[i].tone==='fake'?'#dc3545':'#202122';
-          ctx.textBaseline='middle';
-          ctx.fillText(rows[i].addr,phX+12,ry+12);
-          fontSans(ctx,10,null);
-          ctx.fillStyle=rows[i].tone==='fake'?'#dc3545':'#666';
-          ctx.fillText(rows[i].note,phX+12,ry+24);
-          ctx.globalAlpha=1;
+        // -------- layout --------
+        var stacked=W<560;
+        var leftX, leftW, rightX, rightW;
+        if(stacked){
+          leftX=20; leftW=W-40;
+          rightX=20; rightW=W-40;
+        }else{
+          leftX=24; leftW=Math.round(W*0.40)-24;
+          rightX=leftX+leftW+20; rightW=W-rightX-24;
         }
 
-        // bottom send button
-        var btnY=phY+phH-54, btnH=36;
-        var btnPressed=(id==='tap_send' && prog>0.5);
-        ctx.fillStyle=btnPressed?'#04358a':'#0645ad';
-        roundRect(ctx,phX+16,btnY,phW-32,btnH,6,true,false);
-        fontSans(ctx,13,'700');
-        ctx.fillStyle='#fff';
-        ctx.textBaseline='middle';
-        ctx.textAlign='center';
-        ctx.fillText('Send',phX+phW/2,btnY+btnH/2);
-        ctx.textAlign='start';
-        // tap ripple
-        if(id==='tap_send'){
-          var rp=ease(prog);
-          ctx.strokeStyle='rgba(220,53,69,'+(0.6*(1-rp)).toFixed(2)+')';
-          ctx.lineWidth=2;
+        // -------- left: explanation --------
+        var ly=stacked?14:24;
+        fontSans(11,'600');
+        ctx.fillStyle=col.label;
+        ctx.textBaseline='top';
+        ctx.fillText(step.title,leftX,ly);
+        ly+=18;
+
+        fontSans(stacked?14:16,'700');
+        ctx.fillStyle=col.text;
+        var headLines=wrap(step.heading,leftW);
+        for(var i=0;i<headLines.length;i++){ ctx.fillText(headLines[i],leftX,ly); ly+=stacked?18:22; }
+        ly+=6;
+
+        fontSans(stacked?12:13,null);
+        ctx.fillStyle=col.dim;
+        var bodyLines=wrap(step.body,leftW);
+        for(var j=0;j<bodyLines.length;j++){ ctx.fillText(bodyLines[j],leftX,ly); ly+=stacked?16:18; }
+
+        // step dots
+        for(var k=0;k<STEPS.length;k++){
+          var dx=leftX+k*14;
+          var dy=H-20;
           ctx.beginPath();
-          ctx.arc(phX+phW/2,btnY+btnH/2,8+rp*30,0,Math.PI*2);
-          ctx.stroke();
+          ctx.arc(dx,dy,k===idx?4:2.5,0,Math.PI*2);
+          ctx.fillStyle=k===idx?col.headerBar:'#d0d0d0';
+          ctx.fill();
         }
 
-        // confirmation overlay
-        if(id==='confirm'||id==='done'){
-          ctx.fillStyle='rgba(0,0,0,0.4)';
-          roundRect(ctx,phX+1,phY+1,phW-2,phH-2,17,true,false);
-          var mw=phW-40, mh=160;
-          var mx=phX+(phW-mw)/2, my=phY+(phH-mh)/2;
-          ctx.fillStyle='#fff';
-          roundRect(ctx,mx,my,mw,mh,8,true,false);
-          fontSans(ctx,13,'700');
-          ctx.fillStyle='#202122';
-          ctx.textBaseline='top';
-          ctx.fillText('Confirm transaction',mx+14,my+14);
-          fontSans(ctx,11,null);
-          ctx.fillStyle='#666';
-          ctx.fillText('Sending to:',mx+14,my+40);
-          fontMono(ctx,12);
-          ctx.fillStyle='#dc3545';
-          ctx.fillText(SHORT,mx+14,my+56);
-          fontSans(ctx,11,null);
-          ctx.fillStyle='#666';
-          ctx.fillText('Amount:',mx+14,my+78);
-          fontSans(ctx,13,'700');
-          ctx.fillStyle='#202122';
-          ctx.fillText('50,000 USDT',mx+14,my+94);
-          // confirm button
-          var cbY=my+mh-40;
-          var confirmed=(id==='done');
-          ctx.fillStyle=confirmed?'#999':'#dc3545';
-          roundRect(ctx,mx+14,cbY,mw-28,28,4,true,false);
-          fontSans(ctx,12,'700');
-          ctx.fillStyle='#fff';
-          ctx.textAlign='center';
-          ctx.textBaseline='middle';
-          ctx.fillText(confirmed?'Sent ✓':'Confirm send',mx+mw/2,cbY+14);
-          ctx.textAlign='start';
+        if(stacked){
+          // small screen — bail before drawing right (would overlap)
+          requestAnimationFrame(draw);
+          return;
         }
 
-        // outcome banner during done
-        if(id==='done' && prog>0.4){
-          var a=Math.min(1,(prog-0.4)/0.3);
-          ctx.globalAlpha=a;
-          fontSans(ctx,12,'700');
-          ctx.fillStyle='#dc3545';
-          ctx.textBaseline='top';
-          ctx.textAlign='center';
-          ctx.fillText('$50,000 lost to attacker',W/2,H-22);
-          ctx.textAlign='start';
+        // -------- right: interface preview --------
+        var panelX=rightX, panelY=20, panelW=rightW, panelH=H-40;
+        // panel
+        ctx.fillStyle=col.panel;
+        ctx.fillRect(panelX,panelY,panelW,panelH);
+        ctx.strokeStyle=col.border;
+        ctx.lineWidth=1;
+        ctx.strokeRect(panelX+0.5,panelY+0.5,panelW-1,panelH-1);
+
+        // header bar
+        ctx.fillStyle=col.headerBar;
+        ctx.fillRect(panelX+1,panelY+1,panelW-2,26);
+        fontSans(11,'700');
+        ctx.fillStyle='#fff';
+        ctx.textBaseline='middle';
+        ctx.fillText('Wallet — Recent activity',panelX+10,panelY+14);
+
+        var contentTop=panelY+34;
+        var contentBottom=panelY+panelH-12;
+        var rowH=20;
+
+        // Decide what to render
+        if(id==='intro'){
+          // 3 truncated rows fading in
+          var fade=easeOut(Math.min(1,prog*1.3));
+          ctx.globalAlpha=fade;
+          renderTruncRow(panelX,contentTop+rowH*0,panelW,'0xf39F…2266','Sent 1.5 ETH',null);
+          renderTruncRow(panelX,contentTop+rowH*1,panelW,'0x7c8A…9eB1','Sent 0.3 ETH',null);
+          renderTruncRow(panelX,contentTop+rowH*2,panelW,SHORT,'Sent 200 USDT — real contact','plain');
           ctx.globalAlpha=1;
+
+          // pointer to truncated form
+          if(prog>0.45){
+            var pa=Math.min(1,(prog-0.45)/0.3);
+            ctx.globalAlpha=pa;
+            fontSans(11,'600');
+            ctx.fillStyle=col.dim;
+            ctx.textBaseline='top';
+            ctx.fillText('↑ all truncated',panelX+12,contentTop+rowH*3+10);
+            ctx.globalAlpha=1;
+          }
+        }
+        else if(id==='expand'){
+          // Top: keep two faded normal rows, then reveal full real address below
+          ctx.globalAlpha=0.45;
+          renderTruncRow(panelX,contentTop+rowH*0,panelW,'0xf39F…2266','Sent 1.5 ETH',null);
+          renderTruncRow(panelX,contentTop+rowH*1,panelW,'0x7c8A…9eB1','Sent 0.3 ETH',null);
+          ctx.globalAlpha=1;
+          // expanded address — typewriter reveal
+          var revealCount=Math.floor(easeOut(Math.min(1,prog*1.4))*REAL.length);
+          renderFullAddress(panelX+10,contentTop+rowH*2+12,REAL.slice(0,revealCount),'Real contact — full 42-char address',true,false);
+        }
+        else if(id==='attacker'){
+          // Two full addresses stacked, attacker below real, with diffs
+          // Real address, full, with first/last 4 highlighted
+          var attBase=contentTop+10;
+          renderFullAddress(panelX+10,attBase,REAL,'Victim’s real contact',true,false);
+          // Attacker reveal — char by char
+          var revealCount=Math.floor(easeOut(Math.min(1,prog*1.2))*FAKE.length);
+          renderFullAddress(panelX+10,attBase+44,FAKE.slice(0,revealCount),'Attacker’s lookalike (forged)',true,true);
+          // Caption hint
+          if(prog>0.6){
+            var ca=Math.min(1,(prog-0.6)/0.3);
+            ctx.globalAlpha=ca;
+            fontSans(10,'600');
+            ctx.fillStyle=col.diff;
+            ctx.textBaseline='top';
+            ctx.fillText('32 chars completely different',panelX+10,attBase+88);
+            ctx.globalAlpha=1;
+          }
+        }
+        else if(id==='collapse'){
+          // Animate collapse from full -> truncated, both addresses
+          var attBase=contentTop+10;
+          var k=easeOut(Math.min(1,prog*1.2));
+          renderCollapsingAddress(panelX+10,attBase,REAL,'Victim’s real contact',k,false);
+          renderCollapsingAddress(panelX+10,attBase+44,FAKE,'Attacker’s lookalike',k,true);
+          if(prog>0.7){
+            var ka=Math.min(1,(prog-0.7)/0.25);
+            ctx.globalAlpha=ka;
+            fontSans(10,'600');
+            ctx.fillStyle=col.diff;
+            ctx.textBaseline='top';
+            ctx.fillText('Both now read 0x1a2B…7f3D',panelX+10,attBase+88);
+            ctx.globalAlpha=1;
+          }
+        }
+        else if(id==='history'){
+          // Wallet history with dust on top, real below, others
+          // Dust slides in
+          var slide=easeOut(Math.min(1,prog*1.2));
+          var rows=[
+            {addr:SHORT, note:'Received 0.001 USDT — fake', tone:'fake'},
+            {addr:SHORT, note:'Sent 200 USDT — real contact', tone:'plain'},
+            {addr:'0x7c8A…9eB1', note:'Sent 0.3 ETH', tone:null},
+            {addr:'0xf39F…2266', note:'Sent 1.5 ETH', tone:null}
+          ];
+          for(var r=0;r<rows.length;r++){
+            var ry=contentTop+r*rowH;
+            var rowAlpha=1;
+            if(r===0){
+              ry=contentTop+r*rowH-(1-slide)*rowH;
+              rowAlpha=slide;
+            }
+            ctx.globalAlpha=rowAlpha;
+            renderTruncRow(panelX,ry,panelW,rows[r].addr,rows[r].note,rows[r].tone);
+            ctx.globalAlpha=1;
+          }
+          // bracket linking row 0 and row 1 to show identical
+          if(prog>0.5){
+            var ba=Math.min(1,(prog-0.5)/0.3);
+            ctx.globalAlpha=ba;
+            var bx=panelX+panelW-24;
+            var by1=contentTop+2;
+            var by2=contentTop+rowH*2-2;
+            ctx.strokeStyle=col.diff; ctx.lineWidth=1.5;
+            ctx.beginPath();
+            ctx.moveTo(bx,by1); ctx.lineTo(bx+6,by1);
+            ctx.lineTo(bx+6,by2); ctx.lineTo(bx,by2);
+            ctx.stroke();
+            // label "identical" — placed below the bracket if no room beside
+            fontSans(10,'700');
+            ctx.fillStyle=col.diff;
+            ctx.textBaseline='top';
+            ctx.fillText('identical',bx-44,(by1+by2)/2-6);
+            ctx.globalAlpha=1;
+          }
         }
 
         requestAnimationFrame(draw);
       }
-      function roundRect(ctx,x,y,w,h,r,fill,stroke){
+
+      function renderTruncRow(panelX,y,panelW,addr,note,tone){
+        // separator
+        ctx.strokeStyle='#e8e8e8'; ctx.lineWidth=1;
         ctx.beginPath();
-        ctx.moveTo(x+r,y);
-        ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-        ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-        ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-        ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
-        ctx.closePath();
-        if(fill) ctx.fill();
-        if(stroke) ctx.stroke();
+        ctx.moveTo(panelX+10,y+19); ctx.lineTo(panelX+panelW-10,y+19);
+        ctx.stroke();
+        // background tint for fake
+        if(tone==='fake'){
+          ctx.fillStyle='rgba(220,53,69,0.06)';
+          ctx.fillRect(panelX+1,y,panelW-2,19);
+        }
+        // address
+        fontMono(12);
+        ctx.fillStyle=tone==='fake'?col.diff:col.text;
+        ctx.textBaseline='middle';
+        ctx.fillText(addr,panelX+10,y+10);
+        // note
+        var addrW=ctx.measureText(addr).width;
+        fontSans(10,null);
+        ctx.fillStyle=tone==='fake'?col.diff:col.label;
+        ctx.fillText('  '+note,panelX+10+addrW,y+10);
       }
+
+      function renderFullAddress(x,y,addr,label,colorize,isFake){
+        fontSans(10,'600');
+        ctx.fillStyle=col.label;
+        ctx.textBaseline='top';
+        ctx.fillText(label,x,y);
+        // pick mono size to fit
+        var size=11;
+        fontMono(size);
+        var charW=ctx.measureText('0').width;
+        // ensure full width fits
+        var maxW=W-x-32;
+        while(charW*REAL.length>maxW && size>8){
+          size-=0.5;
+          fontMono(size);
+          charW=ctx.measureText('0').width;
+        }
+        for(var i=0;i<addr.length;i++){
+          var ch=addr[i];
+          var color=col.plain;
+          if(colorize){
+            if(i<6||i>=REAL.length-4) color=col.match;
+            else if(isFake){ color=(addr[i]!==REAL[i])?col.diff:col.plain; }
+          }
+          ctx.fillStyle=color;
+          ctx.textBaseline='top';
+          ctx.fillText(ch,x+i*charW,y+14);
+        }
+      }
+
+      function renderCollapsingAddress(x,y,addr,label,k,isFake){
+        // k=0: full address visible. k=1: truncated to 0x1a2B…7f3D.
+        fontSans(10,'600');
+        ctx.fillStyle=col.label;
+        ctx.textBaseline='top';
+        ctx.fillText(label,x,y);
+        var size=11;
+        fontMono(size);
+        var charW=ctx.measureText('0').width;
+        var maxW=W-x-32;
+        while(charW*REAL.length>maxW && size>8){
+          size-=0.5; fontMono(size); charW=ctx.measureText('0').width;
+        }
+        // First 6 (0x + 4 hex) and last 4 are anchored as the truncated form
+        var totalLen=addr.length;
+        for(var i=0;i<6;i++){
+          ctx.fillStyle=col.match;
+          ctx.fillText(addr[i],x+i*charW,y+14);
+        }
+        var ellipsisW=ctx.measureText('…').width;
+        for(var i2=totalLen-4;i2<totalLen;i2++){
+          ctx.fillStyle=col.match;
+          var origX=x+i2*charW;
+          var targetX=x+6*charW+ellipsisW+(i2-(totalLen-4))*charW;
+          var curX=origX+(targetX-origX)*k;
+          ctx.fillText(addr[i2],curX,y+14);
+        }
+        for(var m=6;m<totalLen-4;m++){
+          var alpha=1-k;
+          if(alpha<=0) continue;
+          ctx.globalAlpha=alpha;
+          var ch=addr[m];
+          var color=col.plain;
+          if(isFake) color=(ch!==REAL[m])?col.diff:col.plain;
+          ctx.fillStyle=color;
+          var mx=x+m*charW;
+          var centerX=x+(totalLen/2)*charW;
+          var cmx=mx+(centerX-mx)*k*0.5;
+          ctx.fillText(ch,cmx,y+14);
+          ctx.globalAlpha=1;
+        }
+        if(k>0.3){
+          var ea=Math.min(1,(k-0.3)/0.4);
+          ctx.globalAlpha=ea;
+          ctx.fillStyle=col.plain;
+          ctx.fillText('…',x+6*charW,y+14);
+          ctx.globalAlpha=1;
+        }
+      }
+
       draw();
     })();
     </script>
