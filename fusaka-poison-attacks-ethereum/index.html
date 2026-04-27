@@ -80,10 +80,7 @@
             background: #f8f9fa;
             border: 1px solid #a2a9b1;
             padding: 16px;
-            margin: 0 0 20px;
-            float: right;
-            width: 320px;
-            margin-left: 20px;
+            margin: 0 0 24px;
             font-size: 14px;
             line-height: 1.5;
         }
@@ -97,23 +94,24 @@
             border-bottom: 1px solid #a2a9b1;
             color: #1a1a1a;
         }
-        .tldr table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
         }
-        .tldr th {
-            text-align: left;
-            vertical-align: top;
-            padding: 4px 8px 4px 0;
-            color: #555;
-            font-weight: 600;
-            white-space: nowrap;
-            width: 1%;
+        .tldr li {
+            margin-bottom: 6px;
+            color: #333;
         }
-        .tldr td {
-            padding: 4px 0;
-            vertical-align: top;
+        .tldr a {
+            color: #333;
+            text-decoration: none;
+            background-color: #e6f3e6;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        .tldr a:hover {
+            background-color: #c8e6c8;
+            text-decoration: underline;
         }
         h2 {
             font-size: 22px;
@@ -380,14 +378,12 @@
 
         <div class="tldr">
             <div class="tldr-title">Key Findings</div>
-            <table>
-                <tr><th>Gas fees</th><td>Reduced 6&times; by Fusaka</td></tr>
-                <tr><th>Attack volume</th><td>Increased 5.6&times;</td></tr>
-                <tr><th>Losses after</th><td>$63.3M in 73 days</td></tr>
-                <tr><th>Losses before</th><td>$4.9M in same period</td></tr>
-                <tr><th>Increase</th><td>13&times;</td></tr>
-                <tr><th>Period</th><td>Sep 1, 2025 &ndash; Feb 13, 2026</td></tr>
-            </table>
+            <ul>
+                <li>Fusaka reduced gas fees 6&times;, making mass poisoning spam <a href="#finding-volume">cheap enough to scale</a></li>
+                <li>This helped attackers increase poisoning volume <a href="#finding-volume">5.6&times;</a></li>
+                <li>In 73 days after Fusaka, victims lost <a href="#finding-losses">$63.3M</a></li>
+                <li>This is <a href="#finding-increase">13&times; more</a> than in the same period before the upgrade (<a href="#finding-losses">$4.9M</a>)</li>
+            </ul>
         </div>
 
         <p>In my <a href="/record-high-activity-ethereum-2026/">previous article</a>, I wanted to find out what caused the record-high activity on the Ethereum network, and it turned out that 80% of the growth was address poisoning spam, made economically attractive by the Fusaka upgrade reducing gas fees 6 times. At the time, I only had limited data that answered the question of what was behind the growth.</p>
@@ -413,7 +409,7 @@
             <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
         </div>
 
-        <p>Before Fusaka, attackers were sending an average of 30,000 dust transactions per day. After the upgrade, this jumped to 167,000 per day, a 5.6 times increase.</p>
+        <p id="finding-volume">Before Fusaka, attackers were sending an average of 30,000 dust transactions per day. After the upgrade, this jumped to 167,000 per day, a 5.6 times increase.</p>
 
         <p>The January spike reached 510,000 transactions in a single day. Even excluding that spike, the sustained post-Fusaka level remains at 150,000&ndash;200,000 daily transactions.</p>
 
@@ -459,14 +455,14 @@
 
         <p>The number of unique wallets receiving poisoning dust rose from 12,000 per day to 38,000 per day, a 3.1 times increase.</p>
 
-        <p>Comparing equal 73-day windows before and after Fusaka:</p>
+        <p id="finding-losses">Comparing equal 73-day windows before and after Fusaka:</p>
 
         <ul>
             <li>Pre-Fusaka (Sep 21 &ndash; Dec 2): $4.9M stolen</li>
             <li>Post-Fusaka (Dec 3 &ndash; Feb 13): $63.3M stolen</li>
         </ul>
 
-        <p>This is a 13-fold increase in stolen funds and a 2.6-fold increase in successful payoff events.</p>
+        <p id="finding-increase">This is a 13-fold increase in stolen funds and a 2.6-fold increase in successful payoff events.</p>
 
         <p>One transfer accounts for a large share of the post-Fusaka total: $50 million in USDT on December 19. Excluding it, the post-Fusaka total is still $13.3M, a 2.7-fold increase over the pre-Fusaka rate.</p>
 
