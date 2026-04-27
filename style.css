@@ -49,14 +49,11 @@ p {
    margin-bottom: 16px;
 }
 a {
-   color: #1a1a1a;
-   text-decoration: underline;
-   text-decoration-color: #ccc;
-   text-underline-offset: 2px;
-   transition: text-decoration-color 0.2s ease;
+   color: #0645ad;
+   text-decoration: none;
 }
 a:hover {
-   text-decoration-color: #1a1a1a;
+   text-decoration: underline;
 }
 .job-title {
    color: #666;
@@ -112,7 +109,7 @@ a:hover {
    font-size: 15px;
 }
 .article-list a:hover {
-   text-decoration-color: #1a1a1a;
+   text-decoration: underline;
 }
 .publication-name {
    font-size: 14px;
