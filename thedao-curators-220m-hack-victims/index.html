@@ -41,6 +41,7 @@
             display: inline-block;
             color: #0645ad;
             text-decoration: none;
+            padding: 6px 0;
             font-size: 14px;
             font-family: sans-serif;
         }
@@ -53,9 +54,8 @@
             font-family: sans-serif;
         }
         .top-follow a, .author-bio a {
-            color: #0645ad;
-            background: none;
-            padding: 0;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
         }
         .article-header {
             margin-bottom: 40px;
@@ -215,15 +215,14 @@
             color: #0645ad;
         }
         a {
-            color: #0645ad;
-            text-decoration: none;
-            background: none;
-            padding: 0;
-            border-radius: 0;
+            color: #1a1a1a;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+            text-underline-offset: 2px;
+            transition: text-decoration-color 0.2s ease;
         }
         a:hover {
-            text-decoration: underline;
-            background: none;
+            text-decoration-color: #1a1a1a;
         }
         .highlight {
             background: #fff3cd;
