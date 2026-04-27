@@ -364,6 +364,10 @@
             <div class="article-meta">By Andrey Sergeenkov &middot; February 18, 2026</div>
         </header>
 
+        <div style="width:100%;margin:0 0 24px;border:1px solid #e0e0e0;border-radius:4px;overflow:hidden;">
+            <canvas id="dustAnim" style="width:100%;height:320px;display:block;"></canvas>
+        </div>
+
         <div class="tldr">
             <div class="tldr-title">Key Findings</div>
             <ul>
@@ -1005,5 +1009,230 @@
     });
     </script>
 <script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&!h.startsWith("#")&&!h.startsWith("/")&&h!="../")a.setAttribute("target","_blank");});</script>
+    <script>
+    (function(){
+      var c=document.getElementById('dustAnim');
+      if(!c)return;
+      var dpr=window.devicePixelRatio||1;
+      var W,H;
+      function resize(){
+        var r=c.getBoundingClientRect();
+        W=r.width;H=r.height;
+        c.width=W*dpr;c.height=H*dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      var ctx=c.getContext('2d');
+      resize();
+      window.addEventListener('resize',resize);
+
+      var REAL='0x1a2B3c4D5e6F7a8B9c0D1e2F3a4B5c6D7e8F7f3D';
+      var FAKE='0x1a2B9f1A0bCe38D764820dF5a92E1c0B4d3A7f3D';
+
+      // phases: show_victim, show_history, create_fake, send_dust, dust_lands, victim_copies, money_flies, reset
+      var phase='show_victim',timer=0,t=0;
+      var PHASE_DUR={show_victim:90,show_history:70,create_fake:100,send_dust:60,dust_lands:80,victim_copies:70,money_flies:100,reset:50};
+
+      var dustY=0,dustAlpha=0;
+      var moneyY=0,moneyAlpha=0;
+      var copyFlash=0;
+      var cursorX=0,cursorBlink=0;
+
+      // layout
+      var monoSize,lineH,padX,addrY1,histY,fakeY,col;
+
+      function calcLayout(){
+        monoSize=W<500?9:12;
+        lineH=W<500?16:22;
+        padX=W<500?8:20;
+        addrY1=36;
+        histY=addrY1+lineH*2.5;
+        fakeY=histY+lineH*4;
+        col={
+          match:'#2e7d32',
+          diff:'#dc3545',
+          addr:'#333',
+          dim:'#aaa',
+          label:'#888',
+          bg:'#fafafa',
+          histBg:'#f0f0f0',
+          cursor:'#0645ad',
+          money:'#f7931a',
+          dust:'#999'
+        };
+      }
+      calcLayout();
+
+      function drawAddr(x,y,addr,highlightDiff,alpha){
+        ctx.globalAlpha=alpha||1;
+        ctx.font=monoSize+'px monospace';
+        ctx.textBaseline='top';
+        var charW=ctx.measureText('0').width;
+        for(var i=0;i<addr.length;i++){
+          var ch=addr[i];
+          if(highlightDiff&&i>=4&&i<addr.length-4){
+            if(addr[i]!==REAL[i]){
+              ctx.fillStyle=col.diff;
+            }else{
+              ctx.fillStyle=col.dim;
+            }
+          }else if(highlightDiff&&(i<4||i>=addr.length-4)){
+            ctx.fillStyle=col.match;
+          }else{
+            ctx.fillStyle=col.addr;
+          }
+          ctx.fillText(ch,x+i*charW,y);
+        }
+        ctx.globalAlpha=1;
+      }
+
+      function drawLabel(x,y,text,color){
+        ctx.font=(monoSize-1)+'px sans-serif';
+        ctx.fillStyle=color||col.label;
+        ctx.textBaseline='top';
+        ctx.fillText(text,x,y);
+      }
+
+      function drawBox(x,y,w,h,bg,borderCol){
+        ctx.fillStyle=bg;
+        ctx.fillRect(x,y,w,h);
+        if(borderCol){
+          ctx.strokeStyle=borderCol;
+          ctx.lineWidth=1;
+          ctx.strokeRect(x,y,w,h);
+        }
+      }
+
+      function addrWidth(){
+        ctx.font=monoSize+'px monospace';
+        return ctx.measureText(REAL).width;
+      }
+
+      function draw(){
+        t++;timer++;
+        calcLayout();
+        var aw=addrWidth();
+        var dur=PHASE_DUR[phase];
+
+        // phase transitions
+        if(timer>=dur){
+          timer=0;
+          if(phase==='show_victim')phase='show_history';
+          else if(phase==='show_history')phase='create_fake';
+          else if(phase==='create_fake')phase='send_dust';
+          else if(phase==='send_dust')phase='dust_lands';
+          else if(phase==='dust_lands')phase='victim_copies';
+          else if(phase==='victim_copies')phase='money_flies';
+          else if(phase==='money_flies')phase='reset';
+          else if(phase==='reset'){phase='show_victim';dustY=0;moneyY=0;copyFlash=0;}
+        }
+
+        var prog=timer/dur;
+        ctx.clearRect(0,0,W,H);
+
+        // Background
+        ctx.fillStyle=col.bg;
+        ctx.fillRect(0,0,W,H);
+
+        // ---- VICTIM SECTION (top) ----
+        var victimAlpha=phase==='show_victim'?prog:1;
+        if(phase!=='reset'){
+          drawLabel(padX,addrY1-14,'Victim\'s real contact:',col.label);
+          drawAddr(padX,addrY1,REAL,false,victimAlpha);
+        }
+
+        // ---- TRANSACTION HISTORY (middle) ----
+        var showHist=phase!=='show_victim'&&phase!=='reset';
+        if(showHist){
+          var histAlpha=phase==='show_history'?prog:1;
+          ctx.globalAlpha=histAlpha;
+          drawLabel(padX,histY-14,'Transaction history:');
+          drawBox(padX-4,histY-2,aw+8,lineH*3.5+4,col.histBg,'#ddd');
+
+          // existing transactions
+          ctx.font=(monoSize-1)+'px monospace';
+          ctx.fillStyle=col.dim;ctx.textBaseline='top';
+          ctx.fillText('0xf39F...2266  sent 1.5 ETH',padX,histY+2);
+          ctx.fillText('0x7c8A...9eB1  sent 0.3 ETH',padX,histY+2+lineH);
+
+          // real contact in history
+          ctx.fillStyle=col.addr;
+          ctx.fillText(REAL.slice(0,6)+'...'+REAL.slice(-4)+'  sent 200 USDT',padX,histY+2+lineH*2);
+
+          ctx.globalAlpha=1;
+        }
+
+        // ---- ATTACKER CREATES FAKE (bottom) ----
+        var showFake=phase==='create_fake'||phase==='send_dust'||phase==='dust_lands'||phase==='victim_copies'||phase==='money_flies';
+        if(showFake){
+          var fakeAlpha=phase==='create_fake'?prog:1;
+          drawLabel(padX,fakeY-14,'Attacker generates lookalike address:',phase==='create_fake'?col.diff:col.label);
+          var revealCount=phase==='create_fake'?Math.floor(prog*FAKE.length):FAKE.length;
+          var partial=FAKE.slice(0,revealCount);
+          drawAddr(padX,fakeY,partial,true,fakeAlpha);
+        }
+
+        // ---- DUST TRANSACTION (flying) ----
+        if(phase==='send_dust'){
+          dustY=fakeY-prog*(fakeY-histY-lineH*2.5);
+          dustAlpha=0.8;
+          ctx.globalAlpha=0.8;
+          ctx.font=(monoSize-1)+'px sans-serif';
+          ctx.fillStyle=col.dust;
+          ctx.fillText('← 0.001 USDT (dust)',padX+aw+10,dustY);
+          ctx.globalAlpha=1;
+        }
+
+        // ---- DUST LANDS IN HISTORY ----
+        if(phase==='dust_lands'||phase==='victim_copies'||phase==='money_flies'){
+          ctx.globalAlpha=phase==='dust_lands'?Math.min(1,prog*2):1;
+          ctx.font=(monoSize-1)+'px monospace';
+          ctx.fillStyle=col.diff;ctx.textBaseline='top';
+          ctx.fillText(FAKE.slice(0,6)+'...'+FAKE.slice(-4)+'  sent 0.001 USDT ⚠',padX,histY+2+lineH*3);
+
+          // extend history box
+          drawBox(padX-4,histY-2,aw+8,lineH*4.5+4,'transparent','#ddd');
+          ctx.globalAlpha=1;
+        }
+
+        // ---- VICTIM COPIES WRONG ADDRESS ----
+        if(phase==='victim_copies'){
+          copyFlash=Math.sin(t*0.15)*0.3+0.7;
+          // highlight the fake row
+          ctx.globalAlpha=copyFlash*0.3;
+          ctx.fillStyle=col.diff;
+          ctx.fillRect(padX-4,histY+lineH*3,aw+8,lineH);
+          ctx.globalAlpha=1;
+
+          // cursor + "copied!" label
+          drawLabel(padX+aw+14,histY+lineH*3+2,'← Victim copies this address!',col.diff);
+        }
+
+        // ---- MONEY FLIES TO ATTACKER ----
+        if(phase==='money_flies'){
+          var flyProg=prog;
+          var startY=histY+lineH*2;
+          var endY=fakeY;
+          moneyY=startY+flyProg*(endY-startY);
+          moneyAlpha=1-flyProg*0.3;
+
+          ctx.globalAlpha=moneyAlpha;
+          ctx.font='bold '+monoSize+'px sans-serif';
+          ctx.fillStyle=col.money;
+          ctx.fillText('$50,000 USDT →',padX,moneyY);
+
+          // flash attacker address
+          if(Math.floor(t/8)%2===0){
+            ctx.globalAlpha=0.2;
+            ctx.fillStyle=col.money;
+            ctx.fillRect(padX-4,fakeY-2,aw+8,lineH+4);
+          }
+          ctx.globalAlpha=1;
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+    </script>
 </body>
 </html>
