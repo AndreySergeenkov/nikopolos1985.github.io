@@ -559,14 +559,16 @@
           return '@';
         }
         // Natural fire colours, tuned to read on white when rendered bold.
+        // Cool end pulled toward pure red (away from brown/burgundy);
+        // hot end pushed toward pure yellow (away from gold/mustard).
         function heatColor(h){
-          if(h<0.26) return '#6b1c08';   // dark red — cool outer edge
-          if(h<0.38) return '#9c2a0e';   // red
-          if(h<0.50) return '#c44017';   // red-orange
-          if(h<0.62) return '#dd6420';   // orange
-          if(h<0.74) return '#e88c25';   // amber
-          if(h<0.86) return '#eea82a';   // golden amber
-          return '#e6b820';              // bright gold — hottest core
+          if(h<0.26) return '#800808';   // pure dark red — cool outer edge
+          if(h<0.38) return '#b81818';   // pure red
+          if(h<0.50) return '#cc3818';   // red-orange
+          if(h<0.62) return '#dc5c1c';   // orange-red
+          if(h<0.74) return '#e8881c';   // orange
+          if(h<0.86) return '#eeac18';   // orange-yellow
+          return '#e8c810';              // yellow — hottest core
         }
 
         var fireFont='bold '+(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
@@ -627,12 +629,12 @@
       // Variant 1 — calm bonfire: slow breathing, low flames.
       startFire('fire-b', {
         cellW:8, cellH:12,
-        cooling:0.18,        // higher cooling → flames stay in lower band
-        baseLevel:0.55, amplitude:0.42, baseRows:3,
-        fireTickEvery:2,     // propagate every 2 frames → ~30fps fire flicker
+        cooling:0.24,        // higher cooling → flames stay in lower band
+        baseLevel:0.48, amplitude:0.42, baseRows:3,
+        fireTickEvery:3,     // propagate every 3rd frame → ~20fps fire flicker
         waves:[
-          {tFreq:0.006, xFreq:0.16, weight:0.6, phase:0},
-          {tFreq:0.014, xFreq:0.38, weight:0.4, phase:1.3}
+          {tFreq:0.004, xFreq:0.16, weight:0.6, phase:0},
+          {tFreq:0.009, xFreq:0.38, weight:0.4, phase:1.3}
         ],
         moneyRate:0.04,
         moneyXRatio:[0.05, 0.95],
@@ -643,13 +645,13 @@
       // Variant 2 — restless: same engine, sharper tongues from extra wave.
       startFire('fire-c', {
         cellW:8, cellH:12,
-        cooling:0.16,
-        baseLevel:0.45, amplitude:0.55, baseRows:3,
-        fireTickEvery:2,
+        cooling:0.22,
+        baseLevel:0.40, amplitude:0.55, baseRows:3,
+        fireTickEvery:3,
         waves:[
-          {tFreq:0.009, xFreq:0.28, weight:0.4, phase:0},
-          {tFreq:0.022, xFreq:0.65, weight:0.35, phase:2.1},
-          {tFreq:0.040, xFreq:1.05, weight:0.25, phase:0.7}
+          {tFreq:0.006, xFreq:0.28, weight:0.4, phase:0},
+          {tFreq:0.014, xFreq:0.65, weight:0.35, phase:2.1},
+          {tFreq:0.026, xFreq:1.05, weight:0.25, phase:0.7}
         ],
         moneyRate:0.05,
         moneyXRatio:[0.05, 0.95],
