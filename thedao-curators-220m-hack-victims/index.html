@@ -344,19 +344,50 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        .commission-box-actions a {
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
             display: inline-block;
             padding: 6px 12px;
             background: #fff;
             border: 1px solid #e2c97a;
+            border-right: none;
             color: #0645ad;
             text-decoration: none;
             font-size: 13px;
             font-weight: 400;
         }
-        .commission-box-actions a:hover {
+        .commission-contact a:hover {
             background: #fffbeb;
             text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
         }
     </style>
 </head>
@@ -384,8 +415,14 @@
             <div class="commission-box-heading">Need similar research?</div>
             <p>I take on commissioned research projects. DM me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
             <div class="commission-box-actions">
-                <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
-                <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                <span class="commission-contact">
+                    <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
+                    <button type="button" class="commission-copy" data-copy="andrey@sergeenkov.com" aria-label="Copy email" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                </span>
+                <span class="commission-contact">
+                    <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                    <button type="button" class="commission-copy" data-copy="@Nikopolos" aria-label="Copy Telegram handle" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                </span>
             </div>
         </aside>
 
@@ -656,5 +693,20 @@
         });
     </script>
 <script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&!h.startsWith("#")&&!h.startsWith("/")&&h!="../")a.setAttribute("target","_blank");});</script>
+    <script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
 </body>
 </html>
