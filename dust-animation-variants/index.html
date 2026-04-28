@@ -426,9 +426,17 @@
     })();
     </script>
 
-    <h2>Burning money <span class="tag">ASCII bonfire</span></h2>
-    <p class="desc">Full-width fire that breathes through layered sine waves so flames rise to different heights organically. Currency symbols fall in from above and ignite on contact in a puff of grey sparks.</p>
+    <h2>Burning money — Variant 1 <span class="tag">grid + sine waves</span></h2>
+    <p class="desc">Heat values stored in a grid; each frame the cells average heat from below and cool a little. Bottom row seeded by layered sine waves so flame tongues rise to different heights.</p>
     <div class="anim-frame"><canvas id="fire-b" style="height:280px;"></canvas></div>
+
+    <h2>Burning money — Variant 2 <span class="tag">Doom-style propagation</span></h2>
+    <p class="desc">Classic 1995 PSX-Doom fire algorithm. Each cell pulls its value directly from one specific cell below (with a random horizontal shift and small decay), instead of averaging neighbours. Produces coherent vertical "tongues" that look much more like real flames.</p>
+    <div class="anim-frame"><canvas id="fire-doom" style="height:280px;"></canvas></div>
+
+    <h2>Burning money — Variant 3 <span class="tag">rising embers</span></h2>
+    <p class="desc">No grid at all — every flame char is an independent particle. Embers are born at the base, drift upward with a slight sideways sway, and age from yellow through orange to dark red before disappearing. Closer to a real flickering bed of coals.</p>
+    <div class="anim-frame"><canvas id="fire-embers" style="height:280px;"></canvas></div>
 
     <script>
     (function(){
@@ -648,6 +656,324 @@
         moneySymbols:SYMS
       });
 
+      // ============================================================
+      // Variant 2 — Doom-style propagation
+      // Each cell pulls its value directly from one specific cell below
+      // (with random horizontal shift and decay), instead of averaging
+      // neighbours. Produces coherent vertical "tongues".
+      // ============================================================
+      function startDoomFire(canvasId, opts){
+        var c=document.getElementById(canvasId); if(!c) return;
+        var ctx=c.getContext('2d');
+        var dpr=window.devicePixelRatio||1;
+        var W=0,H=0,cols=0,rows=0,fire=null;
+        var money=[],t=0;
+        var cellW=opts.cellW, cellH=opts.cellH;
+        var tickEvery=opts.tickEvery;
+        var bottomRows=opts.bottomRows||3;
+        var maxIntensity=36;
+        var moneyRate=opts.moneyRate;
+        var moneyWobble=opts.moneyWobble;
+
+        function resize(){
+          var r=c.getBoundingClientRect();
+          W=r.width; H=r.height;
+          c.width=W*dpr; c.height=H*dpr;
+          ctx.setTransform(dpr,0,0,dpr,0,0);
+          cols=Math.max(1, Math.floor(W/cellW));
+          rows=Math.max(1, Math.floor(H/cellH));
+          fire=new Int8Array(cols*rows);
+        }
+
+        function seedBottom(){
+          for(var x=0; x<cols; x++){
+            var n=Math.sin(t*0.012 + x*0.18)*0.3 + Math.sin(t*0.027 + x*0.41 + 1.3)*0.2;
+            var base=0.78 + n*0.18 + (Math.random()-0.5)*0.10;
+            if(base<0.55) base=0.55; if(base>1) base=1;
+            var v=Math.floor(maxIntensity*base);
+            for(var dy=0; dy<bottomRows; dy++){
+              var y=rows-1-dy; if(y<0) continue;
+              fire[y*cols+x]=v;
+            }
+          }
+        }
+
+        function spread(){
+          for(var y=0; y<rows-1; y++){
+            for(var x=0; x<cols; x++){
+              var rnd=Math.floor(Math.random()*3);
+              var srcX=Math.max(0, Math.min(cols-1, x + rnd - 1));
+              var src=fire[(y+1)*cols + srcX];
+              var decay=Math.floor(Math.random()*3);
+              var v=src - decay;
+              if(v<0) v=0;
+              var dstX=Math.max(0, Math.min(cols-1, x - (rnd-1)));
+              fire[y*cols + dstX]=v;
+            }
+          }
+        }
+
+        function intensityChar(v){
+          if(v<3) return '.';
+          if(v<7) return ':';
+          if(v<13) return '*';
+          if(v<19) return 'o';
+          if(v<25) return '%';
+          if(v<31) return '#';
+          return '@';
+        }
+        function intensityColor(v){
+          var p=v/maxIntensity;
+          if(p<0.18) return '#9c0a08';
+          if(p<0.32) return '#c41414';
+          if(p<0.45) return '#dc2418';
+          if(p<0.58) return '#e84818';
+          if(p<0.72) return '#ec8410';
+          if(p<0.86) return '#ecbc08';
+          return '#e8d808';
+        }
+
+        var dFireFont='bold '+(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        var dMoneyFont='bold '+(cellH+2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        var dBurnFont='bold '+(cellH+6)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+
+        function spawnMoney(){
+          if(Math.random()>moneyRate) return;
+          var x=(0.05+Math.random()*0.9)*W;
+          var s=SYMS[Math.floor(Math.random()*SYMS.length)];
+          money.push({x:x,y:-cellH,vy:0.3+Math.random()*0.4,sym:s.s,col:s.c,ignited:0});
+        }
+        function updateMoney(){
+          for(var i=money.length-1; i>=0; i--){
+            var m=money[i];
+            if(m.ignited>0){
+              m.ignited++;
+              m.y-=0.7;
+              m.x+=Math.sin((t+i*11)*0.08)*0.35;
+              if(m.ignited>22){money.splice(i,1); continue;}
+            } else {
+              m.vy+=0.012; m.y+=m.vy;
+              m.x+=Math.sin((t+i*7)*0.05)*moneyWobble;
+              var cx=Math.floor(m.x/cellW), cy=Math.floor(m.y/cellH);
+              if(cy>=0 && cy<rows && cx>=0 && cx<cols){
+                if(fire[cy*cols+cx] > 14){
+                  m.ignited=1;
+                  for(var dy=-2; dy<=1; dy++){
+                    for(var dx2=-3; dx2<=3; dx2++){
+                      var ny=cy+dy, nx=cx+dx2;
+                      if(ny>=0 && ny<rows && nx>=0 && nx<cols){
+                        var b=Math.floor((1-Math.abs(dx2)/4)*(1-Math.abs(dy)/3)*22);
+                        if(b>0){
+                          var k=ny*cols+nx;
+                          fire[k]=Math.min(maxIntensity, fire[k]+b);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              if(m.y>H+30) money.splice(i,1);
+            }
+          }
+        }
+
+        function render(){
+          ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+          ctx.font=dFireFont; ctx.textBaseline='top';
+          for(var y=0; y<rows; y++){
+            for(var x=0; x<cols; x++){
+              var v=fire[y*cols+x];
+              if(v<3) continue;
+              ctx.fillStyle=intensityColor(v);
+              ctx.fillText(intensityChar(v), x*cellW, y*cellH);
+            }
+          }
+          ctx.font=dMoneyFont;
+          for(var i=0; i<money.length; i++){
+            var m=money[i]; if(m.ignited>0) continue;
+            ctx.fillStyle=m.col;
+            ctx.fillText(m.sym, m.x, m.y);
+          }
+          ctx.font=dBurnFont;
+          for(var i2=0; i2<money.length; i2++){
+            var m2=money[i2]; if(m2.ignited<=0) continue;
+            var alpha=1-(m2.ignited-1)/21;
+            ctx.fillStyle='rgba(170,170,170,'+alpha.toFixed(2)+')';
+            ctx.fillText(m2.sym, m2.x-1, m2.y-2);
+          }
+        }
+
+        function loop(){
+          t++;
+          if(t % tickEvery === 0){ seedBottom(); spread(); }
+          spawnMoney(); updateMoney(); render();
+          requestAnimationFrame(loop);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+        loop();
+      }
+
+      startDoomFire('fire-doom', {
+        cellW:8, cellH:12,
+        tickEvery:6,
+        bottomRows:3,
+        moneyRate:0.04,
+        moneyWobble:0.4
+      });
+
+      // ============================================================
+      // Variant 3 — Rising embers (particle-based)
+      // Every flame char is an independent particle that drifts
+      // upward, ages, and changes colour from yellow to dark red.
+      // ============================================================
+      function startEmberFire(canvasId, opts){
+        var c=document.getElementById(canvasId); if(!c) return;
+        var ctx=c.getContext('2d');
+        var dpr=window.devicePixelRatio||1;
+        var W=0,H=0,baseY=0;
+        var embers=[],money=[],t=0;
+        var cellH=opts.cellH||12;
+        var spawnRate=opts.spawnRate||5;
+        var maxAge=opts.maxAge||44;
+        var moneyRate=opts.moneyRate;
+        var moneyWobble=opts.moneyWobble;
+
+        function resize(){
+          var r=c.getBoundingClientRect();
+          W=r.width; H=r.height;
+          c.width=W*dpr; c.height=H*dpr;
+          ctx.setTransform(dpr,0,0,dpr,0,0);
+          baseY=H-14;
+        }
+
+        function spawnEmber(){
+          embers.push({
+            x:Math.random()*W,
+            y:baseY+Math.random()*8,
+            vy:-0.45-Math.random()*0.55,
+            vx:(Math.random()-0.5)*0.4,
+            age:0,
+            maxAge:maxAge*(0.65+Math.random()*0.55)
+          });
+        }
+
+        function ageChar(a){
+          if(a<0.18) return '@';
+          if(a<0.32) return '#';
+          if(a<0.46) return '%';
+          if(a<0.60) return 'o';
+          if(a<0.74) return '*';
+          if(a<0.88) return ':';
+          return '.';
+        }
+        function ageColor(a){
+          if(a<0.14) return '#e8d808';
+          if(a<0.28) return '#ecbc08';
+          if(a<0.42) return '#ec8410';
+          if(a<0.56) return '#e84818';
+          if(a<0.72) return '#dc2418';
+          if(a<0.86) return '#c41414';
+          return '#9c0a08';
+        }
+
+        function update(){
+          for(var i=0;i<spawnRate;i++) spawnEmber();
+          for(var j=embers.length-1; j>=0; j--){
+            var e=embers[j];
+            e.x+=e.vx; e.y+=e.vy;
+            e.vx+=(Math.random()-0.5)*0.06;
+            e.vx*=0.96;
+            e.vy*=0.992;
+            e.age++;
+            if(e.age>e.maxAge) embers.splice(j,1);
+          }
+        }
+
+        var eFireFont='bold '+(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        var eMoneyFont='bold '+(cellH+2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        var eBurnFont='bold '+(cellH+6)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+
+        function spawnMoney(){
+          if(Math.random()>moneyRate) return;
+          var x=(0.05+Math.random()*0.9)*W;
+          var s=SYMS[Math.floor(Math.random()*SYMS.length)];
+          money.push({x:x,y:-cellH,vy:0.3+Math.random()*0.4,sym:s.s,col:s.c,ignited:0});
+        }
+        function updateMoney(){
+          for(var i=money.length-1; i>=0; i--){
+            var m=money[i];
+            if(m.ignited>0){
+              m.ignited++;
+              m.y-=0.7;
+              m.x+=Math.sin((t+i*11)*0.08)*0.35;
+              if(m.ignited>22){money.splice(i,1); continue;}
+            } else {
+              m.vy+=0.012; m.y+=m.vy;
+              m.x+=Math.sin((t+i*7)*0.05)*moneyWobble;
+              if(m.y > baseY-6 && m.y < baseY+18){
+                m.ignited=1;
+                // burst of extra embers around impact for visual reaction
+                for(var k=0;k<10;k++){
+                  embers.push({
+                    x:m.x+(Math.random()-0.5)*16,
+                    y:m.y+(Math.random()-0.5)*4,
+                    vy:-0.7-Math.random()*0.7,
+                    vx:(Math.random()-0.5)*0.9,
+                    age:0,
+                    maxAge:maxAge*(0.5+Math.random()*0.5)
+                  });
+                }
+              }
+              if(m.y>H+30) money.splice(i,1);
+            }
+          }
+        }
+
+        function render(){
+          ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+          ctx.font=eFireFont; ctx.textBaseline='top';
+          for(var i=0; i<embers.length; i++){
+            var e=embers[i];
+            var a=e.age/e.maxAge;
+            ctx.fillStyle=ageColor(a);
+            ctx.fillText(ageChar(a), e.x, e.y);
+          }
+          ctx.font=eMoneyFont;
+          for(var i2=0; i2<money.length; i2++){
+            var m=money[i2]; if(m.ignited>0) continue;
+            ctx.fillStyle=m.col;
+            ctx.fillText(m.sym, m.x, m.y);
+          }
+          ctx.font=eBurnFont;
+          for(var i3=0; i3<money.length; i3++){
+            var m2=money[i3]; if(m2.ignited<=0) continue;
+            var alpha=1-(m2.ignited-1)/21;
+            ctx.fillStyle='rgba(170,170,170,'+alpha.toFixed(2)+')';
+            ctx.fillText(m2.sym, m2.x-1, m2.y-2);
+          }
+        }
+
+        function loop(){
+          t++;
+          update();
+          spawnMoney(); updateMoney(); render();
+          requestAnimationFrame(loop);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+        loop();
+      }
+
+      startEmberFire('fire-embers', {
+        cellH:12,
+        spawnRate:6,
+        maxAge:50,
+        moneyRate:0.04,
+        moneyWobble:0.4
+      });
     })();
     </script>
 </body>
