@@ -426,13 +426,9 @@
     })();
     </script>
 
-    <h2>Burning money — Variant 1 <span class="tag">calm bonfire</span></h2>
-    <p class="desc">Full-width fire that breathes through layered sine waves so flames rise to different heights organically. Currency symbols fall in from above and ignite on contact.</p>
+    <h2>Burning money <span class="tag">ASCII bonfire</span></h2>
+    <p class="desc">Full-width fire that breathes through layered sine waves so flames rise to different heights organically. Currency symbols fall in from above and ignite on contact in a puff of grey sparks.</p>
     <div class="anim-frame"><canvas id="fire-b" style="height:280px;"></canvas></div>
-
-    <h2>Burning money — Variant 2 <span class="tag">restless flames</span></h2>
-    <p class="desc">Same engine, more chaotic. Higher-frequency noise components produce sharper tongues and occasional bursts; otherwise identical.</p>
-    <div class="anim-frame"><canvas id="fire-c" style="height:280px;"></canvas></div>
 
     <script>
     (function(){
@@ -442,7 +438,7 @@
         var ctx=c.getContext('2d');
         var dpr=window.devicePixelRatio||1;
         var W=0,H=0,cols=0,rows=0,heat=null;
-        var money=[],t=0;
+        var money=[],sparks=[],t=0;
         var cellW=opts.cellW, cellH=opts.cellH;
         var cooling=opts.cooling;
         var waves=opts.waves;
@@ -515,12 +511,29 @@
           });
         }
 
+        function spawnSparks(x, y){
+          var n=7+Math.floor(Math.random()*4);
+          for(var k=0;k<n;k++){
+            var ang=-Math.PI/2 + (Math.random()-0.5)*Math.PI*1.2;
+            var spd=0.6+Math.random()*1.4;
+            sparks.push({
+              x:x+(Math.random()-0.5)*4,
+              y:y+(Math.random()-0.5)*4,
+              vx:Math.cos(ang)*spd,
+              vy:Math.sin(ang)*spd,
+              life:0,
+              maxLife:18+Math.random()*10,
+              ch:Math.random()<0.55?'*':(Math.random()<0.5?'.':'\'')
+            });
+          }
+        }
+
         function updateMoney(){
           for(var i=money.length-1; i>=0; i--){
             var m=money[i];
             if(m.ignited>0){
               m.ignited++;
-              if(m.ignited>10){money.splice(i,1); continue;}
+              if(m.ignited>16){money.splice(i,1); continue;}
             } else {
               m.vy+=0.012;
               m.y+=m.vy;
@@ -528,8 +541,9 @@
               var cx=Math.floor(m.x/cellW);
               var cy=Math.floor(m.y/cellH);
               if(cy>=0 && cy<rows && cx>=0 && cx<cols){
-                if(heat[cy*cols+cx] > 0.4){
+                if(heat[cy*cols+cx] > 0.38){
                   m.ignited=1;
+                  spawnSparks(m.x, m.y);
                   for(var dy=-2; dy<=1; dy++){
                     for(var dx2=-3; dx2<=3; dx2++){
                       var ny=cy+dy, nx=cx+dx2;
@@ -549,6 +563,17 @@
           }
         }
 
+        function updateSparks(){
+          for(var i=sparks.length-1; i>=0; i--){
+            var s=sparks[i];
+            s.x+=s.vx; s.y+=s.vy;
+            s.vy+=0.03;
+            s.vx*=0.97;
+            s.life++;
+            if(s.life>=s.maxLife) sparks.splice(i,1);
+          }
+        }
+
         function heatChar(h){
           if(h<0.22) return '.';
           if(h<0.32) return ':';
@@ -558,17 +583,17 @@
           if(h<0.86) return '#';
           return '@';
         }
-        // Natural fire colours, tuned to read on white when rendered bold.
-        // Cool end pulled toward pure red (away from brown/burgundy);
-        // hot end pushed toward pure yellow (away from gold/mustard).
+        // Natural fire palette tuned for white background + bold weight.
+        // Compressed orange band and shifted both ends toward pure hues:
+        // cool end firmly red (no burgundy), hot end firmly yellow.
         function heatColor(h){
-          if(h<0.26) return '#800808';   // pure dark red — cool outer edge
-          if(h<0.38) return '#b81818';   // pure red
-          if(h<0.50) return '#cc3818';   // red-orange
-          if(h<0.62) return '#dc5c1c';   // orange-red
-          if(h<0.74) return '#e8881c';   // orange
-          if(h<0.86) return '#eeac18';   // orange-yellow
-          return '#e8c810';              // yellow — hottest core
+          if(h<0.26) return '#9c0a08';   // pure dark red — cool outer edge
+          if(h<0.38) return '#c41414';   // red
+          if(h<0.50) return '#dc2418';   // red, slight warm
+          if(h<0.62) return '#e84818';   // brief red-orange transition
+          if(h<0.74) return '#ec8410';   // jump straight to yellow-orange
+          if(h<0.86) return '#ecbc08';   // amber yellow
+          return '#e8d808';              // saturated yellow — hottest core
         }
 
         var fireFont='bold '+(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
@@ -587,16 +612,33 @@
               ctx.fillText(heatChar(h), x*cellW, y*cellH);
             }
           }
+          // Money symbols (idle): brand colour at normal size
           ctx.font=moneyFont;
           for(var i=0; i<money.length; i++){
             var m=money[i];
-            if(m.ignited>0){
-              var a=1-(m.ignited-1)/10;
-              ctx.fillStyle='rgba(230,184,32,'+a.toFixed(2)+')';
-            } else {
-              ctx.fillStyle=m.col;
-            }
+            if(m.ignited>0) continue;
+            ctx.fillStyle=m.col;
             ctx.fillText(m.sym, m.x, m.y);
+          }
+          // Burning symbols: bigger puff, light grey, fading out
+          for(var i2=0; i2<money.length; i2++){
+            var m2=money[i2];
+            if(m2.ignited<=0) continue;
+            var p=(m2.ignited-1)/15;
+            var scale=1+1.4*Math.sin(p*Math.PI);
+            var size=(cellH+2)*scale;
+            var alpha=1-p*0.85;
+            ctx.font='bold '+size.toFixed(1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+            ctx.fillStyle='rgba(150,150,150,'+alpha.toFixed(2)+')';
+            ctx.fillText(m2.sym, m2.x-(size-cellH-2)/2, m2.y-(size-cellH-2)/2);
+          }
+          // Sparks: light grey ASCII specks fading out
+          ctx.font='bold '+(cellH-2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          for(var k=0;k<sparks.length;k++){
+            var sp=sparks[k];
+            var sa=1-sp.life/sp.maxLife;
+            ctx.fillStyle='rgba(170,170,170,'+(sa*0.85).toFixed(2)+')';
+            ctx.fillText(sp.ch, sp.x, sp.y);
           }
         }
 
@@ -608,6 +650,7 @@
           }
           spawnMoney();
           updateMoney();
+          updateSparks();
           render();
           requestAnimationFrame(loop);
         }
@@ -642,22 +685,6 @@
         moneySymbols:SYMS
       });
 
-      // Variant 2 — restless: same engine, sharper tongues from extra wave.
-      startFire('fire-c', {
-        cellW:8, cellH:12,
-        cooling:0.22,
-        baseLevel:0.40, amplitude:0.55, baseRows:3,
-        fireTickEvery:3,
-        waves:[
-          {tFreq:0.006, xFreq:0.28, weight:0.4, phase:0},
-          {tFreq:0.014, xFreq:0.65, weight:0.35, phase:2.1},
-          {tFreq:0.026, xFreq:1.05, weight:0.25, phase:0.7}
-        ],
-        moneyRate:0.05,
-        moneyXRatio:[0.05, 0.95],
-        moneyWobble:0.3,
-        moneySymbols:SYMS
-      });
     })();
     </script>
 </body>
