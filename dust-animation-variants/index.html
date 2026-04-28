@@ -516,7 +516,10 @@
             var m=money[i];
             if(m.ignited>0){
               m.ignited++;
-              if(m.ignited>16){money.splice(i,1); continue;}
+              // burn flash drifts upward and slowly sideways while fading
+              m.y-=0.7;
+              m.x+=Math.sin((t+i*11)*0.08)*0.35;
+              if(m.ignited>22){money.splice(i,1); continue;}
             } else {
               m.vy+=0.012;
               m.y+=m.vy;
@@ -592,13 +595,13 @@
             ctx.fillStyle=m.col;
             ctx.fillText(m.sym, m.x, m.y);
           }
-          // Burning money: same simple fade as before but in light grey
-          // and rendered a touch larger so the flash reads stronger.
+          // Burning money: simple fade in light grey, rendered a touch larger
+          // and drifting upward so the flash rises out of the fire.
           ctx.font=burnFont;
           for(var i2=0; i2<money.length; i2++){
             var m2=money[i2];
             if(m2.ignited<=0) continue;
-            var alpha=1-(m2.ignited-1)/15;
+            var alpha=1-(m2.ignited-1)/21;
             ctx.fillStyle='rgba(170,170,170,'+alpha.toFixed(2)+')';
             ctx.fillText(m2.sym, m2.x-1, m2.y-2);
           }
@@ -634,7 +637,7 @@
         cellW:8, cellH:12,
         cooling:0.30,        // higher cooling → flames sit lower
         baseLevel:0.42, amplitude:0.40, baseRows:3,
-        fireTickEvery:5,     // propagate every 5th frame → ~12fps flicker
+        fireTickEvery:9,     // propagate every 9th frame → ~7fps flicker
         waves:[
           {tFreq:0.0025, xFreq:0.16, weight:0.6, phase:0},
           {tFreq:0.0055, xFreq:0.38, weight:0.4, phase:1.3}
