@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
-    <title>Dust Attack Animation — Preview</title>
+    <title>Animation Experiments — Preview</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <style>
         * { box-sizing: border-box; }
@@ -22,7 +22,15 @@
         .top-nav a { color: #0645ad; text-decoration: none; font-size: 14px; }
         .top-nav a:hover { text-decoration: underline; }
         h1 { font-size: 26px; margin: 0 0 8px; }
+        h2 {
+            font-size: 19px;
+            margin: 40px 0 6px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        h2 .tag { color: #888; font-weight: normal; font-size: 14px; margin-left: 8px; }
         .lead { color: #54595d; margin: 0 0 24px; font-size: 16px; }
+        .desc { font-size: 15px; color: #54595d; margin: 0 0 14px; }
         .anim-frame {
             width: 100%;
             border: 1px solid #e0e0e0;
@@ -36,9 +44,11 @@
 <body>
     <div class="top-nav"><a href="../">&larr; Back to Home</a></div>
 
-    <h1>Dust Attack Animation — Preview</h1>
-    <p class="lead">Single horizontal strip: explanation on the left, interface preview on the right.</p>
+    <h1>Animation Experiments</h1>
+    <p class="lead">Sandbox for canvas-based article visuals. Pick what fits.</p>
 
+    <h2>Dust attack explainer <span class="tag">single horizontal strip</span></h2>
+    <p class="desc">Explanation on the left, wallet interface preview on the right.</p>
     <div class="anim-frame"><canvas id="anim" style="height:280px;"></canvas></div>
 
     <script>
@@ -413,6 +423,206 @@
       }
 
       draw();
+    })();
+    </script>
+
+    <h2>Burning money — Variant 1 <span class="tag">wide bonfire</span></h2>
+    <p class="desc">Cellular-automata fire spread across the bottom of the frame; currency symbols fall in from above and ignite on contact.</p>
+    <div class="anim-frame"><canvas id="fire-b" style="height:280px;background:#0c0d10;"></canvas></div>
+
+    <h2>Burning money — Variant 2 <span class="tag">narrow column</span></h2>
+    <p class="desc">A single tall pillar of flame, money symbols funnel down toward the centre and disappear in a flash.</p>
+    <div class="anim-frame"><canvas id="fire-c" style="height:280px;background:#0c0d10;"></canvas></div>
+
+    <script>
+    (function(){
+      function startFire(canvasId, opts){
+        var c=document.getElementById(canvasId);
+        if(!c) return;
+        var ctx=c.getContext('2d');
+        var dpr=window.devicePixelRatio||1;
+        var W=0,H=0,cols=0,rows=0,heat=null;
+        var money=[],t=0;
+        var cellW=opts.cellW, cellH=opts.cellH;
+        var cooling=opts.cooling;
+        var fireWidthRatio=opts.fireWidthRatio;
+        var moneyRate=opts.moneyRate;
+        var moneyXRatio=opts.moneyXRatio;
+        var moneyWobble=opts.moneyWobble||0.3;
+        var symbols=opts.moneySymbols;
+        var bg=opts.bg||'#0c0d10';
+
+        function resize(){
+          var r=c.getBoundingClientRect();
+          W=r.width; H=r.height;
+          c.width=W*dpr; c.height=H*dpr;
+          ctx.setTransform(dpr,0,0,dpr,0,0);
+          cols=Math.max(1, Math.floor(W/cellW));
+          rows=Math.max(1, Math.floor(H/cellH));
+          heat=new Float32Array(cols*rows);
+        }
+
+        function seedBottom(){
+          var startCol=Math.floor(cols*(0.5-fireWidthRatio/2));
+          var endCol=Math.floor(cols*(0.5+fireWidthRatio/2));
+          var mid=(startCol+endCol)/2;
+          var halfWidth=Math.max(1,(endCol-startCol)/2);
+          for(var x=startCol; x<endCol; x++){
+            var edge=1-Math.pow((x-mid)/halfWidth, 2);
+            if(edge<0) edge=0;
+            for(var dy=0; dy<2; dy++){
+              var y=rows-1-dy;
+              if(y<0) continue;
+              heat[y*cols+x]=(0.7+Math.random()*0.3)*edge;
+            }
+          }
+        }
+
+        function propagate(){
+          // top to bottom: each cell pulls from below
+          for(var y=0; y<rows-1; y++){
+            for(var x=0; x<cols; x++){
+              var b =heat[(y+1)*cols+x];
+              var bl=heat[(y+1)*cols+Math.max(0,x-1)];
+              var br=heat[(y+1)*cols+Math.min(cols-1,x+1)];
+              var avg=(b+b+bl+br)/4;
+              var newH=Math.max(0, avg - Math.random()*cooling);
+              var shift=Math.floor((Math.random()-0.5)*2.2);
+              var dx=Math.max(0, Math.min(cols-1, x+shift));
+              heat[y*cols+dx]=newH;
+            }
+          }
+        }
+
+        function spawnMoney(){
+          if(Math.random()>moneyRate) return;
+          var x=(moneyXRatio[0]+Math.random()*(moneyXRatio[1]-moneyXRatio[0]))*W;
+          money.push({
+            x:x, y:-cellH,
+            vy:0.3+Math.random()*0.4,
+            sym:symbols[Math.floor(Math.random()*symbols.length)],
+            ignited:0
+          });
+        }
+
+        function updateMoney(){
+          for(var i=money.length-1; i>=0; i--){
+            var m=money[i];
+            if(m.ignited>0){
+              m.ignited++;
+              if(m.ignited>8){money.splice(i,1); continue;}
+            } else {
+              m.vy+=0.012;
+              m.y+=m.vy;
+              m.x+=Math.sin((t+i*7)*0.05)*moneyWobble;
+              var cx=Math.floor(m.x/cellW);
+              var cy=Math.floor(m.y/cellH);
+              if(cy>=0 && cy<rows && cx>=0 && cx<cols){
+                if(heat[cy*cols+cx] > 0.4){
+                  m.ignited=1;
+                  for(var dy=-2; dy<=1; dy++){
+                    for(var dx2=-3; dx2<=3; dx2++){
+                      var ny=cy+dy, nx=cx+dx2;
+                      if(ny>=0 && ny<rows && nx>=0 && nx<cols){
+                        var bonus=(1-Math.abs(dx2)/4)*(1-Math.abs(dy)/3)*0.7;
+                        if(bonus>0){
+                          var k=ny*cols+nx;
+                          heat[k]=Math.min(1, heat[k]+bonus);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              if(m.y>H+30) money.splice(i,1);
+            }
+          }
+        }
+
+        function heatChar(h){
+          if(h<0.1) return '.';
+          if(h<0.2) return ':';
+          if(h<0.3) return '\'';
+          if(h<0.4) return '*';
+          if(h<0.55) return 'o';
+          if(h<0.7) return '%';
+          if(h<0.85) return '#';
+          return '@';
+        }
+        function heatColor(h){
+          if(h<0.18) return '#451310';
+          if(h<0.32) return '#7a1f1a';
+          if(h<0.48) return '#b34416';
+          if(h<0.62) return '#df7818';
+          if(h<0.78) return '#f1b434';
+          if(h<0.9)  return '#fbe26b';
+          return '#fff7c0';
+        }
+
+        function render(){
+          ctx.fillStyle=bg;
+          ctx.fillRect(0,0,W,H);
+          ctx.font=(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          ctx.textBaseline='top';
+          for(var y=0; y<rows; y++){
+            for(var x=0; x<cols; x++){
+              var h=heat[y*cols+x];
+              if(h<0.07) continue;
+              ctx.fillStyle=heatColor(h);
+              ctx.fillText(heatChar(h), x*cellW, y*cellH);
+            }
+          }
+          ctx.font=(cellH+2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          for(var i=0; i<money.length; i++){
+            var m=money[i];
+            if(m.ignited>0){
+              var a=1-(m.ignited-1)/8;
+              ctx.fillStyle='rgba(255,247,192,'+a.toFixed(2)+')';
+            } else {
+              ctx.fillStyle='#cfd2d6';
+            }
+            ctx.fillText(m.sym, m.x, m.y);
+          }
+        }
+
+        function loop(){
+          t++;
+          seedBottom();
+          propagate();
+          spawnMoney();
+          updateMoney();
+          render();
+          requestAnimationFrame(loop);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+        loop();
+      }
+
+      var SYMS=['$','€','£','¥','₿'];
+
+      // Variant 1 — wide bonfire
+      startFire('fire-b', {
+        cellW:8, cellH:12,
+        cooling:0.05,
+        fireWidthRatio:0.7,
+        moneyRate:0.035,
+        moneyXRatio:[0.18, 0.82],
+        moneyWobble:0.4,
+        moneySymbols:SYMS
+      });
+
+      // Variant 2 — narrow tall column
+      startFire('fire-c', {
+        cellW:8, cellH:12,
+        cooling:0.038,
+        fireWidthRatio:0.18,
+        moneyRate:0.045,
+        moneyXRatio:[0.42, 0.58],
+        moneyWobble:0.15,
+        moneySymbols:SYMS
+      });
     })();
     </script>
 </body>
