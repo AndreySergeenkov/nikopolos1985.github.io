@@ -449,6 +449,7 @@
         var baseLevel=opts.baseLevel;
         var amplitude=opts.amplitude;
         var baseRows=opts.baseRows||2;
+        var fireTickEvery=opts.fireTickEvery||2;
         var moneyRate=opts.moneyRate;
         var moneyXRatio=opts.moneyXRatio||[0.05, 0.95];
         var moneyWobble=opts.moneyWobble||0.3;
@@ -467,7 +468,7 @@
 
         function seedBottom(){
           // Full-width seeding, intensity from layered sine waves.
-          // Different waves with prime-ish frequencies → flames of varying height.
+          // Different wave frequencies → flames of varying height.
           var totalW=0;
           for(var i=0;i<waves.length;i++) totalW+=waves[i].weight;
           for(var x=0; x<cols; x++){
@@ -477,7 +478,7 @@
               sum += (Math.sin(t*w.tFreq + x*w.xFreq + w.phase)*0.5+0.5) * w.weight;
             }
             var n = baseLevel + (sum/totalW) * amplitude;
-            n *= 0.85 + Math.random()*0.15;
+            n *= 0.88 + Math.random()*0.12;
             if(n>1) n=1;
             for(var dy=0; dy<baseRows; dy++){
               var y=rows-1-dy;
@@ -505,10 +506,11 @@
         function spawnMoney(){
           if(Math.random()>moneyRate) return;
           var x=(moneyXRatio[0]+Math.random()*(moneyXRatio[1]-moneyXRatio[0]))*W;
+          var s=symbols[Math.floor(Math.random()*symbols.length)];
           money.push({
             x:x, y:-cellH,
             vy:0.3+Math.random()*0.4,
-            sym:symbols[Math.floor(Math.random()*symbols.length)],
+            sym:s.s, col:s.c,
             ignited:0
           });
         }
@@ -518,7 +520,7 @@
             var m=money[i];
             if(m.ignited>0){
               m.ignited++;
-              if(m.ignited>8){money.splice(i,1); continue;}
+              if(m.ignited>10){money.splice(i,1); continue;}
             } else {
               m.vy+=0.012;
               m.y+=m.vy;
@@ -532,7 +534,7 @@
                     for(var dx2=-3; dx2<=3; dx2++){
                       var ny=cy+dy, nx=cx+dx2;
                       if(ny>=0 && ny<rows && nx>=0 && nx<cols){
-                        var bonus=(1-Math.abs(dx2)/4)*(1-Math.abs(dy)/3)*0.7;
+                        var bonus=(1-Math.abs(dx2)/4)*(1-Math.abs(dy)/3)*0.8;
                         if(bonus>0){
                           var k=ny*cols+nx;
                           heat[k]=Math.min(1, heat[k]+bonus);
@@ -548,28 +550,32 @@
         }
 
         function heatChar(h){
-          if(h<0.18) return '.';
-          if(h<0.28) return ':';
-          if(h<0.4) return '*';
-          if(h<0.55) return 'o';
-          if(h<0.7) return '%';
-          if(h<0.85) return '#';
+          if(h<0.22) return '.';
+          if(h<0.32) return ':';
+          if(h<0.44) return '*';
+          if(h<0.58) return 'o';
+          if(h<0.72) return '%';
+          if(h<0.86) return '#';
           return '@';
         }
-        // Palette for white background — darker = hotter (stronger ink mark)
+        // Natural fire colours, tuned to read on white when rendered bold.
         function heatColor(h){
-          if(h<0.28) return '#e3a877';   // peach (cool edge)
-          if(h<0.42) return '#d57a3f';   // sandy orange
-          if(h<0.55) return '#c0532a';   // orange
-          if(h<0.68) return '#a02a14';   // red-orange
-          if(h<0.82) return '#7c1a08';   // deep red
-          return '#4a0e04';              // almost-black red (hottest)
+          if(h<0.26) return '#6b1c08';   // dark red — cool outer edge
+          if(h<0.38) return '#9c2a0e';   // red
+          if(h<0.50) return '#c44017';   // red-orange
+          if(h<0.62) return '#dd6420';   // orange
+          if(h<0.74) return '#e88c25';   // amber
+          if(h<0.86) return '#eea82a';   // golden amber
+          return '#e6b820';              // bright gold — hottest core
         }
+
+        var fireFont='bold '+(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+        var moneyFont='bold '+(cellH+2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
 
         function render(){
           ctx.fillStyle=bg;
           ctx.fillRect(0,0,W,H);
-          ctx.font=(cellH-1)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          ctx.font=fireFont;
           ctx.textBaseline='top';
           for(var y=0; y<rows; y++){
             for(var x=0; x<cols; x++){
@@ -579,14 +585,14 @@
               ctx.fillText(heatChar(h), x*cellW, y*cellH);
             }
           }
-          ctx.font=(cellH+2)+'px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          ctx.font=moneyFont;
           for(var i=0; i<money.length; i++){
             var m=money[i];
             if(m.ignited>0){
-              var a=1-(m.ignited-1)/8;
-              ctx.fillStyle='rgba(160,42,20,'+a.toFixed(2)+')';
+              var a=1-(m.ignited-1)/10;
+              ctx.fillStyle='rgba(230,184,32,'+a.toFixed(2)+')';
             } else {
-              ctx.fillStyle='#333';
+              ctx.fillStyle=m.col;
             }
             ctx.fillText(m.sym, m.x, m.y);
           }
@@ -594,8 +600,10 @@
 
         function loop(){
           t++;
-          seedBottom();
-          propagate();
+          if(t % fireTickEvery === 0){
+            seedBottom();
+            propagate();
+          }
           spawnMoney();
           updateMoney();
           render();
@@ -607,16 +615,24 @@
         loop();
       }
 
-      var SYMS=['$','€','£','¥','₿'];
+      // Brand-coloured currency symbols, like the swirling vortex anim.
+      var SYMS=[
+        {s:'$', c:'#2e7d32'},   // dollar — green
+        {s:'€', c:'#0e8a6e'},   // euro — teal
+        {s:'£', c:'#6b3fa0'},   // pound — purple
+        {s:'¥', c:'#d32f2f'},   // yen — red
+        {s:'₿', c:'#f7931a'}    // bitcoin — orange
+      ];
 
-      // Variant 1 — calm bonfire: two slow waves across full width
+      // Variant 1 — calm bonfire: slow breathing, low flames.
       startFire('fire-b', {
         cellW:8, cellH:12,
-        cooling:0.085,
-        baseLevel:0.42, amplitude:0.45, baseRows:2,
+        cooling:0.18,        // higher cooling → flames stay in lower band
+        baseLevel:0.55, amplitude:0.42, baseRows:3,
+        fireTickEvery:2,     // propagate every 2 frames → ~30fps fire flicker
         waves:[
-          {tFreq:0.012, xFreq:0.18, weight:0.6, phase:0},
-          {tFreq:0.027, xFreq:0.41, weight:0.4, phase:1.3}
+          {tFreq:0.006, xFreq:0.16, weight:0.6, phase:0},
+          {tFreq:0.014, xFreq:0.38, weight:0.4, phase:1.3}
         ],
         moneyRate:0.04,
         moneyXRatio:[0.05, 0.95],
@@ -624,15 +640,16 @@
         moneySymbols:SYMS
       });
 
-      // Variant 2 — restless: three waves incl. high-frequency for sharp tongues
+      // Variant 2 — restless: same engine, sharper tongues from extra wave.
       startFire('fire-c', {
         cellW:8, cellH:12,
-        cooling:0.075,
-        baseLevel:0.30, amplitude:0.58, baseRows:2,
+        cooling:0.16,
+        baseLevel:0.45, amplitude:0.55, baseRows:3,
+        fireTickEvery:2,
         waves:[
-          {tFreq:0.018, xFreq:0.31, weight:0.4, phase:0},
-          {tFreq:0.045, xFreq:0.70, weight:0.35, phase:2.1},
-          {tFreq:0.080, xFreq:1.10, weight:0.25, phase:0.7}
+          {tFreq:0.009, xFreq:0.28, weight:0.4, phase:0},
+          {tFreq:0.022, xFreq:0.65, weight:0.35, phase:2.1},
+          {tFreq:0.040, xFreq:1.05, weight:0.25, phase:0.7}
         ],
         moneyRate:0.05,
         moneyXRatio:[0.05, 0.95],
