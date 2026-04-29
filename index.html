@@ -27,6 +27,19 @@
             </div>
             <p class="job-title">I research the digital economy and share my findings publicly. I don't invest in or hold any cryptocurrencies, nor do I participate in any projects.</p>
             <p class="current-work">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">X</a>.</p>
+            <aside class="commission-box">
+                <p><strong>I take on commissioned research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
+                <div class="commission-box-actions">
+                    <span class="commission-contact">
+                        <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
+                        <button type="button" class="commission-copy" data-copy="andrey@sergeenkov.com" aria-label="Copy email" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                    </span>
+                    <span class="commission-contact">
+                        <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                        <button type="button" class="commission-copy" data-copy="@Nikopolos" aria-label="Copy Telegram handle" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                    </span>
+                </div>
+            </aside>
             <p class="current-work">My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
             <p class="current-work">My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.<br><span style="display:block;margin-top:6px">Full list of citations: <a href="/citations/">sergeenkov.com/citations</a></span></p>
             <p class="current-work">My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.<br><span style="display:block;margin-top:6px">Full list of media coverage: <a href="/coverage/">sergeenkov.com/coverage</a></span></p>
@@ -311,5 +324,20 @@
 </ul>
         </main>
     </div>
+    <script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
 </body>
 </html>

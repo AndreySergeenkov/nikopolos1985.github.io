@@ -190,3 +190,69 @@ a:hover {
    padding-right: 10px;
    color: #6c757d;
 }
+
+.commission-box {
+    border: 1px solid #e2c97a;
+    background: #fff3cd;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    border-left: 4px solid #ffc107;
+}
+.commission-box p {
+    margin: 0 0 12px;
+    color: #333;
+    font-size: 14px;
+}
+.commission-box-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.commission-contact {
+    display: inline-flex;
+    align-items: stretch;
+}
+.commission-contact a {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #fff;
+    border: 1px solid #e2c97a;
+    border-right: none;
+    color: #0645ad;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+}
+.commission-contact a:hover {
+    background: #fffbeb;
+    text-decoration: underline;
+}
+.commission-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    background: #fff;
+    border: 1px solid #e2c97a;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+.commission-copy:hover {
+    background: #fffbeb;
+    color: #555;
+}
+.commission-copy svg {
+    width: 13px;
+    height: 13px;
+    fill: currentColor;
+    pointer-events: none;
+}
+.commission-copy.copied {
+    color: #2e7d32;
+    border-color: #2e7d32;
+}
