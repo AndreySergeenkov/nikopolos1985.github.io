@@ -256,3 +256,24 @@ a:hover {
     color: #2e7d32;
     border-color: #2e7d32;
 }
+
+.profile-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 24px;
+}
+.profile-menu a {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #fff;
+    border: 1px solid #a2a9b1;
+    color: #0645ad;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.profile-menu a:hover {
+    background: #f1f3f5;
+    text-decoration: underline;
+}
