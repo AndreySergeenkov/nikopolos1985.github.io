@@ -52,8 +52,6 @@ h2 {
    border-radius: 0;
    object-fit: cover;
    border: 1px solid #c8ccd1;
-   background: #f8f9fa;
-   padding: 3px;
    flex-shrink: 0;
 }
 .profile-photo-small {
