@@ -41,11 +41,13 @@ h2 {
    font-weight: 400;
 }
 .profile-photo {
-   width: 80px;
-   height: 80px;
-   border-radius: 50%;
+   width: 100px;
+   height: 120px;
+   border-radius: 0;
    object-fit: cover;
-   vertical-align: middle;
+   border: 1px solid #c8ccd1;
+   background: #f8f9fa;
+   padding: 3px;
    flex-shrink: 0;
 }
 .profile-photo-small {
