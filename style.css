@@ -290,3 +290,18 @@ a:hover {
     background: #f1f3f5;
     text-decoration: underline;
 }
+
+.list-marker {
+    display: block;
+    margin-top: 6px;
+    padding-left: 18px;
+    position: relative;
+}
+.list-marker::before {
+    content: '\2726';
+    position: absolute;
+    left: 0;
+    color: #a2a9b1;
+    font-size: 11px;
+    top: 5px;
+}
