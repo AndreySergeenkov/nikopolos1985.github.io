@@ -9,14 +9,25 @@ body {
 }
 .header {
    display: flex;
-   align-items: center; 
-   margin-bottom: 20px;
+   align-items: center;
+   gap: 16px;
+   margin-bottom: 24px;
+}
+.header-text {
+   flex: 1;
+   min-width: 0;
 }
 h1 {
    font-size: 24px;
    font-weight: 300;
    margin: 0;
-   margin-right: 10px;
+}
+.role {
+   color: #666;
+   font-size: 15px;
+   font-weight: 400;
+   margin: 4px 0 0;
+   line-height: 1.3;
 }
 h2 {
    font-size: 16px;
@@ -35,7 +46,7 @@ h2 {
    border-radius: 50%;
    object-fit: cover;
    vertical-align: middle;
-   margin-left: 10px;
+   flex-shrink: 0;
 }
 .profile-photo-small {
    width: 50px;
