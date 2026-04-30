@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reveal Test — Homepage Preview</title>
+    <title>Reveal Test — Article Heading Effect</title>
+    <meta name="description" content="What if you quit your job for Polymarket? Roughly 15.9% of Polymarket traders are in profit and 84.1% are in the red, but only 2% of 2.5 million traders have made more than $1,000 over their trading history.">
+    <meta name="author" content="Andrey Sergeenkov">
     <meta name="robots" content="noindex,nofollow">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
-    <link href="../style.css" rel="stylesheet">
-    <!-- Google tag (gtag.js) -->
+    <link rel="canonical" href="https://sergeenkov.com/polymarket-profitability/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How Many Traders Are Profitable on Polymarket">
+    <meta property="og:description" content="What if you quit your job for Polymarket? Roughly 15.9% of Polymarket traders are in profit and 84.1% are in the red, but only 2% of 2.5 million traders have made more than $1,000 over their trading history.">
+    <meta property="og:url" content="https://sergeenkov.com/polymarket-profitability/">
+    <meta property="og:site_name" content="Andrey Sergeenkov">
+    <meta property="og:image" content="https://sergeenkov.com/polymarket-profitability/images/og-image.jpg">
+    <meta property="og:image:width" content="1666">
+    <meta property="og:image:height" content="1204">
+    <meta property="article:author" content="https://sergeenkov.com">
+    <meta property="article:published_time" content="2026-04-06">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How Many Traders Are Profitable on Polymarket">
+    <meta name="twitter:description" content="What if you quit your job for Polymarket? Roughly 15.9% of Polymarket traders are in profit and 84.1% are in the red, but only 2% of 2.5 million traders have made more than $1,000 over their trading history.">
+    <meta name="twitter:creator" content="@Nikopolos">
+    <meta name="twitter:image" content="https://sergeenkov.com/polymarket-profitability/images/og-image.jpg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How Many Traders Are Profitable on Polymarket",
+        "description": "What if you quit your job for Polymarket? Roughly 15.9% of Polymarket traders are in profit and 84.1% are in the red, but only 2% of 2.5 million traders have made more than $1,000 over their trading history.",
+        "author": {
+            "@type": "Person",
+            "name": "Andrey Sergeenkov",
+            "url": "https://sergeenkov.com",
+            "description": "Independent researcher",
+            "sameAs": ["https://x.com/Nikopolos", "https://www.linkedin.com/in/sergeenkov/"]
+        },
+        "datePublished": "2026-04-06",
+        "url": "https://sergeenkov.com/polymarket-profitability/",
+        "publisher": {
+            "@type": "Person",
+            "name": "Andrey Sergeenkov",
+            "url": "https://sergeenkov.com"
+        },
+        "mainEntityOfPage": "https://sergeenkov.com/polymarket-profitability/"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,8 +61,526 @@
       gtag('js', new Date());
       gtag('config', 'G-6FZQZRN4S3');
     </script>
-    <!-- Ahrefs Web Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+            font-size: 17px;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .top-follow { font-size: 13px; color: #54595d; font-family: sans-serif; }
+        .top-follow a, .author-bio a { color: #0645ad; background: none; padding: 0; }
+        .top-follow a:hover, .author-bio a:hover { text-decoration: underline; background: none; }
+        .article-header { margin-bottom: 40px; }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 10px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul { margin: 0; padding-left: 20px; }
+        .tldr li { margin-bottom: 8px; font-style: italic; color: #555; }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p { margin-bottom: 16px; font-size: 17px; }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+        a:hover { text-decoration: underline; background: none; }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px;
+            border-radius: 0;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px 12px 20px;
+            border-radius: 0;
+            margin: 0 0 30px;
+            font-size: 14px;
+            font-family: sans-serif;
+            display: inline-block;
+        }
+        .toc-title { font-weight: 600; font-size: 14px; margin: 0 0 8px; color: #202122; font-family: sans-serif; }
+        .toc ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 6px;
+        }
+        .toc a {
+            color: #0645ad;
+            background: none;
+            padding: 0;
+        }
+        .toc a:hover {
+            background: none;
+            text-decoration: underline;
+        }
+        .note a { color: #0645ad; }
+        .image-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .image-stack .article-image {
+            margin: 0;
+            max-width: 520px;
+        }
+        .image-pair {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0 5px;
+        }
+        .image-pair .article-image {
+            margin: 0;
+            flex: 1;
+            max-width: 480px;
+            min-width: 0;
+        }
+        .article-image {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 0;
+            margin: 25px auto 5px;
+            box-shadow: none;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+        }
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+        .image-lightbox.active { display: flex; }
+        .image-lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .chart-box {
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 20px 20px 14px;
+            margin: 30px 0;
+            background: #fff;
+        }
+        .chart-box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 2px;
+            color: #333;
+        }
+        .chart-box .chart-subtitle {
+            font-size: 13px;
+            color: #666;
+            margin: 0 0 16px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 360px;
+        }
+        .chart-container canvas { display: block; }
+        .chart-legend {
+            display: flex;
+            justify-content: flex-start;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .chart-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        .legend-line {
+            width: 16px;
+            height: 2px;
+            display: inline-block;
+        }
+        .llm-copy-bar {
+            margin-bottom: 20px;
+        }
+        .llm-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: sans-serif;
+            color: #202122;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .llm-copy-btn:hover { background: #eaecf0; border-color: #72777d; }
+        .llm-copy-btn.copied { color: #28a745; border-color: #28a745; background: #f0fff0; }
+        .legend-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-family: sans-serif;
+            color: #202122;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .legend-toggle.active {
+            background: #fff;
+            border-color: var(--lc);
+            color: #333;
+        }
+        .legend-toggle:not(.active) {
+            opacity: 0.45;
+        }
+        .legend-toggle:not(.active) .legend-line {
+            background: #ccc !important;
+        }
+        .legend-toggle:hover {
+            opacity: 1;
+        }
+        .view-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            width: fit-content;
+        }
+        .view-btn {
+            padding: 4px 14px;
+            font-size: 12px;
+            font-family: 'Inter', sans-serif;
+            color: #888;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .view-btn.active {
+            background: #333;
+            color: #fff;
+        }
+        .view-btn:not(.active):hover {
+            background: #eee;
+            color: #555;
+        }
+        .chart-source { text-align: right; margin-top: 6px; }
+        .chart-source a { font-size: 10px; color: #bbb; background: none; padding: 0; }
+        .chart-source a:hover { color: #999; background: none; }
+        .chart-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #888;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+        .chart-btn:hover { color: #555; background: #eee; border-color: #ccc; text-decoration: none; }
+        .chart-btn svg { width: 13px; height: 13px; fill: currentColor; }
+        .chart-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .chart-modal-overlay.active { display: flex; }
+        .chart-modal {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 90vh;
+            position: relative;
+        }
+        .chart-modal h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; color: #333; }
+        .chart-modal .chart-subtitle { font-size: 13px; color: #666; margin: 0 0 16px; }
+        .chart-modal-container {
+            position: relative;
+            width: 100%;
+            height: 420px;
+        }
+        .chart-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            padding: 4px;
+        }
+        .chart-modal-close:hover { color: #333; }
+        .table-wrap { margin: 30px 0; overflow-x: auto; }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .table-wrap th {
+            background: #f8f9fa;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 2px solid #dee2e6;
+            white-space: nowrap;
+        }
+        .table-wrap td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .table-wrap tbody tr:nth-child(even) { background: #f8f9fa; }
+        .table-wrap tbody tr:hover { background: #eef3ee; }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-info { flex: 1; }
+        .author-bio { font-size: 15px; color: #54595d; font-family: sans-serif; }
+        article ul:not(.other-research ul) { list-style: none; padding-left: 0; }
+        article ul:not(.other-research ul) > li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul:not(.other-research ul) > li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+        .other-research ul { list-style: none; padding-left: 0; }
+        .other-research ul li { padding-left: 0; }
+        .other-research ul li::before { content: none; }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { background: none; padding: 0; color: #0645ad; }
+        .other-research a:hover { background: none; text-decoration: underline; }
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+            .chart-box { padding: 12px 6px 10px; }
+            .chart-container { height: 320px; }
+            .chart-modal-container { height: 280px; }
+            .table-wrap { font-size: 12px; }
+            .image-pair { flex-direction: column; align-items: center; }
+            .image-pair .article-image { max-width: 100%; }
+        }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    
+        #reveal-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            margin: -40px -20px 30px;
+        }
+        #reveal-toolbar .rt-back { color: #0645ad; text-decoration: none; }
+        #reveal-toolbar .rt-back:hover { text-decoration: underline; }
+        #reveal-toolbar .rt-replay {
+            padding: 5px 12px;
+            background: #fff;
+            border: 1px solid #a2a9b1;
+            color: #0645ad;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        #reveal-toolbar .rt-replay:hover { background: #eaecf0; }
+        .reveal .rv-ch    { position: relative; display: inline-block; white-space: pre; }
+        .reveal .rv-ghost { visibility: hidden; }
+        .reveal .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
+
+    </style>
 </head>
 <body>
 <div id="reveal-toolbar">
@@ -25,316 +588,1090 @@
     <button type="button" class="rt-replay">↻ Replay</button>
 </div>
 
-    <div class="container">
-        <main>
-            <div class="header">
-                <div class="header-text">
-                    <h1>Andrey Sergeenkov</h1>
-                    <p class="role">Independent researcher</p>
-                    <nav class="profile-menu">
-                        <a href="mailto:andrey@sergeenkov.com">Email</a>
-                        <a href="https://t.me/Nikopolos">Telegram</a>
-                        <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
-                        <a href="https://x.com/Nikopolos">X</a>
-                        <a href="/feed.xml">RSS</a>
-                    </nav>
-                </div>
-                <img src='../500.jpg' alt='Andrey Sergeenkov' class='profile-photo'>
-            </div>
-            <aside class="commission-box">
-                <p><strong>I take on commissioned research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
-                <div class="commission-box-actions">
-                    <span class="commission-contact">
-                        <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
-                        <button type="button" class="commission-copy" data-copy="andrey@sergeenkov.com" aria-label="Copy email" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
-                    </span>
-                    <span class="commission-contact">
-                        <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
-                        <button type="button" class="commission-copy" data-copy="@Nikopolos" aria-label="Copy Telegram handle" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
-                    </span>
-                </div>
-            </aside>
-            <p class="current-work">My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
-            <p class="current-work">My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.<br><span class="list-marker">Full list of citations: <a href="/citations/">sergeenkov.com/citations</a></span></p>
-            <p class="current-work">My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.<br><span class="list-marker">Full list of media coverage: <a href="/coverage/">sergeenkov.com/coverage</a></span></p>
-
-            <h2>My Independent Research</h2>
-<ul class="article-list">
-    <li><a href="/polymarket-profitability/">How Many Traders Are Profitable on Polymarket</a></li>
-    <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</a></li>
-    <li><a href="/thedao-curators-220m-hack-victims/">Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends</a></li>
-    <li><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?</a></li>
-    <li><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a></li>
-    <li><a href="/loss-based-polymarket-airdrop/">The Case for a Loss-Based Polymarket Airdrop</a></li>
-</ul>
-
-            <h2>Earlier Articles</h2>
-<ul class="article-list">
-    <li><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">Stop Pretending Technical And Human Vulnerabilities Are Separate Things</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/12/17/why-2025-may-be-the-right-time-to-create-national-bitcoin-reserves/">Why 2025 May Be The Right Time To Create National Bitcoin Reserves</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/12/05/what-math-problems-do-bitcoin-miners-really-solve/">What Math Problems Do Bitcoin Miners Really Solve</a> <span class="publication-name">(Forbes)</span></li> 
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/12/04/what-is-a-bitcoin-node-and-how-to-run-one/">What Is A Bitcoin Node And How To Run One</a> <span class="publication-name">(Forbes)</span></li> 
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/">Tether Discontinues EURT And Sets Deadline For Token Redemption</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/11/27/understanding-polymarket-and-prediction-markets/">Understanding Polymarket And Prediction Markets</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/26/how-to-get-first-funding-for-web3/">How To Get First Funding For Web3</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/15/what-you-need-to-know-before-buying-your-first-bitcoin/">What You Need To Know Before Buying Your First Bitcoin</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/">Tether Discontinues EURT, Sets Deadline For Token Redemption</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/13/russia-approves-cryptocurrency-tax-framework/">Russia Approves Cryptocurrency Tax Framework</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/article/crypto-fear-and-greed-index/">Crypto Fear And Greed Index</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/08/digital-id-trials-test-anonymous-kyc-for-mainland-chinese-in-hong-kong/">Digital ID Trials Test Anonymous KYC For Mainland Chinese In Hong Kong</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/04/bitcoin-outperformed-nvidia-google-amazon-in-rewards-per-risk-in-october-2024/">Bitcoin Outperformed Nvidia, Google, Amazon In Rewards Per Risk In October 2024</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-mine-dogecoin/">How To Mine Dogecoin</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/02/tesla-amd-and-nvidia-show-higher-volatility-than-bitcoin-in-october-2024/">Tesla, AMD And Nvidia Show Higher Volatility Than Bitcoin In October 2024</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/2024/10/31/microstrategy-announces-42-billion-bitcoin-investment-plan/">MicroStrategy Announces $42 Billion Bitcoin Investment Plan</a> <span class="publication-name">(Forbes)</span></li>
-<li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-ripple-xrp/">What Is Ripple (XRP)</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/26/tesla-bitcoin-moves-may-no-longer-shake-the-market/">Tesla Bitcoin Moves May No Longer Shake The Market</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/25/pennsylvania-house-passes-crypto-protection-bill-in-bipartisan-vote/">Pennsylvania House Passes Crypto Protection Bill In Bipartisan Vote</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-ripple-xrp/">What Is Ripple (XRP)</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/23/russia-launches-brics-mining-infrastructure-project/">Russia Launches BRICS Mining Infrastructure Project</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-are-stablecoins-how-to-use-them/">What Are Stablecoins & How To Use Them</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/08/china-bets-on-massive-blockchain-infrastructure/">China Bets On Massive Blockchain Infrastructure</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/30/legal-status-of-cryptocurrencies-in-malaysia/">Legal Status Of Cryptocurrencies In Malaysia</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/25/ireland-to-streamline-licensing-process-for-crypto-businesses/">Ireland To Streamline Licensing Process For Crypto Businesses</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/19/louisiana-accepts-first-cryptocurrency-payment-for-state-services/">Louisiana Accepts First Cryptocurrency Payment For State Services</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/17/how-bhutan-quietly-built-750-million-in-bitcoin-holdings/">How Bhutan Quietly Built $750 Million In Bitcoin Holdings</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/12/uk-introduces-bill-to-recognize-digital-assets-as-personal-property/">UK Introduces Bill To Recognize Digital Assets As Personal Property</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/05/ryan-selkis-leaves-messari-for-new-political-initiative/">Ryan Selkis Leaves Messari For New Political Initiative</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/22/crypto-unites-voters-and-attracts-gamblers-during-the-2024-elections/">Crypto Unites Voters And Attracts Gamblers During The 2024 Elections</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-mine-bitcoin/">How To Mine Bitcoin</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-buy-bitcoin-etoro/">How To Buy Bitcoin: eToro</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/23/cryptocurrency-trading-causes-lower-quality-of-life-and-higher-stress/">Cryptocurrency Trading Causes Lower Quality Of Life And Higher Stress</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/09/what-are-autonomous-economic-agents/">What Are Autonomous Economic Agents</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-nft-art-how-to-create-it/">What Is NFT Art And How To Create It</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/04/what-are-ai-to-ai-crypto-transactions/">What Are AI-To-AI Crypto Transactions?</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/30/why-trx-has-grown-44-in-the-last-90-days/">Why TRX Has Grown 44% In The Last 90 Days</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-are-nft-dapps/">What Are NFT DApps?</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/16/how-volatile-is-bitcoin-compared-to-other-assets/">How Volatile Is Bitcoin Compared To Other Assets</a> <span class="publication-name">(Forbes)</span></li>
-    <li><a href="https://cointelegraph.com/explained/what-is-the-genesis-block-explained">What Is The Genesis Block Explained</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://cointelegraph.com/explained/bonding-curves-in-defi-explained">Bonding Curves In DeFi Explained</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://cointelegraph.com/news/want-to-improve-blockchain-infrastructure-work-under-layer-two-solutions">Want To Improve Blockchain Infrastructure? Work Under Layer Two Solutions</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://cointelegraph.com/news/decentralized-parties-the-future-of-on-chain-governance">Decentralized Parties: The Future Of On-Chain Governance</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://cointelegraph.com/news/the-use-of-blockchain-tech-should-be-more-environmentally-friendly">The Use Of Blockchain Tech Should Be More Environmentally Friendly</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://cointelegraph.com/news/institutional-investors-won-t-take-bitcoin-mainstream-you-will">Institutional Investors Won't Take Bitcoin Mainstream — You Will</a> <span class="publication-name">(Cointelegraph)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-manage-risk-when-trading-cryptocurrency/">How To Manage Risk When Trading Cryptocurrency</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-are-dynamic-nfts-understanding-the-evolving-nft/">What Are Dynamic NFTs? Understanding The Evolving NFT</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/consensus-magazine/2023/01/26/web3-marketing-tips/">Web3 Marketing Tips</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/consensus-magazine/2022/12/12/nft-project-launch-tips/">NFT Project Launch Tips</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-counterparty-risk-in-crypto/">What Is Counterparty Risk In Crypto?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/crypto-arbitrage-trading-how-to-make-low-risk-gains/">Crypto Arbitrage Trading: How To Make Low-Risk Gains</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-does-ethereum-staking-work/">How Does Ethereum Staking Work?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-are-soulbound-tokens-the-non-transferrable-nft-explained/">What Are Soulbound Tokens? The Non-Transferrable NFT Explained</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-nft-wash-trading/">What Is NFT Wash Trading?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/everything-you-need-to-know-about-bitcoin-etfs/">Everything You Need To Know About Bitcoin ETFs</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/whats-the-crypto-travel-rule-and-what-does-it-mean-for-you/">What's The Crypto Travel Rule And What Does It Mean For You?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-we-know-so-far-about-shib-the-metaverse/">What We Know So Far About SHIB: The Metaverse</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-pancakeswap-heres-how-to-start-using-it/">What Is PancakeSwap? Here's How To Start Using It</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/want-to-play-axie-infinity-heres-what-you-need-to-know/">Want To Play Axie Infinity? Here's What You Need To Know</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-check-your-ethereum-transaction/">How To Check Your Ethereum Transaction</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/whats-the-story-behind-bored-ape-yacht-club-creator-yuga-labs/">What's The Story Behind Bored Ape Yacht Club Creator Yuga Labs?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/bitcoin-mining-difficulty-everything-you-need-to-know/">Bitcoin Mining Difficulty: Everything You Need To Know</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/investing-in-crypto-alternatives-to-bitcoin-and-ether/">Investing In Crypto: Alternatives To Bitcoin And Ether</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/opensea-marketplace-how-to-buy-sell-and-mint-nfts/">OpenSea Marketplace: How To Buy, Sell And Mint NFTs</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-buy-crypto-on-the-apps-you-already-have/">How To Buy Crypto On The Apps You Already Have</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-bitcoin/">What Is Bitcoin?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-a-crypto-airdrop/">What Is A Crypto Airdrop?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/crypto-discord-where-to-go-what-to-know/">Crypto Discord: Where To Go, What To Know</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/top-6-crypto-passive-income-generators-for-2021/">Top 6 Crypto Passive Income Generators For 2021</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/someone-gave-you-crypto-as-a-gift-now-what/">Someone Gave You Crypto As A Gift. Now What?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/investing-in-meme-coins-3-things-every-crypto-trader-should-know/">Investing In Meme Coins: 3 Things Every Crypto Trader Should Know</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-buy-a-tom-brady-nft/">How To Buy A Tom Brady NFT</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/shiba-inu-shib-a-complete-beginners-guide/">Shiba Inu (SHIB): A Complete Beginner's Guide</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-shibaswap/">What Is ShibaSwap?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/5-ways-to-earn-passive-income-from-nfts/">5 Ways To Earn Passive Income From NFTs</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-citycoins-and-how-does-it-work/">What Is CityCoins And How Does It Work?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-cryptocurrency/">What Is Cryptocurrency?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-buy-shiba-inu-coin-shib/">How To Buy Shiba Inu Coin (SHIB)</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/paying-off-student-loans-you-can-do-it-with-crypto/">Paying Off Student Loans? You Can Do It With Crypto</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-a-perpetual-swap-contract/">What Is A Perpetual Swap Contract?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-send-bitcoin-tips-on-twitter/">How To Send Bitcoin Tips On Twitter</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/china-crypto-bans-a-complete-history/">China Crypto Bans: A Complete History</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/5-reasons-why-bitcoin-remains-below-50000/">5 Reasons Why Bitcoin Remains Below $50,000</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-a-bitcoin-futures-etf/">What Is A Bitcoin Futures ETF?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-to-set-up-a-bitcoin-miner/">How To Set Up A Bitcoin Miner</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/how-does-ethereum-work/">How Does Ethereum Work?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/solana/">Solana</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-is-an-automated-market-maker/">What Is An Automated Market Maker?</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/a-beginners-guide-to-atomic-swaps/">A Beginner's Guide To Atomic Swaps</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://www.coindesk.com/learn/what-does-liquidation-mean-and-how-to-avoid-it/">What Does Liquidation Mean And How To Avoid It</a> <span class="publication-name">(CoinDesk)</span></li>
-    <li><a href="https://blockworks.co/news/crypto-twitter-financial-influencer-problem">Crypto Has An Influencer Problem</a> <span class="publication-name">(Blockworks)</span></li>
-    <li><a href="https://www.investing.com/analysis/gold-bitcoin-or-notes-staying-safe-during-periods-of-economic-uncertainty-200463542">Gold, Bitcoin Or Notes: Staying Safe During Periods Of Economic Uncertainty</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/bringing-machine-learning-closer-to-clients-will-blockchain-eliminate-barriers-200446855">Bringing Machine Learning Closer to Clients, Will Blockchain Eliminate Barriers?</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.nasdaq.com/articles/how-does-ethereum-staking-work-2021-08-11">How Does Ethereum Staking Work?</a> <span class="publication-name">(Nasdaq)</span></li>
-    <li><a href="https://www.nasdaq.com/articles/what-is-an-automated-market-maker-2021-08-20">What Is an Automated Market Maker?</a> <span class="publication-name">(Nasdaq)</span></li>
-    <li><a href="https://www.nasdaq.com/articles/a-beginners-guide-to-atomic-swaps-2021-08-20">A Beginner's Guide to Atomic Swaps</a> <span class="publication-name">(Nasdaq)</span></li>
-     <li><a href="https://www.entrepreneur.com/money-finance/decentralized-parties-poised-to-bring-blockchain-to-politics/373474">Decentralized Parties Poised To Bring Blockchain To Politics</a> <span class="publication-name">(Entrepreneur)</span></li>
-    <li><a href="https://www.entrepreneur.com/starting-a-business/common-mistakes-that-may-cause-investors-to-walk-away/368953">Common Mistakes That May Cause Investors To Walk Away</a> <span class="publication-name">(Entrepreneur)</span></li>
-    <li><a href="https://www.entrepreneur.com/money-finance/defi-is-the-new-lemonade-stand/366444">DeFi Is The New Lemonade Stand</a> <span class="publication-name">(Entrepreneur)</span></li>
-    <li><a href="https://www.entrepreneur.com/money-finance/you-can-leverage-cryptocurrencies-to-upset-the-balance-of/364231">You Can Leverage Cryptocurrencies To Upset The Balance Of Power</a> <span class="publication-name">(Entrepreneur)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/rammstein-soloist-till-lindemann-accused-of-illegal-nft-sales-of-hermitage-museum-imags">Rammstein Soloist Till Lindemann Accused of Illegal NFT Sales of Hermitage Museum Images</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-s-russia-up-to-a-weekly-russian-crypto-news-recap">What's Russia Up To? A Weekly Russian Crypto News Recap</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/cryptocurrency-market-cap-reclaims-2-trillion-as-market-rebounds">Cryptocurrency Market Cap Reclaims $2 Trillion as Market Rebounds</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-bitcoin-miners-operate">How Bitcoin Miners Operate</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/5-of-the-biggest-crypto-ponzi-schemes">5 of the Biggest Crypto Ponzi Schemes</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-bitcoin-core-s-developers">Who Are Bitcoin Core's Developers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-dollar-cost-averaging-dca">What Is Dollar-Cost Averaging (DCA)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-is-not-anonymous-how-criminals-are-caught-on-the-blockchain">Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-beginner-s-guide-to-erc20-tokens-and-addresses">The Beginner's Guide to ERC20 Tokens and Addresses</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-plasma-finance">What Is Plasma Finance?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-s-role-in-times-of-political-and-economic-uncertainty">Crypto's Role in Times of Political and Economic Uncertainty</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-smart-contract-risk">What Is Smart Contract Risk?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-coin98">What Is Coin98?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-polkaswap">What Is Polkaswap?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-polkarare">What Is Polkarare?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-safe-earth">What Is Safe Earth?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-mine-ethereum">How to Mine Ethereum</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/sec-revises-stance-on-digital-asset-classification">SEC Revises Stance on Digital Asset Classification</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/coinbase-halts-issuance-of-new-loans-on-coinbase-borrow">Coinbase Halts Issuance of New Loans on Coinbase Borrow</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/french-senate-considers-proposal-to-allow-influencers-to-promote-cryptocurrencies">French Senate Considers Proposal to Allow Influencers to Promote Cryptocurrencies</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/study-finds-36-of-top-crypto-projects-silent-on-blogging-this-year">Study Finds 36% of Top Crypto Projects Silent on Blogging This Year</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/texas-securities-board-targets-alleged-ai-powered-crypto-scam">Texas Securities Board Targets Alleged AI-Powered Crypto Scam</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/australian-crypto-exchange-coinjar-initiates-us-expansion">Australian Crypto Exchange Coinjar Initiates US Expansion</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/poloniex-to-pay-76-million-fine-for-sanctions-violation-charges">Poloniex To Pay $76 Million Fine for Sanctions Violation Charges</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/revolut-expands-crypto-investment-services-to-brazil">Revolut Expands Crypto Investment Services to Brazil</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/level-finance-confirms-1-million-exploit-due-to-software-bug">Level Finance Confirms $1 Million Exploit Due to Software Bug</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-japan-to-launch-in-june-following-acquisition-of-taotao">Binance Japan To Launch in June Following Acquisition of TaoTao</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/sotheby-s-launches-on-chain-secondary-nft-marketplace">Sotheby's Launches On-Chain Secondary NFT Marketplace</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/microstrategy-reports-increased-revenue-in-q1-2023-and-maintains-bitcoin-strategy">MicroStrategy Reports Increased Revenue in Q1 2023 and Maintains Bitcoin Strategy</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-launchpool-adds-sui-token-staking-bnb-and-tusd-for-rewards">Binance Launchpool Adds SUI Token: Staking BNB and TUSD for Rewards</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/ex-opensea-employee-accused-of-profiting-from-nft-insider-trading">Ex-OpenSea Employee Accused of Profiting from NFT Insider Trading</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/blur-and-paradigm-collaborate-to-launch-blend-nft-perpetual-lending-protocol">Blur and Paradigm Collaborate to Launch Blend: NFT Perpetual Lending Protocol</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/lightning-labs-releases-litd-a-unified-platform-for-simplified-lightning-network-node-management">Lightning Labs Releases LiTD: A Unified Platform for Simplified Lightning Network Node Management</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-launches-the-sandbox-nft-staking-program">Binance Launches The Sandbox NFT Staking Program</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/yuga-labs-hires-former-epic-games-cto-mike-seavers">Yuga Labs Hires Former Epic Games CTO Mike Seavers</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/templeton-launches-tokenized-mutual-fund-on-polygon">Templeton Launches Tokenized Mutual Fund on Polygon</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/new-california-legislation-seeks-to-simplify-legal-framework-for-decentralized-autonomous-organiz">New California Legislation Seeks to Simplify Legal Framework for Decentralized Autonomous Organizations</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/robinhood-connect-to-enable-external-crypto-wallet-integration">Robinhood Connect To Enable External Crypto Wallet Integration</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/warren-s-crypto-bill-postponed">Warren's Crypto Bill Postponed</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/belgium-crypto-exchange-bit4you-suspends-operations">Belgium Crypto Exchange Bit4You Suspends Operations</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-enthusiasm-persists-among-investors-according-to-bitcoinira-survey">Crypto Enthusiasm Persists Among Investors, According to BitcoinIRA Survey</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-expels-north-korean-users-amid-sanctions-concerns">Binance Expels North Korean Users Amid Sanctions Concerns</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-bahamas-securities-commission-invites-public-feedback-on-dare-bill-2023">The Bahamas' Securities Commission Invites Public Feedback on DARE Bill 2023</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/arbitrum-airdrops-120-million-worth-of-arb-tokens-to-daos">Arbitrum Airdrops $120 Million Worth of ARB Tokens to DAOs</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/us-republicans-on-financial-services-committee-seeks-transparency-on-crypto-debanks">US Republicans on Financial Services Committee Seeks Transparency on Crypto Debanks</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/circle-protocol-enables-stablecoin-transfers-between-ethereum-and-avalanche">Circle Protocol Enables Stablecoin Transfers Between Ethereum and Avalanche</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-us-offers-free-web3-domain-creation-for-american-users">Binance US Offers Free Web3 Domain Creation for American Users</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/microstrategy-ceo-advocates-for-bitcoin-adoption-in-argentina">MicroStrategy CEO Advocates for Bitcoin Adoption in Argentina</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/house-republicans-propose-new-bill-for-stablecoin-regulation-in-the-us">House Republicans Propose New Bill for Stablecoin Regulation in the US</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/digital-yuan-adoption-gains-momentum-as-china-promotes-wage-payments-in-changshu">Digital Yuan Adoption Gains Momentum as China Promotes Wage Payments in Changshu</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/coinbase-s-stand-with-crypto-campaign-challenges-sec-s-regulatory-approach">Coinbase's 'Stand With Crypto' Campaign Challenges SEC's Regulatory Approach</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/proposed-california-bill-seeks-to-clarify-legal-status-of-decentralized-organizations">Proposed California Bill Seeks to Clarify Legal Status of Decentralized Organizations</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-introduces-ether-based-liquid-staking-product-amid-ethereum-2-0-transition">Binance Introduces Ether-based Liquid Staking Product Amid Ethereum 2.0 Transition</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/apecoin-community-votes-to-stay-on-ethereum">ApeCoin Community Votes To Stay On Ethereum</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/binance-investigates-squid-game-themed-crypto-scam">Binance Investigates Squid Game-Themed Crypto Scam</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/nyc-mayor-elect-eric-adams-wants-his-first-3-paychecks-in-bitcoin">NYC Mayor-Elect Eric Adams Wants His First 3 Paychecks in Bitcoin</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/ukraine-on-course-to-legalize-cryptocurrencies-as-crypto-bill-passes-second-reading">Ukraine on Course to Legalize Cryptocurrencies as Crypto Bill Passes Second Reading</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/belarus-president-urges-citizens-to-mine-crypto-rather-than-seek-low-paying-jobs-overseas">Belarus President Urges Citizens to Mine Crypto Rather Than Seek Low-Paying Jobs Overseas</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-scams-and-ransomware-activity-on-the-rise-in-eastern-europe-chainalysis-report">Crypto Scams and Ransomware Activity on the Rise in Eastern Europe, Chainalysis Report</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/russia-s-largest-bank-sberbank-to-register-its-blockchain-platform-this-month">Russia's Largest Bank Sberbank to Register its Blockchain Platform This Month</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/russians-lose-2-2-billion-rubles-to-crypto-fraud-in-the-first-half-of-2021">Russians Lose 2.2 Billion Rubles to Crypto Fraud in the First Half of 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/ukraine-loses-top-spot-as-global-crypto-adoption-jumps-by-880">Ukraine Loses Top Spot as Global Crypto Adoption Jumps by 880%</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-white-hats-saved-sushiswap-from-potential-350-million-exploit">How White Hats Saved SushiSwap From Potential $350 Million Exploit</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-solana-became-a-top-10-crypto">How Solana Became a Top-10 Crypto</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/decentraland-celebrates-international-friendship-day-teams-up-with-coca-cola-to-release-nfts">Decentraland Celebrates International Friendship Day, Teams Up With Coca-Cola to Release NFTs</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-play-plant-vs-undead-pvu-a-step-by-step-guide">How to Play Plant vs Undead (PVU)? A Step-by-Step Guide</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/top-play2earn-crypto-and-nft-games-for-android-and-ios">Top Play2Earn Crypto and NFT Games for Android and iOS</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-south-american-countries-teach-people-about-crypto">How South American Countries Teach People About Crypto</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-how-the-top-10-daos-work">A Deep Dive Into How the Top 10 DAOs Work</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/play2earn-best-nft-games-list">Play2Earn Best NFT Games List</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/bitcoin-is-a-bubble-has-no-value-will-disappear-and-20-other-examples-of-how-they-tried-to-">"Bitcoin Is a Bubble, Has No Value, Will Disappear" And 20 Other Examples of How They Tried to ...</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-sandwich-attacks-in-defi-and-how-can-you-avoid-them">What Are Sandwich Attacks in DeFi — and How Can You Avoid Them?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-pros-and-cons-of-accepting-bitcoin-as-legal-tender">The Pros and Cons of Accepting Bitcoin as Legal Tender</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-mobox-mbox">What Is MOBOX (MBOX)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bullish-block-one-s-eosio-blockchain-software-backed-hybrid-exchange">What Is Bullish: Block.one's EOSIO Blockchain Software-Backed Hybrid Exchange?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-the-winklevoss-twins">Who Are the Winklevoss Twins?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-are-the-silk-road-the-dark-web-and-bitcoin-connected">How Are the Silk Road, the Dark Web and Bitcoin Connected?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/prominent-nft-movements-and-projects-in-russia">Prominent NFT Movements and Projects in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-cybertino-cyber">A Deep Dive Into Cybertino (CYBER)</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-run-a-bitcoin-node">How to Run a Bitcoin Node</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/top-nft-games-updated-for-2022">Top NFT Games Updated for 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-cardano-s-new-testnet-launch">What Is Cardano's New Testnet Launch?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-etherscan">How To Use Etherscan</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-importance-of-crypto-portfolio-diversification">The Importance Of Crypto Portfolio Diversification</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-ultimate-guide-for-top-nft-sports-platforms">The Ultimate Guide for Top NFT Sports Platforms</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-bscscan">How To Use BscScan</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/the-beginner-s-guide-to-token-swaps">The Beginner's Guide to Token Swaps</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-basic-attention-token">What Is Basic Attention Token?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/explaining-the-crypto-renaissance-in-nigeria">Explaining the Crypto Renaissance in Nigeria</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-benefit-from-crypto-arbitrage">How to Benefit From Crypto Arbitrage</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-best-crypto-exchange-in-russia">What Is the Best Crypto Exchange in Russia?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-mint-an-nft">How To Mint an NFT</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/who-founded-ethereum">Who Founded Ethereum?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-buy-cryptocurrency-in-russia">How to Buy Cryptocurrency in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-wrap-bitcoin-for-defi">How To Wrap Bitcoin for DeFi</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/exploring-cryptocurrency-in-russia">Exploring Cryptocurrency in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-pool-mining">What Is Pool Mining?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-cloud-mining">What Is Cloud Mining?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-best-crypto-app-in-russia">What Is the Best Crypto App in Russia?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-automated-market-makers">What Are Automated Market Makers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/xrp-a-history">XRP: A History</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-guild-of-guardians">A Deep Dive Into Guild of Guardians</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/proof-of-stake-pos-vs-delegated-proof-of-stake-dpos">Proof-of-Stake (PoS) vs Delegated Proof-of-Stake (dPoS)</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/hack-vs-scam-vs-attack-vs-exploit-understanding-the-risks-in-crypto-and-how-to-stay-safe">Hack vs Scam vs Attack vs Exploit: Understanding the Risks in Crypto and How To Stay Safe</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/token-swap-vs-token-migration">Token Swap vs Token Migration</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-nft-collection">What Is an NFT collection?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-nft-floor-price-a-comprehensive-guide">What Is an NFT Floor Price? A Comprehensive Guide</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-nft-sniping">What Is NFT Sniping?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-does-sweep-the-floor-mean-for-nft-trading">What Does Sweep the Floor Mean for NFT Trading</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/why-do-stablecoins-depeg">Why Do Stablecoins Depeg?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-        <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-blur-nft-marketplace">How to Use Blur NFT Marketplace?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-oco-order-one-cancels-the-other">What Is an OCO Order (One-Cancels-the-Other)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-reddit-collectible-avatars">What are Reddit Collectible Avatars?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-stake-crypto-on-coinbase">How to Stake Crypto on Coinbase</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-cross-chain-bridges">What Are Cross-Chain Bridges?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/where-to-find-crypto-podcasts">Where to Find Crypto Podcasts</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/everything-you-need-to-know-about-the-ethereum-merge-misconceptions-debunked">Everything You Need To Know About the Ethereum Merge: Misconceptions Debunked</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-successfully-launch-an-nft-collection">How to Successfully Launch an NFT Collection?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-play-stepn">How To Play STEPN</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/earn-crypto-how-to-get-free-bitcoins-btc-2022">Earn Crypto: How To Get Free Bitcoins (BTC)? 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/best-centralized-and-decentralized-crypto-exchanges-of-2022">Best Centralized and Decentralized Crypto Exchanges Of 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bybit-and-how-to-use-it">What Is Bybit and How to Use It?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-zilliqa-and-metapolis">A Deep Dive Into Zilliqa And Metapolis</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/all-you-need-to-know-about-solana-s-rising-nft-ecosystem">All You Need To Know About Solana's Rising NFT Ecosystem</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/top-ethereum-killers-a-detailed-comparison">Top Ethereum Killers: A Detailed Comparison</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/introduction-to-non-fungible-tokens-nfts">Introduction to Non-Fungible Tokens (NFTs)</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-metamask-dao-and-token">What Is the MetaMask DAO and Token?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://www.investing.com/analysis/analysts-bullish-on-freedom-holding-200480551">Analysts Bullish On Freedom Holding</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/one-bitcoin-now-or-2-altcoins-later-200461269">One Bitcoin Now Or 2 Altcoins Later?</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/nexo-shifting-to-binance-and-eyeing-dex-listing-will-prices-soar-200446035">Nexo Shifting To Binance And Eyeing DEX Listing, Will Prices Soar?</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/a-scalable-ethereum--can-ternity-blockchain-get-ahead-by-starting-from-scratch-200439598">A Scalable Ethereum — Can Aeternity Blockchain Get Ahead by Starting From Scratch?</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/why-amazon-can-have-a-bright-future-200405602">Why Amazon Can Have A Bright Future</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/should-we-switch-from-ico-to-ieo-200401715">Should We Switch From ICO To IEO?</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/the-tech-trends-of-the-next-5-years-200397587">Tech Trends Of The Next 5 Years</a> <span class="publication-name">(Investing.com)</span></li>
-    <li><a href="https://www.investing.com/analysis/chinas-antianonymity-regulations-for-blockchain-companies-200387620">China's Anti-Anonymity Regulations For Blockchain Companies</a> <span class="publication-name">(Investing.com)</span></li>    
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-choose-which-nft-projects-to-invest-in">How To Choose Which NFT Projects To Invest In?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/3-minute-tips-how-to-revoke-token-approval-following-opensea-s-latest-security-episode">3 Minute Tips: How to Revoke Token Approval Following Opensea's Latest Security Episode</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bitcoin">What Is Bitcoin?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-contribute-to-crypto-and-web3-without-writing-any-code">How to Contribute to Crypto and Web3 Without Writing Any Code</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-truly-own-your-nfts">How To Truly Own Your NFTs</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/top-six-nft-marketplaces">Top Six NFT Marketplaces</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-former-u-s-secretary-of-the-treasury-steven-mnuchin-approached-the-cryptocurrency-industry">How Former U.S. Secretary of The Treasury Steven Mnuchin Approached The Cryptocurrency Industry</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-helium-hnt-features-tokenomics-and-price-prediction">What Is Helium (HNT)? Features, Tokenomics, and Price Prediction</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-opendao-sos">A Deep Dive Into OpenDAO $SOS</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-land-a-job-in-the-crypto-and-blockchain-industry">How To Land A Job In The Crypto And Blockchain Industry</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-you-need-to-know-about-the-fractal-nft-gaming-marketplace">What You Need To Know About The Fractal NFT Gaming Marketplace</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-will-ethereum-2-0-reduce-energy-consumption">How Will Ethereum 2.0 Reduce Energy Consumption?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-metacartel">A Deep Dive Into MetaCartel</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/who-stole-my-art-how-nfts-are-disrupting-the-art-world">Who Stole My Art? How NFTs Are Disrupting the Art World</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-gm-wagmi-gm">A Deep Dive Into GM WAGMI (GM)</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-sneaky-vampires-syndicate">A Deep Dive Into Sneaky Vampires Syndicate</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-the-gamestop-nft-marketplace-platform">A Deep Dive into the GameStop NFT Marketplace Platform</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/top-free-p2e-nft-games-in-2021">Top Free P2E NFT Games in 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-sotheby-s-metaverse">A Deep Dive Into Sotheby's Metaverse</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-sandbox">What Is The Sandbox?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/why-traditional-finance-experts-are-moving-from-the-sector-to-the-cryptocurrency-niche">Why Traditional Finance Experts Are Moving From The Sector To The Cryptocurrency Niche</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-mekaverse">A Deep Dive Into MekaVerse</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-google-doing-with-blockchain">What Is Google Doing with Blockchain?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/how-traditional-media-platforms-are-adopting-nfts-in-2021">How Traditional Media Platforms Are Adopting NFTs in 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-bitcoin-core-s-developers">Who Are Bitcoin Core's Developers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-dollar-cost-averaging-dca">What Is Dollar-Cost Averaging (DCA)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
-    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-is-not-anonymous-how-criminals-are-caught-on-the-blockchain">Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain</a> <span class="publication-name">(CoinMarketCap)</span></li>
-</ul>
-        </main>
+    <div class="top-nav">
+        <a href="../" class="back-link">&larr; Back to Home</a>
+        <div class="top-follow">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">X</a></div>
     </div>
+    <div class="llm-copy-bar">
+        <button class="llm-copy-btn" onclick="copyForLLM(this)"><svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data instead of charts)</button>
+    </div>
+
+    <article>
+        <header class="article-header">
+            <h1 class="reveal" data-text="How Many Traders Are Profitable on Polymarket">How Many Traders Are Profitable on Polymarket</h1>
+            <!-- ANIMATION DISABLED — uncomment img + div to restore the swirling-coins vortex -->
+            <!--
+            <img id="mobile-cover" class="article-image" src="../polymarket-profitability/images/og-image.jpg" alt="NYT headline 'Betting on Prediction Markets Is Their Job. They Make Millions.' with 'Make' crossed out and replaced with 'LOSE'" style="max-width:480px;margin:16px auto 24px;display:none;">
+            <div id="anim-wrap" style="width:100%;max-width:700px;margin:16px 0 24px;border:1px solid #a2a9b1;display:none;">
+            <canvas id="v" style="width:100%;height:280px;display:block;"></canvas>
+            </div>
+            -->
+            <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; April 6, 2026</div>
+        </header>
+
+        <div class="toc">
+            <p class="toc-title">In this article</p>
+            <ol>
+                <li><a href="#make-money">How Many Polymarket Traders Make Money?</a></li>
+                <li><a href="#monthly-income">What Is the Average Monthly Income on Polymarket?</a></li>
+                <li><a href="#how-long">How Long Do These Profitable Traders Stay Active?</a></li>
+                <li><a href="#quit-job">What if You Quit Your Job for Polymarket?</a></li>
+                <li><a href="#improve-odds">How Polymarket Could Improve the Odds</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+            </ol>
+        </div>
+
+        <aside class="commission-box">
+            <div class="commission-box-heading">Need similar research?</div>
+            <p>I take on commissioned research projects. Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
+            <div class="commission-box-actions">
+                <span class="commission-contact">
+                    <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
+                    <button type="button" class="commission-copy" data-copy="andrey@sergeenkov.com" aria-label="Copy email" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                </span>
+                <span class="commission-contact">
+                    <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                    <button type="button" class="commission-copy" data-copy="@Nikopolos" aria-label="Copy Telegram handle" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                </span>
+            </div>
+        </aside>
+
+
+        <h2 id="make-money">How Many Polymarket Traders Make Money?</h2>
+
+
+        <p>If you look at the rough ratio of winners to losers, 15.9% of Polymarket traders are in profit and 84.1% are in the red.</p>
+
+        <p>But&hellip;</p>
+
+        <ul>
+            <li>Only 2% of 2.5 million traders have made more than $1,000 over their trading history.</li>
+            <li>More than $10,000 was earned by 0.32%, roughly 8,000 addresses.</li>
+            <li>More than $100,000 was earned by 840 addresses, or 0.033% of all traders.</li>
+        </ul>
+
+        <p>The chart below shows how the share of profitable traders changed from April 2024 to April 2026. Each line represents the percentage of traders who earned more than a given amount over their entire trading history.</p>
+
+        <div class="chart-box">
+            <h3>Share of profitable Polymarket traders over time</h3>
+            <p class="chart-subtitle">April 2024 &ndash; April 2026. Logarithmic scale.</p>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart1','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart1','table')">Table</button>
+            </div>
+            <div id="chart1-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart1"></canvas></div>
+                <div class="chart-legend" id="chart1-legend">
+                    <button class="legend-toggle active" data-chart="chart1" data-index="0" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> Profitable (&gt;$0)</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="1" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> &gt;$1K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="2" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> &gt;$5K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="3" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> &gt;$10K</button>
+                    <button class="legend-toggle active" data-chart="chart1" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> &gt;$100K</button>
+                    <button class="legend-toggle" id="electionToggle" style="--lc:#999" onclick="toggleElection(this)"><span class="legend-line" style="background:#999;border-top:2px dashed #999;height:0;background:none"></span> US Election</button>
+                </div>
+            </div>
+            <div id="chart1-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table id="chart1-tbl">
+                        <thead>
+                            <tr><th>Date</th><th>Total traders</th><th>&gt;$0</th><th>&gt;$1K</th><th>&gt;$5K</th><th>&gt;$10K</th><th>&gt;$100K</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart1','profitable-traders')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart1')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+                <button class="chart-btn" onclick="downloadCSV('chart1')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download CSV</button>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
+
+        <div class="note">The chart uses a logarithmic scale on the Y axis. I had to use this format because the gap between any profit and meaningful profits is so large that on a linear scale, every line below &gt;$5K merges into a single unreadable strip at the bottom.</div>
+
+        <p>The decline across all profit levels is driven by user growth fueled by the November 2024 US election hype and continued momentum after it. Less experienced users tend to trade less successfully.</p>
+
+        <h2 id="monthly-income">What Is the Average Monthly Income on Polymarket?</h2>
+
+        <img src="../polymarket-profitability/images/tulip-king.jpg" alt="Tulip King tweet: Polymarket is the easiest place in crypto to make six figures right now" class="article-image">
+
+        <p>Trader Tulip King <a href="https://x.com/tulipking/status/1988290581790159222">claims</a> that &ldquo;Polymarket is the easiest place in crypto to make six figures.&rdquo; On Polymarket&rsquo;s <a href="https://news.polymarket.com/p/automated-market-making-on-polymarket">own blog</a>, a market maker described earning $200 to $800 per day. Here is what the data shows for everyone else.</p>
+
+        <ul>
+            <li>1.25% of traders have an average monthly profit above $1,000.</li>
+            <li>Above $5,000 is 0.26%, about 6,600 addresses.</li>
+            <li>Above $10,000 per month is roughly 3,250 addresses, or 0.13% of all traders.</li>
+        </ul>
+
+
+        <div class="chart-box">
+            <h3>Polymarket traders by average monthly profit</h3>
+            <p class="chart-subtitle">April 2024 &ndash; April 2026. Logarithmic scale.</p>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart2','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart2','table')">Table</button>
+            </div>
+            <div id="chart2-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart2"></canvas></div>
+                <div class="chart-legend" id="chart2-legend">
+                    <button class="legend-toggle active" data-chart="chart2" data-index="0" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> avg &gt;$1K/mo</button>
+                    <button class="legend-toggle active" data-chart="chart2" data-index="1" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> avg &gt;$5K/mo</button>
+                    <button class="legend-toggle active" data-chart="chart2" data-index="2" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> avg &gt;$10K/mo</button>
+                </div>
+            </div>
+            <div id="chart2-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table id="chart2-tbl">
+                        <thead>
+                            <tr><th>Date</th><th>Total traders</th><th>avg &gt;$1K/mo</th><th>avg &gt;$5K/mo</th><th>avg &gt;$10K/mo</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart2','avg-monthly-profit')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart2')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+                <button class="chart-btn" onclick="downloadCSV('chart2')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download CSV</button>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
+
+        <h2 id="how-long">How Long Do These Profitable Traders Stay Active?</h2>
+
+        <p>53% of these traders earned that average in a single month and 73% of traders were active for no more than two months.</p>
+
+        <p>Most traders show up, trade for a short period, and leave.</p>
+
+        <p>Only 172 addresses out of 6,600 with average profit above $5,000 were active for more than a year. That&rsquo;s 2.6%.</p>
+
+        <p>The chart and table below provide a breakdown by number of addresses and percentages for each profit threshold and activity range.</p>
+
+        <div class="chart-box">
+            <h3>How long do profitable Polymarket traders stay active?</h3>
+            <p class="chart-subtitle">Activity duration breakdown by average monthly profit threshold</p>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart4','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart4','table')">Table</button>
+            </div>
+            <div id="chart4-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart4"></canvas></div>
+                <div class="chart-legend" id="chart4-legend">
+                    <button class="legend-toggle active" data-chart="chart4" data-index="0" style="--lc:#dc3545" onclick="toggleDataset(this)"><span class="legend-line" style="background:#dc3545"></span> 1 month</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="1" style="--lc:#e8a838" onclick="toggleDataset(this)"><span class="legend-line" style="background:#e8a838"></span> 2 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="2" style="--lc:#c49a2a" onclick="toggleDataset(this)"><span class="legend-line" style="background:#c49a2a"></span> 3 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="3" style="--lc:#007bff" onclick="toggleDataset(this)"><span class="legend-line" style="background:#007bff"></span> 4&ndash;6 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="4" style="--lc:#6f42c1" onclick="toggleDataset(this)"><span class="legend-line" style="background:#6f42c1"></span> 7&ndash;12 months</button>
+                    <button class="legend-toggle active" data-chart="chart4" data-index="5" style="--lc:#28a745" onclick="toggleDataset(this)"><span class="legend-line" style="background:#28a745"></span> 13+ months</button>
+                </div>
+            </div>
+            <div id="chart4-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity duration</th>
+                                <th colspan="2">avg &gt;$1K/mo</th>
+                                <th colspan="2">avg &gt;$5K/mo</th>
+                                <th colspan="2">avg &gt;$10K/mo</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Addresses</th><th>%</th>
+                                <th>Addresses</th><th>%</th>
+                                <th>Addresses</th><th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 month</td><td>16,779</td><td>53%</td><td>3,517</td><td>53.4%</td><td>1,700</td><td>52.2%</td></tr>
+                            <tr><td>2 months</td><td>6,323</td><td>20%</td><td>1,314</td><td>20%</td><td>680</td><td>20.9%</td></tr>
+                            <tr><td>3 months</td><td>3,082</td><td>9.7%</td><td>593</td><td>9%</td><td>266</td><td>8.2%</td></tr>
+                            <tr><td>4&ndash;6 months</td><td>3,199</td><td>10.1%</td><td>671</td><td>10.2%</td><td>330</td><td>10.1%</td></tr>
+                            <tr><td>7&ndash;12 months</td><td>1,852</td><td>5.8%</td><td>316</td><td>4.8%</td><td>175</td><td>5.4%</td></tr>
+                            <tr><td>13+ months</td><td>431</td><td>1.4%</td><td>172</td><td>2.6%</td><td>104</td><td>3.2%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart4','duration-breakdown')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart4')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
+
+        <h2 id="quit-job">What if You Quit Your Job for Polymarket?</h2>
+
+        <div class="image-pair">
+            <img src="../polymarket-profitability/images/polymarket-meme.jpg" alt="Polymarket tweet: Big day for professional situation monitors, followed by: Become a full-time trader on Polymarket dot com" class="article-image">
+            <img src="../polymarket-profitability/images/polymarket-400k.jpg" alt="Polymarket tweet: If you're not making $400,000 a year on Polymarket yet, you need to watch this" class="article-image">
+        </div>
+        <p class="image-caption">The idea of making a living on Polymarket is so popular it has become a meme</p>
+
+        <p>Let&rsquo;s say you read <a href="https://www.npr.org/2026/01/17/nx-s1-5672615/kalshi-polymarket-prediction-market-boom-traders-slang-glossary">this article</a> about how Logan Sudeith quit his job and made $100k in a month. You decide to follow his lead and want to consistently earn the <a href="https://www.consumershield.com/articles/average-salary-per-month">average US salary</a> of $5,000 per month trading on Polymarket. I calculated the odds of earning that amount on a regular basis.</p>
+
+        <ul>
+            <li>In any single month, 0.98% managed to earn more than $5,000.</li>
+            <li>Two months in a row drops to 0.1%.</li>
+            <li>Three months in a row is 0.03%.</li>
+            <li>Four months in a row is 0.015%.</li>
+        </ul>
+
+        <p>The chart below shows how many traders out of 2.5 million managed to earn more than $5,000 consistently, up to 12 consecutive months.</p>
+
+        <div class="chart-box">
+            <h3>How many traders consistently earn &ge;$5,000 on Polymarket?</h3>
+            <p class="chart-subtitle">Out of 2.5 million traders. Each bar = traders who maintained &ge;$5K/month for at least N months in a row.</p>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('chart3','chart')">Chart</button>
+                <button class="view-btn" onclick="toggleView('chart3','table')">Table</button>
+            </div>
+            <div id="chart3-chart" class="view-panel">
+                <div class="chart-container"><canvas id="chart3"></canvas></div>
+            </div>
+            <div id="chart3-table" class="view-panel" style="display:none">
+                <div class="table-wrap" style="margin:0">
+                    <table id="chart3-tbl">
+                        <thead>
+                            <tr><th>Consecutive months</th><th>Traders</th><th>% of all</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-actions">
+                <button class="chart-btn" onclick="downloadChart('chart3','consecutive-months')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download PNG</button>
+                <button class="chart-btn" onclick="expandChart('chart3')"><svg viewBox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"/></svg> Expand</button>
+                <button class="chart-btn" onclick="downloadCSV('chart3')"><svg viewBox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"/></svg> Download CSV</button>
+            </div>
+            <div class="chart-source"><a href="https://sergeenkov.com">sergeenkov.com</a></div>
+        </div>
+
+        <div class="note">This calculation has a limitation. Every number represents addresses, not necessarily people. This can slightly skew the exact numbers in both directions. The real count could be lower because one person can trade from multiple wallets, each counted separately. It could be higher because one person might switch wallets mid-period, splitting a six-month streak into two three-month streaks.</div>
+
+        <h2 id="improve-odds">How Polymarket Could Improve the Odds</h2>
+
+        <p>Polymarket recently launched a <a href="https://help.polymarket.com/en/articles/14174498-referral-program">referral program</a> offering 30% of trading fees generated by referred users, which means a wave of influencer-driven users is coming.</p>
+
+        <div class="image-stack">
+            <img src="../polymarket-profitability/images/1 ref.jpg" alt="Screenshot of a tweet promoting Polymarket arbitrage with referral link: They can earn in a single game what it takes an average person months or even a year to make" class="article-image">
+            <img src="../polymarket-profitability/images/2 ref.jpg" alt="Screenshot of a tweet promoting 15+ ways to earn on Polymarket with referral link: from simple betting to arbitrage, copy trading, market making, and AI strategies" class="article-image">
+        </div>
+
+        <p>Most new traders lose money. It would be helpful if influencers promoting the platform at least taught their audience the basics: bankroll management, how prediction markets work, and why betting on impulse is a fast way to lose everything.</p>
+
+        <p>Polymarket itself could also do more to educate users about safe trading. One proven approach is play-money prediction markets, where users forecast events without risking real funds.</p>
+
+        <p><a href="https://humaninvariant.substack.com/p/the-future-of-play-money-prediction">Available data</a> from cross-platform comparisons shows that play-money markets can produce surprisingly accurate forecasts. In specialized categories like science, play-money platforms have matched or outperformed real-money markets, likely because these topics attract domain experts motivated by intellectual engagement rather than profit.</p>
+
+        <p>Play-money prediction markets are not subject to gambling laws, which is the legal basis for most country-level bans on Polymarket. A play-money mode could potentially give the platform access to markets it currently cannot reach.</p>
+
+        <p>And they could attract people who want to forecast events for reasons other than profit, such as intellectual interest or proving their expertise.</p>
+
+        <p>None of this will fully solve the unhealthy imbalance between winners and losers. There is no magic pill. But steps toward protecting retail traders are the right way to do business for a company with Polymarket&rsquo;s ambitions.</p>
+
+        <h2 id="methodology">Methodology</h2>
+
+        <p>The only other public study on Polymarket trader profitability that I found was done by blockchain analyst DeFi Oasis in December 2025. <a href="https://x.com/defioasis/status/2005591714057297973?s=20">His data</a> showed 30% of 1.7 million addresses in profit. I got 16%. Both formulas calculate realized PnL as the difference between incoming and outgoing USDC flows. But I include splits and merges, which DeFi Oasis apparently did not account for. When splits are left out, an address looks more profitable because one category of expenses is simply invisible. On top of that, the number of addresses grew from 1.7 to 2.5 million in the three months between the two studies.</p>
+
+        <p>All data comes from on-chain transactions on the Polygon blockchain via Dune Analytics. Polymarket uses a hybrid architecture: orders are matched off-chain through a CLOB, but every trade settles on-chain through the CTF Exchange and NegRisk CTF Exchange smart contracts.</p>
+
+        <p>PnL for each address is calculated as the sum of all USDC flows across five types of on-chain events: buys and sells of outcome tokens on both exchange contracts (OrderFilled), redemption of winning tokens (PayoutRedemption), splitting USDC into YES/NO token pairs (PositionsSplit), and merging them back (PositionsMerge). Ten system addresses were excluded: three Polymarket contracts and seven infrastructure wallets from DeFi Oasis&rsquo;s list.</p>
+
+        <p>In early iterations I calculated PnL without splits and merges. That gave 10,800 addresses with monthly profit above $5,000. After adding splits and merges the number dropped to 6,600, because splits subtract USDC from a trader&rsquo;s balance.</p>
+
+        <p>Limitations. I only count realized PnL. If a trader bought tokens on an unresolved market and hasn&rsquo;t sold them, my data shows that as a loss even though the funds are simply locked. I verified that 96% of trading volume comes from already resolved markets, and the unrealized balance on resolved markets is minimal relative to total volume. All calculations use data through April 1, 2026.</p>
+
+        <div class="author-box">
+            <div class="author-info">
+                <div class="author-bio">You can follow new articles via <a href="/feed.xml">RSS</a> or <a href="https://x.com/Nikopolos">X</a>.</div>
+                <div class="other-research">
+                    <p class="other-research-title">My Other Research</p>
+                    <ul>
+                        <li><a href="/loss-based-polymarket-airdrop/">The Case for a Loss-Based Polymarket Airdrop</a></li>
+                        <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13&times; After Ethereum&rsquo;s Fusaka Upgrade</a></li>
+                        <li><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a></li>
+                        <li><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO&rsquo;s $220M Security Fund Actually Make Ethereum Safer?</a></li>
+                        <li><a href="/thedao-curators-220m-hack-victims/">Curators of TheDAO&rsquo;s $220M Set a Precedent for Using Owners&rsquo; Funds for Their Own Ends</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script>
+    (function() {
+        var LABELS = ['Apr 24','May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'];
+        var pct_gt_0 = [44.23,43.33,34.12,25.53,21.58,17.54,15.24,11.8,12.17,11.21,10.67,10.68,11.33,11.8,11.8,12.21,12.74,13.05,13.06,12.98,14.29,15.03,15.13,15.57,15.93];
+        var pct_gt_1k = [9.76,9.57,7.48,5.29,4.09,3.01,2.37,1.35,1.38,1.07,0.87,0.82,0.8,0.82,0.9,0.94,0.94,0.94,0.94,1.11,1.38,1.65,1.78,1.94,2.07];
+        var pct_gt_5k = [4.324,4.228,3.294,2.301,1.757,1.266,0.973,0.532,0.515,0.396,0.317,0.298,0.293,0.3,0.319,0.335,0.332,0.33,0.333,0.384,0.444,0.491,0.506,0.56,0.577];
+        var pct_gt_10k = [3.213,3.126,2.413,1.676,1.259,0.906,0.692,0.371,0.34,0.256,0.201,0.188,0.185,0.194,0.204,0.213,0.21,0.208,0.212,0.231,0.253,0.26,0.274,0.306,0.318];
+        var pct_gt_100k = [0.9532,0.9283,0.7126,0.4898,0.3559,0.2534,0.1919,0.0998,0.0777,0.0561,0.0437,0.0387,0.0365,0.0364,0.0364,0.0367,0.0365,0.0358,0.0354,0.0329,0.032,0.0322,0.0319,0.0328,0.0333];
+
+        var chartFont = { family: "'Inter', sans-serif" };
+
+        function makeLine(label, data, color, width) {
+            return {
+                label: label,
+                data: data,
+                borderColor: color,
+                borderWidth: width || 2,
+                fill: false,
+                pointRadius: 0,
+                tension: 0.3
+            };
+        }
+
+        function makeFill(data, color) {
+            return {
+                label: 'fill',
+                data: data,
+                backgroundColor: color,
+                borderWidth: 0,
+                fill: true,
+                pointRadius: 0,
+                tension: 0.3
+            };
+        }
+
+        function fmtPct(v) {
+            if (v >= 1) return v.toFixed(1) + '%';
+            if (v >= 0.1) return v.toFixed(2) + '%';
+            return v.toFixed(3) + '%';
+        }
+
+        var endLabelsPlugin = {
+            id: 'endLabels',
+            afterDraw: function(chart) {
+                var ctx = chart.ctx;
+                chart.data.datasets.forEach(function(ds, i) {
+                    if (ds.label === 'fill') return;
+                    var meta = chart.getDatasetMeta(i);
+                    if (meta.hidden) return;
+                    var firstPt = meta.data[0];
+                    var lastPt = meta.data[meta.data.length - 1];
+                    var firstVal = ds.data[0];
+                    var lastVal = ds.data[ds.data.length - 1];
+                    var isDl = chart.options._isDownload;
+                    ctx.save();
+                    ctx.font = '600 ' + (isDl ? '18' : '10') + 'px Inter, sans-serif';
+                    ctx.textBaseline = 'middle';
+                    // Right label only
+                    ctx.fillStyle = ds.borderColor;
+                    ctx.textAlign = 'left';
+                    ctx.fillText(fmtPct(lastVal), lastPt.x + (isDl ? 10 : 6), lastPt.y);
+                    ctx.restore();
+                });
+            }
+        };
+
+        var commonOpts = {
+            responsive: true,
+            maintainAspectRatio: false,
+            events: ['mousemove', 'mouseout', 'click'],
+            layout: { padding: { top: 10, left: 0, right: 45 } },
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#999',
+                    bodyColor: '#333',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    titleFont: { size: 11, family: chartFont.family },
+                    bodyFont: { size: 12, family: chartFont.family },
+                    padding: { top: 6, bottom: 6, left: 10, right: 10 },
+                    boxPadding: 4,
+                    callbacks: {
+                        label: function(ctx) {
+                            if (ctx.dataset.label === 'fill') return null;
+                            var v = ctx.parsed.y;
+                            var s = v >= 1 ? v.toFixed(1) : v >= 0.1 ? v.toFixed(2) : v.toFixed(3);
+                            return ctx.dataset.label + ': ' + s.replace(',', '.') + '%';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
+                    grid: { display: false },
+                    border: { color: '#ddd' }
+                },
+                y: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: function(v) { return v + '%'; } },
+                    grid: { color: '#eee', drawBorder: false },
+                    border: { display: false }
+                }
+            }
+        };
+
+        window.chartConfigs = {};
+
+        var logOpts = JSON.parse(JSON.stringify(commonOpts));
+        logOpts.scales.x.ticks = { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 };
+        logOpts.scales.y = {
+            type: 'logarithmic',
+            min: 0.01,
+            max: 50,
+            afterBuildTicks: function(axis) {
+                axis.ticks = [0.01, 0.1, 1, 10, 40].map(function(v) { return { value: v, label: (v >= 1 ? v.toFixed(0) : v) + '%' }; });
+            },
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v, idx, ticks) {
+                    if (v >= 1) return v.toFixed(0) + '%';
+                    return v + '%';
+                }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+
+        // Chart 1: Share of profitable traders (log scale)
+        var cfg1 = {
+            type: 'line',
+            data: {
+                labels: LABELS,
+                datasets: [
+                    makeLine('Profitable (>$0)', pct_gt_0, '#007bff'),
+                    makeLine('>$1K', pct_gt_1k, '#28a745'),
+                    makeLine('>$5K', pct_gt_5k, '#e8a838'),
+                    makeLine('>$10K', pct_gt_10k, '#dc3545'),
+                    makeLine('>$100K', pct_gt_100k, '#6f42c1')
+                ]
+            },
+            options: logOpts,
+            plugins: [endLabelsPlugin]
+        };
+        window.chartConfigs.chart1 = cfg1;
+        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
+
+        // Populate chart1 table
+        var DATES = ['2024-04-01','2024-05-01','2024-06-01','2024-07-01','2024-08-01','2024-09-01','2024-10-01','2024-11-01','2024-12-01','2025-01-01','2025-02-01','2025-03-01','2025-04-01','2025-05-01','2025-06-01','2025-07-01','2025-08-01','2025-09-01','2025-10-01','2025-11-01','2025-12-01','2026-01-01','2026-02-01','2026-03-01','2026-04-01'];
+        var TOTAL = [33676,34580,45745,65329,91330,129023,171480,330617,467153,668879,884252,997021,1072636,1111408,1147179,1181245,1230043,1266643,1314727,1502465,1668420,1808318,2043575,2266424,2526105];
+        var tbody = document.querySelector('#chart1-tbl tbody');
+        for (var i = 0; i < DATES.length; i++) {
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + DATES[i] + '</td><td>' + TOTAL[i].toLocaleString('en-US') + '</td><td>' + pct_gt_0[i] + '%</td><td>' + pct_gt_1k[i] + '%</td><td>' + pct_gt_5k[i] + '%</td><td>' + pct_gt_10k[i] + '%</td><td>' + pct_gt_100k[i] + '%</td>';
+            tbody.appendChild(tr);
+        }
+
+        // Store CSV data for download
+        window.chartCSV = window.chartCSV || {};
+        var csv1 = 'Date,Total traders,>$0,>$1K,>$5K,>$10K,>$100K\n';
+        for (var j = 0; j < DATES.length; j++) {
+            csv1 += DATES[j] + ',' + TOTAL[j] + ',' + pct_gt_0[j] + '%,' + pct_gt_1k[j] + '%,' + pct_gt_5k[j] + '%,' + pct_gt_10k[j] + '%,' + pct_gt_100k[j] + '%\n';
+        }
+        window.chartCSV.chart1 = csv1;
+
+        // Chart 2: Average monthly profit
+        var pct_avg_1k = [6.925,6.767,5.253,3.715,2.805,2.023,1.554,0.834,0.825,0.612,0.481,0.448,0.436,0.443,0.484,0.507,0.498,0.495,0.497,0.588,0.758,0.89,0.959,1.068,1.254];
+        var pct_avg_5k = [2.524,2.464,1.902,1.335,0.997,0.718,0.545,0.288,0.274,0.201,0.156,0.146,0.14,0.14,0.143,0.148,0.146,0.145,0.144,0.161,0.175,0.187,0.195,0.224,0.261];
+        var pct_avg_10k = [1.6688,1.6252,1.2482,0.8664,0.6427,0.4565,0.3481,0.183,0.1676,0.1217,0.0945,0.0871,0.0828,0.0824,0.0839,0.0868,0.0858,0.0854,0.0846,0.0871,0.0876,0.0901,0.0917,0.1085,0.1288];
+
+        var linearOpts2 = JSON.parse(JSON.stringify(commonOpts));
+        linearOpts2.layout = { padding: { top: 10, left: 0, right: 45 } };
+        linearOpts2.scales.x.ticks = { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 };
+        linearOpts2.scales.y = {
+            type: 'logarithmic',
+            min: 0.05,
+            max: 10,
+            afterBuildTicks: function(axis) {
+                axis.ticks = [0.1, 0.5, 1, 5].map(function(v) { return { value: v }; });
+            },
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) {
+                    if (v >= 1) return v.toFixed(0) + '%';
+                    return v + '%';
+                }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+
+        var cfg2 = {
+            type: 'line',
+            data: {
+                labels: LABELS,
+                datasets: [
+                    makeLine('avg >$1K/mo', pct_avg_1k, '#28a745'),
+                    makeLine('avg >$5K/mo', pct_avg_5k, '#e8a838'),
+                    makeLine('avg >$10K/mo', pct_avg_10k, '#dc3545')
+                ]
+            },
+            options: linearOpts2,
+            plugins: [endLabelsPlugin]
+        };
+        window.chartConfigs.chart2 = cfg2;
+        new Chart(document.getElementById('chart2').getContext('2d'), cfg2);
+
+        // Populate chart2 table
+        var tbody2 = document.querySelector('#chart2-tbl tbody');
+        for (var m = 0; m < DATES.length; m++) {
+            var tr2 = document.createElement('tr');
+            tr2.innerHTML = '<td>' + DATES[m] + '</td><td>' + TOTAL[m].toLocaleString('en-US') + '</td><td>' + pct_avg_1k[m] + '%</td><td>' + pct_avg_5k[m] + '%</td><td>' + pct_avg_10k[m] + '%</td>';
+            tbody2.appendChild(tr2);
+        }
+
+        var csv2 = 'Date,Total traders,avg >$1K/mo,avg >$5K/mo,avg >$10K/mo\n';
+        for (var n = 0; n < DATES.length; n++) {
+            csv2 += DATES[n] + ',' + TOTAL[n] + ',' + pct_avg_1k[n] + '%,' + pct_avg_5k[n] + '%,' + pct_avg_10k[n] + '%\n';
+        }
+        window.chartCSV.chart2 = csv2;
+
+        // Chart 3: Consecutive months earning ≥$5K
+        var consLabels = ['1+','2+','3+','4+','5+','6+','9+','12+'];
+        var consValues = [24692,2530,745,370,205,140,72,35];
+        var consPct = [0.9775,0.1002,0.0295,0.0146,0.0081,0.0055,0.0029,0.0014];
+
+        var barLabelPlugin = {
+            id: 'barLabels',
+            afterDraw: function(chart) {
+                var ctx = chart.ctx;
+                var meta = chart.getDatasetMeta(0);
+                var isDl = chart.options._isDownload;
+                ctx.save();
+                ctx.font = '600 ' + (isDl ? '18' : '11') + 'px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillStyle = '#333';
+                meta.data.forEach(function(bar, i) {
+                    var v = consValues[i];
+                    var label = v >= 1000 ? (v / 1000).toFixed(1).replace('.0','') + 'K' : v.toString();
+                    ctx.fillText(label, bar.x, bar.y - (isDl ? 6 : 4));
+                });
+                ctx.restore();
+            }
+        };
+
+        var barOpts = JSON.parse(JSON.stringify(commonOpts));
+        barOpts.layout = { padding: { top: 25 } };
+        barOpts.scales.y = {
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) {
+                    if (v >= 1000) return (v/1000).toFixed(0) + 'K';
+                    return v;
+                }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+        barOpts.plugins.tooltip.callbacks = {
+            label: function(ctx) {
+                return ctx.parsed.y.toLocaleString('en-US') + ' traders (' + consPct[ctx.dataIndex] + '%)';
+            }
+        };
+
+        var cfg3 = {
+            type: 'bar',
+            data: {
+                labels: consLabels,
+                datasets: [{
+                    label: 'Traders',
+                    data: consValues,
+                    backgroundColor: '#dc3545',
+                    borderRadius: 3,
+                    maxBarThickness: 50
+                }]
+            },
+            options: barOpts,
+            plugins: [barLabelPlugin]
+        };
+        window.chartConfigs.chart3 = cfg3;
+        new Chart(document.getElementById('chart3').getContext('2d'), cfg3);
+
+        // Populate chart3 table
+        var tbody3 = document.querySelector('#chart3-tbl tbody');
+        for (var p = 0; p < consLabels.length; p++) {
+            var tr3 = document.createElement('tr');
+            tr3.innerHTML = '<td>' + consLabels[p] + ' months</td><td>' + consValues[p].toLocaleString('en-US') + '</td><td>' + consPct[p] + '%</td>';
+            tbody3.appendChild(tr3);
+        }
+
+        var csv3 = 'Consecutive months,Traders,% of all\n';
+        for (var q = 0; q < consLabels.length; q++) {
+            csv3 += consLabels[q] + ' months,' + consValues[q] + ',' + consPct[q] + '%\n';
+        }
+        window.chartCSV.chart3 = csv3;
+
+        // Chart 4: Duration breakdown (stacked bar)
+        var durLabels = ['Avg >$1K/mo (31,666)', 'Avg >$5K/mo (6,583)', 'Avg >$10K/mo (3,255)'];
+        var durColors = ['#dc3545','#e8a838','#c49a2a','#007bff','#6f42c1','#28a745'];
+        var durNames = ['1 month','2 months','3 months','4-6 months','7-12 months','13+ months'];
+        var durData = [
+            [53, 53.4, 52.2],
+            [20, 20, 20.9],
+            [9.7, 9, 8.2],
+            [10.1, 10.2, 10.1],
+            [5.8, 4.8, 5.4],
+            [1.4, 2.6, 3.2]
+        ];
+
+        var durDatasets = durNames.map(function(name, i) {
+            return {
+                label: name,
+                data: durData[i],
+                backgroundColor: durColors[i],
+                borderRadius: 0
+            };
+        });
+
+        var stackOpts = JSON.parse(JSON.stringify(commonOpts));
+        stackOpts.layout = { padding: { top: 5 } };
+        stackOpts.scales.x.stacked = true;
+        stackOpts.scales.y = {
+            stacked: true,
+            max: 100,
+            ticks: {
+                color: '#ccc',
+                font: { size: 9, family: chartFont.family },
+                callback: function(v) { return v.toFixed(0) + '%'; }
+            },
+            grid: { color: '#f0f0f0', drawBorder: false },
+            border: { display: false }
+        };
+        stackOpts.plugins.tooltip.callbacks = {
+            label: function(ctx) {
+                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+            }
+        };
+
+        var cfg4 = {
+            type: 'bar',
+            data: {
+                labels: durLabels,
+                datasets: durDatasets
+            },
+            options: stackOpts
+        };
+        window.chartConfigs.chart4 = cfg4;
+        new Chart(document.getElementById('chart4').getContext('2d'), cfg4);
+    })();
+
+    // Image lightbox
+    document.querySelectorAll('.article-image').forEach(function(img) {
+        img.addEventListener('click', function() {
+            document.getElementById('lightboxImg').src = this.src;
+            document.getElementById('imageLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        document.getElementById('imageLightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function toggleElection(btn) {
+        var chart = chartInstances.chart1;
+        if (!chart) return;
+        var isActive = btn.classList.toggle('active');
+        if (isActive) {
+            chart.options.plugins.annotation = {
+                annotations: {
+                    election: {
+                        type: 'line',
+                        xMin: 7, xMax: 7,
+                        borderColor: '#999',
+                        borderWidth: 1.5,
+                        borderDash: [4, 3],
+                        label: {
+                            display: true,
+                            content: 'US Election (Nov 2024)',
+                            position: 'start',
+                            backgroundColor: '#f5f5f5',
+                            color: '#666',
+                            font: { size: 10, weight: 500, family: "'Inter', sans-serif" },
+                            padding: { top: 3, bottom: 3, left: 8, right: 8 },
+                            borderRadius: 3
+                        }
+                    }
+                }
+            };
+        } else {
+            chart.options.plugins.annotation = { annotations: {} };
+        }
+        chart.update();
+    }
+
+    function toggleDataset(btn) {
+        var chartId = btn.getAttribute('data-chart');
+        var idx = +btn.getAttribute('data-index');
+        var chart = chartInstances[chartId];
+        if (!chart) return;
+        var meta = chart.getDatasetMeta(idx);
+        meta.hidden = !meta.hidden;
+        btn.classList.toggle('active');
+        chart.update();
+    }
+
+    function toggleView(chartId, view) {
+        var chartPanel = document.getElementById(chartId + '-chart');
+        var tablePanel = document.getElementById(chartId + '-table');
+        var box = chartPanel.closest('.chart-box');
+        var btns = box.querySelectorAll('.view-btn');
+        if (view === 'table') {
+            chartPanel.style.display = 'none';
+            tablePanel.style.display = 'block';
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
+        } else {
+            chartPanel.style.display = 'block';
+            tablePanel.style.display = 'none';
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+        }
+    }
+
+    function downloadCSV(chartId) {
+        var csv = window.chartCSV && window.chartCSV[chartId];
+        if (!csv) return;
+        var blob = new Blob([csv], { type: 'text/csv' });
+        var link = document.createElement('a');
+        link.download = chartId + '-data.csv';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+    }
+    </script>
+
+    <div class="image-lightbox" id="imageLightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
+        <div class="chart-modal">
+            <button class="chart-modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <p class="chart-subtitle" id="modalSubtitle"></p>
+            <div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+    var chartInstances = {};
+    document.querySelectorAll('.chart-container canvas').forEach(function(c) {
+        var inst = Chart.getChart(c);
+        if (inst) chartInstances[c.id] = inst;
+    });
+
+    function downloadChart(id, name) {
+        var chart = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!chart || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        var title = box.querySelector('h3').textContent;
+        var subtitle = box.querySelector('.chart-subtitle').textContent;
+        var legendItems = [];
+        box.querySelectorAll('.chart-legend > span').forEach(function(span) {
+            var line = span.querySelector('.legend-line');
+            legendItems.push({
+                text: span.textContent.trim(),
+                color: line ? (line.style.backgroundColor || line.style.background) : '#999'
+            });
+        });
+
+        var chartW = 1400, chartH = 620, pad = 48, topH = 110, botH = 80;
+        var offCanvas = document.createElement('canvas');
+        offCanvas.width = chartW;
+        offCanvas.height = chartH;
+
+        // Scale up axis fonts for download
+        var dlOpts = Object.assign({}, cfg.options);
+        dlOpts.scales = Object.assign({}, cfg.options.scales);
+        if (cfg.options.scales.x) dlOpts.scales.x = Object.assign({}, cfg.options.scales.x, { ticks: Object.assign({}, cfg.options.scales.x.ticks, { font: Object.assign({}, cfg.options.scales.x.ticks.font, { size: 16 }) }) });
+        if (cfg.options.scales.y) {
+            dlOpts.scales.y = Object.assign({}, cfg.options.scales.y);
+            if (cfg.options.scales.y.ticks) dlOpts.scales.y.ticks = Object.assign({}, cfg.options.scales.y.ticks, { font: Object.assign({}, cfg.options.scales.y.ticks.font, { size: 16 }) });
+        }
+        dlOpts.responsive = false;
+        dlOpts.animation = false;
+        dlOpts.devicePixelRatio = 1;
+        dlOpts._isDownload = true;
+        if (dlOpts.layout && dlOpts.layout.padding) {
+            dlOpts.layout.padding = Object.assign({}, dlOpts.layout.padding, { right: 80 });
+        }
+        // Copy live annotation state (e.g. US Election toggle) and scale up fonts
+        var liveAnn = chart.options.plugins && chart.options.plugins.annotation;
+        if (liveAnn && liveAnn.annotations && Object.keys(liveAnn.annotations).length > 0) {
+            if (!dlOpts.plugins) dlOpts.plugins = {};
+            var dlAnns = {};
+            Object.keys(liveAnn.annotations).forEach(function(key) {
+                var orig = liveAnn.annotations[key];
+                if (orig.label && orig.label.font) {
+                    dlAnns[key] = Object.assign({}, orig, {
+                        label: Object.assign({}, orig.label, {
+                            font: Object.assign({}, orig.label.font, { size: 18 }),
+                            padding: { top: 5, bottom: 5, left: 14, right: 14 }
+                        })
+                    });
+                } else {
+                    dlAnns[key] = orig;
+                }
+            });
+            dlOpts.plugins.annotation = { annotations: dlAnns };
+        }
+
+        var offChart = new Chart(offCanvas.getContext('2d'), {
+            type: cfg.type,
+            data: { labels: chart.data.labels.slice(), datasets: chart.data.datasets.filter(function(ds, i) { return !chart.getDatasetMeta(i).hidden; }).map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
+            options: dlOpts,
+            plugins: cfg.plugins || []
+        });
+
+        var tmp = document.createElement('canvas');
+        tmp.width = chartW + pad * 2;
+        tmp.height = chartH + topH + botH;
+        var ctx = tmp.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, tmp.width, tmp.height);
+        var fontBase = "Inter, -apple-system, sans-serif";
+        ctx.fillStyle = '#333'; ctx.font = '600 26px ' + fontBase;
+        ctx.fillText(title, pad, pad + 28);
+        ctx.fillStyle = '#888'; ctx.font = '20px ' + fontBase;
+        ctx.fillText(subtitle, pad, pad + 58);
+        ctx.drawImage(offCanvas, pad, topH);
+
+        var ly = topH + chartH + 36, lx = pad;
+        ctx.font = '18px ' + fontBase;
+        legendItems.forEach(function(item) {
+            var sw = 26;
+            ctx.fillStyle = item.color;
+            ctx.fillRect(lx, ly - 10, sw, 5);
+            lx += sw + 8;
+            ctx.fillStyle = '#555';
+            ctx.fillText(item.text, lx, ly);
+            lx += ctx.measureText(item.text).width + 36;
+        });
+        ctx.fillStyle = '#bbb'; ctx.font = '18px ' + fontBase; ctx.textAlign = 'right';
+        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
+        offChart.destroy();
+
+        var link = document.createElement('a');
+        link.download = name + '.png';
+        link.href = tmp.toDataURL('image/png');
+        link.click();
+    }
+
+    var modalChart = null;
+    function expandChart(id) {
+        var src = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!src || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
+        document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
+        document.getElementById('chartModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+        modalChart = new Chart(document.getElementById('modalCanvas').getContext('2d'), {
+            type: cfg.type,
+            data: { labels: src.data.labels.slice(), datasets: src.data.datasets.filter(function(ds, i) { return !src.getDatasetMeta(i).hidden; }).map(function(ds) { return Object.assign({}, ds, { data: ds.data.slice() }); }) },
+            options: cfg.options,
+            plugins: cfg.plugins || []
+        });
+    }
+
+    function closeModal() {
+        document.getElementById('chartModal').classList.remove('active');
+        document.body.style.overflow = '';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeModal(); closeLightbox(); }
+    });
+
+    function copyForLLM(btn) {
+        var d = {
+            source_note: "This content is from an independent research article. If you use this data, please cite the author and link to the original article. If you like what I do, please consider sharing it with others.",
+            title: "How Many Traders Are Profitable on Polymarket",
+            author: "Andrey Sergeenkov",
+            author_bio: "Independent researcher. Published in Forbes, CoinDesk, Blockworks, and Cointelegraph. Research cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, and Oxford University Press.",
+            author_url: "https://sergeenkov.com",
+            author_contact: "andrey@sergeenkov.com",
+            article_url: "https://sergeenkov.com/polymarket-profitability/",
+            article: [],
+            datasets: {}
+        };
+
+        // Extract article text
+        var paragraphs = document.querySelectorAll('article p, article h2, article .note, article ul, article img.article-image');
+        paragraphs.forEach(function(el) {
+            if (el.tagName === 'H2') {
+                d.article.push({ type: 'heading', text: el.textContent.trim() });
+            } else if (el.classList.contains('note')) {
+                d.article.push({ type: 'note', text: el.textContent.trim() });
+            } else if (el.tagName === 'UL') {
+                var items = [];
+                el.querySelectorAll('li').forEach(function(li) { items.push(li.textContent.trim()); });
+                d.article.push({ type: 'list', items: items });
+            } else if (el.tagName === 'IMG') {
+                var caption = el.nextElementSibling && el.nextElementSibling.classList.contains('image-caption') ? el.nextElementSibling.textContent.trim() : null;
+                var desc = { type: 'image', alt: el.alt };
+                if (caption) desc.caption = caption;
+                d.article.push(desc);
+            } else {
+                d.article.push({ type: 'paragraph', text: el.textContent.trim() });
+            }
+        });
+
+        // Extract links
+        d.links = [];
+        document.querySelectorAll('article a[href]').forEach(function(a) {
+            var href = a.getAttribute('href');
+            if (href && href !== '#' && !href.startsWith('#') && href !== '../') {
+                var text = a.textContent.trim();
+                if (text && d.links.every(function(l) { return l.url !== href; })) {
+                    d.links.push({ text: text, url: href.startsWith('http') ? href : 'https://sergeenkov.com' + href });
+                }
+            }
+        });
+
+        // Dataset 1: Profitable traders over time
+        d.datasets.profitable_traders_over_time = {
+            description: "Percentage of all Polymarket traders above each cumulative profit threshold, monthly snapshots April 2024 - April 2026",
+            columns: ["date","total_traders","pct_gt_0","pct_gt_1k","pct_gt_5k","pct_gt_10k","pct_gt_100k"],
+            rows: []
+        };
+        var dates = ['2024-04-01','2024-05-01','2024-06-01','2024-07-01','2024-08-01','2024-09-01','2024-10-01','2024-11-01','2024-12-01','2025-01-01','2025-02-01','2025-03-01','2025-04-01','2025-05-01','2025-06-01','2025-07-01','2025-08-01','2025-09-01','2025-10-01','2025-11-01','2025-12-01','2026-01-01','2026-02-01','2026-03-01','2026-04-01'];
+        var total = [33676,34580,45745,65329,91330,129023,171480,330617,467153,668879,884252,997021,1072636,1111408,1147179,1181245,1230043,1266643,1314727,1502465,1668420,1808318,2043575,2266424,2526105];
+        var g0=[44.23,43.33,34.12,25.53,21.58,17.54,15.24,11.8,12.17,11.21,10.67,10.68,11.33,11.8,11.8,12.21,12.74,13.05,13.06,12.98,14.29,15.03,15.13,15.57,15.93];
+        var g1k=[9.76,9.57,7.48,5.29,4.09,3.01,2.37,1.35,1.38,1.07,0.87,0.82,0.8,0.82,0.9,0.94,0.94,0.94,0.94,1.11,1.38,1.65,1.78,1.94,2.07];
+        var g5k=[4.324,4.228,3.294,2.301,1.757,1.266,0.973,0.532,0.515,0.396,0.317,0.298,0.293,0.3,0.319,0.335,0.332,0.33,0.333,0.384,0.444,0.491,0.506,0.56,0.577];
+        var g10k=[3.213,3.126,2.413,1.676,1.259,0.906,0.692,0.371,0.34,0.256,0.201,0.188,0.185,0.194,0.204,0.213,0.21,0.208,0.212,0.231,0.253,0.26,0.274,0.306,0.318];
+        var g100k=[0.9532,0.9283,0.7126,0.4898,0.3559,0.2534,0.1919,0.0998,0.0777,0.0561,0.0437,0.0387,0.0365,0.0364,0.0364,0.0367,0.0365,0.0358,0.0354,0.0329,0.032,0.0322,0.0319,0.0328,0.0333];
+        for(var i=0;i<dates.length;i++) d.datasets.profitable_traders_over_time.rows.push([dates[i],total[i],g0[i],g1k[i],g5k[i],g10k[i],g100k[i]]);
+
+        // Dataset 2: Average monthly profit
+        d.datasets.avg_monthly_profit = {
+            description: "Percentage of all traders above each average monthly profit threshold",
+            columns: ["date","total_traders","pct_avg_gt_1k_mo","pct_avg_gt_5k_mo","pct_avg_gt_10k_mo"],
+            rows: []
+        };
+        var a1k=[6.925,6.767,5.253,3.715,2.805,2.023,1.554,0.834,0.825,0.612,0.481,0.448,0.436,0.443,0.484,0.507,0.498,0.495,0.497,0.588,0.758,0.89,0.959,1.068,1.254];
+        var a5k=[2.524,2.464,1.902,1.335,0.997,0.718,0.545,0.288,0.274,0.201,0.156,0.146,0.14,0.14,0.143,0.148,0.146,0.145,0.144,0.161,0.175,0.187,0.195,0.224,0.261];
+        var a10k=[1.6688,1.6252,1.2482,0.8664,0.6427,0.4565,0.3481,0.183,0.1676,0.1217,0.0945,0.0871,0.0828,0.0824,0.0839,0.0868,0.0858,0.0854,0.0846,0.0871,0.0876,0.0901,0.0917,0.1085,0.1288];
+        for(var j=0;j<dates.length;j++) d.datasets.avg_monthly_profit.rows.push([dates[j],total[j],a1k[j],a5k[j],a10k[j]]);
+
+        // Dataset 3: Consecutive months
+        d.datasets.consecutive_months_gte_5k = {
+            description: "Number of traders who earned >=5K/month for N consecutive months (out of 2,526,105 total)",
+            columns: ["consecutive_months","traders","pct_of_all"],
+            rows: [["1+",24692,0.9775],["2+",2530,0.1002],["3+",745,0.0295],["4+",370,0.0146],["5+",205,0.0081],["6+",140,0.0055],["9+",72,0.0029],["12+",35,0.0014]]
+        };
+
+        // Dataset 4: Duration breakdown
+        d.datasets.activity_duration_breakdown = {
+            description: "How long profitable traders stayed active, by threshold (percentages of each threshold group)",
+            columns: ["duration","avg_gt_1k_mo_addresses","avg_gt_1k_mo_pct","avg_gt_5k_mo_addresses","avg_gt_5k_mo_pct","avg_gt_10k_mo_addresses","avg_gt_10k_mo_pct"],
+            rows: [
+                ["1 month",16779,53,3517,53.4,1700,52.2],
+                ["2 months",6323,20,1314,20,680,20.9],
+                ["3 months",3082,9.7,593,9,266,8.2],
+                ["4-6 months",3199,10.1,671,10.2,330,10.1],
+                ["7-12 months",1852,5.8,316,4.8,175,5.4],
+                ["13+ months",431,1.4,172,2.6,104,3.2]
+            ]
+        };
+
+        var text = JSON.stringify(d, null, 2);
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg> Copied!';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with raw data instead of charts)';
+            }, 2000);
+        });
+    }
+    </script>
+    <!-- ANIMATION DISABLED — uncomment the script block below to restore the swirling-coins vortex -->
+    <!--
+    <script>
+    (function(){
+      var c=document.getElementById('v');
+      var mcov=document.getElementById('mobile-cover');
+      if(!c)return;
+      if(window.innerWidth<800){
+        if(mcov)mcov.style.display='block';
+        return;
+      }
+      c.parentElement.style.display='block';
+      var dpr=window.devicePixelRatio||1;
+      var rect=c.getBoundingClientRect();
+      var W=rect.width,H=rect.height;
+      c.width=W*dpr;c.height=H*dpr;
+      var ctx=c.getContext('2d');
+      ctx.scale(dpr,dpr);
+      var cx=W/2,cy=H/2,CH=13;
+      var coins=[
+        {s:'$',c:'#2e7d32'},{s:'$',c:'#2e7d32'},{s:'$',c:'#2e7d32'},
+        {s:'\u20bf',c:'#f7931a'},
+        {s:'\u20ac',c:'#0e8a6e'},
+        {s:'\u00a3',c:'#6b3fa0'},
+        {s:'\u00a5',c:'#d32f2f'},
+        {s:'\u00a2',c:'#b8860b'}
+      ];
+      var particles=[],MAX=30,t=0,lastSpawn=0;
+      var ox=112.15,oy=294.25;
+      function drawLogo(x,y,s){
+        ctx.save();ctx.translate(x,y);ctx.scale(s,-s);
+        ctx.fillStyle='#2E5CFF';ctx.beginPath();
+        ctx.moveTo(173.2-ox,363.2-oy);ctx.lineTo(51.1-ox,328.3-oy);
+        ctx.lineTo(51.1-ox,244.6-oy);ctx.lineTo(173.2-ox,209.7-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,296.2-oy);ctx.lineTo(71.6-ox,321.8-oy);
+        ctx.lineTo(161.4-ox,347.4-oy);ctx.closePath();
+        ctx.moveTo(62.9-ox,260.8-oy);ctx.lineTo(62.9-ox,312.1-oy);
+        ctx.lineTo(152.7-ox,286.5-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,225.3-oy);ctx.lineTo(71.6-ox,251-oy);
+        ctx.lineTo(161.4-ox,276.6-oy);ctx.closePath();
+        ctx.fill('evenodd');ctx.restore();
+      }
+      function spawn(){
+        var a=Math.random()*Math.PI*2;
+        var d=200+Math.random()*120;
+        var coin=coins[Math.floor(Math.random()*coins.length)];
+        particles.push({a:a,d:d,sym:coin.s,col:coin.c,
+          as:(0.008+Math.random()*0.012)*(Math.random()>0.5?1:-1),
+          rs:0.15+Math.random()*0.15});
+      }
+      function draw(){
+        t++;
+        if(t-lastSpawn>18&&particles.length<MAX){spawn();lastSpawn=t;}
+        ctx.clearRect(0,0,W,H);
+        ctx.font=CH+'px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.globalAlpha=0.06;ctx.strokeStyle='#999';ctx.lineWidth=0.5;
+        for(var r=20;r<120;r+=20){ctx.beginPath();ctx.ellipse(cx,cy,r,r*0.6,0,0,Math.PI*2);ctx.stroke();}
+        ctx.globalAlpha=0.9;
+        drawLogo(cx,cy,0.2);
+        for(var i=particles.length-1;i>=0;i--){
+          var p=particles[i];
+          var acc=1+80/(p.d+10);
+          p.a+=p.as*acc;p.d-=p.rs;
+          if(p.d<40)p.rs+=0.02;
+          if(p.d<20)p.rs+=0.04;
+          var px=cx+Math.cos(p.a)*p.d;
+          var py=cy+Math.sin(p.a)*p.d*0.6;
+          ctx.fillStyle=p.col;
+          ctx.globalAlpha=p.d<15?p.d/15*0.75:0.75;
+          ctx.fillText(p.sym,px,py);
+          if(p.d<=3)particles.splice(i,1);
+        }
+        ctx.globalAlpha=1;requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+    </script>
+    -->
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&!h.startsWith("#")&&!h.startsWith("/")&&h!="../")a.setAttribute("target","_blank");});</script>
     <script>
     function commissionCopy(btn) {
         var text = btn.getAttribute('data-copy');
@@ -351,103 +1688,40 @@
     }
     </script>
 
-<style>
-    #reveal-toolbar {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: #fff;
-        border-bottom: 1px solid #e0e0e0;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-    }
-    #reveal-toolbar .rt-back { color: #0645ad; text-decoration: none; }
-    #reveal-toolbar .rt-back:hover { text-decoration: underline; }
-    #reveal-toolbar .rt-replay {
-        padding: 5px 12px;
-        background: #fff;
-        border: 1px solid #a2a9b1;
-        color: #0645ad;
-        font-size: 13px;
-        cursor: pointer;
-        font-family: inherit;
-    }
-    #reveal-toolbar .rt-replay:hover { background: #eaecf0; }
-
-    .rv-ch    { position: relative; display: inline-block; white-space: pre; }
-    .rv-ghost { visibility: hidden; }
-    .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
-    .rv-real.dim { opacity: 0.55; }
-</style>
 <script>
 (function () {
     var STAGES = ['█', '▓', '▒', '░'];
-    var originalHTML = null;
 
     function reduced() {
         return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
 
-    // Walk all text nodes inside <main>, skipping the toolbar and inert elements.
-    function collectTextNodes() {
-        var root = document.querySelector('main');
-        if (!root) return [];
+    function buildElement(target, el) {
+        el.textContent = '';
         var nodes = [];
-        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-            acceptNode: function (node) {
-                var p = node.parentNode;
-                if (!p) return NodeFilter.FILTER_REJECT;
-                if (p.closest && p.closest('script, style, noscript, #reveal-toolbar')) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-                if (!/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
-                return NodeFilter.FILTER_ACCEPT;
-            }
-        });
-        var n;
-        while (n = walker.nextNode()) nodes.push(n);
+        for (var i = 0; i < target.length; i++) {
+            var ch = target[i];
+            var wrap = document.createElement('span');
+            wrap.className = 'rv-ch';
+            var ghost = document.createElement('span');
+            ghost.className = 'rv-ghost';
+            ghost.textContent = ch === ' ' ? ' ' : ch;
+            var real = document.createElement('span');
+            real.className = 'rv-real';
+            real.textContent = ch === ' ' ? ' ' : '';
+            wrap.appendChild(ghost);
+            wrap.appendChild(real);
+            el.appendChild(wrap);
+            nodes.push({ to: ch, real: real, space: ch === ' ' });
+        }
         return nodes;
     }
 
-    // Replace each text node with a sequence of rv-ch wrappers.
-    function wrapAll() {
-        var textNodes = collectTextNodes();
-        var allChars = [];
-        for (var i = 0; i < textNodes.length; i++) {
-            var textNode = textNodes[i];
-            var text = textNode.nodeValue;
-            var frag = document.createDocumentFragment();
-            for (var j = 0; j < text.length; j++) {
-                var ch = text[j];
-                var wrap = document.createElement('span');
-                wrap.className = 'rv-ch';
-                var ghost = document.createElement('span');
-                ghost.className = 'rv-ghost';
-                ghost.textContent = ch === ' ' ? ' ' : ch;
-                var real = document.createElement('span');
-                real.className = 'rv-real';
-                real.textContent = ch === ' ' ? ' ' : '';
-                wrap.appendChild(ghost);
-                wrap.appendChild(real);
-                frag.appendChild(wrap);
-                allChars.push({ to: ch, real: real, space: ch === ' ' });
-            }
-            textNode.parentNode.replaceChild(frag, textNode);
-        }
-        return allChars;
-    }
-
-    function animateBlock(chars) {
-        if (reduced()) { chars.forEach(function (n) { if (!n.space) n.real.textContent = n.to; }); return; }
-        // Faster pacing: shorter random start window, shorter stage hold.
-        // Per-char max duration ~ 6 + 4*2 = 14 frames (~230ms at 60fps).
-        var queue = chars.map(function (n) {
+    function animate(el) {
+        var target = el.dataset.text || el.textContent;
+        var nodes = buildElement(target, el);
+        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+        var queue = nodes.map(function (n) {
             return { node: n, start: Math.floor(Math.random() * 6), stage: 0, lastChange: -99 };
         });
         var frame = 0;
@@ -481,16 +1755,16 @@
     }
 
     function run() {
-        var main = document.querySelector('main');
-        if (originalHTML !== null) main.innerHTML = originalHTML;
-        else originalHTML = main.innerHTML;
-        animateBlock(wrapAll());
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            el.textContent = el.dataset.text;
+            requestAnimationFrame(function () { animate(el); });
+        });
     }
 
     function init() {
         run();
-        var replayBtn = document.querySelector('.rt-replay');
-        if (replayBtn) replayBtn.addEventListener('click', run);
+        var btn = document.querySelector('.rt-replay');
+        if (btn) btn.addEventListener('click', run);
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
