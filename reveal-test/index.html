@@ -1721,9 +1721,12 @@
         var target = el.dataset.revealText || el.textContent;
         if (!target) return;
         var nodes = buildElement(target, el);
+        // Reveal the heading now that we've replaced its content with spans —
+        // avoids the original text flashing before the animation starts.
+        el.style.visibility = '';
         if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
         var queue = nodes.map(function (n) {
-            return { node: n, start: Math.floor(Math.random() * 6), stage: 0, lastChange: -99 };
+            return { node: n, start: Math.floor(Math.random() * 24), stage: 0, lastChange: -99 };
         });
         var frame = 0;
         var settled = 0;
@@ -1740,7 +1743,7 @@
                     }
                     continue;
                 }
-                if (frame - q.lastChange > 2) { q.stage++; q.lastChange = frame; }
+                if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
                 if (q.stage > STAGES.length) {
                     n.real.textContent = n.to;
                     n.real.style.opacity = '1';
@@ -1761,6 +1764,9 @@
         document.querySelectorAll('h1, h2, h3').forEach(function (el) {
             // Skip headings inside the toolbar in case any get added later.
             if (el.closest('#reveal-toolbar')) return;
+            // Hide the heading immediately so the original text doesn't flash
+            // before animate() wraps it. animate() restores visibility.
+            el.style.visibility = 'hidden';
             if (!el.dataset.revealText) {
                 el.dataset.revealText = el.textContent;
             } else {
