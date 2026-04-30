@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Reveal Text Effects — Preview</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px 20px 80px;
+            background: #fff;
+        }
+        .top-nav { margin-bottom: 24px; }
+        .top-nav a { color: #0645ad; text-decoration: none; font-size: 14px; }
+        .top-nav a:hover { text-decoration: underline; }
+        .page-title { font-size: 26px; margin: 0 0 8px; font-weight: 400; }
+        .lead { color: #54595d; margin: 0 0 36px; font-size: 16px; }
+
+        .demo {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 24px 24px 20px;
+            margin: 0 0 28px;
+            background: #fff;
+        }
+        .demo-tag {
+            display: inline-block;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 11px;
+            color: #888;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            padding: 2px 8px;
+            margin-bottom: 14px;
+        }
+        .demo h1.reveal {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 12px;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .demo .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .demo p { margin: 0 0 14px; font-size: 16px; }
+        .replay {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #a2a9b1;
+            color: #0645ad;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+        .replay:hover { background: #eaecf0; }
+        .notes {
+            margin-top: 14px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 12px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* ---- reveal effect ---- */
+        .reveal .rv-ch    { position: relative; display: inline-block; white-space: pre; }
+        .reveal .rv-ghost { visibility: hidden; }
+        .reveal .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
+        .reveal .rv-real.dim { opacity: 0.55; }
+    </style>
+</head>
+<body>
+    <div class="top-nav"><a href="../">&larr; Back to Home</a></div>
+    <h1 class="page-title">Reveal Text Effects — Preview</h1>
+    <p class="lead">Two reveal animations applied to article-style headings. Layout uses a hidden ghost copy of the text so positions don't shift even with proportional fonts. Click <strong>Replay</strong> to re-trigger.</p>
+
+    <section class="demo">
+        <span class="demo-tag">Variant 1 · hex scramble</span>
+        <h1 class="reveal" data-mode="hex" data-text="Address Poisoning Losses Surged 13× After Ethereum's Fusaka Upgrade">Address Poisoning Losses Surged 13× After Ethereum's Fusaka Upgrade</h1>
+        <div class="article-meta">By Andrey Sergeenkov &middot; February 18, 2026</div>
+        <p>Each character flickers through random hex digits (0-9, A-F) before settling on the final letter. Per-position random start delays and durations create a left-to-right wave; final character locks in at full opacity.</p>
+        <button class="replay">↻ Replay</button>
+        <div class="notes">data-mode="hex"  ·  start: 0..18 frames  ·  duration: 18..48 frames  ·  flicker rate: 40% per frame</div>
+    </section>
+
+    <section class="demo">
+        <span class="demo-tag">Variant 2 · block melt</span>
+        <h1 class="reveal" data-mode="block" data-text="How Many Traders Are Profitable on Polymarket">How Many Traders Are Profitable on Polymarket</h1>
+        <div class="article-meta">By Andrey Sergeenkov &middot; April 6, 2026</div>
+        <p>Each character starts as a solid block █ and dissolves through ▓ → ▒ → ░ before revealing the actual letter. Slower and more cinematic than hex; works on all systems because block characters are basic Unicode.</p>
+        <button class="replay">↻ Replay</button>
+        <div class="notes">data-mode="block"  ·  start: 0..12 frames  ·  stage hold: 5 frames each  ·  total per char: ~25 frames</div>
+    </section>
+
+    <script>
+    (function () {
+        var HEX = '0123456789ABCDEF';
+        var STAGES = ['█', '▓', '▒', '░'];
+
+        function buildElement(target, el) {
+            el.textContent = '';
+            var nodes = [];
+            for (var i = 0; i < target.length; i++) {
+                var wrap = document.createElement('span');
+                wrap.className = 'rv-ch';
+                var ghost = document.createElement('span');
+                ghost.className = 'rv-ghost';
+                ghost.textContent = target[i] === ' ' ? ' ' : target[i];
+                var real = document.createElement('span');
+                real.className = 'rv-real';
+                real.textContent = target[i] === ' ' ? ' ' : '';
+                wrap.appendChild(ghost);
+                wrap.appendChild(real);
+                el.appendChild(wrap);
+                nodes.push({ to: target[i], real: real, space: target[i] === ' ' });
+            }
+            return nodes;
+        }
+
+        function reduced() {
+            return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
+        function revealHex(el) {
+            var target = el.dataset.text || el.textContent;
+            var nodes = buildElement(target, el);
+            if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+
+            var queue = nodes.map(function (n) {
+                var start = Math.floor(Math.random() * 18);
+                var end = start + 18 + Math.floor(Math.random() * 30);
+                return { node: n, start: start, end: end, cur: '' };
+            });
+
+            var frame = 0;
+            (function tick() {
+                var done = 0;
+                queue.forEach(function (q) {
+                    var n = q.node;
+                    if (n.space) { done++; return; }
+                    if (frame >= q.end) {
+                        if (n.real.textContent !== n.to) {
+                            n.real.textContent = n.to;
+                            n.real.classList.remove('dim');
+                        }
+                        done++;
+                        return;
+                    }
+                    if (frame >= q.start && (!q.cur || Math.random() < 0.4)) {
+                        q.cur = HEX[Math.floor(Math.random() * HEX.length)];
+                        n.real.textContent = q.cur;
+                        n.real.classList.add('dim');
+                    }
+                });
+                if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+            })();
+        }
+
+        function revealBlock(el) {
+            var target = el.dataset.text || el.textContent;
+            var nodes = buildElement(target, el);
+            if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+
+            var queue = nodes.map(function (n) {
+                return { node: n, start: Math.floor(Math.random() * 12), stage: 0, lastChange: -99 };
+            });
+
+            var frame = 0;
+            (function tick() {
+                var done = 0;
+                queue.forEach(function (q) {
+                    var n = q.node;
+                    if (n.space) { done++; return; }
+                    if (q.stage > STAGES.length) { done++; return; }
+
+                    if (frame < q.start) {
+                        if (n.real.textContent !== '█') {
+                            n.real.textContent = '█';
+                            n.real.style.opacity = '0.8';
+                        }
+                        return;
+                    }
+                    if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
+                    if (q.stage > STAGES.length) {
+                        n.real.textContent = n.to;
+                        n.real.style.opacity = '1';
+                        done++;
+                        return;
+                    }
+                    n.real.textContent = STAGES[q.stage - 1];
+                    n.real.style.opacity = String(0.85 - q.stage * 0.15);
+                });
+                if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+            })();
+        }
+
+        function runMode(el) {
+            var mode = el.dataset.mode;
+            if (mode === 'hex') revealHex(el);
+            else if (mode === 'block') revealBlock(el);
+        }
+
+        function init() {
+            document.querySelectorAll('.reveal').forEach(runMode);
+            document.querySelectorAll('.replay').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var section = btn.closest('.demo');
+                    var target = section.querySelector('.reveal');
+                    // restore raw text so buildElement can rebuild from a clean tree
+                    target.textContent = target.dataset.text;
+                    requestAnimationFrame(function () { runMode(target); });
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+        else init();
+    })();
+    </script>
+</body>
+</html>
