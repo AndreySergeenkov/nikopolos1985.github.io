@@ -44,13 +44,25 @@
         return nodes;
     }
 
+    function settle(el, target) {
+        // Drop the wrapper spans and put the plain text back. This keeps
+        // the DOM clean for crawlers, screen readers, share-card parsers,
+        // and any other tool that reads h1.textContent — once the effect
+        // has finished playing they all see exactly the original heading.
+        el.textContent = target;
+        el.removeAttribute('aria-label');
+    }
+
     function animate(el) {
         var target = el.dataset.revealText || el.textContent;
         if (!target) { el.style.visibility = ''; return; }
+        // While the effect is running, h1.textContent reads as ghost+real
+        // chars. Set aria-label so accessibility tools and any tool that
+        // checks the labelled name still see the clean heading.
+        el.setAttribute('aria-label', target);
         var nodes = buildElement(target, el);
-        // Reveal the heading now that the spans are in place.
         el.style.visibility = '';
-        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+        if (reduced()) { settle(el, target); return; }
         var queue = nodes.map(function (n) {
             return { node: n, start: Math.floor(Math.random() * 24), stage: 0, lastChange: -99 };
         });
@@ -80,7 +92,12 @@
                 n.real.textContent = STAGES[q.stage - 1];
                 n.real.style.opacity = String(0.85 - q.stage * 0.15);
             }
-            if (settled < queue.length) { frame++; requestAnimationFrame(tick); }
+            if (settled < queue.length) {
+                frame++;
+                requestAnimationFrame(tick);
+            } else {
+                settle(el, target);
+            }
         })();
     }
 
