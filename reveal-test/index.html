@@ -3,232 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal Test — Homepage Preview</title>
     <meta name="robots" content="noindex,nofollow">
-    <title>Reveal Text Effects — Preview</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
-            font-size: 17px;
-            line-height: 1.7;
-            color: #202122;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 32px 20px 80px;
-            background: #fff;
-        }
-        .top-nav { margin-bottom: 24px; }
-        .top-nav a { color: #0645ad; text-decoration: none; font-size: 14px; }
-        .top-nav a:hover { text-decoration: underline; }
-        .page-title { font-size: 26px; margin: 0 0 8px; font-weight: 400; }
-        .lead { color: #54595d; margin: 0 0 36px; font-size: 16px; }
-
-        .demo {
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            padding: 24px 24px 20px;
-            margin: 0 0 28px;
-            background: #fff;
-        }
-        .demo-tag {
-            display: inline-block;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            font-size: 11px;
-            color: #888;
-            background: #f5f5f5;
-            border: 1px solid #e0e0e0;
-            padding: 2px 8px;
-            margin-bottom: 14px;
-        }
-        .demo h1.reveal {
-            font-size: 28px;
-            font-weight: 400;
-            line-height: 1.3;
-            margin: 0 0 12px;
-            font-family: 'Linux Libertine', Georgia, serif;
-            border-bottom: 1px solid #a2a9b1;
-            padding-bottom: 6px;
-        }
-        .demo .article-meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        .demo p { margin: 0 0 14px; font-size: 16px; }
-        .replay {
-            display: inline-block;
-            padding: 6px 12px;
-            background: #fff;
-            border: 1px solid #a2a9b1;
-            color: #0645ad;
-            font-size: 13px;
-            cursor: pointer;
-            font-family: sans-serif;
-        }
-        .replay:hover { background: #eaecf0; }
-        .notes {
-            margin-top: 14px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            font-size: 12px;
-            color: #888;
-            line-height: 1.6;
-        }
-
-        /* ---- reveal effect ---- */
-        .reveal .rv-ch    { position: relative; display: inline-block; white-space: pre; }
-        .reveal .rv-ghost { visibility: hidden; }
-        .reveal .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
-        .reveal .rv-real.dim { opacity: 0.55; }
-    </style>
+    <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
+    <link href="../style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+    <!-- Ahrefs Web Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="NPIdMif9bRIzbz2xRz7s/Q" async></script>
 </head>
 <body>
-    <div class="top-nav"><a href="../">&larr; Back to Home</a></div>
-    <h1 class="page-title">Reveal Text Effects — Preview</h1>
-    <p class="lead">Two reveal animations applied to article-style headings. Layout uses a hidden ghost copy of the text so positions don't shift even with proportional fonts. Click <strong>Replay</strong> to re-trigger.</p>
+<div id="reveal-toolbar">
+    <a href="../" class="rt-back">&larr; Back to Home</a>
+    <div class="rt-modes">
+        <span class="rt-label">Mode:</span>
+        <button type="button" class="rt-mode active" data-mode="hex">Hex scramble</button>
+        <button type="button" class="rt-mode" data-mode="block">Block melt</button>
+        <button type="button" class="rt-replay">↻ Replay</button>
+    </div>
+</div>
 
-    <section class="demo">
-        <span class="demo-tag">Variant 1 · hex scramble</span>
-        <h1 class="reveal" data-mode="hex" data-text="Address Poisoning Losses Surged 13× After Ethereum's Fusaka Upgrade">Address Poisoning Losses Surged 13× After Ethereum's Fusaka Upgrade</h1>
-        <div class="article-meta">By Andrey Sergeenkov &middot; February 18, 2026</div>
-        <p>Each character flickers through random hex digits (0-9, A-F) before settling on the final letter. Per-position random start delays and durations create a left-to-right wave; final character locks in at full opacity.</p>
-        <button class="replay">↻ Replay</button>
-        <div class="notes">data-mode="hex"  ·  start: 0..18 frames  ·  duration: 18..48 frames  ·  flicker rate: 40% per frame</div>
-    </section>
+    <div class="container">
+        <main>
+            <div class="header">
+                <div class="header-text">
+                    <h1 class="reveal" data-text="Andrey Sergeenkov">Andrey Sergeenkov</h1>
+                    <p class="role">Independent researcher</p>
+                    <nav class="profile-menu">
+                        <a href="mailto:andrey@sergeenkov.com">Email</a>
+                        <a href="https://t.me/Nikopolos">Telegram</a>
+                        <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
+                        <a href="https://x.com/Nikopolos">X</a>
+                        <a href="/feed.xml">RSS</a>
+                    </nav>
+                </div>
+                <img src='../500.jpg' alt='Andrey Sergeenkov' class='profile-photo'>
+            </div>
+            <aside class="commission-box">
+                <p><strong>I take on commissioned research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
+                <div class="commission-box-actions">
+                    <span class="commission-contact">
+                        <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
+                        <button type="button" class="commission-copy" data-copy="andrey@sergeenkov.com" aria-label="Copy email" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                    </span>
+                    <span class="commission-contact">
+                        <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                        <button type="button" class="commission-copy" data-copy="@Nikopolos" aria-label="Copy Telegram handle" onclick="commissionCopy(this)"><svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
+                    </span>
+                </div>
+            </aside>
+            <p class="current-work">My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
+            <p class="current-work">My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.<br><span class="list-marker">Full list of citations: <a href="/citations/">sergeenkov.com/citations</a></span></p>
+            <p class="current-work">My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.<br><span class="list-marker">Full list of media coverage: <a href="/coverage/">sergeenkov.com/coverage</a></span></p>
 
-    <section class="demo">
-        <span class="demo-tag">Variant 2 · block melt</span>
-        <h1 class="reveal" data-mode="block" data-text="How Many Traders Are Profitable on Polymarket">How Many Traders Are Profitable on Polymarket</h1>
-        <div class="article-meta">By Andrey Sergeenkov &middot; April 6, 2026</div>
-        <p>Each character starts as a solid block █ and dissolves through ▓ → ▒ → ░ before revealing the actual letter. Slower and more cinematic than hex; works on all systems because block characters are basic Unicode.</p>
-        <button class="replay">↻ Replay</button>
-        <div class="notes">data-mode="block"  ·  start: 0..12 frames  ·  stage hold: 5 frames each  ·  total per char: ~25 frames</div>
-    </section>
+            <h2 class="reveal" data-text="My Independent Research">My Independent Research</h2>
+<ul class="article-list">
+    <li><a href="/polymarket-profitability/">How Many Traders Are Profitable on Polymarket</a></li>
+    <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</a></li>
+    <li><a href="/thedao-curators-220m-hack-victims/">Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends</a></li>
+    <li><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?</a></li>
+    <li><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a></li>
+    <li><a href="/loss-based-polymarket-airdrop/">The Case for a Loss-Based Polymarket Airdrop</a></li>
+</ul>
 
+            <h2 class="reveal" data-text="Earlier Articles">Earlier Articles</h2>
+<ul class="article-list">
+    <li><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">Stop Pretending Technical And Human Vulnerabilities Are Separate Things</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/12/17/why-2025-may-be-the-right-time-to-create-national-bitcoin-reserves/">Why 2025 May Be The Right Time To Create National Bitcoin Reserves</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/12/05/what-math-problems-do-bitcoin-miners-really-solve/">What Math Problems Do Bitcoin Miners Really Solve</a> <span class="publication-name">(Forbes)</span></li> 
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/12/04/what-is-a-bitcoin-node-and-how-to-run-one/">What Is A Bitcoin Node And How To Run One</a> <span class="publication-name">(Forbes)</span></li> 
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/">Tether Discontinues EURT And Sets Deadline For Token Redemption</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/11/27/understanding-polymarket-and-prediction-markets/">Understanding Polymarket And Prediction Markets</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/26/how-to-get-first-funding-for-web3/">How To Get First Funding For Web3</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/15/what-you-need-to-know-before-buying-your-first-bitcoin/">What You Need To Know Before Buying Your First Bitcoin</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/28/tether-discontinues-eurt-sets-deadline-for-token-redemption/">Tether Discontinues EURT, Sets Deadline For Token Redemption</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/13/russia-approves-cryptocurrency-tax-framework/">Russia Approves Cryptocurrency Tax Framework</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/article/crypto-fear-and-greed-index/">Crypto Fear And Greed Index</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/08/digital-id-trials-test-anonymous-kyc-for-mainland-chinese-in-hong-kong/">Digital ID Trials Test Anonymous KYC For Mainland Chinese In Hong Kong</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/04/bitcoin-outperformed-nvidia-google-amazon-in-rewards-per-risk-in-october-2024/">Bitcoin Outperformed Nvidia, Google, Amazon In Rewards Per Risk In October 2024</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-mine-dogecoin/">How To Mine Dogecoin</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/11/02/tesla-amd-and-nvidia-show-higher-volatility-than-bitcoin-in-october-2024/">Tesla, AMD And Nvidia Show Higher Volatility Than Bitcoin In October 2024</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/2024/10/31/microstrategy-announces-42-billion-bitcoin-investment-plan/">MicroStrategy Announces $42 Billion Bitcoin Investment Plan</a> <span class="publication-name">(Forbes)</span></li>
+<li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-ripple-xrp/">What Is Ripple (XRP)</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/26/tesla-bitcoin-moves-may-no-longer-shake-the-market/">Tesla Bitcoin Moves May No Longer Shake The Market</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/25/pennsylvania-house-passes-crypto-protection-bill-in-bipartisan-vote/">Pennsylvania House Passes Crypto Protection Bill In Bipartisan Vote</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-ripple-xrp/">What Is Ripple (XRP)</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/23/russia-launches-brics-mining-infrastructure-project/">Russia Launches BRICS Mining Infrastructure Project</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-are-stablecoins-how-to-use-them/">What Are Stablecoins & How To Use Them</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/10/08/china-bets-on-massive-blockchain-infrastructure/">China Bets On Massive Blockchain Infrastructure</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/30/legal-status-of-cryptocurrencies-in-malaysia/">Legal Status Of Cryptocurrencies In Malaysia</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/25/ireland-to-streamline-licensing-process-for-crypto-businesses/">Ireland To Streamline Licensing Process For Crypto Businesses</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/19/louisiana-accepts-first-cryptocurrency-payment-for-state-services/">Louisiana Accepts First Cryptocurrency Payment For State Services</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/17/how-bhutan-quietly-built-750-million-in-bitcoin-holdings/">How Bhutan Quietly Built $750 Million In Bitcoin Holdings</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/12/uk-introduces-bill-to-recognize-digital-assets-as-personal-property/">UK Introduces Bill To Recognize Digital Assets As Personal Property</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/05/ryan-selkis-leaves-messari-for-new-political-initiative/">Ryan Selkis Leaves Messari For New Political Initiative</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/22/crypto-unites-voters-and-attracts-gamblers-during-the-2024-elections/">Crypto Unites Voters And Attracts Gamblers During The 2024 Elections</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-mine-bitcoin/">How To Mine Bitcoin</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/how-to-buy-bitcoin-etoro/">How To Buy Bitcoin: eToro</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/23/cryptocurrency-trading-causes-lower-quality-of-life-and-higher-stress/">Cryptocurrency Trading Causes Lower Quality Of Life And Higher Stress</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/09/what-are-autonomous-economic-agents/">What Are Autonomous Economic Agents</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-is-nft-art-how-to-create-it/">What Is NFT Art And How To Create It</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/09/04/what-are-ai-to-ai-crypto-transactions/">What Are AI-To-AI Crypto Transactions?</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/30/why-trx-has-grown-44-in-the-last-90-days/">Why TRX Has Grown 44% In The Last 90 Days</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/article/what-are-nft-dapps/">What Are NFT DApps?</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://www.forbes.com/sites/digital-assets/2024/08/16/how-volatile-is-bitcoin-compared-to-other-assets/">How Volatile Is Bitcoin Compared To Other Assets</a> <span class="publication-name">(Forbes)</span></li>
+    <li><a href="https://cointelegraph.com/explained/what-is-the-genesis-block-explained">What Is The Genesis Block Explained</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://cointelegraph.com/explained/bonding-curves-in-defi-explained">Bonding Curves In DeFi Explained</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://cointelegraph.com/news/want-to-improve-blockchain-infrastructure-work-under-layer-two-solutions">Want To Improve Blockchain Infrastructure? Work Under Layer Two Solutions</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://cointelegraph.com/news/decentralized-parties-the-future-of-on-chain-governance">Decentralized Parties: The Future Of On-Chain Governance</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://cointelegraph.com/news/the-use-of-blockchain-tech-should-be-more-environmentally-friendly">The Use Of Blockchain Tech Should Be More Environmentally Friendly</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://cointelegraph.com/news/institutional-investors-won-t-take-bitcoin-mainstream-you-will">Institutional Investors Won't Take Bitcoin Mainstream — You Will</a> <span class="publication-name">(Cointelegraph)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-manage-risk-when-trading-cryptocurrency/">How To Manage Risk When Trading Cryptocurrency</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-are-dynamic-nfts-understanding-the-evolving-nft/">What Are Dynamic NFTs? Understanding The Evolving NFT</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/consensus-magazine/2023/01/26/web3-marketing-tips/">Web3 Marketing Tips</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/consensus-magazine/2022/12/12/nft-project-launch-tips/">NFT Project Launch Tips</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-counterparty-risk-in-crypto/">What Is Counterparty Risk In Crypto?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/crypto-arbitrage-trading-how-to-make-low-risk-gains/">Crypto Arbitrage Trading: How To Make Low-Risk Gains</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-does-ethereum-staking-work/">How Does Ethereum Staking Work?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-are-soulbound-tokens-the-non-transferrable-nft-explained/">What Are Soulbound Tokens? The Non-Transferrable NFT Explained</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-nft-wash-trading/">What Is NFT Wash Trading?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/everything-you-need-to-know-about-bitcoin-etfs/">Everything You Need To Know About Bitcoin ETFs</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/whats-the-crypto-travel-rule-and-what-does-it-mean-for-you/">What's The Crypto Travel Rule And What Does It Mean For You?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-we-know-so-far-about-shib-the-metaverse/">What We Know So Far About SHIB: The Metaverse</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-pancakeswap-heres-how-to-start-using-it/">What Is PancakeSwap? Here's How To Start Using It</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/want-to-play-axie-infinity-heres-what-you-need-to-know/">Want To Play Axie Infinity? Here's What You Need To Know</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-check-your-ethereum-transaction/">How To Check Your Ethereum Transaction</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/whats-the-story-behind-bored-ape-yacht-club-creator-yuga-labs/">What's The Story Behind Bored Ape Yacht Club Creator Yuga Labs?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/bitcoin-mining-difficulty-everything-you-need-to-know/">Bitcoin Mining Difficulty: Everything You Need To Know</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/investing-in-crypto-alternatives-to-bitcoin-and-ether/">Investing In Crypto: Alternatives To Bitcoin And Ether</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/opensea-marketplace-how-to-buy-sell-and-mint-nfts/">OpenSea Marketplace: How To Buy, Sell And Mint NFTs</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-buy-crypto-on-the-apps-you-already-have/">How To Buy Crypto On The Apps You Already Have</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-bitcoin/">What Is Bitcoin?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-a-crypto-airdrop/">What Is A Crypto Airdrop?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/crypto-discord-where-to-go-what-to-know/">Crypto Discord: Where To Go, What To Know</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/top-6-crypto-passive-income-generators-for-2021/">Top 6 Crypto Passive Income Generators For 2021</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/someone-gave-you-crypto-as-a-gift-now-what/">Someone Gave You Crypto As A Gift. Now What?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/investing-in-meme-coins-3-things-every-crypto-trader-should-know/">Investing In Meme Coins: 3 Things Every Crypto Trader Should Know</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-buy-a-tom-brady-nft/">How To Buy A Tom Brady NFT</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/shiba-inu-shib-a-complete-beginners-guide/">Shiba Inu (SHIB): A Complete Beginner's Guide</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-shibaswap/">What Is ShibaSwap?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/5-ways-to-earn-passive-income-from-nfts/">5 Ways To Earn Passive Income From NFTs</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-citycoins-and-how-does-it-work/">What Is CityCoins And How Does It Work?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-cryptocurrency/">What Is Cryptocurrency?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-buy-shiba-inu-coin-shib/">How To Buy Shiba Inu Coin (SHIB)</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/paying-off-student-loans-you-can-do-it-with-crypto/">Paying Off Student Loans? You Can Do It With Crypto</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-a-perpetual-swap-contract/">What Is A Perpetual Swap Contract?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-send-bitcoin-tips-on-twitter/">How To Send Bitcoin Tips On Twitter</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/china-crypto-bans-a-complete-history/">China Crypto Bans: A Complete History</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/5-reasons-why-bitcoin-remains-below-50000/">5 Reasons Why Bitcoin Remains Below $50,000</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-a-bitcoin-futures-etf/">What Is A Bitcoin Futures ETF?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-to-set-up-a-bitcoin-miner/">How To Set Up A Bitcoin Miner</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/how-does-ethereum-work/">How Does Ethereum Work?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/solana/">Solana</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-is-an-automated-market-maker/">What Is An Automated Market Maker?</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/a-beginners-guide-to-atomic-swaps/">A Beginner's Guide To Atomic Swaps</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://www.coindesk.com/learn/what-does-liquidation-mean-and-how-to-avoid-it/">What Does Liquidation Mean And How To Avoid It</a> <span class="publication-name">(CoinDesk)</span></li>
+    <li><a href="https://blockworks.co/news/crypto-twitter-financial-influencer-problem">Crypto Has An Influencer Problem</a> <span class="publication-name">(Blockworks)</span></li>
+    <li><a href="https://www.investing.com/analysis/gold-bitcoin-or-notes-staying-safe-during-periods-of-economic-uncertainty-200463542">Gold, Bitcoin Or Notes: Staying Safe During Periods Of Economic Uncertainty</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/bringing-machine-learning-closer-to-clients-will-blockchain-eliminate-barriers-200446855">Bringing Machine Learning Closer to Clients, Will Blockchain Eliminate Barriers?</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.nasdaq.com/articles/how-does-ethereum-staking-work-2021-08-11">How Does Ethereum Staking Work?</a> <span class="publication-name">(Nasdaq)</span></li>
+    <li><a href="https://www.nasdaq.com/articles/what-is-an-automated-market-maker-2021-08-20">What Is an Automated Market Maker?</a> <span class="publication-name">(Nasdaq)</span></li>
+    <li><a href="https://www.nasdaq.com/articles/a-beginners-guide-to-atomic-swaps-2021-08-20">A Beginner's Guide to Atomic Swaps</a> <span class="publication-name">(Nasdaq)</span></li>
+     <li><a href="https://www.entrepreneur.com/money-finance/decentralized-parties-poised-to-bring-blockchain-to-politics/373474">Decentralized Parties Poised To Bring Blockchain To Politics</a> <span class="publication-name">(Entrepreneur)</span></li>
+    <li><a href="https://www.entrepreneur.com/starting-a-business/common-mistakes-that-may-cause-investors-to-walk-away/368953">Common Mistakes That May Cause Investors To Walk Away</a> <span class="publication-name">(Entrepreneur)</span></li>
+    <li><a href="https://www.entrepreneur.com/money-finance/defi-is-the-new-lemonade-stand/366444">DeFi Is The New Lemonade Stand</a> <span class="publication-name">(Entrepreneur)</span></li>
+    <li><a href="https://www.entrepreneur.com/money-finance/you-can-leverage-cryptocurrencies-to-upset-the-balance-of/364231">You Can Leverage Cryptocurrencies To Upset The Balance Of Power</a> <span class="publication-name">(Entrepreneur)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/rammstein-soloist-till-lindemann-accused-of-illegal-nft-sales-of-hermitage-museum-imags">Rammstein Soloist Till Lindemann Accused of Illegal NFT Sales of Hermitage Museum Images</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-s-russia-up-to-a-weekly-russian-crypto-news-recap">What's Russia Up To? A Weekly Russian Crypto News Recap</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/cryptocurrency-market-cap-reclaims-2-trillion-as-market-rebounds">Cryptocurrency Market Cap Reclaims $2 Trillion as Market Rebounds</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-bitcoin-miners-operate">How Bitcoin Miners Operate</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/5-of-the-biggest-crypto-ponzi-schemes">5 of the Biggest Crypto Ponzi Schemes</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-bitcoin-core-s-developers">Who Are Bitcoin Core's Developers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-dollar-cost-averaging-dca">What Is Dollar-Cost Averaging (DCA)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-is-not-anonymous-how-criminals-are-caught-on-the-blockchain">Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-beginner-s-guide-to-erc20-tokens-and-addresses">The Beginner's Guide to ERC20 Tokens and Addresses</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-plasma-finance">What Is Plasma Finance?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-s-role-in-times-of-political-and-economic-uncertainty">Crypto's Role in Times of Political and Economic Uncertainty</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-smart-contract-risk">What Is Smart Contract Risk?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-coin98">What Is Coin98?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-polkaswap">What Is Polkaswap?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-polkarare">What Is Polkarare?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-safe-earth">What Is Safe Earth?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-mine-ethereum">How to Mine Ethereum</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/sec-revises-stance-on-digital-asset-classification">SEC Revises Stance on Digital Asset Classification</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/coinbase-halts-issuance-of-new-loans-on-coinbase-borrow">Coinbase Halts Issuance of New Loans on Coinbase Borrow</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/french-senate-considers-proposal-to-allow-influencers-to-promote-cryptocurrencies">French Senate Considers Proposal to Allow Influencers to Promote Cryptocurrencies</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/study-finds-36-of-top-crypto-projects-silent-on-blogging-this-year">Study Finds 36% of Top Crypto Projects Silent on Blogging This Year</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/texas-securities-board-targets-alleged-ai-powered-crypto-scam">Texas Securities Board Targets Alleged AI-Powered Crypto Scam</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/australian-crypto-exchange-coinjar-initiates-us-expansion">Australian Crypto Exchange Coinjar Initiates US Expansion</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/poloniex-to-pay-76-million-fine-for-sanctions-violation-charges">Poloniex To Pay $76 Million Fine for Sanctions Violation Charges</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/revolut-expands-crypto-investment-services-to-brazil">Revolut Expands Crypto Investment Services to Brazil</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/level-finance-confirms-1-million-exploit-due-to-software-bug">Level Finance Confirms $1 Million Exploit Due to Software Bug</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-japan-to-launch-in-june-following-acquisition-of-taotao">Binance Japan To Launch in June Following Acquisition of TaoTao</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/sotheby-s-launches-on-chain-secondary-nft-marketplace">Sotheby's Launches On-Chain Secondary NFT Marketplace</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/microstrategy-reports-increased-revenue-in-q1-2023-and-maintains-bitcoin-strategy">MicroStrategy Reports Increased Revenue in Q1 2023 and Maintains Bitcoin Strategy</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-launchpool-adds-sui-token-staking-bnb-and-tusd-for-rewards">Binance Launchpool Adds SUI Token: Staking BNB and TUSD for Rewards</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/ex-opensea-employee-accused-of-profiting-from-nft-insider-trading">Ex-OpenSea Employee Accused of Profiting from NFT Insider Trading</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/blur-and-paradigm-collaborate-to-launch-blend-nft-perpetual-lending-protocol">Blur and Paradigm Collaborate to Launch Blend: NFT Perpetual Lending Protocol</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/lightning-labs-releases-litd-a-unified-platform-for-simplified-lightning-network-node-management">Lightning Labs Releases LiTD: A Unified Platform for Simplified Lightning Network Node Management</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-launches-the-sandbox-nft-staking-program">Binance Launches The Sandbox NFT Staking Program</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/yuga-labs-hires-former-epic-games-cto-mike-seavers">Yuga Labs Hires Former Epic Games CTO Mike Seavers</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/templeton-launches-tokenized-mutual-fund-on-polygon">Templeton Launches Tokenized Mutual Fund on Polygon</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/new-california-legislation-seeks-to-simplify-legal-framework-for-decentralized-autonomous-organiz">New California Legislation Seeks to Simplify Legal Framework for Decentralized Autonomous Organizations</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/robinhood-connect-to-enable-external-crypto-wallet-integration">Robinhood Connect To Enable External Crypto Wallet Integration</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/warren-s-crypto-bill-postponed">Warren's Crypto Bill Postponed</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/belgium-crypto-exchange-bit4you-suspends-operations">Belgium Crypto Exchange Bit4You Suspends Operations</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-enthusiasm-persists-among-investors-according-to-bitcoinira-survey">Crypto Enthusiasm Persists Among Investors, According to BitcoinIRA Survey</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-expels-north-korean-users-amid-sanctions-concerns">Binance Expels North Korean Users Amid Sanctions Concerns</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-bahamas-securities-commission-invites-public-feedback-on-dare-bill-2023">The Bahamas' Securities Commission Invites Public Feedback on DARE Bill 2023</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/arbitrum-airdrops-120-million-worth-of-arb-tokens-to-daos">Arbitrum Airdrops $120 Million Worth of ARB Tokens to DAOs</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/us-republicans-on-financial-services-committee-seeks-transparency-on-crypto-debanks">US Republicans on Financial Services Committee Seeks Transparency on Crypto Debanks</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/circle-protocol-enables-stablecoin-transfers-between-ethereum-and-avalanche">Circle Protocol Enables Stablecoin Transfers Between Ethereum and Avalanche</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-us-offers-free-web3-domain-creation-for-american-users">Binance US Offers Free Web3 Domain Creation for American Users</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/microstrategy-ceo-advocates-for-bitcoin-adoption-in-argentina">MicroStrategy CEO Advocates for Bitcoin Adoption in Argentina</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/house-republicans-propose-new-bill-for-stablecoin-regulation-in-the-us">House Republicans Propose New Bill for Stablecoin Regulation in the US</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/digital-yuan-adoption-gains-momentum-as-china-promotes-wage-payments-in-changshu">Digital Yuan Adoption Gains Momentum as China Promotes Wage Payments in Changshu</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/coinbase-s-stand-with-crypto-campaign-challenges-sec-s-regulatory-approach">Coinbase's 'Stand With Crypto' Campaign Challenges SEC's Regulatory Approach</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/proposed-california-bill-seeks-to-clarify-legal-status-of-decentralized-organizations">Proposed California Bill Seeks to Clarify Legal Status of Decentralized Organizations</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-introduces-ether-based-liquid-staking-product-amid-ethereum-2-0-transition">Binance Introduces Ether-based Liquid Staking Product Amid Ethereum 2.0 Transition</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/apecoin-community-votes-to-stay-on-ethereum">ApeCoin Community Votes To Stay On Ethereum</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/binance-investigates-squid-game-themed-crypto-scam">Binance Investigates Squid Game-Themed Crypto Scam</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/nyc-mayor-elect-eric-adams-wants-his-first-3-paychecks-in-bitcoin">NYC Mayor-Elect Eric Adams Wants His First 3 Paychecks in Bitcoin</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/ukraine-on-course-to-legalize-cryptocurrencies-as-crypto-bill-passes-second-reading">Ukraine on Course to Legalize Cryptocurrencies as Crypto Bill Passes Second Reading</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/belarus-president-urges-citizens-to-mine-crypto-rather-than-seek-low-paying-jobs-overseas">Belarus President Urges Citizens to Mine Crypto Rather Than Seek Low-Paying Jobs Overseas</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-scams-and-ransomware-activity-on-the-rise-in-eastern-europe-chainalysis-report">Crypto Scams and Ransomware Activity on the Rise in Eastern Europe, Chainalysis Report</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/russia-s-largest-bank-sberbank-to-register-its-blockchain-platform-this-month">Russia's Largest Bank Sberbank to Register its Blockchain Platform This Month</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/russians-lose-2-2-billion-rubles-to-crypto-fraud-in-the-first-half-of-2021">Russians Lose 2.2 Billion Rubles to Crypto Fraud in the First Half of 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/ukraine-loses-top-spot-as-global-crypto-adoption-jumps-by-880">Ukraine Loses Top Spot as Global Crypto Adoption Jumps by 880%</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-white-hats-saved-sushiswap-from-potential-350-million-exploit">How White Hats Saved SushiSwap From Potential $350 Million Exploit</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-solana-became-a-top-10-crypto">How Solana Became a Top-10 Crypto</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/decentraland-celebrates-international-friendship-day-teams-up-with-coca-cola-to-release-nfts">Decentraland Celebrates International Friendship Day, Teams Up With Coca-Cola to Release NFTs</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-play-plant-vs-undead-pvu-a-step-by-step-guide">How to Play Plant vs Undead (PVU)? A Step-by-Step Guide</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/top-play2earn-crypto-and-nft-games-for-android-and-ios">Top Play2Earn Crypto and NFT Games for Android and iOS</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-south-american-countries-teach-people-about-crypto">How South American Countries Teach People About Crypto</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-how-the-top-10-daos-work">A Deep Dive Into How the Top 10 DAOs Work</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/play2earn-best-nft-games-list">Play2Earn Best NFT Games List</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/bitcoin-is-a-bubble-has-no-value-will-disappear-and-20-other-examples-of-how-they-tried-to-">"Bitcoin Is a Bubble, Has No Value, Will Disappear" And 20 Other Examples of How They Tried to ...</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-sandwich-attacks-in-defi-and-how-can-you-avoid-them">What Are Sandwich Attacks in DeFi — and How Can You Avoid Them?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-pros-and-cons-of-accepting-bitcoin-as-legal-tender">The Pros and Cons of Accepting Bitcoin as Legal Tender</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-mobox-mbox">What Is MOBOX (MBOX)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bullish-block-one-s-eosio-blockchain-software-backed-hybrid-exchange">What Is Bullish: Block.one's EOSIO Blockchain Software-Backed Hybrid Exchange?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-the-winklevoss-twins">Who Are the Winklevoss Twins?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-are-the-silk-road-the-dark-web-and-bitcoin-connected">How Are the Silk Road, the Dark Web and Bitcoin Connected?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/prominent-nft-movements-and-projects-in-russia">Prominent NFT Movements and Projects in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-cybertino-cyber">A Deep Dive Into Cybertino (CYBER)</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-run-a-bitcoin-node">How to Run a Bitcoin Node</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/top-nft-games-updated-for-2022">Top NFT Games Updated for 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-cardano-s-new-testnet-launch">What Is Cardano's New Testnet Launch?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-etherscan">How To Use Etherscan</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-importance-of-crypto-portfolio-diversification">The Importance Of Crypto Portfolio Diversification</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-ultimate-guide-for-top-nft-sports-platforms">The Ultimate Guide for Top NFT Sports Platforms</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-bscscan">How To Use BscScan</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/the-beginner-s-guide-to-token-swaps">The Beginner's Guide to Token Swaps</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-basic-attention-token">What Is Basic Attention Token?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/explaining-the-crypto-renaissance-in-nigeria">Explaining the Crypto Renaissance in Nigeria</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-benefit-from-crypto-arbitrage">How to Benefit From Crypto Arbitrage</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-best-crypto-exchange-in-russia">What Is the Best Crypto Exchange in Russia?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-mint-an-nft">How To Mint an NFT</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/who-founded-ethereum">Who Founded Ethereum?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-buy-cryptocurrency-in-russia">How to Buy Cryptocurrency in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-wrap-bitcoin-for-defi">How To Wrap Bitcoin for DeFi</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/exploring-cryptocurrency-in-russia">Exploring Cryptocurrency in Russia</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-pool-mining">What Is Pool Mining?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-cloud-mining">What Is Cloud Mining?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-best-crypto-app-in-russia">What Is the Best Crypto App in Russia?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-automated-market-makers">What Are Automated Market Makers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/xrp-a-history">XRP: A History</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-guild-of-guardians">A Deep Dive Into Guild of Guardians</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/proof-of-stake-pos-vs-delegated-proof-of-stake-dpos">Proof-of-Stake (PoS) vs Delegated Proof-of-Stake (dPoS)</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/hack-vs-scam-vs-attack-vs-exploit-understanding-the-risks-in-crypto-and-how-to-stay-safe">Hack vs Scam vs Attack vs Exploit: Understanding the Risks in Crypto and How To Stay Safe</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/token-swap-vs-token-migration">Token Swap vs Token Migration</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-nft-collection">What Is an NFT collection?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-nft-floor-price-a-comprehensive-guide">What Is an NFT Floor Price? A Comprehensive Guide</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-nft-sniping">What Is NFT Sniping?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-does-sweep-the-floor-mean-for-nft-trading">What Does Sweep the Floor Mean for NFT Trading</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/why-do-stablecoins-depeg">Why Do Stablecoins Depeg?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+        <li><a href="https://coinmarketcap.com/alexandria/article/how-to-use-blur-nft-marketplace">How to Use Blur NFT Marketplace?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-an-oco-order-one-cancels-the-other">What Is an OCO Order (One-Cancels-the-Other)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-reddit-collectible-avatars">What are Reddit Collectible Avatars?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-stake-crypto-on-coinbase">How to Stake Crypto on Coinbase</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-are-cross-chain-bridges">What Are Cross-Chain Bridges?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/where-to-find-crypto-podcasts">Where to Find Crypto Podcasts</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/everything-you-need-to-know-about-the-ethereum-merge-misconceptions-debunked">Everything You Need To Know About the Ethereum Merge: Misconceptions Debunked</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-successfully-launch-an-nft-collection">How to Successfully Launch an NFT Collection?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-play-stepn">How To Play STEPN</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/earn-crypto-how-to-get-free-bitcoins-btc-2022">Earn Crypto: How To Get Free Bitcoins (BTC)? 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/best-centralized-and-decentralized-crypto-exchanges-of-2022">Best Centralized and Decentralized Crypto Exchanges Of 2022</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bybit-and-how-to-use-it">What Is Bybit and How to Use It?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-zilliqa-and-metapolis">A Deep Dive Into Zilliqa And Metapolis</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/all-you-need-to-know-about-solana-s-rising-nft-ecosystem">All You Need To Know About Solana's Rising NFT Ecosystem</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/top-ethereum-killers-a-detailed-comparison">Top Ethereum Killers: A Detailed Comparison</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/introduction-to-non-fungible-tokens-nfts">Introduction to Non-Fungible Tokens (NFTs)</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-metamask-dao-and-token">What Is the MetaMask DAO and Token?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://www.investing.com/analysis/analysts-bullish-on-freedom-holding-200480551">Analysts Bullish On Freedom Holding</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/one-bitcoin-now-or-2-altcoins-later-200461269">One Bitcoin Now Or 2 Altcoins Later?</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/nexo-shifting-to-binance-and-eyeing-dex-listing-will-prices-soar-200446035">Nexo Shifting To Binance And Eyeing DEX Listing, Will Prices Soar?</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/a-scalable-ethereum--can-ternity-blockchain-get-ahead-by-starting-from-scratch-200439598">A Scalable Ethereum — Can Aeternity Blockchain Get Ahead by Starting From Scratch?</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/why-amazon-can-have-a-bright-future-200405602">Why Amazon Can Have A Bright Future</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/should-we-switch-from-ico-to-ieo-200401715">Should We Switch From ICO To IEO?</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/the-tech-trends-of-the-next-5-years-200397587">Tech Trends Of The Next 5 Years</a> <span class="publication-name">(Investing.com)</span></li>
+    <li><a href="https://www.investing.com/analysis/chinas-antianonymity-regulations-for-blockchain-companies-200387620">China's Anti-Anonymity Regulations For Blockchain Companies</a> <span class="publication-name">(Investing.com)</span></li>    
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-choose-which-nft-projects-to-invest-in">How To Choose Which NFT Projects To Invest In?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/3-minute-tips-how-to-revoke-token-approval-following-opensea-s-latest-security-episode">3 Minute Tips: How to Revoke Token Approval Following Opensea's Latest Security Episode</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-bitcoin">What Is Bitcoin?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-contribute-to-crypto-and-web3-without-writing-any-code">How to Contribute to Crypto and Web3 Without Writing Any Code</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-truly-own-your-nfts">How To Truly Own Your NFTs</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/top-six-nft-marketplaces">Top Six NFT Marketplaces</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-former-u-s-secretary-of-the-treasury-steven-mnuchin-approached-the-cryptocurrency-industry">How Former U.S. Secretary of The Treasury Steven Mnuchin Approached The Cryptocurrency Industry</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-helium-hnt-features-tokenomics-and-price-prediction">What Is Helium (HNT)? Features, Tokenomics, and Price Prediction</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-opendao-sos">A Deep Dive Into OpenDAO $SOS</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-to-land-a-job-in-the-crypto-and-blockchain-industry">How To Land A Job In The Crypto And Blockchain Industry</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-you-need-to-know-about-the-fractal-nft-gaming-marketplace">What You Need To Know About The Fractal NFT Gaming Marketplace</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-will-ethereum-2-0-reduce-energy-consumption">How Will Ethereum 2.0 Reduce Energy Consumption?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-metacartel">A Deep Dive Into MetaCartel</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/who-stole-my-art-how-nfts-are-disrupting-the-art-world">Who Stole My Art? How NFTs Are Disrupting the Art World</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-gm-wagmi-gm">A Deep Dive Into GM WAGMI (GM)</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-sneaky-vampires-syndicate">A Deep Dive Into Sneaky Vampires Syndicate</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-the-gamestop-nft-marketplace-platform">A Deep Dive into the GameStop NFT Marketplace Platform</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/top-free-p2e-nft-games-in-2021">Top Free P2E NFT Games in 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-sotheby-s-metaverse">A Deep Dive Into Sotheby's Metaverse</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-the-sandbox">What Is The Sandbox?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/why-traditional-finance-experts-are-moving-from-the-sector-to-the-cryptocurrency-niche">Why Traditional Finance Experts Are Moving From The Sector To The Cryptocurrency Niche</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/a-deep-dive-into-mekaverse">A Deep Dive Into MekaVerse</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-google-doing-with-blockchain">What Is Google Doing with Blockchain?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/how-traditional-media-platforms-are-adopting-nfts-in-2021">How Traditional Media Platforms Are Adopting NFTs in 2021</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/who-are-bitcoin-core-s-developers">Who Are Bitcoin Core's Developers?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/what-is-dollar-cost-averaging-dca">What Is Dollar-Cost Averaging (DCA)?</a> <span class="publication-name">(CoinMarketCap)</span></li>
+    <li><a href="https://coinmarketcap.com/alexandria/article/crypto-is-not-anonymous-how-criminals-are-caught-on-the-blockchain">Crypto Is Not Anonymous: How Criminals Are Caught on the Blockchain</a> <span class="publication-name">(CoinMarketCap)</span></li>
+</ul>
+        </main>
+    </div>
     <script>
-    (function () {
-        var HEX = '0123456789ABCDEF';
-        var STAGES = ['█', '▓', '▒', '░'];
-
-        function buildElement(target, el) {
-            el.textContent = '';
-            var nodes = [];
-            for (var i = 0; i < target.length; i++) {
-                var wrap = document.createElement('span');
-                wrap.className = 'rv-ch';
-                var ghost = document.createElement('span');
-                ghost.className = 'rv-ghost';
-                ghost.textContent = target[i] === ' ' ? ' ' : target[i];
-                var real = document.createElement('span');
-                real.className = 'rv-real';
-                real.textContent = target[i] === ' ' ? ' ' : '';
-                wrap.appendChild(ghost);
-                wrap.appendChild(real);
-                el.appendChild(wrap);
-                nodes.push({ to: target[i], real: real, space: target[i] === ' ' });
-            }
-            return nodes;
-        }
-
-        function reduced() {
-            return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        }
-
-        function revealHex(el) {
-            var target = el.dataset.text || el.textContent;
-            var nodes = buildElement(target, el);
-            if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
-
-            var queue = nodes.map(function (n) {
-                var start = Math.floor(Math.random() * 18);
-                var end = start + 18 + Math.floor(Math.random() * 30);
-                return { node: n, start: start, end: end, cur: '' };
-            });
-
-            var frame = 0;
-            (function tick() {
-                var done = 0;
-                queue.forEach(function (q) {
-                    var n = q.node;
-                    if (n.space) { done++; return; }
-                    if (frame >= q.end) {
-                        if (n.real.textContent !== n.to) {
-                            n.real.textContent = n.to;
-                            n.real.classList.remove('dim');
-                        }
-                        done++;
-                        return;
-                    }
-                    if (frame >= q.start && (!q.cur || Math.random() < 0.4)) {
-                        q.cur = HEX[Math.floor(Math.random() * HEX.length)];
-                        n.real.textContent = q.cur;
-                        n.real.classList.add('dim');
-                    }
-                });
-                if (done < queue.length) { frame++; requestAnimationFrame(tick); }
-            })();
-        }
-
-        function revealBlock(el) {
-            var target = el.dataset.text || el.textContent;
-            var nodes = buildElement(target, el);
-            if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
-
-            var queue = nodes.map(function (n) {
-                return { node: n, start: Math.floor(Math.random() * 12), stage: 0, lastChange: -99 };
-            });
-
-            var frame = 0;
-            (function tick() {
-                var done = 0;
-                queue.forEach(function (q) {
-                    var n = q.node;
-                    if (n.space) { done++; return; }
-                    if (q.stage > STAGES.length) { done++; return; }
-
-                    if (frame < q.start) {
-                        if (n.real.textContent !== '█') {
-                            n.real.textContent = '█';
-                            n.real.style.opacity = '0.8';
-                        }
-                        return;
-                    }
-                    if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
-                    if (q.stage > STAGES.length) {
-                        n.real.textContent = n.to;
-                        n.real.style.opacity = '1';
-                        done++;
-                        return;
-                    }
-                    n.real.textContent = STAGES[q.stage - 1];
-                    n.real.style.opacity = String(0.85 - q.stage * 0.15);
-                });
-                if (done < queue.length) { frame++; requestAnimationFrame(tick); }
-            })();
-        }
-
-        function runMode(el) {
-            var mode = el.dataset.mode;
-            if (mode === 'hex') revealHex(el);
-            else if (mode === 'block') revealBlock(el);
-        }
-
-        function init() {
-            document.querySelectorAll('.reveal').forEach(runMode);
-            document.querySelectorAll('.replay').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var section = btn.closest('.demo');
-                    var target = section.querySelector('.reveal');
-                    // restore raw text so buildElement can rebuild from a clean tree
-                    target.textContent = target.dataset.text;
-                    requestAnimationFrame(function () { runMode(target); });
-                });
-            });
-        }
-
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-        else init();
-    })();
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
     </script>
+
+<style>
+    #reveal-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+    }
+    #reveal-toolbar .rt-back { color: #0645ad; text-decoration: none; }
+    #reveal-toolbar .rt-back:hover { text-decoration: underline; }
+    #reveal-toolbar .rt-modes { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    #reveal-toolbar .rt-label { color: #666; }
+    #reveal-toolbar .rt-mode,
+    #reveal-toolbar .rt-replay {
+        padding: 5px 12px;
+        background: #fff;
+        border: 1px solid #a2a9b1;
+        color: #0645ad;
+        font-size: 13px;
+        cursor: pointer;
+        font-family: inherit;
+    }
+    #reveal-toolbar .rt-mode.active {
+        background: #0645ad;
+        color: #fff;
+        border-color: #0645ad;
+    }
+    #reveal-toolbar .rt-mode:hover:not(.active),
+    #reveal-toolbar .rt-replay:hover { background: #eaecf0; }
+    #reveal-toolbar .rt-mode.active:hover { background: #04358a; }
+
+    .reveal .rv-ch    { position: relative; display: inline-block; white-space: pre; }
+    .reveal .rv-ghost { visibility: hidden; }
+    .reveal .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
+    .reveal .rv-real.dim { opacity: 0.55; }
+</style>
+<script>
+(function () {
+    var HEX = '0123456789ABCDEF';
+    var STAGES = ['█', '▓', '▒', '░'];
+    var currentMode = 'hex';
+
+    function buildElement(target, el) {
+        el.textContent = '';
+        var nodes = [];
+        for (var i = 0; i < target.length; i++) {
+            var wrap = document.createElement('span');
+            wrap.className = 'rv-ch';
+            var ghost = document.createElement('span');
+            ghost.className = 'rv-ghost';
+            ghost.textContent = target[i] === ' ' ? ' ' : target[i];
+            var real = document.createElement('span');
+            real.className = 'rv-real';
+            real.textContent = target[i] === ' ' ? ' ' : '';
+            wrap.appendChild(ghost);
+            wrap.appendChild(real);
+            el.appendChild(wrap);
+            nodes.push({ to: target[i], real: real, space: target[i] === ' ' });
+        }
+        return nodes;
+    }
+
+    function reduced() {
+        return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function revealHex(el) {
+        var target = el.dataset.text || el.textContent;
+        var nodes = buildElement(target, el);
+        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+        var queue = nodes.map(function (n) {
+            var start = Math.floor(Math.random() * 18);
+            var end = start + 18 + Math.floor(Math.random() * 30);
+            return { node: n, start: start, end: end, cur: '' };
+        });
+        var frame = 0;
+        (function tick() {
+            var done = 0;
+            queue.forEach(function (q) {
+                var n = q.node;
+                if (n.space) { done++; return; }
+                if (frame >= q.end) {
+                    if (n.real.textContent !== n.to) {
+                        n.real.textContent = n.to;
+                        n.real.classList.remove('dim');
+                    }
+                    done++;
+                    return;
+                }
+                if (frame >= q.start && (!q.cur || Math.random() < 0.4)) {
+                    q.cur = HEX[Math.floor(Math.random() * HEX.length)];
+                    n.real.textContent = q.cur;
+                    n.real.classList.add('dim');
+                }
+            });
+            if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+        })();
+    }
+
+    function revealBlock(el) {
+        var target = el.dataset.text || el.textContent;
+        var nodes = buildElement(target, el);
+        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
+        var queue = nodes.map(function (n) {
+            return { node: n, start: Math.floor(Math.random() * 12), stage: 0, lastChange: -99 };
+        });
+        var frame = 0;
+        (function tick() {
+            var done = 0;
+            queue.forEach(function (q) {
+                var n = q.node;
+                if (n.space) { done++; return; }
+                if (q.stage > STAGES.length) { done++; return; }
+                if (frame < q.start) {
+                    if (n.real.textContent !== '█') {
+                        n.real.textContent = '█';
+                        n.real.style.opacity = '0.8';
+                    }
+                    return;
+                }
+                if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
+                if (q.stage > STAGES.length) {
+                    n.real.textContent = n.to;
+                    n.real.style.opacity = '1';
+                    done++;
+                    return;
+                }
+                n.real.textContent = STAGES[q.stage - 1];
+                n.real.style.opacity = String(0.85 - q.stage * 0.15);
+            });
+            if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+        })();
+    }
+
+    function runAll() {
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            el.textContent = el.dataset.text;
+            requestAnimationFrame(function () {
+                if (currentMode === 'hex') revealHex(el);
+                else revealBlock(el);
+            });
+        });
+    }
+
+    function init() {
+        runAll();
+        document.querySelectorAll('.rt-mode').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.rt-mode').forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                currentMode = btn.dataset.mode;
+                runAll();
+            });
+        });
+        var replayBtn = document.querySelector('.rt-replay');
+        if (replayBtn) replayBtn.addEventListener('click', runAll);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();
+</script>
 </body>
 </html>
