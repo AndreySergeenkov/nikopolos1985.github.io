@@ -67,12 +67,10 @@
     }
 
     function run() {
-        // Apply to h1 and h2 only. Skip h3 — chart titles inside .chart-box
-        // would break code that reads h3.textContent for the modal/download.
-        document.querySelectorAll('h1, h2').forEach(function (el) {
-            // Skip headings inside chart-box (figure-style titles).
-            if (el.closest && el.closest('.chart-box')) return;
-            // Hide before wrap so the source text doesn't flash.
+        // Apply only to the article h1 — the title of the article. Skip
+        // every other heading (section h2s, chart-box h3s, headings on
+        // non-article pages aren't loading this script anyway).
+        document.querySelectorAll('article > header h1, article h1').forEach(function (el) {
             el.style.visibility = 'hidden';
             if (!el.dataset.revealText) {
                 el.dataset.revealText = el.textContent;
