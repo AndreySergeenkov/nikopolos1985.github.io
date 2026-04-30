@@ -22,12 +22,7 @@
 <body>
 <div id="reveal-toolbar">
     <a href="../" class="rt-back">&larr; Back to Home</a>
-    <div class="rt-modes">
-        <span class="rt-label">Mode:</span>
-        <button type="button" class="rt-mode active" data-mode="hex">Hex scramble</button>
-        <button type="button" class="rt-mode" data-mode="block">Block melt</button>
-        <button type="button" class="rt-replay">↻ Replay</button>
-    </div>
+    <button type="button" class="rt-replay">↻ Replay</button>
 </div>
 
     <div class="container">
@@ -374,9 +369,6 @@
     }
     #reveal-toolbar .rt-back { color: #0645ad; text-decoration: none; }
     #reveal-toolbar .rt-back:hover { text-decoration: underline; }
-    #reveal-toolbar .rt-modes { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    #reveal-toolbar .rt-label { color: #666; }
-    #reveal-toolbar .rt-mode,
     #reveal-toolbar .rt-replay {
         padding: 5px 12px;
         background: #fff;
@@ -386,14 +378,7 @@
         cursor: pointer;
         font-family: inherit;
     }
-    #reveal-toolbar .rt-mode.active {
-        background: #0645ad;
-        color: #fff;
-        border-color: #0645ad;
-    }
-    #reveal-toolbar .rt-mode:hover:not(.active),
     #reveal-toolbar .rt-replay:hover { background: #eaecf0; }
-    #reveal-toolbar .rt-mode.active:hover { background: #04358a; }
 
     .rv-ch    { position: relative; display: inline-block; white-space: pre; }
     .rv-ghost { visibility: hidden; }
@@ -402,9 +387,7 @@
 </style>
 <script>
 (function () {
-    var HEX = '0123456789ABCDEF';
     var STAGES = ['█', '▓', '▒', '░'];
-    var currentMode = 'hex';
     var originalHTML = null;
 
     function reduced() {
@@ -420,11 +403,9 @@
             acceptNode: function (node) {
                 var p = node.parentNode;
                 if (!p) return NodeFilter.FILTER_REJECT;
-                // Skip script/style/noscript and the toolbar
                 if (p.closest && p.closest('script, style, noscript, #reveal-toolbar')) {
                     return NodeFilter.FILTER_REJECT;
                 }
-                // Skip pure whitespace between tags
                 if (!/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
                 return NodeFilter.FILTER_ACCEPT;
             }
@@ -435,7 +416,6 @@
     }
 
     // Replace each text node with a sequence of rv-ch wrappers.
-    // Returns a flat list of { to, real, space } across the whole page.
     function wrapAll() {
         var textNodes = collectTextNodes();
         var allChars = [];
@@ -463,42 +443,12 @@
         return allChars;
     }
 
-    function animateHex(chars) {
-        if (reduced()) { chars.forEach(function (n) { if (!n.space) n.real.textContent = n.to; }); return; }
-        var queue = chars.map(function (n) {
-            var start = Math.floor(Math.random() * 24);
-            var end = start + 18 + Math.floor(Math.random() * 30);
-            return { node: n, start: start, end: end, cur: '' };
-        });
-        var frame = 0;
-        var settled = 0;
-        (function tick() {
-            for (var i = 0; i < queue.length; i++) {
-                var q = queue[i];
-                if (q.done) continue;
-                var n = q.node;
-                if (n.space) { q.done = true; settled++; continue; }
-                if (frame >= q.end) {
-                    n.real.textContent = n.to;
-                    n.real.classList.remove('dim');
-                    q.done = true;
-                    settled++;
-                    continue;
-                }
-                if (frame >= q.start && (!q.cur || Math.random() < 0.4)) {
-                    q.cur = HEX[Math.floor(Math.random() * HEX.length)];
-                    n.real.textContent = q.cur;
-                    n.real.classList.add('dim');
-                }
-            }
-            if (settled < queue.length) { frame++; requestAnimationFrame(tick); }
-        })();
-    }
-
     function animateBlock(chars) {
         if (reduced()) { chars.forEach(function (n) { if (!n.space) n.real.textContent = n.to; }); return; }
+        // Faster pacing: shorter random start window, shorter stage hold.
+        // Per-char max duration ~ 6 + 4*2 = 14 frames (~230ms at 60fps).
         var queue = chars.map(function (n) {
-            return { node: n, start: Math.floor(Math.random() * 18), stage: 0, lastChange: -99 };
+            return { node: n, start: Math.floor(Math.random() * 6), stage: 0, lastChange: -99 };
         });
         var frame = 0;
         var settled = 0;
@@ -515,7 +465,7 @@
                     }
                     continue;
                 }
-                if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
+                if (frame - q.lastChange > 2) { q.stage++; q.lastChange = frame; }
                 if (q.stage > STAGES.length) {
                     n.real.textContent = n.to;
                     n.real.style.opacity = '1';
@@ -531,26 +481,14 @@
     }
 
     function run() {
-        // Restore from snapshot so replay/mode-switch starts from a clean tree.
         var main = document.querySelector('main');
         if (originalHTML !== null) main.innerHTML = originalHTML;
         else originalHTML = main.innerHTML;
-
-        var chars = wrapAll();
-        if (currentMode === 'hex') animateHex(chars);
-        else animateBlock(chars);
+        animateBlock(wrapAll());
     }
 
     function init() {
         run();
-        document.querySelectorAll('.rt-mode').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.rt-mode').forEach(function (b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-                currentMode = btn.dataset.mode;
-                run();
-            });
-        });
         var replayBtn = document.querySelector('.rt-replay');
         if (replayBtn) replayBtn.addEventListener('click', run);
     }
