@@ -598,7 +598,7 @@
 
     <article>
         <header class="article-header">
-            <h1 class="reveal" data-text="How Many Traders Are Profitable on Polymarket">How Many Traders Are Profitable on Polymarket</h1>
+            <h1>How Many Traders Are Profitable on Polymarket</h1>
             <!-- ANIMATION DISABLED — uncomment img + div to restore the swirling-coins vortex -->
             <!--
             <img id="mobile-cover" class="article-image" src="../polymarket-profitability/images/og-image.jpg" alt="NYT headline 'Betting on Prediction Markets Is Their Job. They Make Millions.' with 'Make' crossed out and replaced with 'LOSE'" style="max-width:480px;margin:16px auto 24px;display:none;">
@@ -1718,7 +1718,8 @@
     }
 
     function animate(el) {
-        var target = el.dataset.text || el.textContent;
+        var target = el.dataset.revealText || el.textContent;
+        if (!target) return;
         var nodes = buildElement(target, el);
         if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
         var queue = nodes.map(function (n) {
@@ -1755,8 +1756,16 @@
     }
 
     function run() {
-        document.querySelectorAll('.reveal').forEach(function (el) {
-            el.textContent = el.dataset.text;
+        // Apply to every heading on the page. Cache the original text in
+        // dataset.revealText on first run; on replay, restore from cache.
+        document.querySelectorAll('h1, h2, h3').forEach(function (el) {
+            // Skip headings inside the toolbar in case any get added later.
+            if (el.closest('#reveal-toolbar')) return;
+            if (!el.dataset.revealText) {
+                el.dataset.revealText = el.textContent;
+            } else {
+                el.textContent = el.dataset.revealText;
+            }
             requestAnimationFrame(function () { animate(el); });
         });
     }
