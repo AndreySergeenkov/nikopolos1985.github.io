@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /drafts/
+Disallow: /dust-animation-variants/
+Disallow: /raw%20articles
+Disallow: /*.zip$
+Disallow: /README.md
+
+Sitemap: https://sergeenkov.com/feed.xml
