@@ -34,7 +34,7 @@
         <main>
             <div class="header">
                 <div class="header-text">
-                    <h1 class="reveal" data-text="Andrey Sergeenkov">Andrey Sergeenkov</h1>
+                    <h1>Andrey Sergeenkov</h1>
                     <p class="role">Independent researcher</p>
                     <nav class="profile-menu">
                         <a href="mailto:andrey@sergeenkov.com">Email</a>
@@ -63,7 +63,7 @@
             <p class="current-work">My research has been cited in 43 academic papers by institutions including the World Economic Forum, Cato Institute, IEEE, Oxford University Press, and more.<br><span class="list-marker">Full list of citations: <a href="/citations/">sergeenkov.com/citations</a></span></p>
             <p class="current-work">My investigative work has been covered by CoinDesk, Cointelegraph, Decrypt, The Defiant, Motley Fool, Protos, and more. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.<br><span class="list-marker">Full list of media coverage: <a href="/coverage/">sergeenkov.com/coverage</a></span></p>
 
-            <h2 class="reveal" data-text="My Independent Research">My Independent Research</h2>
+            <h2>My Independent Research</h2>
 <ul class="article-list">
     <li><a href="/polymarket-profitability/">How Many Traders Are Profitable on Polymarket</a></li>
     <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</a></li>
@@ -73,7 +73,7 @@
     <li><a href="/loss-based-polymarket-airdrop/">The Case for a Loss-Based Polymarket Airdrop</a></li>
 </ul>
 
-            <h2 class="reveal" data-text="Earlier Articles">Earlier Articles</h2>
+            <h2>Earlier Articles</h2>
 <ul class="article-list">
     <li><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">Stop Pretending Technical And Human Vulnerabilities Are Separate Things</a> <span class="publication-name">(Cointelegraph)</span></li>
     <li><a href="https://www.forbes.com/sites/digital-assets/2024/12/17/why-2025-may-be-the-right-time-to-create-national-bitcoin-reserves/">Why 2025 May Be The Right Time To Create National Bitcoin Reserves</a> <span class="publication-name">(Forbes)</span></li>
@@ -395,131 +395,164 @@
     #reveal-toolbar .rt-replay:hover { background: #eaecf0; }
     #reveal-toolbar .rt-mode.active:hover { background: #04358a; }
 
-    .reveal .rv-ch    { position: relative; display: inline-block; white-space: pre; }
-    .reveal .rv-ghost { visibility: hidden; }
-    .reveal .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
-    .reveal .rv-real.dim { opacity: 0.55; }
+    .rv-ch    { position: relative; display: inline-block; white-space: pre; }
+    .rv-ghost { visibility: hidden; }
+    .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }
+    .rv-real.dim { opacity: 0.55; }
 </style>
 <script>
 (function () {
     var HEX = '0123456789ABCDEF';
     var STAGES = ['█', '▓', '▒', '░'];
     var currentMode = 'hex';
-
-    function buildElement(target, el) {
-        el.textContent = '';
-        var nodes = [];
-        for (var i = 0; i < target.length; i++) {
-            var wrap = document.createElement('span');
-            wrap.className = 'rv-ch';
-            var ghost = document.createElement('span');
-            ghost.className = 'rv-ghost';
-            ghost.textContent = target[i] === ' ' ? ' ' : target[i];
-            var real = document.createElement('span');
-            real.className = 'rv-real';
-            real.textContent = target[i] === ' ' ? ' ' : '';
-            wrap.appendChild(ghost);
-            wrap.appendChild(real);
-            el.appendChild(wrap);
-            nodes.push({ to: target[i], real: real, space: target[i] === ' ' });
-        }
-        return nodes;
-    }
+    var originalHTML = null;
 
     function reduced() {
         return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
 
-    function revealHex(el) {
-        var target = el.dataset.text || el.textContent;
-        var nodes = buildElement(target, el);
-        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
-        var queue = nodes.map(function (n) {
-            var start = Math.floor(Math.random() * 18);
+    // Walk all text nodes inside <main>, skipping the toolbar and inert elements.
+    function collectTextNodes() {
+        var root = document.querySelector('main');
+        if (!root) return [];
+        var nodes = [];
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (node) {
+                var p = node.parentNode;
+                if (!p) return NodeFilter.FILTER_REJECT;
+                // Skip script/style/noscript and the toolbar
+                if (p.closest && p.closest('script, style, noscript, #reveal-toolbar')) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+                // Skip pure whitespace between tags
+                if (!/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+                return NodeFilter.FILTER_ACCEPT;
+            }
+        });
+        var n;
+        while (n = walker.nextNode()) nodes.push(n);
+        return nodes;
+    }
+
+    // Replace each text node with a sequence of rv-ch wrappers.
+    // Returns a flat list of { to, real, space } across the whole page.
+    function wrapAll() {
+        var textNodes = collectTextNodes();
+        var allChars = [];
+        for (var i = 0; i < textNodes.length; i++) {
+            var textNode = textNodes[i];
+            var text = textNode.nodeValue;
+            var frag = document.createDocumentFragment();
+            for (var j = 0; j < text.length; j++) {
+                var ch = text[j];
+                var wrap = document.createElement('span');
+                wrap.className = 'rv-ch';
+                var ghost = document.createElement('span');
+                ghost.className = 'rv-ghost';
+                ghost.textContent = ch === ' ' ? ' ' : ch;
+                var real = document.createElement('span');
+                real.className = 'rv-real';
+                real.textContent = ch === ' ' ? ' ' : '';
+                wrap.appendChild(ghost);
+                wrap.appendChild(real);
+                frag.appendChild(wrap);
+                allChars.push({ to: ch, real: real, space: ch === ' ' });
+            }
+            textNode.parentNode.replaceChild(frag, textNode);
+        }
+        return allChars;
+    }
+
+    function animateHex(chars) {
+        if (reduced()) { chars.forEach(function (n) { if (!n.space) n.real.textContent = n.to; }); return; }
+        var queue = chars.map(function (n) {
+            var start = Math.floor(Math.random() * 24);
             var end = start + 18 + Math.floor(Math.random() * 30);
             return { node: n, start: start, end: end, cur: '' };
         });
         var frame = 0;
+        var settled = 0;
         (function tick() {
-            var done = 0;
-            queue.forEach(function (q) {
+            for (var i = 0; i < queue.length; i++) {
+                var q = queue[i];
+                if (q.done) continue;
                 var n = q.node;
-                if (n.space) { done++; return; }
+                if (n.space) { q.done = true; settled++; continue; }
                 if (frame >= q.end) {
-                    if (n.real.textContent !== n.to) {
-                        n.real.textContent = n.to;
-                        n.real.classList.remove('dim');
-                    }
-                    done++;
-                    return;
+                    n.real.textContent = n.to;
+                    n.real.classList.remove('dim');
+                    q.done = true;
+                    settled++;
+                    continue;
                 }
                 if (frame >= q.start && (!q.cur || Math.random() < 0.4)) {
                     q.cur = HEX[Math.floor(Math.random() * HEX.length)];
                     n.real.textContent = q.cur;
                     n.real.classList.add('dim');
                 }
-            });
-            if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+            }
+            if (settled < queue.length) { frame++; requestAnimationFrame(tick); }
         })();
     }
 
-    function revealBlock(el) {
-        var target = el.dataset.text || el.textContent;
-        var nodes = buildElement(target, el);
-        if (reduced()) { nodes.forEach(function (n) { n.real.textContent = n.to; }); return; }
-        var queue = nodes.map(function (n) {
-            return { node: n, start: Math.floor(Math.random() * 12), stage: 0, lastChange: -99 };
+    function animateBlock(chars) {
+        if (reduced()) { chars.forEach(function (n) { if (!n.space) n.real.textContent = n.to; }); return; }
+        var queue = chars.map(function (n) {
+            return { node: n, start: Math.floor(Math.random() * 18), stage: 0, lastChange: -99 };
         });
         var frame = 0;
+        var settled = 0;
         (function tick() {
-            var done = 0;
-            queue.forEach(function (q) {
+            for (var i = 0; i < queue.length; i++) {
+                var q = queue[i];
+                if (q.done) continue;
                 var n = q.node;
-                if (n.space) { done++; return; }
-                if (q.stage > STAGES.length) { done++; return; }
+                if (n.space) { q.done = true; settled++; continue; }
                 if (frame < q.start) {
                     if (n.real.textContent !== '█') {
                         n.real.textContent = '█';
                         n.real.style.opacity = '0.8';
                     }
-                    return;
+                    continue;
                 }
                 if (frame - q.lastChange > 5) { q.stage++; q.lastChange = frame; }
                 if (q.stage > STAGES.length) {
                     n.real.textContent = n.to;
                     n.real.style.opacity = '1';
-                    done++;
-                    return;
+                    q.done = true;
+                    settled++;
+                    continue;
                 }
                 n.real.textContent = STAGES[q.stage - 1];
                 n.real.style.opacity = String(0.85 - q.stage * 0.15);
-            });
-            if (done < queue.length) { frame++; requestAnimationFrame(tick); }
+            }
+            if (settled < queue.length) { frame++; requestAnimationFrame(tick); }
         })();
     }
 
-    function runAll() {
-        document.querySelectorAll('.reveal').forEach(function (el) {
-            el.textContent = el.dataset.text;
-            requestAnimationFrame(function () {
-                if (currentMode === 'hex') revealHex(el);
-                else revealBlock(el);
-            });
-        });
+    function run() {
+        // Restore from snapshot so replay/mode-switch starts from a clean tree.
+        var main = document.querySelector('main');
+        if (originalHTML !== null) main.innerHTML = originalHTML;
+        else originalHTML = main.innerHTML;
+
+        var chars = wrapAll();
+        if (currentMode === 'hex') animateHex(chars);
+        else animateBlock(chars);
     }
 
     function init() {
-        runAll();
+        run();
         document.querySelectorAll('.rt-mode').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.rt-mode').forEach(function (b) { b.classList.remove('active'); });
                 btn.classList.add('active');
                 currentMode = btn.dataset.mode;
-                runAll();
+                run();
             });
         });
         var replayBtn = document.querySelector('.rt-replay');
-        if (replayBtn) replayBtn.addEventListener('click', runAll);
+        if (replayBtn) replayBtn.addEventListener('click', run);
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
