@@ -1,3 +1,4 @@
-.rv-ch    { position: relative; display: inline-block; white-space: pre; }
+.rv-word  { white-space: nowrap; }
+.rv-ch    { position: relative; display: inline-block; }
 .rv-ghost { visibility: hidden; }
 .rv-real  { position: absolute; left: 0; top: 0; width: 100%; }

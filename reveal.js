@@ -6,22 +6,40 @@
     }
 
     function buildElement(target, el) {
+        // Group characters into word-spans (white-space: nowrap) so the
+        // browser can't break a word in the middle. Real space characters
+        // sit as plain text nodes between the word-spans, so wrapping
+        // happens at word boundaries the way it would for normal text.
         el.textContent = '';
         var nodes = [];
-        for (var i = 0; i < target.length; i++) {
+        var i = 0;
+        while (i < target.length) {
             var ch = target[i];
-            var wrap = document.createElement('span');
-            wrap.className = 'rv-ch';
-            var ghost = document.createElement('span');
-            ghost.className = 'rv-ghost';
-            ghost.textContent = ch === ' ' ? ' ' : ch;
-            var real = document.createElement('span');
-            real.className = 'rv-real';
-            real.textContent = ch === ' ' ? ' ' : '';
-            wrap.appendChild(ghost);
-            wrap.appendChild(real);
-            el.appendChild(wrap);
-            nodes.push({ to: ch, real: real, space: ch === ' ' });
+            if (/\s/.test(ch)) {
+                el.appendChild(document.createTextNode(ch));
+                nodes.push({ to: ch, real: null, space: true });
+                i++;
+                continue;
+            }
+            var word = document.createElement('span');
+            word.className = 'rv-word';
+            while (i < target.length && !/\s/.test(target[i])) {
+                var c = target[i];
+                var wrap = document.createElement('span');
+                wrap.className = 'rv-ch';
+                var ghost = document.createElement('span');
+                ghost.className = 'rv-ghost';
+                ghost.textContent = c;
+                var real = document.createElement('span');
+                real.className = 'rv-real';
+                real.textContent = '';
+                wrap.appendChild(ghost);
+                wrap.appendChild(real);
+                word.appendChild(wrap);
+                nodes.push({ to: c, real: real, space: false });
+                i++;
+            }
+            el.appendChild(word);
         }
         return nodes;
     }
