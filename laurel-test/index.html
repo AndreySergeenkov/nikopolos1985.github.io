@@ -3,59 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laurel Award Variants — Test Page</title>
+    <title>Laurel Test — Homepage Preview</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="/style.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            color: #202122;
-            background: #fff;
+        /* Laurel badge styles */
+        .laurel-badge {
+            position: relative;
+            width: 110px;
+            height: 120px;
+            flex-shrink: 0;
+            display: inline-block;
+            color: #d4af37;
         }
-        h1 { font-size: 24px; font-weight: 400; border-bottom: 1px solid #a2a9b1; padding-bottom: 4px; }
-        h2 { font-size: 18px; font-weight: 400; margin-top: 40px; margin-bottom: 12px; border-bottom: 1px solid #eaecf0; padding-bottom: 4px; }
-        .subtitle { color: #54595d; font-size: 14px; font-family: sans-serif; margin-bottom: 24px; }
-        .source { color: #54595d; font-size: 12px; font-family: sans-serif; margin: 6px 0 0; }
-        .source a { color: #0645ad; }
-        .back-link { display: inline-block; font-family: sans-serif; font-size: 14px; color: #0645ad; text-decoration: none; margin-bottom: 16px; }
-        .back-link:hover { text-decoration: underline; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 28px;
-            margin-bottom: 32px;
+        .laurel-badge svg {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
-        .card {
-            border: 1px solid #d6d8db;
-            padding: 28px 16px 14px;
-            text-align: center;
-            background: #fff;
-        }
-        .card.dark { background: #1a1a1a; border-color: #333; }
-        .card.dark .card-label, .card.dark .card-hex { color: #aaa; }
-        .card.cream { background: #faf6ee; border-color: #e5dec9; }
-
-        .card-label {
-            font-family: sans-serif;
-            font-size: 11px;
-            color: #54595d;
-            margin-top: 14px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-        .card-hex {
-            font-family: 'Courier New', monospace;
-            font-size: 11px;
-            color: #54595d;
-            margin-top: 2px;
-        }
-
-        /* Laurel wrap: SVG with text overlaid */
-        .laurel-wrap { position: relative; display: inline-block; width: 160px; height: 152px; }
-        .laurel-wrap svg { display: block; width: 100%; height: 100%; }
-        .laurel-text {
+        .laurel-badge .laurel-text {
             position: absolute;
             inset: 0;
             display: flex;
@@ -65,15 +31,42 @@
             line-height: 1.15;
             text-align: center;
             pointer-events: none;
-            color: inherit;
         }
-        .winner { font-family: sans-serif; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; }
-        .title { font-family: Georgia, 'Linux Libertine', serif; font-size: 11px; font-weight: 700; }
-        .meta { font-family: sans-serif; font-size: 8px; letter-spacing: 0.12em; margin-top: 2px; }
+        .laurel-badge .winner {
+            font-family: 'Inter', sans-serif;
+            font-size: 7px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #7a5f00;
+            font-weight: 600;
+        }
+        .laurel-badge .title {
+            font-family: Georgia, serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: #7a5f00;
+        }
+        .laurel-badge .meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 7px;
+            letter-spacing: 0.12em;
+            color: #7a5f00;
+            margin-top: 2px;
+        }
+        .test-banner {
+            background: #fff3cd;
+            border: 1px solid #e2c97a;
+            border-left: 4px solid #ffc107;
+            padding: 10px 14px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: #5a4400;
+        }
+        .test-banner a { color: #0645ad; }
     </style>
 </head>
 <body>
-    <!-- Shared SVG symbol so we don't duplicate the path data for every color -->
+    <!-- Shared SVG symbol -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <symbol id="laurel" viewBox="0 0 85 80.79">
             <g fill="currentColor">
@@ -88,381 +81,60 @@
         </symbol>
     </svg>
 
-    <a href="/" class="back-link">&larr; Back to homepage</a>
-    <h1>Laurel Award Variants — Colors</h1>
-    <p class="subtitle">Same lichess SVG, different colors. Pick one (or two — one for laurels, one for text) and tell Claude which to use.</p>
-
-    <h2>Neutrals</h2>
-    <div class="grid">
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#000;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Pure Black</div>
-            <div class="card-hex">#000000</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#1a1a1a;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Soft Black</div>
-            <div class="card-hex">#1a1a1a</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#202122;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Wiki Body</div>
-            <div class="card-hex">#202122</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#4a4a4a;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Dark Grey</div>
-            <div class="card-hex">#4a4a4a</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#54595d;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Wiki Subtle</div>
-            <div class="card-hex">#54595d</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#9ca3af;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Silver</div>
-            <div class="card-hex">#9ca3af</div>
-        </div>
-
+    <div class="test-banner">
+        <strong>TEST PAGE</strong> — copy of the homepage with the laurel badge in Bright Gold inserted between the name/menu and the profile photo. <a href="/">View real homepage</a>.
     </div>
 
-    <h2>Gold & Bronze</h2>
-    <div class="grid">
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#d4af37;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#7a5f00;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
+    <div class="container">
+        <main>
+            <div class="header">
+                <div class="header-text">
+                    <h1>Andrey Sergeenkov</h1>
+                    <p class="role">Independent researcher</p>
+                    <nav class="profile-menu">
+                        <a href="mailto:andrey@sergeenkov.com">Email</a>
+                        <a href="https://t.me/Nikopolos">Telegram</a>
+                        <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a>
+                        <a href="https://x.com/Nikopolos">X</a>
+                        <a href="/feed.xml">RSS</a>
+                    </nav>
                 </div>
-            </div>
-            <div class="card-label">Bright Gold</div>
-            <div class="card-hex">#d4af37</div>
-        </div>
-
-        <div class="card cream">
-            <div class="laurel-wrap" style="color:#b8860b;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#5a4400;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
+                <div class="laurel-badge" title="ACJR Best Crypto Op-Ed 2026">
+                    <svg><use href="#laurel"/></svg>
+                    <div class="laurel-text">
+                        <div class="winner">Winner</div>
+                        <div class="title">Best Crypto</div>
+                        <div class="title">Op-Ed</div>
+                        <div class="meta">ACJR · 2026</div>
+                    </div>
                 </div>
+                <img src='/500.jpg' alt='Andrey Sergeenkov' class='profile-photo'>
             </div>
-            <div class="card-label">DarkGoldenrod</div>
-            <div class="card-hex">#b8860b</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#a07900;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#6b5100;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
+            <aside class="commission-box">
+                <p><strong>I take on freelance research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
+                <div class="commission-box-actions">
+                    <span class="commission-contact">
+                        <a href="mailto:andrey@sergeenkov.com">Email: andrey@sergeenkov.com</a>
+                    </span>
+                    <span class="commission-contact">
+                        <a href="https://t.me/Nikopolos">Telegram: @Nikopolos</a>
+                    </span>
                 </div>
-            </div>
-            <div class="card-label">Old Gold</div>
-            <div class="card-hex">#a07900</div>
-        </div>
+            </aside>
+            <p class="current-work">My works have been published in <a href="https://www.forbes.com/sites/andreysergeenkov/">Forbes</a>, <a href="https://www.coindesk.com/author/andrey-sergeenkov/">CoinDesk</a>, <a href="https://blockworks.co/author/andrey-sergeenkov">Blockworks</a> and <a href="https://cointelegraph.com/authors/andrey-sergeenkov">Cointelegraph</a>.</p>
+            <p class="current-work">My published work has been cited in 74 academic publications across 20+ countries, including peer-reviewed journals from Elsevier, Taylor & Francis, Springer, Oxford University Press, and Edward Elgar, alongside policy work at the World Economic Forum and Cato Institute.<br><span class="list-marker">Full list of citations: <a href="/citations/">sergeenkov.com/citations</a></span></p>
+            <p class="current-work">My research has been covered by major crypto outlets including CoinDesk, Cointelegraph, Decrypt, The Defiant, DL News, and Protos, as well as mainstream press such as Le Parisien and Vedomosti. It has also been referenced in MetaMask's Crypto Security Report 2026, Coin Metrics' State of the Network, and Galaxy Research.<br><span class="list-marker">Full list of media coverage: <a href="/coverage/">sergeenkov.com/coverage</a></span></p>
 
-        <div class="card">
-            <div class="laurel-wrap" style="color:#b87333;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#5a3a1a;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Bronze</div>
-            <div class="card-hex">#b87333</div>
-        </div>
-
-        <div class="card cream">
-            <div class="laurel-wrap" style="color:#8b6f47;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#4a3a22;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Sepia</div>
-            <div class="card-hex">#8b6f47</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#cd853f;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#5a3a1a;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Peru / Bronze</div>
-            <div class="card-hex">#cd853f</div>
-        </div>
-
+            <h2>My Independent Research</h2>
+            <ul class="article-list">
+                <li><a href="/polymarket-profitability/">How Many Traders Are Profitable on Polymarket</a></li>
+                <li><a href="/fusaka-poison-attacks-ethereum/">Address Poisoning Losses Surged 13x After Ethereum's Fusaka Upgrade</a></li>
+                <li><a href="/thedao-curators-220m-hack-victims/">Curators of TheDAO's $220M Set a Precedent for Using Owners' Funds for Their Own Ends</a></li>
+                <li><a href="/will-thedao-money-improve-ethereum-security/">Will TheDAO's $220M Security Fund Actually Make Ethereum Safer?</a></li>
+                <li><a href="/record-high-activity-ethereum-2026/">Record-High Activity in Ethereum Network Caused by Address Poisoning Attacks</a></li>
+                <li><a href="/loss-based-polymarket-airdrop/">The Case for a Loss-Based Polymarket Airdrop</a></li>
+            </ul>
+        </main>
     </div>
-
-    <h2>Accent colors</h2>
-    <div class="grid">
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#0645ad;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#0645ad;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Wiki Link Blue</div>
-            <div class="card-hex">#0645ad</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#1e3a5f;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#1e3a5f;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Navy</div>
-            <div class="card-hex">#1e3a5f</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#2d5016;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#2d5016;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Forest Green</div>
-            <div class="card-hex">#2d5016</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#556b2f;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#3a4a1f;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Olive (real laurel)</div>
-            <div class="card-hex">#556b2f</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#7a1f2b;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#7a1f2b;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Wine Red</div>
-            <div class="card-hex">#7a1f2b</div>
-        </div>
-
-        <div class="card">
-            <div class="laurel-wrap" style="color:#8b2c1a;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#8b2c1a;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Brick</div>
-            <div class="card-hex">#8b2c1a</div>
-        </div>
-
-    </div>
-
-    <h2>On dark background</h2>
-    <div class="grid">
-
-        <div class="card dark">
-            <div class="laurel-wrap" style="color:#f0f0f0;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#f0f0f0;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">White on Black</div>
-            <div class="card-hex">#f0f0f0</div>
-        </div>
-
-        <div class="card dark">
-            <div class="laurel-wrap" style="color:#d4af37;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#d4af37;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Gold on Black</div>
-            <div class="card-hex">#d4af37</div>
-        </div>
-
-        <div class="card dark">
-            <div class="laurel-wrap" style="color:#c8a45c;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#c8a45c;">
-                    <div class="winner">Winner</div>
-                    <div class="title">Best Crypto</div>
-                    <div class="title">Op-Ed</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Muted Gold on Black</div>
-            <div class="card-hex">#c8a45c</div>
-        </div>
-
-    </div>
-
-    <h2>Inline preview on homepage (white background, Inter font)</h2>
-    <p class="subtitle">Three best candidates placed in homepage context.</p>
-
-    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
-        <div style="font-family:'Inter',sans-serif;">
-            <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
-            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
-            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#1a1a1a;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text">
-                    <div class="winner" style="font-size:6px;">Winner</div>
-                    <div class="title" style="font-size:8px;">Best Crypto</div>
-                    <div class="title" style="font-size:8px;">Op-Ed</div>
-                    <div class="meta" style="font-size:6px;">ACJR · 2026</div>
-                </div>
-            </div>
-            <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
-        </div>
-    </div>
-
-    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
-        <div style="font-family:'Inter',sans-serif;">
-            <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
-            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
-            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#b8860b;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#5a4400;">
-                    <div class="winner" style="font-size:6px;">Winner</div>
-                    <div class="title" style="font-size:8px;">Best Crypto</div>
-                    <div class="title" style="font-size:8px;">Op-Ed</div>
-                    <div class="meta" style="font-size:6px;">ACJR · 2026</div>
-                </div>
-            </div>
-            <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
-        </div>
-    </div>
-
-    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
-        <div style="font-family:'Inter',sans-serif;">
-            <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
-            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
-            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#556b2f;">
-                <svg><use href="#laurel"/></svg>
-                <div class="laurel-text" style="color:#3a4a1f;">
-                    <div class="winner" style="font-size:6px;">Winner</div>
-                    <div class="title" style="font-size:8px;">Best Crypto</div>
-                    <div class="title" style="font-size:8px;">Op-Ed</div>
-                    <div class="meta" style="font-size:6px;">ACJR · 2026</div>
-                </div>
-            </div>
-            <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
-        </div>
-    </div>
-
-    <p style="margin-top:32px; color:#54595d; font-family:sans-serif; font-size:13px;">
-        Tell Claude which color to use (e.g. "Old Gold + dark text" or "Soft Black").
-    </p>
-    <p class="source">SVG source: <a href="https://github.com/lichess-org/lila/blob/master/public/images/icons/ico-laurel.svg">lichess <code>ico-laurel.svg</code></a> (AGPL-3.0).</p>
 </body>
 </html>
