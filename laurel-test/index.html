@@ -15,6 +15,8 @@
         }
         h1 { font-size: 24px; font-weight: 400; border-bottom: 1px solid #a2a9b1; padding-bottom: 4px; }
         .subtitle { color: #54595d; font-size: 14px; font-family: sans-serif; margin-bottom: 32px; }
+        .source { color: #54595d; font-size: 12px; font-family: sans-serif; margin: 4px 0 0; }
+        .source a { color: #0645ad; }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -41,285 +43,192 @@
             color: #202122;
             margin-top: 4px;
         }
-        .dark { background: #1a1a1a; }
-        .dark .card-label, .dark .card-note { color: #d0d0d0; }
         .back-link { display: inline-block; font-family: sans-serif; font-size: 14px; color: #0645ad; text-decoration: none; margin-bottom: 16px; }
         .back-link:hover { text-decoration: underline; }
-        h2 { font-size: 18px; font-weight: 400; margin-top: 32px; margin-bottom: 12px; }
-        .laurel { display: inline-block; }
-        .gold { color: #b8860b; fill: #b8860b; stroke: #b8860b; }
-        .black { color: #1a1a1a; fill: #1a1a1a; stroke: #1a1a1a; }
-        .grey { color: #4a4a4a; fill: #4a4a4a; stroke: #4a4a4a; }
-        .white { color: #f0f0f0; fill: #f0f0f0; stroke: #f0f0f0; }
+        h2 { font-size: 18px; font-weight: 400; margin-top: 32px; margin-bottom: 12px; border-bottom: 1px solid #eaecf0; padding-bottom: 4px; }
+        /* Award badge unified styles */
+        .award-badge { display: inline-flex; align-items: center; gap: 14px; }
+        .award-badge svg { flex-shrink: 0; }
+        .award-text { text-align: left; line-height: 1.2; }
+        .award-text .winner { font-family: sans-serif; font-size: 10px; letter-spacing: 0.18em; color: #54595d; text-transform: uppercase; }
+        .award-text .title { font-family: Georgia, serif; font-size: 14px; font-weight: 700; color: #1a1a1a; }
+        .award-text .meta { font-family: sans-serif; font-size: 11px; color: #54595d; letter-spacing: 0.08em; margin-top: 2px; }
+
+        .stack { text-align: center; }
+        .stack svg { display: block; margin: 0 auto; }
+        .stack .meta-line { font-family: sans-serif; font-size: 11px; color: #54595d; letter-spacing: 0.1em; margin-top: 4px; }
     </style>
 </head>
 <body>
     <a href="/" class="back-link">&larr; Back to homepage</a>
     <h1>Laurel Award Variants</h1>
-    <p class="subtitle">Mockups for the ACJR "Best Crypto Op-Ed" 2026 award badge. Pick a style and tell Claude which one to integrate on the homepage.</p>
+    <p class="subtitle">Mockups for the ACJR "Best Crypto Op-Ed" 2026 award badge. SVGs sourced from open-source icon libraries (MIT / Apache / CC-BY licensed).</p>
 
-    <h2>Light variants</h2>
+    <h2>Variants</h2>
     <div class="grid">
 
-        <!-- VARIANT 1: Classic film-festival laurels -->
+        <!-- VARIANT 1: Material Symbols workspace_premium - inline horizontal -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
-                <g class="black" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.2" stroke-linecap="round">
-                    <!-- Left branch -->
-                    <g transform="translate(45,70)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                    <!-- Right branch (mirrored) -->
-                    <g transform="translate(175,70) scale(-1,1)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="110" y="52" font-size="9" letter-spacing="2" font-family="sans-serif" font-weight="600">WINNER</text>
-                    <text x="110" y="76" font-size="14" font-weight="700">BEST CRYPTO</text>
-                    <text x="110" y="92" font-size="14" font-weight="700">OP-ED</text>
-                    <text x="110" y="112" font-size="9" letter-spacing="2" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div class="award-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="60" height="60" fill="#1a1a1a">
+                    <path d="m385-412 36-115-95-74h116l38-119 37 119h117l-95 74 35 115-94-71-95 71ZM244-40v-304q-45-47-64.5-103T160-560q0-136 92-228t228-92q136 0 228 92t92 228q0 57-19.5 113T716-344v304l-236-79-236 79Zm420.5-335.5Q740-451 740-560t-75.5-184.5Q589-820 480-820t-184.5 75.5Q220-669 220-560t75.5 184.5Q371-300 480-300t184.5-75.5ZM304-124l176-55 176 55v-171q-40 29-86 42t-90 13q-44 0-90-13t-86-42v171Zm176-86Z"/>
+                </svg>
+                <div class="award-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
             <div class="card-label">Variant 1</div>
-            <div class="card-note">Classic festival laurels — black</div>
+            <div class="card-note">Award medal — inline horizontal</div>
+            <div class="source">Material Symbols (Apache 2.0)</div>
         </div>
 
-        <!-- VARIANT 2: Gold festival laurels -->
+        <!-- VARIANT 2: Tabler laurel-wreath - inline -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#b8860b" stroke="#b8860b" stroke-width="1.2" stroke-linecap="round">
-                    <g transform="translate(45,70)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                    <g transform="translate(175,70) scale(-1,1)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#7a5a08">
-                    <text x="110" y="52" font-size="9" letter-spacing="2" font-family="sans-serif" font-weight="600">WINNER</text>
-                    <text x="110" y="76" font-size="14" font-weight="700">BEST CRYPTO</text>
-                    <text x="110" y="92" font-size="14" font-weight="700">OP-ED</text>
-                    <text x="110" y="112" font-size="9" letter-spacing="2" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div class="award-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.436 8a8.6 8.6 0 0 0 -.436 2.727c0 4.017 2.686 7.273 6 7.273s6 -3.256 6 -7.273a8.6 8.6 0 0 0 -.436 -2.727" />
+                    <path d="M14.5 21s-.682 -3 -2.5 -3s-2.5 3 -2.5 3" />
+                    <path d="M18.52 5.23c.292 1.666 -1.02 2.77 -1.02 2.77s-1.603 -.563 -1.895 -2.23c-.292 -1.666 1.02 -2.77 1.02 -2.77s1.603 .563 1.895 2.23" />
+                    <path d="M21.094 12.14c-1.281 1.266 -3.016 .76 -3.016 .76s-.454 -1.772 .828 -3.04c1.28 -1.266 3.016 -.76 3.016 -.76s.454 1.772 -.828 3.04" />
+                    <path d="M17.734 18.826c-1.5 -.575 -1.734 -2.19 -1.734 -2.19s1.267 -1.038 2.767 -.462c1.5 .575 1.733 2.19 1.733 2.19s-1.267 1.038 -2.767 .462" />
+                    <path d="M6.267 18.826c1.5 -.575 1.733 -2.19 1.733 -2.19s-1.267 -1.038 -2.767 -.462c-1.5 .575 -1.733 2.19 -1.733 2.19s1.267 1.038 2.767 .462" />
+                    <path d="M2.906 12.14c1.281 1.266 3.016 .76 3.016 .76s.454 -1.772 -.828 -3.04c-1.281 -1.265 -3.016 -.76 -3.016 -.76s-.454 1.772 .828 3.04" />
+                    <path d="M5.48 5.23c-.292 1.666 1.02 2.77 1.02 2.77s1.603 -.563 1.895 -2.23c.292 -1.666 -1.02 -2.77 -1.02 -2.77s-1.603 .563 -1.895 2.23" />
+                </svg>
+                <div class="award-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
             <div class="card-label">Variant 2</div>
-            <div class="card-note">Classic laurels — gold/bronze</div>
+            <div class="card-note">Tabler laurel wreath — inline</div>
+            <div class="source">Tabler Icons (MIT)</div>
         </div>
 
-        <!-- VARIANT 3: Minimalist thin curves only (no leaves) -->
+        <!-- VARIANT 3: Tabler laurel-wreath - centered, text below -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="#1a1a1a" stroke-width="1.6" stroke-linecap="round">
-                    <path d="M 70 120 Q 30 90, 40 25 Q 50 8, 65 12"/>
-                    <path d="M 150 120 Q 190 90, 180 25 Q 170 8, 155 12"/>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="110" y="58" font-size="9" letter-spacing="3" font-family="sans-serif" font-weight="600">— WINNER —</text>
-                    <text x="110" y="80" font-size="14" font-weight="700">BEST CRYPTO OP-ED</text>
-                    <text x="110" y="100" font-size="10" letter-spacing="2" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div class="stack">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.436 8a8.6 8.6 0 0 0 -.436 2.727c0 4.017 2.686 7.273 6 7.273s6 -3.256 6 -7.273a8.6 8.6 0 0 0 -.436 -2.727" />
+                    <path d="M14.5 21s-.682 -3 -2.5 -3s-2.5 3 -2.5 3" />
+                    <path d="M18.52 5.23c.292 1.666 -1.02 2.77 -1.02 2.77s-1.603 -.563 -1.895 -2.23c-.292 -1.666 1.02 -2.77 1.02 -2.77s1.603 .563 1.895 2.23" />
+                    <path d="M21.094 12.14c-1.281 1.266 -3.016 .76 -3.016 .76s-.454 -1.772 .828 -3.04c1.28 -1.266 3.016 -.76 3.016 -.76s.454 1.772 -.828 3.04" />
+                    <path d="M17.734 18.826c-1.5 -.575 -1.734 -2.19 -1.734 -2.19s1.267 -1.038 2.767 -.462c1.5 .575 1.733 2.19 1.733 2.19s-1.267 1.038 -2.767 .462" />
+                    <path d="M6.267 18.826c1.5 -.575 1.733 -2.19 1.733 -2.19s-1.267 -1.038 -2.767 -.462c-1.5 .575 -1.733 2.19 -1.733 2.19s1.267 1.038 2.767 .462" />
+                    <path d="M2.906 12.14c1.281 1.266 3.016 .76 3.016 .76s.454 -1.772 -.828 -3.04c-1.281 -1.265 -3.016 -.76 -3.016 -.76s-.454 1.772 .828 3.04" />
+                    <path d="M5.48 5.23c-.292 1.666 1.02 2.77 1.02 2.77s1.603 -.563 1.895 -2.23c.292 -1.666 -1.02 -2.77 -1.02 -2.77s-1.603 .563 -1.895 2.23" />
+                </svg>
+                <div style="font-family:Georgia, serif; font-size:14px; font-weight:700; margin-top:8px;">Best Crypto Op-Ed</div>
+                <div class="meta-line">ACJR · 2026 · WINNER</div>
+            </div>
             <div class="card-label">Variant 3</div>
-            <div class="card-note">Minimalist — thin curves, no leaves</div>
+            <div class="card-note">Tabler wreath — stacked, larger</div>
+            <div class="source">Tabler Icons (MIT)</div>
         </div>
 
-        <!-- VARIANT 4: Sparse leaves, modern -->
+        <!-- VARIANT 4: Material workspace_premium - stacked centered -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 220 140" width="220" height="140" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round">
-                    <g transform="translate(60,70)">
-                        <path d="M 15 50 Q -10 30, -5 -45" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="2" cy="-30" rx="7" ry="2.5" transform="rotate(40 2 -30)"/>
-                        <ellipse cx="-5" cy="-10" rx="8" ry="2.8" transform="rotate(-25 -5 -10)"/>
-                        <ellipse cx="4" cy="12" rx="9" ry="3" transform="rotate(45 4 12)"/>
-                        <ellipse cx="-2" cy="35" rx="9" ry="3" transform="rotate(-20 -2 35)"/>
-                    </g>
-                    <g transform="translate(160,70) scale(-1,1)">
-                        <path d="M 15 50 Q -10 30, -5 -45" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="2" cy="-30" rx="7" ry="2.5" transform="rotate(40 2 -30)"/>
-                        <ellipse cx="-5" cy="-10" rx="8" ry="2.8" transform="rotate(-25 -5 -10)"/>
-                        <ellipse cx="4" cy="12" rx="9" ry="3" transform="rotate(45 4 12)"/>
-                        <ellipse cx="-2" cy="35" rx="9" ry="3" transform="rotate(-20 -2 35)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="110" y="58" font-size="9" letter-spacing="2" font-family="sans-serif" font-weight="600">2026 WINNER</text>
-                    <text x="110" y="80" font-size="13" font-weight="700">BEST CRYPTO OP-ED</text>
-                    <text x="110" y="98" font-size="10" font-family="sans-serif">ACJR</text>
-                </g>
-            </svg>
+            <div class="stack">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="84" height="84" fill="#1a1a1a">
+                    <path d="m385-412 36-115-95-74h116l38-119 37 119h117l-95 74 35 115-94-71-95 71ZM244-40v-304q-45-47-64.5-103T160-560q0-136 92-228t228-92q136 0 228 92t92 228q0 57-19.5 113T716-344v304l-236-79-236 79Zm420.5-335.5Q740-451 740-560t-75.5-184.5Q589-820 480-820t-184.5 75.5Q220-669 220-560t75.5 184.5Q371-300 480-300t184.5-75.5ZM304-124l176-55 176 55v-171q-40 29-86 42t-90 13q-44 0-90-13t-86-42v171Zm176-86Z"/>
+                </svg>
+                <div style="font-family:Georgia, serif; font-size:14px; font-weight:700; margin-top:8px;">Best Crypto Op-Ed</div>
+                <div class="meta-line">ACJR · 2026</div>
+            </div>
             <div class="card-label">Variant 4</div>
-            <div class="card-note">Sparse leaves — minimalist accent</div>
+            <div class="card-note">Material medal — stacked</div>
+            <div class="source">Material Symbols (Apache 2.0)</div>
         </div>
 
-        <!-- VARIANT 5: Star above + laurels -->
+        <!-- VARIANT 5: Game-icons laurels (Lorc) — full wreath circle -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 220 150" width="220" height="150" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.2" stroke-linecap="round">
-                    <!-- star -->
-                    <polygon points="110,8 113,17 122,17 115,23 118,32 110,27 102,32 105,23 98,17 107,17" fill="#1a1a1a" stroke="none"/>
-                    <!-- left branch -->
-                    <g transform="translate(45,78)">
-                        <path d="M 25 50 Q -10 30, -5 -45" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-38" rx="8" ry="3" transform="rotate(-35 -1 -38)"/>
-                        <ellipse cx="2" cy="-22" rx="9" ry="3" transform="rotate(40 2 -22)"/>
-                        <ellipse cx="-6" cy="-8" rx="9" ry="3.2" transform="rotate(-30 -6 -8)"/>
-                        <ellipse cx="3" cy="10" rx="10" ry="3.4" transform="rotate(45 3 10)"/>
-                        <ellipse cx="-4" cy="28" rx="10" ry="3.5" transform="rotate(-25 -4 28)"/>
-                        <ellipse cx="8" cy="44" rx="10" ry="3.6" transform="rotate(50 8 44)"/>
-                    </g>
-                    <g transform="translate(175,78) scale(-1,1)">
-                        <path d="M 25 50 Q -10 30, -5 -45" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-38" rx="8" ry="3" transform="rotate(-35 -1 -38)"/>
-                        <ellipse cx="2" cy="-22" rx="9" ry="3" transform="rotate(40 2 -22)"/>
-                        <ellipse cx="-6" cy="-8" rx="9" ry="3.2" transform="rotate(-30 -6 -8)"/>
-                        <ellipse cx="3" cy="10" rx="10" ry="3.4" transform="rotate(45 3 10)"/>
-                        <ellipse cx="-4" cy="28" rx="10" ry="3.5" transform="rotate(-25 -4 28)"/>
-                        <ellipse cx="8" cy="44" rx="10" ry="3.6" transform="rotate(50 8 44)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="110" y="62" font-size="9" letter-spacing="2" font-family="sans-serif" font-weight="600">WINNER</text>
-                    <text x="110" y="84" font-size="14" font-weight="700">BEST CRYPTO</text>
-                    <text x="110" y="100" font-size="14" font-weight="700">OP-ED</text>
-                    <text x="110" y="120" font-size="9" letter-spacing="2" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div class="stack" style="position:relative; width:160px; margin: 0 auto;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="160" height="160">
+                    <path fill="#1a1a1a" d="M234.7 18.05c-21 .2-38.8 2.5-62 10.2-4.1 2-8.2 4.1-12.2 6.2.8 5.26 3.2 10.77 5.5 14.7-4.9 4.2-9.6 8.4-14.1 12.8-3.7-5.5-6.6-11.4-8.3-17.4-14.2 9.2-27.7 19.6-40.1 31.4 1.9 9.5 9.2 18.21 15.2 24.15-3.7 5.2-7.2 10.4-10.5 15.7-8.22-7.2-15.12-15.5-19.32-24.65C74.97 108.1 61.92 126 53.08 142.3c5.29 13 19.01 22.7 29.8 28.4-2 6.1-3.7 12.2-5.1 18.4-13.5-6.4-26.3-15.7-34.5-26.6-8.7 20.1-14.7 40.7-18.2 61.4 9.63 15.5 30.57 22.9 46 25.9.1 6.4.4 12.8.9 19.2-17.79-2.7-37.26-9.6-49.9-20.4-1.6 22.3-.5 44.5 3.4 66.2 15.25 13.7 41.14 15.3 58.6 13.7 2 6.1 4.1 12.2 6.5 18.1-18.61 4.5-43.29 1.1-59.3-6.2 6.6 23.7 16.4 46.4 29.2 67.4 19.33 8.6 44.52 3.6 61.72-2.5 3.7 5.3 7.6 10.5 11.6 15.5-17.8 9.5-39.9 11.5-57.52 10.1 12.3 16.3 26.62 31.2 42.72 44.4 4.9 1.1 10.5 1.1 16.7.3 11.7-1.7 25.2-7 37.9-14.7 16.7 13.5 34.9 24.7 54.1 33.1l7.5-17.2c-16-6.9-31.3-16.2-45.6-27.3 13.3-10.9 24.3-24 30.2-36.5 4.7-9.7 6.3-18.4 4.5-26.3-10.7-5.7-20.6-12.5-29.5-20.3-7.8 20.8-26.4 36.1-43.5 46-4-4.9-7.9-9.9-11.6-15 16.8-9.8 39.9-27.5 39.1-47.1-8.9-10.3-16.6-21.8-22.9-34.1-12 14-30.7 22.5-46.5 26.7-2.4-5.8-4.6-11.6-6.6-17.6 16.8-5.2 37.9-13 44.1-29.7-4.3-11.5-7.5-23.6-9.7-36-13.8 8.4-32 11.1-46.32 10.9-.6-6.2-1-12.4-1.2-18.7 15.52-.6 33.92-2.5 44.92-14.3-.8-12.6-.5-25.5.9-38.5-13.4 2.8-29 .3-40.42-3.2 1.3-6 2.9-12.1 4.8-18.1 12.82 3.2 27.12 6.7 38.82.8 2.7-13.6 6.7-27.3 12-40.8-9.9-1.8-20.2-6.3-27.7-10.7 3.3-5.3 6.8-10.5 10.5-15.7 8.1 4.2 16.3 8.8 25.2 8.4 5.7-11.6 12.3-22.65 19.5-32.75-5.1-2.7-10-6.4-14.4-10.6 4.4-4.3 9.1-8.5 13.9-12.7 3.8 3.54 8 6.18 12.3 8.2 15.9-18.6 35.9-36.23 49-53.8zm38.4 0c15.4 20.75 33.8 35.63 48.9 53.7 4.6-1.76 9.1-5.23 12.3-8.1 4.9 4.2 9.5 8.4 13.9 12.7-4.4 4.2-9.2 7.9-14.4 10.6 7.3 10.1 13.9 21.05 19.6 32.65 9-.1 18.4-4.4 25.2-8.4 3.7 5.2 7.2 10.4 10.4 15.7-8.8 5.9-18.2 9.6-27.6 10.7 5.3 13.5 9.3 27.2 12 40.8 12.3 5.4 27.3 2.7 38.7-.8 1.9 6 3.5 12.1 4.9 18.1-14.2 3.4-27.3 6.2-40.4 3.3 1.4 12.9 1.6 25.8.8 38.5 11.4 12.3 30.2 14.4 44.9 14.2-.2 6.3-.5 12.5-1.2 18.7-17.1-.5-32.8-2.5-46.3-10.9-2.1 12.4-5.3 24.5-9.6 36.1 8.2 17.4 27.8 25.3 44.1 29.6-2 6-4.2 11.8-6.6 17.6-18.5-5.6-34.9-13-46.6-26.7-6.3 12.4-13.9 23.8-22.9 34.1 1.5 22.4 22.4 37.8 39.2 47.1-3.7 5.1-7.6 10.1-11.6 15-19-11.8-36.6-25.8-43.5-46-9 7.8-18.8 14.6-29.6 20.3-1.8 7.9-.1 16.6 4.5 26.3 6 12.5 17 25.6 30.3 36.5-14.3 11.1-29.6 20.4-45.6 27.3l7.4 17.2c19.3-8.4 37.4-19.6 54.1-33.2 12.7 7.8 26.2 13.1 38 14.8 6.2.8 11.8.8 16.7-.3 16.1-13.2 30.4-28.1 42.7-44.4-18 1.7-37.9-2.3-56.5-9.7-.3-.1-.7-.3-1.1-.4 4.1-5 7.9-10.2 11.7-15.5 18.2 7.8 43.7 11.7 61.6 2.5 12.8-21 22.6-43.7 29.2-67.4-.4.2-.8.4-1.2.5-20.5 6.4-40.1 7.6-58.1 5.7 2.4-5.9 4.5-12 6.5-18 19.1 1.7 45.2.1 58.6-13.8 3.9-21.7 5.1-43.9 3.4-66.2-14.4 10.7-34.9 17.9-49.9 20.4.5-6.4.9-12.8 1-19.2 16.8-4.8 37.9-10 45.9-25.9-3.5-20.7-9.5-41.3-18.2-61.4-9.4 11.6-23.1 21-34.4 26.5-1.5-6.1-3.2-12.2-5.2-18.3 12-7.4 25.1-15.3 29.9-28.4-10.1-18.7-22.2-35.8-35.9-51.05-4.2 9.05-11.1 17.45-19.2 24.65-3.3-5.3-6.8-10.5-10.6-15.7 6.2-7.17 14.2-14.71 15.2-24.15-12.4-11.8-25.8-22.2-40-31.4-1.8 6-4.7 11.9-8.3 17.4-4.5-4.4-9.2-8.6-14.1-12.8 2.7-4.82 4.7-9.62 5.4-14.7-4-2.1-8.1-4.2-12.2-6.2-24.7-8.2-43.3-10.3-66.2-10.2z"/>
+                </svg>
+                <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none;">
+                    <div style="font-family:Georgia, serif; font-size:11px; font-weight:700; color:#1a1a1a; line-height:1.1; text-align:center;">BEST<br>CRYPTO<br>OP-ED</div>
+                    <div style="font-family:sans-serif; font-size:8px; color:#1a1a1a; letter-spacing:0.1em; margin-top:2px;">ACJR · 2026</div>
+                </div>
+            </div>
             <div class="card-label">Variant 5</div>
-            <div class="card-note">With star ornament on top</div>
+            <div class="card-note">Game-Icons full wreath — text inside</div>
+            <div class="source">game-icons.net by Lorc (CC-BY 3.0)</div>
         </div>
 
-        <!-- VARIANT 6: Compact single-line inside laurels -->
+        <!-- VARIANT 6: Material workspace_premium - large with text on side -->
         <div class="card">
-            <svg class="laurel" viewBox="0 0 280 70" width="280" height="70" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.1" stroke-linecap="round">
-                    <g transform="translate(40,35)">
-                        <path d="M 18 22 Q -8 12, -2 -22" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="0" cy="-15" rx="6" ry="2" transform="rotate(-30 0 -15)"/>
-                        <ellipse cx="-3" cy="-5" rx="7" ry="2.3" transform="rotate(40 -3 -5)"/>
-                        <ellipse cx="2" cy="6" rx="7" ry="2.4" transform="rotate(-25 2 6)"/>
-                        <ellipse cx="-4" cy="16" rx="8" ry="2.6" transform="rotate(45 -4 16)"/>
-                    </g>
-                    <g transform="translate(240,35) scale(-1,1)">
-                        <path d="M 18 22 Q -8 12, -2 -22" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="0" cy="-15" rx="6" ry="2" transform="rotate(-30 0 -15)"/>
-                        <ellipse cx="-3" cy="-5" rx="7" ry="2.3" transform="rotate(40 -3 -5)"/>
-                        <ellipse cx="2" cy="6" rx="7" ry="2.4" transform="rotate(-25 2 6)"/>
-                        <ellipse cx="-4" cy="16" rx="8" ry="2.6" transform="rotate(45 -4 16)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="140" y="32" font-size="13" font-weight="700">BEST CRYPTO OP-ED</text>
-                    <text x="140" y="48" font-size="10" letter-spacing="1.5" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div style="display:inline-flex; align-items:center; gap:18px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="92" height="92" fill="#b8860b">
+                    <path d="m385-412 36-115-95-74h116l38-119 37 119h117l-95 74 35 115-94-71-95 71ZM244-40v-304q-45-47-64.5-103T160-560q0-136 92-228t228-92q136 0 228 92t92 228q0 57-19.5 113T716-344v304l-236-79-236 79Zm420.5-335.5Q740-451 740-560t-75.5-184.5Q589-820 480-820t-184.5 75.5Q220-669 220-560t75.5 184.5Q371-300 480-300t184.5-75.5ZM304-124l176-55 176 55v-171q-40 29-86 42t-90 13q-44 0-90-13t-86-42v171Zm176-86Z"/>
+                </svg>
+                <div style="text-align:left;">
+                    <div style="font-family:sans-serif; font-size:11px; letter-spacing:0.18em; color:#7a5a08; text-transform:uppercase;">2026 Winner</div>
+                    <div style="font-family:Georgia, serif; font-size:18px; font-weight:700; color:#1a1a1a; margin-top:2px;">Best Crypto Op-Ed</div>
+                    <div style="font-family:sans-serif; font-size:11px; color:#54595d; letter-spacing:0.05em; margin-top:2px;">Awarded by ACJR</div>
+                </div>
+            </div>
             <div class="card-label">Variant 6</div>
-            <div class="card-note">Compact horizontal — fits inline near name</div>
+            <div class="card-note">Material medal in gold — bigger</div>
+            <div class="source">Material Symbols (Apache 2.0)</div>
         </div>
+
     </div>
 
-    <h2>How they look inline (homepage preview)</h2>
-    <p class="subtitle">Imitates placement under "Independent researcher" on the homepage.</p>
+    <h2>Inline preview on homepage (placement under "Independent researcher")</h2>
 
     <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
         <div style="font-family:'Inter',sans-serif;">
             <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
-            <div style="color:#666; margin-bottom:8px;">Independent researcher</div>
-            <!-- Inline Variant 6 -->
-            <svg viewBox="0 0 280 70" width="220" height="55" xmlns="http://www.w3.org/2000/svg" style="display:block; margin: 6px 0 10px -4px;">
-                <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.1" stroke-linecap="round">
-                    <g transform="translate(40,35)">
-                        <path d="M 18 22 Q -8 12, -2 -22" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="0" cy="-15" rx="6" ry="2" transform="rotate(-30 0 -15)"/>
-                        <ellipse cx="-3" cy="-5" rx="7" ry="2.3" transform="rotate(40 -3 -5)"/>
-                        <ellipse cx="2" cy="6" rx="7" ry="2.4" transform="rotate(-25 2 6)"/>
-                        <ellipse cx="-4" cy="16" rx="8" ry="2.6" transform="rotate(45 -4 16)"/>
-                    </g>
-                    <g transform="translate(240,35) scale(-1,1)">
-                        <path d="M 18 22 Q -8 12, -2 -22" fill="none" stroke-width="1.2"/>
-                        <ellipse cx="0" cy="-15" rx="6" ry="2" transform="rotate(-30 0 -15)"/>
-                        <ellipse cx="-3" cy="-5" rx="7" ry="2.3" transform="rotate(40 -3 -5)"/>
-                        <ellipse cx="2" cy="6" rx="7" ry="2.4" transform="rotate(-25 2 6)"/>
-                        <ellipse cx="-4" cy="16" rx="8" ry="2.6" transform="rotate(45 -4 16)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="140" y="32" font-size="13" font-weight="700">BEST CRYPTO OP-ED</text>
-                    <text x="140" y="48" font-size="10" letter-spacing="1.5" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
+            <!-- Variant 1 inline -->
+            <div style="display:inline-flex; align-items:center; gap:10px; margin: 4px 0 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="36" height="36" fill="#1a1a1a">
+                    <path d="m385-412 36-115-95-74h116l38-119 37 119h117l-95 74 35 115-94-71-95 71ZM244-40v-304q-45-47-64.5-103T160-560q0-136 92-228t228-92q136 0 228 92t92 228q0 57-19.5 113T716-344v304l-236-79-236 79Zm420.5-335.5Q740-451 740-560t-75.5-184.5Q589-820 480-820t-184.5 75.5Q220-669 220-560t75.5 184.5Q371-300 480-300t184.5-75.5ZM304-124l176-55 176 55v-171q-40 29-86 42t-90 13q-44 0-90-13t-86-42v171Zm176-86Z"/>
+                </svg>
+                <div style="text-align:left; line-height:1.2;">
+                    <div style="font-family:sans-serif; font-size:9px; letter-spacing:0.18em; color:#666; text-transform:uppercase;">Winner</div>
+                    <div style="font-family:Georgia, serif; font-size:13px; font-weight:700; color:#1a1a1a;">Best Crypto Op-Ed</div>
+                    <div style="font-family:sans-serif; font-size:10px; color:#666; letter-spacing:0.06em;">ACJR · 2026</div>
+                </div>
+            </div>
             <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
         </div>
     </div>
 
-    <div style="border:1px solid #d6d8db; padding:24px; background:#fff;">
+    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
         <div style="font-family:'Inter',sans-serif;">
             <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
-            <div style="color:#666; margin-bottom:8px;">Independent researcher</div>
-            <!-- Inline Variant 1 (small) -->
-            <svg viewBox="0 0 220 140" width="160" height="100" xmlns="http://www.w3.org/2000/svg" style="display:block; margin: 4px 0 8px -8px;">
-                <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.2" stroke-linecap="round">
-                    <g transform="translate(45,70)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                    <g transform="translate(175,70) scale(-1,1)">
-                        <path d="M 25 55 Q -10 35, -5 -50" fill="none" stroke-width="1.4"/>
-                        <ellipse cx="-1" cy="-42" rx="8" ry="3" transform="rotate(-35 -1 -42)"/>
-                        <ellipse cx="2" cy="-28" rx="9" ry="3" transform="rotate(40 2 -28)"/>
-                        <ellipse cx="-6" cy="-18" rx="9" ry="3.2" transform="rotate(-30 -6 -18)"/>
-                        <ellipse cx="3" cy="-2" rx="10" ry="3.4" transform="rotate(45 3 -2)"/>
-                        <ellipse cx="-4" cy="14" rx="10" ry="3.5" transform="rotate(-25 -4 14)"/>
-                        <ellipse cx="8" cy="30" rx="10" ry="3.6" transform="rotate(50 8 30)"/>
-                        <ellipse cx="-2" cy="46" rx="11" ry="3.8" transform="rotate(-20 -2 46)"/>
-                    </g>
-                </g>
-                <g font-family="Georgia, serif" text-anchor="middle" fill="#1a1a1a">
-                    <text x="110" y="52" font-size="9" letter-spacing="2" font-family="sans-serif" font-weight="600">WINNER</text>
-                    <text x="110" y="76" font-size="14" font-weight="700">BEST CRYPTO</text>
-                    <text x="110" y="92" font-size="14" font-weight="700">OP-ED</text>
-                    <text x="110" y="112" font-size="9" letter-spacing="2" font-family="sans-serif">ACJR · 2026</text>
-                </g>
-            </svg>
+            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
+            <!-- Variant 2 inline (tabler wreath) -->
+            <div style="display:inline-flex; align-items:center; gap:10px; margin: 4px 0 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.436 8a8.6 8.6 0 0 0 -.436 2.727c0 4.017 2.686 7.273 6 7.273s6 -3.256 6 -7.273a8.6 8.6 0 0 0 -.436 -2.727" />
+                    <path d="M14.5 21s-.682 -3 -2.5 -3s-2.5 3 -2.5 3" />
+                    <path d="M18.52 5.23c.292 1.666 -1.02 2.77 -1.02 2.77s-1.603 -.563 -1.895 -2.23c-.292 -1.666 1.02 -2.77 1.02 -2.77s1.603 .563 1.895 2.23" />
+                    <path d="M21.094 12.14c-1.281 1.266 -3.016 .76 -3.016 .76s-.454 -1.772 .828 -3.04c1.28 -1.266 3.016 -.76 3.016 -.76s.454 1.772 -.828 3.04" />
+                    <path d="M17.734 18.826c-1.5 -.575 -1.734 -2.19 -1.734 -2.19s1.267 -1.038 2.767 -.462c1.5 .575 1.733 2.19 1.733 2.19s-1.267 1.038 -2.767 .462" />
+                    <path d="M6.267 18.826c1.5 -.575 1.733 -2.19 1.733 -2.19s-1.267 -1.038 -2.767 -.462c-1.5 .575 -1.733 2.19 -1.733 2.19s1.267 1.038 2.767 .462" />
+                    <path d="M2.906 12.14c1.281 1.266 3.016 .76 3.016 .76s.454 -1.772 -.828 -3.04c-1.281 -1.265 -3.016 -.76 -3.016 -.76s-.454 1.772 .828 3.04" />
+                    <path d="M5.48 5.23c-.292 1.666 1.02 2.77 1.02 2.77s1.603 -.563 1.895 -2.23c.292 -1.666 -1.02 -2.77 -1.02 -2.77s-1.603 .563 -1.895 2.23" />
+                </svg>
+                <div style="text-align:left; line-height:1.2;">
+                    <div style="font-family:sans-serif; font-size:9px; letter-spacing:0.18em; color:#666; text-transform:uppercase;">Winner</div>
+                    <div style="font-family:Georgia, serif; font-size:13px; font-weight:700; color:#1a1a1a;">Best Crypto Op-Ed</div>
+                    <div style="font-family:sans-serif; font-size:10px; color:#666; letter-spacing:0.06em;">ACJR · 2026</div>
+                </div>
+            </div>
             <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
         </div>
     </div>
 
-    <p style="margin-top:32px; color:#54595d; font-family:sans-serif; font-size:13px;">Tell Claude which variant to use (e.g. "use Variant 6") and provide: full ACJR name + which article the award is for.</p>
+    <p style="margin-top:32px; color:#54595d; font-family:sans-serif; font-size:13px;">
+        Tell Claude which variant to use (e.g. "use Variant 1") and provide:<br>
+        — Full ACJR name (for the link/tooltip)<br>
+        — Which article got the award (so it can be marked in the article list too)
+    </p>
 </body>
 </html>
