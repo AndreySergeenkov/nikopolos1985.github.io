@@ -10,8 +10,8 @@
         /* Laurel badge styles */
         .laurel-badge {
             position: relative;
-            width: 110px;
-            height: 120px;
+            width: 85px;
+            height: 96px;
             flex-shrink: 0;
             display: inline-block;
             color: #d4af37;
@@ -32,26 +32,26 @@
             text-align: center;
             pointer-events: none;
         }
-        .laurel-badge .winner {
-            font-family: 'Inter', sans-serif;
-            font-size: 7px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #7a5f00;
-            font-weight: 600;
-        }
         .laurel-badge .title {
             font-family: Georgia, serif;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             color: #7a5f00;
         }
         .laurel-badge .meta {
             font-family: 'Inter', sans-serif;
-            font-size: 7px;
+            font-size: 6.5px;
             letter-spacing: 0.12em;
             color: #7a5f00;
-            margin-top: 2px;
+            margin-top: 3px;
+        }
+        @media (max-width: 480px) {
+            .laurel-badge {
+                width: 68px;
+                height: 78px;
+            }
+            .laurel-badge .title { font-size: 7.5px; }
+            .laurel-badge .meta { font-size: 5.5px; margin-top: 2px; }
         }
     </style>
 </head>
@@ -88,7 +88,6 @@
                 <div class="laurel-badge" title="ACJR Best Crypto Op-Ed 2026">
                     <svg><use href="#laurel"/></svg>
                     <div class="laurel-text">
-                        <div class="winner">Winner</div>
                         <div class="title">Best Crypto</div>
                         <div class="title">Op-Ed</div>
                         <div class="meta">ACJR · 2026</div>
