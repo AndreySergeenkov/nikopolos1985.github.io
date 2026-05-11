@@ -23,34 +23,38 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
             margin-bottom: 32px;
         }
         .card {
             border: 1px solid #d6d8db;
-            padding: 36px 20px 16px;
+            padding: 28px 16px 14px;
             text-align: center;
             background: #fff;
         }
+        .card.dark { background: #1a1a1a; border-color: #333; }
+        .card.dark .card-label, .card.dark .card-hex { color: #aaa; }
+        .card.cream { background: #faf6ee; border-color: #e5dec9; }
+
         .card-label {
             font-family: sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             color: #54595d;
-            margin-top: 22px;
+            margin-top: 14px;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        .card-note {
-            font-family: sans-serif;
-            font-size: 13px;
-            color: #202122;
-            margin-top: 4px;
+        .card-hex {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #54595d;
+            margin-top: 2px;
         }
 
-        /* Sundance-style: laurel SVG with text positioned in middle */
-        .laurel-wrap { position: relative; display: inline-block; }
-        .laurel-wrap svg { display: block; }
+        /* Laurel wrap: SVG with text overlaid */
+        .laurel-wrap { position: relative; display: inline-block; width: 160px; height: 152px; }
+        .laurel-wrap svg { display: block; width: 100%; height: 100%; }
         .laurel-text {
             position: absolute;
             inset: 0;
@@ -61,151 +65,394 @@
             line-height: 1.15;
             text-align: center;
             pointer-events: none;
+            color: inherit;
         }
-        .winner { font-family: sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #1a1a1a; }
-        .title { font-family: Georgia, 'Linux Libertine', serif; font-size: 13px; font-weight: 700; color: #1a1a1a; }
-        .meta { font-family: sans-serif; font-size: 9px; letter-spacing: 0.12em; color: #1a1a1a; margin-top: 2px; }
-
-        .gold { color: #a07900; }
-        .gold .winner, .gold .title, .gold .meta { color: #6b5100; }
+        .winner { font-family: sans-serif; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; }
+        .title { font-family: Georgia, 'Linux Libertine', serif; font-size: 11px; font-weight: 700; }
+        .meta { font-family: sans-serif; font-size: 8px; letter-spacing: 0.12em; margin-top: 2px; }
     </style>
 </head>
 <body>
-    <a href="/" class="back-link">&larr; Back to homepage</a>
-    <h1>Laurel Award Variants</h1>
-    <p class="subtitle">Classic film-festival style (Sundance/Cannes) — two open laurel branches embracing the award text from the sides.</p>
-    <p class="source">SVG source: <a href="https://github.com/lichess-org/lila/blob/master/public/images/icons/ico-laurel.svg">lichess-org/lila <code>ico-laurel.svg</code></a> (AGPL-3.0). Suitable for static embedding on the site with attribution.</p>
+    <!-- Shared SVG symbol so we don't duplicate the path data for every color -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="laurel" viewBox="0 0 85 80.79">
+            <g fill="currentColor">
+                <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
+                <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
+                <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
+                <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
+                <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
+                <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
+                <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
+            </g>
+        </symbol>
+    </svg>
 
-    <h2>Variants</h2>
+    <a href="/" class="back-link">&larr; Back to homepage</a>
+    <h1>Laurel Award Variants — Colors</h1>
+    <p class="subtitle">Same lichess SVG, different colors. Pick one (or two — one for laurels, one for text) and tell Claude which to use.</p>
+
+    <h2>Neutrals</h2>
     <div class="grid">
 
-        <!-- VARIANT 1: Classic black, medium -->
         <div class="card">
-            <div class="laurel-wrap" style="width:180px; height:171px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 80.79" width="180" height="171" style="color:#1a1a1a">
-                    <g fill="currentColor">
-                        <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
-                        <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
-                        <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
-                        <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
-                        <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
-                        <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
-                        <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
-                    </g>
-                </svg>
+            <div class="laurel-wrap" style="color:#000;">
+                <svg><use href="#laurel"/></svg>
                 <div class="laurel-text">
                     <div class="winner">Winner</div>
-                    <div class="title" style="font-size:12px;">BEST CRYPTO</div>
-                    <div class="title" style="font-size:12px;">OP-ED</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Variant 1</div>
-            <div class="card-note">Classic — black, medium size</div>
-        </div>
-
-        <!-- VARIANT 2: Gold variant -->
-        <div class="card">
-            <div class="laurel-wrap gold" style="width:180px; height:171px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 80.79" width="180" height="171" style="color:#a07900">
-                    <g fill="currentColor">
-                        <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
-                        <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
-                        <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
-                        <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
-                        <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
-                        <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
-                        <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
-                    </g>
-                </svg>
-                <div class="laurel-text">
-                    <div class="winner">Winner</div>
-                    <div class="title" style="font-size:12px;">BEST CRYPTO</div>
-                    <div class="title" style="font-size:12px;">OP-ED</div>
-                    <div class="meta">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Variant 2</div>
-            <div class="card-note">Classic — gold/bronze</div>
-        </div>
-
-        <!-- VARIANT 3: Smaller, denser text (3 lines) -->
-        <div class="card">
-            <div class="laurel-wrap" style="width:150px; height:142px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 80.79" width="150" height="142" style="color:#1a1a1a">
-                    <g fill="currentColor">
-                        <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
-                        <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
-                        <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
-                        <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
-                        <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
-                        <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
-                        <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
-                    </g>
-                </svg>
-                <div class="laurel-text">
-                    <div class="winner" style="font-size:7px;">Winner</div>
-                    <div class="title" style="font-size:10px;">Best Crypto</div>
-                    <div class="title" style="font-size:10px;">Op-Ed</div>
-                    <div class="meta" style="font-size:7px;">ACJR · 2026</div>
-                </div>
-            </div>
-            <div class="card-label">Variant 3</div>
-            <div class="card-note">Compact — smaller (homepage size)</div>
-        </div>
-
-        <!-- VARIANT 4: Single line "BEST CRYPTO OP-ED" -->
-        <div class="card">
-            <div class="laurel-wrap" style="width:200px; height:190px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 80.79" width="200" height="190" style="color:#1a1a1a">
-                    <g fill="currentColor">
-                        <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
-                        <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
-                        <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
-                        <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
-                        <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
-                        <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
-                        <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
-                    </g>
-                </svg>
-                <div class="laurel-text">
-                    <div class="winner">2026 Winner</div>
-                    <div class="title" style="margin-top:4px;">Best</div>
-                    <div class="title">Crypto</div>
+                    <div class="title">Best Crypto</div>
                     <div class="title">Op-Ed</div>
-                    <div class="meta" style="margin-top:4px;">ACJR</div>
+                    <div class="meta">ACJR · 2026</div>
                 </div>
             </div>
-            <div class="card-label">Variant 4</div>
-            <div class="card-note">Larger — 5 lines of text</div>
+            <div class="card-label">Pure Black</div>
+            <div class="card-hex">#000000</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#1a1a1a;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Soft Black</div>
+            <div class="card-hex">#1a1a1a</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#202122;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Wiki Body</div>
+            <div class="card-hex">#202122</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#4a4a4a;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Dark Grey</div>
+            <div class="card-hex">#4a4a4a</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#54595d;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Wiki Subtle</div>
+            <div class="card-hex">#54595d</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#9ca3af;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Silver</div>
+            <div class="card-hex">#9ca3af</div>
         </div>
 
     </div>
 
-    <h2>Inline preview on homepage</h2>
-    <p class="subtitle">Imitates placement under "Independent researcher" on the homepage.</p>
+    <h2>Gold & Bronze</h2>
+    <div class="grid">
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#d4af37;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#7a5f00;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Bright Gold</div>
+            <div class="card-hex">#d4af37</div>
+        </div>
+
+        <div class="card cream">
+            <div class="laurel-wrap" style="color:#b8860b;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#5a4400;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">DarkGoldenrod</div>
+            <div class="card-hex">#b8860b</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#a07900;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#6b5100;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Old Gold</div>
+            <div class="card-hex">#a07900</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#b87333;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#5a3a1a;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Bronze</div>
+            <div class="card-hex">#b87333</div>
+        </div>
+
+        <div class="card cream">
+            <div class="laurel-wrap" style="color:#8b6f47;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#4a3a22;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Sepia</div>
+            <div class="card-hex">#8b6f47</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#cd853f;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#5a3a1a;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Peru / Bronze</div>
+            <div class="card-hex">#cd853f</div>
+        </div>
+
+    </div>
+
+    <h2>Accent colors</h2>
+    <div class="grid">
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#0645ad;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#0645ad;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Wiki Link Blue</div>
+            <div class="card-hex">#0645ad</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#1e3a5f;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#1e3a5f;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Navy</div>
+            <div class="card-hex">#1e3a5f</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#2d5016;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#2d5016;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Forest Green</div>
+            <div class="card-hex">#2d5016</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#556b2f;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#3a4a1f;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Olive (real laurel)</div>
+            <div class="card-hex">#556b2f</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#7a1f2b;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#7a1f2b;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Wine Red</div>
+            <div class="card-hex">#7a1f2b</div>
+        </div>
+
+        <div class="card">
+            <div class="laurel-wrap" style="color:#8b2c1a;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#8b2c1a;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Brick</div>
+            <div class="card-hex">#8b2c1a</div>
+        </div>
+
+    </div>
+
+    <h2>On dark background</h2>
+    <div class="grid">
+
+        <div class="card dark">
+            <div class="laurel-wrap" style="color:#f0f0f0;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#f0f0f0;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">White on Black</div>
+            <div class="card-hex">#f0f0f0</div>
+        </div>
+
+        <div class="card dark">
+            <div class="laurel-wrap" style="color:#d4af37;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#d4af37;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Gold on Black</div>
+            <div class="card-hex">#d4af37</div>
+        </div>
+
+        <div class="card dark">
+            <div class="laurel-wrap" style="color:#c8a45c;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#c8a45c;">
+                    <div class="winner">Winner</div>
+                    <div class="title">Best Crypto</div>
+                    <div class="title">Op-Ed</div>
+                    <div class="meta">ACJR · 2026</div>
+                </div>
+            </div>
+            <div class="card-label">Muted Gold on Black</div>
+            <div class="card-hex">#c8a45c</div>
+        </div>
+
+    </div>
+
+    <h2>Inline preview on homepage (white background, Inter font)</h2>
+    <p class="subtitle">Three best candidates placed in homepage context.</p>
 
     <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
         <div style="font-family:'Inter',sans-serif;">
             <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
             <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
-            <!-- Variant 3 inline -->
-            <div class="laurel-wrap" style="width:120px; height:114px; margin: 4px 0 10px -8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 80.79" width="120" height="114" style="color:#1a1a1a">
-                    <g fill="currentColor">
-                        <path d="M27.52 8.5c.48-2.92 3.94-5.73 7.06-5.58-.74 3.35-4.36 5.4-7.06 5.57zm-6 4.15c2.8-2.2 8.29-2.3 10.9-.3-2.7 1.84-8.54 2.01-10.9.3m-5.17 5.45c2.34-2.68 7.72-3.78 10.66-2.3-2.32 2.3-8.03 3.55-10.66 2.3m3.32 2.27c-1.44 3.26-6.25 5.9-9.5 5.35 1.53-2.88 5.85-5.77 9.5-5.35"/>
-                        <path d="M10.43 14.77c-2.23 2.76-2.39 8.25-.41 10.88 1.86-2.67 2.1-8.5.41-10.88m6.98-7.09c-2.33 2.47-2.88 7.7-1.19 10.35 1.97-2.42 2.63-7.96 1.2-10.35zm8.83-4.72c-3.15 1.55-5.55 6.39-4.88 9.56 2.77-1.62 5.4-6.73 4.88-9.56m-10.32 23.8c-.42 3.82-4.52 8.11-8.04 8.6.64-3.46 4.26-8.1 8.04-8.6"/>
-                        <path d="M4.66 24.28C3.3 27.76 4.88 33.3 7.7 35.3c1.01-3.27-.6-9.18-3.04-11.03zm8.47 10.22c.8 4.05-2 9.76-5.45 11.4-.46-3.75 1.58-9.13 5.45-11.4m.03 8.71c1.83 3.86.47 10.3-2.58 12.83-1.42-3.65-.32-10.22 2.58-12.83m1.52 8.73c2.79 3.17 3.24 9.66 1.03 12.88-2.34-3.08-3.22-8.56-1.03-12.88m3.87 8.97c3.3 2 5.49 7.53 4.45 10.95-2.88-2.05-5.06-6.62-4.45-10.95m13.68 10.07c3.86.4 8.2 4.5 8.73 8.05-3.5-.62-7.93-4.2-8.73-8.05m-6.78-3.41c3.26 1.29 6.05 5.91 5.64 9.13a10.65 10.65 0 0 1-5.64-9.13"/>
-                        <path d="M1.96 35.07c-.68 3.9 2.12 9.32 5.46 10.83.37-3.61-2.53-9.42-5.46-10.83M.3 46.53c.77 4.5 5.9 9.3 10.1 9.63-.99-4.05-6.38-9.23-10.1-9.63m10.46 23.34c2.75 2.9 8.84 3.88 12.06 2.07-2.7-2.46-9.16-3.59-12.06-2.07M29.2 82.82c3.77 1.33 9.63-.56 11.68-3.63-3.53-.97-9.8.96-11.69 3.63zM3.68 58.77c1.88 3.93 7.86 6.98 11.81 6.19-1.98-3.46-8.3-6.8-11.8-6.19zm15.34 18.98c3.32 2.12 9.36 1.6 12-.88-3.16-1.71-9.6-1.26-12 .88M57.48 8.5c-.48-2.92-3.94-5.73-7.06-5.58.8 3.35 4.36 5.4 7.06 5.57zm6 4.15c-2.8-2.2-8.29-2.3-10.9-.3 2.7 1.84 8.54 2.01 10.9.3m5.17 5.45c-2.34-2.68-7.72-3.78-10.66-2.3 2.32 2.3 8.02 3.55 10.66 2.3m-3.32 2.27c1.44 3.26 6.25 5.9 9.5 5.35-1.53-2.88-5.85-5.77-9.5-5.35"/>
-                        <path d="M74.57 14.77c2.23 2.76 2.39 8.25.4 10.88-1.85-2.67-2.09-8.5-.4-10.88m-6.98-7.09c2.33 2.47 2.88 7.7 1.19 10.35-1.97-2.42-2.63-7.96-1.2-10.35zm-8.83-4.72c3.15 1.55 5.55 6.39 4.88 9.56-2.77-1.62-5.4-6.73-4.88-9.56m10.32 23.8c.42 3.82 4.52 8.11 8.04 8.6-.64-3.46-4.26-8.1-8.04-8.6"/>
-                        <path d="M80.33 24.28c1.37 3.48-.22 9.02-3.03 11.03-1.01-3.27.6-9.18 3.03-11.03M71.88 34.5c-.8 4.05 2 9.76 5.44 11.4.46-3.75-1.58-9.13-5.44-11.4m-.04 8.71c-1.83 3.86-.47 10.3 2.58 12.83 1.41-3.65.32-10.22-2.58-12.83m-1.52 8.73c-2.79 3.17-3.24 9.66-1.03 12.88 2.34-3.08 3.22-8.56 1.03-12.88m-3.88 8.97c-3.3 2-5.48 7.53-4.44 10.95 2.88-2.05 5.06-6.62 4.44-10.95M52.77 70.98c-3.86.4-8.2 4.5-8.73 8.05 3.5-.62 7.93-4.2 8.73-8.05m6.78-3.41c-3.26 1.29-6.05 5.91-5.64 9.13a10.65 10.65 0 0 0 5.64-9.13"/>
-                        <path d="M83.04 35.07c.68 3.9-2.12 9.32-5.47 10.83-.36-3.61 2.54-9.42 5.47-10.83m1.66 11.46c-.77 4.5-5.9 9.3-10.1 9.63.99-4.05 6.38-9.23 10.1-9.63M74.24 69.87c-2.75 2.9-8.84 3.88-12.06 2.07 2.7-2.46 9.16-3.59 12.06-2.07M55.8 82.82c-3.76 1.33-9.63-.56-11.68-3.63 3.53-.97 9.8.96 11.69 3.63zm25.52-24.05c-1.89 3.93-7.86 6.98-11.81 6.19 1.98-3.46 8.3-6.8 11.8-6.19zM65.97 77.75c-3.31 2.12-9.35 1.6-12-.88 3.17-1.71 9.6-1.26 12 .88"/>
-                    </g>
-                </svg>
+            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#1a1a1a;">
+                <svg><use href="#laurel"/></svg>
                 <div class="laurel-text">
                     <div class="winner" style="font-size:6px;">Winner</div>
-                    <div class="title" style="font-size:8.5px;">Best Crypto</div>
-                    <div class="title" style="font-size:8.5px;">Op-Ed</div>
+                    <div class="title" style="font-size:8px;">Best Crypto</div>
+                    <div class="title" style="font-size:8px;">Op-Ed</div>
+                    <div class="meta" style="font-size:6px;">ACJR · 2026</div>
+                </div>
+            </div>
+            <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
+        </div>
+    </div>
+
+    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
+        <div style="font-family:'Inter',sans-serif;">
+            <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
+            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
+            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#b8860b;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#5a4400;">
+                    <div class="winner" style="font-size:6px;">Winner</div>
+                    <div class="title" style="font-size:8px;">Best Crypto</div>
+                    <div class="title" style="font-size:8px;">Op-Ed</div>
+                    <div class="meta" style="font-size:6px;">ACJR · 2026</div>
+                </div>
+            </div>
+            <div style="font-family:sans-serif; font-size:14px; color:#0645ad;">Email · Telegram · LinkedIn · X · RSS</div>
+        </div>
+    </div>
+
+    <div style="border:1px solid #d6d8db; padding:24px; margin-bottom:16px; background:#fff;">
+        <div style="font-family:'Inter',sans-serif;">
+            <div style="font-size:32px; font-weight:700;">Andrey Sergeenkov</div>
+            <div style="color:#666; margin-bottom:10px;">Independent researcher</div>
+            <div class="laurel-wrap" style="width:110px; height:104px; margin:4px 0 8px -6px; color:#556b2f;">
+                <svg><use href="#laurel"/></svg>
+                <div class="laurel-text" style="color:#3a4a1f;">
+                    <div class="winner" style="font-size:6px;">Winner</div>
+                    <div class="title" style="font-size:8px;">Best Crypto</div>
+                    <div class="title" style="font-size:8px;">Op-Ed</div>
                     <div class="meta" style="font-size:6px;">ACJR · 2026</div>
                 </div>
             </div>
@@ -214,10 +461,8 @@
     </div>
 
     <p style="margin-top:32px; color:#54595d; font-family:sans-serif; font-size:13px;">
-        Tell Claude which variant to use and provide:<br>
-        — Full ACJR name (for the link/tooltip)<br>
-        — Which article got the award
+        Tell Claude which color to use (e.g. "Old Gold + dark text" or "Soft Black").
     </p>
-    <p class="source">License note: the SVG is from <a href="https://github.com/lichess-org/lila/blob/master/public/images/icons/ico-laurel.svg">lichess</a>, AGPL-3.0. For a static image on a personal site this is fine — recommend a small comment in the source code crediting lichess + link to their repo.</p>
+    <p class="source">SVG source: <a href="https://github.com/lichess-org/lila/blob/master/public/images/icons/ico-laurel.svg">lichess <code>ico-laurel.svg</code></a> (AGPL-3.0).</p>
 </body>
 </html>
