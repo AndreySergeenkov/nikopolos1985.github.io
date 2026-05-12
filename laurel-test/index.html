@@ -7,55 +7,22 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="/style.css" rel="stylesheet">
     <style>
-        /* Laurel badge styles */
-        .laurel-badge {
-            position: relative;
-            width: 85px;
-            height: 96px;
-            flex-shrink: 0;
-            display: inline-block;
-            color: #d4af37;
-        }
-        .laurel-badge svg {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        .laurel-badge .laurel-text {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.15;
-            text-align: center;
-            pointer-events: none;
-        }
-        .laurel-badge .title {
-            font-family: Georgia, serif;
-            font-size: 9px;
-            font-weight: 700;
-            color: #7a5f00;
-        }
-        .laurel-badge .meta {
+        .award-line {
+            margin: 18px 0 0;
             font-family: 'Inter', sans-serif;
-            font-size: 6.5px;
-            letter-spacing: 0.12em;
-            color: #7a5f00;
-            margin-top: 3px;
+            font-size: 14px;
+            color: #5a4400;
+            line-height: 1.5;
         }
-        @media (max-width: 520px) {
-            .header { flex-wrap: wrap; }
-            .laurel-badge {
-                order: 3;
-                margin: 14px auto 0;
-                width: 96px;
-                height: 108px;
-            }
-            .laurel-badge .title { font-size: 10px; }
-            .laurel-badge .meta { font-size: 7px; margin-top: 3px; }
+        .laurel-mini {
+            display: inline-block;
+            width: 22px;
+            height: 21px;
+            color: #d4af37;
+            vertical-align: -5px;
+            margin-right: 4px;
         }
+        .laurel-mini svg { width: 100%; height: 100%; display: block; }
     </style>
 </head>
 <body>
@@ -88,16 +55,9 @@
                         <a href="/feed.xml">RSS</a>
                     </nav>
                 </div>
-                <div class="laurel-badge" title="ACJR Best Crypto Op-Ed 2026">
-                    <svg><use href="#laurel"/></svg>
-                    <div class="laurel-text">
-                        <div class="title">Best Crypto</div>
-                        <div class="title">Op-Ed</div>
-                        <div class="meta">ACJR · 2026</div>
-                    </div>
-                </div>
                 <img src='/500.jpg' alt='Andrey Sergeenkov' class='profile-photo'>
             </div>
+            <p class="award-line"><span class="laurel-mini"><svg><use href="#laurel"/></svg></span>Winner of the 2026 ACJR <strong>Best Crypto Op-Ed</strong> Award</p>
             <aside class="commission-box">
                 <p><strong>I take on freelance research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
                 <div class="commission-box-actions">
