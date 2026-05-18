@@ -129,17 +129,7 @@
             padding: 48px 32px 96px;
         }
         .hero {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-        .eyebrow {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--orange);
+            margin-bottom: 32px;
         }
         h1 {
             font-family: var(--font-display);
@@ -147,15 +137,20 @@
             line-height: 1.1;
             font-weight: 400;
             letter-spacing: -0.03em;
-            margin: 8px 0 16px;
+            margin: 0;
             color: var(--light-100);
+            max-width: 900px;
         }
-        .lede {
-            font-size: 18px;
-            line-height: 1.55;
+
+        /* ===== DRAFT BODY (рыба, минимальный стиль) ===== */
+        .draft-body {
+            max-width: 760px;
             color: var(--light-80);
-            max-width: 780px;
+            font-size: 16px;
+            line-height: 1.7;
         }
+        .draft-body p { margin: 0 0 16px; }
+        .draft-body p:last-child { margin-bottom: 0; }
 
         /* ===== STAT CARDS GRID ===== */
         .stat-grid {
@@ -401,154 +396,35 @@
 <main>
 
     <header class="hero">
-        <div class="eyebrow">Research · Draft</div>
         <h1>Полный разбор проектов Octant по всем эпохам</h1>
-        <p class="lede">
-            Собираем единый dataset по каждому проекту, получившему финансирование через Octant с момента запуска: разбивка по эпохам, точные суммы allocated и matched в ETH, адреса получателей, категории. Ниже — методология сбора данных и работа с краевыми случаями.
-        </p>
     </header>
 
-    <div class="stat-grid">
-        <div class="stat-card accent-orange">
-            <div class="stat-label">Эпох разобрано</div>
-            <div class="stat-value">12<span class="unit">E0 – E11</span></div>
-        </div>
-        <div class="stat-card accent-teal">
-            <div class="stat-label">Источники данных</div>
-            <div class="stat-value">2<span class="unit">API + chain</span></div>
-        </div>
-        <div class="stat-card accent-pink">
-            <div class="stat-label">Distribution wallet</div>
-            <div class="stat-value mono" style="font-size:14px;line-height:1.4;letter-spacing:0;color:var(--pink);font-family:var(--font-mono);font-weight:500;word-break:break-all;">0x70a0…e476</div>
-        </div>
-        <div class="stat-card accent-yellow">
-            <div class="stat-label">Текущая эпоха</div>
-            <div class="stat-value">E12<span class="unit">v2 launch</span></div>
-        </div>
+    <div class="draft-body">
+        <p>
+            Сначала хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории.
+        </p>
+        <p>
+            Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
+        </p>
+        <p>
+            Начал с того, что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR-запросы, которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а.
+        </p>
+        <p>
+            Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.
+        </p>
+        <p>
+            Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.
+        </p>
+        <p>
+            Octant считает эпохи с нуля. От Epoch 0 до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (надо проверить как он точно называется — возможно «12 раунд» или что-то такое.)
+        </p>
+        <p>
+            Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через Python все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.
+        </p>
+        <p>
+            Дальше — разбивка проектов по категориям (research, infra, public goods, education…), визуализация распределения allocated vs matched по эпохам, и анализ повторяемости проектов между раундами.
+        </p>
     </div>
-
-    <section id="goal">
-        <div class="section-meta">
-            <div class="section-num">01</div>
-            <span class="pill ok">Goal</span>
-        </div>
-        <div class="section-content">
-            <h2>Что и зачем собираем</h2>
-            <p>
-                Сначала хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (<span class="cat">allocated</span> и <span class="cat">matched</span> отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории.
-            </p>
-            <p>
-                Octant в <span class="term">docs</span> и <span class="term">dashboard</span> публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
-            </p>
-        </div>
-    </section>
-
-    <section id="method">
-        <div class="section-meta">
-            <div class="section-num">02</div>
-            <span class="pill ok">Method</span>
-        </div>
-        <div class="section-content">
-            <h2>Reverse-engineering API</h2>
-            <p>
-                Начал с того, что открыл <span class="term">Octant app</span> в браузере, в <span class="api">DevTools Network tab</span> переключил эпоху и поймал <span class="api">XHR-запросы</span>, которые подтягивают leaderboard. Базовый URL оказался <span class="mono">backend.mainnet.octant.app</span>.
-            </p>
-            <p>
-                Открыл <span class="api">/openapi.json</span> и получил <span class="term">Swagger spec</span> со всеми endpoint'ами <span class="api">V1 API</span>. API публичный, без авторизации, работает поверх <span class="term">Ethereum subgraph'а</span>.
-            </p>
-            <p>
-                Написал <span class="api">Python script</span> с тремя нужными endpoint'ами (<span class="cat">leaderboard на эпоху</span>, <span class="cat">aggregate stats</span>, <span class="cat">address-to-name mapping</span>), прошёл по всем <span class="num">12</span> эпохам, сохранил JSON.
-            </p>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Endpoint</th>
-                            <th>Назначение</th>
-                            <th class="right">Покрытие</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="mono">/leaderboard/{epoch}</span></td>
-                            <td>Проекты + allocated + matched на конкретную эпоху</td>
-                            <td class="right"><span class="pill ok">E1–E11</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="mono">/stats/aggregate</span></td>
-                            <td>Reward pool, total users, donations summary</td>
-                            <td class="right"><span class="pill ok">E1–E11</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="mono">/projects/metadata</span></td>
-                            <td>Address → human-readable project name</td>
-                            <td class="right"><span class="pill ok">все</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="mono">on-chain tx fetch</span></td>
-                            <td>Распределения с Golem distribution wallet</td>
-                            <td class="right"><span class="pill miss">E0 fallback</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section id="gap">
-        <div class="section-meta">
-            <div class="section-num">03</div>
-            <span class="pill warn">Edge case</span>
-        </div>
-        <div class="section-content">
-            <h2>Epoch 0 — gap в API</h2>
-            <p>
-                Все эпохи кроме нулевой вернули чистые данные. <span class="epoch">Epoch 0</span> в API отсутствовала, потому что была <span class="cat">pre-launch curated round</span> до запуска <span class="term">V1 механики</span> и в схему API не вписывается.
-            </p>
-
-            <div class="callout">
-                <div class="callout-label">Note · numbering</div>
-                <p>
-                    Octant считает эпохи с нуля. От <span class="epoch">Epoch 0</span> до <span class="epoch">Epoch 11</span> прошло <span class="num">12</span> раундов. Текущий запуск, первый на новой версии платформы, называется <span class="epoch">Epoch 12</span>. <em style="color:var(--grey-30);">(надо проверить как он точно называется — возможно «12 раунд» или что-то такое.)</em>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="fallback">
-        <div class="section-meta">
-            <div class="section-num">04</div>
-            <span class="pill ok">Resolved</span>
-        </div>
-        <div class="section-content">
-            <h2>Закрытие gap через on-chain</h2>
-            <p>
-                Чтобы закрыть gap по нулевой эпохе, я нашёл в документации <span class="term">Golem Foundation distribution wallet</span>:
-            </p>
-            <p><span class="addr">0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</span></p>
-            <p>
-                и выгрузил через <span class="api">Python</span> все его транзакции. Получил недостающие данные, заодно <span class="cat">валидировал</span> данные из двух источников между собой.
-            </p>
-
-            <div class="chart-slot">[ chart slot · cross-validation by epoch ]</div>
-        </div>
-    </section>
-
-    <section id="next">
-        <div class="section-meta">
-            <div class="section-num">05</div>
-            <span class="pill">Next</span>
-        </div>
-        <div class="section-content">
-            <h2>Что дальше</h2>
-            <p>
-                Дальше — разбивка проектов по <span class="cat">категориям</span> (research, infra, public goods, education…), визуализация распределения <span class="num">allocated vs matched</span> по эпохам, и анализ повторяемости проектов между раундами.
-            </p>
-            <div class="chart-slot">[ chart slot · projects by category ]</div>
-            <div class="chart-slot">[ chart slot · allocated vs matched · stacked bars per epoch ]</div>
-        </div>
-    </section>
 
 </main>
 
