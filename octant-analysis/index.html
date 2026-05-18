@@ -214,6 +214,20 @@
             color: var(--grey-30);
         }
 
+        .lb-summary {
+            color: var(--light-80);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .lb-summary .hl {
+            color: var(--light-100);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .lb-actions-top { margin-top: 0; margin-bottom: 20px; }
+
         /* Top-10 leaderboard card (download-friendly slide) */
         .lb-card {
             background: var(--grey-100);
@@ -677,6 +691,16 @@
     </div>
 
     <section class="lb-section" id="leaderboard">
+        <div class="lb-summary" id="lbSummary">
+            Top 10 проектов собрали <span class="hl"><span id="sumPct">—</span>%</span> от total funding
+            (<span class="hl"><span id="sumTop">—</span></span> из <span class="hl"><span id="sumAll">—</span></span> ETH).
+        </div>
+
+        <div class="lb-actions lb-actions-top">
+            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
+            <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
+        </div>
+
         <div class="lb-card" id="topCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Top 10 projects by total ETH received from Octant (Epochs 0–11)</div>
@@ -714,10 +738,6 @@
             </div>
         </details>
 
-        <div class="lb-actions">
-            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
-            <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
-        </div>
     </section>
 
 </main>
@@ -885,6 +905,13 @@
                 epochs_list: d.epochs_list,
                 name_variants: d.name_variants,
             })).sort((a, b) => a.rank - b.rank);
+
+            const sumTop = state.all.slice(0, 10).reduce((s, d) => s + d.total_eth, 0);
+            const sumAll = state.all.reduce((s, d) => s + d.total_eth, 0);
+            document.getElementById('sumPct').textContent = (sumTop / sumAll * 100).toFixed(1);
+            document.getElementById('sumTop').textContent = Math.round(sumTop).toLocaleString('ru-RU');
+            document.getElementById('sumAll').textContent = Math.round(sumAll).toLocaleString('ru-RU');
+
             renderTop(state.all);
             applyView();
             attachInteractions();
