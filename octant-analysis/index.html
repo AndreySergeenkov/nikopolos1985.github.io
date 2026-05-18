@@ -154,16 +154,304 @@
         }
         .draft-body p { margin: 0 0 16px; }
         .draft-body p:last-child { margin-bottom: 0; }
-        .table-placeholder {
-            margin-top: 32px;
-            padding: 48px 24px;
-            border: 0.5px dashed var(--grey-70);
-            border-radius: var(--r-card);
-            color: var(--grey-30);
-            font-size: 12px;
+
+        /* ===== LEADERBOARD SECTION ===== */
+        .lb-section {
+            max-width: 980px;
+            margin: 48px auto 0;
+            text-align: left;
+        }
+        .lb-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .lb-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.12em;
+            color: var(--orange);
+            margin-bottom: 6px;
         }
+        .lb-title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--light-100);
+            margin: 0 0 6px;
+            line-height: 1.1;
+        }
+        .lb-sub {
+            color: var(--grey-30);
+            font-size: 13px;
+        }
+        .lb-meta {
+            display: flex;
+            gap: 24px;
+        }
+        .metric {
+            display: flex;
+            flex-direction: column;
+            min-width: 80px;
+        }
+        .metric .num {
+            font-family: var(--font-display);
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--light-100);
+        }
+        .metric .lbl {
+            margin-top: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+        }
+
+        /* Top-10 leaderboard card (download-friendly slide) */
+        .lb-card {
+            background: var(--grey-100);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-card);
+            padding: 24px 28px 20px;
+        }
+        .lb-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 0.5px solid var(--grey-80);
+        }
+        .lb-card-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--light-100);
+        }
+        .lb-card-watermark {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--grey-30);
+        }
+        .lb-rows { display: flex; flex-direction: column; }
+        .lb-row {
+            display: grid;
+            grid-template-columns: 28px minmax(140px, 1.4fr) 2fr 110px;
+            gap: 16px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 0.5px solid var(--grey-80);
+            font-size: 14px;
+        }
+        .lb-row:last-child { border-bottom: none; }
+        .lb-row .rk {
+            font-family: var(--font-display);
+            color: var(--grey-30);
+            font-size: 16px;
+            text-align: center;
+        }
+        .lb-row .nm {
+            color: var(--light-100);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .lb-row .nm small {
+            display: block;
+            font-weight: 400;
+            color: var(--grey-30);
+            font-size: 11px;
+            margin-top: 2px;
+            letter-spacing: 0.04em;
+        }
+        .lb-row .bar {
+            height: 8px;
+            background: var(--grey-90);
+            border-radius: 999px;
+            overflow: hidden;
+            display: flex;
+        }
+        .lb-row .bar .seg-a { background: var(--orange); height: 100%; }
+        .lb-row .bar .seg-m { background: var(--teal);   height: 100%; }
+        .lb-row .total {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--light-100);
+            text-align: right;
+            letter-spacing: -0.01em;
+        }
+        .lb-row .total small {
+            font-family: var(--font-sans);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--grey-30);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-left: 4px;
+        }
+
+        .lb-card-legend {
+            display: flex;
+            gap: 18px;
+            margin-top: 14px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+        }
+        .lb-card-legend .dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 999px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .lb-card-legend .dot-a { background: var(--orange); }
+        .lb-card-legend .dot-m { background: var(--teal); }
+
+        /* Actions row */
+        .lb-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 40px;
+            padding: 0 18px;
+            border-radius: var(--r-btn);
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-70);
+            color: var(--grey-20);
+            font: 600 12px/1 var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: var(--font-sans);
+        }
+        .btn:hover {
+            color: var(--light-100);
+            border-color: var(--orange-20);
+            background: var(--grey-80);
+            box-shadow: var(--glow-orange);
+        }
+        .btn svg { width: 14px; height: 14px; }
+
+        /* Full table disclosure */
+        .lb-full {
+            margin-top: 28px;
+        }
+        .lb-full > summary {
+            list-style: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: var(--r-btn);
+            background: transparent;
+            border: 0.5px solid var(--grey-70);
+            color: var(--grey-20);
+            font: 600 12px/1 var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.15s ease;
+        }
+        .lb-full > summary::-webkit-details-marker { display: none; }
+        .lb-full > summary:hover {
+            color: var(--light-100);
+            border-color: var(--orange-20);
+            box-shadow: var(--glow-orange);
+        }
+        .lb-full > summary::before {
+            content: '+';
+            font-family: var(--font-display);
+            font-size: 16px;
+            line-height: 1;
+        }
+        .lb-full[open] > summary::before { content: '−'; }
+
+        .lb-full-body {
+            margin-top: 20px;
+            background: var(--grey-100);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-card);
+            overflow: hidden;
+        }
+        .lb-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-bottom: 0.5px solid var(--grey-80);
+        }
+        .lb-search input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--light-100);
+            font: 400 14px/1.4 var(--font-sans);
+            caret-color: var(--light-100);
+        }
+        .lb-search input::placeholder { color: var(--grey-30); }
+        .lb-search .count {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+            white-space: nowrap;
+        }
+
+        .lb-table-scroll { max-height: 560px; overflow-y: auto; }
+        .lb-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .lb-table thead th {
+            position: sticky;
+            top: 0;
+            background: var(--grey-100);
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+            padding: 12px 16px;
+            border-bottom: 0.5px solid var(--grey-70);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .lb-table thead th:hover { color: var(--light-100); }
+        .lb-table thead th.sorted { color: var(--orange); }
+        .lb-table thead th.right { text-align: right; }
+        .lb-table tbody td {
+            padding: 10px 16px;
+            border-bottom: 0.5px solid var(--grey-80);
+            color: var(--light-80);
+        }
+        .lb-table tbody tr:hover td { background: var(--grey-90); color: var(--light-100); }
+        .lb-table td.rk { color: var(--grey-30); font-family: var(--font-display); }
+        .lb-table td.nm { color: var(--light-100); font-weight: 500; }
+        .lb-table td.right { text-align: right; font-variant-numeric: tabular-nums; }
+        .lb-table tbody tr:last-child td { border-bottom: none; }
+        .lb-table td.eps { color: var(--grey-30); font-family: var(--font-mono); font-size: 11px; }
 
         /* ===== STAT CARDS GRID ===== */
         .stat-grid {
@@ -432,12 +720,245 @@
             Дальше осталась консолидация. Слил данные V1 API (эпохи 1-11) и on-chain reconstruction (Epoch 0) в один master CSV, получил 273 строки на уровне проект-эпоха. Потом сгруппировал по проектам и нормализовал имена, потому что Octant в разных эпохах иногда писал одно и то же название с вариациями вроде "Tor Project" и "The Tor Project" или "Hypercerts" и "Hypercerts Foundation". Все такие случаи свёл к одному каноническому имени. Получил cumulative leaderboard из 134 уникальных проектов с суммарным funding по всей истории Octant.
         </p>
 
-        <div class="table-placeholder">
-            [ интерактивная таблица проектов · 134 строки · подключу когда зальёшь csv ]
-        </div>
     </div>
 
+    <section class="lb-section" id="leaderboard">
+        <div class="lb-header">
+            <div>
+                <div class="lb-eyebrow">Result</div>
+                <h2 class="lb-title">Cumulative leaderboard</h2>
+                <div class="lb-sub">All projects ever funded through Octant · E0 → E11</div>
+            </div>
+            <div class="lb-meta">
+                <div class="metric"><span class="num" id="mProjects">—</span><span class="lbl">Projects</span></div>
+                <div class="metric"><span class="num" id="mEpochs">12</span><span class="lbl">Epochs</span></div>
+                <div class="metric"><span class="num" id="mTotal">—</span><span class="lbl">Total ETH</span></div>
+            </div>
+        </div>
+
+        <div class="lb-card" id="topCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Top 10 by total funding</div>
+                <div class="lb-card-watermark">octant · cumulative · E0–E11</div>
+            </div>
+            <div class="lb-rows" id="topRows"></div>
+            <div class="lb-card-legend">
+                <span><span class="dot dot-a"></span>allocated (direct donations)</span>
+                <span><span class="dot dot-m"></span>matched (from reward pool)</span>
+            </div>
+        </div>
+
+        <div class="lb-actions">
+            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
+            <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
+        </div>
+
+        <details class="lb-full">
+            <summary>Show full leaderboard · 134 projects</summary>
+            <div class="lb-full-body">
+                <div class="lb-search">
+                    <input type="search" id="lbSearch" placeholder="Filter by project name...">
+                    <span class="count" id="lbCount">134 / 134</span>
+                </div>
+                <div class="lb-table-scroll">
+                    <table class="lb-table" id="lbTable">
+                        <thead>
+                            <tr>
+                                <th data-key="rank" class="sorted">#</th>
+                                <th data-key="name">Project</th>
+                                <th data-key="n_epochs" class="right">Epochs</th>
+                                <th data-key="total_allocated_eth" class="right">Allocated</th>
+                                <th data-key="total_matched_eth" class="right">Matched</th>
+                                <th data-key="total_eth" class="right">Total ETH</th>
+                                <th data-key="epochs_list">In epochs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lbTbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </details>
+    </section>
+
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+<script>
+(function () {
+    const CSV_PATH = 'octant_cumulative_leaderboard_v2.csv';
+
+    // --- CSV parser (handles quoted fields) ---
+    function parseCSV(text) {
+        const rows = [];
+        let row = [], field = '', q = false;
+        for (let i = 0; i < text.length; i++) {
+            const c = text[i];
+            if (q) {
+                if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+                else if (c === '"') { q = false; }
+                else { field += c; }
+            } else {
+                if (c === '"') { q = true; }
+                else if (c === ',') { row.push(field); field = ''; }
+                else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+                else if (c === '\r') { /* skip */ }
+                else { field += c; }
+            }
+        }
+        if (field.length || row.length) { row.push(field); rows.push(row); }
+        const header = rows.shift();
+        return rows.filter(r => r.length === header.length).map(r => {
+            const o = {};
+            header.forEach((h, i) => o[h] = r[i]);
+            return o;
+        });
+    }
+
+    function fmtEth(n) {
+        if (n >= 100) return n.toFixed(1);
+        if (n >= 10)  return n.toFixed(2);
+        return n.toFixed(3);
+    }
+
+    function renderTop(data) {
+        const top = data.slice(0, 10);
+        const maxTotal = Math.max(...top.map(d => d.total_eth));
+        const host = document.getElementById('topRows');
+        host.innerHTML = top.map(d => {
+            const totalPct = (d.total_eth / maxTotal) * 100;
+            const aShare = d.total_eth > 0 ? (d.total_allocated_eth / d.total_eth) : 0;
+            const aWidth = totalPct * aShare;
+            const mWidth = totalPct * (1 - aShare);
+            const variants = d.name_variants && d.name_variants !== d.name
+                ? `<small>aka ${d.name_variants.split(' | ').filter(v => v !== d.name).join(' · ')}</small>`
+                : '';
+            return `
+                <div class="lb-row">
+                    <div class="rk">${d.rank}</div>
+                    <div class="nm" title="${d.name}">${d.name}${variants}</div>
+                    <div class="bar">
+                        <div class="seg-a" style="width:${aWidth}%"></div>
+                        <div class="seg-m" style="width:${mWidth}%"></div>
+                    </div>
+                    <div class="total">${fmtEth(d.total_eth)}<small>ETH</small></div>
+                </div>`;
+        }).join('');
+    }
+
+    function renderTable(data) {
+        const tbody = document.getElementById('lbTbody');
+        tbody.innerHTML = data.map(d => `
+            <tr>
+                <td class="rk">${d.rank}</td>
+                <td class="nm">${d.name}</td>
+                <td class="right">${d.n_epochs}</td>
+                <td class="right">${fmtEth(d.total_allocated_eth)}</td>
+                <td class="right">${fmtEth(d.total_matched_eth)}</td>
+                <td class="right">${fmtEth(d.total_eth)}</td>
+                <td class="eps">${d.epochs_list}</td>
+            </tr>
+        `).join('');
+        document.getElementById('lbCount').textContent = `${data.length} / ${state.all.length}`;
+    }
+
+    const state = { all: [], view: [], sortKey: 'rank', sortDir: 1, query: '' };
+
+    function applyView() {
+        let v = state.all;
+        if (state.query) {
+            const q = state.query.toLowerCase();
+            v = v.filter(d =>
+                d.name.toLowerCase().includes(q) ||
+                (d.name_variants || '').toLowerCase().includes(q)
+            );
+        }
+        const k = state.sortKey, dir = state.sortDir;
+        v = [...v].sort((a, b) => {
+            const av = a[k], bv = b[k];
+            if (typeof av === 'number') return (av - bv) * dir;
+            return String(av).localeCompare(String(bv)) * dir;
+        });
+        state.view = v;
+        renderTable(v);
+    }
+
+    function attachInteractions() {
+        document.getElementById('lbSearch').addEventListener('input', (e) => {
+            state.query = e.target.value;
+            applyView();
+        });
+        document.querySelectorAll('#lbTable thead th').forEach(th => {
+            th.addEventListener('click', () => {
+                const key = th.dataset.key;
+                if (!key) return;
+                if (state.sortKey === key) state.sortDir *= -1;
+                else { state.sortKey = key; state.sortDir = (key === 'name') ? 1 : -1; }
+                if (key === 'rank') state.sortDir = 1;
+                document.querySelectorAll('#lbTable thead th').forEach(x => x.classList.remove('sorted'));
+                th.classList.add('sorted');
+                applyView();
+            });
+        });
+        document.getElementById('savePng').addEventListener('click', async () => {
+            const btn = document.getElementById('savePng');
+            const node = document.getElementById('topCard');
+            const orig = btn.textContent;
+            btn.textContent = '… rendering';
+            btn.disabled = true;
+            try {
+                const dataUrl = await htmlToImage.toPng(node, {
+                    pixelRatio: 2,
+                    backgroundColor: '#0d0d0d',
+                    style: { padding: '32px' }
+                });
+                const a = document.createElement('a');
+                a.download = 'octant-top10-leaderboard.png';
+                a.href = dataUrl;
+                a.click();
+            } catch (err) {
+                console.error(err);
+                alert('PNG export failed — see console.');
+            } finally {
+                btn.textContent = orig;
+                btn.disabled = false;
+            }
+        });
+    }
+
+    function toNumber(v) { const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+
+    fetch(CSV_PATH)
+        .then(r => r.text())
+        .then(text => {
+            const raw = parseCSV(text);
+            state.all = raw.map(d => ({
+                rank: parseInt(d.rank, 10),
+                name: d.name,
+                n_epochs: parseInt(d.n_epochs, 10),
+                n_addresses: parseInt(d.n_addresses, 10),
+                total_allocated_eth: toNumber(d.total_allocated_eth),
+                total_matched_eth: toNumber(d.total_matched_eth),
+                total_eth: toNumber(d.total_eth),
+                avg_eth_per_epoch: toNumber(d.avg_eth_per_epoch),
+                epochs_list: d.epochs_list,
+                name_variants: d.name_variants,
+            })).sort((a, b) => a.rank - b.rank);
+
+            const totalEth = state.all.reduce((s, d) => s + d.total_eth, 0);
+            document.getElementById('mProjects').textContent = state.all.length;
+            document.getElementById('mTotal').textContent = Math.round(totalEth).toLocaleString();
+
+            renderTop(state.all);
+            applyView();
+            attachInteractions();
+        })
+        .catch(err => {
+            console.error('CSV load failed', err);
+            document.getElementById('topRows').innerHTML =
+                '<div style="color:var(--grey-30);padding:20px 0;font-size:13px;">Failed to load CSV — открой страницу через http-сервер, не через file://</div>';
+        });
+})();
+</script>
 
 <footer>
     <span>Octant Projects Analysis · Draft</span>
