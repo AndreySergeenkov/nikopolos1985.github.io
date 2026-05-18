@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="referrer" content="no-referrer">
+    <title>Octant Projects Analysis</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        p {
+            margin: 0 0 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <p>Я сейчас делаю анализ проектов Octant, отчёт будет задизайнен в цвета и стиль проекта. Смотреть на изменения мы будем на моём сайте, т.к. это проще всего. Можешь создать новую отдельную страницу закрытую от поисковиков и краулеров? Пока там можешь этот текст разместить без дизайна. дизайн я скину тебе потом. Сначала я хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории. Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.</p>
+
+    <p>Я начал с того что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR запросы которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а. Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.</p>
+
+    <p>Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.</p>
+
+    <p>Небольшая ремарка про нумерацию, потому что её многие путают. Octant считает эпохи с нуля. От Epoch 0 в до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (это надо проверить как он точно называется, возможно 12 раунд ил что-то такое)</p>
+
+    <p>Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через питон все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.</p>
+</body>
+</html>

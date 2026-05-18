@@ -4,5 +4,6 @@ Disallow: /dust-animation-variants/
 Disallow: /raw%20articles
 Disallow: /*.zip$
 Disallow: /README.md
+Disallow: /octant-analysis/
 
 Sitemap: https://sergeenkov.com/feed.xml
