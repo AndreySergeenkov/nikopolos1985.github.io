@@ -497,46 +497,6 @@
         .stat-card.accent-pink   .stat-value { color: var(--pink); }
         .stat-card.accent-yellow .stat-value { color: var(--yellow); }
 
-        /* ===== SECTIONS ===== */
-        section {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 48px;
-            padding: 40px 0;
-            border-top: 0.5px solid var(--grey-70);
-        }
-        .section-meta {
-            position: sticky;
-            top: 24px;
-            align-self: start;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .section-num {
-            font-family: var(--font-display);
-            font-size: 14px;
-            color: var(--grey-30);
-            letter-spacing: 0.04em;
-        }
-        h2 {
-            font-family: var(--font-display);
-            font-size: 32px;
-            line-height: 1.15;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin: 0 0 24px;
-            color: var(--light-100);
-        }
-        .section-content > p {
-            margin: 0 0 18px;
-            color: var(--light-80);
-            font-size: 16px;
-            line-height: 1.65;
-            max-width: 760px;
-        }
-        .section-content > p:last-child { margin-bottom: 0; }
-
         /* ===== INLINE SEMANTIC COLORS ===== */
         .epoch     { color: var(--orange); font-weight: 600; }
         .api       { color: var(--teal); font-weight: 500; }
@@ -657,19 +617,15 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 960px) {
-            .stat-grid { grid-template-columns: repeat(2, 1fr); }
-            section { grid-template-columns: 1fr; gap: 16px; }
-            .section-meta { position: static; }
             h1 { font-size: 44px; }
-            h2 { font-size: 26px; }
         }
         @media (max-width: 560px) {
             main { padding: 32px 20px 64px; }
             .top-nav { padding: 20px; }
             .nav-right { gap: 12px; font-size: 11px; }
-            .stat-grid { grid-template-columns: 1fr; }
             h1 { font-size: 36px; }
-            .lede { font-size: 16px; }
+            .lb-row { grid-template-columns: 24px 1fr 90px; }
+            .lb-row .bar { display: none; }
         }
     </style>
 </head>
@@ -721,14 +677,6 @@
     </div>
 
     <section class="lb-section" id="leaderboard">
-        <div class="lb-header">
-            <div>
-                <div class="lb-eyebrow">Result</div>
-                <h2 class="lb-title">Cumulative leaderboard</h2>
-                <div class="lb-sub">All projects ever funded through Octant · E0 → E11</div>
-            </div>
-        </div>
-
         <div class="lb-card" id="topCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Top 10 projects by total ETH received from Octant (Epochs 0–11)</div>
@@ -738,11 +686,6 @@
                 <span><span class="dot dot-a"></span>allocated (direct donations)</span>
                 <span><span class="dot dot-m"></span>matched (from reward pool)</span>
             </div>
-        </div>
-
-        <div class="lb-actions">
-            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
-            <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
         </div>
 
         <details class="lb-full">
@@ -770,6 +713,11 @@
                 </div>
             </div>
         </details>
+
+        <div class="lb-actions">
+            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
+            <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
+        </div>
     </section>
 
 </main>
