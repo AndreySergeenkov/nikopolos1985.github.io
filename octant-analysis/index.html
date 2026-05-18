@@ -406,35 +406,31 @@
             border-radius: 2px;
         }
 
-        /* ===== SOLIDITY vs HEVM ILLUSTRATION ===== */
+        /* ===== SOLIDITY vs HEVM ILLUSTRATION (4 cols) ===== */
         .vs-grid {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 32px;
             padding: 20px 0 8px;
         }
         .vs-row {
             display: grid;
-            grid-template-columns: 160px 220px 1fr;
-            gap: 24px;
+            grid-template-columns: 110px 200px 1fr 1fr;
+            gap: 20px;
             align-items: center;
         }
-        .vs-meta .vs-name {
+        .vs-name-cell {
             font-family: var(--font-display);
             font-size: 24px;
             color: var(--light-100);
             line-height: 1.1;
             letter-spacing: -0.02em;
         }
-        .vs-meta .vs-sub {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--grey-30);
-            margin-top: 6px;
+        .vs-cell {
+            display: flex;
+            flex-direction: column;
         }
-        .vs-donors-label {
+        .vs-cell-label {
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
@@ -442,7 +438,7 @@
             color: var(--grey-30);
             margin-bottom: 8px;
         }
-        .vs-donors-label strong {
+        .vs-teal {
             font-family: var(--font-display);
             font-size: 22px;
             font-weight: 400;
@@ -454,7 +450,7 @@
             display: grid;
             grid-template-columns: repeat(20, 1fr);
             gap: 3px;
-            width: 220px;
+            width: 100%;
         }
         .vs-dot {
             display: block;
@@ -463,32 +459,26 @@
             border-radius: 999px;
         }
         .vs-dot--on { background: var(--teal); }
-        .vs-match {
-            display: flex;
-            flex-direction: column;
-        }
-        .vs-match-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--grey-30);
-            margin-bottom: 8px;
-        }
         .vs-bar {
             height: 36px;
-            background: var(--orange);
             border-radius: var(--r-card);
             display: flex;
             align-items: center;
             padding: 0 14px;
             font-family: var(--font-display);
             font-size: 18px;
-            color: var(--grey-100);
             letter-spacing: -0.01em;
-            min-width: 90px;
+            min-width: 76px;
         }
-        @media (max-width: 720px) {
+        .vs-bar--donations {
+            background: var(--light-100);
+            color: var(--grey-100);
+        }
+        .vs-bar--match {
+            background: var(--orange);
+            color: var(--grey-100);
+        }
+        @media (max-width: 820px) {
             .vs-row { grid-template-columns: 1fr; gap: 12px; }
             .vs-dotgrid { width: 100%; }
         }
@@ -1132,32 +1122,34 @@
             <div class="vs-grid">
                 <!-- Row: Solidity -->
                 <div class="vs-row">
-                    <div class="vs-meta">
-                        <div class="vs-name">Solidity</div>
-                        <div class="vs-sub">от пользователей: 1.27 ETH</div>
-                    </div>
-                    <div class="vs-donors">
-                        <div class="vs-donors-label"><strong>84</strong> donors</div>
+                    <div class="vs-name-cell">Solidity</div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label"><strong class="vs-teal">84</strong> donors</div>
                         <div class="vs-dotgrid" data-fill="84"></div>
                     </div>
-                    <div class="vs-match">
-                        <div class="vs-match-label">match</div>
-                        <div class="vs-bar" style="width:100%;"><span>21.1 ETH</span></div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label">от пользователей</div>
+                        <div class="vs-bar vs-bar--donations" style="width:100%;"><span>1.27 ETH</span></div>
+                    </div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label">QF match</div>
+                        <div class="vs-bar vs-bar--match" style="width:100%;"><span>21.1 ETH</span></div>
                     </div>
                 </div>
                 <!-- Row: hevm -->
                 <div class="vs-row">
-                    <div class="vs-meta">
-                        <div class="vs-name">hevm</div>
-                        <div class="vs-sub">от пользователей: 1.22 ETH</div>
-                    </div>
-                    <div class="vs-donors">
-                        <div class="vs-donors-label"><strong>28</strong> donors</div>
+                    <div class="vs-name-cell">hevm</div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label"><strong class="vs-teal">28</strong> donors</div>
                         <div class="vs-dotgrid" data-fill="28"></div>
                     </div>
-                    <div class="vs-match">
-                        <div class="vs-match-label">match</div>
-                        <div class="vs-bar" style="width:36%;"><span>7.6 ETH</span></div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label">от пользователей</div>
+                        <div class="vs-bar vs-bar--donations" style="width:96%;"><span>1.22 ETH</span></div>
+                    </div>
+                    <div class="vs-cell">
+                        <div class="vs-cell-label">QF match</div>
+                        <div class="vs-bar vs-bar--match" style="width:36%;"><span>7.6 ETH</span></div>
                     </div>
                 </div>
             </div>
