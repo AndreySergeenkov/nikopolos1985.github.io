@@ -916,10 +916,15 @@
 
     function toNumber(v) { const n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
-    fetch(CSV_PATH)
-        .then(r => r.text())
+    const csvUrl = new URL(CSV_PATH, document.baseURI).href;
+    fetch(csvUrl)
+        .then(r => {
+            if (!r.ok) throw new Error(`HTTP ${r.status} ${r.statusText} for ${csvUrl}`);
+            return r.text();
+        })
         .then(text => {
             const raw = parseCSV(text);
+            if (!raw.length) throw new Error('CSV parsed but is empty (got ' + text.length + ' bytes)');
             state.all = raw.map(d => ({
                 rank: parseInt(d.rank, 10),
                 name: d.name,
@@ -932,19 +937,18 @@
                 epochs_list: d.epochs_list,
                 name_variants: d.name_variants,
             })).sort((a, b) => a.rank - b.rank);
-
-            const totalEth = state.all.reduce((s, d) => s + d.total_eth, 0);
-            document.getElementById('mProjects').textContent = state.all.length;
-            document.getElementById('mTotal').textContent = Math.round(totalEth).toLocaleString();
-
             renderTop(state.all);
             applyView();
             attachInteractions();
         })
         .catch(err => {
-            console.error('CSV load failed', err);
+            console.error('CSV load failed:', err);
             document.getElementById('topRows').innerHTML =
-                '<div style="color:var(--grey-30);padding:20px 0;font-size:13px;">Failed to load CSV — открой страницу через http-сервер, не через file://</div>';
+                `<div style="color:var(--grey-30);padding:20px 0;font-size:13px;line-height:1.5;">
+                    <strong style="color:var(--pink);">CSV load failed.</strong><br>
+                    URL: <code style="font-family:var(--font-mono);font-size:11px;color:var(--teal);">${csvUrl}</code><br>
+                    Error: <code style="font-family:var(--font-mono);font-size:11px;">${(err && err.message) || err}</code>
+                </div>`;
         });
 })();
 </script>
