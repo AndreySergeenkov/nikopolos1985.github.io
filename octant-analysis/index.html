@@ -287,6 +287,27 @@
         .lb-card-legend .dot-ret { background: var(--teal); }
         .lb-card-legend .dot-one { background: var(--grey-50); }
 
+        /* ===== CATEGORY DEFINITION LIST ===== */
+        .cat-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: var(--light-80);
+            font-size: 15px;
+            line-height: 1.45;
+        }
+        .cat-list li {
+            padding-left: 16px;
+            border-left: 2px solid var(--grey-70);
+        }
+        .cat-list li strong {
+            color: var(--light-100);
+            font-weight: 600;
+        }
+
         /* ===== HORIZONTAL BARS BY CATEGORY (Variant A) ===== */
         .hbar-list { display: flex; flex-direction: column; gap: 10px; padding: 14px 0 4px; }
         .hbar-row {
@@ -891,8 +912,19 @@
     <section class="lb-section" id="categories">
         <div class="lb-summary">
             <p>
-                Дальше хотел понять во что именно Octant вкладывается тематически, но 134 имени без группировки трудно интерпретировать. Нужна была категоризация. Для этого я прошёлся по списку и проставил каждому проекту одну из 9 категорий: <strong>Ethereum Infrastructure</strong> (core protocol, staking, MEV, attestations), <strong>Developer Tools</strong> (компиляторы, библиотеки, IDE, эксплореры), <strong>Security &amp; Privacy</strong> (Tor, Shutter, identity, allowance management), <strong>Public Goods Funding</strong> (мета-координация грантов и funding tools), <strong>Education &amp; Onboarding</strong> (обучающие программы и академии), <strong>Research &amp; Analytics</strong> (data analytics, on-chain investigations), <strong>Media &amp; Storytelling</strong> (контент, журналистика, документалистика), <strong>Community &amp; Coordination</strong> (DAO governance, community building) и <strong>Climate &amp; Regenerative</strong> (climate tech, ReFi, environmental).
+                Дальше хотел понять во что именно Octant вкладывается тематически, но 134 имени без группировки трудно интерпретировать. Нужна была категоризация. Для этого я прошёлся по списку и проставил каждому проекту одну из 9 категорий:
             </p>
+            <ul class="cat-list">
+                <li><strong>Ethereum Infrastructure</strong> — core protocol, staking, MEV, attestations</li>
+                <li><strong>Developer Tools</strong> — компиляторы, библиотеки, IDE, эксплореры</li>
+                <li><strong>Security &amp; Privacy</strong> — Tor, Shutter, identity, allowance management</li>
+                <li><strong>Public Goods Funding</strong> — мета-координация грантов и funding tools</li>
+                <li><strong>Education &amp; Onboarding</strong> — обучающие программы и академии</li>
+                <li><strong>Research &amp; Analytics</strong> — data analytics, on-chain investigations</li>
+                <li><strong>Media &amp; Storytelling</strong> — контент, журналистика, документалистика</li>
+                <li><strong>Community &amp; Coordination</strong> — DAO governance, community building</li>
+                <li><strong>Climate &amp; Regenerative</strong> — climate tech, ReFi, environmental</li>
+            </ul>
             <p style="margin-top:16px;">
                 Несколько вещей в этой картине стоят того чтобы остановиться.
             </p>
