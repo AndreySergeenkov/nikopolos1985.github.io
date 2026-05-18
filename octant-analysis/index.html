@@ -154,6 +154,16 @@
         }
         .draft-body p { margin: 0 0 16px; }
         .draft-body p:last-child { margin-bottom: 0; }
+        .table-placeholder {
+            margin-top: 32px;
+            padding: 48px 24px;
+            border: 0.5px dashed var(--grey-70);
+            border-radius: var(--r-card);
+            color: var(--grey-30);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
 
         /* ===== STAT CARDS GRID ===== */
         .stat-grid {
@@ -404,29 +414,27 @@
 
     <div class="draft-body">
         <p>
-            Сначала хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории.
+            Сначала я хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории. Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
         </p>
         <p>
-            Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
-        </p>
-        <p>
-            Начал с того, что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR-запросы, которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а.
-        </p>
-        <p>
-            Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.
+            Я начал с того что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR запросы которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а. Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.
         </p>
         <p>
             Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.
         </p>
         <p>
-            Octant считает эпохи с нуля. От Epoch 0 до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (надо проверить как он точно называется — возможно «12 раунд» или что-то такое.)
+            Небольшая ремарка про нумерацию, потому что её многие путают. Octant считает эпохи с нуля. От Epoch 0 в до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (это надо проверить как он точно называется, возможно 12 раунд ил что-то такое)
         </p>
         <p>
-            Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через Python все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.
+            Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через питон все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.
         </p>
         <p>
-            Дальше — разбивка проектов по категориям (research, infra, public goods, education…), визуализация распределения allocated vs matched по эпохам, и анализ повторяемости проектов между раундами.
+            Дальше осталась консолидация. Слил данные V1 API (эпохи 1-11) и on-chain reconstruction (Epoch 0) в один master CSV, получил 273 строки на уровне проект-эпоха. Потом сгруппировал по проектам и нормализовал имена, потому что Octant в разных эпохах иногда писал одно и то же название с вариациями вроде "Tor Project" и "The Tor Project" или "Hypercerts" и "Hypercerts Foundation". Все такие случаи свёл к одному каноническому имени. Получил cumulative leaderboard из 134 уникальных проектов с суммарным funding по всей истории Octant.
         </p>
+
+        <div class="table-placeholder">
+            [ интерактивная таблица проектов · 134 строки · подключу когда зальёшь csv ]
+        </div>
     </div>
 
 </main>
