@@ -9,31 +9,553 @@
     <meta name="referrer" content="no-referrer">
     <title>Octant Projects Analysis</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #202122;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: #fff;
+        :root {
+            /* Octant base palette */
+            --grey-100: #0d0d0d;
+            --grey-90:  #171717;
+            --grey-80:  #333231;
+            --grey-70:  #424240;
+            --grey-50:  #646360;
+            --grey-30:  #8f8f8a;
+            --grey-20:  #cccbc4;
+            --light-100:#fefdf4;
+            --light-80: #fefdf4cc;
+            --light-40: #fefdf466;
+            --light-10: #fefdf41a;
+
+            /* Octant chart / accent palette */
+            --orange:   #ff9602;
+            --orange-20:#feeac8;
+            --teal:     #78f0e2;
+            --pink:     #ff8ce0;
+            --yellow:   #ffea4d;
+            --green:    #92ff33;
+
+            /* Fonts (Spiegel Sans / Arcane Fable are proprietary — using close fallbacks) */
+            --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+            --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+            /* Radii — Octant uses minimal radii */
+            --r-card: 4px;
+            --r-btn:  4px;
+            --r-tag:  3px;
+
+            /* Shadow */
+            --glow-orange: 0 0 8px #ffca8040;
         }
-        p {
-            margin: 0 0 1em 0;
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--grey-100);
+            color: var(--light-100);
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        a:hover { color: var(--orange); }
+
+        /* ===== TOP NAV ===== */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            border-bottom: 0.5px solid var(--grey-70);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-logo {
+            width: 36px; height: 36px;
+            border-radius: 999px;
+            background: var(--light-100);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey-100);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        .brand-sub {
+            color: var(--grey-30);
+            font-size: 13px;
+            margin-left: 4px;
+            text-transform: lowercase;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--light-100);
+        }
+        .nav-right .divider {
+            color: var(--grey-70);
+            font-weight: 400;
+        }
+        .nav-right a:hover { color: var(--orange); }
+
+        /* ===== HERO ===== */
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 48px 32px 96px;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--orange);
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin: 8px 0 16px;
+            color: var(--light-100);
+        }
+        .lede {
+            font-size: 18px;
+            line-height: 1.55;
+            color: var(--light-80);
+            max-width: 780px;
+        }
+
+        /* ===== STAT CARDS GRID ===== */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+        .stat-card {
+            background: var(--grey-100);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-card);
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .stat-card:hover { background: var(--grey-90); border-color: var(--grey-50); }
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+        }
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 36px;
+            line-height: 1;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--light-100);
+        }
+        .stat-value .unit {
+            font-size: 14px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--grey-30);
+            margin-left: 6px;
+            letter-spacing: 0.04em;
+        }
+        .stat-card.accent-orange .stat-value { color: var(--orange); }
+        .stat-card.accent-teal   .stat-value { color: var(--teal); }
+        .stat-card.accent-pink   .stat-value { color: var(--pink); }
+        .stat-card.accent-yellow .stat-value { color: var(--yellow); }
+
+        /* ===== SECTIONS ===== */
+        section {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 48px;
+            padding: 40px 0;
+            border-top: 0.5px solid var(--grey-70);
+        }
+        .section-meta {
+            position: sticky;
+            top: 24px;
+            align-self: start;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .section-num {
+            font-family: var(--font-display);
+            font-size: 14px;
+            color: var(--grey-30);
+            letter-spacing: 0.04em;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin: 0 0 24px;
+            color: var(--light-100);
+        }
+        .section-content > p {
+            margin: 0 0 18px;
+            color: var(--light-80);
+            font-size: 16px;
+            line-height: 1.65;
+            max-width: 760px;
+        }
+        .section-content > p:last-child { margin-bottom: 0; }
+
+        /* ===== INLINE SEMANTIC COLORS ===== */
+        .epoch     { color: var(--orange); font-weight: 600; }
+        .api       { color: var(--teal); font-weight: 500; }
+        .addr      {
+            font-family: var(--font-mono);
+            color: var(--pink);
+            font-size: 0.92em;
+            background: var(--light-10);
+            padding: 1px 6px;
+            border-radius: var(--r-tag);
+            word-break: break-all;
+        }
+        .num       { color: var(--yellow); font-weight: 600; font-variant-numeric: tabular-nums; }
+        .cat       { color: var(--green); font-weight: 500; }
+        .mono      { font-family: var(--font-mono); font-size: 0.92em; color: var(--light-80); }
+        .term      { color: var(--light-100); font-weight: 500; }
+
+        /* ===== CALLOUT (note / nb) ===== */
+        .callout {
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-70);
+            border-left: 2px solid var(--orange);
+            border-radius: var(--r-card);
+            padding: 16px 20px;
+            margin: 24px 0;
+            max-width: 760px;
+        }
+        .callout-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 6px;
+        }
+        .callout p { margin: 0; color: var(--light-80); font-size: 15px; }
+
+        /* ===== CHART PLACEHOLDER ===== */
+        .chart-slot {
+            background: var(--grey-100);
+            border: 0.5px dashed var(--grey-70);
+            border-radius: var(--r-card);
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey-30);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin: 24px 0;
+        }
+
+        /* ===== TABLE ===== */
+        .table-wrap {
+            background: var(--grey-100);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-card);
+            overflow: hidden;
+            margin: 24px 0;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 0.5px solid var(--grey-80);
+        }
+        th {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+        }
+        tr:last-child td { border-bottom: none; }
+        td.right, th.right { text-align: right; font-variant-numeric: tabular-nums; }
+
+        /* ===== STATUS PILLS ===== */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--light-10);
+            color: var(--light-100);
+        }
+        .pill::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 999px;
+            background: var(--grey-30);
+        }
+        .pill.ok::before    { background: var(--green); }
+        .pill.warn::before  { background: var(--yellow); }
+        .pill.miss::before  { background: var(--pink); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px;
+            border-top: 0.5px solid var(--grey-70);
+            color: var(--grey-30);
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        footer .meta { color: var(--grey-50); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 960px) {
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            section { grid-template-columns: 1fr; gap: 16px; }
+            .section-meta { position: static; }
+            h1 { font-size: 44px; }
+            h2 { font-size: 26px; }
+        }
+        @media (max-width: 560px) {
+            main { padding: 32px 20px 64px; }
+            .top-nav { padding: 20px; }
+            .nav-right { gap: 12px; font-size: 11px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 36px; }
+            .lede { font-size: 16px; }
         }
     </style>
 </head>
 <body>
-    <p>Я сейчас делаю анализ проектов Octant, отчёт будет задизайнен в цвета и стиль проекта. Смотреть на изменения мы будем на моём сайте, т.к. это проще всего. Можешь создать новую отдельную страницу закрытую от поисковиков и краулеров? Пока там можешь этот текст разместить без дизайна. дизайн я скину тебе потом. Сначала я хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории. Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.</p>
 
-    <p>Я начал с того что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR запросы которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а. Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.</p>
+<nav class="top-nav">
+    <div class="brand">
+        <div class="brand-logo">O</div>
+        <div>
+            <span class="brand-name">Octant</span>
+            <span class="brand-sub">/ analysis</span>
+        </div>
+    </div>
+    <div class="nav-right">
+        <a href="https://octant.app" target="_blank" rel="noopener">octant.app</a>
+        <span class="divider">|</span>
+        <a href="https://docs.octant.app" target="_blank" rel="noopener">docs</a>
+        <span class="divider">|</span>
+        <a href="/">← back</a>
+    </div>
+</nav>
 
-    <p>Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.</p>
+<main>
 
-    <p>Небольшая ремарка про нумерацию, потому что её многие путают. Octant считает эпохи с нуля. От Epoch 0 в до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (это надо проверить как он точно называется, возможно 12 раунд ил что-то такое)</p>
+    <header class="hero">
+        <div class="eyebrow">Research · Draft</div>
+        <h1>Полный разбор проектов Octant по всем эпохам</h1>
+        <p class="lede">
+            Собираем единый dataset по каждому проекту, получившему финансирование через Octant с момента запуска: разбивка по эпохам, точные суммы allocated и matched в ETH, адреса получателей, категории. Ниже — методология сбора данных и работа с краевыми случаями.
+        </p>
+    </header>
 
-    <p>Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через питон все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.</p>
+    <div class="stat-grid">
+        <div class="stat-card accent-orange">
+            <div class="stat-label">Эпох разобрано</div>
+            <div class="stat-value">12<span class="unit">E0 – E11</span></div>
+        </div>
+        <div class="stat-card accent-teal">
+            <div class="stat-label">Источники данных</div>
+            <div class="stat-value">2<span class="unit">API + chain</span></div>
+        </div>
+        <div class="stat-card accent-pink">
+            <div class="stat-label">Distribution wallet</div>
+            <div class="stat-value mono" style="font-size:14px;line-height:1.4;letter-spacing:0;color:var(--pink);font-family:var(--font-mono);font-weight:500;word-break:break-all;">0x70a0…e476</div>
+        </div>
+        <div class="stat-card accent-yellow">
+            <div class="stat-label">Текущая эпоха</div>
+            <div class="stat-value">E12<span class="unit">v2 launch</span></div>
+        </div>
+    </div>
+
+    <section id="goal">
+        <div class="section-meta">
+            <div class="section-num">01</div>
+            <span class="pill ok">Goal</span>
+        </div>
+        <div class="section-content">
+            <h2>Что и зачем собираем</h2>
+            <p>
+                Сначала хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (<span class="cat">allocated</span> и <span class="cat">matched</span> отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории.
+            </p>
+            <p>
+                Octant в <span class="term">docs</span> и <span class="term">dashboard</span> публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
+            </p>
+        </div>
+    </section>
+
+    <section id="method">
+        <div class="section-meta">
+            <div class="section-num">02</div>
+            <span class="pill ok">Method</span>
+        </div>
+        <div class="section-content">
+            <h2>Reverse-engineering API</h2>
+            <p>
+                Начал с того, что открыл <span class="term">Octant app</span> в браузере, в <span class="api">DevTools Network tab</span> переключил эпоху и поймал <span class="api">XHR-запросы</span>, которые подтягивают leaderboard. Базовый URL оказался <span class="mono">backend.mainnet.octant.app</span>.
+            </p>
+            <p>
+                Открыл <span class="api">/openapi.json</span> и получил <span class="term">Swagger spec</span> со всеми endpoint'ами <span class="api">V1 API</span>. API публичный, без авторизации, работает поверх <span class="term">Ethereum subgraph'а</span>.
+            </p>
+            <p>
+                Написал <span class="api">Python script</span> с тремя нужными endpoint'ами (<span class="cat">leaderboard на эпоху</span>, <span class="cat">aggregate stats</span>, <span class="cat">address-to-name mapping</span>), прошёл по всем <span class="num">12</span> эпохам, сохранил JSON.
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>Назначение</th>
+                            <th class="right">Покрытие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="mono">/leaderboard/{epoch}</span></td>
+                            <td>Проекты + allocated + matched на конкретную эпоху</td>
+                            <td class="right"><span class="pill ok">E1–E11</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="mono">/stats/aggregate</span></td>
+                            <td>Reward pool, total users, donations summary</td>
+                            <td class="right"><span class="pill ok">E1–E11</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="mono">/projects/metadata</span></td>
+                            <td>Address → human-readable project name</td>
+                            <td class="right"><span class="pill ok">все</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="mono">on-chain tx fetch</span></td>
+                            <td>Распределения с Golem distribution wallet</td>
+                            <td class="right"><span class="pill miss">E0 fallback</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="gap">
+        <div class="section-meta">
+            <div class="section-num">03</div>
+            <span class="pill warn">Edge case</span>
+        </div>
+        <div class="section-content">
+            <h2>Epoch 0 — gap в API</h2>
+            <p>
+                Все эпохи кроме нулевой вернули чистые данные. <span class="epoch">Epoch 0</span> в API отсутствовала, потому что была <span class="cat">pre-launch curated round</span> до запуска <span class="term">V1 механики</span> и в схему API не вписывается.
+            </p>
+
+            <div class="callout">
+                <div class="callout-label">Note · numbering</div>
+                <p>
+                    Octant считает эпохи с нуля. От <span class="epoch">Epoch 0</span> до <span class="epoch">Epoch 11</span> прошло <span class="num">12</span> раундов. Текущий запуск, первый на новой версии платформы, называется <span class="epoch">Epoch 12</span>. <em style="color:var(--grey-30);">(надо проверить как он точно называется — возможно «12 раунд» или что-то такое.)</em>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="fallback">
+        <div class="section-meta">
+            <div class="section-num">04</div>
+            <span class="pill ok">Resolved</span>
+        </div>
+        <div class="section-content">
+            <h2>Закрытие gap через on-chain</h2>
+            <p>
+                Чтобы закрыть gap по нулевой эпохе, я нашёл в документации <span class="term">Golem Foundation distribution wallet</span>:
+            </p>
+            <p><span class="addr">0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</span></p>
+            <p>
+                и выгрузил через <span class="api">Python</span> все его транзакции. Получил недостающие данные, заодно <span class="cat">валидировал</span> данные из двух источников между собой.
+            </p>
+
+            <div class="chart-slot">[ chart slot · cross-validation by epoch ]</div>
+        </div>
+    </section>
+
+    <section id="next">
+        <div class="section-meta">
+            <div class="section-num">05</div>
+            <span class="pill">Next</span>
+        </div>
+        <div class="section-content">
+            <h2>Что дальше</h2>
+            <p>
+                Дальше — разбивка проектов по <span class="cat">категориям</span> (research, infra, public goods, education…), визуализация распределения <span class="num">allocated vs matched</span> по эпохам, и анализ повторяемости проектов между раундами.
+            </p>
+            <div class="chart-slot">[ chart slot · projects by category ]</div>
+            <div class="chart-slot">[ chart slot · allocated vs matched · stacked bars per epoch ]</div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <span>Octant Projects Analysis · Draft</span>
+    <span class="meta">noindex · internal review</span>
+</footer>
+
 </body>
 </html>
