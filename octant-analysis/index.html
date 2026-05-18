@@ -228,6 +228,83 @@
 
         .lb-actions-top { margin-top: 0; margin-bottom: 20px; }
 
+        /* ===== DUAL STACKED BAR (Variant A) ===== */
+        .dual-bar {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            padding: 16px 0 8px;
+        }
+        .bar-col {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            max-width: 220px;
+            align-items: center;
+        }
+        .bar-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-30);
+            margin-bottom: 14px;
+        }
+        .bar-stack {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 320px;
+            border-radius: var(--r-card);
+            overflow: hidden;
+        }
+        .bar-seg {
+            position: relative;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 36px;
+            transition: filter 0.15s ease;
+        }
+        .bar-seg .pct {
+            font-family: var(--font-display);
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .bar-seg .lbl {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.75;
+        }
+        .seg-ret { background: var(--teal); color: var(--grey-100); }
+        .seg-one { background: var(--grey-70); color: var(--light-100); }
+
+        .lb-card-legend .dot-ret { background: var(--teal); }
+        .lb-card-legend .dot-one { background: var(--grey-50); }
+
+        /* ===== BUBBLE CHART (Variant B) ===== */
+        .bubble-wrap {
+            padding: 16px 0 8px;
+        }
+        #bubbleSvg {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-family: var(--font-sans);
+        }
+        #bubbleSvg .axis-line { stroke: var(--grey-70); stroke-width: 0.5; }
+        #bubbleSvg .grid-line { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
+        #bubbleSvg .axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        #bubbleSvg .tick-label { fill: var(--grey-30); font-size: 10px; font-family: var(--font-mono); }
+        #bubbleSvg .bubble-ret { fill: var(--teal); fill-opacity: 0.6; stroke: var(--teal); stroke-width: 0.5; }
+        #bubbleSvg .bubble-one { fill: var(--grey-50); fill-opacity: 0.5; stroke: var(--grey-30); stroke-width: 0.5; }
+        #bubbleSvg .name-label { fill: var(--light-100); font-size: 11px; font-weight: 500; pointer-events: none; }
+
         /* Top-10 leaderboard card (download-friendly slide) */
         .lb-card {
             background: var(--grey-100);
@@ -740,6 +817,59 @@
 
     </section>
 
+    <section class="lb-section" id="returners">
+        <div class="lb-summary">
+            <p>
+                Больше всего funding в Octant получают проекты, которые возвращаются раунд за раундом. <span class="hl"><span id="retShare">—</span>%</span> возвращённых проектов собрали <span class="hl"><span id="retFundShare">—</span>%</span> от total funding. Оставшиеся <span class="hl"><span id="oneShare">—</span>%</span> one-timer проекта получили только <span class="hl"><span id="oneFundShare">—</span>%</span> от total funding.
+            </p>
+            <p style="margin-top:8px;">
+                В пересчёте на один проект returner в среднем собрал <span class="hl"><span id="retAvg">—</span> ETH</span> за свою историю в Octant, one-timer всего <span class="hl"><span id="oneAvg">—</span> ETH</span>, разница примерно <span class="hl"><span id="avgRatio">—</span>-кратная</span>. Octant систематически награждает consistency и track record.
+            </p>
+        </div>
+
+        <div class="lb-card" id="dualBarCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Вариант A · Returners vs one-timers — доля от числа проектов и от funding</div>
+            </div>
+            <div class="dual-bar">
+                <div class="bar-col">
+                    <div class="bar-label">Projects (n=<span id="dbTotalProj">—</span>)</div>
+                    <div class="bar-stack" id="dbStackProj"></div>
+                </div>
+                <div class="bar-col">
+                    <div class="bar-label">Funding (<span id="dbTotalFund">—</span> ETH)</div>
+                    <div class="bar-stack" id="dbStackFund"></div>
+                </div>
+            </div>
+            <div class="lb-card-legend">
+                <span><span class="dot dot-ret"></span>returners (n_epochs ≥ 2)</span>
+                <span><span class="dot dot-one"></span>one-timers (n_epochs = 1)</span>
+            </div>
+        </div>
+
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
+            <button class="btn" data-png="dualBarCard" data-name="octant-returners-vs-onetimers.png" type="button">⤓ Save A as PNG</button>
+        </div>
+
+        <div class="lb-card" id="bubbleCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Вариант B · Каждый проект: эпохи участия × cumulative ETH</div>
+            </div>
+            <div class="bubble-wrap">
+                <svg id="bubbleSvg" viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bubble chart of Octant projects"></svg>
+            </div>
+            <div class="lb-card-legend">
+                <span><span class="dot dot-ret"></span>returner</span>
+                <span><span class="dot dot-one"></span>one-timer</span>
+                <span style="color:var(--grey-30);">размер пузыря ∝ total ETH · ось Y log-scale</span>
+            </div>
+        </div>
+
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+            <button class="btn" data-png="bubbleCard" data-name="octant-bubble-epochs-eth.png" type="button">⤓ Save B as PNG</button>
+        </div>
+    </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
@@ -856,9 +986,8 @@
                 applyView();
             });
         });
-        document.getElementById('savePng').addEventListener('click', async () => {
-            const btn = document.getElementById('savePng');
-            const node = document.getElementById('topCard');
+        const exportPng = async (btn, nodeId, fileName) => {
+            const node = document.getElementById(nodeId);
             const orig = btn.textContent;
             btn.textContent = '… rendering';
             btn.disabled = true;
@@ -869,7 +998,7 @@
                     style: { padding: '32px' }
                 });
                 const a = document.createElement('a');
-                a.download = 'octant-top10-leaderboard.png';
+                a.download = fileName;
                 a.href = dataUrl;
                 a.click();
             } catch (err) {
@@ -879,7 +1008,135 @@
                 btn.textContent = orig;
                 btn.disabled = false;
             }
+        };
+        document.getElementById('savePng').addEventListener('click', (e) =>
+            exportPng(e.currentTarget, 'topCard', 'octant-top10-leaderboard.png'));
+        document.querySelectorAll('button[data-png]').forEach(btn => {
+            btn.addEventListener('click', (e) =>
+                exportPng(e.currentTarget, btn.dataset.png, btn.dataset.name));
         });
+    }
+
+    function renderReturners(all) {
+        const returners = all.filter(d => d.n_epochs >= 2);
+        const onetimers = all.filter(d => d.n_epochs === 1);
+        const nAll = all.length;
+        const nRet = returners.length;
+        const nOne = onetimers.length;
+        const sumAll = all.reduce((s, d) => s + d.total_eth, 0);
+        const sumRet = returners.reduce((s, d) => s + d.total_eth, 0);
+        const sumOne = onetimers.reduce((s, d) => s + d.total_eth, 0);
+
+        const pctRetProj = nRet / nAll * 100;
+        const pctOneProj = nOne / nAll * 100;
+        const pctRetFund = sumRet / sumAll * 100;
+        const pctOneFund = sumOne / sumAll * 100;
+        const avgRet = sumRet / nRet;
+        const avgOne = sumOne / nOne;
+
+        const fmt = (v, d = 1) => v.toFixed(d);
+        const fmtInt = v => Math.round(v).toLocaleString('ru-RU');
+
+        document.getElementById('retShare').textContent = fmt(pctRetProj);
+        document.getElementById('retFundShare').textContent = fmt(pctRetFund);
+        document.getElementById('oneShare').textContent = fmt(pctOneProj);
+        document.getElementById('oneFundShare').textContent = fmt(pctOneFund);
+        document.getElementById('retAvg').textContent = fmt(avgRet);
+        document.getElementById('oneAvg').textContent = fmt(avgOne);
+        document.getElementById('avgRatio').textContent = fmt(avgRet / avgOne) + '×';
+
+        document.getElementById('dbTotalProj').textContent = nAll;
+        document.getElementById('dbTotalFund').textContent = fmtInt(sumAll);
+
+        const segHTML = (pctTop, topClass, topPct, topMain, topSub, botClass, botMain, botSub) => `
+            <div class="bar-seg ${topClass}" style="flex:${pctTop} 0 0;">
+                <div class="pct">${topPct}%</div>
+                <div class="lbl">${topMain}<br>${topSub}</div>
+            </div>
+            <div class="bar-seg ${botClass}" style="flex:${100 - pctTop} 0 0;">
+                <div class="pct">${(100 - pctTop).toFixed(1)}%</div>
+                <div class="lbl">${botMain}<br>${botSub}</div>
+            </div>`;
+
+        // Projects column: returners on top (smaller slice goes on top for visual contrast)
+        document.getElementById('dbStackProj').innerHTML = segHTML(
+            pctRetProj, 'seg-ret', fmt(pctRetProj),
+            `${nRet} returners`, 'n_epochs ≥ 2',
+            'seg-one',
+            `${nOne} one-timers`, 'n_epochs = 1'
+        );
+        document.getElementById('dbStackFund').innerHTML = segHTML(
+            pctRetFund, 'seg-ret', fmt(pctRetFund),
+            `${fmtInt(sumRet)} ETH`, 'returners',
+            'seg-one',
+            `${fmtInt(sumOne)} ETH`, 'one-timers'
+        );
+    }
+
+    function renderBubble(all) {
+        const svg = document.getElementById('bubbleSvg');
+        const W = 720, H = 440;
+        const M = { top: 24, right: 24, bottom: 48, left: 56 };
+        const innerW = W - M.left - M.right;
+        const innerH = H - M.top - M.bottom;
+
+        const xMax = Math.max(...all.map(d => d.n_epochs));
+        // log Y scale on total_eth, clamp small values to a floor
+        const yFloor = 0.05, yCeil = Math.max(...all.map(d => d.total_eth));
+        const logFloor = Math.log10(yFloor), logCeil = Math.log10(yCeil);
+        const xScale = v => M.left + ((v - 0.5) / (xMax - 0.5 + 0.5)) * innerW;
+        const yScale = v => {
+            const lv = Math.log10(Math.max(v, yFloor));
+            return M.top + innerH - ((lv - logFloor) / (logCeil - logFloor)) * innerH;
+        };
+        const rScale = v => {
+            const minR = 3, maxR = 30;
+            const t = Math.sqrt(Math.max(v, 0.01) / yCeil);
+            return minR + t * (maxR - minR);
+        };
+
+        // Top 6 by total_eth for labels
+        const topLabels = new Set(all.slice(0, 6).map(d => d.name));
+
+        let parts = [];
+        // Grid: y at 0.1, 1, 10, 100
+        [0.1, 1, 10, 100].forEach(v => {
+            if (v <= yCeil) {
+                const y = yScale(v);
+                parts.push(`<line class="grid-line" x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}"/>`);
+                parts.push(`<text class="tick-label" x="${M.left - 8}" y="${y + 3}" text-anchor="end">${v < 1 ? v : Math.round(v)}</text>`);
+            }
+        });
+        // X axis ticks: 1..xMax
+        for (let i = 1; i <= xMax; i++) {
+            const x = xScale(i);
+            parts.push(`<text class="tick-label" x="${x}" y="${H - M.bottom + 14}" text-anchor="middle">${i}</text>`);
+        }
+        // Axes
+        parts.push(`<line class="axis-line" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H - M.bottom}"/>`);
+        parts.push(`<line class="axis-line" x1="${M.left}" y1="${H - M.bottom}" x2="${W - M.right}" y2="${H - M.bottom}"/>`);
+        // Axis labels
+        parts.push(`<text class="axis-label" x="${M.left + innerW / 2}" y="${H - 8}" text-anchor="middle">Epochs participated</text>`);
+        parts.push(`<text class="axis-label" x="${-(M.top + innerH / 2)}" y="14" transform="rotate(-90)" text-anchor="middle">Cumulative ETH (log)</text>`);
+
+        // Sort small-first so big bubbles draw on top
+        const sorted = [...all].sort((a, b) => a.total_eth - b.total_eth);
+        sorted.forEach(d => {
+            const cx = xScale(d.n_epochs);
+            const cy = yScale(d.total_eth);
+            const r = rScale(d.total_eth);
+            const cls = d.n_epochs >= 2 ? 'bubble-ret' : 'bubble-one';
+            parts.push(`<circle class="${cls}" cx="${cx}" cy="${cy}" r="${r}"><title>${d.name} · ${d.total_eth.toFixed(2)} ETH · ${d.n_epochs} epochs</title></circle>`);
+        });
+        // Labels last so they sit on top
+        sorted.forEach(d => {
+            if (!topLabels.has(d.name)) return;
+            const cx = xScale(d.n_epochs);
+            const cy = yScale(d.total_eth);
+            const r = rScale(d.total_eth);
+            parts.push(`<text class="name-label" x="${cx + r + 6}" y="${cy + 3}">${d.name}</text>`);
+        });
+        svg.innerHTML = parts.join('');
     }
 
     function toNumber(v) { const n = parseFloat(v); return isNaN(n) ? 0 : n; }
@@ -913,6 +1170,8 @@
             document.getElementById('sumAll').textContent = Math.round(sumAll).toLocaleString('ru-RU');
 
             renderTop(state.all);
+            renderReturners(state.all);
+            renderBubble(state.all);
             applyView();
             attachInteractions();
         })
