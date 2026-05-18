@@ -1092,7 +1092,7 @@
 
         <div class="lb-card" id="epochStackCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Per-epoch funding by category — эволюция фокуса Octant</div>
+                <div class="lb-card-title">Технический Ethereum-стек получает большую часть funding почти в каждой эпохе</div>
             </div>
             <div class="epoch-chart-wrap">
                 <svg id="epochStackSvg" viewBox="0 0 720 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stacked bar of category funding by epoch"></svg>
@@ -1497,20 +1497,41 @@
     }
 
     function renderEpochStack(all) {
-        // epoch -> category -> ETH (approximated by even split of cumulative total_eth across project's epochs)
+        // Merge 5 tech-stack categories into one bucket so the bar chart reads as
+        // "tech stack vs themed rounds" instead of 9-color noise.
+        const TECH_CATEGORIES = new Set([
+            'Public Goods Funding',
+            'Ethereum Infrastructure',
+            'Developer Tools',
+            'Research & Analytics',
+            'Security & Privacy',
+        ]);
+        const TECH_LABEL = 'Ethereum tech stack';
+        const TECH_COLOR = '#ff9602';
+        const groupOf = d => TECH_CATEGORIES.has(d.category) ? TECH_LABEL : d.category;
+        const colorOf = c => c === TECH_LABEL ? TECH_COLOR : CAT_COLORS[c];
+
+        // epoch -> group -> ETH (approximated by even split of cumulative total_eth across project's epochs)
         const data = {};
         all.forEach(d => {
             if (!d.epochs_list) return;
             const epochs = d.epochs_list.split(',').map(e => parseInt(e.trim(), 10)).filter(e => !isNaN(e));
             if (!epochs.length) return;
             const per = d.total_eth / epochs.length;
+            const grp = groupOf(d);
             epochs.forEach(e => {
                 if (!data[e]) data[e] = {};
-                data[e][d.category] = (data[e][d.category] || 0) + per;
+                data[e][grp] = (data[e][grp] || 0) + per;
             });
         });
         const epochs = Object.keys(data).map(Number).sort((a, b) => a - b);
-        const cats = Object.keys(CAT_COLORS);
+        const cats = [
+            TECH_LABEL,
+            'Climate & Regenerative',
+            'Community & Coordination',
+            'Education & Onboarding',
+            'Media & Storytelling',
+        ];
         const totals = epochs.map(e => Object.values(data[e]).reduce((s, v) => s + v, 0));
         const maxEth = Math.max(...totals);
 
@@ -1554,7 +1575,7 @@
                 const v = data[e][cat] || 0;
                 if (v <= 0) return;
                 const h = (v / maxEth) * innerH;
-                parts.push(`<rect x="${x}" y="${yTop - h}" width="${barW}" height="${h}" fill="${CAT_COLORS[cat]}"><title>E${e} · ${cat} · ${v.toFixed(1)} ETH</title></rect>`);
+                parts.push(`<rect x="${x}" y="${yTop - h}" width="${barW}" height="${h}" fill="${colorOf(cat)}"><title>E${e} · ${cat} · ${v.toFixed(1)} ETH</title></rect>`);
                 yTop -= h;
             });
             // Epoch label
@@ -1572,7 +1593,7 @@
         const fmt = v => Math.round(v).toLocaleString('ru-RU');
         const legendStats = orderByEth.map(cat => ({
             cat,
-            color: CAT_COLORS[cat],
+            color: colorOf(cat),
             eth: epochs.reduce((s, e) => s + (data[e][cat] || 0), 0),
         }));
         document.getElementById('epochLegend').innerHTML = legendStats.map(s => `
