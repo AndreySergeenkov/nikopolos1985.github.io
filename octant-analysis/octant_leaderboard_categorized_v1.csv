@@ -1,0 +1,135 @@
+rank,name,category,n_epochs,n_addresses,total_allocated_eth,total_matched_eth,total_eth,avg_eth_per_epoch,epochs_list,name_variants
+1,Protocol Guild,Ethereum Infrastructure,10,4,9.8185,313.41,323.2285,32.3228,"0,1,2,3,4,5,6,8,10,11",Protocol Guild
+2,Gitcoin,Public Goods Funding,4,1,0.486,269.7562,270.2423,67.5606,"0,1,2,3",Gitcoin
+3,Tor Project,Security & Privacy,7,1,3.0026,135.5119,138.5146,19.7878,"1,2,3,4,5,6,10",The Tor Project | Tor Project
+4,Giveth,Public Goods Funding,4,1,1.3447,132.6357,133.9804,33.4951,"0,1,2,3",Giveth
+5,L2BEAT,Research & Analytics,7,3,5.8713,121.7017,127.573,18.2247,"2,3,4,5,6,8,10",L2BEAT
+6,Rotki,Developer Tools,7,1,5.1689,118.0231,123.192,17.5989,"1,2,3,4,5,6,10",Rotki | rotki
+7,Revoke.cash,Security & Privacy,6,2,6.6294,109.2369,115.8663,19.311,"2,3,4,5,6,10",Revoke.cash
+8,Hypercerts,Public Goods Funding,6,2,3.524,99.047,102.571,17.0952,"1,2,3,4,5,10",Hypercerts | Hypercerts Foundation
+9,EthStaker,Education & Onboarding,8,3,1.154,93.7506,94.9047,11.8631,"0,1,2,3,4,5,6,10",EthStaker
+10,GrowThePie,Research & Analytics,5,1,4.1246,90.0594,94.1841,18.8368,"3,4,6,8,10",GrowThePie | growthepie
+11,Ethereum Attestation Service,Ethereum Infrastructure,6,1,4.7611,74.1104,78.8714,13.1452,"3,4,5,6,8,10",Ethereum Attestation Service | Ethereum Attestation Service (EAS)
+12,Open Source Observer,Research & Analytics,7,1,2.6572,74.1642,76.8214,10.9745,"2,3,4,5,6,8,10",Open Source Observer
+13,Ethereum Cat Herders,Community & Coordination,7,2,4.6078,64.15,68.7578,9.8225,"0,1,2,3,4,5,6",Ethereum Cat Herders
+14,Solidity,Developer Tools,2,1,3.4545,65.1956,68.65,34.325,"8,10",Solidity
+15,Shielded Voting,Security & Privacy,3,1,3.5322,56.3208,59.853,19.951,"2,3,4",Shielded Voting
+16,Web3.py,Developer Tools,3,1,2.6063,55.955,58.5614,19.5205,"3,4,5",Web3.py
+17,Funding the Commons,Public Goods Funding,6,1,1.4223,54.8971,56.3194,9.3866,"2,3,4,5,6,10",Funding the Commons
+18,NiceNode,Developer Tools,2,1,3.4273,49.3854,52.8126,26.4063,"3,4",NiceNode
+19,ZachXBT,Research & Analytics,2,1,0.5324,48.4534,48.9858,24.4929,"9,10",ZachXBT
+20,Web3.js,Developer Tools,3,1,2.6433,46.0656,48.7089,16.2363,"3,4,5",Web3.js
+21,Dappnode,Ethereum Infrastructure,5,2,0.5837,47.9766,48.5604,9.7121,"4,5,6,8,10",Dappnode
+22,Aestus MEV Relay,Ethereum Infrastructure,4,1,5.9185,41.0105,46.929,11.7322,"5,6,8,10",Aestus | Aestus MEV Relay
+23,DAO Drops,Public Goods Funding,5,1,0.3129,45.2474,45.5603,9.1121,"0,1,2,3,4",DAO Drops
+24,Kernel,Education & Onboarding,3,1,0.1881,44.4035,44.5916,14.8639,"0,1,6",Kernel
+25,Drips,Public Goods Funding,4,1,0.7576,43.382,44.1397,11.0349,"0,1,2,3",Drips
+26,Atlantis,Climate & Regenerative,2,2,0.8611,42.0378,42.8989,21.4494,"7,10",Atlantis
+27,Blue Energy Reef Restoration,Climate & Regenerative,2,2,0.9324,37.7253,38.6577,19.3288,"7,10",Blue Energy Reef | Blue Energy Reef Restoration
+28,Remix Project,Developer Tools,2,1,3.0755,34.5665,37.642,18.821,"8,10",Remix Project
+29,Blue Filter,Climate & Regenerative,2,1,0.8812,35.1986,36.0798,18.0399,"7,10",Blue Filter
+30,Pairwise,Community & Coordination,5,1,0.8641,34.8492,35.7133,7.1427,"1,2,3,4,5",Pairwise
+31,Crypto Altruists,Media & Storytelling,2,2,0.4829,34.7564,35.2393,17.6196,"9,10",Crypto Altruists
+32,Praise,Community & Coordination,5,1,0.8061,34.326,35.1321,7.0264,"1,2,3,4,5",Praise
+33,TORNADO: The War On Code A Documentary by The Rage,Media & Storytelling,1,1,0.3877,33.6314,34.0192,34.0192,9,TORNADO: The War On Code A Documentary by The Rage
+34,Clr.fund,Public Goods Funding,2,1,0.1422,29.8689,30.0112,15.0056,"0,1",Clr.fund
+35,GainForest,Climate & Regenerative,1,1,0.3451,28.6046,28.9497,28.9497,7,GainForest
+36,SheFi,Education & Onboarding,2,1,0.2236,28.3988,28.6225,14.3112,"9,10",SheFi
+37,BuidlGuidl,Education & Onboarding,4,2,0.5972,25.9012,26.4984,6.6246,"4,5,6,8",BuidlGuidl
+38,Open Collective,Public Goods Funding,1,1,0.3392,23.9014,24.2406,24.2406,7,Open Collective
+39,Greenpill Dev Guild,Community & Coordination,2,2,0.6796,23.1069,23.7865,11.8933,"5,10",Greenpill Dev Guild
+40,PizzaDAO,Community & Coordination,3,1,0.5218,20.1683,20.6902,6.8967,"4,5,6",PizzaDAO
+41,Astral Protocol,Climate & Regenerative,1,1,0.4305,20.0739,20.5044,20.5044,7,Astral Protocol
+42,Ecovillage Network GEN Ukraine,Climate & Regenerative,1,1,0.2574,19.6165,19.8739,19.8739,7,Ecovillage Network GEN Ukraine
+43,MetaGame,Community & Coordination,3,1,0.4593,17.418,17.8773,5.9591,"1,2,3",MetaGame
+44,Vyper,Developer Tools,2,2,1.3006,15.2508,16.5513,8.2757,"4,8",Vyper
+45,B<>rder/ess Developers,Education & Onboarding,2,1,0.2803,13.7,13.9802,6.9901,"5,6",B<>rder/ess Developers
+46,ECH Institute,Education & Onboarding,1,1,1.7855,11.8568,13.6423,13.6423,10,ECH Institute
+47,OAK Research,Research & Analytics,1,1,0.2714,13.1542,13.4256,13.4256,9,OAK Research
+48,Silvi,Climate & Regenerative,1,1,0.0675,12.6946,12.7622,12.7622,7,Silvi
+49,Shutter Network,Security & Privacy,2,1,0.2507,11.498,11.7487,5.8744,"8,10",Shutter | Shutter Network
+50,Bees & Trees,Climate & Regenerative,1,1,0.1091,11.4022,11.5113,11.5113,7,Bees & Trees
+51,Glo Dollar,Public Goods Funding,3,1,0.3584,10.5696,10.928,3.6427,"1,2,3",Glo Dollar
+52,powdr,Developer Tools,1,1,1.0166,9.8854,10.902,10.902,8,powdr
+53,Blockscout,Developer Tools,3,1,0.1551,10.3549,10.51,3.5033,"4,6,8",Blockscout
+54,OnionDAO,Security & Privacy,1,1,0.2289,10.1707,10.3996,10.3996,1,OnionDAO
+55,Bloom Network,Climate & Regenerative,1,1,0.0626,10.0385,10.1011,10.1011,7,Bloom Network
+56,Supermodular,Public Goods Funding,1,1,0.0,9.9729,9.9729,9.9729,0,Supermodular
+57,Fe,Developer Tools,1,1,1.2228,8.5368,9.7595,9.7595,8,Fe
+58,Verifereum,Ethereum Infrastructure,1,1,1.2289,8.492,9.7209,9.7209,8,Verifereum
+59,Crypto Native,Media & Storytelling,1,1,0.1562,9.3404,9.4966,9.4966,9,Crypto Native
+60,Commit-Boost,Ethereum Infrastructure,1,1,1.2192,7.9532,9.1724,9.1724,8,Commit-Boost
+61,Institutional Guide to RWA Token Standards,Research & Analytics,1,1,0.2026,8.929,9.1316,9.1316,9,Institutional Guide to RWA Token Standards
+62,LottoPGF,Public Goods Funding,1,1,0.2301,8.842,9.0722,9.0722,5,LottoPGF
+63,DeFood: Decentralized Food Security Network,Climate & Regenerative,1,1,0.1172,8.7816,8.8988,8.8988,7,DeFood: Decentralized Food Security Network
+64,Act,Developer Tools,1,1,1.2105,7.6751,8.8856,8.8856,8,Act
+65,hevm,Developer Tools,1,1,1.2186,7.5879,8.8065,8.8065,8,hevm
+66,Ethers.js,Developer Tools,1,1,0.1276,8.6532,8.7808,8.7808,8,Ethers.js
+67,DefiLlama,Developer Tools,1,1,0.0935,8.4793,8.5728,8.5728,8,DefiLlama
+68,Doots Podcast,Media & Storytelling,1,1,0.409,7.8621,8.2712,8.2712,5,Doots Podcast
+69,ETHPanda,Media & Storytelling,1,1,0.159,8.106,8.2651,8.2651,9,ETHPanda
+70,Ethereum's Story Goes Mainstream,Media & Storytelling,1,1,0.2059,8.022,8.2279,8.2279,9,Ethereum's Story Goes Mainstream
+71,Stablewatch,Developer Tools,1,1,0.4561,7.7124,8.1686,8.1686,8,Stablewatch
+72,Regens Unite,Community & Coordination,2,1,0.1219,7.9986,8.1204,4.0602,"5,6",Regens Unite
+73,Rifai Sicilia,Climate & Regenerative,1,1,0.0822,7.9298,8.012,8.012,7,Rifai Sicilia
+74,La Blocka Toon,Media & Storytelling,1,1,0.1872,7.1053,7.2926,7.2926,9,La Blocka Toon
+75,Seabrick,Climate & Regenerative,1,1,0.0419,7.0654,7.1073,7.1073,7,Seabrick
+76,Biodiversity & Carbon Open Protocol,Climate & Regenerative,1,1,0.0557,6.7749,6.8306,6.8306,7,Biodiversity & Carbon Open Protocol
+77,Ekonavi,Climate & Regenerative,1,1,0.0998,6.6648,6.7646,6.7646,7,Ekonavi
+78,M3tering Protocol,Climate & Regenerative,1,1,0.0563,6.6487,6.705,6.705,7,M3tering Protocol
+79,eSusFarm,Climate & Regenerative,1,1,0.1184,6.5761,6.6945,6.6945,7,eSusFarm
+80,BrightID,Security & Privacy,1,1,0.1435,6.3785,6.5221,6.5221,1,BrightID
+81,PublicHAUS,Public Goods Funding,1,1,0.1398,6.2104,6.3502,6.3502,1,PublicHAUS
+82,"Territorial Regeneration in Barichara, Colombia",Climate & Regenerative,1,1,0.134,5.9387,6.0728,6.0728,7,"Territorial Regeneration in Barichara, Colombia"
+83,Oceanus,Climate & Regenerative,1,1,0.0568,5.983,6.0399,6.0399,7,Oceanus
+84,Interview Series: Celebrating 10 Years of Ethereum & Beyond,Media & Storytelling,1,1,0.2351,5.3264,5.5615,5.5615,9,Interview Series: Celebrating 10 Years of Ethereum & Beyond
+85,Change Code,Climate & Regenerative,1,1,0.0508,5.1084,5.1592,5.1592,7,Change Code
+86,Amongst a Potted Plant with Brooke Lacey,Media & Storytelling,1,1,0.1941,4.8786,5.0727,5.0727,9,Amongst a Potted Plant with Brooke Lacey
+87,TogetherCrew,Community & Coordination,2,2,0.0393,4.7271,4.7664,2.3832,"4,6",TogetherCrew
+88,rileybeans & Kimiya Mag,Media & Storytelling,1,1,0.0714,4.6172,4.6885,4.6885,9,rileybeans & Kimiya Mag
+89,Kiwi News,Media & Storytelling,2,1,0.0531,4.6263,4.6794,2.3397,"5,6",Kiwi News
+90,$ilence,Security & Privacy,1,1,0.1362,4.3283,4.4645,4.4645,9,$ilence
+91,The Ticker is ETH,Media & Storytelling,1,1,0.1048,3.9333,4.0381,4.0381,9,The Ticker is ETH
+92,ReFiDAO,Climate & Regenerative,1,1,0.044,3.984,4.028,4.028,6,ReFiDAO
+93,Sembrando Ethereum Stories of Nature and Tech United,Media & Storytelling,1,1,0.0511,3.6867,3.7378,3.7378,9,Sembrando Ethereum Stories of Nature and Tech United
+94,Fork'd,Media & Storytelling,1,1,0.0638,3.5422,3.606,3.606,9,Fork'd
+95,Gelora (The World Computer Files),Media & Storytelling,1,1,0.1209,3.4847,3.6056,3.6056,9,Gelora (The World Computer Files)
+96,Vocdoni,Security & Privacy,1,1,0.0529,3.4628,3.5157,3.5157,6,Vocdoni
+97,Shibuya,Media & Storytelling,1,1,0.0571,3.443,3.5001,3.5001,9,Shibuya
+98,Blobscan,Developer Tools,1,1,0.095,3.3888,3.4838,3.4838,8,Blobscan
+99,Alfred By Atlantis,Climate & Regenerative,1,1,0.1202,3.2368,3.357,3.357,6,Alfred By Atlantis
+100,EcosynthesisX,Climate & Regenerative,2,1,0.2491,3.0874,3.3365,1.6682,"4,5",EcoSynthesisX | EcosynthesisX
+101,DeFiScan,Developer Tools,1,1,0.0899,3.0827,3.1726,3.1726,8,DeFiScan
+102,FlowState,Community & Coordination,1,1,0.0384,2.9998,3.0381,3.0381,6,FlowState
+103,Bankless Academy,Education & Onboarding,1,1,0.0532,2.7344,2.7876,2.7876,6,Bankless Academy
+104,Circuitscan,Developer Tools,1,1,0.0975,2.6588,2.7563,2.7563,8,Circuitscan
+105,Gardens,Community & Coordination,3,1,0.0937,2.599,2.6927,0.8976,"3,4,5",Gardens
+106,EVMavericks Doots Podcast,Media & Storytelling,1,1,0.0352,2.621,2.6562,2.6562,6,EVMavericks Doots Podcast
+107,Web3Sec,Security & Privacy,1,1,0.1075,2.4893,2.5968,2.5968,9,Web3Sec
+108,MetaGov,Research & Analytics,2,1,0.0476,2.4463,2.4938,1.2469,"3,5",MetaGov
+109,DeSci LATAM,Education & Onboarding,2,1,0.0441,2.4385,2.4825,1.2413,"4,5",DeSci LATAM
+110,Citizen Wallet,Community & Coordination,1,1,0.0622,2.388,2.4502,2.4502,6,Citizen Wallet
+111,Proof of Intelligence,Research & Analytics,1,1,0.0455,2.3642,2.4097,2.4097,9,Proof of Intelligence
+112,Ethereum in Plain English,Media & Storytelling,1,1,0.0475,2.3611,2.4086,2.4086,9,Ethereum in Plain English
+113,Ethereum Explained,Media & Storytelling,1,1,0.0379,2.0147,2.0527,2.0527,9,Ethereum Explained
+114,Ateh Ugoji,Media & Storytelling,1,1,0.0468,1.8659,1.9127,1.9127,9,Ateh Ugoji
+115,BundleBear,Developer Tools,1,1,0.06,1.7467,1.8067,1.8067,8,BundleBear
+116,OrbitDB,Developer Tools,1,1,0.0755,1.5839,1.6594,1.6594,8,OrbitDB
+117,Samba,Community & Coordination,1,1,0.079,1.5671,1.6461,1.6461,8,Samba
+118,ZuCity Japan,Community & Coordination,1,1,0.0404,1.5628,1.6032,1.6032,6,ZuCity Japan
+119,ETH in a minute,Media & Storytelling,1,1,0.0169,1.4146,1.4315,1.4315,9,ETH in a minute
+120,Gravity DAO,Community & Coordination,1,1,0.0268,1.2461,1.2729,1.2729,5,Gravity DAO
+121,D2PFuzz,Developer Tools,1,1,0.0763,1.196,1.2723,1.2723,8,D2PFuzz
+122,The Ethereum Creator Club (TECC) / The Ethereum Film Festival (TEFF),Media & Storytelling,1,1,0.0317,1.0663,1.0981,1.0981,9,The Ethereum Creator Club (TECC) / The Ethereum Film Festival (TEFF)
+123,WebHash,Community & Coordination,1,1,0.0198,0.9795,0.9992,0.9992,6,WebHash
+124,Patchara,Media & Storytelling,1,1,0.0315,0.9469,0.9784,0.9784,9,Patchara
+125,CastaCrypto,Media & Storytelling,1,1,0.0276,0.868,0.8956,0.8956,9,CastaCrypto
+126,AKINDO,Community & Coordination,1,1,0.0252,0.642,0.6672,0.6672,9,AKINDO
+127,Abundance Protocol,Public Goods Funding,1,1,0.0243,0.604,0.6283,0.6283,4,Abundance Protocol
+128,Trustful,Public Goods Funding,1,1,0.0264,0.433,0.4594,0.4594,4,Trustful
+129,Ephemery Testnet - Client Implementation,Ethereum Infrastructure,1,1,0.0113,0.3297,0.341,0.341,8,Ephemery Testnet - Client Implementation
+130,Offbrand Crypto (by Full Value Dan),Media & Storytelling,1,1,0.0046,0.2196,0.2242,0.2242,9,Offbrand Crypto (by Full Value Dan)
+131,Boring Security,Security & Privacy,1,1,0.1337,0.0,0.1337,0.1337,3,Boring Security
+132,ReFi DAO,Climate & Regenerative,1,1,0.0144,0.0,0.0144,0.0144,3,ReFi DAO
+133,StateOfEth,Research & Analytics,1,1,0.0024,0.0,0.0024,0.0024,3,StateOfEth
+134,ETH Daily,Media & Storytelling,1,1,0.0013,0.0,0.0013,0.0013,3,ETH Daily
