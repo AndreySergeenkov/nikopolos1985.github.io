@@ -406,19 +406,21 @@
             border-radius: 2px;
         }
 
-        /* ===== MARGINAL EFFECT BAR CHART ===== */
+        /* ===== DONORS vs MATCH SCATTER ===== */
         .me-chart-wrap { padding: 12px 0 4px; }
         #meSvg { width: 100%; height: auto; display: block; font-family: var(--font-sans); }
-        #meSvg .me-bar { fill: var(--teal); transition: fill 0.15s ease; }
-        #meSvg .me-bar:hover { fill: var(--orange); }
-        #meSvg .me-val { fill: var(--light-100); font-family: var(--font-display); font-size: 14px; letter-spacing: -0.01em; }
-        #meSvg .me-pair { fill: var(--light-100); font-size: 11px; font-weight: 500; }
-        #meSvg .me-epoch { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
         #meSvg .me-grid { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
         #meSvg .me-axis { stroke: var(--grey-70); stroke-width: 0.5; }
         #meSvg .me-tick { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #meSvg .me-avg { stroke: var(--orange); stroke-width: 1.2; stroke-dasharray: 5 4; }
-        #meSvg .me-avg-label { fill: var(--orange); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+        #meSvg .me-axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+        #meSvg .me-dot { fill: var(--teal); fill-opacity: 0.5; stroke: var(--teal); stroke-width: 0.5; stroke-opacity: 0.8; transition: fill-opacity 0.15s ease; }
+        #meSvg .me-dot:hover { fill-opacity: 1; }
+        #meSvg .me-dot-top { fill: var(--orange); fill-opacity: 0.95; stroke: var(--grey-100); stroke-width: 1.5; }
+        #meSvg .me-trend { stroke: var(--light-100); stroke-width: 1.4; stroke-dasharray: 4 4; fill: none; opacity: 0.7; }
+        #meSvg .me-label { fill: var(--light-100); font-size: 11px; font-weight: 500; }
+        #meSvg .me-label-line { stroke: var(--grey-50); stroke-width: 0.5; }
+        #meSvg .me-stat { fill: var(--light-80); font-size: 11px; font-family: ui-monospace, monospace; }
+        #meSvg .me-stat-key { fill: var(--orange); font-size: 11px; font-weight: 600; }
 
         @media (max-width: 560px) {
             .hbar-row { grid-template-columns: 1fr; gap: 6px; }
@@ -1054,13 +1056,13 @@
 
         <div class="lb-card" id="marginalEffectCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Average match contribution per additional donor in Octant QF rounds: ~$500</div>
+                <div class="lb-card-title">Каждый дополнительный донор увеличивает match — данные по 195 проект-эпохам в QF-раундах</div>
             </div>
             <div class="me-chart-wrap">
-                <svg id="meSvg" viewBox="0 0 720 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Per-donor marginal match across 6 contrast pairs"></svg>
+                <svg id="meSvg" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scatter: donors vs match across all QF project-epochs"></svg>
             </div>
             <div class="chart-note">
-                Шесть пар проектов из QF-эпох с близким allocated_eth и разным n_donors. Per-donor effect = (Δmatched_eth ÷ Δdonors), переведено в USD по средней цене ETH за период V1 (≈$1800). Solidity/hevm E8 и SheFi/Brooke Lacey E9 — пары из текста выше; остальные подобраны автоматически из <code>octant_donor_counts_v1.csv</code> по тому же критерию.
+                Каждая точка — один проект в одной QF-эпохе (E4–E11). Линия — линейная регрессия. <code>slope = +0.172 ETH</code> match per extra donor ≈ <strong>+$310 / donor</strong> при цене ETH $1 800. R² = 0.34, n = 195. Подписаны 6 проектов с наибольшим match. Источник: <code>octant_donor_counts_v1.csv</code>.
             </div>
         </div>
         <div class="lb-actions lb-actions-top" style="margin-top:12px;">
@@ -1361,9 +1363,18 @@
             renderReturners(state.all);
             renderCategoryCharts(state.all);
             renderEpochStack(state.all);
-            renderMarginalEffect();
             applyView();
             attachInteractions();
+
+            loadDonorCounts()
+                .then(renderMarginalEffect)
+                .catch(err => {
+                    console.error('donor_counts load failed:', err);
+                    document.getElementById('meSvg').outerHTML =
+                        `<div style="color:var(--grey-30);padding:20px;font-size:13px;">
+                            Не удалось загрузить <code>octant_donor_counts_v1.csv</code>: ${(err && err.message) || err}
+                        </div>`;
+                });
         })
         .catch(err => {
             console.error('CSV load failed:', err);
@@ -1375,68 +1386,129 @@
                 </div>`;
         });
 
-    // Six contrast pairs from donor_counts_v1.csv. Two (Solidity/hevm E8, SheFi/Brooke E9)
-    // are user-cited; the rest are auto-picked: close allocated_eth, large Δdonors.
-    // USD = Δmatch_eth / Δdonors × $1800 (avg ETH price across V1).
-    const ME_DATA = [
-        { pair: 'Revoke.cash / Ethereum Cat Herders', epoch: 5,  donors_a: 95,  donors_b: 53, value_usd: 280 },
-        { pair: 'GainForest / Open Collective',       epoch: 7,  donors_a: 141, donors_b: 114, value_usd: 313 },
-        { pair: 'Revoke.cash / Aestus',               epoch: 10, donors_a: 71,  donors_b: 30, value_usd: 379 },
-        { pair: 'Solidity / hevm',                    epoch: 8,  donors_a: 84,  donors_b: 28, value_usd: 434 },
-        { pair: 'SheFi / Brooke Lacey',               epoch: 9,  donors_a: 100, donors_b: 29, value_usd: 495 },
-        { pair: 'EAS / Aestus MEV Relay',             epoch: 6,  donors_a: 79,  donors_b: 39, value_usd: 742 },
-    ];
+    const ETH_USD = 1800; // avg ETH price across V1 lifespan, used for USD conversion
 
-    function renderMarginalEffect() {
-        const W = 720, H = 460;
-        const M = { top: 28, right: 24, bottom: 96, left: 60 };
+    function renderMarginalEffect(points) {
+        // points: [{epoch, name, donors, matched}]
+        const W = 720, H = 480;
+        const M = { top: 28, right: 32, bottom: 56, left: 64 };
         const innerW = W - M.left - M.right;
         const innerH = H - M.top - M.bottom;
-        const data = ME_DATA;
-        const avg = Math.round(data.reduce((s, d) => s + d.value_usd, 0) / data.length);
-        const yMax = 800; // round headroom above max (742)
+
+        const xMax = Math.ceil(Math.max(...points.map(p => p.donors)) / 20) * 20;
+        const yMax = Math.ceil(Math.max(...points.map(p => p.matched)) / 5) * 5;
+        const xScale = v => M.left + (v / xMax) * innerW;
         const yScale = v => M.top + innerH - (v / yMax) * innerH;
-        const slot = innerW / data.length;
-        const barW = Math.min(64, slot * 0.6);
+
+        // Linear regression: matched = slope * donors + intercept
+        const n = points.length;
+        const sx = points.reduce((s, p) => s + p.donors, 0);
+        const sy = points.reduce((s, p) => s + p.matched, 0);
+        const sxx = points.reduce((s, p) => s + p.donors * p.donors, 0);
+        const sxy = points.reduce((s, p) => s + p.donors * p.matched, 0);
+        const slope = (n * sxy - sx * sy) / (n * sxx - sx * sx);
+        const intercept = (sy - slope * sx) / n;
+        const ymean = sy / n;
+        const ss_tot = points.reduce((s, p) => s + (p.matched - ymean) ** 2, 0);
+        const ss_res = points.reduce((s, p) => s + (p.matched - (slope * p.donors + intercept)) ** 2, 0);
+        const r2 = 1 - ss_res / ss_tot;
+        const slopeUsd = slope * ETH_USD;
+
+        // Top 6 points for labelling (skip near-duplicates by name)
+        const sortedByMatch = [...points].sort((a, b) => b.matched - a.matched);
+        const seen = new Set();
+        const top = [];
+        for (const p of sortedByMatch) {
+            const key = p.name.slice(0, 12);
+            if (seen.has(key)) continue;
+            seen.add(key);
+            top.push(p);
+            if (top.length === 6) break;
+        }
+        const topSet = new Set(top.map(p => p.epoch + '|' + p.name));
 
         const parts = [];
-        // Y grid + ticks
-        [0, 200, 400, 500, 600, 800].forEach(v => {
+        // Grid + Y ticks
+        const yStep = yMax / 5;
+        for (let v = 0; v <= yMax + 0.01; v += yStep) {
             const y = yScale(v);
-            const isAvg = v === 500;
-            if (!isAvg) {
-                parts.push(`<line class="me-grid" x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}"/>`);
-            }
-            parts.push(`<text class="me-tick" x="${M.left - 8}" y="${y + 3}" text-anchor="end">$${v}</text>`);
-        });
+            parts.push(`<line class="me-grid" x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}"/>`);
+            parts.push(`<text class="me-tick" x="${M.left - 8}" y="${y + 3}" text-anchor="end">${v.toFixed(0)}</text>`);
+        }
+        // X ticks
+        const xStep = xMax / 6;
+        for (let v = 0; v <= xMax + 0.01; v += xStep) {
+            const x = xScale(v);
+            parts.push(`<text class="me-tick" x="${x}" y="${H - M.bottom + 16}" text-anchor="middle">${Math.round(v)}</text>`);
+        }
         // Axes
         parts.push(`<line class="me-axis" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H - M.bottom}"/>`);
         parts.push(`<line class="me-axis" x1="${M.left}" y1="${H - M.bottom}" x2="${W - M.right}" y2="${H - M.bottom}"/>`);
+        // Axis labels
+        parts.push(`<text class="me-axis-label" x="${M.left + innerW / 2}" y="${H - 12}" text-anchor="middle">Donors per project</text>`);
+        parts.push(`<text class="me-axis-label" x="${-(M.top + innerH / 2)}" y="16" transform="rotate(-90)" text-anchor="middle">Match (ETH)</text>`);
 
-        // Bars
-        data.forEach((d, i) => {
-            const cx = M.left + slot * (i + 0.5);
-            const x = cx - barW / 2;
-            const y = yScale(d.value_usd);
-            const h = (H - M.bottom) - y;
-            parts.push(`<rect class="me-bar" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.pair} (E${d.epoch}) — $${d.value_usd}/donor · ${d.donors_a} vs ${d.donors_b} donors</title></rect>`);
-            parts.push(`<text class="me-val" x="${cx}" y="${y - 8}" text-anchor="middle">$${d.value_usd}</text>`);
-            // Two-line label below bar
-            const labelY = H - M.bottom + 18;
-            parts.push(`<text class="me-pair" x="${cx}" y="${labelY}" text-anchor="middle">${escapeXml(d.pair)}</text>`);
-            parts.push(`<text class="me-epoch" x="${cx}" y="${labelY + 16}" text-anchor="middle">E${d.epoch} · ${d.donors_a} vs ${d.donors_b} donors</text>`);
+        // Regression line (clip to viewport)
+        const lineY0 = slope * 0 + intercept;
+        const lineY1 = slope * xMax + intercept;
+        parts.push(`<line class="me-trend" x1="${xScale(0)}" y1="${yScale(Math.max(0, lineY0))}" x2="${xScale(xMax)}" y2="${yScale(Math.max(0, lineY1))}"/>`);
+
+        // Regular dots
+        points.forEach(p => {
+            if (topSet.has(p.epoch + '|' + p.name)) return;
+            parts.push(`<circle class="me-dot" cx="${xScale(p.donors)}" cy="${yScale(p.matched)}" r="4"><title>E${p.epoch} · ${escapeXml(p.name)} · ${p.donors} donors · ${p.matched.toFixed(2)} ETH match</title></circle>`);
+        });
+        // Top dots (drawn on top, with labels)
+        // Anti-collision: spread labels vertically if too close
+        const labels = top.map(p => ({
+            p,
+            cx: xScale(p.donors),
+            cy: yScale(p.matched),
+            ly: yScale(p.matched),
+        })).sort((a, b) => a.ly - b.ly);
+        const minGap = 18;
+        for (let i = 1; i < labels.length; i++) {
+            if (labels[i].ly - labels[i - 1].ly < minGap) {
+                labels[i].ly = labels[i - 1].ly + minGap;
+            }
+        }
+        labels.forEach(({ p, cx, cy, ly }) => {
+            parts.push(`<circle class="me-dot-top" cx="${cx}" cy="${cy}" r="6"><title>E${p.epoch} · ${escapeXml(p.name)} · ${p.donors} donors · ${p.matched.toFixed(2)} ETH match</title></circle>`);
+            const lx = cx + 12;
+            // connector if label was bumped
+            if (Math.abs(ly - cy) > 1) {
+                parts.push(`<line class="me-label-line" x1="${cx + 6}" y1="${cy}" x2="${lx - 2}" y2="${ly}"/>`);
+            }
+            parts.push(`<text class="me-label" x="${lx}" y="${ly + 3}">${escapeXml(p.name)} <tspan fill="var(--grey-30)" font-size="10" font-family="ui-monospace, monospace"> E${p.epoch}</tspan></text>`);
         });
 
-        // Average dashed line
-        const yAvg = yScale(avg);
-        parts.push(`<line class="me-avg" x1="${M.left}" y1="${yAvg}" x2="${W - M.right}" y2="${yAvg}"/>`);
-        parts.push(`<text class="me-avg-label" x="${W - M.right - 4}" y="${yAvg - 6}" text-anchor="end">avg $${avg} / donor</text>`);
+        // Stats block (top-left corner inside chart)
+        const sx0 = M.left + 14, sy0 = M.top + 16;
+        parts.push(`<text class="me-stat-key" x="${sx0}" y="${sy0}">slope = +$${Math.round(slopeUsd)} match per donor</text>`);
+        parts.push(`<text class="me-stat" x="${sx0}" y="${sy0 + 16}">= ${slope.toFixed(3)} ETH · ETH @ $${ETH_USD.toLocaleString('en-US')}</text>`);
+        parts.push(`<text class="me-stat" x="${sx0}" y="${sy0 + 30}">R² = ${r2.toFixed(2)} · n = ${n}</text>`);
 
         document.getElementById('meSvg').innerHTML = parts.join('');
     }
 
     function escapeXml(s) {
-        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function loadDonorCounts() {
+        const url = new URL('octant_donor_counts_v1.csv', document.baseURI).href;
+        return fetch(url)
+            .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+            .then(text => parseCSV(text)
+                .map(r => ({
+                    epoch: parseInt(r.epoch, 10),
+                    name: r.project_name,
+                    donors: parseInt(r.n_donors, 10),
+                    matched: toNumber(r.matched_eth),
+                    allocated: toNumber(r.allocated_eth),
+                }))
+                .filter(r => r.epoch >= 4 && !isNaN(r.donors) && !isNaN(r.matched))
+            );
     }
 
     function renderEpochStack(all) {
