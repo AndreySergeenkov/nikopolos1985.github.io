@@ -406,7 +406,7 @@
             border-radius: 2px;
         }
 
-        /* ===== SOLIDITY vs HEVM ILLUSTRATION (4 cols) ===== */
+        /* ===== SOLIDITY vs HEVM ILLUSTRATION (nested bar) ===== */
         .vs-grid {
             display: flex;
             flex-direction: column;
@@ -415,8 +415,8 @@
         }
         .vs-row {
             display: grid;
-            grid-template-columns: 110px 200px 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 110px 200px 1fr;
+            gap: 24px;
             align-items: center;
         }
         .vs-name-cell {
@@ -437,7 +437,24 @@
             letter-spacing: 0.06em;
             color: var(--grey-30);
             margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
         }
+        .vs-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--grey-20);
+        }
+        .vs-swatch {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        .vs-swatch--don { background: var(--teal); }
+        .vs-swatch--match { background: var(--orange); }
         .vs-teal {
             font-family: var(--font-display);
             font-size: 22px;
@@ -459,28 +476,22 @@
             border-radius: 999px;
         }
         .vs-dot--on { background: var(--teal); }
-        .vs-bar {
+
+        .vs-stack-bar {
+            display: flex;
             height: 36px;
             border-radius: var(--r-card);
-            display: flex;
-            align-items: center;
-            padding: 0 14px;
-            font-family: var(--font-display);
-            font-size: 18px;
-            letter-spacing: -0.01em;
-            min-width: 76px;
+            overflow: hidden;
+            box-shadow: 0 0 0 0.5px var(--grey-70);
         }
-        .vs-bar--donations {
-            background: var(--light-100);
-            color: var(--grey-100);
-        }
-        .vs-bar--match {
-            background: var(--orange);
-            color: var(--grey-100);
-        }
+        .vs-stack-seg { height: 100%; }
+        .vs-stack-don { background: var(--teal); }
+        .vs-stack-match { background: var(--orange); }
+
         @media (max-width: 820px) {
             .vs-row { grid-template-columns: 1fr; gap: 12px; }
             .vs-dotgrid { width: 100%; }
+            .vs-stack-bar { width: 100% !important; }
         }
 
         @media (max-width: 560px) {
@@ -1127,13 +1138,15 @@
                         <div class="vs-cell-label"><strong class="vs-teal">84</strong> donors</div>
                         <div class="vs-dotgrid" data-fill="84"></div>
                     </div>
-                    <div class="vs-cell">
-                        <div class="vs-cell-label">от пользователей</div>
-                        <div class="vs-bar vs-bar--donations" style="width:100%;"><span>1.27 ETH</span></div>
-                    </div>
-                    <div class="vs-cell">
-                        <div class="vs-cell-label">QF match</div>
-                        <div class="vs-bar vs-bar--match" style="width:100%;"><span>21.1 ETH</span></div>
+                    <div class="vs-cell vs-stack-cell">
+                        <div class="vs-cell-label">
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.27 ETH от пользователей</span>
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--match"></span>21.1 ETH QF match</span>
+                        </div>
+                        <div class="vs-stack-bar" style="width:100%;">
+                            <div class="vs-stack-seg vs-stack-don"  style="flex:1.27;"></div>
+                            <div class="vs-stack-seg vs-stack-match" style="flex:21.1;"></div>
+                        </div>
                     </div>
                 </div>
                 <!-- Row: hevm -->
@@ -1143,13 +1156,15 @@
                         <div class="vs-cell-label"><strong class="vs-teal">28</strong> donors</div>
                         <div class="vs-dotgrid" data-fill="28"></div>
                     </div>
-                    <div class="vs-cell">
-                        <div class="vs-cell-label">от пользователей</div>
-                        <div class="vs-bar vs-bar--donations" style="width:96%;"><span>1.22 ETH</span></div>
-                    </div>
-                    <div class="vs-cell">
-                        <div class="vs-cell-label">QF match</div>
-                        <div class="vs-bar vs-bar--match" style="width:36%;"><span>7.6 ETH</span></div>
+                    <div class="vs-cell vs-stack-cell">
+                        <div class="vs-cell-label">
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.22 ETH от пользователей</span>
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--match"></span>7.6 ETH QF match</span>
+                        </div>
+                        <div class="vs-stack-bar" style="width:39.4%;">
+                            <div class="vs-stack-seg vs-stack-don"  style="flex:1.22;"></div>
+                            <div class="vs-stack-seg vs-stack-match" style="flex:7.6;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
