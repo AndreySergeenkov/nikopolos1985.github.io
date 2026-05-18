@@ -130,7 +130,6 @@
         }
         .hero {
             margin-bottom: 32px;
-            text-align: center;
         }
         h1 {
             font-family: var(--font-display);
@@ -150,7 +149,6 @@
             color: var(--light-80);
             font-size: 16px;
             line-height: 1.7;
-            text-align: center;
         }
         .draft-body p { margin: 0 0 16px; }
         .draft-body p:last-child { margin-bottom: 0; }
@@ -729,17 +727,11 @@
                 <h2 class="lb-title">Cumulative leaderboard</h2>
                 <div class="lb-sub">All projects ever funded through Octant · E0 → E11</div>
             </div>
-            <div class="lb-meta">
-                <div class="metric"><span class="num" id="mProjects">—</span><span class="lbl">Projects</span></div>
-                <div class="metric"><span class="num" id="mEpochs">12</span><span class="lbl">Epochs</span></div>
-                <div class="metric"><span class="num" id="mTotal">—</span><span class="lbl">Total ETH</span></div>
-            </div>
         </div>
 
         <div class="lb-card" id="topCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Top 10 by total funding</div>
-                <div class="lb-card-watermark">octant · cumulative · E0–E11</div>
+                <div class="lb-card-title">Top 10 projects by total ETH received from Octant (Epochs 0–11)</div>
             </div>
             <div class="lb-rows" id="topRows"></div>
             <div class="lb-card-legend">
@@ -829,13 +821,10 @@
             const aShare = d.total_eth > 0 ? (d.total_allocated_eth / d.total_eth) : 0;
             const aWidth = totalPct * aShare;
             const mWidth = totalPct * (1 - aShare);
-            const variants = d.name_variants && d.name_variants !== d.name
-                ? `<small>aka ${d.name_variants.split(' | ').filter(v => v !== d.name).join(' · ')}</small>`
-                : '';
             return `
                 <div class="lb-row">
                     <div class="rk">${d.rank}</div>
-                    <div class="nm" title="${d.name}">${d.name}${variants}</div>
+                    <div class="nm" title="${d.name}">${d.name}</div>
                     <div class="bar">
                         <div class="seg-a" style="width:${aWidth}%"></div>
                         <div class="seg-m" style="width:${mWidth}%"></div>
