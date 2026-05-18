@@ -357,9 +357,59 @@
             text-transform: uppercase;
         }
 
+        /* ===== PER-EPOCH STACKED BAR ===== */
+        .epoch-chart-wrap { padding: 12px 0 4px; }
+        #epochStackSvg {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-family: var(--font-sans);
+        }
+        #epochStackSvg rect { transition: opacity 0.15s ease; }
+        #epochStackSvg rect:hover { opacity: 0.7; }
+
+        .cat-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px 20px;
+            margin-top: 18px;
+            font-size: 11px;
+            color: var(--grey-20);
+        }
+        .cat-legend .item { display: flex; align-items: center; gap: 8px; }
+        .cat-legend .swatch {
+            width: 12px; height: 12px;
+            flex: 0 0 12px;
+            border-radius: 2px;
+        }
+        .cat-legend .item small {
+            color: var(--grey-30);
+            margin-left: 4px;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+        }
+
+        .chart-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 0.5px solid var(--grey-80);
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--grey-30);
+        }
+        .chart-note code {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--light-80);
+            background: var(--grey-90);
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+
         @media (max-width: 560px) {
             .hbar-row { grid-template-columns: 1fr; gap: 6px; }
             .hbar-row .val { text-align: left; }
+            .cat-legend { grid-template-columns: 1fr; }
         }
 
         /* Top-10 leaderboard card (download-friendly slide) */
@@ -948,8 +998,24 @@
             </div>
             <div class="hbar-list" id="catAList"></div>
         </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
             <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+
+        <div class="lb-card" id="epochStackCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Per-epoch funding by category — эволюция фокуса Octant</div>
+            </div>
+            <div class="epoch-chart-wrap">
+                <svg id="epochStackSvg" viewBox="0 0 720 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stacked bar of category funding by epoch"></svg>
+            </div>
+            <div class="cat-legend" id="epochLegend"></div>
+            <div class="chart-note">
+                Приближение: cumulative <code>total_eth</code> проекта разнесён поровну между эпохами его участия. Themed раунды (E7 Climate, E9 Stories) и одиночные эпохи (E11 — Protocol Guild) отражены точно, у returners значения сглажены.
+            </div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+            <button class="btn" data-png="epochStackCard" data-name="octant-per-epoch-by-category.png" type="button">⤓ Save chart as PNG</button>
         </div>
     </section>
 
@@ -1245,6 +1311,7 @@
             renderTop(state.all);
             renderReturners(state.all);
             renderCategoryCharts(state.all);
+            renderEpochStack(state.all);
             applyView();
             attachInteractions();
         })
@@ -1257,6 +1324,93 @@
                     Error: <code style="font-family:var(--font-mono);font-size:11px;">${(err && err.message) || err}</code>
                 </div>`;
         });
+
+    function renderEpochStack(all) {
+        // epoch -> category -> ETH (approximated by even split of cumulative total_eth across project's epochs)
+        const data = {};
+        all.forEach(d => {
+            if (!d.epochs_list) return;
+            const epochs = d.epochs_list.split(',').map(e => parseInt(e.trim(), 10)).filter(e => !isNaN(e));
+            if (!epochs.length) return;
+            const per = d.total_eth / epochs.length;
+            epochs.forEach(e => {
+                if (!data[e]) data[e] = {};
+                data[e][d.category] = (data[e][d.category] || 0) + per;
+            });
+        });
+        const epochs = Object.keys(data).map(Number).sort((a, b) => a - b);
+        const cats = Object.keys(CAT_COLORS);
+        const totals = epochs.map(e => Object.values(data[e]).reduce((s, v) => s + v, 0));
+        const maxEth = Math.max(...totals);
+
+        const W = 720, H = 420;
+        const M = { top: 16, right: 16, bottom: 40, left: 56 };
+        const innerW = W - M.left - M.right;
+        const innerH = H - M.top - M.bottom;
+        const barGap = 8;
+        const barW = (innerW - barGap * (epochs.length - 1)) / epochs.length;
+        const yScale = v => M.top + innerH - (v / maxEth) * innerH;
+
+        const niceStep = (() => {
+            const target = 5;
+            const raw = maxEth / target;
+            const pow = Math.pow(10, Math.floor(Math.log10(raw)));
+            const norm = raw / pow;
+            const step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * pow;
+            return step;
+        })();
+
+        const parts = [];
+        // Y-axis gridlines + tick labels
+        for (let v = 0; v <= maxEth; v += niceStep) {
+            const y = yScale(v);
+            parts.push(`<line x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}" stroke="var(--grey-80)" stroke-width="0.5" stroke-dasharray="2 3"/>`);
+            parts.push(`<text x="${M.left - 8}" y="${y + 3}" text-anchor="end" fill="var(--grey-30)" font-size="10" font-family="ui-monospace, monospace">${Math.round(v)}</text>`);
+        }
+        // Y-axis label
+        parts.push(`<text x="${-(M.top + innerH / 2)}" y="14" transform="rotate(-90)" text-anchor="middle" fill="var(--grey-30)" font-size="10" font-weight="600" letter-spacing="0.06em">ETH</text>`);
+
+        // Stacked bars: build from bottom up, ordered by overall funding so dominant cats sit at the bottom
+        const orderByEth = [...cats].sort((a, b) => {
+            const sa = epochs.reduce((s, e) => s + (data[e][a] || 0), 0);
+            const sb = epochs.reduce((s, e) => s + (data[e][b] || 0), 0);
+            return sb - sa;
+        });
+        epochs.forEach((e, i) => {
+            const x = M.left + i * (barW + barGap);
+            let yTop = H - M.bottom;
+            orderByEth.forEach(cat => {
+                const v = data[e][cat] || 0;
+                if (v <= 0) return;
+                const h = (v / maxEth) * innerH;
+                parts.push(`<rect x="${x}" y="${yTop - h}" width="${barW}" height="${h}" fill="${CAT_COLORS[cat]}"><title>E${e} · ${cat} · ${v.toFixed(1)} ETH</title></rect>`);
+                yTop -= h;
+            });
+            // Epoch label
+            parts.push(`<text x="${x + barW / 2}" y="${H - M.bottom + 16}" text-anchor="middle" fill="var(--grey-30)" font-size="10" font-family="ui-monospace, monospace">E${e}</text>`);
+            // Total above bar
+            parts.push(`<text x="${x + barW / 2}" y="${yScale(totals[i]) - 6}" text-anchor="middle" fill="var(--grey-30)" font-size="10" font-family="ui-monospace, monospace">${Math.round(totals[i])}</text>`);
+        });
+        // Axis lines
+        parts.push(`<line x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H - M.bottom}" stroke="var(--grey-70)" stroke-width="0.5"/>`);
+        parts.push(`<line x1="${M.left}" y1="${H - M.bottom}" x2="${W - M.right}" y2="${H - M.bottom}" stroke="var(--grey-70)" stroke-width="0.5"/>`);
+
+        document.getElementById('epochStackSvg').innerHTML = parts.join('');
+
+        // Legend mirrors the order of the stack so colours map intuitively
+        const fmt = v => Math.round(v).toLocaleString('ru-RU');
+        const legendStats = orderByEth.map(cat => ({
+            cat,
+            color: CAT_COLORS[cat],
+            eth: epochs.reduce((s, e) => s + (data[e][cat] || 0), 0),
+        }));
+        document.getElementById('epochLegend').innerHTML = legendStats.map(s => `
+            <div class="item">
+                <span class="swatch" style="background:${s.color};"></span>
+                <span>${s.cat}<small>${fmt(s.eth)} ETH</small></span>
+            </div>
+        `).join('');
+    }
 })();
 </script>
 
