@@ -287,6 +287,114 @@
         .lb-card-legend .dot-ret { background: var(--teal); }
         .lb-card-legend .dot-one { background: var(--grey-50); }
 
+        /* ===== HORIZONTAL BARS BY CATEGORY (Variant A) ===== */
+        .hbar-list { display: flex; flex-direction: column; gap: 10px; padding: 14px 0 4px; }
+        .hbar-row {
+            display: grid;
+            grid-template-columns: 200px 1fr 120px;
+            align-items: center;
+            gap: 14px;
+        }
+        .hbar-row .nm {
+            font-size: 13px;
+            color: var(--light-100);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .hbar-row .nm small {
+            display: block;
+            color: var(--grey-30);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 3px;
+            letter-spacing: 0.06em;
+        }
+        .hbar-row .bar-bg {
+            height: 16px;
+            background: var(--grey-90);
+            border-radius: var(--r-card);
+            overflow: hidden;
+        }
+        .hbar-row .bar-fill { height: 100%; }
+        .hbar-row .val {
+            font-family: var(--font-display);
+            font-size: 18px;
+            text-align: right;
+            color: var(--light-100);
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+        .hbar-row .val small {
+            display: block;
+            color: var(--grey-30);
+            font-size: 10px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            margin-top: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ===== DUAL STACKED WITH 9 SEGMENTS (Variant B) ===== */
+        #catB .bar-stack { height: 480px; }
+        #catB .bar-seg { padding: 4px 10px; min-height: 18px; }
+        #catB .bar-seg .pct {
+            font-family: var(--font-display);
+            font-size: 13px;
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+        #catB .bar-seg .lbl { display: none; }
+        .cat-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px 20px;
+            margin-top: 18px;
+            font-size: 11px;
+            color: var(--grey-20);
+        }
+        .cat-legend .item { display: flex; align-items: center; gap: 8px; }
+        .cat-legend .swatch {
+            width: 12px; height: 12px;
+            flex: 0 0 12px;
+            border-radius: 2px;
+        }
+        .cat-legend .item small {
+            color: var(--grey-30);
+            margin-left: 4px;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ===== SLOPE CHART (Variant B+) ===== */
+        .slope-wrap { padding: 12px 0 4px; }
+        #catSlopeSvg {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-family: var(--font-sans);
+        }
+        #catSlopeSvg .axis-head {
+            fill: var(--grey-30);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        #catSlopeSvg .slope-line { fill: none; stroke-width: 1.5; opacity: 0.85; }
+        #catSlopeSvg .slope-dot { stroke: var(--grey-100); stroke-width: 1.5; }
+        #catSlopeSvg .slope-label { fill: var(--light-100); font-size: 11.5px; font-weight: 500; }
+        #catSlopeSvg .slope-sub { fill: var(--grey-30); font-size: 10px; font-family: var(--font-mono); }
+
+        @media (max-width: 560px) {
+            .hbar-row { grid-template-columns: 1fr; gap: 6px; }
+            .hbar-row .val { text-align: left; }
+            #catB .bar-stack { height: 380px; }
+            .cat-legend { grid-template-columns: 1fr; }
+        }
+
         /* Top-10 leaderboard card (download-friendly slide) */
         .lb-card {
             background: var(--grey-100);
@@ -756,7 +864,7 @@
         </div>
 
         <div class="lb-actions lb-actions-top">
-            <a href="octant_cumulative_leaderboard_v2.csv" download class="btn">⤓ Download CSV</a>
+            <a href="octant_leaderboard_categorized_v1.csv" download class="btn">⤓ Download CSV</a>
             <button class="btn" id="savePng" type="button">⤓ Save chart as PNG</button>
         </div>
 
@@ -855,6 +963,48 @@
                 Ethereum Infrastructure это самый concentrated bet Octant. Всего 7 проектов или 5.2% от всех, но 15.2% от funding. Сюда входят Protocol Guild (323 ETH cumulative), Ethereum Attestation Service (79 ETH), Dappnode (49 ETH), Aestus MEV Relay (47 ETH), Commit-Boost, Verifereum и Ephemery Testnet.
             </p>
         </div>
+
+        <div class="lb-card" id="catA">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Вариант A · Funding by category (cumulative, E0–E11)</div>
+            </div>
+            <div class="hbar-list" id="catAList"></div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
+            <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save A as PNG</button>
+        </div>
+
+        <div class="lb-card" id="catB">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Вариант B · Доля от числа проектов vs доля от funding (9 категорий)</div>
+            </div>
+            <div class="dual-bar">
+                <div class="bar-col">
+                    <div class="bar-label">Projects (n=<span id="catBProjN">—</span>)</div>
+                    <div class="bar-stack" id="catBProj"></div>
+                </div>
+                <div class="bar-col">
+                    <div class="bar-label">Funding (<span id="catBFundN">—</span> ETH)</div>
+                    <div class="bar-stack" id="catBFund"></div>
+                </div>
+            </div>
+            <div class="cat-legend" id="catLegend"></div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
+            <button class="btn" data-png="catB" data-name="octant-projects-vs-funding-by-category.png" type="button">⤓ Save B as PNG</button>
+        </div>
+
+        <div class="lb-card" id="catBplus">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Вариант B+ · Slope chart: % проектов → % funding</div>
+            </div>
+            <div class="slope-wrap">
+                <svg id="catSlopeSvg" viewBox="0 0 720 540" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Slope chart: share of projects vs share of funding by category"></svg>
+            </div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+            <button class="btn" data-png="catBplus" data-name="octant-slope-projects-to-funding.png" type="button">⤓ Save B+ as PNG</button>
+        </div>
     </section>
 
 </main>
@@ -862,7 +1012,7 @@
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
 <script>
 (function () {
-    const CSV_PATH = 'octant_cumulative_leaderboard_v2.csv';
+    const CSV_PATH = 'octant_leaderboard_categorized_v1.csv';
 
     // --- CSV parser (handles quoted fields) ---
     function parseCSV(text) {
@@ -1060,6 +1210,165 @@
         );
     }
 
+    // Stable color map: top-5 categories by funding get Octant accent colors,
+    // remaining 4 fall into grey shades — emphasizes the concentration story.
+    const CAT_COLORS = {
+        'Public Goods Funding':       '#ff9602', // orange
+        'Ethereum Infrastructure':    '#78f0e2', // teal
+        'Developer Tools':            '#ff8ce0', // pink
+        'Research & Analytics':       '#ffea4d', // yellow
+        'Security & Privacy':         '#92ff33', // green
+        'Climate & Regenerative':     '#cccbc4', // grey-20
+        'Community & Coordination':   '#8f8f8a', // grey-30
+        'Education & Onboarding':     '#646360', // grey-50
+        'Media & Storytelling':       '#424240', // grey-70
+    };
+
+    function aggregateByCategory(all) {
+        const byCat = {};
+        all.forEach(d => {
+            if (!byCat[d.category]) byCat[d.category] = { n: 0, eth: 0 };
+            byCat[d.category].n += 1;
+            byCat[d.category].eth += d.total_eth;
+        });
+        const totalN = all.length;
+        const totalEth = all.reduce((s, d) => s + d.total_eth, 0);
+        const stats = Object.keys(byCat).map(cat => ({
+            cat,
+            n: byCat[cat].n,
+            eth: byCat[cat].eth,
+            pctN: byCat[cat].n / totalN * 100,
+            pctEth: byCat[cat].eth / totalEth * 100,
+            color: CAT_COLORS[cat] || '#646360',
+        })).sort((a, b) => b.eth - a.eth);
+        return { stats, totalN, totalEth };
+    }
+
+    function renderCategoryCharts(all) {
+        const { stats, totalN, totalEth } = aggregateByCategory(all);
+        const fmt = (v, d = 1) => v.toFixed(d);
+        const fmtInt = v => Math.round(v).toLocaleString('ru-RU');
+        const maxEth = stats[0].eth;
+
+        // --- A. Horizontal bars by funding ---
+        document.getElementById('catAList').innerHTML = stats.map(s => `
+            <div class="hbar-row">
+                <div class="nm">${s.cat}<small>${s.n} project${s.n === 1 ? '' : 's'}</small></div>
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width:${(s.eth / maxEth * 100).toFixed(2)}%;background:${s.color};"></div>
+                </div>
+                <div class="val">${fmtInt(s.eth)} <small style="display:inline;font-family:var(--font-sans);font-size:10px;color:var(--grey-30);font-weight:600;letter-spacing:0.04em;">ETH</small>
+                    <small>${fmt(s.pctEth)}% от funding</small>
+                </div>
+            </div>
+        `).join('');
+
+        // --- B. Dual stacked bar with 9 segments ---
+        document.getElementById('catBProjN').textContent = totalN;
+        document.getElementById('catBFundN').textContent = fmtInt(totalEth);
+        // Projects column ordered by pctN descending so largest slices on top
+        const byProj = [...stats].sort((a, b) => b.pctN - a.pctN);
+        document.getElementById('catBProj').innerHTML = byProj.map(s => `
+            <div class="bar-seg" style="flex:${s.pctN} 0 0;background:${s.color};color:${isLight(s.color) ? '#0d0d0d' : '#fefdf4'};" title="${s.cat} · ${s.n} projects (${fmt(s.pctN)}%)">
+                <div class="pct">${fmt(s.pctN)}%</div>
+            </div>
+        `).join('');
+        // Funding column ordered by pctEth descending
+        document.getElementById('catBFund').innerHTML = stats.map(s => `
+            <div class="bar-seg" style="flex:${s.pctEth} 0 0;background:${s.color};color:${isLight(s.color) ? '#0d0d0d' : '#fefdf4'};" title="${s.cat} · ${fmtInt(s.eth)} ETH (${fmt(s.pctEth)}%)">
+                <div class="pct">${fmt(s.pctEth)}%</div>
+            </div>
+        `).join('');
+        // Legend (all 9, sorted by funding)
+        document.getElementById('catLegend').innerHTML = stats.map(s => `
+            <div class="item">
+                <span class="swatch" style="background:${s.color};"></span>
+                <span>${s.cat}<small>${s.n} · ${fmtInt(s.eth)} ETH</small></span>
+            </div>
+        `).join('');
+
+        // --- B+. Slope chart ---
+        renderSlope(stats);
+    }
+
+    // Approximate luminance check to pick legible text color on a swatch
+    function isLight(hex) {
+        const h = hex.replace('#', '');
+        const r = parseInt(h.slice(0, 2), 16);
+        const g = parseInt(h.slice(2, 4), 16);
+        const b = parseInt(h.slice(4, 6), 16);
+        return (0.299 * r + 0.587 * g + 0.114 * b) > 150;
+    }
+
+    function renderSlope(stats) {
+        const svg = document.getElementById('catSlopeSvg');
+        const W = 720, H = 540;
+        const M = { top: 56, right: 280, bottom: 28, left: 280 };
+        const innerH = H - M.top - M.bottom;
+        const xL = M.left;
+        const xR = W - M.right;
+
+        // Independent positioning on each axis: scale to the maximum value of that side
+        const maxL = Math.max(...stats.map(s => s.pctN));
+        const maxR = Math.max(...stats.map(s => s.pctEth));
+        // Use linear scale from 0 to ceiling
+        const ceilL = Math.ceil(maxL / 5) * 5;
+        const ceilR = Math.ceil(maxR / 5) * 5;
+        const yL = pct => M.top + innerH - (pct / ceilL) * innerH;
+        const yR = pct => M.top + innerH - (pct / ceilR) * innerH;
+
+        // Anti-collision: bump labels apart vertically if too close
+        const labelMin = 16;
+        function spread(positions) {
+            const arr = positions.map((p, i) => ({ y: p, i })).sort((a, b) => a.y - b.y);
+            for (let k = 1; k < arr.length; k++) {
+                if (arr[k].y - arr[k - 1].y < labelMin) arr[k].y = arr[k - 1].y + labelMin;
+            }
+            const out = positions.slice();
+            arr.forEach(o => out[o.i] = o.y);
+            return out;
+        }
+        const leftYs  = spread(stats.map(s => yL(s.pctN)));
+        const rightYs = spread(stats.map(s => yR(s.pctEth)));
+
+        const fmt = v => v.toFixed(1);
+
+        let parts = [];
+
+        // Column headers
+        parts.push(`<text class="axis-head" x="${xL}" y="${M.top - 28}" text-anchor="middle">% от числа проектов</text>`);
+        parts.push(`<text class="axis-head" x="${xR}" y="${M.top - 28}" text-anchor="middle">% от funding</text>`);
+        // Axis lines
+        parts.push(`<line x1="${xL}" y1="${M.top - 10}" x2="${xL}" y2="${H - M.bottom + 6}" stroke="var(--grey-70)" stroke-width="0.5"/>`);
+        parts.push(`<line x1="${xR}" y1="${M.top - 10}" x2="${xR}" y2="${H - M.bottom + 6}" stroke="var(--grey-70)" stroke-width="0.5"/>`);
+
+        // Lines (draw first so dots and labels overlay)
+        stats.forEach((s, i) => {
+            const y1 = yL(s.pctN);
+            const y2 = yR(s.pctEth);
+            parts.push(`<line class="slope-line" x1="${xL}" y1="${y1}" x2="${xR}" y2="${y2}" stroke="${s.color}"/>`);
+        });
+
+        // Dots
+        stats.forEach((s, i) => {
+            parts.push(`<circle class="slope-dot" cx="${xL}" cy="${yL(s.pctN)}" r="5" fill="${s.color}"/>`);
+            parts.push(`<circle class="slope-dot" cx="${xR}" cy="${yR(s.pctEth)}" r="5" fill="${s.color}"/>`);
+        });
+
+        // Labels left (category name + n + pctN) and right (pctEth + ETH)
+        stats.forEach((s, i) => {
+            const ly = leftYs[i];
+            parts.push(`<text class="slope-label" x="${xL - 14}" y="${ly + 4}" text-anchor="end">${s.cat}</text>`);
+            parts.push(`<text class="slope-sub"   x="${xL - 14}" y="${ly + 18}" text-anchor="end">${s.n} projects · ${fmt(s.pctN)}%</text>`);
+
+            const ry = rightYs[i];
+            parts.push(`<text class="slope-label" x="${xR + 14}" y="${ry + 4}">${s.cat}</text>`);
+            parts.push(`<text class="slope-sub"   x="${xR + 14}" y="${ry + 18}">${fmt(s.pctEth)}% · ${Math.round(s.eth).toLocaleString('ru-RU')} ETH</text>`);
+        });
+
+        svg.innerHTML = parts.join('');
+    }
+
 
     function toNumber(v) { const n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
@@ -1075,6 +1384,7 @@
             state.all = raw.map(d => ({
                 rank: parseInt(d.rank, 10),
                 name: d.name,
+                category: d.category || 'Uncategorized',
                 n_epochs: parseInt(d.n_epochs, 10),
                 n_addresses: parseInt(d.n_addresses, 10),
                 total_allocated_eth: toNumber(d.total_allocated_eth),
@@ -1093,6 +1403,7 @@
 
             renderTop(state.all);
             renderReturners(state.all);
+            renderCategoryCharts(state.all);
             applyView();
             attachInteractions();
         })
