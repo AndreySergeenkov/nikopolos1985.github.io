@@ -1497,17 +1497,17 @@
     }
 
     function renderEpochStack(all) {
-        // Merge 5 tech-stack categories into one bucket so the bar chart reads as
-        // "tech stack vs themed rounds" instead of 9-color noise.
+        // Merge 4 tech-stack categories into one bucket so the bar chart reads as
+        // "PGF + tech stack vs themed rounds" instead of 9-color noise.
+        // PGF stays separate because it dominates the early epochs.
         const TECH_CATEGORIES = new Set([
-            'Public Goods Funding',
             'Ethereum Infrastructure',
             'Developer Tools',
             'Research & Analytics',
             'Security & Privacy',
         ]);
         const TECH_LABEL = 'Ethereum tech stack';
-        const TECH_COLOR = '#ff9602';
+        const TECH_COLOR = '#78f0e2'; // teal
         const groupOf = d => TECH_CATEGORIES.has(d.category) ? TECH_LABEL : d.category;
         const colorOf = c => c === TECH_LABEL ? TECH_COLOR : CAT_COLORS[c];
 
@@ -1526,6 +1526,7 @@
         });
         const epochs = Object.keys(data).map(Number).sort((a, b) => a - b);
         const cats = [
+            'Public Goods Funding',
             TECH_LABEL,
             'Climate & Regenerative',
             'Community & Coordination',
