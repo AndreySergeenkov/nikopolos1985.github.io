@@ -1081,6 +1081,27 @@
                 С четвёртой эпохи Octant запустил Quadratic Funding. Главное отличие в том, что теперь количество донаторов на проект тоже считается. Чем шире донорская база, тем больше доля pool достаётся проекту. Сто человек по $1 теперь дают проекту значительно больше match, чем один человек на $100.
             </p>
             <p style="margin-top:16px;">
+                Эффект виден количественно на уровне всех 195 проект-эпох QF-раундов. Leverage (отношение QF match к user donations) растёт со шириной донорской базы: 29× в среднем при 1–20 донаторах, 86× при 101–200. Даже небольшое увеличение количества доноров заметно влияет на размер матчинга.
+            </p>
+        </div>
+
+        <div class="lb-card" id="leverageCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Средний leverage по корзинам доноров</div>
+            </div>
+            <div class="lev-chart-wrap">
+                <svg id="leverageSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mean leverage by donor count bucket"></svg>
+            </div>
+            <div class="chart-note">
+                Средний leverage (= QF match ÷ user donations) по 191 проект-эпохе из QF-раундов E4–E11, разбитой на 4 корзины по числу уникальных доноров. Источник: <code>octant_donor_counts_v1.csv</code>.
+            </div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
+            <button class="btn" data-png="leverageCard" data-name="octant-leverage-by-donor-bucket.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+
+        <div class="lb-summary">
+            <p>
                 Например, в восьмой эпохе Solidity и hevm получили примерно равные user donations, около 1.2 ETH каждому. Но у Solidity было 84 уникальных донора, а у hevm только 28. В итоге Solidity забрал 21 ETH match, hevm 7.6 ETH. До четвёртой эпохи эти два проекта получили бы математически одинаковую сумму.
             </p>
         </div>
@@ -1148,24 +1169,6 @@
             <p style="margin-top:24px;">
                 ZachXBT's 95 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
-            <p style="margin-top:16px;">
-                В Octant QF leverage растёт с donor count. Например 29× в среднем при 1–20 донаторах, 86× при 101–200. Даже небольшое увеличение количества доноров сильно влияет на количество матчед фондинга.
-            </p>
-        </div>
-
-        <div class="lb-card" id="leverageCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Средний leverage по корзинам доноров</div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="leverageSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mean leverage by donor count bucket"></svg>
-            </div>
-            <div class="chart-note">
-                Средний leverage (= QF match ÷ user donations) по 191 проект-эпохе из QF-раундов E4–E11, разбитой на 4 корзины по числу уникальных доноров. Источник: <code>octant_donor_counts_v1.csv</code>.
-            </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="leverageCard" data-name="octant-leverage-by-donor-bucket.png" type="button">⤓ Save chart as PNG</button>
         </div>
     </section>
 
