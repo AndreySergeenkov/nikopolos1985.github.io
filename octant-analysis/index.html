@@ -371,6 +371,24 @@
             text-transform: uppercase;
         }
 
+        /* ===== METHODOLOGY ===== */
+        .methodology-body {
+            margin-top: 20px;
+            color: var(--light-80);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+        .methodology-body p { margin: 0 0 14px; }
+        .methodology-body p:last-child { margin-bottom: 0; }
+        .methodology-body code {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--teal);
+            background: var(--grey-90);
+            padding: 1px 6px;
+            border-radius: var(--r-tag);
+        }
+
         /* ===== FUNDING SPLIT DONUT ===== */
         .split-wrap {
             display: flex;
@@ -1310,6 +1328,55 @@
         <div class="lb-actions lb-actions-top" style="margin-top:12px;">
             <button class="btn" data-png="fundingSplitCard" data-name="octant-funding-split.png" type="button">⤓ Save chart as PNG</button>
         </div>
+    </section>
+
+    <h2 class="section-h2">Методология</h2>
+
+    <section class="lb-section" id="methodology">
+        <details class="lb-full">
+            <summary>Раскрыть методологию сбора и обработки данных</summary>
+            <div class="methodology-body">
+                <p>
+                    Сначала я хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории. Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
+                </p>
+                <p>
+                    Я начал с того что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR запросы которые подтягивают leaderboard. Базовый URL оказался <code>backend.mainnet.octant.app</code>. Открыл <code>/openapi.json</code> и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а. Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.
+                </p>
+                <p>
+                    Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.
+                </p>
+                <p>
+                    Небольшая ремарка про нумерацию, потому что её многие путают. Octant считает эпохи с нуля. От Epoch 0 до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12.
+                </p>
+                <p>
+                    Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet <code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code> и выгрузил через питон все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.
+                </p>
+                <p>
+                    Дальше осталась консолидация. Слил данные V1 API (эпохи 1–11) и on-chain reconstruction (Epoch 0) в один master CSV, получил 273 строки на уровне проект-эпоха. Потом сгруппировал по проектам и нормализовал имена, потому что Octant в разных эпохах иногда писал одно и то же название с вариациями вроде «Tor Project» и «The Tor Project» или «Hypercerts» и «Hypercerts Foundation». Все такие случаи свёл к одному каноническому имени. Получил cumulative leaderboard из 134 уникальных проектов с суммарным funding по всей истории Octant.
+                </p>
+                <p>
+                    Категоризация была manual. Прошёлся по 134 проектам, по каждому либо знал тематику, либо посмотрел сайт. Каждому проставил одну из 9 категорий. Borderline cases (например, проект который одновременно security tool и DAO governance) разрешал по primary function. После этого можно было видеть какие категории доминируют по объёму funding и среднему чеку на проект.
+                </p>
+                <p>
+                    Дальше хотел понять как именно работают allocations и кто эти donors. Octant V1 API имеет endpoint <code>/allocations/project/{address}/epoch/{N}</code> который возвращает все user donations к конкретному проекту в конкретной эпохе с individual donor addresses. Прошёл этот endpoint по всем 195 QF project-epoch комбинациям эпох 1–11 и собрал dataset из 17,595 individual allocations. Каждая запись содержит donor address, project address, epoch и сумму в ETH.
+                </p>
+                <p>
+                    Для retention статистики сгруппировал allocations по donor address и посчитал в скольких уникальных эпохах каждый donor участвовал. Получил 1,270 уникальных donors с distribution participation от 1 до 11 эпох. Returners (2+ эпохи) — 773 человека или 60.9%. Core base (10+ эпох) — 33. Perfect attendance во всех 11 эпохах — 11 человек.
+                </p>
+                <p>
+                    С QF механикой проще. Для каждой эпохи посчитал ratio match/allocated по всем проектам. В эпохах 1–3 этот ratio оказался одинаковый для всех проектов внутри одной эпохи (44.4× в первой, 58.4× во второй, 14.3× в третьей). Это подтвердило что Octant использовал proportional matching до запуска QF. С четвёртой эпохи ratio варьируется per project в зависимости от donor count, и эта вариация и есть основной mechanical effect QF. Конкретные examples (Solidity vs hevm в Epoch 8, ZachXBT в Epoch 9) взял из master dataset напрямую по project address.
+                </p>
+                <p>
+                    Match per donor analysis сделал в два прохода. Сначала simple version. Для каждой QF project-epoch (194 строки) посчитал avg donation size (allocated / n_donors) и match per donor (matched / n_donors). Bucketize'нул project-epochs по размеру avg donation, получил leverage от 93× при donations меньше $2 до 9× при donations свыше $50. Затем weighted version, взвешенное по числу donors во всех 11,702 individual allocations QF эпох. Это даёт $19 average donation, $500 average match per donor, 26× leverage. Weighted версия отражает typical donor experience а не typical project experience, и именно её использовал в основных claim'ах статьи.
+                </p>
+                <p>
+                    User vs matching pool split посчитал суммированием. Все <code>allocated_eth</code> по V1 эпохам это 109.51 ETH (часть staking yield которая пришла к users как personal rewards и которую они направили проектам, а не оставили себе). Все <code>matched_eth</code> это 2,758 ETH (часть staking yield которая пошла напрямую в matching pool). Total funding к проектам в V1 — 2,867 ETH. Соотношение 96/4 в пользу matching pool.
+                </p>
+                <p>
+                    Для USD conversions брал $3,000 за ETH как rough average через QF эпохи (август 2023 — январь 2026). Реальная цена варьировалась $1,600–$4,200. Это не критично для directional analysis (leverage ratios, distribution patterns), но стоит учитывать при interpretation специфических USD numbers вроде «$500 average match per donor» или «$128,000 ZachXBT matching».
+                </p>
+            </div>
+        </details>
     </section>
 
 </main>
