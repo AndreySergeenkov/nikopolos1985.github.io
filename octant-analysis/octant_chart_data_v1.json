@@ -1,0 +1,1270 @@
+{
+  "metadata": {
+    "title": "Octant V1 chart data",
+    "generated_at": "2026-05-21T14:56:29.170201",
+    "eth_price_reference_usd": 3000,
+    "epochs_covered": "0-11 (12 rounds total)",
+    "qf_epochs": "4-11 (proportional matching in epochs 1-3)",
+    "totals": {
+      "eth_distributed_all_time": 3404.64,
+      "eth_distributed_v1_only": 2869.59,
+      "unique_projects": 134,
+      "unique_donors": 1270,
+      "total_allocations": 17595
+    },
+    "notes": [
+      "ETH price reference: $3000 for USD conversions across QF epochs",
+      "Real ETH price varied $1,600-$4,200 across Aug 2023 - Jan 2026",
+      "User allocations are the portion of personal staking rewards that users donated to projects",
+      "Matching pool is the direct portion of Golem Foundation staking yield routed to projects",
+      "Total V1 funding = user allocations + matching pool"
+    ]
+  },
+  "charts": {
+    "top_10_projects": {
+      "title": "Top 10 projects by cumulative funding",
+      "subtitle": "За все 12 эпох Octant V1 + Epoch 0",
+      "x_axis_label": "Project",
+      "y_axis_label": "Total ETH",
+      "data": [
+        {
+          "rank": 1,
+          "project": "Protocol Guild",
+          "total_eth": 323.23,
+          "epochs_count": 10
+        },
+        {
+          "rank": 2,
+          "project": "Gitcoin",
+          "total_eth": 270.24,
+          "epochs_count": 4
+        },
+        {
+          "rank": 3,
+          "project": "Tor Project",
+          "total_eth": 138.51,
+          "epochs_count": 7
+        },
+        {
+          "rank": 4,
+          "project": "Giveth",
+          "total_eth": 133.98,
+          "epochs_count": 4
+        },
+        {
+          "rank": 5,
+          "project": "L2BEAT",
+          "total_eth": 127.57,
+          "epochs_count": 7
+        },
+        {
+          "rank": 6,
+          "project": "Rotki",
+          "total_eth": 123.19,
+          "epochs_count": 7
+        },
+        {
+          "rank": 7,
+          "project": "Revoke.cash",
+          "total_eth": 115.87,
+          "epochs_count": 6
+        },
+        {
+          "rank": 8,
+          "project": "Hypercerts",
+          "total_eth": 102.57,
+          "epochs_count": 6
+        },
+        {
+          "rank": 9,
+          "project": "EthStaker",
+          "total_eth": 94.9,
+          "epochs_count": 8
+        },
+        {
+          "rank": 10,
+          "project": "GrowThePie",
+          "total_eth": 94.18,
+          "epochs_count": 5
+        }
+      ]
+    },
+    "returner_vs_onetimer": {
+      "title": "Returners vs one-timers",
+      "subtitle": "37% returner projects получили 84% от total funding",
+      "data": [
+        {
+          "category": "Returners (2+ epochs)",
+          "project_count": 50,
+          "project_share_pct": 37.3,
+          "eth_total": 2873.52,
+          "eth_share_pct": 84.4,
+          "avg_eth_per_project": 57.5
+        },
+        {
+          "category": "One-timers",
+          "project_count": 84,
+          "project_share_pct": 62.7,
+          "eth_total": 531.12,
+          "eth_share_pct": 15.6,
+          "avg_eth_per_project": 6.3
+        }
+      ]
+    },
+    "categories": {
+      "title": "Распределение funding по 9 категориям",
+      "data": [
+        {
+          "category": "Public Goods Funding",
+          "total_eth": 744.48,
+          "share_pct": 21.9,
+          "project_count": 14,
+          "avg_eth_per_project": 53.2
+        },
+        {
+          "category": "Ethereum Infrastructure",
+          "total_eth": 516.82,
+          "share_pct": 15.2,
+          "project_count": 7,
+          "avg_eth_per_project": 73.8
+        },
+        {
+          "category": "Developer Tools",
+          "total_eth": 494.66,
+          "share_pct": 14.5,
+          "project_count": 21,
+          "avg_eth_per_project": 23.6
+        },
+        {
+          "category": "Research & Analytics",
+          "total_eth": 375.03,
+          "share_pct": 11.0,
+          "project_count": 9,
+          "avg_eth_per_project": 41.7
+        },
+        {
+          "category": "Security & Privacy",
+          "total_eth": 353.61,
+          "share_pct": 10.4,
+          "project_count": 10,
+          "avg_eth_per_project": 35.4
+        },
+        {
+          "category": "Climate & Regenerative",
+          "total_eth": 300.36,
+          "share_pct": 8.8,
+          "project_count": 23,
+          "avg_eth_per_project": 13.1
+        },
+        {
+          "category": "Community & Coordination",
+          "total_eth": 229.21,
+          "share_pct": 6.7,
+          "project_count": 16,
+          "avg_eth_per_project": 14.3
+        },
+        {
+          "category": "Education & Onboarding",
+          "total_eth": 227.51,
+          "share_pct": 6.7,
+          "project_count": 8,
+          "avg_eth_per_project": 28.4
+        },
+        {
+          "category": "Media & Storytelling",
+          "total_eth": 162.96,
+          "share_pct": 4.8,
+          "project_count": 26,
+          "avg_eth_per_project": 6.3
+        }
+      ]
+    },
+    "donor_distribution": {
+      "title": "Distribution donor participation",
+      "subtitle": "Сколько уникальных donors участвовали в N эпохах из 11",
+      "total_donors": 1270,
+      "data": [
+        {
+          "epochs_participated": 1,
+          "donor_count": 497,
+          "share_pct": 39.1
+        },
+        {
+          "epochs_participated": 2,
+          "donor_count": 252,
+          "share_pct": 19.8
+        },
+        {
+          "epochs_participated": 3,
+          "donor_count": 145,
+          "share_pct": 11.4
+        },
+        {
+          "epochs_participated": 4,
+          "donor_count": 155,
+          "share_pct": 12.2
+        },
+        {
+          "epochs_participated": 5,
+          "donor_count": 67,
+          "share_pct": 5.3
+        },
+        {
+          "epochs_participated": 6,
+          "donor_count": 40,
+          "share_pct": 3.1
+        },
+        {
+          "epochs_participated": 7,
+          "donor_count": 31,
+          "share_pct": 2.4
+        },
+        {
+          "epochs_participated": 8,
+          "donor_count": 26,
+          "share_pct": 2.0
+        },
+        {
+          "epochs_participated": 9,
+          "donor_count": 24,
+          "share_pct": 1.9
+        },
+        {
+          "epochs_participated": 10,
+          "donor_count": 22,
+          "share_pct": 1.7
+        },
+        {
+          "epochs_participated": 11,
+          "donor_count": 11,
+          "share_pct": 0.9
+        }
+      ],
+      "highlights": {
+        "one_timers": 497,
+        "core_10plus": 33,
+        "perfect_attendance": 11,
+        "returners_pct": 60.9
+      }
+    },
+    "match_per_donor_buckets": {
+      "title": "Match per donor по размеру donation",
+      "subtitle": "Bucket analysis 194 QF project-epochs, ETH @ $3000",
+      "weighted_average": {
+        "n_donations": 11702,
+        "avg_donation_usd": 18.97,
+        "avg_match_per_donor_usd": 500.57,
+        "leverage": 26.4
+      },
+      "buckets": [
+        {
+          "bucket": "$0-2",
+          "project_epochs_count": 26,
+          "avg_donation_usd": 1.42,
+          "avg_match_per_donor_usd": 132.66,
+          "leverage": 93.4
+        },
+        {
+          "bucket": "$2-5",
+          "project_epochs_count": 34,
+          "avg_donation_usd": 3.45,
+          "avg_match_per_donor_usd": 223.65,
+          "leverage": 64.8
+        },
+        {
+          "bucket": "$5-10",
+          "project_epochs_count": 51,
+          "avg_donation_usd": 7.3,
+          "avg_match_per_donor_usd": 345.71,
+          "leverage": 47.4
+        },
+        {
+          "bucket": "$10-25",
+          "project_epochs_count": 50,
+          "avg_donation_usd": 15.35,
+          "avg_match_per_donor_usd": 610.14,
+          "leverage": 39.7
+        },
+        {
+          "bucket": "$25-50",
+          "project_epochs_count": 9,
+          "avg_donation_usd": 32.0,
+          "avg_match_per_donor_usd": 759.1,
+          "leverage": 23.7
+        },
+        {
+          "bucket": "$50+",
+          "project_epochs_count": 24,
+          "avg_donation_usd": 113.87,
+          "avg_match_per_donor_usd": 1050.94,
+          "leverage": 9.2
+        }
+      ]
+    },
+    "funding_split": {
+      "title": "Откуда funding в Octant V1 (эпохи 1-11)",
+      "subtitle": "96% staking yield, 4% user-allocated personal rewards",
+      "data": [
+        {
+          "source": "Matching pool (staking yield direct)",
+          "eth": 2760.08,
+          "share_pct": 96.2
+        },
+        {
+          "source": "User allocations (personal rewards донатnутые проектам)",
+          "eth": 109.51,
+          "share_pct": 3.8
+        }
+      ]
+    },
+    "pareto_curve": {
+      "title": "Pareto distribution funding по 134 проектам",
+      "subtitle": "Cumulative share funding нарастающим итогом по rank",
+      "data": [
+        {
+          "rank": 1,
+          "project": "Protocol Guild",
+          "eth": 323.23,
+          "cumulative_eth": 323.23,
+          "cumulative_share_pct": 9.49
+        },
+        {
+          "rank": 2,
+          "project": "Gitcoin",
+          "eth": 270.24,
+          "cumulative_eth": 593.47,
+          "cumulative_share_pct": 17.43
+        },
+        {
+          "rank": 3,
+          "project": "Tor Project",
+          "eth": 138.51,
+          "cumulative_eth": 731.99,
+          "cumulative_share_pct": 21.5
+        },
+        {
+          "rank": 4,
+          "project": "Giveth",
+          "eth": 133.98,
+          "cumulative_eth": 865.97,
+          "cumulative_share_pct": 25.43
+        },
+        {
+          "rank": 5,
+          "project": "L2BEAT",
+          "eth": 127.57,
+          "cumulative_eth": 993.54,
+          "cumulative_share_pct": 29.18
+        },
+        {
+          "rank": 6,
+          "project": "Rotki",
+          "eth": 123.19,
+          "cumulative_eth": 1116.73,
+          "cumulative_share_pct": 32.8
+        },
+        {
+          "rank": 7,
+          "project": "Revoke.cash",
+          "eth": 115.87,
+          "cumulative_eth": 1232.6,
+          "cumulative_share_pct": 36.2
+        },
+        {
+          "rank": 8,
+          "project": "Hypercerts",
+          "eth": 102.57,
+          "cumulative_eth": 1335.17,
+          "cumulative_share_pct": 39.22
+        },
+        {
+          "rank": 9,
+          "project": "EthStaker",
+          "eth": 94.9,
+          "cumulative_eth": 1430.07,
+          "cumulative_share_pct": 42.0
+        },
+        {
+          "rank": 10,
+          "project": "GrowThePie",
+          "eth": 94.18,
+          "cumulative_eth": 1524.26,
+          "cumulative_share_pct": 44.77
+        },
+        {
+          "rank": 11,
+          "project": "Ethereum Attestation Service",
+          "eth": 78.87,
+          "cumulative_eth": 1603.13,
+          "cumulative_share_pct": 47.09
+        },
+        {
+          "rank": 12,
+          "project": "Open Source Observer",
+          "eth": 76.82,
+          "cumulative_eth": 1679.95,
+          "cumulative_share_pct": 49.34
+        },
+        {
+          "rank": 13,
+          "project": "Ethereum Cat Herders",
+          "eth": 68.76,
+          "cumulative_eth": 1748.71,
+          "cumulative_share_pct": 51.36
+        },
+        {
+          "rank": 14,
+          "project": "Solidity",
+          "eth": 68.65,
+          "cumulative_eth": 1817.36,
+          "cumulative_share_pct": 53.38
+        },
+        {
+          "rank": 15,
+          "project": "Shielded Voting",
+          "eth": 59.85,
+          "cumulative_eth": 1877.21,
+          "cumulative_share_pct": 55.14
+        },
+        {
+          "rank": 16,
+          "project": "Web3.py",
+          "eth": 58.56,
+          "cumulative_eth": 1935.77,
+          "cumulative_share_pct": 56.86
+        },
+        {
+          "rank": 17,
+          "project": "Funding the Commons",
+          "eth": 56.32,
+          "cumulative_eth": 1992.09,
+          "cumulative_share_pct": 58.51
+        },
+        {
+          "rank": 18,
+          "project": "NiceNode",
+          "eth": 52.81,
+          "cumulative_eth": 2044.9,
+          "cumulative_share_pct": 60.06
+        },
+        {
+          "rank": 19,
+          "project": "ZachXBT",
+          "eth": 48.99,
+          "cumulative_eth": 2093.89,
+          "cumulative_share_pct": 61.5
+        },
+        {
+          "rank": 20,
+          "project": "Web3.js",
+          "eth": 48.71,
+          "cumulative_eth": 2142.6,
+          "cumulative_share_pct": 62.93
+        },
+        {
+          "rank": 21,
+          "project": "Dappnode",
+          "eth": 48.56,
+          "cumulative_eth": 2191.16,
+          "cumulative_share_pct": 64.36
+        },
+        {
+          "rank": 22,
+          "project": "Aestus MEV Relay",
+          "eth": 46.93,
+          "cumulative_eth": 2238.09,
+          "cumulative_share_pct": 65.74
+        },
+        {
+          "rank": 23,
+          "project": "DAO Drops",
+          "eth": 45.56,
+          "cumulative_eth": 2283.65,
+          "cumulative_share_pct": 67.07
+        },
+        {
+          "rank": 24,
+          "project": "Kernel",
+          "eth": 44.59,
+          "cumulative_eth": 2328.24,
+          "cumulative_share_pct": 68.38
+        },
+        {
+          "rank": 25,
+          "project": "Drips",
+          "eth": 44.14,
+          "cumulative_eth": 2372.38,
+          "cumulative_share_pct": 69.68
+        },
+        {
+          "rank": 26,
+          "project": "Atlantis",
+          "eth": 42.9,
+          "cumulative_eth": 2415.28,
+          "cumulative_share_pct": 70.94
+        },
+        {
+          "rank": 27,
+          "project": "Blue Energy Reef Restoration",
+          "eth": 38.66,
+          "cumulative_eth": 2453.94,
+          "cumulative_share_pct": 72.08
+        },
+        {
+          "rank": 28,
+          "project": "Remix Project",
+          "eth": 37.64,
+          "cumulative_eth": 2491.58,
+          "cumulative_share_pct": 73.18
+        },
+        {
+          "rank": 29,
+          "project": "Blue Filter",
+          "eth": 36.08,
+          "cumulative_eth": 2527.66,
+          "cumulative_share_pct": 74.24
+        },
+        {
+          "rank": 30,
+          "project": "Pairwise",
+          "eth": 35.71,
+          "cumulative_eth": 2563.37,
+          "cumulative_share_pct": 75.29
+        },
+        {
+          "rank": 31,
+          "project": "Crypto Altruists",
+          "eth": 35.24,
+          "cumulative_eth": 2598.61,
+          "cumulative_share_pct": 76.33
+        },
+        {
+          "rank": 32,
+          "project": "Praise",
+          "eth": 35.13,
+          "cumulative_eth": 2633.74,
+          "cumulative_share_pct": 77.36
+        },
+        {
+          "rank": 33,
+          "project": "TORNADO: The War On Code A Documentary by The Rage",
+          "eth": 34.02,
+          "cumulative_eth": 2667.76,
+          "cumulative_share_pct": 78.36
+        },
+        {
+          "rank": 34,
+          "project": "Clr.fund",
+          "eth": 30.01,
+          "cumulative_eth": 2697.77,
+          "cumulative_share_pct": 79.24
+        },
+        {
+          "rank": 35,
+          "project": "GainForest",
+          "eth": 28.95,
+          "cumulative_eth": 2726.72,
+          "cumulative_share_pct": 80.09
+        },
+        {
+          "rank": 36,
+          "project": "SheFi",
+          "eth": 28.62,
+          "cumulative_eth": 2755.35,
+          "cumulative_share_pct": 80.93
+        },
+        {
+          "rank": 37,
+          "project": "BuidlGuidl",
+          "eth": 26.5,
+          "cumulative_eth": 2781.84,
+          "cumulative_share_pct": 81.71
+        },
+        {
+          "rank": 38,
+          "project": "Open Collective",
+          "eth": 24.24,
+          "cumulative_eth": 2806.08,
+          "cumulative_share_pct": 82.42
+        },
+        {
+          "rank": 39,
+          "project": "Greenpill Dev Guild",
+          "eth": 23.79,
+          "cumulative_eth": 2829.87,
+          "cumulative_share_pct": 83.12
+        },
+        {
+          "rank": 40,
+          "project": "PizzaDAO",
+          "eth": 20.69,
+          "cumulative_eth": 2850.56,
+          "cumulative_share_pct": 83.73
+        },
+        {
+          "rank": 41,
+          "project": "Astral Protocol",
+          "eth": 20.5,
+          "cumulative_eth": 2871.07,
+          "cumulative_share_pct": 84.33
+        },
+        {
+          "rank": 42,
+          "project": "Ecovillage Network GEN Ukraine",
+          "eth": 19.87,
+          "cumulative_eth": 2890.94,
+          "cumulative_share_pct": 84.91
+        },
+        {
+          "rank": 43,
+          "project": "MetaGame",
+          "eth": 17.88,
+          "cumulative_eth": 2908.82,
+          "cumulative_share_pct": 85.44
+        },
+        {
+          "rank": 44,
+          "project": "Vyper",
+          "eth": 16.55,
+          "cumulative_eth": 2925.37,
+          "cumulative_share_pct": 85.92
+        },
+        {
+          "rank": 45,
+          "project": "B<>rder/ess Developers",
+          "eth": 13.98,
+          "cumulative_eth": 2939.35,
+          "cumulative_share_pct": 86.33
+        },
+        {
+          "rank": 46,
+          "project": "ECH Institute",
+          "eth": 13.64,
+          "cumulative_eth": 2952.99,
+          "cumulative_share_pct": 86.73
+        },
+        {
+          "rank": 47,
+          "project": "OAK Research",
+          "eth": 13.43,
+          "cumulative_eth": 2966.42,
+          "cumulative_share_pct": 87.13
+        },
+        {
+          "rank": 48,
+          "project": "Silvi",
+          "eth": 12.76,
+          "cumulative_eth": 2979.18,
+          "cumulative_share_pct": 87.5
+        },
+        {
+          "rank": 49,
+          "project": "Shutter Network",
+          "eth": 11.75,
+          "cumulative_eth": 2990.93,
+          "cumulative_share_pct": 87.85
+        },
+        {
+          "rank": 50,
+          "project": "Bees & Trees",
+          "eth": 11.51,
+          "cumulative_eth": 3002.44,
+          "cumulative_share_pct": 88.19
+        },
+        {
+          "rank": 51,
+          "project": "Glo Dollar",
+          "eth": 10.93,
+          "cumulative_eth": 3013.37,
+          "cumulative_share_pct": 88.51
+        },
+        {
+          "rank": 52,
+          "project": "powdr",
+          "eth": 10.9,
+          "cumulative_eth": 3024.27,
+          "cumulative_share_pct": 88.83
+        },
+        {
+          "rank": 53,
+          "project": "Blockscout",
+          "eth": 10.51,
+          "cumulative_eth": 3034.78,
+          "cumulative_share_pct": 89.14
+        },
+        {
+          "rank": 54,
+          "project": "OnionDAO",
+          "eth": 10.4,
+          "cumulative_eth": 3045.18,
+          "cumulative_share_pct": 89.44
+        },
+        {
+          "rank": 55,
+          "project": "Bloom Network",
+          "eth": 10.1,
+          "cumulative_eth": 3055.28,
+          "cumulative_share_pct": 89.74
+        },
+        {
+          "rank": 56,
+          "project": "Supermodular",
+          "eth": 9.97,
+          "cumulative_eth": 3065.25,
+          "cumulative_share_pct": 90.03
+        },
+        {
+          "rank": 57,
+          "project": "Fe",
+          "eth": 9.76,
+          "cumulative_eth": 3075.01,
+          "cumulative_share_pct": 90.32
+        },
+        {
+          "rank": 58,
+          "project": "Verifereum",
+          "eth": 9.72,
+          "cumulative_eth": 3084.73,
+          "cumulative_share_pct": 90.6
+        },
+        {
+          "rank": 59,
+          "project": "Crypto Native",
+          "eth": 9.5,
+          "cumulative_eth": 3094.23,
+          "cumulative_share_pct": 90.88
+        },
+        {
+          "rank": 60,
+          "project": "Commit-Boost",
+          "eth": 9.17,
+          "cumulative_eth": 3103.4,
+          "cumulative_share_pct": 91.15
+        },
+        {
+          "rank": 61,
+          "project": "Institutional Guide to RWA Token Standards",
+          "eth": 9.13,
+          "cumulative_eth": 3112.53,
+          "cumulative_share_pct": 91.42
+        },
+        {
+          "rank": 62,
+          "project": "LottoPGF",
+          "eth": 9.07,
+          "cumulative_eth": 3121.61,
+          "cumulative_share_pct": 91.69
+        },
+        {
+          "rank": 63,
+          "project": "DeFood: Decentralized Food Security Network",
+          "eth": 8.9,
+          "cumulative_eth": 3130.5,
+          "cumulative_share_pct": 91.95
+        },
+        {
+          "rank": 64,
+          "project": "Act",
+          "eth": 8.89,
+          "cumulative_eth": 3139.39,
+          "cumulative_share_pct": 92.21
+        },
+        {
+          "rank": 65,
+          "project": "hevm",
+          "eth": 8.81,
+          "cumulative_eth": 3148.2,
+          "cumulative_share_pct": 92.47
+        },
+        {
+          "rank": 66,
+          "project": "Ethers.js",
+          "eth": 8.78,
+          "cumulative_eth": 3156.98,
+          "cumulative_share_pct": 92.73
+        },
+        {
+          "rank": 67,
+          "project": "DefiLlama",
+          "eth": 8.57,
+          "cumulative_eth": 3165.55,
+          "cumulative_share_pct": 92.98
+        },
+        {
+          "rank": 68,
+          "project": "Doots Podcast",
+          "eth": 8.27,
+          "cumulative_eth": 3173.82,
+          "cumulative_share_pct": 93.22
+        },
+        {
+          "rank": 69,
+          "project": "ETHPanda",
+          "eth": 8.27,
+          "cumulative_eth": 3182.09,
+          "cumulative_share_pct": 93.46
+        },
+        {
+          "rank": 70,
+          "project": "Ethereum's Story Goes Mainstream",
+          "eth": 8.23,
+          "cumulative_eth": 3190.31,
+          "cumulative_share_pct": 93.7
+        },
+        {
+          "rank": 71,
+          "project": "Stablewatch",
+          "eth": 8.17,
+          "cumulative_eth": 3198.48,
+          "cumulative_share_pct": 93.94
+        },
+        {
+          "rank": 72,
+          "project": "Regens Unite",
+          "eth": 8.12,
+          "cumulative_eth": 3206.6,
+          "cumulative_share_pct": 94.18
+        },
+        {
+          "rank": 73,
+          "project": "Rifai Sicilia",
+          "eth": 8.01,
+          "cumulative_eth": 3214.61,
+          "cumulative_share_pct": 94.42
+        },
+        {
+          "rank": 74,
+          "project": "La Blocka Toon",
+          "eth": 7.29,
+          "cumulative_eth": 3221.91,
+          "cumulative_share_pct": 94.63
+        },
+        {
+          "rank": 75,
+          "project": "Seabrick",
+          "eth": 7.11,
+          "cumulative_eth": 3229.01,
+          "cumulative_share_pct": 94.84
+        },
+        {
+          "rank": 76,
+          "project": "Biodiversity & Carbon Open Protocol",
+          "eth": 6.83,
+          "cumulative_eth": 3235.85,
+          "cumulative_share_pct": 95.04
+        },
+        {
+          "rank": 77,
+          "project": "Ekonavi",
+          "eth": 6.76,
+          "cumulative_eth": 3242.61,
+          "cumulative_share_pct": 95.24
+        },
+        {
+          "rank": 78,
+          "project": "M3tering Protocol",
+          "eth": 6.71,
+          "cumulative_eth": 3249.31,
+          "cumulative_share_pct": 95.44
+        },
+        {
+          "rank": 79,
+          "project": "eSusFarm",
+          "eth": 6.69,
+          "cumulative_eth": 3256.01,
+          "cumulative_share_pct": 95.63
+        },
+        {
+          "rank": 80,
+          "project": "BrightID",
+          "eth": 6.52,
+          "cumulative_eth": 3262.53,
+          "cumulative_share_pct": 95.83
+        },
+        {
+          "rank": 81,
+          "project": "PublicHAUS",
+          "eth": 6.35,
+          "cumulative_eth": 3268.88,
+          "cumulative_share_pct": 96.01
+        },
+        {
+          "rank": 82,
+          "project": "Territorial Regeneration in Barichara, Colombia",
+          "eth": 6.07,
+          "cumulative_eth": 3274.95,
+          "cumulative_share_pct": 96.19
+        },
+        {
+          "rank": 83,
+          "project": "Oceanus",
+          "eth": 6.04,
+          "cumulative_eth": 3280.99,
+          "cumulative_share_pct": 96.37
+        },
+        {
+          "rank": 84,
+          "project": "Interview Series: Celebrating 10 Years of Ethereum & Beyond",
+          "eth": 5.56,
+          "cumulative_eth": 3286.56,
+          "cumulative_share_pct": 96.53
+        },
+        {
+          "rank": 85,
+          "project": "Change Code",
+          "eth": 5.16,
+          "cumulative_eth": 3291.72,
+          "cumulative_share_pct": 96.68
+        },
+        {
+          "rank": 86,
+          "project": "Amongst a Potted Plant with Brooke Lacey",
+          "eth": 5.07,
+          "cumulative_eth": 3296.79,
+          "cumulative_share_pct": 96.83
+        },
+        {
+          "rank": 87,
+          "project": "TogetherCrew",
+          "eth": 4.77,
+          "cumulative_eth": 3301.55,
+          "cumulative_share_pct": 96.97
+        },
+        {
+          "rank": 88,
+          "project": "rileybeans & Kimiya Mag",
+          "eth": 4.69,
+          "cumulative_eth": 3306.24,
+          "cumulative_share_pct": 97.11
+        },
+        {
+          "rank": 89,
+          "project": "Kiwi News",
+          "eth": 4.68,
+          "cumulative_eth": 3310.92,
+          "cumulative_share_pct": 97.25
+        },
+        {
+          "rank": 90,
+          "project": "$ilence",
+          "eth": 4.46,
+          "cumulative_eth": 3315.39,
+          "cumulative_share_pct": 97.38
+        },
+        {
+          "rank": 91,
+          "project": "The Ticker is ETH",
+          "eth": 4.04,
+          "cumulative_eth": 3319.42,
+          "cumulative_share_pct": 97.5
+        },
+        {
+          "rank": 92,
+          "project": "ReFiDAO",
+          "eth": 4.03,
+          "cumulative_eth": 3323.45,
+          "cumulative_share_pct": 97.62
+        },
+        {
+          "rank": 93,
+          "project": "Sembrando Ethereum Stories of Nature and Tech United",
+          "eth": 3.74,
+          "cumulative_eth": 3327.19,
+          "cumulative_share_pct": 97.73
+        },
+        {
+          "rank": 94,
+          "project": "Fork'd",
+          "eth": 3.61,
+          "cumulative_eth": 3330.8,
+          "cumulative_share_pct": 97.83
+        },
+        {
+          "rank": 95,
+          "project": "Gelora (The World Computer Files)",
+          "eth": 3.61,
+          "cumulative_eth": 3334.4,
+          "cumulative_share_pct": 97.94
+        },
+        {
+          "rank": 96,
+          "project": "Vocdoni",
+          "eth": 3.52,
+          "cumulative_eth": 3337.92,
+          "cumulative_share_pct": 98.04
+        },
+        {
+          "rank": 97,
+          "project": "Shibuya",
+          "eth": 3.5,
+          "cumulative_eth": 3341.42,
+          "cumulative_share_pct": 98.14
+        },
+        {
+          "rank": 98,
+          "project": "Blobscan",
+          "eth": 3.48,
+          "cumulative_eth": 3344.9,
+          "cumulative_share_pct": 98.25
+        },
+        {
+          "rank": 99,
+          "project": "Alfred By Atlantis",
+          "eth": 3.36,
+          "cumulative_eth": 3348.26,
+          "cumulative_share_pct": 98.34
+        },
+        {
+          "rank": 100,
+          "project": "EcosynthesisX",
+          "eth": 3.34,
+          "cumulative_eth": 3351.6,
+          "cumulative_share_pct": 98.44
+        },
+        {
+          "rank": 101,
+          "project": "DeFiScan",
+          "eth": 3.17,
+          "cumulative_eth": 3354.77,
+          "cumulative_share_pct": 98.54
+        },
+        {
+          "rank": 102,
+          "project": "FlowState",
+          "eth": 3.04,
+          "cumulative_eth": 3357.81,
+          "cumulative_share_pct": 98.62
+        },
+        {
+          "rank": 103,
+          "project": "Bankless Academy",
+          "eth": 2.79,
+          "cumulative_eth": 3360.59,
+          "cumulative_share_pct": 98.71
+        },
+        {
+          "rank": 104,
+          "project": "Circuitscan",
+          "eth": 2.76,
+          "cumulative_eth": 3363.35,
+          "cumulative_share_pct": 98.79
+        },
+        {
+          "rank": 105,
+          "project": "Gardens",
+          "eth": 2.69,
+          "cumulative_eth": 3366.04,
+          "cumulative_share_pct": 98.87
+        },
+        {
+          "rank": 106,
+          "project": "EVMavericks Doots Podcast",
+          "eth": 2.66,
+          "cumulative_eth": 3368.7,
+          "cumulative_share_pct": 98.94
+        },
+        {
+          "rank": 107,
+          "project": "Web3Sec",
+          "eth": 2.6,
+          "cumulative_eth": 3371.3,
+          "cumulative_share_pct": 99.02
+        },
+        {
+          "rank": 108,
+          "project": "MetaGov",
+          "eth": 2.49,
+          "cumulative_eth": 3373.79,
+          "cumulative_share_pct": 99.09
+        },
+        {
+          "rank": 109,
+          "project": "DeSci LATAM",
+          "eth": 2.48,
+          "cumulative_eth": 3376.27,
+          "cumulative_share_pct": 99.17
+        },
+        {
+          "rank": 110,
+          "project": "Citizen Wallet",
+          "eth": 2.45,
+          "cumulative_eth": 3378.72,
+          "cumulative_share_pct": 99.24
+        },
+        {
+          "rank": 111,
+          "project": "Proof of Intelligence",
+          "eth": 2.41,
+          "cumulative_eth": 3381.13,
+          "cumulative_share_pct": 99.31
+        },
+        {
+          "rank": 112,
+          "project": "Ethereum in Plain English",
+          "eth": 2.41,
+          "cumulative_eth": 3383.54,
+          "cumulative_share_pct": 99.38
+        },
+        {
+          "rank": 113,
+          "project": "Ethereum Explained",
+          "eth": 2.05,
+          "cumulative_eth": 3385.59,
+          "cumulative_share_pct": 99.44
+        },
+        {
+          "rank": 114,
+          "project": "Ateh Ugoji",
+          "eth": 1.91,
+          "cumulative_eth": 3387.51,
+          "cumulative_share_pct": 99.5
+        },
+        {
+          "rank": 115,
+          "project": "BundleBear",
+          "eth": 1.81,
+          "cumulative_eth": 3389.31,
+          "cumulative_share_pct": 99.55
+        },
+        {
+          "rank": 116,
+          "project": "OrbitDB",
+          "eth": 1.66,
+          "cumulative_eth": 3390.97,
+          "cumulative_share_pct": 99.6
+        },
+        {
+          "rank": 117,
+          "project": "Samba",
+          "eth": 1.65,
+          "cumulative_eth": 3392.62,
+          "cumulative_share_pct": 99.65
+        },
+        {
+          "rank": 118,
+          "project": "ZuCity Japan",
+          "eth": 1.6,
+          "cumulative_eth": 3394.22,
+          "cumulative_share_pct": 99.69
+        },
+        {
+          "rank": 119,
+          "project": "ETH in a minute",
+          "eth": 1.43,
+          "cumulative_eth": 3395.65,
+          "cumulative_share_pct": 99.74
+        },
+        {
+          "rank": 120,
+          "project": "Gravity DAO",
+          "eth": 1.27,
+          "cumulative_eth": 3396.93,
+          "cumulative_share_pct": 99.77
+        },
+        {
+          "rank": 121,
+          "project": "D2PFuzz",
+          "eth": 1.27,
+          "cumulative_eth": 3398.2,
+          "cumulative_share_pct": 99.81
+        },
+        {
+          "rank": 122,
+          "project": "The Ethereum Creator Club (TECC) / The Ethereum Film Festival (TEFF)",
+          "eth": 1.1,
+          "cumulative_eth": 3399.3,
+          "cumulative_share_pct": 99.84
+        },
+        {
+          "rank": 123,
+          "project": "WebHash",
+          "eth": 1.0,
+          "cumulative_eth": 3400.3,
+          "cumulative_share_pct": 99.87
+        },
+        {
+          "rank": 124,
+          "project": "Patchara",
+          "eth": 0.98,
+          "cumulative_eth": 3401.27,
+          "cumulative_share_pct": 99.9
+        },
+        {
+          "rank": 125,
+          "project": "CastaCrypto",
+          "eth": 0.9,
+          "cumulative_eth": 3402.17,
+          "cumulative_share_pct": 99.93
+        },
+        {
+          "rank": 126,
+          "project": "AKINDO",
+          "eth": 0.67,
+          "cumulative_eth": 3402.84,
+          "cumulative_share_pct": 99.95
+        },
+        {
+          "rank": 127,
+          "project": "Abundance Protocol",
+          "eth": 0.63,
+          "cumulative_eth": 3403.46,
+          "cumulative_share_pct": 99.97
+        },
+        {
+          "rank": 128,
+          "project": "Trustful",
+          "eth": 0.46,
+          "cumulative_eth": 3403.92,
+          "cumulative_share_pct": 99.98
+        },
+        {
+          "rank": 129,
+          "project": "Ephemery Testnet - Client Implementation",
+          "eth": 0.34,
+          "cumulative_eth": 3404.26,
+          "cumulative_share_pct": 99.99
+        },
+        {
+          "rank": 130,
+          "project": "Offbrand Crypto (by Full Value Dan)",
+          "eth": 0.22,
+          "cumulative_eth": 3404.49,
+          "cumulative_share_pct": 100.0
+        },
+        {
+          "rank": 131,
+          "project": "Boring Security",
+          "eth": 0.13,
+          "cumulative_eth": 3404.62,
+          "cumulative_share_pct": 100.0
+        },
+        {
+          "rank": 132,
+          "project": "ReFi DAO",
+          "eth": 0.01,
+          "cumulative_eth": 3404.64,
+          "cumulative_share_pct": 100.0
+        },
+        {
+          "rank": 133,
+          "project": "StateOfEth",
+          "eth": 0.0,
+          "cumulative_eth": 3404.64,
+          "cumulative_share_pct": 100.0
+        },
+        {
+          "rank": 134,
+          "project": "ETH Daily",
+          "eth": 0.0,
+          "cumulative_eth": 3404.64,
+          "cumulative_share_pct": 100.0
+        }
+      ],
+      "highlights": {
+        "top_10_share_pct": 44.8,
+        "top_30_share_pct": 75.3,
+        "top_50_share_pct": 88.2
+      }
+    }
+  }
+}
