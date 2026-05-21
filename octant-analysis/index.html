@@ -371,6 +371,74 @@
             text-transform: uppercase;
         }
 
+        /* ===== FUNDING SPLIT DONUT ===== */
+        .split-wrap {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            padding: 20px 0 8px;
+            flex-wrap: wrap;
+        }
+        #splitSvg { width: 280px; flex: 0 0 280px; height: auto; }
+        #splitSvg .split-seg-match { fill: var(--orange); }
+        #splitSvg .split-seg-user { fill: var(--teal); }
+        #splitSvg .split-center {
+            fill: var(--light-100);
+            font-family: var(--font-display);
+            font-size: 26px;
+            letter-spacing: -0.02em;
+        }
+        #splitSvg .split-center-sub {
+            fill: var(--grey-30);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .split-legend {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .split-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .split-row .swatch {
+            width: 14px; height: 14px;
+            flex: 0 0 14px;
+            border-radius: 2px;
+            margin-top: 3px;
+        }
+        .split-row .data {
+            display: flex;
+            flex-direction: column;
+        }
+        .split-row .pct {
+            font-family: var(--font-display);
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            color: var(--light-100);
+            line-height: 1;
+        }
+        .split-row .lbl {
+            font-size: 12px;
+            color: var(--grey-20);
+            margin-top: 4px;
+        }
+        .split-row .lbl small {
+            display: block;
+            color: var(--grey-30);
+            margin-top: 2px;
+            font-family: ui-monospace, monospace;
+        }
+        @media (max-width: 560px) {
+            #splitSvg { width: 100%; flex: 1 1 100%; }
+        }
+
         /* ===== LEVERAGE BUCKETS BAR CHART ===== */
         .lev-chart-wrap { padding: 12px 0 4px; }
         #leverageSvg { width: 100%; height: auto; display: block; font-family: var(--font-sans); }
@@ -1193,6 +1261,57 @@
         </div>
     </section>
 
+    <h2 class="section-h2">Кто эти donors: broad accessibility и committed core</h2>
+
+    <section class="lb-section" id="donors">
+        <div class="lb-summary">
+            <p>
+                За 11 эпох V1 в Octant участвовало <strong>1,270</strong> уникальных donors. 61% из них возвращались в двух или более эпохах. <strong>11 человек</strong> участвовали в каждой из 11 эпох, ещё 22 пропустили только одну.
+            </p>
+            <p style="margin-top:16px;">
+                Donor base Octant сочетает broad accessibility и committed core. 39% donors заходят один раз для конкретного раунда и не возвращаются. На другом конце spectrum <strong>33 человека</strong> участвовали в 10+ эпохах из 11. Между ними распределение спадает экспоненциально.
+            </p>
+        </div>
+
+        <div class="lb-card" id="donorDistCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Сколько уникальных donors участвовало в N эпохах из 11</div>
+            </div>
+            <div class="lev-chart-wrap">
+                <svg id="donorDistSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution across epochs"></svg>
+            </div>
+            <div class="chart-note">
+                Всего 1,270 уникальных donor-адресов, прошедших хотя бы одну QF-эпоху (E1–E11). На оси X — число эпох, в которых donor сделал хотя бы одну allocation; на оси Y — количество доноров. 39.1% — one-timers, 0.9% — perfect attendance во всех 11 эпохах. Источник: <code>octant_chart_data_v1.json</code>.
+            </div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+            <button class="btn" data-png="donorDistCard" data-name="octant-donor-distribution.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+    </section>
+
+    <h2 class="section-h2">Откуда фонды: 96% staking yield, 4% user donations</h2>
+
+    <section class="lb-section" id="funding-split">
+        <div class="lb-summary">
+            <p>
+                Сами donors напрямую направили в проекты <strong>109.51 ETH</strong> своих personal rewards. Matching pool из staking yield Golem Foundation добавил поверх этого <strong>2,758 ETH</strong>. То есть финальные выплаты проектам это на 96% staking yield contribution и на 4% пользовательские allocations, которые направляют куда этот yield идёт.
+            </p>
+        </div>
+
+        <div class="lb-card" id="fundingSplitCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Источники funding в Octant V1 (эпохи 1–11)</div>
+            </div>
+            <div class="split-wrap">
+                <svg id="splitSvg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Funding source split"></svg>
+                <div class="split-legend" id="splitLegend"></div>
+            </div>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
+            <button class="btn" data-png="fundingSplitCard" data-name="octant-funding-split.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+    </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
@@ -1487,6 +1606,8 @@
             renderCategoryCharts(state.all);
             renderMarginalEffect();
             renderLeverageBuckets();
+            renderDonorDist();
+            renderFundingSplit();
             applyView();
             attachInteractions();
         })
@@ -1562,6 +1683,97 @@
         });
 
         document.getElementById('leverageSvg').innerHTML = parts.join('');
+    }
+
+    // Donor distribution: how many donors took part in N epochs (1..11). From octant_chart_data_v1.json.
+    const DONOR_DIST = [
+        { ep: 1,  n: 497, pct: 39.1 },
+        { ep: 2,  n: 252, pct: 19.8 },
+        { ep: 3,  n: 145, pct: 11.4 },
+        { ep: 4,  n: 155, pct: 12.2 },
+        { ep: 5,  n: 67,  pct: 5.3 },
+        { ep: 6,  n: 40,  pct: 3.1 },
+        { ep: 7,  n: 31,  pct: 2.4 },
+        { ep: 8,  n: 26,  pct: 2.0 },
+        { ep: 9,  n: 24,  pct: 1.9 },
+        { ep: 10, n: 22,  pct: 1.7 },
+        { ep: 11, n: 11,  pct: 0.9 },
+    ];
+
+    function renderDonorDist() {
+        const W = 720, H = 400;
+        const M = { top: 36, right: 24, bottom: 56, left: 60 };
+        const innerW = W - M.left - M.right;
+        const innerH = H - M.top - M.bottom;
+        const data = DONOR_DIST;
+        const yMax = 500;
+        const yScale = v => M.top + innerH - (v / yMax) * innerH;
+        const slot = innerW / data.length;
+        const barW = Math.min(44, slot * 0.65);
+
+        const parts = [];
+        [0, 100, 200, 300, 400, 500].forEach(v => {
+            const y = yScale(v);
+            parts.push(`<line class="lev-grid" x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}"/>`);
+            parts.push(`<text class="lev-tick" x="${M.left - 8}" y="${y + 3}" text-anchor="end">${v}</text>`);
+        });
+        parts.push(`<line class="lev-axis" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H - M.bottom}"/>`);
+        parts.push(`<line class="lev-axis" x1="${M.left}" y1="${H - M.bottom}" x2="${W - M.right}" y2="${H - M.bottom}"/>`);
+        parts.push(`<text class="lev-axis-label" x="${M.left + innerW / 2}" y="${H - 10}" text-anchor="middle">Epochs participated</text>`);
+        parts.push(`<text class="lev-axis-label" x="${-(M.top + innerH / 2)}" y="14" transform="rotate(-90)" text-anchor="middle">Donors</text>`);
+
+        data.forEach((d, i) => {
+            const cx = M.left + slot * (i + 0.5);
+            const x = cx - barW / 2;
+            const y = yScale(d.n);
+            const h = (H - M.bottom) - y;
+            // First bucket (one-timers) is the big outlier — colour it grey to read as "the long tail"
+            const cls = d.ep === 1 ? 'lev-bar' : 'lev-bar';
+            const fill = d.ep === 1 ? 'var(--grey-50)' : 'var(--orange)';
+            parts.push(`<rect class="${cls}" style="fill:${fill};" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.ep} epoch${d.ep === 1 ? '' : 's'} — ${d.n} donors (${d.pct}%)</title></rect>`);
+            parts.push(`<text class="lev-val" style="font-size:13px;" x="${cx}" y="${y - 6}" text-anchor="middle">${d.n}</text>`);
+            parts.push(`<text class="lev-range" x="${cx}" y="${H - M.bottom + 18}" text-anchor="middle">${d.ep}</text>`);
+        });
+
+        document.getElementById('donorDistSvg').innerHTML = parts.join('');
+    }
+
+    // Funding split donut: 96% matching pool vs 4% user donations.
+    const FUNDING_SPLIT = [
+        { label: 'Matching pool',     sub: 'Staking yield direct', eth: 2760.08, pct: 96.2, cls: 'split-seg-match', swatch: 'var(--orange)' },
+        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51, pct: 3.8,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
+    ];
+
+    function renderFundingSplit() {
+        const W = 360, H = 360, cx = 180, cy = 180, r = 130, inner = 78;
+        const total = FUNDING_SPLIT.reduce((s, d) => s + d.pct, 0);
+        let start = -Math.PI / 2;
+        const parts = [];
+        FUNDING_SPLIT.forEach(d => {
+            const angle = (d.pct / total) * Math.PI * 2;
+            const end = start + angle;
+            const large = angle > Math.PI ? 1 : 0;
+            const x1 = cx + r * Math.cos(start), y1 = cy + r * Math.sin(start);
+            const x2 = cx + r * Math.cos(end),   y2 = cy + r * Math.sin(end);
+            const ix1 = cx + inner * Math.cos(end),   iy1 = cy + inner * Math.sin(end);
+            const ix2 = cx + inner * Math.cos(start), iy2 = cy + inner * Math.sin(start);
+            const path = `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${inner} ${inner} 0 ${large} 0 ${ix2} ${iy2} Z`;
+            parts.push(`<path class="${d.cls}" d="${path}"><title>${d.label}: ${d.eth} ETH (${d.pct}%)</title></path>`);
+            start = end;
+        });
+        parts.push(`<text class="split-center" x="${cx}" y="${cy - 4}" text-anchor="middle">96 / 4</text>`);
+        parts.push(`<text class="split-center-sub" x="${cx}" y="${cy + 16}" text-anchor="middle">match · user</text>`);
+        document.getElementById('splitSvg').innerHTML = parts.join('');
+
+        document.getElementById('splitLegend').innerHTML = FUNDING_SPLIT.map(d => `
+            <div class="split-row">
+                <span class="swatch" style="background:${d.swatch};"></span>
+                <div class="data">
+                    <span class="pct">${d.pct}%</span>
+                    <span class="lbl">${d.label}<small>${d.eth.toLocaleString('en-US')} ETH · ${d.sub}</small></span>
+                </div>
+            </div>
+        `).join('');
     }
 
 })();
