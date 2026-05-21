@@ -153,6 +153,20 @@
         .draft-body p { margin: 0 0 16px; }
         .draft-body p:last-child { margin-bottom: 0; }
 
+        /* ===== SECTION HEADINGS ===== */
+        .section-h2 {
+            max-width: 760px;
+            margin: 56px auto 0;
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--light-100);
+            padding-top: 32px;
+            border-top: 0.5px solid var(--grey-70);
+        }
+
         /* ===== LEADERBOARD SECTION ===== */
         .lb-section {
             max-width: 760px;
@@ -923,25 +937,28 @@
 
     <div class="draft-body">
         <p>
-            Сначала я хотел собрать полный список проектов с разбивкой по эпохам, точным суммам в ETH (allocated и matched отдельно), и адресам получателей, чтобы можно было их сравнить и разбить на категории. Octant в docs и dashboard публикует агрегированные цифры по эпохам и leaderboard на каждую эпоху отдельно, но единого dataset со всеми проектами и точными суммами по всей истории я не нашёл. Нужно было собрать самостоятельно.
+            Octant застейкал 100,000 ETH. Прибыль от стейкинга направляет на гранты impactful Ethereum projects через quadratic funding. За 2.5 года через 12 эпох передал 3,402 ETH 134 проектам с no strings attached.
         </p>
-        <p>
-            Я начал с того что открыл Octant app в браузере, в DevTools Network tab переключил эпоху и поймал XHR запросы которые подтягивают leaderboard. Базовый URL оказался backend.mainnet.octant.app. Открыл /openapi.json и получил Swagger spec со всеми endpoint'ами V1 API. API публичный, без авторизации, работает поверх Ethereum subgraph'а. Написал Python script с тремя нужными endpoint'ами (leaderboard на эпоху, aggregate stats, address-to-name mapping), прошёл по всем 12 эпохам, сохранил JSON.
+        <ul class="cat-list" style="margin-top:16px;">
+            <li><strong>Staking yield</strong> обеспечивает 96% от выплат проектам.</li>
+            <li>Оставшиеся <strong>4%</strong> это пользовательские донаты, но именно они решают куда 96% пойдут.</li>
+            <li>Средняя donation в Octant QF <strong>$19</strong> приносит проекту <strong>$500</strong> матчинга.</li>
+            <li>Чем больше донатеров, тем сильнее усиливается этот эффект.</li>
+            <li>Для проекта расширение supporter base на <strong>10 человек</strong> в среднем это <strong>+$5,000</strong> матчинга, независимо от размера donations.</li>
+            <li>Например <strong>ZachXBT</strong> в Epoch 9 собрал $1,100 от 91 donor'a. Matching pool из staking yield добавил $128,000. Leverage <strong>116×</strong>.</li>
+        </ul>
+        <p style="margin-top:24px;">
+            В эпоху AI slop и InfoFi farming, где людей считают как traffic, опыт Octant доказывает, что возможно создавать системы, где реальная человеческая коммуникация это самый эффективный финансовый multiplier в системе. QF буквально математически вознаграждает breadth донорской базы, а не depth кошелька.
         </p>
-        <p>
-            Все эпохи кроме нулевой вернули чистые данные. Epoch 0 в API отсутствовала, потому что была pre-launch curated round до запуска V1 механики и в схему API не вписывается.
+        <p style="margin-top:16px;">
+            Сейчас Octant в процессе шифта c impactful Ethereum projects to infrastructure tool, открытый для других ecosystems. Любая DAO с treasury теперь может использовать vaults для yield generation, и потом аллоцировать yield на funding rounds для своей community.
         </p>
-        <p>
-            Небольшая ремарка про нумерацию, потому что её многие путают. Octant считает эпохи с нуля. От Epoch 0 в до Epoch 11 прошло 12 раундов. Текущий запуск, первый на новой версии платформы, называется Epoch 12. (это надо проверить как он точно называется, возможно 12 раунд ил что-то такое)
+        <p style="margin-top:16px;">
+            Mashal, CMO Octant: <em>«Ethereum is the starting point but I see the potential of this technology to be adopted by real world non-crypto organizations too.»</em>
         </p>
-        <p>
-            Чтобы закрыть gap по нулевой эпохе, я нашёл в документации Golem Foundation distribution wallet 0x70a0a7be87deb51e1fab16d4f2bf00be1510e476 и выгрузил через питон все его транзакции. Получил недостающие данные, заодно валидировал данные из двух источников между собой.
-        </p>
-        <p>
-            Дальше осталась консолидация. Слил данные V1 API (эпохи 1-11) и on-chain reconstruction (Epoch 0) в один master CSV, получил 273 строки на уровне проект-эпоха. Потом сгруппировал по проектам и нормализовал имена, потому что Octant в разных эпохах иногда писал одно и то же название с вариациями вроде "Tor Project" и "The Tor Project" или "Hypercerts" и "Hypercerts Foundation". Все такие случаи свёл к одному каноническому имени. Получил cumulative leaderboard из 134 уникальных проектов с суммарным funding по всей истории Octant.
-        </p>
-
     </div>
+
+    <h2 class="section-h2">Какие проекты собрали больше всего фондинга в Octant</h2>
 
     <section class="lb-section" id="leaderboard">
         <div class="lb-summary" id="lbSummary">
@@ -1028,10 +1045,12 @@
         </div>
     </section>
 
+    <h2 class="section-h2">Во что вкладывается Octant: 9 категорий проектов</h2>
+
     <section class="lb-section" id="categories">
         <div class="lb-summary">
             <p>
-                Дальше хотел понять во что именно Octant вкладывается тематически, но 134 имени без группировки трудно интерпретировать. Нужна была категоризация. Для этого я прошёлся по списку и проставил каждому проекту одну из 9 категорий:
+                Чтобы понять во что именно Octant вкладывается тематически, я выделил 9 основных категорий:
             </p>
             <ul class="cat-list">
                 <li><strong>Ethereum Infrastructure</strong> — core protocol, staking, MEV, attestations</li>
@@ -1071,6 +1090,8 @@
             <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save chart as PNG</button>
         </div>
     </section>
+
+    <h2 class="section-h2">Как переход на Quadratic Funding изменил распределение аллокаций</h2>
 
     <section class="lb-section" id="qf">
         <div class="lb-summary">
@@ -1167,7 +1188,7 @@
                 <li><strong>Revoke.cash vs ECH</strong> (Epoch 4) — 118× leverage, средняя донация $4.30</li>
             </ul>
             <p style="margin-top:24px;">
-                ZachXBT's 95 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
+                ZachXBT's 91 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
         </div>
     </section>
