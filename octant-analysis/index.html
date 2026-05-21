@@ -153,6 +153,93 @@
         .draft-body p { margin: 0 0 16px; }
         .draft-body p:last-child { margin-bottom: 0; }
 
+        /* ===== KEY FINDINGS ===== */
+        .key-findings {
+            margin: 24px 0;
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-card);
+            font-size: 15px;
+            line-height: 1.55;
+        }
+        .key-findings-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--orange);
+            padding: 12px 20px;
+            border-bottom: 0.5px solid var(--grey-70);
+            background: var(--grey-100);
+            border-radius: var(--r-card) var(--r-card) 0 0;
+        }
+        .key-findings ul {
+            margin: 0;
+            padding: 16px 20px 16px 36px;
+            color: var(--light-80);
+        }
+        .key-findings li {
+            margin-bottom: 8px;
+        }
+        .key-findings li:last-child { margin-bottom: 0; }
+        .key-findings li::marker { color: var(--grey-50); }
+        .key-findings a {
+            color: var(--orange);
+            text-decoration: underline;
+            text-decoration-color: var(--orange-20);
+            text-underline-offset: 3px;
+            transition: color 0.15s ease, text-decoration-color 0.15s ease;
+        }
+        .key-findings a:hover {
+            color: var(--light-100);
+            text-decoration-color: var(--light-100);
+        }
+        .key-findings strong { color: var(--light-100); }
+
+        /* Smooth anchor scrolling + offset so target text isn't hidden behind top nav */
+        html { scroll-behavior: smooth; }
+        :target {
+            scroll-margin-top: 24px;
+            animation: target-flash 1.4s ease-out;
+        }
+        @keyframes target-flash {
+            0%   { background-color: rgba(255, 150, 2, 0.12); }
+            100% { background-color: transparent; }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-btn);
+            color: var(--light-100);
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.2s ease, transform 0.2s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+            z-index: 50;
+        }
+        .back-to-top.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: var(--grey-80);
+            border-color: var(--orange-20);
+            box-shadow: var(--glow-orange);
+        }
+
         /* ===== SECTION HEADINGS ===== */
         .section-h2 {
             max-width: 760px;
@@ -1025,14 +1112,19 @@
         <p>
             Octant застейкал 100,000 ETH. Прибыль от стейкинга направляет на гранты impactful Ethereum projects через quadratic funding. За 2.5 года через 12 эпох передал 3,402 ETH 134 проектам с no strings attached.
         </p>
-        <ul class="cat-list" style="margin-top:16px;">
-            <li><strong>Staking yield</strong> обеспечивает 96% от выплат проектам.</li>
-            <li>Оставшиеся <strong>4%</strong> это пользовательские донаты, но именно они решают куда 96% пойдут.</li>
-            <li>Средняя donation в Octant QF <strong>$19</strong> приносит проекту <strong>$500</strong> матчинга.</li>
-            <li>Чем больше донатеров, тем сильнее усиливается этот эффект.</li>
-            <li>Для проекта расширение supporter base на <strong>10 человек</strong> в среднем это <strong>+$5,000</strong> матчинга, независимо от размера donations.</li>
-            <li>Например <strong>ZachXBT</strong> в Epoch 9 собрал $1,100 от 91 donor'a. Matching pool из staking yield добавил $128,000. Leverage <strong>116×</strong>.</li>
-        </ul>
+
+        <div class="key-findings" aria-label="Key findings">
+            <div class="key-findings-title">Key Findings</div>
+            <ul>
+                <li><a href="#funding-split">Staking yield</a> обеспечивает <strong>96%</strong> от выплат проектам.</li>
+                <li>Оставшиеся <strong>4%</strong> это <a href="#funding-split">пользовательские донаты</a>, но именно они решают куда 96% пойдут.</li>
+                <li>Средняя donation в Octant QF $19 приносит проекту <a href="#leverageCard">$500 матчинга</a>.</li>
+                <li>Чем больше донатеров, тем сильнее <a href="#leverageCard">усиливается этот эффект</a>.</li>
+                <li>Для проекта расширение supporter base на 10 человек в среднем это <a href="#effect-500">+$5,000 матчинга</a>, независимо от размера donations.</li>
+                <li>Например <a href="#zachxbt">ZachXBT в Epoch 9</a> собрал $1,100 от 91 donor'a. Matching pool из staking yield добавил $128,000. Leverage 116×.</li>
+            </ul>
+        </div>
+
         <p style="margin-top:24px;">
             В эпоху AI slop и InfoFi farming, где людей считают как traffic, опыт Octant доказывает, что возможно создавать системы, где реальная человеческая коммуникация это самый эффективный финансовый multiplier в системе. QF буквально математически вознаграждает breadth донорской базы, а не depth кошелька.
         </p>
@@ -1184,7 +1276,7 @@
             <p style="margin-top:16px;">
                 С четвёртой эпохи Octant запустил Quadratic Funding. Главное отличие в том, что теперь количество донаторов на проект тоже считается. Чем шире донорская база, тем больше доля pool достаётся проекту. Сто человек по $1 теперь дают проекту значительно больше match, чем один человек на $100.
             </p>
-            <p style="margin-top:16px;">
+            <p id="effect-500" style="margin-top:16px;">
                 Один дополнительный donor при средней donation <strong>$19</strong> приносит проекту в среднем <strong>$500 матчинга</strong>. Это значит что в QF-логике человек ценнее своих собственных денег примерно в <strong>26 раз</strong>. Для проекта расширение supporter base на 10 человек это +$5,000 матчинга, независимо от того, сколько именно эти люди задонатят.
             </p>
         </div>
@@ -1261,7 +1353,7 @@
         </div>
 
         <div class="lb-summary">
-            <p>
+            <p id="zachxbt">
                 ZachXBT's 91 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
         </div>
@@ -1838,6 +1930,23 @@
     <span>Octant Projects Analysis · Draft</span>
     <span class="meta">noindex · internal review</span>
 </footer>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="К началу страницы" title="К началу">↑</button>
+<script>
+(function () {
+    const btn = document.getElementById('backToTop');
+    const threshold = 400;
+    function update() {
+        if (window.scrollY > threshold) btn.classList.add('is-visible');
+        else btn.classList.remove('is-visible');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    update();
+})();
+</script>
 
 </body>
 </html>
