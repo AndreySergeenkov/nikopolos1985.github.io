@@ -195,6 +195,8 @@
             text-decoration-color: var(--light-100);
         }
         .key-findings strong { color: var(--light-100); }
+        /* Strong inside a key-findings link should keep the link colour */
+        .key-findings a strong { color: inherit; }
 
         /* Smooth anchor scrolling + offset so target text isn't hidden behind top nav */
         html { scroll-behavior: smooth; }
@@ -204,9 +206,9 @@
             border-radius: 3px;
         }
         @keyframes target-flash {
-            0%   { background-color: rgba(255, 150, 2, 0.28); box-shadow: 0 0 0 6px rgba(255, 150, 2, 0.28); }
-            18%  { background-color: rgba(255, 150, 2, 0.28); box-shadow: 0 0 0 6px rgba(255, 150, 2, 0.28); }
-            100% { background-color: transparent;             box-shadow: 0 0 0 0   rgba(255, 150, 2, 0);    }
+            0%   { background-color: rgba(120, 240, 226, 0.22); box-shadow: 0 0 0 6px rgba(120, 240, 226, 0.22); }
+            18%  { background-color: rgba(120, 240, 226, 0.22); box-shadow: 0 0 0 6px rgba(120, 240, 226, 0.22); }
+            100% { background-color: transparent;               box-shadow: 0 0 0 0   rgba(120, 240, 226, 0);    }
         }
 
         /* ===== BACK TO TOP ===== */
