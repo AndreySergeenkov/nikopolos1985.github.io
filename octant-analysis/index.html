@@ -208,35 +208,24 @@
         }
 
         /* ===== BACK TO TOP ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--grey-90);
-            border: 0.5px solid var(--grey-70);
-            border-radius: var(--r-btn);
-            color: var(--light-100);
-            font-size: 18px;
-            line-height: 1;
+        .back-to-top-link {
+            max-width: 760px;
+            margin: 56px auto 0;
+            padding-top: 24px;
+            border-top: 0.5px solid var(--grey-80);
+            text-align: center;
+            font-size: 13px;
+        }
+        .back-to-top-link a {
+            color: var(--grey-30);
             text-decoration: none;
-            font-family: var(--font-sans);
-            transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
-            z-index: 100;
-            cursor: pointer;
+            font-family: ui-monospace, monospace;
+            letter-spacing: 0.04em;
+            padding: 6px 12px;
+            transition: color 0.15s ease;
         }
-        .back-to-top:hover {
-            background: var(--grey-80);
-            border-color: var(--orange-20);
+        .back-to-top-link a:hover {
             color: var(--orange);
-            box-shadow: var(--glow-orange);
-        }
-        @media (max-width: 560px) {
-            .back-to-top { bottom: 16px; right: 16px; width: 44px; height: 44px; }
         }
 
         /* ===== SECTION HEADINGS ===== */
@@ -1271,11 +1260,11 @@
         <div class="key-findings" aria-label="Key findings">
             <div class="key-findings-title">Key Findings</div>
             <ul>
-                <li><a href="#funding-split">Staking yield</a> provides <strong>96%</strong> of payouts to projects.</li>
-                <li>The remaining <strong>4%</strong> comes from <a href="#funding-split">user donations</a>, but those donations decide where the 96% goes.</li>
+                <li>Staking yield provides <a href="#funding-split"><strong>96% of payouts</strong></a> to projects.</li>
+                <li>The remaining <strong>4%</strong> comes from user donations, but those donations decide where the 96% goes.</li>
                 <li>The average donation in Octant QF is <strong>$19</strong> and brings a project <a href="#effect-500">$500 in matching</a>.</li>
-                <li>The more donors, the <a href="#leverageCard">stronger the effect</a>.</li>
-                <li>For a project, expanding the supporter base by 10 people means <a href="#effect-500">+$5,000 in matching</a> on average, regardless of donation size.</li>
+                <li>The more donors, the <a href="#leverageCard">stronger the matching effect</a>.</li>
+                <li>10 more donors brings a project <a href="#effect-5000">+$5,000 in matching</a>, regardless of donation size.</li>
                 <li>For example, <a href="#zachxbt">ZachXBT in Epoch 9</a> raised $1,100 from 91 donors. The matching pool from staking yield added $128,000 on top. A 116× leverage.</li>
             </ul>
         </div>
@@ -1474,7 +1463,7 @@
             <p id="effect-500" style="margin-top:16px;">
                 One additional donor at an average <strong>$19</strong> donation brings a project <strong>$500 in matching</strong> on average.
             </p>
-            <p style="margin-top:16px;">
+            <p id="effect-5000" style="margin-top:16px;">
                 That is, each donor brings a project <strong>26 times</strong> more money than they contributed themselves. For a project, expanding the supporter base by 10 people means +$5,000 in matching, regardless of how much those people donate.
             </p>
         </div>
@@ -1626,7 +1615,7 @@
     <section class="lb-section" id="funding-split">
         <div class="lb-summary">
             <p>
-                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,758 ETH</strong>. So final payouts to projects break down as 96% staking yield contribution and 4% user allocations, which decide where the yield goes.
+                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,760 ETH</strong>. So final payouts to projects break down as 96% staking yield contribution and 4% user allocations, which decide where the yield goes.
             </p>
         </div>
 
@@ -1726,7 +1715,7 @@
                     Match-per-donor analysis I did in two passes. First, a simple version. For each QF project-epoch (194 rows) I calculated avg donation size (<code>allocated / n_donors</code>) and match per donor (<code>matched / n_donors</code>). Bucketing project-epochs by average donation size, I got leverage of 93× for donations under $2 down to 9× for donations above $50. Then a weighted version, weighted by donor count across all 11,702 individual allocations in QF epochs. That gives $19 average donation, $500 average match per donor, 26× leverage. The weighted version reflects the typical donor experience rather than the typical project experience, and that’s what I used for the main claims in the article.
                 </p>
                 <p>
-                    User-versus-matching-pool split I calculated by summing. All <code>allocated_eth</code> across V1 epochs comes to 109.51 ETH (the portion of staking yield that flowed to users as personal rewards and that they directed to projects instead of keeping for themselves). All <code>matched_eth</code> comes to 2,758 ETH (the portion of staking yield that went straight into the matching pool). Total V1 funding to projects is 2,867 ETH. The split is 96/4 in favor of the matching pool.
+                    User-versus-matching-pool split I calculated by summing. All <code>allocated_eth</code> across V1 epochs comes to 109.51 ETH (the portion of staking yield that flowed to users as personal rewards and that they directed to projects instead of keeping for themselves). All <code>matched_eth</code> comes to 2,760 ETH (the portion of staking yield that went straight into the matching pool). Total V1 funding to projects is 2,870 ETH. The split is 96/4 in favor of the matching pool.
                 </p>
                 <p>
                     For USD conversions I used $3,000 per ETH as a rough average across QF epochs (August 2023 to January 2026). The real price ranged $1,600–$4,200. This isn’t critical for directional analysis (leverage ratios, distribution patterns), but it’s worth keeping in mind when interpreting specific USD numbers like “$500 average match per donor” or “$128,000 ZachXBT matching”.
@@ -1734,6 +1723,10 @@
             </div>
         </details>
     </section>
+
+    <p class="back-to-top-link">
+        <a href="#top">↑ Back to top</a>
+    </p>
 
 </main>
 
@@ -2165,8 +2158,8 @@
 
     // Funding split donut: 96% matching pool vs 4% user donations.
     const FUNDING_SPLIT = [
-        { label: 'Matching pool',     sub: 'Staking yield direct', eth: 2760.08, pct: 96.2, cls: 'split-seg-match', swatch: 'var(--orange)' },
-        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51, pct: 3.8,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
+        { label: 'Matching pool',     sub: 'Staking yield direct',     eth: 2760.08, ethDisplay: '2,760', pct: 96.2, cls: 'split-seg-match', swatch: 'var(--orange)' },
+        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51,  ethDisplay: '109.51', pct: 3.8,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
     ];
 
     function renderFundingSplit() {
@@ -2195,7 +2188,7 @@
                 <span class="swatch" style="background:${d.swatch};"></span>
                 <div class="data">
                     <span class="pct">${d.pct}%</span>
-                    <span class="lbl">${d.label}<small>${d.eth.toLocaleString('en-US')} ETH · ${d.sub}</small></span>
+                    <span class="lbl">${d.label}<small>${d.ethDisplay} ETH · ${d.sub}</small></span>
                 </div>
             </div>
         `).join('');
@@ -2348,7 +2341,7 @@
         const projects = [
             { name: 'hevm',     epoch: 'E8', donors: 28, user_usd: 3660,  match_usd: 22800,  leverage: 6,   color: 'var(--yellow)' },
             { name: 'Solidity', epoch: 'E8', donors: 84, user_usd: 3810,  match_usd: 63300,  leverage: 17,  color: 'var(--orange)' },
-            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116, color: 'var(--pink)' },
+            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116, color: 'var(--green)' },
         ];
 
         const metrics = [
@@ -2505,7 +2498,6 @@
     <span class="meta">noindex · internal review</span>
 </footer>
 
-<a class="back-to-top" href="#top" aria-label="К началу страницы" title="К началу">↑</a>
 
 </body>
 </html>
