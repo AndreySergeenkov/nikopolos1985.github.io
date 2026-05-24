@@ -381,11 +381,11 @@
             letter-spacing: 0.06em;
             opacity: 0.75;
         }
-        .seg-ret { background: var(--teal); color: var(--grey-100); }
-        .seg-one { background: var(--grey-70); color: var(--light-100); }
+        .seg-ret { background: var(--orange); color: var(--grey-100); }
+        .seg-one { background: var(--yellow); color: var(--grey-100); }
 
-        .lb-card-legend .dot-ret { background: var(--teal); }
-        .lb-card-legend .dot-one { background: var(--grey-50); }
+        .lb-card-legend .dot-ret { background: var(--orange); }
+        .lb-card-legend .dot-one { background: var(--yellow); }
 
         /* ===== CATEGORY DEFINITION LIST ===== */
         .cat-list {
@@ -1161,21 +1161,6 @@
         }
 
         /* Category slope chart */
-        #catSlopeSvg .slope-line { stroke-width: 1.2; fill: none; opacity: 0.85; }
-        #catSlopeSvg .slope-line:hover { stroke-width: 2.4; opacity: 1; }
-        #catSlopeSvg .slope-dot { stroke: var(--grey-100); stroke-width: 1; }
-        #catSlopeSvg .slope-col-label {
-            fill: var(--grey-30);
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        #catSlopeSvg .slope-cat-name { font-size: 11px; font-family: var(--font-sans); }
-        #catSlopeSvg .slope-pct { font-size: 11px; font-family: ui-monospace, monospace; }
-        #catSlopeSvg .slope-axis { stroke: var(--grey-70); stroke-width: 0.5; }
-        #catSlopeSvg .slope-grid { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
-
         /* QF mechanism small multiples */
         .qfm-grid { display: flex; flex-direction: column; gap: 4px; padding: 8px 0 0; }
         .qfm-panel { display: grid; grid-template-columns: 140px 1fr; align-items: center; gap: 16px; }
@@ -1515,6 +1500,9 @@
                 The top 10 projects received their funding in very different ways. Protocol Guild is the only project that showed up in nearly every epoch. Gitcoin and Giveth collected their totals in the first rounds and never returned. GrowThePie received almost all of it in Epoch 3 alone.
             </p>
         </div>
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="sparkTableCard" data-name="octant-top10-sparklines.png" type="button">⤓ Save chart as PNG</button>
+        </div>
         <div class="lb-card" id="sparkTableCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Top 10 trajectory across epochs<span class="alt-tag">alt v2</span></div>
@@ -1523,11 +1511,7 @@
             <div class="chart-note">
                 Each mini-chart shows ETH a project received in epochs 1 to 11. Epoch 0 is not displayed because it predates the V1 API. Bar heights share a common scale across all 10 projects, with the maximum being Protocol Guild in Epoch 3 at 77 ETH. Empty slots are epochs where a project did not participate. For most of these projects that means E7, the climate themed round, and E9, the media themed round.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="sparkTableCard" data-name="octant-top10-sparklines.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-    </section>
+        </div>    </section>
 
     <section class="lb-section" id="returners">
         <div class="lb-summary">
@@ -1539,53 +1523,49 @@
             </p>
         </div>
 
+        <div class="lb-actions lb-actions-top">
+            <button class="btn" data-png="dualBarCard" data-name="octant-returners-vs-onetimers.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+
         <div class="lb-card" id="dualBarCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Returners vs one-timers — доля от числа проектов и от funding</div>
+                <div class="lb-card-title">Returners take a much larger share of funding than of project count</div>
             </div>
             <div class="dual-bar">
                 <div class="bar-col">
-                    <div class="bar-label">Projects (n=<span id="dbTotalProj">—</span>)</div>
+                    <div class="bar-label">All <span id="dbTotalProj">—</span> projects</div>
                     <div class="bar-stack" id="dbStackProj"></div>
                 </div>
                 <div class="bar-col">
-                    <div class="bar-label">Funding (<span id="dbTotalFund">—</span> ETH)</div>
+                    <div class="bar-label">Total funding, <span id="dbTotalFund">—</span> ETH</div>
                     <div class="bar-stack" id="dbStackFund"></div>
                 </div>
             </div>
             <div class="lb-card-legend">
-                <span><span class="dot dot-ret"></span>returners (n_epochs ≥ 2)</span>
-                <span><span class="dot dot-one"></span>one-timers (n_epochs = 1)</span>
+                <span><span class="dot dot-ret"></span>Returners (took part in 2 or more epochs)</span>
+                <span><span class="dot dot-one"></span>Single-round projects</span>
             </div>
-        </div>
-
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="dualBarCard" data-name="octant-returners-vs-onetimers.png" type="button">⤓ Save chart as PNG</button>
         </div>
 
         <!-- ============== ALT v2: returners slope chart ============== -->
         <div class="lb-summary" style="margin-top:32px;">
             <p>
-                Двойной стек сверху показывает обе доли по отдельности, но главное в этих цифрах — их инверсия. Если соединить «долю проектов» слева и «долю funding» справа одной линией, то returners идут резко вверх (37% → 84%), one-timers — резко вниз (63% → 16%). Сама форма линий и есть главное сообщение.
+                Octant’s strength is not in the number of projects but in continued support. The 37% of projects that came back for two or more epochs received 84% of all funding. The remaining 63%, projects that participated only once, took the remaining 16%.
             </p>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="returnersSlopeCard" data-name="octant-returners-slope.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="returnersSlopeCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Returners vs one-timers — инверсия долей<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">The 37% of projects that returned received 84% of all funding<span class="alt-tag">alt v2</span></div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="returnersSlopeSvg" viewBox="0 0 720 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Slope chart of project share vs funding share for returners and one-timers"></svg>
             </div>
-            <div class="chart-note">
-                Слева — доля категории в общем числе проектов (134), справа — доля в общем funding (3,405 ETH). Сила Octant — не в количестве, а в постоянстве: 50 returner-проектов забрали 84% всего, остальные 84 one-timer-проекта — 16%. Источник: <code>octant_chart_data_v1.json → returner_vs_onetimer</code>.
-            </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="returnersSlopeCard" data-name="octant-returners-slope.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-    </section>
+        </div>    </section>
 
-    <h2 class="section-h2">What Octant invests in: 9 categories of projects</h2>
+    <h2 class="section-h2">Which projects collected the most funding in Octant</h2>
 
     <section class="lb-section" id="categories">
         <div class="lb-summary">
@@ -1617,35 +1597,17 @@
             </p>
         </div>
 
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+
+            <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save chart as PNG</button>
+
+        </div>
+
         <div class="lb-card" id="catA">
             <div class="lb-card-head">
                 <div class="lb-card-title">Funding by category (cumulative, E0–E11)</div>
             </div>
             <div class="hbar-list" id="catAList"></div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <!-- ============== ALT v2: slope chart — % projects vs % funding ============== -->
-        <div class="lb-summary" style="margin-top:32px;">
-            <p>
-                Сравнение двух долей для каждой категории — какую часть всех проектов она занимает и какую часть всего funding — показывает где Octant концентрирует ставки, а где распыляется. Линия идёт вверх — категория получает непропорционально много (Ethereum Infrastructure: 5% проектов, 15% funding). Линия идёт вниз — категория «диффузная», много проектов с маленькими чеками (Climate &amp; Regenerative, Media &amp; Storytelling).
-            </p>
-        </div>
-        <div class="lb-card" id="catSlopeCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Доля проектов vs доля funding по категориям<span class="alt-tag">alt v2</span></div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="catSlopeSvg" viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Slope chart of project share vs funding share by category"></svg>
-            </div>
-            <div class="chart-note">
-                Каждая линия — одна из 9 категорий. Слева — доля категории в общем числе проектов (134), справа — доля в общем funding (3,405 ETH). Если линия горизонтальна, категория получает funding ровно пропорционально числу проектов. Наклон вверх = концентрированная ставка, наклон вниз = диффузия. Цвет соответствует категории на bar-chart выше. Источник: <code>octant_chart_data_v1.json → categories</code>.
-            </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="catSlopeCard" data-name="octant-category-slope.png" type="button">⤓ Save chart as PNG</button>
         </div>
     </section>
 
@@ -1664,6 +1626,12 @@
             </p>
         </div>
 
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+
+            <button class="btn" data-png="leverageCard" data-name="octant-leverage-by-donor-bucket.png" type="button">⤓ Save chart as PNG</button>
+
+        </div>
+
         <div class="lb-card" id="leverageCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Leverage QF по размеру donation: чем меньше donation, тем больше множитель</div>
@@ -1674,16 +1642,14 @@
             <div class="chart-note">
                 Bucket-анализ 194 проект-эпох QF-раундов (E4–E11), 11,702 индивидуальных donations. Каждая корзина — диапазон средней donation. Leverage = QF match ÷ user donations. Weighted average по всем donations: $19 средняя donation, $500 match per donor, 26× leverage. ETH-в-USD по $3000. Источник: <code>octant_chart_data_v1.json</code>.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
-            <button class="btn" data-png="leverageCard" data-name="octant-leverage-by-donor-bucket.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <!-- ============== ALT v2: QF mechanism small multiples ============== -->
+        </div>        <!-- ============== ALT v2: QF mechanism small multiples ============== -->
         <div class="lb-summary">
             <p>
                 Эффект leverage — это не отдельная метрика, а отношение двух величин. Здесь они разложены по трём панелям с общей осью bucket'ов: средняя donation растёт быстро ($1 → $114), match per donor растёт медленнее ($133 → $1,051), а их отношение — leverage — поэтому обваливается с 93× до 9×. Сравнение трёх панелей друг под другом показывает механизм, а не только результат.
             </p>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="qfMechanismCard" data-name="octant-qf-mechanism.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="qfMechanismCard">
             <div class="lb-card-head">
@@ -1693,15 +1659,16 @@
             <div class="chart-note">
                 Все три панели разделяют общую ось X (6 buckets средней donation от $0–2 до $50+). Высота баров пропорциональна значению; численные подписи над барами. Источник: <code>octant_chart_data_v1.json → match_per_donor_buckets</code>, 194 QF project-epochs (E4–E11), 11,702 индивидуальных donations.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
-            <button class="btn" data-png="qfMechanismCard" data-name="octant-qf-mechanism.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <div class="lb-summary">
+        </div>        <div class="lb-summary">
             <p>
                 For example, in the eighth epoch Solidity and hevm received roughly equal user donations, about 1.2 ETH each. But Solidity had 84 unique donors, while hevm had only 28. As a result, Solidity took 21 ETH in matching, hevm 7.6 ETH. With the same donation amount, a donor base three times larger produced almost three times more matching. Before the fourth epoch, these two projects would have received mathematically equal amounts.
             </p>
+        </div>
+
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+
+            <button class="btn" data-png="marginalEffectCard" data-name="octant-marginal-effect-per-donor.png" type="button">⤓ Save chart as PNG</button>
+
         </div>
 
         <div class="lb-card" id="marginalEffectCard">
@@ -1749,16 +1716,14 @@
             <div class="chart-note">
                 Оба проекта собрали примерно равные суммы от пользователей — около 1.2 ETH каждому. Но у Solidity в три раза больше уникальных доноров, и QF-матчинг отличается тоже втрое. До четвёртой эпохи эти проекты получили бы одинаковую сумму — широта донорской базы стала фактором только с QF.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
-            <button class="btn" data-png="marginalEffectCard" data-name="octant-marginal-effect-per-donor.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <!-- ============== ALT v2: Solidity vs hevm small multiples ============== -->
+        </div>        <!-- ============== ALT v2: Solidity vs hevm small multiples ============== -->
         <div class="lb-summary">
             <p>
                 Прямое сравнение трёх метрик на общей шкале: у Solidity и hevm почти одинаковые user donations, но в 3 раза разная донорская база — и в 2.8 раза разный QF match. Один параметр (donors) объясняет почти весь разрыв в результате.
             </p>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="solHevTableCard" data-name="octant-solidity-vs-hevm.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="solHevTableCard">
             <div class="lb-card-head">
@@ -1768,12 +1733,7 @@
             <div class="chart-note">
                 Эпоха 8. Каждая строка — одна метрика, обе колонки разделяют общую длину шкалы. User donations (центральная строка) почти равны: 1.27 vs 1.22 ETH. Donors отличаются в 3×, QF match — в 2.8×. Источник: <code>octant_donor_counts_v1.csv</code> @ epoch 8.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;margin-bottom:32px;">
-            <button class="btn" data-png="solHevTableCard" data-name="octant-solidity-vs-hevm.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <div class="lb-summary">
+        </div>        <div class="lb-summary">
             <p id="zachxbt">
                 ZachXBT's 91 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
@@ -1792,6 +1752,12 @@
             </p>
         </div>
 
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+
+            <button class="btn" data-png="donorDistCard" data-name="octant-donor-distribution.png" type="button">⤓ Save chart as PNG</button>
+
+        </div>
+
         <div class="lb-card" id="donorDistCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Сколько уникальных donors участвовало в N эпохах из 11</div>
@@ -1802,16 +1768,14 @@
             <div class="chart-note">
                 Всего 1,270 уникальных donor-адресов, прошедших хотя бы одну QF-эпоху (E1–E11). На оси X — число эпох, в которых donor сделал хотя бы одну allocation; на оси Y — количество доноров. 39.1% — one-timers, 0.9% — perfect attendance во всех 11 эпохах. Источник: <code>octant_chart_data_v1.json</code>.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="donorDistCard" data-name="octant-donor-distribution.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <!-- ============== ALT v2: donor distribution with cumulative + groupings ============== -->
+        </div>        <!-- ============== ALT v2: donor distribution with cumulative + groupings ============== -->
         <div class="lb-summary" style="margin-top:32px;">
             <p>
                 Гистограмма выше показывает «горб» из 497 one-timer'ов и хвост, который кажется почти плоским. Но именно в этом хвосте — committed core. Чтобы увидеть его, добавим к барам кумулятивную линию «сколько donors заходили хотя бы N раз» и сгруппируем диапазоны эпох в смысловые band'ы.
             </p>
+        </div>
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="donorDistV2Card" data-name="octant-donor-distribution-v2.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="donorDistV2Card">
             <div class="lb-card-head">
@@ -1823,11 +1787,7 @@
             <div class="chart-note">
                 Оранжевые бары — # donors, участвовавших ровно в N эпохах (левая ось). Бирюзовая накладка — top-tier «10+». Белая линия — кумулятивная доля donors, прошедших ≥ N эпох (правая ось, %). Чтение: 100% слева спадает до 0.9% справа; «10+» — это последние 2.6% donors (33 человека), но именно они задают непрерывность участия. Источник: <code>octant_chart_data_v1.json → donor_distribution</code>.
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="donorDistV2Card" data-name="octant-donor-distribution-v2.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-    </section>
+        </div>    </section>
 
     <h2 class="section-h2">Where the funds come from: 96% staking yield, 4% user donations</h2>
 
@@ -1838,6 +1798,12 @@
             </p>
         </div>
 
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+
+            <button class="btn" data-png="fundingSplitCard" data-name="octant-funding-split.png" type="button">⤓ Save chart as PNG</button>
+
+        </div>
+
         <div class="lb-card" id="fundingSplitCard">
             <div class="lb-card-head">
                 <div class="lb-card-title">Источники funding в Octant V1 (эпохи 1–11)</div>
@@ -1846,12 +1812,10 @@
                 <svg id="splitSvg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Funding source split"></svg>
                 <div class="split-legend" id="splitLegend"></div>
             </div>
+        </div>        <!-- ============== ALT v2: typographic split — no donut ============== -->
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="fundingSplitMinimalCard" data-name="octant-funding-split-minimal.png" type="button">⤓ Save chart as PNG</button>
         </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="fundingSplitCard" data-name="octant-funding-split.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-
-        <!-- ============== ALT v2: typographic split — no donut ============== -->
         <div class="lb-card" id="fundingSplitMinimalCard" style="margin-top:24px;">
             <div class="lb-card-head">
                 <div class="lb-card-title">Источники funding в Octant V1 (эпохи 1–11)<span class="alt-tag">alt v2</span></div>
@@ -1876,11 +1840,7 @@
                     Сами donors напрямую направили 110 ETH своих personal rewards. Matching pool из staking yield Golem Foundation добавил поверх 2,760 ETH. Финальные выплаты проектам — на 96% staking yield, на 4% пользовательские allocations, которые решают, куда этот yield идёт.
                 </div>
             </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="fundingSplitMinimalCard" data-name="octant-funding-split-minimal.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-    </section>
+        </div>    </section>
 
     <h2 class="section-h2">Methodology</h2>
 
@@ -2110,7 +2070,7 @@
         const avgOne = sumOne / nOne;
 
         const fmt = (v, d = 1) => v.toFixed(d);
-        const fmtInt = v => Math.round(v).toLocaleString('ru-RU');
+        const fmtInt = v => Math.round(v).toLocaleString('en-US');
 
         document.getElementById('retShare').textContent = fmt(pctRetProj);
         document.getElementById('retFundShare').textContent = fmt(pctRetFund);
@@ -2123,28 +2083,29 @@
         document.getElementById('dbTotalProj').textContent = nAll;
         document.getElementById('dbTotalFund').textContent = fmtInt(sumAll);
 
+        const lblHTML = (main, sub) => sub ? `${main}<br>${sub}` : main;
         const segHTML = (pctTop, topClass, topPct, topMain, topSub, botClass, botMain, botSub) => `
             <div class="bar-seg ${topClass}" style="flex:${pctTop} 0 0;">
                 <div class="pct">${topPct}%</div>
-                <div class="lbl">${topMain}<br>${topSub}</div>
+                <div class="lbl">${lblHTML(topMain, topSub)}</div>
             </div>
             <div class="bar-seg ${botClass}" style="flex:${100 - pctTop} 0 0;">
                 <div class="pct">${(100 - pctTop).toFixed(1)}%</div>
-                <div class="lbl">${botMain}<br>${botSub}</div>
+                <div class="lbl">${lblHTML(botMain, botSub)}</div>
             </div>`;
 
         // Projects column: returners on top (smaller slice goes on top for visual contrast)
         document.getElementById('dbStackProj').innerHTML = segHTML(
             pctRetProj, 'seg-ret', fmt(pctRetProj),
-            `${nRet} returners`, 'n_epochs ≥ 2',
+            `${nRet} returners`, '',
             'seg-one',
-            `${nOne} one-timers`, 'n_epochs = 1'
+            `${nOne} single-round`, ''
         );
         document.getElementById('dbStackFund').innerHTML = segHTML(
             pctRetFund, 'seg-ret', fmt(pctRetFund),
-            `${fmtInt(sumRet)} ETH`, 'returners',
+            `${fmtInt(sumRet)} ETH`, 'to returners',
             'seg-one',
-            `${fmtInt(sumOne)} ETH`, 'one-timers'
+            `${fmtInt(sumOne)} ETH`, 'to single-round'
         );
     }
 
@@ -2185,7 +2146,7 @@
     function renderCategoryCharts(all) {
         const { stats, totalN, totalEth } = aggregateByCategory(all);
         const fmt = (v, d = 1) => v.toFixed(d);
-        const fmtInt = v => Math.round(v).toLocaleString('ru-RU');
+        const fmtInt = v => Math.round(v).toLocaleString('en-US');
         const maxEth = stats[0].eth;
 
         // Horizontal bars by funding
@@ -2196,7 +2157,7 @@
                     <div class="bar-fill" style="width:${(s.eth / maxEth * 100).toFixed(2)}%;background:${s.color};"></div>
                 </div>
                 <div class="val">${fmtInt(s.eth)} <small style="display:inline;font-family:var(--font-sans);font-size:10px;color:var(--grey-30);font-weight:600;letter-spacing:0.04em;">ETH</small>
-                    <small>${fmt(s.pctEth)}% от funding</small>
+                    <small>${fmt(s.pctEth)}% of funding</small>
                 </div>
             </div>
         `).join('');
@@ -2231,14 +2192,13 @@
             const sumTop = state.all.slice(0, 10).reduce((s, d) => s + d.total_eth, 0);
             const sumAll = state.all.reduce((s, d) => s + d.total_eth, 0);
             document.getElementById('sumPct').textContent = (sumTop / sumAll * 100).toFixed(1);
-            document.getElementById('sumTop').textContent = Math.round(sumTop).toLocaleString('ru-RU');
-            document.getElementById('sumAll').textContent = Math.round(sumAll).toLocaleString('ru-RU');
+            document.getElementById('sumTop').textContent = Math.round(sumTop).toLocaleString('en-US');
+            document.getElementById('sumAll').textContent = Math.round(sumAll).toLocaleString('en-US');
 
             renderTop(state.all);
             renderReturners(state.all);
             renderReturnersSlope(state.all);
             renderCategoryCharts(state.all);
-            renderCategorySlope(state.all);
             renderMarginalEffect();
             renderSolHevTable();
             renderLeverageBuckets();
@@ -2481,67 +2441,6 @@
         `;
     }
 
-    // 3) Category slope chart: % of projects (left) → % of funding (right)
-    function renderCategorySlope(all) {
-        const {stats, totalN, totalEth} = aggregateByCategory(all);
-        const W = 720, H = 440;
-        const M = {top: 36, right: 220, bottom: 36, left: 80};
-        const innerW = W - M.left - M.right;
-        const innerH = H - M.top - M.bottom;
-        // Shared scale: max of both project-share and funding-share across all categories
-        const maxPct = Math.max(...stats.flatMap(s => [s.pctN, s.pctEth]));
-        const yScale = pct => M.top + innerH - (pct / maxPct) * innerH;
-        const xLeft = M.left;
-        const xRight = M.left + innerW;
-
-        const parts = [];
-        // Subtle grid every 5%
-        for (let v = 0; v <= Math.ceil(maxPct/5)*5; v += 5) {
-            const y = yScale(v);
-            if (y < M.top - 1) continue;
-            parts.push(`<line class="slope-grid" x1="${xLeft}" x2="${xRight}" y1="${y}" y2="${y}"/>`);
-        }
-        // Vertical axes (just the two endpoints)
-        parts.push(`<line class="slope-axis" x1="${xLeft}" y1="${M.top}" x2="${xLeft}" y2="${H-M.bottom}"/>`);
-        parts.push(`<line class="slope-axis" x1="${xRight}" y1="${M.top}" x2="${xRight}" y2="${H-M.bottom}"/>`);
-        // Column labels
-        parts.push(`<text class="slope-col-label" x="${xLeft}" y="${M.top-14}" text-anchor="middle">% projects (134)</text>`);
-        parts.push(`<text class="slope-col-label" x="${xRight}" y="${M.top-14}" text-anchor="middle">% funding (3,405 ETH)</text>`);
-
-        // Stagger label positions on the right when categories overlap on Y
-        // Sort by funding share descending then assign target Y positions with min spacing
-        const sortedByEth = [...stats].sort((a,b) => b.pctEth - a.pctEth);
-        const minGap = 16;
-        const targets = sortedByEth.map(s => ({...s, yTarget: yScale(s.pctEth)}));
-        for (let i = 1; i < targets.length; i++) {
-            if (targets[i].yTarget - targets[i-1].yTarget < minGap) {
-                targets[i].yTarget = targets[i-1].yTarget + minGap;
-            }
-        }
-        const labelMap = new Map(targets.map(t => [t.cat, t.yTarget]));
-
-        stats.forEach(s => {
-            const yL = yScale(s.pctN);
-            const yR = yScale(s.pctEth);
-            const labelY = labelMap.get(s.cat);
-            // Line
-            parts.push(`<line class="slope-line" x1="${xLeft}" y1="${yL}" x2="${xRight}" y2="${yR}" stroke="${s.color}"><title>${s.cat}: ${s.pctN.toFixed(1)}% projects → ${s.pctEth.toFixed(1)}% funding</title></line>`);
-            // Dots at endpoints
-            parts.push(`<circle class="slope-dot" cx="${xLeft}" cy="${yL}" r="3.5" fill="${s.color}"/>`);
-            parts.push(`<circle class="slope-dot" cx="${xRight}" cy="${yR}" r="3.5" fill="${s.color}"/>`);
-            // Left percentage
-            parts.push(`<text class="slope-pct" fill="${s.color}" x="${xLeft - 8}" y="${yL + 3}" text-anchor="end">${s.pctN.toFixed(1)}%</text>`);
-            // Right percentage + name, vertically de-overlapped
-            parts.push(`<text class="slope-pct" fill="${s.color}" x="${xRight + 8}" y="${labelY + 3}" text-anchor="start">${s.pctEth.toFixed(1)}%</text>`);
-            parts.push(`<text class="slope-cat-name" fill="var(--light-80)" x="${xRight + 56}" y="${labelY + 3}" text-anchor="start">${s.cat}</text>`);
-            // If staggered, draw a thin connector from data point to label
-            if (Math.abs(labelY - yR) > 2) {
-                parts.push(`<line x1="${xRight + 3}" y1="${yR}" x2="${xRight + 6}" y2="${labelY}" stroke="${s.color}" stroke-dasharray="1 2" stroke-width="0.5" opacity="0.5"/>`);
-            }
-        });
-
-        document.getElementById('catSlopeSvg').innerHTML = parts.join('');
-    }
 
     // 4) QF mechanism: 3 small multiples panels with shared X (buckets).
     function renderQfMechanism() {
@@ -2605,17 +2504,21 @@
         const stats = [
             {
                 name: 'Returners',
-                sub:  `n_epochs ≥ 2 · ${returners.length} проектов · средний total ${(returners.reduce((s,d)=>s+d.total_eth,0)/returners.length).toFixed(0)} ETH`,
                 pctN: returners.length / totalN * 100,
                 pctEth: returners.reduce((s,d)=>s+d.total_eth,0) / totalEth * 100,
                 color: 'var(--orange)',
+                leftMeta: `${returners.length} projects`,
+                ethTotal: '2,874 ETH',
+                avgEach: '57 ETH per project',
             },
             {
-                name: 'One-timers',
-                sub:  `n_epochs = 1 · ${oneTimers.length} проектов · средний total ${(oneTimers.reduce((s,d)=>s+d.total_eth,0)/oneTimers.length).toFixed(0)} ETH`,
+                name: 'Single-round',
                 pctN: oneTimers.length / totalN * 100,
                 pctEth: oneTimers.reduce((s,d)=>s+d.total_eth,0) / totalEth * 100,
-                color: 'var(--grey-50)',
+                color: 'var(--yellow)',
+                leftMeta: `${oneTimers.length} projects`,
+                ethTotal: '531 ETH',
+                avgEach: '6 ETH per project',
             },
         ];
 
@@ -2630,29 +2533,26 @@
         const parts = [];
         parts.push(`<line class="slope-axis" x1="${xLeft}" y1="${M.top}" x2="${xLeft}" y2="${H-M.bottom}"/>`);
         parts.push(`<line class="slope-axis" x1="${xRight}" y1="${M.top}" x2="${xRight}" y2="${H-M.bottom}"/>`);
-        parts.push(`<text class="slope-col-label" x="${xLeft}" y="${M.top-22}" text-anchor="middle">% projects (134)</text>`);
-        parts.push(`<text class="slope-col-label" x="${xRight}" y="${M.top-22}" text-anchor="middle">% funding (3,405 ETH)</text>`);
+        parts.push(`<text class="slope-col-label" x="${xLeft}" y="${M.top-22}" text-anchor="middle">Share of projects</text>`);
+        parts.push(`<text class="slope-col-label" x="${xRight}" y="${M.top-22}" text-anchor="middle">Share of funding</text>`);
 
         stats.forEach((s, i) => {
             const yL = yScale(s.pctN);
             const yR = yScale(s.pctEth);
             // Line
-            parts.push(`<line class="slope-line" x1="${xLeft}" y1="${yL}" x2="${xRight}" y2="${yR}" stroke="${s.color}"><title>${s.name}: ${s.pctN.toFixed(1)}% projects → ${s.pctEth.toFixed(1)}% funding</title></line>`);
+            parts.push(`<line class="slope-line" x1="${xLeft}" y1="${yL}" x2="${xRight}" y2="${yR}" stroke="${s.color}"><title>${s.name}: ${s.pctN.toFixed(1)}% of projects, ${s.pctEth.toFixed(1)}% of funding</title></line>`);
             parts.push(`<circle class="slope-dot" cx="${xLeft}" cy="${yL}" r="5" fill="${s.color}"/>`);
             parts.push(`<circle class="slope-dot" cx="${xRight}" cy="${yR}" r="5" fill="${s.color}"/>`);
 
             // Left side: project share + project name beneath
             parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xLeft - 16}" y="${yL + 7}" text-anchor="end">${s.pctN.toFixed(0)}%</text>`);
-            const leftMeta = `${s.name === 'Returners' ? '50 проектов' : '84 проекта'}`;
             parts.push(`<text class="slope-name" x="${xLeft - 80}" y="${yL - 4}"  text-anchor="end">${s.name}</text>`);
-            parts.push(`<text class="slope-sub"  x="${xLeft - 80}" y="${yL + 12}" text-anchor="end">${leftMeta}</text>`);
+            parts.push(`<text class="slope-sub"  x="${xLeft - 80}" y="${yL + 12}" text-anchor="end">${s.leftMeta}</text>`);
 
             // Right side: funding share + breakdown sub
             parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xRight + 16}" y="${yR + 7}" text-anchor="start">${s.pctEth.toFixed(0)}%</text>`);
-            const ethTotal = s.name === 'Returners' ? '2,874 ETH' : '531 ETH';
-            const avgEach  = s.name === 'Returners' ? '~57 ETH / project'  : '~6 ETH / project';
-            parts.push(`<text class="slope-name" x="${xRight + 80}" y="${yR - 4}"  text-anchor="start">${ethTotal}</text>`);
-            parts.push(`<text class="slope-sub"  x="${xRight + 80}" y="${yR + 12}" text-anchor="start">${avgEach}</text>`);
+            parts.push(`<text class="slope-name" x="${xRight + 80}" y="${yR - 4}"  text-anchor="start">${s.ethTotal}</text>`);
+            parts.push(`<text class="slope-sub"  x="${xRight + 80}" y="${yR + 12}" text-anchor="start">${s.avgEach}</text>`);
         });
 
         document.getElementById('returnersSlopeSvg').innerHTML = parts.join('');
