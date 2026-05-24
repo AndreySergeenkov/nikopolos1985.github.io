@@ -1225,40 +1225,47 @@
 
         /* ===== COMMONS SECTION CHARTS (Ostrom + attention) ===== */
 
-        /* Ostrom principles to on-chain mechanisms mapping */
-        .ostrom-map { padding: 8px 0 4px; }
-        .om-row {
+        /* Timescale: traditional commons vs Octant V1 */
+        .timescale { display: flex; flex-direction: column; gap: 24px; padding: 18px 0 8px; }
+        .ts-row {
             display: grid;
-            grid-template-columns: 1fr 36px 1.6fr;
+            grid-template-columns: 200px 1fr 160px;
             align-items: center;
-            padding: 14px 0;
-            border-bottom: 0.5px solid var(--grey-80);
+            gap: 16px;
         }
-        .om-row:last-child { border-bottom: none; }
-        .om-principle {
+        .ts-label {
+            text-align: right;
             font-family: var(--font-display);
-            font-size: 22px;
-            line-height: 1.2;
-            font-style: italic;
-            letter-spacing: -0.01em;
-            color: var(--light-100);
-        }
-        .om-arrow {
-            text-align: center;
-            color: var(--grey-30);
-            font-family: ui-monospace, monospace;
             font-size: 16px;
+            color: var(--light-100);
+            letter-spacing: -0.01em;
+            line-height: 1.2;
         }
-        .om-mechanism {
+        .ts-label small {
+            display: block;
+            font-family: ui-monospace, monospace;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--grey-30);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+        .ts-bar {
+            height: 22px;
+            background: var(--grey-50);
+            border-radius: 1px;
+            min-width: 3px;
+        }
+        .ts-bar.core { background: var(--orange); }
+        .ts-val {
             font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--orange);
-            line-height: 1.4;
+            font-size: 12px;
+            color: var(--light-80);
         }
-        @media (max-width: 560px) {
-            .om-row { grid-template-columns: 1fr; gap: 4px; }
-            .om-arrow { display: none; }
-            .om-principle { font-size: 18px; }
+        @media (max-width: 640px) {
+            .ts-row { grid-template-columns: 130px 1fr 120px; gap: 10px; }
+            .ts-label { font-size: 13px; }
         }
 
         /* Donor retention winnowing funnel */
@@ -1290,43 +1297,46 @@
             font-size: 13px;
             text-align: right;
         }
+        .rf-count small {
+            display: block;
+            color: var(--grey-30);
+            font-size: 10px;
+            margin-top: 2px;
+        }
         @media (max-width: 560px) {
             .rf-row { grid-template-columns: 110px 1fr 48px; gap: 8px; }
             .rf-label { font-size: 9px; }
         }
 
-        /* Attention failure split */
-        .attn-bar {
-            display: flex;
+        /* Attention failure — single bar, 85% filled, no claim about the remainder */
+        .attn-wrap { padding: 18px 0 8px; }
+        .attn-bar2 {
             height: 72px;
-            margin: 18px 0 6px;
+            border: 0.5px solid var(--grey-70);
             border-radius: 2px;
             overflow: hidden;
+            background: transparent;
         }
-        .attn-bar .seg {
+        .attn-fill {
+            height: 100%;
+            background: var(--orange);
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0 18px;
             color: var(--grey-100);
-            min-width: 0;
         }
-        .attn-bar .seg.fail { background: var(--orange); }
-        .attn-bar .seg.hold { background: var(--yellow); }
-        .attn-bar .seg .pct {
+        .attn-pct {
             font-family: var(--font-display);
             font-size: 26px;
             line-height: 1;
             font-weight: 400;
         }
-        .attn-bar .seg .seg-label {
-            font-size: 10px;
+        .attn-sub {
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-top: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         /* Ad market 2020 vs 2025 */
@@ -1364,6 +1374,13 @@
             color: var(--teal);
             margin-top: 2px;
             letter-spacing: 0;
+        }
+        .adm-baseline {
+            font-family: ui-monospace, monospace;
+            font-size: 11px;
+            color: var(--grey-30);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
         @media (max-width: 560px) {
             .adm-row { grid-template-columns: 44px 1fr 84px; gap: 8px; }
@@ -1806,28 +1823,26 @@
         </div>
 
         <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="ostromMapCard" data-name="octant-ostrom-mapping.png" type="button">⤓ Save chart as PNG</button>
+            <button class="btn" data-png="ostromMapCard" data-name="octant-commons-timescale.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="ostromMapCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Ostrom’s institutional conditions mapped to on-chain mechanisms</div>
+                <div class="lb-card-title">Time it has taken commons to develop institutional trust</div>
             </div>
-            <div class="ostrom-map">
-                <div class="om-row">
-                    <div class="om-principle">Clear boundaries</div>
-                    <div class="om-arrow">→</div>
-                    <div class="om-mechanism">GLM lock and Gitcoin Passport</div>
+            <div class="timescale">
+                <div class="ts-row">
+                    <div class="ts-label">Traditional commons<small>generations of social trust</small></div>
+                    <div class="ts-bar" style="width:100%;"></div>
+                    <div class="ts-val">decades to centuries</div>
                 </div>
-                <div class="om-row">
-                    <div class="om-principle">Collective choice</div>
-                    <div class="om-arrow">→</div>
-                    <div class="om-mechanism">QF voting each epoch</div>
+                <div class="ts-row">
+                    <div class="ts-label">Octant V1<small>programmatic enforcement</small></div>
+                    <div class="ts-bar core" style="width:2.5%;"></div>
+                    <div class="ts-val">2.5 years</div>
                 </div>
-                <div class="om-row">
-                    <div class="om-principle">Monitoring</div>
-                    <div class="om-arrow">→</div>
-                    <div class="om-mechanism">Blockchain transparency by default</div>
-                </div>
+            </div>
+            <div class="chart-note">
+                Bar widths use a single century as the reference for traditional commons, since the text describes them as running for “decades or centuries”. Octant’s bar is scaled to its 2.5 years against the same axis.
             </div>
         </div>
 
@@ -1842,31 +1857,26 @@
         </div>
         <div class="lb-card" id="retentionFunnelCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Donor count by minimum participation, from 1 epoch to all 11</div>
+                <div class="lb-card-title">The three retention numbers the text cites, against the full donor base</div>
             </div>
             <div class="retention-funnel">
                 <div class="rf-row">
-                    <div class="rf-label">at least 1 epoch</div>
+                    <div class="rf-label">all donors</div>
                     <div class="rf-bar" style="width:100%;"></div>
                     <div class="rf-count">1,270</div>
                 </div>
                 <div class="rf-row">
-                    <div class="rf-label">at least 2 epochs</div>
+                    <div class="rf-label">returning across<br>multiple epochs</div>
                     <div class="rf-bar" style="width:60.9%;"></div>
-                    <div class="rf-count">773</div>
+                    <div class="rf-count">773<small>60.9%</small></div>
                 </div>
                 <div class="rf-row">
-                    <div class="rf-label">at least 5 epochs</div>
-                    <div class="rf-bar" style="width:17.4%;"></div>
-                    <div class="rf-count">221</div>
-                </div>
-                <div class="rf-row">
-                    <div class="rf-label">at least 10 epochs</div>
+                    <div class="rf-label">active in 10 or<br>11 of 11 epochs</div>
                     <div class="rf-bar core" style="width:2.6%;"></div>
                     <div class="rf-count">33</div>
                 </div>
                 <div class="rf-row">
-                    <div class="rf-label">all 11 epochs</div>
+                    <div class="rf-label">perfect attendance<br>over 2.5 years</div>
                     <div class="rf-bar core" style="width:0.9%;"></div>
                     <div class="rf-count">11</div>
                 </div>
@@ -1892,14 +1902,12 @@
             <div class="lb-card-head">
                 <div class="lb-card-title">Share of online ads that lose attention within 2.5 seconds</div>
             </div>
-            <div class="attn-bar">
-                <div class="seg fail" style="flex:85;">
-                    <span class="pct">85%</span>
-                    <span class="seg-label">lose attention within 2.5 seconds</span>
-                </div>
-                <div class="seg hold" style="flex:15;">
-                    <span class="pct">15%</span>
-                    <span class="seg-label">hold longer</span>
+            <div class="attn-wrap">
+                <div class="attn-bar2">
+                    <div class="attn-fill" style="width:85%;">
+                        <span class="attn-pct">85%</span>
+                        <span class="attn-sub">of online ads lose attention within 2.5 seconds</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1909,22 +1917,22 @@
         </div>
         <div class="lb-card" id="adMarketCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Native advertising market size, 2020 versus 2025</div>
+                <div class="lb-card-title">Native advertising market growth from 2020 to 2025</div>
             </div>
             <div class="adm-grid">
                 <div class="adm-row">
                     <div class="adm-year">2020</div>
-                    <div class="adm-bar" style="width:21.25%;"></div>
-                    <div class="adm-val">$85B</div>
+                    <div class="adm-bar" style="width:21.2%;"></div>
+                    <div class="adm-val"><span class="adm-baseline">baseline</span></div>
                 </div>
                 <div class="adm-row">
                     <div class="adm-year">2025</div>
                     <div class="adm-bar" style="width:100%;"></div>
-                    <div class="adm-val">$400B<span class="adm-delta">+372% in 5 years</span></div>
+                    <div class="adm-val">$400B<span class="adm-delta">+372%</span></div>
                 </div>
             </div>
             <div class="chart-note">
-                2020 figure inferred from the 372% growth Labarces cites. Source: Alex Labarces, “The New Attention Economy” (Medium, September 2025).
+                Bar widths show the 372% growth ratio Labarces cites; 2025 is the only year with an explicit dollar figure in the text. Source: Alex Labarces, “The New Attention Economy” (Medium, September 2025).
             </div>
         </div>
     </section>
