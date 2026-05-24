@@ -1068,22 +1068,6 @@
         }
         footer .meta { color: var(--grey-50); }
 
-        /* ===== TUFTE V2 CHARTS ===== */
-        /* Tagging "ALT" so it's easy to spot/delete the experimental block later */
-        .alt-tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--grey-100);
-            background: var(--teal);
-            padding: 2px 8px;
-            border-radius: var(--r-tag);
-            margin-left: 12px;
-            vertical-align: 4px;
-        }
 
         /* Sparkline trajectory table */
         .spark-table {
@@ -1143,21 +1127,15 @@
             font-size: 11px;
             color: var(--grey-30);
         }
-        .spark-axis {
-            display: grid;
-            grid-template-columns: 28px 1fr 240px 60px;
-            gap: 0;
-            margin-top: 4px;
-            font-size: 9px;
-            font-family: ui-monospace, monospace;
-            color: var(--grey-50);
-        }
-        .spark-axis .ep-row {
-            grid-column: 3;
+        .spark-table tfoot td { border-bottom: none; }
+        .spark-table tfoot td.spk-axis { padding-top: 4px; padding-right: 12px; }
+        .spark-table tfoot .ep-row {
             display: grid;
             grid-template-columns: repeat(11, 1fr);
             text-align: center;
-            padding-right: 12px;
+            font-size: 9px;
+            font-family: ui-monospace, monospace;
+            color: var(--grey-50);
         }
 
         /* Returners slope chart */
@@ -1376,7 +1354,7 @@
         </div>
         <div class="lb-card" id="sparkTableCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Top 10 trajectory across epochs<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">ETH received per epoch by each top 10 project</div>
             </div>
             <div id="sparkTableHost"></div>
             <div class="chart-note">
@@ -1400,7 +1378,7 @@
 
         <div class="lb-card" id="dualBarCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Returners take a much larger share of funding than of project count</div>
+                <div class="lb-card-title">Share of projects and share of funding by participation type</div>
             </div>
             <div class="dual-bar">
                 <div class="bar-col">
@@ -1421,7 +1399,7 @@
         <!-- ============== ALT v2: returners slope chart ============== -->
         <div class="lb-summary" style="margin-top:32px;">
             <p>
-                Octant’s strength is not in the number of projects but in continued support. The 37% of projects that came back for two or more epochs received 84% of all funding. The remaining 63%, projects that participated only once, took the remaining 16%.
+                The 37% of projects that came back for two or more epochs received 84% of all funding. The remaining 63%, projects that participated only once, took the remaining 16%.
             </p>
         </div>
         <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
@@ -1429,7 +1407,7 @@
         </div>
         <div class="lb-card" id="returnersSlopeCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">The 37% of projects that returned received 84% of all funding<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">Project share to funding share for returners and single-round projects</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="returnersSlopeSvg" viewBox="0 0 720 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Slope chart of project share vs funding share for returners and one-timers"></svg>
@@ -1508,7 +1486,7 @@
 
         <div class="lb-card" id="leverageCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Smaller donations get higher leverage in QF</div>
+                <div class="lb-card-title">Mean QF leverage by average donation size</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="leverageSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mean leverage by donor count bucket"></svg>
@@ -1530,7 +1508,7 @@
 
         <div class="lb-card" id="marginalEffectCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Same user donations, three times more donors, three times more QF match</div>
+                <div class="lb-card-title">Donors, user donations, and QF match for Solidity and hevm in Epoch 8</div>
             </div>
             <div class="vs-grid">
                 <!-- Row: Solidity -->
@@ -1584,7 +1562,7 @@
         </div>
         <div class="lb-card" id="leverageCasesCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Three real cases of donor breadth driving QF match</div>
+                <div class="lb-card-title">Donors, user donations, QF match, and leverage for three project-epochs</div>
             </div>
             <div id="leverageCasesHost"></div>
             <div class="chart-note">
@@ -1632,7 +1610,7 @@
         </div>
         <div class="lb-card" id="donorDistV2Card">
             <div class="lb-card-head">
-                <div class="lb-card-title">Donor distribution with a cumulative line<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">Donor count by epochs participated with a cumulative line</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="donorDistV2Svg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution with cumulative coverage overlay"></svg>
@@ -1687,7 +1665,7 @@
                     A small note on numbering. Octant counts epochs from zero. There have been 12 rounds total, from Epoch 0 to Epoch 11. The current launch starting in June 2026, the first on the new platform version, is called Epoch 12.
                 </p>
                 <p>
-                    To close the Epoch 0 gap, I found the Golem Foundation distribution wallet in the docs (<code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code>) and pulled all its transactions via Python. That filled in the missing data and let me cross-validate between the two sources.
+                    To close the Epoch 0 gap, I found the Octant distribution wallet in the docs (<code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code>) and pulled all its transactions via Python. That filled in the missing data and let me cross-validate between the two sources.
                 </p>
                 <p>
                     To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level. Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
@@ -2258,8 +2236,15 @@
                     </tr>
                 </thead>
                 <tbody>${rows}</tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="spk spk-axis"><div class="ep-row">${epochAxis}</div></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
-            <div class="spark-axis"><div class="ep-row">${epochAxis}</div></div>
         `;
     }
 
