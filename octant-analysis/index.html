@@ -1245,71 +1245,6 @@
         #donorDistV2Svg .ddv-band-cnt  { fill: var(--light-100); font-size: 11px; font-family: ui-monospace, monospace; }
         #donorDistV2Svg .ddv-band      { stroke: var(--grey-70); stroke-width: 0.5; stroke-dasharray: 2 3; }
 
-        /* Funding split — minimal typographic version */
-        .split-min { padding: 14px 0 6px; }
-        .split-min .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-bottom: 18px;
-        }
-        .split-min .col.right { text-align: right; }
-        .split-min .pct {
-            font-family: var(--font-display);
-            font-size: 56px;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            font-weight: 400;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .split-min .pct.match { color: var(--orange); }
-        .split-min .pct.user { color: var(--teal); }
-        .split-min .lbl {
-            display: block;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--grey-30);
-        }
-        .split-min .lbl strong {
-            display: block;
-            color: var(--light-100);
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: 0;
-            margin-top: 4px;
-        }
-        .split-min .bar {
-            display: grid;
-            grid-template-columns: 96.2fr 3.8fr;
-            gap: 4px;
-            height: 18px;
-            margin-bottom: 8px;
-        }
-        .split-min .bar .seg-m { background: var(--orange); }
-        .split-min .bar .seg-u { background: var(--teal); }
-        .split-min .barlbl {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            font-family: ui-monospace, monospace;
-            color: var(--grey-30);
-        }
-        .split-min .note {
-            margin-top: 18px;
-            font-size: 13px;
-            line-height: 1.55;
-            color: var(--light-80);
-        }
-        @media (max-width: 560px) {
-            .split-min .pct { font-size: 40px; }
-            .split-min .row { gap: 16px; }
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 960px) {
             h1 { font-size: 44px; }
@@ -1351,7 +1286,7 @@
 
     <div class="draft-body">
         <p>
-            Octant staked 100,000 ETH and directed the staking yield to grants funding impactful Ethereum projects through quadratic funding. Over 2.5 years it has distributed 3,402 ETH to 134 projects with no strings attached.
+            Octant staked 100,000 ETH and directs the staking yield to fund impactful Ethereum projects through matching grants. Over 2.5 years it has distributed 3,402 ETH to 134 projects with no strings attached.
         </p>
 
         <div class="key-findings" aria-label="Key findings">
@@ -1707,12 +1642,12 @@
             </div>
         </div>    </section>
 
-    <h2 class="section-h2">Where the funds come from: 96% staking yield, 4% user donations</h2>
+    <h2 class="section-h2">96% of payouts come from staking yield, 4% from user donations</h2>
 
     <section class="lb-section" id="funding-split">
         <div class="lb-summary">
             <p>
-                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Golem Foundation’s staking yield added <strong>2,758 ETH</strong>. So final payouts to projects break down as 96% staking yield contribution and 4% user allocations, which decide where the yield goes.
+                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,758 ETH</strong>. So final payouts to projects break down as 96% staking yield contribution and 4% user allocations, which decide where the yield goes.
             </p>
         </div>
 
@@ -1724,41 +1659,14 @@
 
         <div class="lb-card" id="fundingSplitCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Источники funding в Octant V1 (эпохи 1–11)</div>
+                <div class="lb-card-title">Funding sources in Octant V1 (epochs 1 to 11)</div>
             </div>
             <div class="split-wrap">
                 <svg id="splitSvg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Funding source split"></svg>
                 <div class="split-legend" id="splitLegend"></div>
             </div>
-        </div>        <!-- ============== ALT v2: typographic split — no donut ============== -->
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="fundingSplitMinimalCard" data-name="octant-funding-split-minimal.png" type="button">⤓ Save chart as PNG</button>
         </div>
-        <div class="lb-card" id="fundingSplitMinimalCard" style="margin-top:24px;">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Источники funding в Octant V1 (эпохи 1–11)<span class="alt-tag">alt v2</span></div>
-            </div>
-            <div class="split-min">
-                <div class="row">
-                    <div class="col">
-                        <span class="pct match">96.2%</span>
-                        <span class="lbl">Matching pool<strong>2,760 ETH · staking yield direct</strong></span>
-                    </div>
-                    <div class="col right">
-                        <span class="pct user">3.8%</span>
-                        <span class="lbl">User allocations<strong>110 ETH · personal rewards donated</strong></span>
-                    </div>
-                </div>
-                <div class="bar">
-                    <div class="seg-m" title="Matching pool: 2,760 ETH (96.2%)"></div>
-                    <div class="seg-u" title="User allocations: 110 ETH (3.8%)"></div>
-                </div>
-                <div class="barlbl"><span>0 ETH</span><span>2,870 ETH (V1 total, эпохи 1–11)</span></div>
-                <div class="note">
-                    Сами donors напрямую направили 110 ETH своих personal rewards. Matching pool из staking yield Golem Foundation добавил поверх 2,760 ETH. Финальные выплаты проектам — на 96% staking yield, на 4% пользовательские allocations, которые решают, куда этот yield идёт.
-                </div>
-            </div>
-        </div>    </section>
+    </section>
 
     <h2 class="section-h2">Methodology</h2>
 
@@ -1776,13 +1684,13 @@
                     All epochs except Epoch 0 returned clean data. Epoch 0 was missing from the API because it was a pre-launch curated round before the V1 mechanics went live, and it doesn’t fit the API schema.
                 </p>
                 <p>
-                    A small note on numbering, since many people get confused. Octant counts epochs from zero. There have been 12 rounds total, from Epoch 0 to Epoch 11. The current launch, the first on the new platform version, is called Epoch 12.
+                    A small note on numbering. Octant counts epochs from zero. There have been 12 rounds total, from Epoch 0 to Epoch 11. The current launch starting in June 2026, the first on the new platform version, is called Epoch 12.
                 </p>
                 <p>
                     To close the Epoch 0 gap, I found the Golem Foundation distribution wallet in the docs (<code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code>) and pulled all its transactions via Python. That filled in the missing data and let me cross-validate between the two sources.
                 </p>
                 <p>
-                    Then came consolidation. I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level. Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
+                    To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level. Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
                 </p>
                 <p>
                     Next I wanted to understand what Octant invests in thematically, but 134 names without grouping are hard to interpret. I needed categorization. I went through the list and assigned each project one of 9 categories:
@@ -1802,13 +1710,13 @@
                     Categorization was manual. I went through 134 projects, either already knowing the topic or looking at the project’s website. Each got one of the 9 categories. Borderline cases (for example, a project that was both a security tool and a DAO governance system) were resolved by primary function. After that I could see which categories dominate by funding volume and by average check per project.
                 </p>
                 <p>
-                    Then I wanted to understand how allocations actually work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 195 QF project-epoch combinations in epochs 1–11 and assembled a dataset of 17,595 individual allocations. Each record contains a donor address, project address, epoch, and amount in ETH.
+                    Then I wanted to understand how allocations work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 195 QF project-epoch combinations in epochs 1–11 and assembled a dataset of 17,595 individual allocations. Each record contains a donor address, project address, epoch, and amount in ETH.
                 </p>
                 <p>
                     For retention stats, I grouped allocations by donor address and counted how many unique epochs each donor participated in. This gave 1,270 unique donors with participation distribution from 1 to 11 epochs. Returners (2+ epochs) come to 773 people or 60.9%. Core base (10+ epochs) is 33. Perfect attendance across all 11 epochs is 11 people.
                 </p>
                 <p>
-                    QF mechanics were simpler. For each epoch I calculated the match/allocated ratio across all projects. In epochs 1–3 this ratio was the same for every project within an epoch (44.4× in the first, 58.4× in the second, 14.3× in the third). That confirmed Octant used proportional matching before launching QF. From the fourth epoch on, the ratio varies per project depending on donor count, and that variation is the main mechanical effect of QF. Specific examples (Solidity versus hevm in Epoch 8, ZachXBT in Epoch 9) came straight from the master dataset by project address.
+                    To trace how the matching mechanism evolved across epochs, I calculated the match/allocated ratio for every project in every epoch. In epochs 1–3 this ratio was the same for every project within an epoch (44.4× in the first, 58.4× in the second, 14.3× in the third). That confirmed Octant used proportional matching before launching QF. From the fourth epoch on, the ratio varies per project depending on donor count, and that variation is the main mechanical effect of QF. Specific examples (Solidity versus hevm in Epoch 8, ZachXBT in Epoch 9) came straight from the master dataset by project address.
                 </p>
                 <p>
                     Match-per-donor analysis I did in two passes. First, a simple version. For each QF project-epoch (194 rows) I calculated avg donation size (<code>allocated / n_donors</code>) and match per donor (<code>matched / n_donors</code>). Bucketing project-epochs by average donation size, I got leverage of 93× for donations under $2 down to 9× for donations above $50. Then a weighted version, weighted by donor count across all 11,702 individual allocations in QF epochs. That gives $19 average donation, $500 average match per donor, 26× leverage. The weighted version reflects the typical donor experience rather than the typical project experience, and that’s what I used for the main claims in the article.
