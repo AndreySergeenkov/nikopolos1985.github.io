@@ -733,8 +733,8 @@
             overflow: hidden;
             display: flex;
         }
-        .lb-row .bar .seg-a { background: var(--orange); height: 100%; }
-        .lb-row .bar .seg-m { background: var(--teal);   height: 100%; }
+        .lb-row .bar .seg-a { background: var(--green);  height: 100%; }
+        .lb-row .bar .seg-m { background: var(--orange); height: 100%; }
         .lb-row .total {
             font-family: var(--font-display);
             font-size: 18px;
@@ -769,8 +769,8 @@
             margin-right: 6px;
             vertical-align: middle;
         }
-        .lb-card-legend .dot-a { background: var(--orange); }
-        .lb-card-legend .dot-m { background: var(--teal); }
+        .lb-card-legend .dot-a { background: var(--green); }
+        .lb-card-legend .dot-m { background: var(--orange); }
 
         /* Actions row */
         .lb-actions {
@@ -1084,18 +1084,6 @@
             margin-left: 12px;
             vertical-align: 4px;
         }
-
-        /* Pareto curve */
-        #paretoSvg .pcurve-fill { fill: var(--orange); opacity: 0.10; }
-        #paretoSvg .pcurve-line { stroke: var(--orange); stroke-width: 1.5; fill: none; }
-        #paretoSvg .pcurve-ref-line { stroke: var(--grey-70); stroke-width: 0.5; stroke-dasharray: 2 3; }
-        #paretoSvg .pcurve-ref-dot { fill: var(--light-100); }
-        #paretoSvg .pcurve-axis { stroke: var(--grey-70); stroke-width: 0.5; }
-        #paretoSvg .pcurve-tick { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #paretoSvg .pcurve-axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-        #paretoSvg .pcurve-anno { fill: var(--light-100); font-size: 12px; font-family: ui-monospace, monospace; }
-        #paretoSvg .pcurve-anno-name { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #paretoSvg .pcurve-diag { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 1 4; }
 
         /* Sparkline trajectory table */
         .spark-table {
@@ -1520,43 +1508,20 @@
 
     </section>
 
-    <!-- ============== ALT v2: Pareto curve over all 134 projects ============== -->
-    <section class="lb-section" id="paretoSection">
-        <div class="lb-summary">
-            <p>
-                Top 10 — это вершина длинного хвоста. Если развернуть все 134 проекта в один список по убыванию и накапливать долю funding, то картина концентрации видна целиком: первые <strong>10</strong> проектов забирают <strong>45%</strong>, первые <strong>30</strong> — уже <strong>75%</strong>, первые <strong>50</strong> — <strong>88%</strong>. Оставшимся 84 проектам достаётся всего 12% общего фонда.
-            </p>
-        </div>
-        <div class="lb-card" id="paretoCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Концентрация funding по 134 проектам<span class="alt-tag">alt v2</span></div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="paretoSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pareto distribution of funding across 134 projects"></svg>
-            </div>
-            <div class="chart-note">
-                Кумулятивная доля funding (Y, %) против ранга проекта (X, 1–134). Пунктирная диагональ — гипотетическое равномерное распределение, где каждый проект получает равную долю. Реальная кривая поднимается резко слева и выходит на плато справа — классический Pareto. Источник: <code>octant_chart_data_v1.json → pareto_curve</code>.
-            </div>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-top:12px;">
-            <button class="btn" data-png="paretoCard" data-name="octant-pareto-curve.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-    </section>
-
     <!-- ============== ALT v2: Sparkline trajectories for top 10 ============== -->
     <section class="lb-section" id="sparkSection">
         <div class="lb-summary">
             <p>
-                В leaderboard top 10 проектов стоят бок о бок как «лидеры по сумме», но способы, которыми каждый собрал свой funding, кардинально отличаются. Protocol Guild — единственный проект, заходивший почти каждую эпоху. Gitcoin и Giveth собрали свой объём в первых раундах и больше не возвращались. GrowThePie получил почти всё за одну Эпоху 3.
+                The top 10 projects received their funding in very different ways. Protocol Guild is the only project that showed up in nearly every epoch. Gitcoin and Giveth collected their totals in the first rounds and never returned. GrowThePie received almost all of it in Epoch 3 alone.
             </p>
         </div>
         <div class="lb-card" id="sparkTableCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Траектория top 10 по эпохам<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">Top 10 trajectory across epochs<span class="alt-tag">alt v2</span></div>
             </div>
             <div id="sparkTableHost"></div>
             <div class="chart-note">
-                Каждая мини-диаграмма — ETH, полученный проектом в эпохах 1–11 (Epoch 0 не показана, она вне V1 API). Шкала высоты общая для всех 10 проектов: максимум — Protocol Guild в Эпохе 3 (77 ETH). Пустые слоты — эпохи без participation; для большинства это E7 (climate-themed) и E9 (media-themed) — общие проекты в них не подавались. Источник: <code>octant_donor_counts_v1.csv</code>.
+                Each mini-chart shows ETH a project received in epochs 1 to 11. Epoch 0 is not displayed because it predates the V1 API. Bar heights share a common scale across all 10 projects, with the maximum being Protocol Guild in Epoch 3 at 77 ETH. Empty slots are epochs where a project did not participate. For most of these projects that means E7, the climate themed round, and E9, the media themed round.
             </div>
         </div>
         <div class="lb-actions lb-actions-top" style="margin-top:12px;">
@@ -2281,7 +2246,6 @@
             renderDonorDist();
             renderDonorDistV2();
             renderFundingSplit();
-            renderPareto();
             renderSparklines();
             applyView();
             attachInteractions();
@@ -2453,94 +2417,7 @@
 
     /* ===================== ALT v2 RENDERERS ===================== */
 
-    // 1) Pareto curve over 134 projects: cumulative funding share vs rank.
-    //    Data extracted verbatim from octant_chart_data_v1.json → pareto_curve.
-    const PARETO = [
-        {rank:1,eth:323.23,cum:9.49},{rank:2,eth:270.24,cum:17.43},{rank:3,eth:138.51,cum:21.50},
-        {rank:4,eth:133.98,cum:25.43},{rank:5,eth:127.57,cum:29.18},{rank:6,eth:123.19,cum:32.80},
-        {rank:7,eth:115.87,cum:36.20},{rank:8,eth:102.57,cum:39.22},{rank:9,eth:94.90,cum:42.00},
-        {rank:10,eth:94.18,cum:44.77},{rank:11,eth:78.87,cum:47.09},{rank:12,eth:76.82,cum:49.34},
-        {rank:13,eth:68.76,cum:51.36},{rank:14,eth:68.65,cum:53.38},{rank:15,eth:59.85,cum:55.14},
-        {rank:16,eth:58.56,cum:56.86},{rank:17,eth:56.32,cum:58.51},{rank:18,eth:52.81,cum:60.06},
-        {rank:19,eth:48.99,cum:61.50},{rank:20,eth:48.71,cum:62.93},{rank:21,eth:48.56,cum:64.36},
-        {rank:22,eth:46.93,cum:65.74},{rank:23,eth:45.56,cum:67.07},{rank:24,eth:44.59,cum:68.38},
-        {rank:25,eth:44.14,cum:69.68},{rank:26,eth:42.90,cum:70.94},{rank:27,eth:38.66,cum:72.08},
-        {rank:28,eth:37.64,cum:73.18},{rank:29,eth:36.08,cum:74.24},{rank:30,eth:35.71,cum:75.29},
-        {rank:35,eth:28.95,cum:80.09},{rank:40,eth:20.69,cum:83.73},{rank:50,eth:11.51,cum:88.19},
-        {rank:60,eth:9.17,cum:91.15},{rank:70,eth:8.23,cum:93.70},{rank:80,eth:6.52,cum:95.83},
-        {rank:90,eth:4.46,cum:97.38},{rank:100,eth:3.34,cum:98.44},{rank:110,eth:2.45,cum:99.24},
-        {rank:120,eth:1.27,cum:99.77},{rank:130,eth:0.22,cum:100.00},{rank:134,eth:0.00,cum:100.00},
-    ];
-
-    function renderPareto() {
-        const W = 720, H = 400;
-        const M = {top: 30, right: 110, bottom: 50, left: 50};
-        const innerW = W - M.left - M.right;
-        const innerH = H - M.top - M.bottom;
-        const xMax = 134;
-        const xScale = r => M.left + (r / xMax) * innerW;
-        const yScale = p => M.top + innerH - (p / 100) * innerH;
-
-        const parts = [];
-
-        // Diagonal reference: perfectly uniform distribution
-        parts.push(`<line class="pcurve-diag" x1="${xScale(0)}" y1="${yScale(0)}" x2="${xScale(xMax)}" y2="${yScale(100)}"/>`);
-        parts.push(`<text class="pcurve-anno-name" x="${xScale(134)+4}" y="${yScale(100)-2}" text-anchor="start">равномерное</text>`);
-        parts.push(`<text class="pcurve-anno-name" x="${xScale(134)+4}" y="${yScale(100)+10}" text-anchor="start">распределение</text>`);
-
-        // Y grid + ticks
-        [0,25,50,75,100].forEach(v => {
-            const y = yScale(v);
-            parts.push(`<line class="pcurve-ref-line" x1="${M.left}" x2="${W-M.right}" y1="${y}" y2="${y}"/>`);
-            parts.push(`<text class="pcurve-tick" x="${M.left-8}" y="${y+3}" text-anchor="end">${v}%</text>`);
-        });
-
-        // Axes
-        parts.push(`<line class="pcurve-axis" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H-M.bottom}"/>`);
-        parts.push(`<line class="pcurve-axis" x1="${M.left}" y1="${H-M.bottom}" x2="${W-M.right}" y2="${H-M.bottom}"/>`);
-
-        // X ticks (every 20 + endpoints)
-        [1,20,40,60,80,100,120,134].forEach(r => {
-            const x = xScale(r);
-            parts.push(`<line class="pcurve-axis" x1="${x}" y1="${H-M.bottom}" x2="${x}" y2="${H-M.bottom+3}"/>`);
-            parts.push(`<text class="pcurve-tick" x="${x}" y="${H-M.bottom+15}" text-anchor="middle">${r}</text>`);
-        });
-
-        // Axis labels
-        parts.push(`<text class="pcurve-axis-label" x="${M.left + innerW/2}" y="${H-6}" text-anchor="middle">Project rank (по убыванию funding)</text>`);
-        parts.push(`<text class="pcurve-axis-label" x="${-(M.top + innerH/2)}" y="14" transform="rotate(-90)" text-anchor="middle">Кумулятивная доля funding</text>`);
-
-        // Area path
-        let areaD = `M ${xScale(0)} ${yScale(0)} `;
-        PARETO.forEach(p => { areaD += `L ${xScale(p.rank)} ${yScale(p.cum)} `; });
-        areaD += `L ${xScale(xMax)} ${yScale(0)} Z`;
-        parts.push(`<path class="pcurve-fill" d="${areaD}"/>`);
-
-        // Curve
-        let lineD = `M ${xScale(0)} ${yScale(0)} `;
-        PARETO.forEach(p => { lineD += `L ${xScale(p.rank)} ${yScale(p.cum)} `; });
-        parts.push(`<path class="pcurve-line" d="${lineD}"/>`);
-
-        // Highlighted milestones: rank 10, 30, 50
-        const marks = [
-            {r:10, c:44.77, label:'top 10', sub:'45% funding'},
-            {r:30, c:75.29, label:'top 30', sub:'75% funding'},
-            {r:50, c:88.19, label:'top 50', sub:'88% funding'},
-        ];
-        marks.forEach(m => {
-            const x = xScale(m.r), y = yScale(m.c);
-            // L-shape from x-axis up to point and across to y-axis
-            parts.push(`<line class="pcurve-ref-line" x1="${x}" y1="${H-M.bottom}" x2="${x}" y2="${y}"/>`);
-            parts.push(`<line class="pcurve-ref-line" x1="${M.left}" y1="${y}" x2="${x}" y2="${y}"/>`);
-            parts.push(`<circle class="pcurve-ref-dot" cx="${x}" cy="${y}" r="3.5"/>`);
-            parts.push(`<text class="pcurve-anno" x="${x+8}" y="${y-6}">${m.label}</text>`);
-            parts.push(`<text class="pcurve-anno-name" x="${x+8}" y="${y+8}">${m.sub}</text>`);
-        });
-
-        document.getElementById('paretoSvg').innerHTML = parts.join('');
-    }
-
-    // 2) Sparkline trajectories for top 10 projects across epochs 1–11.
+    // 1) Sparkline trajectories for top 10 projects across epochs 1–11.
     //    Per-epoch ETH extracted from octant_donor_counts_v1.csv.
     // V1 per-epoch ETH (E1..E11) from octant_donor_counts_v1.csv.
     // total_full = canonical всех-эпох cumulative из octant_chart_data_v1.json → top_10_projects
@@ -2570,7 +2447,7 @@
             const bars = s.eth.map((v, i) => {
                 const x = i * (barW + gap);
                 if (v === 0) {
-                    // Faint baseline marker — "did not participate"
+                    // Faint baseline marker for "did not participate"
                     return `<rect x="${x}" y="${spH-1}" width="${barW}" height="1" fill="#424240"/>`;
                 }
                 const h = (v / globalMax) * spH;
@@ -2578,13 +2455,11 @@
                 return `<rect x="${x}" y="${y}" width="${barW}" height="${h}" fill="#ff9602"><title>Epoch ${i+1}: ${v} ETH</title></rect>`;
             }).join('');
             const spark = `<svg viewBox="0 0 ${spW} ${spH}" width="${spW}" height="${spH}" preserveAspectRatio="none">${bars}</svg>`;
-            const epochsCount = s.eth.filter(v => v > 0).length;
             return `<tr>
                 <td class="rk">${s.rank.toString().padStart(2,'0')}</td>
                 <td class="nm">${s.name}</td>
                 <td class="spk">${spark}</td>
                 <td class="tot">${s.total_full} <small>ETH</small></td>
-                <td class="ep">${epochsCount}/11</td>
             </tr>`;
         }).join('');
 
@@ -2596,9 +2471,8 @@
                     <tr>
                         <th>#</th>
                         <th>Project</th>
-                        <th>ETH per epoch (E1 → E11, scale 0–${globalMax})</th>
+                        <th>ETH per epoch</th>
                         <th class="right">Total</th>
-                        <th class="center">In</th>
                     </tr>
                 </thead>
                 <tbody>${rows}</tbody>
@@ -2662,7 +2536,7 @@
             parts.push(`<text class="slope-cat-name" fill="var(--light-80)" x="${xRight + 56}" y="${labelY + 3}" text-anchor="start">${s.cat}</text>`);
             // If staggered, draw a thin connector from data point to label
             if (Math.abs(labelY - yR) > 2) {
-                parts.push(`<line class="pcurve-ref-line" x1="${xRight + 3}" y1="${yR}" x2="${xRight + 6}" y2="${labelY}" stroke="${s.color}" stroke-dasharray="1 2" stroke-width="0.5" opacity="0.5"/>`);
+                parts.push(`<line x1="${xRight + 3}" y1="${yR}" x2="${xRight + 6}" y2="${labelY}" stroke="${s.color}" stroke-dasharray="1 2" stroke-width="0.5" opacity="0.5"/>`);
             }
         });
 
