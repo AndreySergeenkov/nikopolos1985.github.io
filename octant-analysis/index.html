@@ -546,15 +546,15 @@
         /* ===== LEVERAGE BUCKETS BAR CHART ===== */
         .lev-chart-wrap { padding: 12px 0 4px; }
         #leverageSvg { width: 100%; height: auto; display: block; font-family: var(--font-sans); }
-        #leverageSvg .lev-bar { fill: var(--orange); transition: fill 0.15s ease; }
-        #leverageSvg .lev-bar:hover { fill: var(--teal); }
-        #leverageSvg .lev-val { fill: var(--light-100); font-family: var(--font-display); font-size: 22px; letter-spacing: -0.02em; }
-        #leverageSvg .lev-range { fill: var(--light-100); font-size: 12px; font-weight: 500; }
-        #leverageSvg .lev-sub { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #leverageSvg .lev-grid { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
-        #leverageSvg .lev-axis { stroke: var(--grey-70); stroke-width: 0.5; }
-        #leverageSvg .lev-tick { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #leverageSvg .lev-axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+        .lev-bar { fill: var(--orange); transition: fill 0.15s ease; }
+        .lev-bar:hover { fill: var(--orange); opacity: 0.85; }
+        .lev-val { fill: var(--light-100); font-family: var(--font-display); font-size: 22px; letter-spacing: -0.02em; }
+        .lev-range { fill: var(--light-100); font-size: 12px; font-weight: 500; }
+        .lev-sub { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
+        .lev-grid { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
+        .lev-axis { stroke: var(--grey-70); stroke-width: 0.5; }
+        .lev-tick { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
+        .lev-axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 
         .chart-note {
             margin-top: 14px;
@@ -1160,53 +1160,7 @@
             padding-right: 12px;
         }
 
-        /* Category slope chart */
-        /* QF mechanism small multiples */
-        .qfm-grid { display: flex; flex-direction: column; gap: 4px; padding: 8px 0 0; }
-        .qfm-panel { display: grid; grid-template-columns: 140px 1fr; align-items: center; gap: 16px; }
-        .qfm-panel-label {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--grey-30);
-        }
-        .qfm-panel-label strong {
-            display: block;
-            color: var(--light-100);
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 400;
-            text-transform: none;
-            letter-spacing: -0.01em;
-            margin-bottom: 2px;
-        }
-        .qfm-panel-svg { width: 100%; height: 80px; }
-        .qfm-bar-don { fill: var(--grey-50); }
-        .qfm-bar-mat { fill: var(--orange); }
-        .qfm-bar-lev { fill: var(--teal); }
-        .qfm-val { fill: var(--light-100); font-size: 10px; font-family: ui-monospace, monospace; }
-        .qfm-xaxis {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 16px;
-            margin-top: 4px;
-        }
-        .qfm-xaxis .xlabels {
-            grid-column: 2;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            text-align: center;
-            font-size: 10px;
-            font-family: ui-monospace, monospace;
-            color: var(--grey-30);
-        }
-        @media (max-width: 640px) {
-            .qfm-panel, .qfm-xaxis { grid-template-columns: 1fr; }
-            .qfm-xaxis .xlabels { grid-column: 1; }
-        }
-
-        /* Returners slope chart (mirrors category slope visual language) */
+        /* Returners slope chart */
         #returnersSlopeSvg .slope-line { stroke-width: 4; fill: none; opacity: 0.9; }
         #returnersSlopeSvg .slope-dot  { stroke: var(--grey-100); stroke-width: 1; }
         #returnersSlopeSvg .slope-col-label {
@@ -1221,20 +1175,20 @@
         #returnersSlopeSvg .slope-sub   { font-size: 10px; font-family: ui-monospace, monospace; fill: var(--grey-30); }
         #returnersSlopeSvg .slope-axis  { stroke: var(--grey-70); stroke-width: 0.5; }
 
-        /* Solidity vs hevm small-multiples table */
-        .smvs-table {
+        /* Three-case leverage comparison table (Solidity vs hevm vs ZachXBT) */
+        .lc-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
             margin: 14px 0 6px;
         }
-        .smvs-table th, .smvs-table td {
-            padding: 10px 12px 10px 0;
+        .lc-table th, .lc-table td {
+            padding: 12px 12px 12px 0;
             text-align: left;
             border-bottom: 0.5px solid var(--grey-80);
             vertical-align: middle;
         }
-        .smvs-table th {
+        .lc-table th {
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -1242,56 +1196,38 @@
             color: var(--grey-30);
             border-bottom: 0.5px solid var(--grey-70);
         }
-        .smvs-table th.proj-sol { color: var(--teal); }
-        .smvs-table th.proj-hev { color: var(--orange); }
-        .smvs-table td.metric-name {
-            color: var(--grey-30);
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            width: 130px;
+        .lc-table td.lc-name {
+            width: 110px;
+            font-family: var(--font-display);
+            font-size: 18px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
         }
-        .smvs-table td.metric-unit {
+        .lc-table td.lc-name .lc-sub {
+            display: inline-block;
+            margin-top: 4px;
+            font-family: ui-monospace, monospace;
             font-size: 10px;
             color: var(--grey-30);
-            font-family: ui-monospace, monospace;
-            text-transform: lowercase;
-            letter-spacing: 0;
-            font-weight: 500;
         }
-        .smvs-cell {
+        .lc-cell {
             display: grid;
-            grid-template-columns: 64px 1fr;
-            align-items: center;
-            gap: 12px;
+            grid-template-columns: 1fr;
+            gap: 4px;
         }
-        .smvs-cell .num {
-            font-family: var(--font-display);
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: -0.02em;
+        .lc-num {
+            font-family: var(--font-mono);
+            font-size: 13px;
             color: var(--light-100);
-            text-align: right;
         }
-        .smvs-bar {
-            height: 12px;
+        .lc-bar {
+            height: 10px;
             border-radius: 1px;
+            min-width: 4px;
         }
-        .smvs-bar.sol { background: var(--teal); }
-        .smvs-bar.hev { background: var(--orange); }
-        .smvs-ratio {
-            font-family: ui-monospace, monospace;
-            font-size: 11px;
-            color: var(--grey-30);
-            margin-top: 4px;
-            padding-left: 76px;
-        }
-        .smvs-ratio strong { color: var(--light-100); }
         @media (max-width: 640px) {
-            .smvs-table td, .smvs-table th { padding: 8px 6px 8px 0; }
-            .smvs-cell { grid-template-columns: 48px 1fr; gap: 8px; }
-            .smvs-cell .num { font-size: 18px; }
+            .lc-table td.lc-name { width: 80px; font-size: 15px; }
+            .lc-table th, .lc-table td { padding: 8px 6px 8px 0; }
         }
 
         /* Donor distribution — bars + cumulative line + grouping bands */
@@ -1622,7 +1558,10 @@
                 Starting from the fourth epoch, Octant launched Quadratic Funding. The key difference is that the number of donors per project now matters too. The broader the donor base, the larger the share of the pool a project receives. One hundred people donating $1 each now give a project significantly more matching than one person donating $100.
             </p>
             <p id="effect-500" style="margin-top:16px;">
-                One additional donor at an average <strong>$19</strong> donation brings a project <strong>$500 in matching</strong> on average. That is, each donor brings a project <strong>26 times</strong> more money than they contributed themselves. For a project, expanding the supporter base by 10 people means +$5,000 in matching, regardless of how much those people actually donate.
+                One additional donor at an average <strong>$19</strong> donation brings a project <strong>$500 in matching</strong> on average.
+            </p>
+            <p style="margin-top:16px;">
+                That is, each donor brings a project <strong>26 times</strong> more money than they contributed themselves. For a project, expanding the supporter base by 10 people means +$5,000 in matching, regardless of how much those people donate.
             </p>
         </div>
 
@@ -1634,30 +1573,13 @@
 
         <div class="lb-card" id="leverageCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Leverage QF по размеру donation: чем меньше donation, тем больше множитель</div>
+                <div class="lb-card-title">Smaller donations get higher leverage in QF</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="leverageSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mean leverage by donor count bucket"></svg>
             </div>
             <div class="chart-note">
-                Bucket-анализ 194 проект-эпох QF-раундов (E4–E11), 11,702 индивидуальных donations. Каждая корзина — диапазон средней donation. Leverage = QF match ÷ user donations. Weighted average по всем donations: $19 средняя donation, $500 match per donor, 26× leverage. ETH-в-USD по $3000. Источник: <code>octant_chart_data_v1.json</code>.
-            </div>
-        </div>        <!-- ============== ALT v2: QF mechanism small multiples ============== -->
-        <div class="lb-summary">
-            <p>
-                Эффект leverage — это не отдельная метрика, а отношение двух величин. Здесь они разложены по трём панелям с общей осью bucket'ов: средняя donation растёт быстро ($1 → $114), match per donor растёт медленнее ($133 → $1,051), а их отношение — leverage — поэтому обваливается с 93× до 9×. Сравнение трёх панелей друг под другом показывает механизм, а не только результат.
-            </p>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="qfMechanismCard" data-name="octant-qf-mechanism.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="qfMechanismCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Механизм QF leverage: вход, выход, отношение<span class="alt-tag">alt v2</span></div>
-            </div>
-            <div class="qfm-grid" id="qfmHost"></div>
-            <div class="chart-note">
-                Все три панели разделяют общую ось X (6 buckets средней donation от $0–2 до $50+). Высота баров пропорциональна значению; численные подписи над барами. Источник: <code>octant_chart_data_v1.json → match_per_donor_buckets</code>, 194 QF project-epochs (E4–E11), 11,702 индивидуальных donations.
+                Based on 194 project-epoch combinations from QF rounds (E4 to E11) and 11,702 individual donations. Leverage is QF match divided by user donations. ETH is converted to USD at $3,000.
             </div>
         </div>        <div class="lb-summary">
             <p>
@@ -1673,7 +1595,7 @@
 
         <div class="lb-card" id="marginalEffectCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Разница в матчинге при одинаковой сумме donations и разном числе доноров</div>
+                <div class="lb-card-title">Same user donations, three times more donors, three times more QF match</div>
             </div>
             <div class="vs-grid">
                 <!-- Row: Solidity -->
@@ -1685,7 +1607,7 @@
                     </div>
                     <div class="vs-cell vs-stack-cell">
                         <div class="vs-cell-label">
-                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.27 ETH от пользователей</span>
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.27 ETH from users</span>
                             <span class="vs-legend-item"><span class="vs-swatch vs-swatch--match"></span>21.1 ETH QF match</span>
                         </div>
                         <div class="vs-stack-bar" style="width:100%;">
@@ -1703,7 +1625,7 @@
                     </div>
                     <div class="vs-cell vs-stack-cell">
                         <div class="vs-cell-label">
-                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.22 ETH от пользователей</span>
+                            <span class="vs-legend-item"><span class="vs-swatch vs-swatch--don"></span>1.22 ETH from users</span>
                             <span class="vs-legend-item"><span class="vs-swatch vs-swatch--match"></span>7.6 ETH QF match</span>
                         </div>
                         <div class="vs-stack-bar" style="width:39.4%;">
@@ -1714,41 +1636,37 @@
                 </div>
             </div>
             <div class="chart-note">
-                Оба проекта собрали примерно равные суммы от пользователей — около 1.2 ETH каждому. Но у Solidity в три раза больше уникальных доноров, и QF-матчинг отличается тоже втрое. До четвёртой эпохи эти проекты получили бы одинаковую сумму — широта донорской базы стала фактором только с QF.
-            </div>
-        </div>        <!-- ============== ALT v2: Solidity vs hevm small multiples ============== -->
-        <div class="lb-summary">
-            <p>
-                Прямое сравнение трёх метрик на общей шкале: у Solidity и hevm почти одинаковые user donations, но в 3 раза разная донорская база — и в 2.8 раза разный QF match. Один параметр (donors) объясняет почти весь разрыв в результате.
-            </p>
-        </div>
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="solHevTableCard" data-name="octant-solidity-vs-hevm.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="solHevTableCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Solidity vs hevm — три метрики на общей шкале<span class="alt-tag">alt v2</span></div>
-            </div>
-            <div id="solHevTableHost"></div>
-            <div class="chart-note">
-                Эпоха 8. Каждая строка — одна метрика, обе колонки разделяют общую длину шкалы. User donations (центральная строка) почти равны: 1.27 vs 1.22 ETH. Donors отличаются в 3×, QF match — в 2.8×. Источник: <code>octant_donor_counts_v1.csv</code> @ epoch 8.
+                Both projects raised roughly the same amount from users in Epoch 8, around 1.2 ETH each. But Solidity had three times more unique donors, and its QF match came out three times larger.
             </div>
         </div>        <div class="lb-summary">
             <p id="zachxbt">
                 ZachXBT's 91 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
         </div>
+
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
+            <button class="btn" data-png="leverageCasesCard" data-name="octant-leverage-three-cases.png" type="button">⤓ Save chart as PNG</button>
+        </div>
+        <div class="lb-card" id="leverageCasesCard">
+            <div class="lb-card-head">
+                <div class="lb-card-title">Three real cases of donor breadth driving QF match</div>
+            </div>
+            <div id="leverageCasesHost"></div>
+            <div class="chart-note">
+                hevm and Solidity are from Epoch 8, ZachXBT is from Epoch 9. USD figures use $3,000 per ETH. Bar widths within each column share a scale, so the longest bar in a column marks the largest value across the three projects.
+            </div>
+        </div>
     </section>
 
-    <h2 class="section-h2">Who these donors are: broad accessibility and a committed core</h2>
+    <h2 class="section-h2">Most donors take part once, a small core attends almost every round</h2>
 
     <section class="lb-section" id="donors">
         <div class="lb-summary">
             <p>
-                Across 11 V1 epochs, <strong>1,270</strong> unique donors participated in Octant. 61% of them returned for two or more epochs. <strong>11 people</strong> took part in every one of the 11 epochs, and 22 more missed only one.
+                Across 11 epochs, <strong>1,270</strong> unique donors participated in Octant. 61% of them came back for two or more epochs. <strong>11 people</strong> took part in every one of the 11 epochs, and 22 more missed only one.
             </p>
             <p style="margin-top:16px;">
-                Octant’s donor base combines broad accessibility with a committed core. 39% of donors come in once for a specific round and never return. At the other end of the spectrum, <strong>33 people</strong> participated in 10 or more of the 11 epochs. Between them, the distribution falls off exponentially.
+                Most donors come once. 39% of donors take part in a single round and never return. At the other end, <strong>33 people</strong> showed up in 10 or more of the 11 epochs. The number of donors at each level of participation drops sharply between these two extremes.
             </p>
         </div>
 
@@ -1760,18 +1678,18 @@
 
         <div class="lb-card" id="donorDistCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Сколько уникальных donors участвовало в N эпохах из 11</div>
+                <div class="lb-card-title">How many donors took part in N epochs out of 11</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="donorDistSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution across epochs"></svg>
             </div>
             <div class="chart-note">
-                Всего 1,270 уникальных donor-адресов, прошедших хотя бы одну QF-эпоху (E1–E11). На оси X — число эпох, в которых donor сделал хотя бы одну allocation; на оси Y — количество доноров. 39.1% — one-timers, 0.9% — perfect attendance во всех 11 эпохах. Источник: <code>octant_chart_data_v1.json</code>.
+                1,270 unique donor addresses across epochs 1 to 11. The X axis shows the number of epochs a donor took part in. The Y axis shows how many donors fall into each bucket. 39.1% are one-timers; 0.9% attended every one of the 11 epochs.
             </div>
         </div>        <!-- ============== ALT v2: donor distribution with cumulative + groupings ============== -->
         <div class="lb-summary" style="margin-top:32px;">
             <p>
-                Гистограмма выше показывает «горб» из 497 one-timer'ов и хвост, который кажется почти плоским. Но именно в этом хвосте — committed core. Чтобы увидеть его, добавим к барам кумулятивную линию «сколько donors заходили хотя бы N раз» и сгруппируем диапазоны эпох в смысловые band'ы.
+                The chart below shows the same data with two extras. A cumulative line on top of the bars tracks the share of donors who took part in at least N epochs. The bars are also grouped into five tiers, from one-timers to the core.
             </p>
         </div>
         <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
@@ -1779,13 +1697,13 @@
         </div>
         <div class="lb-card" id="donorDistV2Card">
             <div class="lb-card-head">
-                <div class="lb-card-title">Donor distribution — count + cumulative<span class="alt-tag">alt v2</span></div>
+                <div class="lb-card-title">Donor distribution with a cumulative line<span class="alt-tag">alt v2</span></div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="donorDistV2Svg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution with cumulative coverage overlay"></svg>
             </div>
             <div class="chart-note">
-                Оранжевые бары — # donors, участвовавших ровно в N эпохах (левая ось). Бирюзовая накладка — top-tier «10+». Белая линия — кумулятивная доля donors, прошедших ≥ N эпох (правая ось, %). Чтение: 100% слева спадает до 0.9% справа; «10+» — это последние 2.6% donors (33 человека), но именно они задают непрерывность участия. Источник: <code>octant_chart_data_v1.json → donor_distribution</code>.
+                Orange bars show how many donors took part in exactly N epochs (left axis). The teal segments mark the top tier of 10 or more epochs. The white line is the cumulative share of donors who took part in N or more epochs (right axis, percent). 100 percent on the left drops to 0.9 percent on the right.
             </div>
         </div>    </section>
 
@@ -2200,9 +2118,8 @@
             renderReturnersSlope(state.all);
             renderCategoryCharts(state.all);
             renderMarginalEffect();
-            renderSolHevTable();
+            renderLeverageCases();
             renderLeverageBuckets();
-            renderQfMechanism();
             renderDonorDist();
             renderDonorDistV2();
             renderFundingSplit();
@@ -2301,7 +2218,7 @@
 
     function renderDonorDist() {
         const W = 720, H = 400;
-        const M = { top: 36, right: 24, bottom: 56, left: 60 };
+        const M = { top: 30, right: 28, bottom: 60, left: 60 };
         const innerW = W - M.left - M.right;
         const innerH = H - M.top - M.bottom;
         const data = DONOR_DIST;
@@ -2326,11 +2243,8 @@
             const x = cx - barW / 2;
             const y = yScale(d.n);
             const h = (H - M.bottom) - y;
-            // First bucket (one-timers) is the big outlier — colour it grey to read as "the long tail"
-            const cls = d.ep === 1 ? 'lev-bar' : 'lev-bar';
-            const fill = d.ep === 1 ? 'var(--grey-50)' : 'var(--orange)';
-            parts.push(`<rect class="${cls}" style="fill:${fill};" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.ep} epoch${d.ep === 1 ? '' : 's'} — ${d.n} donors (${d.pct}%)</title></rect>`);
-            parts.push(`<text class="lev-val" style="font-size:13px;" x="${cx}" y="${y - 6}" text-anchor="middle">${d.n}</text>`);
+            parts.push(`<rect class="lev-bar" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.ep} epoch${d.ep === 1 ? '' : 's'}: ${d.n} donors (${d.pct}%)</title></rect>`);
+            parts.push(`<text class="lev-val" style="font-size:12px;" x="${cx}" y="${y - 6}" text-anchor="middle">${d.n}</text>`);
             parts.push(`<text class="lev-range" x="${cx}" y="${H - M.bottom + 18}" text-anchor="middle">${d.ep}</text>`);
         });
 
@@ -2442,58 +2356,6 @@
     }
 
 
-    // 4) QF mechanism: 3 small multiples panels with shared X (buckets).
-    function renderQfMechanism() {
-        const buckets = [
-            {label:'$0–2',   don:1.42,   mat:132.66,  lev:93.4},
-            {label:'$2–5',   don:3.45,   mat:223.65,  lev:64.8},
-            {label:'$5–10',  don:7.30,   mat:345.71,  lev:47.4},
-            {label:'$10–25', don:15.35,  mat:610.14,  lev:39.7},
-            {label:'$25–50', don:32.00,  mat:759.10,  lev:23.7},
-            {label:'$50+',   don:113.87, mat:1050.94, lev:9.2 },
-        ];
-
-        function panelSvg(values, maxV, fillClass, fmt) {
-            const W = 480, H = 80;
-            const N = values.length;
-            const slot = W / N;
-            const barW = slot * 0.62;
-            const padBottom = 4;
-            const padTop = 18; // room for value labels above bars
-            const innerH = H - padBottom - padTop;
-            const parts = [];
-            values.forEach((v, i) => {
-                const h = (v / maxV) * innerH;
-                const x = i * slot + (slot - barW) / 2;
-                const y = padTop + (innerH - h);
-                parts.push(`<rect class="${fillClass}" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${fmt(v)}</title></rect>`);
-                parts.push(`<text class="qfm-val" x="${x + barW/2}" y="${y - 4}" text-anchor="middle">${fmt(v)}</text>`);
-            });
-            return `<svg class="qfm-panel-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${parts.join('')}</svg>`;
-        }
-
-        const dons = buckets.map(b => b.don);
-        const mats = buckets.map(b => b.mat);
-        const levs = buckets.map(b => b.lev);
-
-        const html = `
-            <div class="qfm-panel">
-                <div class="qfm-panel-label"><strong>Avg donation</strong>средняя в bucket'е, USD</div>
-                ${panelSvg(dons, Math.max(...dons), 'qfm-bar-don', v => '$' + (v < 10 ? v.toFixed(1) : Math.round(v)))}
-            </div>
-            <div class="qfm-panel">
-                <div class="qfm-panel-label"><strong>Match per donor</strong>что добавляет QF, USD</div>
-                ${panelSvg(mats, Math.max(...mats), 'qfm-bar-mat', v => '$' + Math.round(v))}
-            </div>
-            <div class="qfm-panel">
-                <div class="qfm-panel-label"><strong>Leverage</strong>match ÷ donation, ×</div>
-                ${panelSvg(levs, Math.max(...levs), 'qfm-bar-lev', v => Math.round(v) + '×')}
-            </div>
-            <div class="qfm-xaxis"><div class="xlabels">${buckets.map(b => `<span>${b.label}</span>`).join('')}</div></div>
-        `;
-        document.getElementById('qfmHost').innerHTML = html;
-    }
-
     // 5) Returners vs one-timers as a slope chart (mirrors category slope visual language).
     function renderReturnersSlope(all) {
         // Recompute from leaderboard for self-consistency
@@ -2558,55 +2420,57 @@
         document.getElementById('returnersSlopeSvg').innerHTML = parts.join('');
     }
 
-    // 6) Solidity vs hevm — small-multiples table, shared scales per row.
-    function renderSolHevTable() {
-        // Data: epoch 8, from octant_donor_counts_v1.csv
-        const rows = [
-            { metric: 'Donors',         unit: 'unique addresses',  sol: 84,    hev: 28,   fmt: v => v.toString() },
-            { metric: 'User donations', unit: 'ETH (≈$3,000)',     sol: 1.27,  hev: 1.22, fmt: v => v.toFixed(2) + ' ETH' },
-            { metric: 'QF match',       unit: 'ETH from pool',     sol: 21.1,  hev: 7.6,  fmt: v => v.toFixed(1) + ' ETH' },
+    // 6) Three real cases side-by-side: same metrics, different leverage outcomes.
+    //    USD via $3,000 per ETH. ZachXBT figures rounded from the article text.
+    function renderLeverageCases() {
+        const host = document.getElementById('leverageCasesHost');
+        if (!host) return;
+
+        const projects = [
+            { name: 'hevm',     epoch: 'E8', donors: 28, user_usd: 3660,  match_usd: 22800,  leverage: 6,   color: 'var(--yellow)' },
+            { name: 'Solidity', epoch: 'E8', donors: 84, user_usd: 3810,  match_usd: 63300,  leverage: 17,  color: 'var(--orange)' },
+            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116, color: 'var(--pink)' },
         ];
 
-        const html = `
-            <table class="smvs-table">
+        const metrics = [
+            { key: 'donors',    label: 'Donors',         fmt: v => v.toLocaleString('en-US') },
+            { key: 'user_usd',  label: 'User donations', fmt: v => '$' + v.toLocaleString('en-US') },
+            { key: 'match_usd', label: 'QF match',       fmt: v => '$' + v.toLocaleString('en-US') },
+            { key: 'leverage',  label: 'Leverage',       fmt: v => v + '×' },
+        ];
+
+        // Per-metric max across the three projects, for shared scale within a column
+        const maxPerMetric = {};
+        metrics.forEach(m => { maxPerMetric[m.key] = Math.max(...projects.map(p => p[m.key])); });
+
+        const rows = projects.map(p => {
+            const cells = metrics.map(m => {
+                const v = p[m.key];
+                const pct = (v / maxPerMetric[m.key] * 100).toFixed(2);
+                return `<td>
+                    <div class="lc-cell">
+                        <div class="lc-num">${m.fmt(v)}</div>
+                        <div class="lc-bar" style="width:${pct}%;background:${p.color};"></div>
+                    </div>
+                </td>`;
+            }).join('');
+            return `<tr>
+                <td class="lc-name"><strong style="color:${p.color};">${p.name}</strong><br><span class="lc-sub">${p.epoch}</span></td>
+                ${cells}
+            </tr>`;
+        }).join('');
+
+        host.innerHTML = `
+            <table class="lc-table">
                 <thead>
                     <tr>
                         <th></th>
-                        <th class="proj-sol">Solidity</th>
-                        <th class="proj-hev">hevm</th>
-                        <th style="text-align:right;padding-right:0;">ratio</th>
+                        ${metrics.map(m => `<th>${m.label}</th>`).join('')}
                     </tr>
                 </thead>
-                <tbody>
-                    ${rows.map(r => {
-                        const maxV = Math.max(r.sol, r.hev);
-                        const solPct = (r.sol / maxV * 100).toFixed(2);
-                        const hevPct = (r.hev / maxV * 100).toFixed(2);
-                        const ratio  = (r.sol / r.hev).toFixed(2);
-                        return `<tr>
-                            <td class="metric-name">${r.metric}<br><span class="metric-unit">${r.unit}</span></td>
-                            <td>
-                                <div class="smvs-cell">
-                                    <div class="num">${r.fmt(r.sol)}</div>
-                                    <div class="smvs-bar sol" style="width:${solPct}%;"></div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="smvs-cell">
-                                    <div class="num">${r.fmt(r.hev)}</div>
-                                    <div class="smvs-bar hev" style="width:${hevPct}%;"></div>
-                                </div>
-                            </td>
-                            <td style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:var(--light-100);padding-right:0;">${ratio}×</td>
-                        </tr>`;
-                    }).join('')}
-                </tbody>
+                <tbody>${rows}</tbody>
             </table>
-            <div class="smvs-ratio">
-                Solidity и hevm собрали почти одинаково (<strong>×1.04</strong>) <em>пользовательских</em> donations. Разница в donors (<strong>×3.00</strong>) транслируется в QF-match (<strong>×2.78</strong>) почти один-к-одному.
-            </div>
         `;
-        document.getElementById('solHevTableHost').innerHTML = html;
     }
 
     // 7) Donor distribution v2 — bars + cumulative ≥N line + meaningful bands
