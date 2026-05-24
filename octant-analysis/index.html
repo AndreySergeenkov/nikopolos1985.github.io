@@ -1223,169 +1223,11 @@
         #donorDistV2Svg .ddv-band-cnt  { fill: var(--light-100); font-size: 11px; font-family: ui-monospace, monospace; }
         #donorDistV2Svg .ddv-band      { stroke: var(--grey-70); stroke-width: 0.5; stroke-dasharray: 2 3; }
 
-        /* ===== COMMONS SECTION CHARTS (Ostrom + attention) ===== */
-
-        /* Timescale: traditional commons vs Octant V1 */
-        .timescale { display: flex; flex-direction: column; gap: 24px; padding: 18px 0 8px; }
-        .ts-row {
-            display: grid;
-            grid-template-columns: 200px 1fr 160px;
-            align-items: center;
-            gap: 16px;
-        }
-        .ts-label {
-            text-align: right;
-            font-family: var(--font-display);
-            font-size: 16px;
-            color: var(--light-100);
-            letter-spacing: -0.01em;
-            line-height: 1.2;
-        }
-        .ts-label small {
-            display: block;
-            font-family: ui-monospace, monospace;
-            font-size: 10px;
-            font-weight: 500;
-            color: var(--grey-30);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-top: 4px;
-        }
-        .ts-bar {
-            height: 22px;
-            background: var(--grey-50);
-            border-radius: 1px;
-            min-width: 3px;
-        }
-        .ts-bar.core { background: var(--orange); }
-        .ts-val {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--light-80);
-        }
-        @media (max-width: 640px) {
-            .ts-row { grid-template-columns: 130px 1fr 120px; gap: 10px; }
-            .ts-label { font-size: 13px; }
-        }
-
-        /* Donor retention winnowing funnel */
-        .retention-funnel { display: flex; flex-direction: column; gap: 10px; padding: 14px 0 4px; }
-        .rf-row {
-            display: grid;
-            grid-template-columns: 160px 1fr 64px;
-            align-items: center;
-            gap: 14px;
-        }
-        .rf-label {
-            text-align: right;
-            color: var(--grey-30);
-            font-family: ui-monospace, monospace;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        .rf-bar {
-            height: 16px;
-            background: var(--orange);
-            border-radius: 1px;
-            min-width: 3px;
-        }
-        .rf-bar.core { background: var(--teal); }
-        .rf-count {
-            font-family: var(--font-mono);
-            color: var(--light-100);
-            font-size: 13px;
-            text-align: right;
-        }
-        .rf-count small {
-            display: block;
-            color: var(--grey-30);
-            font-size: 10px;
-            margin-top: 2px;
-        }
-        @media (max-width: 560px) {
-            .rf-row { grid-template-columns: 110px 1fr 48px; gap: 8px; }
-            .rf-label { font-size: 9px; }
-        }
-
-        /* Attention failure — single bar, 85% filled, no claim about the remainder */
-        .attn-wrap { padding: 18px 0 8px; }
-        .attn-bar2 {
-            height: 72px;
-            border: 0.5px solid var(--grey-70);
-            border-radius: 2px;
-            overflow: hidden;
-            background: transparent;
-        }
-        .attn-fill {
-            height: 100%;
-            background: var(--orange);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 18px;
-            color: var(--grey-100);
-        }
-        .attn-pct {
-            font-family: var(--font-display);
-            font-size: 26px;
-            line-height: 1;
-            font-weight: 400;
-        }
-        .attn-sub {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-top: 6px;
-        }
-
-        /* Ad market 2020 vs 2025 */
-        .adm-grid { display: flex; flex-direction: column; gap: 18px; padding: 14px 0 4px; }
-        .adm-row {
-            display: grid;
-            grid-template-columns: 60px 1fr 120px;
-            align-items: center;
-            gap: 14px;
-        }
-        .adm-year {
-            font-family: ui-monospace, monospace;
-            font-size: 11px;
-            color: var(--grey-30);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        .adm-bar {
-            height: 24px;
-            background: var(--orange);
-            border-radius: 1px;
-            min-width: 3px;
-        }
-        .adm-val {
-            font-family: var(--font-display);
-            font-size: 24px;
-            color: var(--light-100);
-            letter-spacing: -0.01em;
-            line-height: 1.1;
-        }
-        .adm-delta {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--teal);
-            margin-top: 2px;
-            letter-spacing: 0;
-        }
-        .adm-baseline {
-            font-family: ui-monospace, monospace;
-            font-size: 11px;
-            color: var(--grey-30);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        @media (max-width: 560px) {
-            .adm-row { grid-template-columns: 44px 1fr 84px; gap: 8px; }
-            .adm-val { font-size: 18px; }
-        }
+        /* ===== COMMONS SECTION — single philosophical chart ===== */
+        .commons-core-wrap { padding: 12px 0 4px; }
+        #commonsCoreSvg { width: 100%; height: auto; display: block; }
+        #commonsCoreSvg .ccd-base { fill: var(--grey-80); }
+        #commonsCoreSvg .ccd-core { fill: var(--orange); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 960px) {
@@ -1820,71 +1662,10 @@
             <p style="margin-top:16px;">
                 Octant matching pool tests this framework in digital space, where these conditions can be enforced programmatically instead of through generations of social trust. Boundaries are defined on-chain via GLM lock and sybil resistance through Gitcoin Passport. Collective choice happens through QF voting each epoch. Monitoring is blockchain transparency by default.
             </p>
-        </div>
-
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="ostromMapCard" data-name="octant-commons-timescale.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="ostromMapCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Time it has taken commons to develop institutional trust</div>
-            </div>
-            <div class="timescale">
-                <div class="ts-row">
-                    <div class="ts-label">Traditional commons<small>generations of social trust</small></div>
-                    <div class="ts-bar" style="width:100%;"></div>
-                    <div class="ts-val">decades to centuries</div>
-                </div>
-                <div class="ts-row">
-                    <div class="ts-label">Octant V1<small>programmatic enforcement</small></div>
-                    <div class="ts-bar core" style="width:2.5%;"></div>
-                    <div class="ts-val">2.5 years</div>
-                </div>
-            </div>
-            <div class="chart-note">
-                Bar widths use a single century as the reference for traditional commons, since the text describes them as running for “decades or centuries”. Octant’s bar is scaled to its 2.5 years against the same axis.
-            </div>
-        </div>
-
-        <div class="lb-summary" style="margin-top:32px;">
-            <p>
+            <p style="margin-top:16px;">
                 The data fits Ostrom’s prediction. 33 supporters active in 10 or 11 of 11 epochs, 60.9% of donors returning across multiple epochs, 11 with perfect attendance over 2.5 years. This is retention in a system where participation is fully voluntary, with no geographic ties or social pressure. The mechanism works on the same principles as the traditional commons Ostrom studied, just implemented in code.
             </p>
-        </div>
-
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="retentionFunnelCard" data-name="octant-retention-funnel.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="retentionFunnelCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">The three retention numbers the text cites, against the full donor base</div>
-            </div>
-            <div class="retention-funnel">
-                <div class="rf-row">
-                    <div class="rf-label">all donors</div>
-                    <div class="rf-bar" style="width:100%;"></div>
-                    <div class="rf-count">1,270</div>
-                </div>
-                <div class="rf-row">
-                    <div class="rf-label">returning across<br>multiple epochs</div>
-                    <div class="rf-bar" style="width:60.9%;"></div>
-                    <div class="rf-count">773<small>60.9%</small></div>
-                </div>
-                <div class="rf-row">
-                    <div class="rf-label">active in 10 or<br>11 of 11 epochs</div>
-                    <div class="rf-bar core" style="width:2.6%;"></div>
-                    <div class="rf-count">33</div>
-                </div>
-                <div class="rf-row">
-                    <div class="rf-label">perfect attendance<br>over 2.5 years</div>
-                    <div class="rf-bar core" style="width:0.9%;"></div>
-                    <div class="rf-count">11</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lb-summary" style="margin-top:48px;">
-            <p>
+            <p style="margin-top:16px;">
                 In his Medium essay <em>“The New Attention Economy”</em> (September 2025), Alex Labarces summarizes peer-reviewed research on how fundamentally the attention economy has shifted. The native advertising market reached $400 billion in 2025, a 372% growth from 2020. 85% of online ads fail to hold attention for more than 2.5 seconds. In parallel, the research community has begun identifying a counter-strategy.
             </p>
             <p style="margin-top:16px;">
@@ -1895,44 +1676,18 @@
             </p>
         </div>
 
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="attentionFailCard" data-name="octant-attention-failure.png" type="button">⤓ Save chart as PNG</button>
+        <div class="lb-actions lb-actions-top" style="margin-top:32px;margin-bottom:12px;">
+            <button class="btn" data-png="commonsCoreCard" data-name="octant-commons-core.png" type="button">⤓ Save chart as PNG</button>
         </div>
-        <div class="lb-card" id="attentionFailCard">
+        <div class="lb-card" id="commonsCoreCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Share of online ads that lose attention within 2.5 seconds</div>
+                <div class="lb-card-title">Eleven of the 1,270 donors attended every one of Octant’s 11 epochs</div>
             </div>
-            <div class="attn-wrap">
-                <div class="attn-bar2">
-                    <div class="attn-fill" style="width:85%;">
-                        <span class="attn-pct">85%</span>
-                        <span class="attn-sub">of online ads lose attention within 2.5 seconds</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;margin-top:32px;">
-            <button class="btn" data-png="adMarketCard" data-name="octant-ad-market-growth.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="adMarketCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Native advertising market growth from 2020 to 2025</div>
-            </div>
-            <div class="adm-grid">
-                <div class="adm-row">
-                    <div class="adm-year">2020</div>
-                    <div class="adm-bar" style="width:21.2%;"></div>
-                    <div class="adm-val"><span class="adm-baseline">baseline</span></div>
-                </div>
-                <div class="adm-row">
-                    <div class="adm-year">2025</div>
-                    <div class="adm-bar" style="width:100%;"></div>
-                    <div class="adm-val">$400B<span class="adm-delta">+372%</span></div>
-                </div>
+            <div class="commons-core-wrap">
+                <svg id="commonsCoreSvg" viewBox="0 0 800 640" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dot grid of 1,270 Octant donors with 11 perfect-attendance donors highlighted"></svg>
             </div>
             <div class="chart-note">
-                Bar widths show the 372% growth ratio Labarces cites; 2025 is the only year with an explicit dollar figure in the text. Source: Alex Labarces, “The New Attention Economy” (Medium, September 2025).
+                Each dot is one of the 1,270 unique addresses that ever donated in Octant V1. The 11 highlighted dots represent the people who showed up in every single one of the 11 epochs from August 2023 to early 2026. The other 1,259 made the system big. These 11 made it a commons.
             </div>
         </div>
     </section>
@@ -2296,6 +2051,7 @@
             renderCategoryCharts(state.all);
             renderMarginalEffect();
             renderLeverageCases();
+            renderCommonsCore();
             renderLeverageBuckets();
             renderDonorDist();
             renderDonorDistV2();
@@ -2760,6 +2516,46 @@
         });
 
         document.getElementById('donorDistV2Svg').innerHTML = parts.join('');
+    }
+
+    // 8) Commons-core dot grid. 1,270 donor dots, 11 highlighted (perfect attendance).
+    //    Pure visual — the philosophical claim of the section is that those 11 dots
+    //    are what makes the system function as a commons.
+    function renderCommonsCore() {
+        const host = document.getElementById('commonsCoreSvg');
+        if (!host) return;
+
+        const TOTAL = 1270;
+        const HIGHLIGHTED = 11;
+        const COLS = 40;
+        const ROWS = Math.ceil(TOTAL / COLS); // 32
+        const W = 800, H = 640;
+        const padX = 16, padY = 16;
+        const cellW = (W - 2 * padX) / COLS;
+        const cellH = (H - 2 * padY) / ROWS;
+        const rBase = Math.min(cellW, cellH) * 0.32;
+        const rCore = Math.min(cellW, cellH) * 0.46;
+
+        // Scatter the 11 highlighted positions evenly across the 1,270 dots so the
+        // eye finds them as individuals rather than a single cluster.
+        const highlighted = new Set();
+        const step = TOTAL / HIGHLIGHTED;
+        for (let i = 0; i < HIGHLIGHTED; i++) {
+            highlighted.add(Math.floor(i * step + step / 2));
+        }
+
+        const parts = [];
+        for (let i = 0; i < TOTAL; i++) {
+            const col = i % COLS;
+            const row = Math.floor(i / COLS);
+            const cx = padX + col * cellW + cellW / 2;
+            const cy = padY + row * cellH + cellH / 2;
+            const isCore = highlighted.has(i);
+            parts.push(
+                `<circle class="${isCore ? 'ccd-core' : 'ccd-base'}" cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="${(isCore ? rCore : rBase).toFixed(2)}"/>`
+            );
+        }
+        host.innerHTML = parts.join('');
     }
 
 })();
