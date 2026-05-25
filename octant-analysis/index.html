@@ -2041,7 +2041,7 @@
             <div class="hbar-row">
                 <div class="nm">${s.cat}<small>${s.n} project${s.n === 1 ? '' : 's'}</small></div>
                 <div class="bar-bg">
-                    <div class="bar-fill" style="width:${(s.eth / maxEth * 100).toFixed(2)}%;background:${s.color};"></div>
+                    <div class="bar-fill" style="width:${(s.eth / maxEth * 100).toFixed(2)}%;background:var(--orange);"></div>
                 </div>
                 <div class="val">${fmtInt(s.eth)} <small style="display:inline;font-family:var(--font-sans);font-size:10px;color:var(--grey-30);font-weight:600;letter-spacing:0.04em;">ETH</small>
                     <small>${fmt(s.pctEth)}% of funding</small>
