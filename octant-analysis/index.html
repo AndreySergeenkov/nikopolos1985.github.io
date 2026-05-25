@@ -500,6 +500,16 @@
             font-size: 14px;
             line-height: 1.65;
         }
+        .methodology-h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--light-100);
+            margin: 32px 0 12px;
+            padding-top: 20px;
+            border-top: 0.5px solid var(--grey-80);
+        }
         .methodology-body p { margin: 0 0 14px; }
         .methodology-body p:last-child { margin-bottom: 0; }
         .methodology-body code {
@@ -1684,7 +1694,7 @@
                 Elinor Ostrom won the 2009 Nobel Prize in economics for demonstrating that shared resources don’t inevitably lead to tragedy of the commons. Her research identified specific institutional conditions that enable communities to self-govern shared resources for decades or centuries: clear boundaries, collective decision-making, monitoring, and graduated sanctions.
             </p>
             <p style="margin-top:16px;">
-                Octant matching pool tests this framework in digital space, where these conditions can be enforced programmatically instead of through generations of social trust. Boundaries are defined on-chain via GLM lock and sybil resistance through Gitcoin Passport. Collective choice happens through QF voting each epoch. Monitoring is blockchain transparency by default. The mechanism works on the same principles as the traditional commons Ostrom studied, just implemented in code.
+                Octant matching pool tests this framework in digital space, where these conditions can be enforced programmatically instead of through generations of social trust. Boundaries are defined on-chain via GLM lock and sybil resistance through Gitcoin Passport. Collective choice happens through QF voting each epoch. Monitoring is blockchain transparency by default. The mechanism addresses the collective choice problem Ostrom studied, with conditions enforced in code rather than emerging from generations of social trust.
             </p>
             <p style="margin-top:16px;">
                 In his Medium essay <em>“The New Attention Economy”</em> (September 2025), Alex Labarces summarizes peer-reviewed research on how fundamentally the attention economy has shifted. The native advertising market reached $400 billion in 2025, a 372% growth from 2020. 85% of online ads fail to hold attention for more than 2.5 seconds. In parallel, the research community has begun identifying a counter-strategy.
@@ -1741,6 +1751,9 @@
                     Then I wanted to understand how allocations work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 195 QF project-epoch combinations in epochs 1–11 and assembled a dataset of 17,595 individual allocations. Each record contains a donor address, project address, epoch, and amount in ETH.
                 </p>
                 <p>
+                    All donor count metrics assume Gitcoin Passport effectively filters duplicate addresses across the donor base. Octant publishes per-epoch sybil reports which were not independently audited in this analysis.
+                </p>
+                <p>
                     For retention stats, I grouped allocations by donor address and counted how many unique epochs each donor participated in. This gave 1,270 unique donors with participation distribution from 1 to 11 epochs. Recurring donors (2+ epochs) come to 773 people or 60.9%. Core base (10+ epochs) is 33. Perfect attendance across all 11 epochs is 11 people.
                 </p>
                 <p>
@@ -1754,6 +1767,23 @@
                 </p>
                 <p>
                     For USD conversions I used $3,000 per ETH as a rough average across QF epochs (August 2023 to January 2026). The real price ranged $1,600–$4,200. This isn’t critical for directional analysis (leverage ratios, distribution patterns), but it’s worth keeping in mind when interpreting specific USD numbers like “$500 average match per donor” or “$128,000 ZachXBT matching”.
+                </p>
+
+                <h3 class="methodology-h3">Limitations</h3>
+                <p>
+                    Several caveats apply to the analysis above.
+                </p>
+                <p>
+                    The donor count metrics assume Gitcoin Passport effectively filters duplicate addresses. Octant publishes per-epoch sybil reports, but those reports were not independently verified here. Individual leverage figures may be sensitive to sybil noise even if aggregate patterns hold.
+                </p>
+                <p>
+                    The relationship between donor base size and matching allocation is mechanical (a property of the QF formula) but the causal direction is not testable from observational data alone. Projects with broad donor bases may differ from projects with narrow bases on other dimensions such as community recognition, project age, or external mobilization capacity, which are not controlled for in this analysis.
+                </p>
+                <p>
+                    USD figures use $3,000 per ETH as a reference average. The real ETH price ranged $1,600 to $4,200 across the observed period, so specific USD figures carry meaningful variance. Leverage ratios and distribution patterns are unaffected by this choice.
+                </p>
+                <p>
+                    Octant V2 mechanics are described from publicly available materials but not analyzed empirically here, since V2 launches in June 2026 after the V1 dataset closed.
                 </p>
         </div>
     </section>
