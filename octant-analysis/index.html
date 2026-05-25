@@ -1207,18 +1207,22 @@
             margin: 14px 0 6px;
         }
         .lc-table th, .lc-table td {
-            padding: 12px 12px 12px 0;
+            padding: 12px 12px 12px 12px;
             text-align: left;
-            border-bottom: 0.5px solid var(--grey-80);
             vertical-align: middle;
         }
-        .lc-table th {
+        .lc-table thead th {
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--grey-30);
             border-bottom: 0.5px solid var(--grey-70);
+            padding-bottom: 10px;
+        }
+        /* Zebra stripes — subtle, dark-mode-friendly */
+        .lc-table tbody tr:nth-child(odd) td {
+            background: rgba(254, 253, 244, 0.025);
         }
         .lc-table td.lc-name {
             width: 110px;
@@ -1226,6 +1230,7 @@
             font-size: 18px;
             line-height: 1.1;
             letter-spacing: -0.01em;
+            color: var(--light-100);
         }
         .lc-table td.lc-name .lc-sub {
             display: inline-block;
@@ -1248,10 +1253,11 @@
             height: 10px;
             border-radius: 1px;
             min-width: 4px;
+            background: var(--orange);
         }
         @media (max-width: 640px) {
             .lc-table td.lc-name { width: 80px; font-size: 15px; }
-            .lc-table th, .lc-table td { padding: 8px 6px 8px 0; }
+            .lc-table th, .lc-table td { padding: 8px 6px 8px 8px; }
         }
 
 
@@ -2417,9 +2423,9 @@
         if (!host) return;
 
         const projects = [
-            { name: 'hevm',     epoch: 'E8', donors: 28, user_usd: 3660,  match_usd: 22800,  leverage: 6,   color: 'var(--yellow)' },
-            { name: 'Solidity', epoch: 'E8', donors: 84, user_usd: 3810,  match_usd: 63300,  leverage: 17,  color: 'var(--orange)' },
-            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116, color: 'var(--green)' },
+            { name: 'hevm',     epoch: 'E8', donors: 28, user_usd: 3660,  match_usd: 22800,  leverage: 6   },
+            { name: 'Solidity', epoch: 'E8', donors: 84, user_usd: 3810,  match_usd: 63300,  leverage: 17  },
+            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116 },
         ];
 
         const metrics = [
@@ -2440,12 +2446,12 @@
                 return `<td>
                     <div class="lc-cell">
                         <div class="lc-num">${m.fmt(v)}</div>
-                        <div class="lc-bar" style="width:${pct}%;background:${p.color};"></div>
+                        <div class="lc-bar" style="width:${pct}%;"></div>
                     </div>
                 </td>`;
             }).join('');
             return `<tr>
-                <td class="lc-name"><strong style="color:${p.color};">${p.name}</strong><br><span class="lc-sub">${p.epoch}</span></td>
+                <td class="lc-name"><strong>${p.name}</strong><br><span class="lc-sub">${p.epoch}</span></td>
                 ${cells}
             </tr>`;
         }).join('');
