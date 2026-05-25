@@ -1220,21 +1220,6 @@
             .lc-table th, .lc-table td { padding: 8px 6px 8px 0; }
         }
 
-        /* Donor distribution — bars + cumulative line + grouping bands */
-        #donorDistV2Svg .ddv-bar       { fill: var(--orange); }
-        #donorDistV2Svg .ddv-bar.core  { fill: var(--teal); }
-        #donorDistV2Svg .ddv-cum       { stroke: var(--light-100); stroke-width: 1.2; fill: none; }
-        #donorDistV2Svg .ddv-cum-dot   { fill: var(--light-100); }
-        #donorDistV2Svg .ddv-axis      { stroke: var(--grey-70); stroke-width: 0.5; }
-        #donorDistV2Svg .ddv-grid      { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
-        #donorDistV2Svg .ddv-tick      { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #donorDistV2Svg .ddv-tick.right{ fill: var(--light-80); }
-        #donorDistV2Svg .ddv-axis-label{ fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-        #donorDistV2Svg .ddv-val       { fill: var(--light-100); font-size: 11px; font-family: ui-monospace, monospace; }
-        #donorDistV2Svg .ddv-band-lbl  { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-        #donorDistV2Svg .ddv-band-cnt  { fill: var(--light-100); font-size: 11px; font-family: ui-monospace, monospace; }
-        #donorDistV2Svg .ddv-band      { stroke: var(--grey-70); stroke-width: 0.5; stroke-dasharray: 2 3; }
-
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 960px) {
@@ -1627,7 +1612,7 @@
 
         <div class="lb-card" id="donorDistCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">How many donors took part in N epochs out of 11</div>
+                <div class="lb-card-title">Donors by the number of epochs they took part in</div>
             </div>
             <div class="lev-chart-wrap">
                 <svg id="donorDistSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution across epochs"></svg>
@@ -1635,26 +1620,8 @@
             <div class="chart-note">
                 1,270 unique donor addresses across epochs 1 to 11. The X axis shows the number of epochs a donor took part in. The Y axis shows how many donors fall into each bucket. 39.1% are one-time donors; 0.9% attended every one of the 11 epochs.
             </div>
-        </div>        <!-- ============== ALT v2: donor distribution with cumulative + groupings ============== -->
-        <div class="lb-summary" style="margin-top:32px;">
-            <p>
-                The chart below shows the same data with two extras. A cumulative line on top of the bars tracks the share of donors who took part in at least N epochs. The bars are also grouped into five tiers, from one-time donors to the core.
-            </p>
         </div>
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-            <button class="btn" data-png="donorDistV2Card" data-name="octant-donor-distribution-v2.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="donorDistV2Card">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Donor count by epochs participated with a cumulative line</div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="donorDistV2Svg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution with cumulative coverage overlay"></svg>
-            </div>
-            <div class="chart-note">
-                Orange bars show how many donors took part in exactly N epochs (left axis). The teal segments mark the top tier of 10 or more epochs. The white line is the cumulative share of donors who took part in N or more epochs (right axis, percent). 100 percent on the left drops to 0.9 percent on the right.
-            </div>
-        </div>    </section>
+    </section>
 
     <h2 class="section-h2">96% of payouts come from staking yield, 4% from user donations</h2>
 
@@ -1682,7 +1649,7 @@
         </div>
     </section>
 
-    <h2 class="section-h2">Social capital is not a nice-to-have, it is a necessary condition for commons to function</h2>
+    <h2 class="section-h2">Social capital is a necessary condition for commons to function</h2>
 
     <section class="lb-section" id="commons">
         <div class="lb-summary">
@@ -1693,7 +1660,7 @@
                 Octant matching pool tests this framework in digital space, where these conditions can be enforced programmatically instead of through generations of social trust. Boundaries are defined on-chain via GLM lock and sybil resistance through Gitcoin Passport. Collective choice happens through QF voting each epoch. Monitoring is blockchain transparency by default.
             </p>
             <p style="margin-top:16px;">
-                The data fits Ostrom’s prediction. 33 supporters active in 10 or 11 of 11 epochs, 60.9% of donors returning across multiple epochs, 11 with perfect attendance over 2.5 years. This is retention in a system where participation is fully voluntary, with no geographic ties or social pressure. The mechanism works on the same principles as the traditional commons Ostrom studied, just implemented in code.
+                Ostrom’s framework predicts that with the right institutional conditions in place, participants keep returning to a commons over time. In Octant, this prediction is visible in donor retention: 60.9% of donors return across multiple epochs, 33 take part in 10 or 11 of the 11 epochs, and 11 attend every single one over 2.5 years. Participation is fully voluntary, with no geographic ties or social pressure to come back. The same kind of sustained engagement that traditional commons take generations to build is here implemented in code.
             </p>
             <p style="margin-top:16px;">
                 In his Medium essay <em>“The New Attention Economy”</em> (September 2025), Alex Labarces summarizes peer-reviewed research on how fundamentally the attention economy has shifted. The native advertising market reached $400 billion in 2025, a 372% growth from 2020. 85% of online ads fail to hold attention for more than 2.5 seconds. In parallel, the research community has begun identifying a counter-strategy.
@@ -2090,7 +2057,6 @@
             renderLeverageCases();
             renderLeverageBuckets();
             renderDonorDist();
-            renderDonorDistV2();
             renderFundingSplit();
             renderSparklines();
             applyView();
@@ -2222,8 +2188,8 @@
 
     // Funding split donut: 96% matching pool vs 4% user donations.
     const FUNDING_SPLIT = [
-        { label: 'Matching pool',     sub: 'Staking yield direct',     eth: 2760.08, ethDisplay: '2,760', pct: 96.2, cls: 'split-seg-match', swatch: 'var(--orange)' },
-        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51,  ethDisplay: '109.51', pct: 3.8,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
+        { label: 'Matching pool',     sub: 'Staking yield direct',     eth: 2760.08, ethDisplay: '2,760', pct: 96, cls: 'split-seg-match', swatch: 'var(--orange)' },
+        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51,  ethDisplay: '109.51', pct: 4,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
     ];
 
     function renderFundingSplit() {
@@ -2447,111 +2413,6 @@
                 <tbody>${rows}</tbody>
             </table>
         `;
-    }
-
-    // 7) Donor distribution v2 — bars + cumulative ≥N line + meaningful bands
-    function renderDonorDistV2() {
-        const data = DONOR_DIST; // [{ep, n, pct}, ...]
-        const total = data.reduce((s,d) => s+d.n, 0);
-        // Cumulative: % donors with epochs ≥ ep
-        let running = total;
-        const cum = data.map(d => {
-            const before = running;
-            running -= d.n;
-            return { ep: d.ep, pctGte: before / total * 100 };
-        });
-
-        const W = 720, H = 400;
-        const M = {top: 70, right: 56, bottom: 70, left: 50};
-        const innerW = W - M.left - M.right;
-        const innerH = H - M.top - M.bottom;
-        const yMaxBars = 500;
-        const yBars = v => M.top + innerH - (v / yMaxBars) * innerH;
-        const yLine = pct => M.top + innerH - (pct / 100) * innerH;
-        const slot = innerW / data.length;
-        const barW = Math.min(38, slot * 0.7);
-
-        const parts = [];
-
-        // Left grid (count)
-        [0,100,200,300,400,500].forEach(v => {
-            const y = yBars(v);
-            parts.push(`<line class="ddv-grid" x1="${M.left}" x2="${W-M.right}" y1="${y}" y2="${y}"/>`);
-            parts.push(`<text class="ddv-tick" x="${M.left - 8}" y="${y + 3}" text-anchor="end">${v}</text>`);
-        });
-        // Right axis (%): mirror ticks 0..100
-        [0,25,50,75,100].forEach(v => {
-            const y = yLine(v);
-            parts.push(`<text class="ddv-tick right" x="${W - M.right + 8}" y="${y + 3}" text-anchor="start">${v}%</text>`);
-        });
-        // Axes
-        parts.push(`<line class="ddv-axis" x1="${M.left}"  y1="${M.top}" x2="${M.left}"  y2="${H-M.bottom}"/>`);
-        parts.push(`<line class="ddv-axis" x1="${W-M.right}" y1="${M.top}" x2="${W-M.right}" y2="${H-M.bottom}"/>`);
-        parts.push(`<line class="ddv-axis" x1="${M.left}"  y1="${H-M.bottom}" x2="${W-M.right}" y2="${H-M.bottom}"/>`);
-
-        // Y-axis labels
-        parts.push(`<text class="ddv-axis-label" fill="var(--orange)" x="${M.left}" y="${M.top - 22}" text-anchor="start">Donors (count)</text>`);
-        parts.push(`<text class="ddv-axis-label" fill="var(--light-80)" x="${W-M.right}" y="${M.top - 22}" text-anchor="end">Cumulative ≥ N (%)</text>`);
-        parts.push(`<text class="ddv-axis-label" x="${M.left + innerW/2}" y="${H - 8}" text-anchor="middle">Epochs participated (out of 11)</text>`);
-
-        // Grouping bands — vertical dashed separators
-        // 1-timers | casual 2-3 | regular 4-6 | committed 7-9 | core 10+
-        const bandDefs = [
-            { from: 1,  to: 1,  label: 'one-time' },
-            { from: 2,  to: 3,  label: 'casual' },
-            { from: 4,  to: 6,  label: 'regulars' },
-            { from: 7,  to: 9,  label: 'committed' },
-            { from: 10, to: 11, label: 'core' },
-        ];
-        bandDefs.forEach((b, i) => {
-            if (i > 0) {
-                const x = M.left + slot * (b.from - 1);
-                parts.push(`<line class="ddv-band" x1="${x}" x2="${x}" y1="${M.top}" y2="${H-M.bottom + 28}"/>`);
-            }
-            const x0 = M.left + slot * (b.from - 1);
-            const x1 = M.left + slot * (b.to);
-            const xc = (x0 + x1) / 2;
-            const cnt = data.filter(d => d.ep >= b.from && d.ep <= b.to).reduce((s,d) => s+d.n, 0);
-            const pct = (cnt / total * 100).toFixed(1);
-            parts.push(`<text class="ddv-band-lbl" x="${xc}" y="${M.top - 4}" text-anchor="middle">${b.label}</text>`);
-            parts.push(`<text class="ddv-band-cnt" x="${xc}" y="${H-M.bottom + 50}" text-anchor="middle">${cnt} · ${pct}%</text>`);
-        });
-
-        // Bars (no per-bar value labels — Y axis grid + bottom band totals cover scale).
-        // Spotlight only the two endpoints that carry the narrative: 497 one-timers and 11 perfect-attendance.
-        data.forEach((d, i) => {
-            const cx = M.left + slot * (i + 0.5);
-            const x = cx - barW / 2;
-            const y = yBars(d.n);
-            const h = (H - M.bottom) - y;
-            const isCore = d.ep >= 10;
-            const cls = isCore ? 'ddv-bar core' : 'ddv-bar';
-            parts.push(`<rect class="${cls}" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.ep} epoch${d.ep===1?'':'s'} — ${d.n} donors (${d.pct}%)</title></rect>`);
-            // X tick number
-            parts.push(`<text class="ddv-tick" x="${cx}" y="${H - M.bottom + 14}" text-anchor="middle">${d.ep}</text>`);
-            // One annotation only — for "perfect attendance" (11/11), since that's the
-            // single number the article spotlights and the bottom band only shows the
-            // combined "10+ core" total. Other bar values are visible via Y axis + bottom bands.
-            if (d.ep === 11) {
-                parts.push(`<text class="ddv-val" x="${cx}" y="${y - 6}" text-anchor="middle">${d.n}</text>`);
-            }
-        });
-
-        // Cumulative line: at each x of bar center, plot pctGte
-        let lineD = '';
-        cum.forEach((c, i) => {
-            const cx = M.left + slot * (i + 0.5);
-            const y  = yLine(c.pctGte);
-            lineD += (i === 0 ? 'M' : 'L') + ` ${cx} ${y} `;
-        });
-        parts.push(`<path class="ddv-cum" d="${lineD}"/>`);
-        cum.forEach((c, i) => {
-            const cx = M.left + slot * (i + 0.5);
-            const y  = yLine(c.pctGte);
-            parts.push(`<circle class="ddv-cum-dot" cx="${cx}" cy="${y}" r="2.2"><title>≥ ${c.ep} epoch${c.ep===1?'':'s'}: ${c.pctGte.toFixed(1)}% donors</title></circle>`);
-        });
-
-        document.getElementById('donorDistV2Svg').innerHTML = parts.join('');
     }
 
 })();
