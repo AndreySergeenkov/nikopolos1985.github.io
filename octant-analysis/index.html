@@ -1150,17 +1150,6 @@
             color: var(--grey-50);
         }
 
-        /* Category scatter: project count vs total funding */
-        #catScatterSvg .cs-dot     { stroke: var(--grey-100); stroke-width: 1; cursor: default; }
-        #catScatterSvg .cs-grid    { stroke: var(--grey-80); stroke-width: 0.5; stroke-dasharray: 2 3; }
-        #catScatterSvg .cs-axis    { stroke: var(--grey-70); stroke-width: 0.5; }
-        #catScatterSvg .cs-tick    { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; }
-        #catScatterSvg .cs-axis-label { fill: var(--grey-30); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-        #catScatterSvg .cs-diag    { stroke: var(--grey-50); stroke-width: 0.6; stroke-dasharray: 4 4; }
-        #catScatterSvg .cs-diag-label { fill: var(--grey-30); font-size: 10px; font-family: ui-monospace, monospace; font-style: italic; }
-        #catScatterSvg .cs-label   { font-family: var(--font-sans); font-size: 12px; font-weight: 500; }
-        #catScatterSvg .cs-label-connector { fill: none; }
-
         /* Returners slope chart */
         #returnersSlopeSvg .slope-line { stroke-width: 4; fill: none; opacity: 0.9; }
         #returnersSlopeSvg .slope-dot  { stroke: var(--grey-100); stroke-width: 1; }
@@ -1468,17 +1457,11 @@
             <p style="margin-top:16px;">
                 Themed rounds had the opposite effect, more projects and less money for each. Climate &amp; Regenerative (23 projects from the Epoch 7 climate round) and Media &amp; Storytelling (26 projects from the Epoch 9 Ethereum Stories round) together make up 37% of all unique projects in the data, but received only 13.6% of total funding. The average check was 13 ETH per climate project and 6 ETH per media project versus 74 ETH in Ethereum Infrastructure.
             </p>
-            <p style="margin-top:16px;">
-                Ethereum Infrastructure is Octant’s most concentrated bet. Just 7 projects or 5.2% of the total, but 15.2% of funding. These include Protocol Guild (323 ETH cumulative), Ethereum Attestation Service (79 ETH), Dappnode (49 ETH), Aestus MEV Relay (47 ETH), Commit-Boost, Verifereum, and Ephemery Testnet.
-            </p>
         </div>
 
         <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-
             <button class="btn" data-png="catA" data-name="octant-funding-by-category.png" type="button">⤓ Save chart as PNG</button>
-
         </div>
-
         <div class="lb-card" id="catA">
             <div class="lb-card-head">
                 <div class="lb-card-title">Funding by category (cumulative, E0–E11)</div>
@@ -1486,22 +1469,13 @@
             <div class="hbar-list" id="catAList"></div>
         </div>
 
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;margin-top:32px;">
-            <button class="btn" data-png="catScatterCard" data-name="octant-category-scatter.png" type="button">⤓ Save chart as PNG</button>
-        </div>
-        <div class="lb-card" id="catScatterCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Project count and total funding across 9 categories</div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="catScatterSvg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scatter of category project count versus total funding"></svg>
-            </div>
-            <div class="chart-note">
-                Each dot is one category. The dashed line marks the average across all of Octant: 25 ETH per project. Categories above the line received more funding per project than the average. Below, less. Ethereum Infrastructure is the most concentrated bet (few projects, big checks); Media and Storytelling and Climate and Regenerative are the most diffused (many projects, small checks).
-            </div>
+        <div class="lb-summary" style="margin-top:32px;">
+            <p>
+                Ethereum Infrastructure is Octant’s most concentrated bet. Just 7 projects or 5.2% of the total, but 15.2% of funding.
+            </p>
         </div>
 
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;margin-top:32px;">
+        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
             <button class="btn" data-png="ethInfraCard" data-name="octant-ethereum-infrastructure.png" type="button">⤓ Save chart as PNG</button>
         </div>
         <div class="lb-card" id="ethInfraCard">
@@ -2048,78 +2022,6 @@
         `).join('');
     }
 
-    function renderCategoryScatter(all) {
-        const { stats } = aggregateByCategory(all);
-        const totalEth = stats.reduce((s, x) => s + x.eth, 0);
-        const totalN   = stats.reduce((s, x) => s + x.n, 0);
-        const avgPerProj = totalEth / totalN;
-
-        const W = 800, H = 480;
-        const M = { top: 32, right: 240, bottom: 56, left: 64 };
-        const innerW = W - M.left - M.right;
-        const innerH = H - M.top - M.bottom;
-        const xMax = 30;
-        const yMax = 800;
-        const xScale = n => M.left + (n / xMax) * innerW;
-        const yScale = e => M.top + innerH - (e / yMax) * innerH;
-
-        const parts = [];
-
-        // Horizontal grid + Y ticks
-        [0, 200, 400, 600, 800].forEach(v => {
-            const y = yScale(v);
-            parts.push(`<line class="cs-grid" x1="${M.left}" x2="${W - M.right}" y1="${y}" y2="${y}"/>`);
-            parts.push(`<text class="cs-tick" x="${M.left - 8}" y="${y + 3}" text-anchor="end">${v}</text>`);
-        });
-
-        // X ticks
-        [0, 5, 10, 15, 20, 25, 30].forEach(v => {
-            const x = xScale(v);
-            parts.push(`<text class="cs-tick" x="${x}" y="${H - M.bottom + 16}" text-anchor="middle">${v}</text>`);
-        });
-
-        // Axes
-        parts.push(`<line class="cs-axis" x1="${M.left}" y1="${M.top}" x2="${M.left}" y2="${H - M.bottom}"/>`);
-        parts.push(`<line class="cs-axis" x1="${M.left}" y1="${H - M.bottom}" x2="${W - M.right}" y2="${H - M.bottom}"/>`);
-
-        // Axis labels
-        parts.push(`<text class="cs-axis-label" x="${M.left + innerW / 2}" y="${H - 12}" text-anchor="middle">Number of projects</text>`);
-        parts.push(`<text class="cs-axis-label" x="${-(M.top + innerH / 2)}" y="14" transform="rotate(-90)" text-anchor="middle">Total funding (ETH)</text>`);
-
-        // Diagonal "fair share" line y = avgPerProj * x, drawn until it hits the chart edge
-        const xRefMax = Math.min(xMax, yMax / avgPerProj);
-        const yRefMax = avgPerProj * xRefMax;
-        parts.push(`<line class="cs-diag" x1="${xScale(0)}" y1="${yScale(0)}" x2="${xScale(xRefMax)}" y2="${yScale(yRefMax)}"/>`);
-        parts.push(`<text class="cs-diag-label" x="${xScale(xRefMax) - 4}" y="${yScale(yRefMax) - 6}" text-anchor="end">${avgPerProj.toFixed(0)} ETH per project (overall average)</text>`);
-
-        // Label placement: sort by dot y (top to bottom), then push each label down to keep min gap
-        const dotPositions = stats.map(s => ({ s, cy: yScale(s.eth) })).sort((a, b) => a.cy - b.cy);
-        const minGap = 18;
-        const labelXBase = W - M.right + 16;
-        const labelMap = new Map();
-        let lastY = -Infinity;
-        dotPositions.forEach(({ s, cy }) => {
-            const labelY = Math.max(cy, lastY + minGap);
-            labelMap.set(s.cat, labelY);
-            lastY = labelY;
-        });
-
-        stats.forEach(s => {
-            const cx = xScale(s.n);
-            const cy = yScale(s.eth);
-            const labelY = labelMap.get(s.cat);
-
-            // Connector from dot to label if pushed
-            if (Math.abs(labelY - cy) > 1) {
-                parts.push(`<line class="cs-label-connector" x1="${cx + 7}" y1="${cy}" x2="${labelXBase - 6}" y2="${labelY - 3}" stroke="${s.color}" stroke-width="0.5" opacity="0.4"/>`);
-            }
-            parts.push(`<circle class="cs-dot" cx="${cx}" cy="${cy}" r="6" fill="${s.color}"><title>${s.cat}: ${s.n} projects, ${Math.round(s.eth)} ETH (avg ${(s.eth / s.n).toFixed(0)} ETH/project)</title></circle>`);
-            parts.push(`<text class="cs-label" x="${labelXBase}" y="${labelY}" text-anchor="start" fill="${s.color}" dominant-baseline="middle">${s.cat}</text>`);
-        });
-
-        document.getElementById('catScatterSvg').innerHTML = parts.join('');
-    }
-
     function renderEthInfraLeaderboard(all) {
         const projects = all
             .filter(d => d.category === 'Ethereum Infrastructure')
@@ -2176,7 +2078,6 @@
             renderReturners(state.all);
             renderReturnersSlope(state.all);
             renderCategoryCharts(state.all);
-            renderCategoryScatter(state.all);
             renderEthInfraLeaderboard(state.all);
             renderMarginalEffect();
             renderLeverageCases();
