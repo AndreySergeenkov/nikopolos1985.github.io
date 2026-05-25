@@ -139,7 +139,7 @@
             letter-spacing: -0.03em;
             margin: 0 auto;
             color: var(--light-100);
-            max-width: 900px;
+            max-width: 760px;
         }
 
         /* ===== DRAFT BODY (рыба, минимальный стиль) ===== */
@@ -212,24 +212,43 @@
         }
 
         /* ===== BACK TO TOP ===== */
-        .back-to-top-link {
-            max-width: 760px;
-            margin: 56px auto 0;
-            padding-top: 24px;
-            border-top: 0.5px solid var(--grey-80);
-            text-align: center;
-            font-size: 13px;
-        }
-        .back-to-top-link a {
-            color: var(--grey-30);
-            text-decoration: none;
+        /* ===== BACK TO TOP — fixed pill, appears after scroll ===== */
+        .btt {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
             font-family: ui-monospace, monospace;
+            font-size: 12px;
+            font-weight: 500;
             letter-spacing: 0.04em;
-            padding: 6px 12px;
-            transition: color 0.15s ease;
+            color: var(--light-100);
+            text-decoration: none;
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-50);
+            border-radius: var(--r-btn);
+            opacity: 0;
+            transform: translateY(8px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
         }
-        .back-to-top-link a:hover {
+        .btt.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .btt:hover {
+            background: var(--grey-80);
+            border-color: var(--orange-20);
             color: var(--orange);
+        }
+        .btt-arrow { font-size: 14px; line-height: 1; }
+        @media (max-width: 560px) {
+            .btt { right: 16px; bottom: 16px; padding: 8px 12px; font-size: 11px; }
         }
 
         /* ===== SECTION HEADINGS ===== */
@@ -1728,9 +1747,6 @@
         </details>
     </section>
 
-    <p class="back-to-top-link">
-        <a href="#top">↑ Back to top</a>
-    </p>
 
 </main>
 
@@ -2502,6 +2518,21 @@
     <span class="meta">noindex · internal review</span>
 </footer>
 
+<a class="btt" id="btt" href="#top" aria-label="Back to top"><span class="btt-arrow">↑</span> Back to top</a>
+
+<script>
+    (function () {
+        const btt = document.getElementById('btt');
+        if (!btt) return;
+        const THRESHOLD = 600;
+        function update() {
+            if (window.scrollY > THRESHOLD) btt.classList.add('visible');
+            else btt.classList.remove('visible');
+        }
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+    })();
+</script>
 
 </body>
 </html>
