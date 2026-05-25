@@ -2398,13 +2398,13 @@
 
             // Left side: project share + project name beneath
             parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xLeft - 16}" y="${yL + 7}" text-anchor="end">${s.pctN.toFixed(1)}%</text>`);
-            parts.push(`<text class="slope-name" x="${xLeft - 80}" y="${yL - 4}"  text-anchor="end">${s.name}</text>`);
-            parts.push(`<text class="slope-sub"  x="${xLeft - 80}" y="${yL + 12}" text-anchor="end">${s.leftMeta}</text>`);
+            parts.push(`<text class="slope-name" x="${xLeft - 115}" y="${yL - 4}"  text-anchor="end">${s.name}</text>`);
+            parts.push(`<text class="slope-sub"  x="${xLeft - 115}" y="${yL + 12}" text-anchor="end">${s.leftMeta}</text>`);
 
             // Right side: funding share + breakdown sub
             parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xRight + 16}" y="${yR + 7}" text-anchor="start">${s.pctEth.toFixed(1)}%</text>`);
-            parts.push(`<text class="slope-name" x="${xRight + 80}" y="${yR - 4}"  text-anchor="start">${s.ethTotal}</text>`);
-            parts.push(`<text class="slope-sub"  x="${xRight + 80}" y="${yR + 12}" text-anchor="start">${s.avgEach}</text>`);
+            parts.push(`<text class="slope-name" x="${xRight + 115}" y="${yR - 4}"  text-anchor="start">${s.ethTotal}</text>`);
+            parts.push(`<text class="slope-sub"  x="${xRight + 115}" y="${yR + 12}" text-anchor="start">${s.avgEach}</text>`);
         });
 
         document.getElementById('returnersSlopeSvg').innerHTML = parts.join('');
