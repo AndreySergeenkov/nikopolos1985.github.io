@@ -394,10 +394,10 @@
             opacity: 0.75;
         }
         .seg-ret { background: var(--orange); color: var(--grey-100); }
-        .seg-one { background: var(--yellow); color: var(--grey-100); }
+        .seg-one { background: var(--teal);   color: var(--grey-100); }
 
         .lb-card-legend .dot-ret { background: var(--orange); }
-        .lb-card-legend .dot-one { background: var(--yellow); }
+        .lb-card-legend .dot-one { background: var(--teal); }
 
         /* ===== CATEGORY DEFINITION LIST ===== */
         .cat-list {
@@ -745,7 +745,7 @@
             overflow: hidden;
             display: flex;
         }
-        .lb-row .bar .seg-a { background: var(--green);  height: 100%; }
+        .lb-row .bar .seg-a { background: var(--teal);   height: 100%; }
         .lb-row .bar .seg-m { background: var(--orange); height: 100%; }
         .lb-row .total {
             font-family: var(--font-display);
@@ -781,7 +781,7 @@
             margin-right: 6px;
             vertical-align: middle;
         }
-        .lb-card-legend .dot-a { background: var(--green); }
+        .lb-card-legend .dot-a { background: var(--teal); }
         .lb-card-legend .dot-m { background: var(--orange); }
 
         /* Actions row */
@@ -1381,7 +1381,10 @@
                 The biggest funding in Octant goes to projects that participate in multiple epochs. <span class="hl"><span id="retShare">—</span>%</span> of recurring projects received <span class="hl"><span id="retFundShare">—</span>%</span> of total funding. The remaining <span class="hl"><span id="oneShare">—</span>%</span>, one-time projects, got only <span class="hl"><span id="oneFundShare">—</span>%</span>.
             </p>
             <p style="margin-top:8px;">
-                Per project, a recurring project collected <span class="hl"><span id="retAvg">—</span> ETH</span> on average over its history in Octant, while a one-time project collected just <span class="hl"><span id="oneAvg">—</span> ETH</span>. A <span class="hl"><span id="avgRatio">—</span> difference</span> shows that Octant systematically rewards consistency and track record.
+                Per project, a recurring project collected <span class="hl"><span id="retAvg">—</span> ETH</span> on average over its history in Octant. A one-time project collected just <span class="hl"><span id="oneAvg">—</span> ETH</span>.
+            </p>
+            <p style="margin-top:16px;">
+                A <span class="hl"><span id="avgRatio">—</span> difference</span> shows that Octant systematically rewards consistency and track record.
             </p>
         </div>
 
@@ -1427,7 +1430,7 @@
             </div>
         </div>    </section>
 
-    <h2 class="section-h2">Which projects collected the most funding in Octant</h2>
+    <h2 class="section-h2">How Octant funding distributes across 9 project categories</h2>
 
     <section class="lb-section" id="categories">
         <div class="lb-summary">
@@ -2309,7 +2312,7 @@
                 name: 'One-time',
                 pctN: oneTimers.length / totalN * 100,
                 pctEth: oneTimers.reduce((s,d)=>s+d.total_eth,0) / totalEth * 100,
-                color: 'var(--yellow)',
+                color: 'var(--teal)',
                 leftMeta: `${oneTimers.length} projects`,
                 ethTotal: '531 ETH',
                 avgEach: '6 ETH per project',
@@ -2339,12 +2342,12 @@
             parts.push(`<circle class="slope-dot" cx="${xRight}" cy="${yR}" r="5" fill="${s.color}"/>`);
 
             // Left side: project share + project name beneath
-            parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xLeft - 16}" y="${yL + 7}" text-anchor="end">${s.pctN.toFixed(0)}%</text>`);
+            parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xLeft - 16}" y="${yL + 7}" text-anchor="end">${s.pctN.toFixed(1)}%</text>`);
             parts.push(`<text class="slope-name" x="${xLeft - 80}" y="${yL - 4}"  text-anchor="end">${s.name}</text>`);
             parts.push(`<text class="slope-sub"  x="${xLeft - 80}" y="${yL + 12}" text-anchor="end">${s.leftMeta}</text>`);
 
             // Right side: funding share + breakdown sub
-            parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xRight + 16}" y="${yR + 7}" text-anchor="start">${s.pctEth.toFixed(0)}%</text>`);
+            parts.push(`<text class="slope-pct"  fill="${s.color}" x="${xRight + 16}" y="${yR + 7}" text-anchor="start">${s.pctEth.toFixed(1)}%</text>`);
             parts.push(`<text class="slope-name" x="${xRight + 80}" y="${yR - 4}"  text-anchor="start">${s.ethTotal}</text>`);
             parts.push(`<text class="slope-sub"  x="${xRight + 80}" y="${yR + 12}" text-anchor="start">${s.avgEach}</text>`);
         });
