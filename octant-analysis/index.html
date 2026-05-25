@@ -469,11 +469,35 @@
             text-transform: uppercase;
         }
 
-        /* ===== METHODOLOGY ===== */
+        /* ===== METHODOLOGY (always-expanded appendix) ===== */
+        .methodology-section {
+            max-width: 760px;
+            margin: 96px auto 0;
+            padding-top: 48px;
+            border-top: 0.5px solid var(--grey-70);
+        }
+        .methodology-eyebrow {
+            font-family: ui-monospace, monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--grey-30);
+            margin-bottom: 12px;
+        }
+        .methodology-h2 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            line-height: 1.15;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--light-100);
+            margin: 0 0 8px;
+        }
         .methodology-body {
             margin-top: 20px;
             color: var(--light-80);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.65;
         }
         .methodology-body p { margin: 0 0 14px; }
@@ -1674,14 +1698,12 @@
         </div>
     </section>
 
-    <h2 class="section-h2">Methodology</h2>
-
-    <section class="lb-section" id="methodology">
-        <details class="lb-full">
-            <summary>Show methodology — data collection and processing notes</summary>
-            <div class="methodology-body">
-                <p>
-                    I started by wanting to assemble a complete list of projects broken down by epoch, with exact ETH amounts (allocated and matched separately) and recipient addresses, so I could compare them and split them into categories. Octant publishes aggregated numbers per epoch in its docs and dashboard, plus a leaderboard for each epoch separately, but I couldn’t find a single dataset covering all projects with precise amounts across the entire history. I had to put it together myself.
+    <section class="lb-section methodology-section" id="methodology">
+        <div class="methodology-eyebrow">Appendix</div>
+        <h2 class="methodology-h2">Methodology</h2>
+        <div class="methodology-body">
+            <p>
+                I started by wanting to assemble a complete list of projects broken down by epoch, with exact ETH amounts (allocated and matched separately) and recipient addresses, so I could compare them and split them into categories. Octant publishes aggregated numbers per epoch in its docs and dashboard, plus a leaderboard for each epoch separately, but I couldn’t find a single dataset covering all projects with precise amounts across the entire history. I had to put it together myself.
                 </p>
                 <p>
                     I started by opening the Octant app in a browser, switching epochs in DevTools Network tab, and catching the XHR requests that pull the leaderboard. The base URL turned out to be <code>backend.mainnet.octant.app</code>. I opened <code>/openapi.json</code> and got the Swagger spec with all V1 API endpoints. The API is public, no auth, runs on top of an Ethereum subgraph. I wrote a Python script hitting three relevant endpoints (per-epoch leaderboard, aggregate stats, address-to-name mapping), ran it across all 12 epochs, and saved the JSON.
@@ -1733,8 +1755,7 @@
                 <p>
                     For USD conversions I used $3,000 per ETH as a rough average across QF epochs (August 2023 to January 2026). The real price ranged $1,600–$4,200. This isn’t critical for directional analysis (leverage ratios, distribution patterns), but it’s worth keeping in mind when interpreting specific USD numbers like “$500 average match per donor” or “$128,000 ZachXBT matching”.
                 </p>
-            </div>
-        </details>
+        </div>
     </section>
 
 
