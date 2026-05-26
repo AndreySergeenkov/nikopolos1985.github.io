@@ -704,7 +704,6 @@
         @media (max-width: 820px) {
             .vs-row { grid-template-columns: 1fr; gap: 12px; }
             .vs-dotgrid { width: 100%; }
-            .vs-stack-bar { width: 100% !important; }
         }
 
         @media (max-width: 560px) {
@@ -810,9 +809,6 @@
             letter-spacing: 0.08em;
             color: var(--grey-30);
         }
-        .lb-card-legend > span {
-            white-space: nowrap;
-        }
         .lb-card-legend .dot {
             display: inline-block;
             width: 8px; height: 8px;
@@ -888,6 +884,7 @@
             line-height: 1;
         }
         .lb-full[open] > summary::before { content: '−'; }
+        .lb-full:not([open]) > .lb-full-body { display: none; }
 
         .lb-full-body {
             margin-top: 20px;
@@ -922,7 +919,7 @@
             white-space: nowrap;
         }
 
-        .lb-table-scroll { max-height: 560px; overflow: auto; }
+        .lb-table-scroll { max-height: 560px; max-width: 100%; overflow: auto; }
         .lb-table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .lb-table thead th {
             position: sticky;
@@ -1205,8 +1202,10 @@
         #returnersSlopeSvg .slope-axis  { stroke: var(--grey-70); stroke-width: 0.5; }
 
         /* Three-case leverage comparison table (Solidity vs hevm vs ZachXBT) */
+        #leverageCasesHost { max-width: 100%; overflow-x: auto; }
         .lc-table {
             width: 100%;
+            min-width: 480px;
             border-collapse: collapse;
             font-size: 13px;
             margin: 14px 0 6px;
@@ -1289,6 +1288,8 @@
             .spark-table td.spk { width: 130px; padding-right: 8px; }
             .spark-table td.nm { font-size: 12px; }
             .spark-table td.tot small { display: none; }
+            /* Epoch labels (E1..E11) don't fit in the narrow sparkline column on mobile */
+            .spark-table tfoot { display: none; }
         }
     </style>
 </head>
@@ -1450,7 +1451,7 @@
             </div>
             <div class="lb-card-legend">
                 <span><span class="dot dot-ret"></span>Recurring projects (took part in 2 or more epochs)</span>
-                <span><span class="dot dot-one"></span>One-time projects</span>
+                <span><span class="dot dot-one"></span>One&#8209;time projects</span>
             </div>
         </div>
 
@@ -2334,7 +2335,7 @@
                 const y = spH - h;
                 return `<rect x="${x}" y="${y}" width="${barW}" height="${h}" fill="#ff9602"><title>Epoch ${i+1}: ${v} ETH</title></rect>`;
             }).join('');
-            const spark = `<svg viewBox="0 0 ${spW} ${spH}" width="${spW}" height="${spH}" preserveAspectRatio="none">${bars}</svg>`;
+            const spark = `<svg viewBox="0 0 ${spW} ${spH}" width="100%" height="${spH}" preserveAspectRatio="none" style="display:block;">${bars}</svg>`;
             return `<tr>
                 <td class="rk">${s.rank.toString().padStart(2,'0')}</td>
                 <td class="nm">${s.name}</td>
