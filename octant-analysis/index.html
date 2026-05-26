@@ -800,13 +800,18 @@
 
         .lb-card-legend {
             display: flex;
+            flex-wrap: wrap;
             gap: 18px;
+            row-gap: 8px;
             margin-top: 14px;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--grey-30);
+        }
+        .lb-card-legend > span {
+            white-space: nowrap;
         }
         .lb-card-legend .dot {
             display: inline-block;
@@ -1272,6 +1277,18 @@
             h1 { font-size: 36px; }
             .lb-row { grid-template-columns: 24px 1fr 90px; }
             .lb-row .bar { display: none; }
+
+            /* Dual-bar fits in narrow viewports without label overflow */
+            .dual-bar { gap: 16px; }
+            .bar-col { max-width: none; }
+            .bar-seg { padding: 8px 10px; }
+            .bar-seg .pct { font-size: 18px; }
+            .bar-seg .lbl { font-size: 9px; letter-spacing: 0.04em; }
+
+            /* Sparkline table: name and total columns get more room, sparkline shrinks */
+            .spark-table td.spk { width: 130px; padding-right: 8px; }
+            .spark-table td.nm { font-size: 12px; }
+            .spark-table td.tot small { display: none; }
         }
     </style>
 </head>
