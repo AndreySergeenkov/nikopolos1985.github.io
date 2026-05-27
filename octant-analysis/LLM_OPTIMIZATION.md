@@ -89,8 +89,9 @@ Also useful for AI tools that don't fetch URLs but accept pasted
 context (paid ChatGPT users without browse mode, isolated dev
 agents, etc.).
 
-**Where it is in the page.** Right after the opening section
-(after the Mashal quote), before the first H2.
+**Where it is in the page.** Directly under the H1, above the
+opening paragraph, so it's the first interactive element a reader
+or AI-curious visitor encounters.
 
 ## How the three work together
 
