@@ -200,15 +200,15 @@
 
         /* Smooth anchor scrolling + offset so target text isn't hidden behind top nav */
         html { scroll-behavior: smooth; }
-        :target {
+        :target:not(#top) {
             scroll-margin-top: 48px;
-            animation: target-flash 2.6s ease-out;
+            animation: target-flash 4s ease-out;
             border-radius: 3px;
         }
         @keyframes target-flash {
-            0%   { background-color: rgba(120, 240, 226, 0.22); box-shadow: 0 0 0 6px rgba(120, 240, 226, 0.22); }
-            18%  { background-color: rgba(120, 240, 226, 0.22); box-shadow: 0 0 0 6px rgba(120, 240, 226, 0.22); }
-            100% { background-color: transparent;               box-shadow: 0 0 0 0   rgba(120, 240, 226, 0);    }
+            0%   { background-color: rgba(254, 253, 244, 0.14); box-shadow: 0 0 0 6px rgba(254, 253, 244, 0.14); }
+            30%  { background-color: rgba(254, 253, 244, 0.14); box-shadow: 0 0 0 6px rgba(254, 253, 244, 0.14); }
+            100% { background-color: transparent;                box-shadow: 0 0 0 0   rgba(254, 253, 244, 0);    }
         }
 
         /* ===== BACK TO TOP ===== */
