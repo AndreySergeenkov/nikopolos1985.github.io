@@ -1899,8 +1899,8 @@
         an AI agent that fetches the page URL (without executing
         JavaScript) still reads the chart data as plain text.
 
-        The 'Copy article + chart data for LLM' button at the top
-        copies the article prose plus this appendix to the
+        The 'Copy article for LLM' button at the top of the page
+        copies the article text plus this appendix to the
         clipboard.
         ============================================================
     -->
@@ -2796,7 +2796,7 @@ the appendix above are available at:
         window.addEventListener('scroll', update, { passive: true });
     })();
 
-    // Copy-for-LLM button: bundles the article prose plus the hidden
+    // Copy-for-LLM button: bundles the article text plus the hidden
     // data appendix (everything inside #llm-data) into a single
     // clipboard payload, with a small header so the LLM has context.
     function copyForLLM(btn) {

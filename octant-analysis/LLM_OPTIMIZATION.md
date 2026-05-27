@@ -30,7 +30,7 @@ download links to the CSV/JSON sources).
 
 **What it carries.** Top-level metadata only — title, author, date,
 a short description of what the dataset contains, and links to the
-raw data files. Not the full prose or chart tables.
+raw data files. Not the full article text or chart tables.
 
 **Why it's there.** Structured-data extractors (Google's rich
 results pipeline, some LLM-RAG pipelines, schema-aware crawlers)
@@ -50,7 +50,7 @@ distribution, three project-epoch comparison, pre-QF multipliers,
 funding split, etc.
 
 **What it carries.** Every figure that is otherwise shown only
-inside a JavaScript-rendered chart. The article prose stays in the
+inside a JavaScript-rendered chart. The article text stays in the
 visible HTML; this block only fills in what would be lost if JS is
 not executed.
 
@@ -58,8 +58,8 @@ not executed.
 tools is to make a single HTTP GET, convert the HTML to text or
 Markdown via a Readability-style pipeline, and feed that to the
 model. JavaScript is usually not executed. Without this block, an
-LLM that follows a shared URL only sees the prose and empty chart
-containers. With this block, it sees the prose plus a clean
+LLM that follows a shared URL only sees the body text and empty chart
+containers. With this block, it sees the body text plus a clean
 Markdown table of every number the charts hold.
 
 **How it's hidden.** The `.sr-only` CSS class keeps the element in
@@ -72,15 +72,15 @@ browser-based AI tools strip those.
 **Where it is in the page.** Just before `</main>`, after the
 Methodology section.
 
-## Technique 3 — "Copy article + chart data for LLM" button
+## Technique 3 — "Copy article for LLM" button
 
 **What it is.** A visible button near the top of the article that,
-on click, builds one big Markdown payload (article prose + the
+on click, builds one big Markdown payload (article text + the
 hidden data appendix from technique 2) and copies it to the
 clipboard. The reader can then paste it into any AI chat.
 
 **What it carries.** Everything technique 2 carries, plus the
-walking text of the article (title, headings, prose paragraphs,
+walking text of the article (title, headings, body paragraphs,
 key findings, methodology). One self-contained dump.
 
 **Why it's there.** For readers who explicitly want to feed the
@@ -99,14 +99,14 @@ A user can interact with this page in any of these ways and the AI
 still gets the data:
 
 1. **User shares the URL into an AI chat.** Tools that do plain GET
-   read the visible prose plus technique 2 (the hidden Markdown
+   read the visible body text plus technique 2 (the hidden Markdown
    appendix). Tools that read structured data also pick up
    technique 1 (JSON-LD).
 2. **User clicks the "Copy for LLM" button and pastes manually.**
-   The clipboard payload contains the prose plus the data
+   The clipboard payload contains the body text plus the data
    appendix in one Markdown document.
 3. **An indexing crawler visits the URL** (Perplexity-Bot,
-   ClaudeBot, Google-Extended). It sees JSON-LD, the visible prose,
+   ClaudeBot, Google-Extended). It sees JSON-LD, the visible body text,
    and the hidden appendix.
 4. **A user downloads the raw CSV/JSON files** directly. The links
    are in the JSON-LD `distribution` array and in the appendix's
