@@ -1331,7 +1331,7 @@
                 <li>The average donation in Octant QF is <strong>$19</strong> and shifts <a href="#effect-500">$500</a> of the matching pool toward a project.</li>
                 <li>The more donors, the <a href="#leverageCard">stronger the matching effect</a>.</li>
                 <li>10 more donors shift <a href="#effect-5000">+$5,000</a> of the matching pool toward a project on average, regardless of donation size.</li>
-                <li>For example, <a href="#zachxbt">ZachXBT in Epoch 9</a> raised $1,100 from 91 donors. The matching pool from staking yield added $128,000 on top. A 116× leverage.</li>
+                <li>For example, <a href="#zachxbt">ZachXBT in Epoch 9</a> raised $1,100 from 95 donors. The matching pool from staking yield added $128,000 on top. A 116× leverage.</li>
             </ul>
         </div>
 
@@ -1635,7 +1635,7 @@
             </div>
         </div>        <div class="lb-summary">
             <p id="zachxbt">
-                ZachXBT's 91 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
+                ZachXBT's 95 small donors collectively contributed roughly $1,100 to his Octant Epoch 9 campaign. The matching pool added $128,000 on top. In Octant's QF model, donor breadth functions as a multiplier on user money, and ZachXBT's broad audience turned modest individual donations into a six-figure outcome.
             </p>
         </div>
 
@@ -1750,7 +1750,7 @@
                     Categorization was manual. I went through 134 projects, either already knowing the topic or looking at the project’s website. Each got one of the 9 categories. Borderline cases (for example, a project that was both a security tool and a DAO governance system) were resolved by primary function. After that I could see which categories dominate by funding volume and by average check per project.
                 </p>
                 <p>
-                    Then I wanted to understand how allocations work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 195 QF project-epoch combinations in epochs 1–11 and assembled a dataset of 17,595 individual allocations. Each record contains a donor address, project address, epoch, and amount in ETH.
+                    Then I wanted to understand how allocations work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 263 project-epoch combinations in V1 (epochs 1–11) and assembled a dataset of 17,595 individual allocations. Of these, 11,702 allocations came from the 195 project-epochs in QF rounds (E4–E11), which are the basis for the leverage analysis. Each record contains a donor address, project address, epoch, and amount in ETH.
                 </p>
                 <p>
                     All donor count metrics assume Gitcoin Passport effectively filters duplicate addresses across the donor base. Octant publishes per-epoch sybil reports which were not independently audited in this analysis.
@@ -2421,7 +2421,7 @@
         const projects = [
             { name: 'hevm',     epoch: 'E8', donors: 28, user_usd: 3660,  match_usd: 22800,  leverage: 6   },
             { name: 'Solidity', epoch: 'E8', donors: 84, user_usd: 3810,  match_usd: 63300,  leverage: 17  },
-            { name: 'ZachXBT',  epoch: 'E9', donors: 91, user_usd: 1100,  match_usd: 128000, leverage: 116 },
+            { name: 'ZachXBT',  epoch: 'E9', donors: 95, user_usd: 1100,  match_usd: 128000, leverage: 116 },
         ];
 
         const metrics = [
