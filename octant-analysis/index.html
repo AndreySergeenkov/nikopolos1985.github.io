@@ -8,6 +8,52 @@
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="referrer" content="no-referrer">
     <title>Octant Projects Analysis</title>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "An Analysis of Quadratic Funding Mechanics and Outcomes in Octant",
+      "author": {
+        "@type": "Person",
+        "name": "Andrey Sergeenkov",
+        "url": "https://sergeenkov.com"
+      },
+      "datePublished": "2026-05",
+      "about": {
+        "@type": "Thing",
+        "name": "Octant V1",
+        "description": "Quadratic funding matching pool that distributed 3,405 ETH to 134 projects across 12 epochs (E0 to E11, August 2023 to early 2026), with 1,270 unique donors. 96% from staking yield, 4% from user donations."
+      },
+      "keywords": ["Quadratic Funding", "Octant", "Ethereum", "Public Goods", "Matching Pool"],
+      "mainEntity": {
+        "@type": "Dataset",
+        "name": "Octant V1 leaderboard and per-epoch breakdown",
+        "description": "134 projects with cumulative ETH funding, allocated/matched split, category and epochs participated. Plus 17,595 individual allocations from 1,270 unique donors across 11 V1 epochs.",
+        "creator": { "@type": "Person", "name": "Andrey Sergeenkov" },
+        "distribution": [
+          {
+            "@type": "DataDownload",
+            "name": "Cumulative leaderboard (134 projects, all epochs)",
+            "encodingFormat": "text/csv",
+            "contentUrl": "https://sergeenkov.com/octant-analysis/octant_leaderboard_categorized_v1.csv"
+          },
+          {
+            "@type": "DataDownload",
+            "name": "Donor counts per project-epoch (V1)",
+            "encodingFormat": "text/csv",
+            "contentUrl": "https://sergeenkov.com/octant-analysis/octant_donor_counts_v1.csv"
+          },
+          {
+            "@type": "DataDownload",
+            "name": "Pre-computed chart data",
+            "encodingFormat": "application/json",
+            "contentUrl": "https://sergeenkov.com/octant-analysis/octant_chart_data_v1.json"
+          }
+        ]
+      }
+    }
+    </script>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -212,6 +258,55 @@
         }
 
         /* ===== BACK TO TOP ===== */
+        /* ===== ACCESSIBILITY — visually-hidden block kept in DOM and a11y tree =====
+           Used for the LLM data appendix at the bottom of <main>. Hidden from
+           sighted users but present in the HTML source, so AI tools that fetch
+           the page (without executing JS) still see the chart data as text. */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ===== "Copy for LLM" button ===== */
+        .llm-copy-bar {
+            max-width: 760px;
+            margin: 32px auto 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .llm-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-family: ui-monospace, monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--light-80);
+            background: var(--grey-90);
+            border: 0.5px solid var(--grey-70);
+            border-radius: var(--r-btn);
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+        }
+        .llm-copy-btn:hover {
+            background: var(--grey-80);
+            border-color: var(--orange-20);
+            color: var(--orange);
+        }
+        .llm-copy-btn.copied {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
         /* ===== BACK TO TOP — fixed pill, appears after scroll ===== */
         .btt {
             position: fixed;
@@ -1346,6 +1441,13 @@
         </p>
     </div>
 
+    <div class="llm-copy-bar">
+        <button class="llm-copy-btn" type="button" onclick="copyForLLM(this)">
+            <svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg>
+            Copy article + chart data for LLM
+        </button>
+    </div>
+
     <h2 class="section-h2">Which projects received the most funding from Octant</h2>
 
     <section class="lb-section" id="leaderboard">
@@ -1787,6 +1889,212 @@
         </div>
     </section>
 
+    <!--
+        ============================================================
+        DATA APPENDIX FOR AI TOOLS AND SCREEN READERS
+
+        This block is visually hidden via .sr-only but stays in the
+        DOM. It contains every number that is otherwise shown only
+        in interactive charts, written as Markdown tables. This way
+        an AI agent that fetches the page URL (without executing
+        JavaScript) still reads the chart data as plain text.
+
+        The 'Copy article + chart data for LLM' button at the top
+        copies the article prose plus this appendix to the
+        clipboard.
+        ============================================================
+    -->
+    <section id="llm-data" class="sr-only" aria-label="Full chart data appendix for AI tools and screen readers">
+<pre>
+# Octant V1 — full chart data appendix
+
+This appendix duplicates every figure shown in the interactive charts above
+as plain text, so it can be read without executing JavaScript.
+
+Period covered: Epoch 0 (August 2023, pre-launch curated round) through
+Epoch 11 (early 2026). 2.5 years, 12 funding rounds, 134 unique projects,
+1,270 unique donors, 17,595 individual allocations, 3,405 ETH distributed
+in total. USD conversions use $3,000 per ETH unless stated otherwise.
+
+## Top 10 projects by cumulative ETH (E0–E11)
+
+| Rank | Project                 | Total ETH | Epochs |
+|------|-------------------------|-----------|--------|
+| 1    | Protocol Guild          | 323.23    | 10     |
+| 2    | Gitcoin                 | 270.24    | 4      |
+| 3    | Tor Project             | 138.51    | 7      |
+| 4    | Giveth                  | 133.98    | 4      |
+| 5    | L2BEAT                  | 127.57    | 7      |
+| 6    | Rotki                   | 123.19    | 7      |
+| 7    | Revoke.cash             | 115.87    | 6      |
+| 8    | Hypercerts              | 102.57    | 6      |
+| 9    | EthStaker               |  94.90    | 8      |
+| 10   | GrowThePie              |  94.18    | 5      |
+
+Top 10 share of total funding: 1,524 of 3,405 ETH = 44.8%.
+Top 30 share: 75.3%. Top 50 share: 88.2%.
+
+## Top 10 projects: ETH per epoch (E1–E11)
+
+Epoch 0 is excluded because it predates the V1 API. Empty cells are
+epochs where the project did not participate.
+
+| Project        | E1   | E2   | E3   | E4   | E5   | E6   | E7 | E8   | E9 | E10  | E11 |
+|----------------|------|------|------|------|------|------|----|------|----|------|-----|
+| Protocol Guild | 43.5 | 36.6 | 77.4 | 48.8 | 32.9 | 32.6 |    | 17.2 |    | 14.7 | 0.6 |
+| Gitcoin        |  8.2 |  5.6 |  0.2 |      |      |      |    |      |    |      |     |
+| Tor Project    | 26.2 |  8.9 |  0.4 | 45.4 | 19.9 | 18.2 |    |      |    |      |     |
+| Giveth         | 13.8 | 10.2 | 13.3 |      |      |      |    |      |    |      |     |
+| L2BEAT         |      | 16.1 |  0.1 | 16.1 | 15.6 | 37.1 |    | 11.8 |    | 30.7 |     |
+| Rotki          | 33.9 | 11.1 | 19.8 | 11.5 | 28.9 |  8.7 |    |      |    |      |     |
+| Revoke.cash    |      | 15.3 |  0.1 | 24.7 | 22.3 | 29.2 |    |      |    | 24.2 |     |
+| Hypercerts     | 27.7 | 16.4 | 27.7 | 13.1 | 12.7 |      |    |      |    |      |     |
+| EthStaker      |  6.8 | 18.3 |  0.1 | 10.4 |  5.7 |  3.3 |    |      |    |  7.6 |     |
+| GrowThePie     |      |      | 52.2 |      |      |  5.0 |    |      |    |      |     |
+
+E7 is the Climate-themed round and E9 is the Ethereum Stories
+(media) themed round; general projects did not submit to those.
+
+## Recurring vs one-time projects
+
+| Group     | Projects   | % of projects | Total ETH | % of funding | Avg ETH/project |
+|-----------|------------|---------------|-----------|--------------|-----------------|
+| Recurring (2+ epochs)   | 50 | 37.3% | 2,874 | 84.4% | 57.5 |
+| One-time  (1 epoch)     | 84 | 62.7% |   531 | 15.6% |  6.3 |
+
+Per-project average difference: 9.1× in favor of recurring projects.
+
+## Funding by category (cumulative E0–E11)
+
+| Category                    | Projects | Total ETH | % of total | Avg ETH/project |
+|-----------------------------|----------|-----------|------------|-----------------|
+| Public Goods Funding        | 14       | 744.48    | 21.9%      | 53.2            |
+| Ethereum Infrastructure     |  7       | 516.82    | 15.2%      | 73.8            |
+| Developer Tools             | 21       | 494.66    | 14.5%      | 23.6            |
+| Research &amp; Analytics    |  9       | 375.03    | 11.0%      | 41.7            |
+| Security &amp; Privacy      | 10       | 353.61    | 10.4%      | 35.4            |
+| Climate &amp; Regenerative  | 23       | 300.36    |  8.8%      | 13.1            |
+| Community &amp; Coordination| 16       | 229.21    |  6.7%      | 14.3            |
+| Education &amp; Onboarding  |  8       | 227.51    |  6.7%      | 28.4            |
+| Media &amp; Storytelling    | 26       | 162.96    |  4.8%      |  6.3            |
+
+Five technical-stack categories (PGF, Eth Infra, Dev Tools, R&amp;A,
+Security &amp; Privacy) hold 73% of all funding. Themed rounds
+(Climate + Media) make up 37% of unique projects but only 13.6%
+of funding.
+
+## Ethereum Infrastructure: 7 projects inside the category
+
+| Project                                  | Total ETH | Epochs |
+|------------------------------------------|-----------|--------|
+| Protocol Guild                           | 323.23    | 10     |
+| Ethereum Attestation Service             |  78.87    |  6     |
+| Dappnode                                 |  48.56    |  5     |
+| Aestus MEV Relay                         |  46.93    |  4     |
+| Verifereum                               |   9.72    |  1     |
+| Commit-Boost                             |   9.17    |  1     |
+| Ephemery Testnet — Client Implementation |   0.34    |  1     |
+
+Protocol Guild alone holds 63% of the category. The remaining six
+split the other 37%.
+
+## Pre-QF matching multipliers (epochs 1–3)
+
+Before QF launched in Epoch 4, the pool was divided proportionally
+to user donations and every project in a given epoch received the
+same match-to-allocated multiplier.
+
+| Epoch | Multiplier |
+|-------|------------|
+| 1     | 44.4×      |
+| 2     | 58.4×      |
+| 3     | 14.3×      |
+
+A $100 donation from one person and one hundred $1 donations
+produced the same match.
+
+## QF mean leverage by average donation size (E4–E11)
+
+194 QF project-epoch combinations, 11,702 individual donations
+in QF rounds.
+
+| Avg donation bucket | Project-epochs | Mean leverage |
+|---------------------|----------------|---------------|
+| $0–$2               | 26             | 93.4×         |
+| $2–$5               | 34             | 64.8×         |
+| $5–$10              | 51             | 47.4×         |
+| $10–$25             | 50             | 39.7×         |
+| $25–$50             |  9             | 23.7×         |
+| $50+                | 24             |  9.2×         |
+
+Weighted average across all donors: $19 average donation,
+$500 average match per donor, 26× leverage.
+
+## Three QF cases: Solidity, hevm (Epoch 8), ZachXBT (Epoch 9)
+
+| Project  | Epoch | Donors | User donations (USD) | QF match (USD) | Leverage |
+|----------|-------|--------|----------------------|----------------|----------|
+| hevm     | E8    | 28     | $3,660               | $22,800        |   6×     |
+| Solidity | E8    | 84     | $3,810               | $63,300        |  17×     |
+| ZachXBT  | E9    | 95     | $1,100               | $128,000       | 116×     |
+
+In Epoch 8 Solidity and hevm received roughly equal user donations
+(about 1.2 ETH each), but Solidity had three times the donor count
+and received almost three times the match (21.1 ETH vs 7.6 ETH).
+ZachXBT in Epoch 9 turned a $1,100 user-side contribution into a
+$128,000 outcome thanks to a broad 95-donor base.
+
+## Donor participation distribution across 11 V1 epochs
+
+| Epochs participated | Donors | % of donor base |
+|---------------------|--------|-----------------|
+|  1                  | 497    | 39.1%           |
+|  2                  | 252    | 19.8%           |
+|  3                  | 145    | 11.4%           |
+|  4                  | 155    | 12.2%           |
+|  5                  |  67    |  5.3%           |
+|  6                  |  40    |  3.1%           |
+|  7                  |  31    |  2.4%           |
+|  8                  |  26    |  2.0%           |
+|  9                  |  24    |  1.9%           |
+| 10                  |  22    |  1.7%           |
+| 11                  |  11    |  0.9%           |
+
+Aggregated tiers:
+- One-time (1 epoch): 497 donors, 39.1%
+- Casual (2–3 epochs): 397 donors, 31.3%
+- Regulars (4–6 epochs): 262 donors, 20.6%
+- Committed (7–9 epochs): 81 donors, 6.4%
+- Core (10–11 epochs): 33 donors, 2.6%
+
+Cumulative ≥ N epochs (share of all 1,270 donors):
+- ≥ 1: 100%
+- ≥ 2: 60.9% (773 donors)
+- ≥ 5: 17.4% (221 donors)
+- ≥ 10: 2.6% (33 donors)
+- 11 (perfect attendance): 0.9% (11 donors)
+
+## Funding sources in Octant V1 (epochs 1–11)
+
+| Source                                     | ETH      | Share  |
+|--------------------------------------------|----------|--------|
+| Matching pool (staking yield direct)       | 2,760    | 96.2%  |
+| User allocations (personal rewards donated)|   109.51 |  3.8%  |
+| **Total V1**                               | 2,870    | 100%   |
+
+Epoch 0 (pre-launch, 535 ETH curated round) is not included in V1
+totals above. All-time total across E0–E11 is 3,405 ETH.
+
+## Data files
+
+The full machine-readable datasets used to build the article and
+the appendix above are available at:
+
+- /octant-analysis/octant_leaderboard_categorized_v1.csv (134 projects)
+- /octant-analysis/octant_donor_counts_v1.csv (263 project-epoch rows)
+- /octant-analysis/octant_chart_data_v1.json (pre-computed chart data)
+</pre>
+    </section>
 
 </main>
 
@@ -2487,6 +2795,56 @@
         update();
         window.addEventListener('scroll', update, { passive: true });
     })();
+
+    // Copy-for-LLM button: bundles the article prose plus the hidden
+    // data appendix (everything inside #llm-data) into a single
+    // clipboard payload, with a small header so the LLM has context.
+    function copyForLLM(btn) {
+        const url = 'https://sergeenkov.com/octant-analysis/';
+        const title = document.querySelector('h1')?.textContent.trim() || '';
+
+        // Article body: every paragraph and heading inside <main>, in order,
+        // except the hidden appendix itself (we add it at the end).
+        const parts = [`# ${title}`, ``, `Source: ${url}`, ``];
+        const main = document.querySelector('main');
+        if (main) {
+            main.querySelectorAll('h2, h3, .draft-body p, .lb-summary p, .methodology-body p, .methodology-body ul, .methodology-h2, .methodology-eyebrow, .key-findings ul, .cat-list')
+                .forEach(el => {
+                    if (el.closest('#llm-data')) return;
+                    const tag = el.tagName.toLowerCase();
+                    const text = el.textContent.trim().replace(/\s+/g, ' ');
+                    if (!text) return;
+                    if (tag === 'h2') parts.push('', '## ' + text, '');
+                    else if (tag === 'h3') parts.push('', '### ' + text, '');
+                    else if (tag === 'ul') {
+                        el.querySelectorAll('li').forEach(li => {
+                            parts.push('- ' + li.textContent.trim().replace(/\s+/g, ' '));
+                        });
+                        parts.push('');
+                    } else {
+                        parts.push(text, '');
+                    }
+                });
+        }
+
+        // Append the hidden data appendix verbatim (already Markdown).
+        const dataBlock = document.querySelector('#llm-data pre');
+        if (dataBlock) {
+            parts.push('', dataBlock.textContent.trim());
+        }
+
+        const payload = parts.join('\n').replace(/\n{3,}/g, '\n\n');
+
+        navigator.clipboard.writeText(payload).then(() => {
+            const original = btn.innerHTML;
+            btn.classList.add('copied');
+            btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg> Copied';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = original;
+            }, 2000);
+        });
+    }
 </script>
 
 </body>
