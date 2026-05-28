@@ -110,6 +110,35 @@
             margin-bottom: 20px;
             font-size: 17px;
         }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 24px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .tldr li:last-child {
+            margin-bottom: 0;
+        }
         .article-image {
             width: 100%;
             max-width: 100%;
@@ -375,6 +404,17 @@
 
         <p>In my <a href="/thedao-curators-220m-hack-victims/">previous article</a>, I looked at how seven curators took control of $220 million in unclaimed TheDAO funds. Griff Green described the mission as ensuring Ethereum "is ready to become the backbone of the world's financial infrastructure." The initiative is part of the Ethereum Foundation's Trillion Dollar Security plan. But will this money actually make Ethereum safer?</p>
 
+        <div class="tldr">
+            <div class="tldr-title">Key Findings</div>
+            <ul>
+                <li>Repurposing $220M without owner consent <a href="#means-destroy-end">undermines the property guarantees</a> that Ethereum was built on.</li>
+                <li>The precedent <a href="#slippery-slope">extends to any smart contract wallet</a> with funds inactive for years, a risk that scales as users move to smart contract wallets via Account Abstraction.</li>
+                <li>DAO grant rounds <a href="#dao-grants">suffer from the Matthew Effect, sybils, and insider dealing</a>, so the money rarely reaches productive defenders.</li>
+                <li>Foundation upgrades <a href="#disconnected">open new attack surfaces faster than money can patch</a>: Fusaka alone led to <strong>$63.3M</strong> in address poisoning losses, 13&times; more than before the upgrade.</li>
+                <li>The scale of existing damage outpaces any budget: <a href="#too-broken"><strong>$8.49B</strong> across 220 incidents</a>, $2.7B in ERC-20 phishing, 4,400 sandwich attacks per day.</li>
+            </ul>
+        </div>
+
         <aside class="commission-box">
             <p><strong>I take on freelance research projects.</strong> Send me what you're working on and I'll come back in 1–2 days with a research proposal.</p>
             <div class="commission-box-actions">
@@ -390,7 +430,7 @@
         </aside>
 
 
-        <h2>The means destroy the end</h2>
+        <h2 id="means-destroy-end">The means destroy the end</h2>
 
         <p>Private property rights cannot be violated. This principle is what civilization is built on.</p>
 
@@ -404,7 +444,7 @@
             If funds in a smart contract can be repurposed after a period of inactivity, why would anyone trust Ethereum as long-term infrastructure?
         </div>
 
-        <h2>The slippery slope</h2>
+        <h2 id="slippery-slope">The slippery slope</h2>
 
         <p>There is also the problem of precedent escalation. Today it is unclaimed funds from 2016 that curators decided to stake and spend the rewards from. But each step lowers the threshold for the next one.</p>
 
@@ -416,7 +456,7 @@
 
         <p>Once the right to use other people's money for a good cause is established, the definition of "good cause" can expand, and so can the pool of funds considered available for it.</p>
 
-        <h2>You can't buy your way out of a problem you keep creating</h2>
+        <h2 id="dao-grants">You can't buy your way out of a problem you keep creating</h2>
 
         <p>As for Ethereum's blockchain security, the situation has reached a point where simply throwing money at the problem won't help.</p>
 
@@ -426,7 +466,7 @@
 
         <p>The winners will become slightly wealthier and perhaps even produce a few patches. Which hackers will bypass in short order.</p>
 
-        <h2>Disconnected from reality</h2>
+        <h2 id="disconnected">Disconnected from reality</h2>
 
         <p>The deeper problem is that Ethereum's leadership seems no longer capable of recognizing the consequences of their own actions. <a href="https://blockworks.co/news/ethereum-foundation-tradfi-push">Blockworks</a> described the situation as "the current narrative of Ethereum leadership being out of touch and uncompetitive." You cannot plug holes in a ship when the captains keep drilling new ones.</p>
 
@@ -442,7 +482,7 @@
 
         <p>And now they are setting a precedent that would allow declaring funds in smart contracts abandoned after a period of inactivity and using them without owners' consent. When millions of users transition to smart contract wallets through Account Abstraction, this could create risk for anyone who simply holds cryptocurrency long-term.</p>
 
-        <h2>Too broken to patch</h2>
+        <h2 id="too-broken">Too broken to patch</h2>
 
         <p>But even without new developer errors, the sheer number of vulnerabilities, attack types, and attack vectors in Ethereum is so vast — and hackers can adapt and launder funds so easily — that any security investment will simply be burned through.</p>
 
