@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,36 @@
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="referrer" content="no-referrer">
-    <title>Octant Projects Analysis</title>
+    <title>How Quadratic Funding Allocates Capital in Octant</title>
+
+    <link rel="canonical" href="https://octant.app/research/quadratic-funding-in-octant/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How Quadratic Funding Allocates Capital in Octant">
+    <meta property="og:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where 96% of payouts come from staking yield and a small base of donors directs where it goes.">
+    <meta property="og:url" content="https://octant.app/research/quadratic-funding-in-octant/">
+    <meta property="og:site_name" content="Octant">
+    <!-- OG image: 1200x630 PNG. Uncomment and host once the preview image exists.
+    <meta property="og:image" content="https://sergeenkov.com/octant-analysis/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How Quadratic Funding Allocates Capital in Octant">
+    <meta name="twitter:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where 96% of payouts come from staking yield and a small base of donors directs where it goes.">
+    <!-- <meta name="twitter:image" content="https://sergeenkov.com/octant-analysis/og-image.png"> -->
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "An Analysis of Quadratic Funding Mechanics and Outcomes in Octant",
+      "headline": "How Quadratic Funding Allocates Capital in Octant",
+      "url": "https://octant.app/research/quadratic-funding-in-octant/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://octant.app/research/quadratic-funding-in-octant/"
+      },
       "author": {
         "@type": "Person",
         "name": "Andrey Sergeenkov",
@@ -1406,7 +1429,7 @@
 <main>
 
     <header class="hero">
-        <h1>An Analysis of Quadratic Funding Mechanics and Outcomes in Octant</h1>
+        <h1>How Quadratic Funding Allocates Capital in Octant</h1>
     </header>
 
     <div class="llm-copy-bar">
@@ -2086,9 +2109,9 @@ totals above. All-time total across E0–E11 is 3,405 ETH.
 The full machine-readable datasets used to build the article and
 the appendix above are available at:
 
-- /octant-analysis/octant_leaderboard_categorized_v1.csv (134 projects)
-- /octant-analysis/octant_donor_counts_v1.csv (263 project-epoch rows)
-- /octant-analysis/octant_chart_data_v1.json (pre-computed chart data)
+- https://sergeenkov.com/octant-analysis/octant_leaderboard_categorized_v1.csv (134 projects)
+- https://sergeenkov.com/octant-analysis/octant_donor_counts_v1.csv (263 project-epoch rows)
+- https://sergeenkov.com/octant-analysis/octant_chart_data_v1.json (pre-computed chart data)
 </pre>
     </section>
 
@@ -2796,7 +2819,7 @@ the appendix above are available at:
     // data appendix (everything inside #llm-data) into a single
     // clipboard payload, with a small header so the LLM has context.
     function copyForLLM(btn) {
-        const url = 'https://sergeenkov.com/octant-analysis/';
+        const url = 'https://octant.app/research/quadratic-funding-in-octant/';
         const title = document.querySelector('h1')?.textContent.trim() || '';
 
         // Article body: every paragraph and heading inside <main>, in order,
