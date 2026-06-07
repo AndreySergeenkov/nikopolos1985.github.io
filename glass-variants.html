@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glass techniques — comparison lab</title>
+<style>
+  :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+  /* Bold, busy scene so every refraction / blur difference is obvious.
+     This is a comparison lab page, not the wiki site — colour is on purpose. */
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: #fff;
+    background:
+      radial-gradient(40% 50% at 18% 22%, #ff4d6d 0%, transparent 60%),
+      radial-gradient(45% 55% at 82% 18%, #ffd23f 0%, transparent 60%),
+      radial-gradient(50% 50% at 75% 80%, #2ec4b6 0%, transparent 60%),
+      radial-gradient(45% 55% at 20% 85%, #5a78ff 0%, transparent 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.08) 0 14px, transparent 14px 28px),
+      linear-gradient(135deg, #1b1340 0%, #3a2d72 100%);
+    background-attachment: fixed;
+    padding: 40px 20px 80px;
+  }
+
+  header { max-width: 1080px; margin: 0 auto 32px; }
+  header h1 { font-weight: 600; font-size: 26px; margin: 0 0 6px; }
+  header p { margin: 0; opacity: .8; max-width: 60ch; line-height: 1.5; font-size: 14px; }
+
+  .grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  /* Shared card content layout (technique-agnostic). */
+  .card {
+    position: relative;
+    border-radius: 18px;
+    padding: 26px 24px 24px;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .tag {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .85;
+    margin: 0 0 10px;
+  }
+  .card h2 { font-size: 19px; margin: 0 0 8px; font-weight: 600; }
+  .card .desc { font-size: 13.5px; line-height: 1.5; margin: 0 0 auto; opacity: .92; }
+  .meta { font-size: 11.5px; opacity: .8; margin-top: 16px; }
+  .meta b { font-weight: 600; }
+  .pill {
+    align-self: flex-start;
+    margin-top: 14px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.4);
+    color: #fff;
+  }
+
+  /* ============================================================
+     A — FROSTED (pure CSS glassmorphism). No SVG. Works everywhere.
+     ============================================================ */
+  .glass-frosted {
+    background: rgba(255,255,255,.14);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255,255,255,.4);
+    box-shadow:
+      0 8px 30px rgba(0,0,0,.25),
+      inset 0 1px 1px rgba(255,255,255,.6);
+  }
+
+  /* ============================================================
+     B — LIQUID RIPPLE. Fractal noise → feDisplacementMap.
+     Random, watery wobble over the whole surface. (Chromium)
+     ============================================================ */
+  .glass-ripple {
+    background: rgba(255,255,255,.10);
+    -webkit-backdrop-filter: blur(3px) saturate(150%);
+    backdrop-filter: url(#fx-ripple) blur(3px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.4);
+    box-shadow:
+      0 8px 30px rgba(0,0,0,.25),
+      inset 0 1px 1px rgba(255,255,255,.6);
+  }
+
+  /* ============================================================
+     C — EDGE REFRACTION (lens). A gradient displacement map:
+     neutral grey centre, channels ramp to the edges → distortion
+     concentrates on the rim, like a real glass bevel. (Chromium)
+     ============================================================ */
+  .glass-lens {
+    background: rgba(255,255,255,.08);
+    -webkit-backdrop-filter: blur(1px) saturate(150%);
+    backdrop-filter: url(#fx-lens) blur(1px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.45);
+    box-shadow:
+      0 10px 34px rgba(0,0,0,.28),
+      inset 0 1px 2px rgba(255,255,255,.8),
+      inset 0 0 22px rgba(255,255,255,.18);
+  }
+
+  /* ============================================================
+     D — CHROMATIC GLASS. R/G/B displaced by different amounts and
+     recombined → coloured fringing on the edges. (Chromium)
+     ============================================================ */
+  .glass-chroma {
+    background: rgba(255,255,255,.10);
+    -webkit-backdrop-filter: blur(2px) saturate(180%);
+    backdrop-filter: url(#fx-chroma) blur(2px) saturate(180%);
+    border: 1px solid rgba(255,255,255,.5);
+    box-shadow:
+      0 10px 34px rgba(0,0,0,.28),
+      inset 0 1px 2px rgba(255,255,255,.9),
+      inset 0 -2px 6px rgba(255,255,255,.4);
+  }
+  .glass-chroma::after {
+    content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+    background: linear-gradient(130deg, rgba(255,255,255,.5), transparent 45%);
+  }
+
+  /* ============================================================
+     E — NO-FILTER FALLBACK. Pure gradients + shadows, zero
+     backdrop-filter. Looks glassy on ANY browser; doesn't truly
+     refract what's behind it — it fakes it with light.
+     ============================================================ */
+  .glass-fallback {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.35), rgba(255,255,255,.08) 50%, rgba(255,255,255,.18)),
+      radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.4), transparent 50%);
+    border: 1px solid rgba(255,255,255,.55);
+    box-shadow:
+      0 8px 30px rgba(0,0,0,.25),
+      inset 0 1px 1px rgba(255,255,255,.8),
+      inset 0 -10px 24px rgba(255,255,255,.12);
+  }
+
+  /* ============================================================
+     F — SPECULAR RIM (SVG lighting). feSpecularLighting builds a
+     physically-lit bright edge from the shape's surface normals.
+     (Chromium for the backdrop distortion; rim shows broadly)
+     ============================================================ */
+  .glass-specular {
+    background: rgba(255,255,255,.10);
+    -webkit-backdrop-filter: blur(4px) saturate(150%);
+    backdrop-filter: url(#fx-specular) blur(4px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.35);
+    box-shadow: 0 10px 34px rgba(0,0,0,.28), inset 0 1px 2px rgba(255,255,255,.7);
+  }
+
+  .note {
+    max-width: 1080px; margin: 34px auto 0;
+    font-size: 12.5px; line-height: 1.6; opacity: .82;
+    background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.15);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .note code { background: rgba(255,255,255,.16); padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ===== SVG FILTER DEFINITIONS ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- B: fractal-noise ripple -->
+    <filter id="fx-ripple" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="2" seed="11" result="n"/>
+      <feGaussianBlur in="n" stdDeviation="2" result="nb"/>
+      <feDisplacementMap in="SourceGraphic" in2="nb" scale="40" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- C: edge / lens displacement using a gradient map (feImage data-URI).
+         Centre ≈ rgb(128,128) = no shift; edges ramp toward 0/255 = pushed out. -->
+    <filter id="fx-lens" x="-20%" y="-20%" width="140%" height="140%">
+      <feImage preserveAspectRatio="none" x="0" y="0" width="100%" height="100%"
+        href="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'&gt;&lt;defs&gt;&lt;linearGradient id='x' x1='0' y1='0' x2='1' y2='0'&gt;&lt;stop offset='0' stop-color='%23000'/&gt;&lt;stop offset='0.5' stop-color='%23800000'/&gt;&lt;stop offset='1' stop-color='%23ff0000'/&gt;&lt;/linearGradient&gt;&lt;linearGradient id='y' x1='0' y1='0' x2='0' y2='1'&gt;&lt;stop offset='0' stop-color='%23000'/&gt;&lt;stop offset='0.5' stop-color='%23008000'/&gt;&lt;stop offset='1' stop-color='%2300ff00'/&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;rect width='300' height='200' fill='url(%23x)'/&gt;&lt;rect width='300' height='200' fill='url(%23y)' style='mix-blend-mode:screen'/&gt;&lt;/svg&gt;"
+        result="map"/>
+      <feGaussianBlur in="map" stdDeviation="3" result="mapb"/>
+      <feDisplacementMap in="SourceGraphic" in2="mapb" scale="70" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- D: chromatic aberration — split R/G/B, displace each differently, recombine -->
+    <filter id="fx-chroma" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.013" numOctaves="2" seed="7" result="n"/>
+      <feGaussianBlur in="n" stdDeviation="1.5" result="m"/>
+      <feDisplacementMap in="SourceGraphic" in2="m" scale="95" xChannelSelector="R" yChannelSelector="G" result="dR"/>
+      <feColorMatrix in="dR" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>
+      <feDisplacementMap in="SourceGraphic" in2="m" scale="72" xChannelSelector="R" yChannelSelector="G" result="dG"/>
+      <feColorMatrix in="dG" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>
+      <feDisplacementMap in="SourceGraphic" in2="m" scale="50" xChannelSelector="R" yChannelSelector="G" result="dB"/>
+      <feColorMatrix in="dB" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>
+      <feBlend in="r" in2="g" mode="screen" result="rg"/>
+      <feBlend in="rg" in2="b" mode="screen"/>
+    </filter>
+
+    <!-- F: specular rim light from surface normals of a soft-edged shape -->
+    <filter id="fx-specular" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="1" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18" result="warp"/>
+      <feGaussianBlur in="warp" stdDeviation="0.5" result="warpb"/>
+      <feSpecularLighting in="warpb" surfaceScale="3" specularConstant="1.1"
+                          specularExponent="20" lighting-color="#ffffff" result="spec">
+        <feDistantLight azimuth="235" elevation="55"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceGraphic" operator="in" result="specClip"/>
+      <feComposite in="warpb" in2="specClip" operator="arithmetic" k1="0" k2="1" k3="0.9" k4="0"/>
+    </filter>
+  </defs>
+</svg>
+
+<header>
+  <h1>Glass effect — technique comparison</h1>
+  <p>The same card rendered six ways. Move/scroll over the colourful backdrop to see how each one bends, blurs and lights what's behind it. C, D and F rely on SVG-filter backdrops (Chromium); A and E work everywhere.</p>
+</header>
+
+<div class="grid">
+
+  <div class="card glass-frosted">
+    <p class="tag">A — Frosted</p>
+    <h2>Pure CSS glassmorphism</h2>
+    <p class="desc">Just <code>backdrop-filter: blur() saturate()</code> over a translucent tint. No refraction — only a clean frost.</p>
+    <p class="meta"><b>Support:</b> all modern browsers · <b>Cost:</b> cheap</p>
+    <span class="pill">Safest choice</span>
+  </div>
+
+  <div class="card glass-ripple">
+    <p class="tag">B — Liquid ripple</p>
+    <h2>Fractal-noise displacement</h2>
+    <p class="desc">Turbulence drives <code>feDisplacementMap</code>, wobbling the backdrop like water across the whole surface.</p>
+    <p class="meta"><b>Support:</b> Chromium · <b>Cost:</b> medium</p>
+    <span class="pill">Playful / watery</span>
+  </div>
+
+  <div class="card glass-lens">
+    <p class="tag">C — Edge refraction</p>
+    <h2>Gradient lens map</h2>
+    <p class="desc">A grey-centre gradient displacement map bends only the rim — the realistic "thick bevel" of true glass.</p>
+    <p class="meta"><b>Support:</b> Chromium · <b>Cost:</b> medium</p>
+    <span class="pill">Most realistic</span>
+  </div>
+
+  <div class="card glass-chroma">
+    <p class="tag">D — Chromatic</p>
+    <h2>RGB channel split</h2>
+    <p class="desc">Each colour channel is displaced differently, giving the coloured edge fringing of dispersive glass.</p>
+    <p class="meta"><b>Support:</b> Chromium · <b>Cost:</b> higher</p>
+    <span class="pill">Most "premium"</span>
+  </div>
+
+  <div class="card glass-fallback">
+    <p class="tag">E — No-filter fallback</p>
+    <h2>Gradients + shadows only</h2>
+    <p class="desc">Fakes glass with layered highlights and shadows. Doesn't truly refract, but renders identically everywhere.</p>
+    <p class="meta"><b>Support:</b> universal · <b>Cost:</b> cheapest</p>
+    <span class="pill">Bulletproof</span>
+  </div>
+
+  <div class="card glass-specular">
+    <p class="tag">F — Specular rim</p>
+    <h2>SVG lighting</h2>
+    <p class="desc"><code>feSpecularLighting</code> builds a physically-lit bright edge from surface normals — a glossy lit bevel.</p>
+    <p class="meta"><b>Support:</b> Chromium · <b>Cost:</b> higher</p>
+    <span class="pill">Glossy / lit</span>
+  </div>
+
+</div>
+
+<p class="note">
+  <b>Picking one for the wiki site:</b> on a near-white page there's little colour behind the glass to refract,
+  so the dramatic options (C/D/F) show mostly as a faint shimmer. For that context <b>A (Frosted)</b> or
+  <b>C (Edge refraction)</b> with a very subtle backdrop read best and stay legible. The flashy variants shine on
+  rich, photographic backgrounds like this lab. Tell me which one to wire into <code>glass-demo.html</code>.
+</p>
+
+</body>
+</html>
