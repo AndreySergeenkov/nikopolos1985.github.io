@@ -9,15 +9,12 @@
     <link href="style.css" rel="stylesheet">
     <!-- ===== Liquid glass experiment (temporary) ===== -->
     <style>
-      /* Calm light backdrop, but with a faint line grid + soft pastel shapes.
-         The grid matters: glass bends straight lines at its edges, so the
-         distortion stays clearly visible even without loud colour. */
+      /* Clean, light "wiki" backdrop — near-white, no grid/tiles.
+         A few very soft pastel clouds give the glass just enough to refract
+         without making the page look busy. */
       body {
-        color: #2a2f3a;
-        background:
-          repeating-linear-gradient(0deg,  rgba(70,90,140,.06) 0 1px, transparent 1px 30px),
-          repeating-linear-gradient(90deg, rgba(70,90,140,.06) 0 1px, transparent 1px 30px),
-          linear-gradient(160deg, #eef1f6 0%, #e4e9f2 55%, #dfe6f0 100%);
+        color: #202122;
+        background: linear-gradient(170deg, #fbfcfe 0%, #f3f5f9 60%, #eef1f6 100%);
         background-attachment: fixed;
         min-height: 100vh;
       }
@@ -27,12 +24,12 @@
         inset: 0;
         z-index: -1;
         background:
-          radial-gradient(closest-side, rgba(110,140,255,.32), transparent) 15% 25% / 420px 420px,
-          radial-gradient(closest-side, rgba(255,150,120,.26), transparent) 85% 30% / 460px 460px,
-          radial-gradient(closest-side, rgba(90,205,180,.26), transparent) 70% 90% / 400px 400px;
+          radial-gradient(closest-side, rgba(120,150,255,.20), transparent) 12% 22% / 480px 480px,
+          radial-gradient(closest-side, rgba(255,170,140,.16), transparent) 88% 28% / 520px 520px,
+          radial-gradient(closest-side, rgba(110,210,185,.16), transparent) 72% 92% / 460px 460px;
         background-repeat: no-repeat;
-        filter: blur(6px);
-        animation: blob-drift 24s ease-in-out infinite alternate;
+        filter: blur(12px);
+        animation: blob-drift 26s ease-in-out infinite alternate;
       }
       @keyframes blob-drift {
         from { transform: translate3d(0,0,0) scale(1); }
@@ -51,7 +48,7 @@
         -webkit-backdrop-filter: blur(6px) saturate(180%);
         backdrop-filter: url(#glass-distortion) blur(6px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.8);
-        border-radius: 24px;
+        border-radius: 10px;
         box-shadow:
           0 12px 40px rgba(30, 40, 70, 0.22),
           inset 0 1px 2px rgba(255, 255, 255, 1),
@@ -93,7 +90,7 @@
         -webkit-backdrop-filter: blur(3px) saturate(140%);
         backdrop-filter: url(#glass-distortion) blur(3px) saturate(140%);
         border: 1px solid rgba(255,255,255,0.75);
-        border-radius: 999px;
+        border-radius: 4px;
         color: #0645ad;
         box-shadow:
           0 2px 8px rgba(40,50,80,.1),
@@ -108,7 +105,7 @@
       .award-line.glass {
         display: inline-block;
         padding: 10px 16px;
-        border-radius: 999px;
+        border-radius: 6px;
       }
 
       /* === Place 4: the commission box as a warm-tinted glass card === */
