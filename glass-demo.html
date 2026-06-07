@@ -9,36 +9,30 @@
     <link href="style.css" rel="stylesheet">
     <!-- ===== Liquid glass experiment (temporary) ===== -->
     <style>
-      /* Colourful, moving backdrop so the glass has something to refract.
-         Without content behind it, "glass" looks like plain frosted blur. */
+      /* Calm, light backdrop. Glass still needs *some* detail behind it to
+         refract, so we keep a few very soft pastel shapes — just muted. */
       body {
-        color: #f4f6fb;
-        background:
-          radial-gradient(120% 120% at 10% 0%, #ff5f6d 0%, transparent 45%),
-          radial-gradient(120% 120% at 90% 10%, #6a82fb 0%, transparent 50%),
-          radial-gradient(120% 120% at 50% 100%, #1fd1a5 0%, transparent 55%),
-          linear-gradient(135deg, #2b1055 0%, #7597de 100%);
+        color: #2a2f3a;
+        background: linear-gradient(160deg, #eef1f6 0%, #e4e9f2 55%, #dfe6f0 100%);
         background-attachment: fixed;
         min-height: 100vh;
       }
-      /* Floating colour blobs add high-contrast detail for the refraction. */
       body::before {
         content: "";
         position: fixed;
         inset: 0;
         z-index: -1;
         background:
-          radial-gradient(closest-side, rgba(255,213,0,.9), transparent) 12% 30% / 320px 320px,
-          radial-gradient(closest-side, rgba(255,0,128,.85), transparent) 82% 22% / 360px 360px,
-          radial-gradient(closest-side, rgba(0,229,255,.85), transparent) 70% 85% / 300px 300px,
-          radial-gradient(closest-side, rgba(124,255,0,.8), transparent) 20% 88% / 280px 280px;
+          radial-gradient(closest-side, rgba(120,150,255,.22), transparent) 15% 25% / 420px 420px,
+          radial-gradient(closest-side, rgba(255,170,140,.18), transparent) 85% 30% / 460px 460px,
+          radial-gradient(closest-side, rgba(120,210,190,.18), transparent) 70% 90% / 400px 400px;
         background-repeat: no-repeat;
-        filter: blur(8px);
-        animation: blob-drift 18s ease-in-out infinite alternate;
+        filter: blur(10px);
+        animation: blob-drift 24s ease-in-out infinite alternate;
       }
       @keyframes blob-drift {
         from { transform: translate3d(0,0,0) scale(1); }
-        to   { transform: translate3d(0,-24px,0) scale(1.08); }
+        to   { transform: translate3d(0,-18px,0) scale(1.05); }
       }
 
       /* ---- The reusable glass surface ----
@@ -49,18 +43,18 @@
          4. a soft drop shadow lifting it off the page   (outer shadow)      */
       .glass {
         position: relative;
-        background: rgba(255, 255, 255, 0.10);
-        -webkit-backdrop-filter: blur(2px) saturate(180%);
-        backdrop-filter: url(#glass-distortion) blur(2px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.45);
+        -webkit-backdrop-filter: blur(3px) saturate(150%);
+        backdrop-filter: url(#glass-distortion) blur(3px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 22px;
         box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.25),
-          inset 0 1px 1px rgba(255, 255, 255, 0.65),
-          inset 0 -1px 1px rgba(255, 255, 255, 0.18);
+          0 6px 24px rgba(40, 50, 80, 0.12),
+          inset 0 1px 1px rgba(255, 255, 255, 0.9),
+          inset 0 -1px 1px rgba(255, 255, 255, 0.4);
         overflow: hidden;
       }
-      /* Diagonal sheen sweeping across the surface (the specular gloss). */
+      /* Subtle diagonal sheen across the surface (the specular gloss). */
       .glass::after {
         content: "";
         position: absolute;
@@ -69,18 +63,15 @@
         pointer-events: none;
         background: linear-gradient(
           130deg,
-          rgba(255,255,255,.45) 0%,
-          rgba(255,255,255,.06) 30%,
+          rgba(255,255,255,.55) 0%,
+          rgba(255,255,255,.10) 28%,
           transparent 55%,
-          rgba(255,255,255,.10) 100%);
-        mix-blend-mode: screen;
+          rgba(255,255,255,.15) 100%);
       }
 
-      /* On the dark backdrop, links/text need a lighter palette. */
+      /* Light theme keeps the original near-black text + blue links. */
       .container { position: relative; z-index: 1; }
-      h1, h2, p, .role, .current-work, .award-line, .list-marker { color: #f4f6fb; }
-      a { color: #cfe0ff; }
-      .publication-name, .list-marker::before { color: #c3c9d6; }
+      a { color: #0645ad; }
 
       /* === Place 1: the header becomes a glass panel === */
       .header.glass {
@@ -88,22 +79,22 @@
         margin-bottom: 28px;
         align-items: center;
       }
-      .profile-photo { border-color: rgba(255,255,255,.55); }
+      .profile-photo { border-color: rgba(120,130,150,.45); }
 
       /* === Place 2: nav links as individual glass pills === */
       .profile-menu a {
-        background: rgba(255,255,255,0.12);
-        -webkit-backdrop-filter: blur(2px) saturate(160%);
-        backdrop-filter: url(#glass-distortion) blur(2px) saturate(160%);
-        border: 1px solid rgba(255,255,255,0.4);
+        background: rgba(255,255,255,0.5);
+        -webkit-backdrop-filter: blur(3px) saturate(140%);
+        backdrop-filter: url(#glass-distortion) blur(3px) saturate(140%);
+        border: 1px solid rgba(255,255,255,0.75);
         border-radius: 999px;
-        color: #ffffff;
+        color: #0645ad;
         box-shadow:
-          0 2px 8px rgba(0,0,0,.2),
-          inset 0 1px 1px rgba(255,255,255,.6);
+          0 2px 8px rgba(40,50,80,.1),
+          inset 0 1px 1px rgba(255,255,255,.9);
       }
       .profile-menu a:hover {
-        background: rgba(255,255,255,0.22);
+        background: rgba(255,255,255,0.7);
         text-decoration: none;
       }
 
@@ -112,25 +103,13 @@
         display: inline-block;
         padding: 10px 16px;
         border-radius: 999px;
-        color: #fff;
       }
 
       /* === Place 4: the commission box as a warm-tinted glass card === */
       .commission-box.glass {
-        background: rgba(255, 196, 0, 0.16);
-        border-color: rgba(255, 221, 120, 0.55);
-        border-left: 4px solid rgba(255, 200, 0, 0.85);
-      }
-      .commission-box.glass p { color: #fff; }
-      .commission-contact a {
-        background: rgba(255,255,255,0.14);
-        border-color: rgba(255,255,255,.4);
-        color: #fff;
-      }
-      .commission-copy {
-        background: rgba(255,255,255,0.14);
-        border-color: rgba(255,255,255,.4);
-        color: #eee;
+        background: rgba(255, 243, 205, 0.6);
+        border-color: rgba(226, 201, 122, 0.7);
+        border-left: 4px solid rgba(255, 193, 7, 0.85);
       }
 
       /* === Place 5: each article-list section as a glass card === */
@@ -138,19 +117,18 @@
         padding: 20px 24px;
         margin-top: 8px;
       }
-      .article-list.glass a { color: #e6eeff; }
 
       .glass-demo-banner {
         font-size: 12px;
         letter-spacing: .04em;
         text-transform: uppercase;
-        opacity: .75;
+        color: #6b7280;
         margin: 0 0 18px;
       }
 
       /* Browsers without backdrop-filter url() support still get frosted glass. */
       @supports not (backdrop-filter: blur(2px)) {
-        .glass { background: rgba(255,255,255,0.18); }
+        .glass { background: rgba(255,255,255,0.7); }
       }
     </style>
     <!-- Google tag (gtag.js) -->
@@ -186,7 +164,7 @@
             <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008"
                           numOctaves="2" seed="42" result="noise"/>
             <feGaussianBlur in="noise" stdDeviation="2" result="blurred"/>
-            <feDisplacementMap in="SourceGraphic" in2="blurred" scale="55"
+            <feDisplacementMap in="SourceGraphic" in2="blurred" scale="35"
                                xChannelSelector="R" yChannelSelector="G"/>
         </filter>
     </svg>
