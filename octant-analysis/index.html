@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="referrer" content="no-referrer">
     <title>How Quadratic Funding Allocates Capital in Octant</title>
 
@@ -84,6 +81,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /*
+         * Octant brand fonts. The src paths are root-relative (/assets/...),
+         * so they resolve and load automatically when this page is served
+         * from octant.app, with no edits needed there. On any other host
+         * (staging, archive) they 404 and the page falls back to Inter /
+         * IBM Plex below. We reference Octant's own hosted files here; the
+         * font binaries are never redistributed.
+         */
+        @font-face {
+            font-family: "Spiegel Sans";
+            src: url(/assets/SpiegelSans-5Regular-Bi4tjdui.woff2) format("woff2");
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: "Spiegel Sans";
+            src: url(/assets/SpiegelSans-5RegularItalic-DL9Jdi9M.woff2) format("woff2");
+            font-weight: 400; font-style: italic; font-display: swap;
+        }
+        @font-face {
+            font-family: "Spiegel Sans";
+            src: url(/assets/SpiegelSans-6SemiBold-DDpqZl_y.woff2) format("woff2");
+            font-weight: 600; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: "Spiegel Sans";
+            src: url(/assets/SpiegelSans-7Bold-BXCCJbkY.woff2) format("woff2");
+            font-weight: 700; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: "Arcane Fable";
+            src: url(/assets/arcane_fable-webfont-DCLlkZ98.woff2) format("woff2"),
+                 url(/assets/arcane_fable-webfont-BxlZKk4Q.woff) format("woff");
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
         :root {
             /* Octant base palette */
             --grey-100: #0d0d0d;
@@ -2799,8 +2830,8 @@ the appendix above are available at:
 </script>
 
 <footer>
-    <span>Octant Projects Analysis · Draft</span>
-    <span class="meta">noindex · internal review</span>
+    <span>How Quadratic Funding Allocates Capital in Octant</span>
+    <span class="meta">Research by Andrey Sergeenkov</span>
 </footer>
 
 <a class="btt" id="btt" href="#top" aria-label="Back to top"><span class="btt-arrow">↑</span> Back to top</a>
