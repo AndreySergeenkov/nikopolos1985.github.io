@@ -13,7 +13,7 @@
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="How Quadratic Funding Allocates Capital in Octant">
-    <meta property="og:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where 96% of payouts come from staking yield and a small base of donors directs where it goes.">
+    <meta property="og:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
     <meta property="og:url" content="https://octant.app/research/quadratic-funding-in-octant/">
     <meta property="og:site_name" content="Octant">
     <meta property="og:image" content="https://sergeenkov.com/octant-analysis/og-image.png">
@@ -23,7 +23,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How Quadratic Funding Allocates Capital in Octant">
-    <meta name="twitter:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where 96% of payouts come from staking yield and a small base of donors directs where it goes.">
+    <meta name="twitter:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
     <meta name="twitter:image" content="https://sergeenkov.com/octant-analysis/og-image.png">
     <meta name="twitter:image:alt" content="A research illustration: a hooded observer with a spyglass studies a starlit sky over a quiet desk with an hourglass and books.">
 
@@ -46,7 +46,7 @@
       "about": {
         "@type": "Thing",
         "name": "Octant V1",
-        "description": "Quadratic funding matching pool that distributed 3,405 ETH to 134 projects across 12 epochs (E0 to E11, August 2023 to early 2026), with 1,270 unique donors. 96% from staking yield, 4% from user donations."
+        "description": "Quadratic funding matching pool that distributed 3,405 ETH to 134 projects across 12 epochs (E0 to E11, August 2023 to early 2026), with 1,270 unique donors. Every payout comes from staking yield; donors earn a share of that yield and donate it back to decide where the matching pool goes."
       },
       "keywords": ["Quadratic Funding", "Octant", "Ethereum", "Public Goods", "Matching Pool"],
       "mainEntity": {
@@ -1447,8 +1447,8 @@
         <div class="key-findings" aria-label="Key findings">
             <div class="key-findings-title">Key Findings</div>
             <ul>
-                <li>Staking yield provides <a href="#funding-split"><strong>96% of payouts</strong></a> to projects.</li>
-                <li>The remaining <strong>4%</strong> comes from user donations, but those donations decide where the 96% goes.</li>
+                <li>Every ETH paid out comes from <a href="#funding-split"><strong>staking yield</strong></a>. Donors add none of their own capital.</li>
+                <li>Donors earn a share of that yield as rewards. The <strong>4%</strong> they donate back steers the other 96%.</li>
                 <li>An average <strong>$19</strong> donation in Octant QF brings a project <a href="#effect-500">$500 in matching</a>.</li>
                 <li>The more donors, the <a href="#leverageCard">stronger the matching effect</a>.</li>
                 <li>10 more donors bring a project <a href="#effect-5000">+$5,000 in matching</a> on average, regardless of donation size.</li>
@@ -1805,12 +1805,15 @@
         </div>
     </section>
 
-    <h2 class="section-h2">96% of payouts come from staking yield, 4% from user donations</h2>
+    <h2 class="section-h2">All payouts come from staking yield; donated rewards decide where it goes</h2>
 
     <section class="lb-section" id="funding-split">
         <div class="lb-summary">
             <p>
-                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,760 ETH</strong>. So final payouts to projects break down as 96% staking yield contribution and 4% user allocations, which decide where the yield goes.
+                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,760 ETH</strong>. So final payouts to projects break down as 96% from the matching pool and 4% from donated rewards, which decide where the yield goes.
+            </p>
+            <p>
+                The 100,000 ETH that Golem Foundation stakes produces a yield, and that yield splits two ways: part is paid to users as personal rewards for locking GLM, the rest forms the matching pool. A user who earns rewards can withdraw them or donate them to a project, and only donating unlocks the matching. So both shares of the payout come from the same staking yield. The 4% is the part that passed through users who chose to send their rewards (paid in WETH) to projects instead of pocketing them. That choice still costs them the rewards they gave up, but its real function is as a signal: it decides where the other 96% of the yield flows.
             </p>
         </div>
 
