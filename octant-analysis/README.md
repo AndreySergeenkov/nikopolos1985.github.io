@@ -4,12 +4,25 @@ A self-contained research page: "How Quadratic Funding Allocates Capital
 in Octant." Plain static HTML, CSS, and JavaScript. No framework, no build
 step. To publish it, serve this folder statically.
 
-The page is configured to live at:
+## Publish at this URL, or find-replace one string
+
+The page is built to be published at:
 
     https://octant.app/research/quadratic-funding-in-octant/
 
-If you publish it there, nothing below needs changing. If the path differs,
-see "If you publish at a different URL" near the end.
+This exact address is baked into the canonical tag, the social preview
+(`og:url`, `og:image`), and the structured data, because social and search
+crawlers need an absolute URL and do not run JavaScript, so it cannot be
+detected automatically. If you publish there, nothing needs changing and the
+page is fully self-hosted, with no link back to the author's site for any of
+its content.
+
+If you publish at a different path, do one find-replace across `index.html`:
+
+    find:     https://octant.app/research/quadratic-funding-in-octant/
+    replace:  <your actual page URL, with a trailing slash>
+
+The exact spots that string appears in are listed at the end of this file.
 
 ## What to deploy
 
