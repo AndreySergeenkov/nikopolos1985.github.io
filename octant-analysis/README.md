@@ -54,15 +54,20 @@ own `/assets/` is unaffected). Either allowlist `cdn.jsdelivr.net` and
 `fonts.googleapis.com` / `fonts.gstatic.com`, or self-host those two
 resources and update the two `<link>`/`<script>` tags.
 
-## Hosting note for the preview image and raw data
+## Everything is self-hosted in this folder
 
-The live charts are self-contained: they read the local CSV and JSON copies
-shipped in this folder. Two things, however, point at the author's domain
-(sergeenkov.com): the `og:image` / `twitter:image` preview, and the
-"download dataset" links inside the JSON-LD block. They keep working as long
-as that domain is up. For full independence, re-host `og-image.png` and the
-three data files on octant.app and update those absolute URLs in the
-`<head>` (search for `sergeenkov.com`).
+The page has no dependency on any outside domain for its own content. The
+charts read the CSV and JSON copies shipped here over relative paths. The
+`og:image` / `twitter:image` preview and the "download dataset" links in the
+JSON-LD block use absolute URLs under
+`https://octant.app/research/quadratic-funding-in-octant/`, which is where
+these files land once the folder is deployed there. The only outside link is
+the author's personal site in the JSON-LD `author` block, which is correct as
+an identity reference.
+
+Because `og:image` must be an absolute URL (social and search crawlers
+require it and do not run JavaScript), that base URL has to match the path
+you actually publish at. If it differs, see the last section.
 
 ## Indexing
 
