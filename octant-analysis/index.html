@@ -146,12 +146,12 @@
             --yellow:   #ffea4d;
             --green:    #92ff33;
 
-            /* Fonts (Spiegel Sans / Arcane Fable are proprietary — using close fallbacks) */
+            /* Fonts (Spiegel Sans / Arcane Fable are proprietary, using close fallbacks) */
             --font-sans:    "Spiegel Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             --font-display: "Arcane Fable", "IBM Plex Serif", Georgia, "Times New Roman", serif;
             --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-            /* Radii — Octant uses minimal radii */
+            /* Radii, Octant uses minimal radii */
             --r-card: 4px;
             --r-btn:  4px;
             --r-tag:  3px;
@@ -334,7 +334,7 @@
         }
 
         /* ===== BACK TO TOP ===== */
-        /* ===== ACCESSIBILITY — visually-hidden block kept in DOM and a11y tree =====
+        /* ===== ACCESSIBILITY: visually-hidden block kept in DOM and a11y tree =====
            Used for the LLM data appendix at the bottom of <main>. Hidden from
            sighted users but present in the HTML source, so AI tools that fetch
            the page (without executing JS) still see the chart data as text. */
@@ -383,7 +383,7 @@
             border-color: var(--green);
         }
 
-        /* ===== BACK TO TOP — fixed pill, appears after scroll ===== */
+        /* ===== BACK TO TOP: fixed pill, appears after scroll ===== */
         .btt {
             position: fixed;
             right: 24px;
@@ -1395,7 +1395,7 @@
             border-bottom: 0.5px solid var(--grey-70);
             padding-bottom: 10px;
         }
-        /* Zebra stripes — subtle, dark-mode-friendly */
+        /* Zebra stripes, subtle, dark-mode-friendly */
         .lc-table tbody tr:nth-child(odd) td {
             background: rgba(254, 253, 244, 0.025);
         }
@@ -1534,8 +1534,8 @@
 
     <section class="lb-section" id="leaderboard">
         <div class="lb-summary" id="lbSummary">
-            The top 10 projects collected <span class="hl"><span id="sumPct">—</span>%</span> of total funding
-            (<span class="hl"><span id="sumTop">—</span></span> of <span class="hl"><span id="sumAll">—</span></span> ETH).
+            The top 10 projects collected <span class="hl"><span id="sumPct">…</span>%</span> of total funding
+            (<span class="hl"><span id="sumTop">…</span></span> of <span class="hl"><span id="sumAll">…</span></span> ETH).
         </div>
 
         <div class="lb-actions lb-actions-top">
@@ -1605,13 +1605,13 @@
     <section class="lb-section" id="returners">
         <div class="lb-summary">
             <p>
-                The biggest funding in Octant goes to projects that participate in multiple epochs. <span class="hl"><span id="retShare">—</span>%</span> of recurring projects received <span class="hl"><span id="retFundShare">—</span>%</span> of total funding. The remaining <span class="hl"><span id="oneShare">—</span>%</span>, one-time projects, got only <span class="hl"><span id="oneFundShare">—</span>%</span>.
+                The biggest funding in Octant goes to projects that participate in multiple epochs. <span class="hl"><span id="retShare">…</span>%</span> of recurring projects received <span class="hl"><span id="retFundShare">…</span>%</span> of total funding. The remaining <span class="hl"><span id="oneShare">…</span>%</span>, one-time projects, got only <span class="hl"><span id="oneFundShare">…</span>%</span>.
             </p>
             <p style="margin-top:8px;">
-                Per project, a recurring project collected <span class="hl"><span id="retAvg">—</span> ETH</span> on average over its history in Octant. A one-time project collected just <span class="hl"><span id="oneAvg">—</span> ETH</span>.
+                Per project, a recurring project collected <span class="hl"><span id="retAvg">…</span> ETH</span> on average over its history in Octant. A one-time project collected just <span class="hl"><span id="oneAvg">…</span> ETH</span>.
             </p>
             <p style="margin-top:16px;">
-                A <span class="hl"><span id="avgRatio">—</span> difference per project</span> shows that Octant systematically rewards consistency and track record.
+                A <span class="hl"><span id="avgRatio">…</span> difference per project</span> shows that Octant systematically rewards consistency and track record.
             </p>
         </div>
 
@@ -1625,11 +1625,11 @@
             </div>
             <div class="dual-bar">
                 <div class="bar-col">
-                    <div class="bar-label">All <span id="dbTotalProj">—</span> projects</div>
+                    <div class="bar-label">All <span id="dbTotalProj">…</span> projects</div>
                     <div class="bar-stack" id="dbStackProj"></div>
                 </div>
                 <div class="bar-col">
-                    <div class="bar-label">Total funding, <span id="dbTotalFund">—</span> ETH</div>
+                    <div class="bar-label">Total funding, <span id="dbTotalFund">…</span> ETH</div>
                     <div class="bar-stack" id="dbStackFund"></div>
                 </div>
             </div>
@@ -1665,15 +1665,15 @@
                 To understand what Octant invests in thematically, I split projects into 9 main categories:
             </p>
             <ul class="cat-list">
-                <li><strong>Ethereum Infrastructure</strong> — core protocol, staking, MEV, attestations</li>
-                <li><strong>Developer Tools</strong> — compilers, libraries, IDEs, explorers</li>
-                <li><strong>Security &amp; Privacy</strong> — Tor, Shutter, identity, allowance management</li>
-                <li><strong>Public Goods Funding</strong> — meta-coordination of grants and funding tools</li>
-                <li><strong>Education &amp; Onboarding</strong> — educational programs and academies</li>
-                <li><strong>Research &amp; Analytics</strong> — data analytics, on-chain investigations</li>
-                <li><strong>Media &amp; Storytelling</strong> — content, journalism, documentary</li>
-                <li><strong>Community &amp; Coordination</strong> — DAO governance, community building</li>
-                <li><strong>Climate &amp; Regenerative</strong> — climate tech, ReFi, environmental</li>
+                <li><strong>Ethereum Infrastructure</strong>: core protocol, staking, MEV, attestations</li>
+                <li><strong>Developer Tools</strong>: compilers, libraries, IDEs, explorers</li>
+                <li><strong>Security &amp; Privacy</strong>: Tor, Shutter, identity, allowance management</li>
+                <li><strong>Public Goods Funding</strong>: meta-coordination of grants and funding tools</li>
+                <li><strong>Education &amp; Onboarding</strong>: educational programs and academies</li>
+                <li><strong>Research &amp; Analytics</strong>: data analytics, on-chain investigations</li>
+                <li><strong>Media &amp; Storytelling</strong>: content, journalism, documentary</li>
+                <li><strong>Community &amp; Coordination</strong>: DAO governance, community building</li>
+                <li><strong>Climate &amp; Regenerative</strong>: climate tech, ReFi, environmental</li>
             </ul>
             <p style="margin-top:16px;">
                 73% of all Octant funding went to five categories of the technical Ethereum stack. These categories also have the largest average payouts per project, up to 74 ETH in Ethereum Infrastructure versus 6 ETH in Media &amp; Storytelling.
@@ -1923,15 +1923,15 @@
                     Next I wanted to understand what Octant invests in thematically, but 134 names without grouping are hard to interpret. I needed categorization. I went through the list and assigned each project one of 9 categories:
                 </p>
                 <ul class="cat-list">
-                    <li><strong>Ethereum Infrastructure</strong> — core protocol, staking, MEV, attestations</li>
-                    <li><strong>Developer Tools</strong> — compilers, libraries, IDEs, explorers</li>
-                    <li><strong>Security &amp; Privacy</strong> — Tor, Shutter, identity, allowance management</li>
-                    <li><strong>Public Goods Funding</strong> — meta-coordination of grants and funding tools</li>
-                    <li><strong>Education &amp; Onboarding</strong> — educational programs and academies</li>
-                    <li><strong>Research &amp; Analytics</strong> — data analytics, on-chain investigations</li>
-                    <li><strong>Media &amp; Storytelling</strong> — content, journalism, documentary</li>
-                    <li><strong>Community &amp; Coordination</strong> — DAO governance, community building</li>
-                    <li><strong>Climate &amp; Regenerative</strong> — climate tech, ReFi, environmental</li>
+                    <li><strong>Ethereum Infrastructure</strong>: core protocol, staking, MEV, attestations</li>
+                    <li><strong>Developer Tools</strong>: compilers, libraries, IDEs, explorers</li>
+                    <li><strong>Security &amp; Privacy</strong>: Tor, Shutter, identity, allowance management</li>
+                    <li><strong>Public Goods Funding</strong>: meta-coordination of grants and funding tools</li>
+                    <li><strong>Education &amp; Onboarding</strong>: educational programs and academies</li>
+                    <li><strong>Research &amp; Analytics</strong>: data analytics, on-chain investigations</li>
+                    <li><strong>Media &amp; Storytelling</strong>: content, journalism, documentary</li>
+                    <li><strong>Community &amp; Coordination</strong>: DAO governance, community building</li>
+                    <li><strong>Climate &amp; Regenerative</strong>: climate tech, ReFi, environmental</li>
                 </ul>
                 <p>
                     Categorization was manual. I went through 134 projects, either already knowing the topic or looking at the project’s website. Each got one of the 9 categories. Borderline cases (for example, a project that was both a security tool and a DAO governance system) were resolved by primary function. After that I could see which categories dominate by funding volume and by average check per project.
@@ -1991,7 +1991,7 @@
     -->
     <section id="llm-data" class="sr-only" aria-label="Full chart data appendix for AI tools and screen readers">
 <pre>
-# Octant V1 — full chart data appendix
+# Octant V1: full chart data appendix
 
 This appendix duplicates every figure shown in the interactive charts above
 as plain text, so it can be read without executing JavaScript.
@@ -2078,7 +2078,7 @@ of funding.
 | Aestus MEV Relay                         |  46.93    |  4     |
 | Verifereum                               |   9.72    |  1     |
 | Commit-Boost                             |   9.17    |  1     |
-| Ephemery Testnet — Client Implementation |   0.34    |  1     |
+| Ephemery Testnet - Client Implementation |   0.34    |  1     |
 
 Protocol Guild alone holds 63% of the category. The remaining six
 split the other 37%.
@@ -2314,7 +2314,7 @@ the appendix above are available at:
                 a.click();
             } catch (err) {
                 console.error(err);
-                alert('PNG export failed — see console.');
+                alert('PNG export failed, see console.');
             } finally {
                 btn.textContent = orig;
                 btn.disabled = false;
@@ -2386,7 +2386,7 @@ the appendix above are available at:
     }
 
     // Stable color map: top-5 categories by funding get Octant accent colors,
-    // remaining 4 fall into grey shades — emphasizes the concentration story.
+    // remaining 4 fall into grey shades, emphasizes the concentration story.
     const CAT_COLORS = {
         'Public Goods Funding':       '#ff9602', // orange
         'Ethereum Infrastructure':    '#78f0e2', // teal
@@ -2570,7 +2570,7 @@ the appendix above are available at:
             const y = yScale(Math.min(d.leverage, yMax));
             const h = (H - M.bottom) - y;
             const label = `${Math.round(d.leverage)}×`;
-            parts.push(`<rect class="lev-bar" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.range} avg donation — ${d.leverage}× mean leverage (n=${d.n} project-epochs)</title></rect>`);
+            parts.push(`<rect class="lev-bar" x="${x}" y="${y}" width="${barW}" height="${h}"><title>${d.range} avg donation, ${d.leverage}× mean leverage (n=${d.n} project-epochs)</title></rect>`);
             parts.push(`<text class="lev-val" x="${cx}" y="${y - 10}" text-anchor="middle">${label}</text>`);
             parts.push(`<text class="lev-range" x="${cx}" y="${H - M.bottom + 20}" text-anchor="middle">${d.range}</text>`);
             parts.push(`<text class="lev-sub"   x="${cx}" y="${H - M.bottom + 36}" text-anchor="middle">n = ${d.n}</text>`);
