@@ -76,12 +76,6 @@ Because `og:image` must be an absolute URL (social and search crawlers
 require it and do not run JavaScript), that base URL has to match the path
 you actually publish at. If it differs, see the last section.
 
-## Indexing
-
-The page is ready to be indexed; there is no `noindex` tag. If you want to
-stage it privately first, add a `noindex` meta tag or block the path in your
-robots.txt, then remove that when you go live.
-
 ## Do not strip the hidden block
 
 Near the end of `<main>` there is a visually-hidden section (`id="llm-data"`)
