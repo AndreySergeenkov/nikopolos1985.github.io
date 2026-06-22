@@ -379,6 +379,26 @@
             color: #2e7d32;
             border-color: #2e7d32;
         }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 28px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+            font-family: sans-serif;
+        }
+        .tldr li { margin-bottom: 6px; color: #333; font-size: 14px; }
         .faq-item { margin: 0 0 22px; }
         .faq-q {
             font-weight: 600;
@@ -411,11 +431,23 @@
             <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; April 13, 2026</div>
         </header>
 
+        <div class="tldr">
+            <div class="tldr-title">Key Findings</div>
+            <ul>
+                <li>Polymarket sells its odds as the <a href="#accuracy">best real time event probabilities</a>.</li>
+                <li>But that accuracy is paid for by the <a href="#wisdom">crowd&rsquo;s losses</a>, 84% of which go to the top 1%.</li>
+                <li>Now a token airdrop is coming, and farmers are already <a href="#farming">wash trading to qualify</a>.</li>
+                <li>But <a href="#airdrop-fate">88% of airdrops</a> crash within three months, most losing 60 to 90% as farmers dump.</li>
+                <li>So I propose paying it out <a href="#proposal">only to those who lost money</a>, proportional to their losses.</li>
+                <li>And whoever moves first can do it from <a href="#competitor">public onchain data</a>. Even a rival.</li>
+            </ul>
+        </div>
+
         <p>A <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6443103">recent study</a> found that the top 1% of Polymarket users capture 84% of all trading profits, mostly at the expense of casual traders. The authors concluded that &ldquo;the informational benefits of prediction markets come at a cost to unsophisticated participants.&rdquo;</p>
 
-        <p>Polymarket fully capitalizes on this, using prediction accuracy as the platform&rsquo;s main selling point. They describe themselves as the best source of real-time event probabilities and recently launched a <a href="https://news.polymarket.com/p/new-polymarket-tools-for-journalists">portal</a> that helps journalists embed Polymarket odds directly into their articles.</p>
+        <p id="accuracy">Polymarket fully capitalizes on this, using prediction accuracy as the platform&rsquo;s main selling point. They describe themselves as the best source of real-time event probabilities and recently launched a <a href="https://news.polymarket.com/p/new-polymarket-tools-for-journalists">portal</a> that helps journalists embed Polymarket odds directly into their articles.</p>
 
-        <div class="highlight">The wisdom of the crowd is real, but the problem is that it is funded by the losses of the crowd.</div>
+        <div class="highlight" id="wisdom">The wisdom of the crowd is real, but the problem is that it is funded by the losses of the crowd.</div>
 
         <aside class="commission-box">
             <div class="commission-box-heading">Need similar research?</div>
@@ -436,7 +468,7 @@
 
         <p>In October 2025, Polymarket CMO Matthew Modabber <a href="https://www.coindesk.com/markets/2025/10/24/polymarket-will-launch-token-and-airdrop-after-u-s-relaunch-cmo-says">announced</a> that the platform is preparing for an airdrop: &ldquo;There will be a token, there will be an airdrop.&rdquo; Polymarket has not published an exact TGE date, official eligibility criteria, or allocation percentages.</p>
 
-        <p>Ahead of the airdrop, many groups of &ldquo;farmers&rdquo; started wash trading to meet the presumed airdrop criteria.</p>
+        <p id="farming">Ahead of the airdrop, many groups of &ldquo;farmers&rdquo; started wash trading to meet the presumed airdrop criteria.</p>
 
         <p>Shortly after the announcement, a study by <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">Columbia Business School</a> found that roughly 25% of all Polymarket trading volume shows signs of artificial activity. Co-author Allen Sirolly told <a href="https://decrypt.co/347842/columbia-study-25-polymarket-volume-wash-trading">Decrypt</a>: &ldquo;It is possibly related to airdrop farming.&rdquo;</p>
 
@@ -444,7 +476,7 @@
 
         <p>The <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">Columbia study</a> notes that any &ldquo;potential future airdrop should be designed to exclude such activities&rdquo; because airdrop farmers contribute neither liquidity nor information to the prediction market.</p>
 
-        <h2>Most Airdrops End With a Rug Pull Chart</h2>
+        <h2 id="airdrop-fate">Most Airdrops End With a Rug Pull Chart</h2>
 
         <p>According to a <a href="https://keyrock.com/airdrops-in-the-barren-desert/">Keyrock</a> report, 88% of airdropped tokens lose value within three months of launch, and most DeFi tokens lose 60&ndash;90% of their launch price as farmers exit their positions.</p>
 
@@ -480,7 +512,7 @@
 
         <p>Whatever the airdrop criteria may be, I propose that the Polymarket team use this information vacuum around the terms to reconsider them.</p>
 
-        <div class="highlight"><strong>Specifically, I propose airdropping the token only to those who lost money on Polymarket, proportional to their losses.</strong></div>
+        <div class="highlight" id="proposal"><strong>Specifically, I propose airdropping the token only to those who lost money on Polymarket, proportional to their losses.</strong></div>
 
         <p>This metric is impossible to farm or fake, and certainly could not have been predicted.</p>
 
@@ -492,7 +524,7 @@
 
         <p>Right now, the Polymarket team has a chance to turn the airdrop from a typically doomed endeavor into a strategic PR and regulatory move.</p>
 
-        <h2>A Competitor&rsquo;s Airdrop Could Take Polymarket&rsquo;s Best Users</h2>
+        <h2 id="competitor">A Competitor&rsquo;s Airdrop Could Take Polymarket&rsquo;s Best Users</h2>
 
         <p>To competitors of Polymarket, here is an opportunity worth considering.</p>
 
