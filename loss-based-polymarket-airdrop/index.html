@@ -53,6 +53,54 @@
         "mainEntityOfPage": "https://sergeenkov.com/loss-based-polymarket-airdrop/"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can't farmers manufacture losses by wash trading between their own wallets?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, because the proposal uses a retrospective snapshot, a past cutoff date that was never announced as a criterion. You cannot manufacture losses for a date that has already passed, so there was nothing to farm for. And since every loss is another wallet's gain, netting realized PnL across linked addresses cancels any self-dealing to zero before fees."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Doesn't paying losers reward reckless gambling and invite more of it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "What I propose is a one-time retrospective payout, not a standing policy, so it shapes no future bets. And nobody loses real money on purpose to chase a payout that is smaller than the loss itself."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why reward losers instead of the sharp traders who make the odds accurate?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The losers fund the entire system. Sharps profit only because someone takes the other side, and platform fees scale with the volume the crowd brings. Profit already keeps the sharps here, while the losers are the ones with every reason to leave, so retention is best aimed at them."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Won't recipients just dump the token?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No loss-based airdrop has been run, so this is untested. The usual dump data describes mercenary farmers cashing out a payout they planned for, whereas unexpected compensation reaches a different population, and on Polymarket that population is most active users, not a fringe."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How would a loss be defined?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "As net realized PnL per wallet at the snapshot, clustered across linked addresses. Polymarket already computes this for every account, so the proposal adds no new or gameable metric."
+                }
+            }
+        ]
+    }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
     <script>
@@ -322,6 +370,15 @@
             color: #2e7d32;
             border-color: #2e7d32;
         }
+        .faq-item { margin: 0 0 22px; }
+        .faq-q {
+            font-weight: 600;
+            font-size: 18px;
+            color: #000;
+            margin: 0 0 6px;
+            font-family: 'Linux Libertine', Georgia, serif;
+        }
+        .faq-item p { margin: 0; }
     </style>
 </head>
 <body>
@@ -432,6 +489,33 @@
         <p>Vampire attacks of this kind have a track record. SushiSwap pulled over $1 billion in liquidity away from Uniswap within weeks of launching with token rewards to Uniswap&rsquo;s liquidity providers in 2020. Blur overtook OpenSea in NFT trading volume within weeks of airdropping OpenSea&rsquo;s traders in 2023. The mechanism works because experienced users already understand the product and have skin in the game from a competitor.</p>
 
         <p>Whoever moves first with a loss-based airdrop targeting that group inherits the distribution.</p>
+
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+            <p class="faq-q">Can&rsquo;t farmers manufacture losses by wash trading between their own wallets?</p>
+            <p>No, because the proposal uses a retrospective snapshot, a past cutoff date that was never announced as a criterion. You cannot manufacture losses for a date that has already passed, so there was nothing to farm for. And since every loss is another wallet&rsquo;s gain, netting realized PnL across linked addresses cancels any self-dealing to zero before fees.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">Doesn&rsquo;t paying losers reward reckless gambling and invite more of it?</p>
+            <p>What I propose is a one-time retrospective payout, not a standing policy, so it shapes no future bets. And nobody loses real money on purpose to chase a payout that is smaller than the loss itself.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">Why reward losers instead of the sharp traders who make the odds accurate?</p>
+            <p>The losers fund the entire system. Sharps profit only because someone takes the other side, and platform fees scale with the volume the crowd brings. Profit already keeps the sharps here, while the losers are the ones with every reason to leave, so retention is best aimed at them.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">Won&rsquo;t recipients just dump the token?</p>
+            <p>No loss-based airdrop has been run, so this is untested. The usual dump data describes mercenary farmers cashing out a payout they planned for, whereas unexpected compensation reaches a different population, and on Polymarket that population is most active users, not a fringe.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">How would a loss be defined?</p>
+            <p>As net realized PnL per wallet at the snapshot, clustered across linked addresses. Polymarket already computes this for every account, so the proposal adds no new or gameable metric.</p>
+        </div>
 
         <div class="author-box">
             <div class="author-info">
