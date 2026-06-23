@@ -72,7 +72,7 @@
                 "name": "Can't farmers manufacture losses by wash trading between their own wallets?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "No, because the proposal uses a retrospective snapshot, a past cutoff date that was never announced as a criterion. You cannot manufacture losses for a date that has already passed, so there was nothing to farm for. And since every loss is another wallet's gain, netting realized PnL across linked addresses cancels any self-dealing to zero before fees."
+                    "text": "No. The snapshot I propose is retrospective, taken at a past cutoff that was never announced, so there was no date to farm toward. Wash trading also nets out, because one wallet's loss is another wallet's gain, so realized PnL clustered across linked wallets cancels self-dealing to zero before fees. The only residual is someone who wash-traded across deliberately unlinked wallets before the secret cutoff, which meant acting blind on an unknown date and still paying fees on every trade, so the leak is small and never worth pursuing."
                 }
             },
             {
@@ -80,7 +80,7 @@
                 "name": "Doesn't paying losers reward reckless gambling and invite more of it?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "What I propose is a one-time retrospective payout, not a standing policy, so it shapes no future bets. And nobody loses real money on purpose to chase a payout that is smaller than the loss itself."
+                    "text": "What I propose is a one-time retrospective payout, not a standing policy, so it sets no incentive for future bets. Even a user who expects a repeat gains nothing by losing on purpose, because the payout is by construction smaller than the loss itself. And since the snapshot is unannounced and already in the past, there is nothing to plan around, and repeating it predictably would destroy that property anyway."
                 }
             },
             {
@@ -88,7 +88,7 @@
                 "name": "Why reward losers instead of the sharp traders who make the odds accurate?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "The losers fund the entire system. Sharps profit only because someone takes the other side, and platform fees scale with the volume the crowd brings. Profit already keeps the sharps here, while the losers are the ones with every reason to leave, so retention is best aimed at them."
+                    "text": "The losing side is what funds the rest of the system. Sharps only profit because someone takes the other side, and platform fees scale with the volume the crowd brings. Retaining that losing flow therefore retains the sharps automatically, since it is the only thing they can profit from. Profit already keeps them here, and the losing traders are the ones with every reason to leave, which is why retention is best aimed at them."
                 }
             },
             {
@@ -96,7 +96,23 @@
                 "name": "Won't recipients just dump the token?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "No loss-based airdrop has been run, so this is untested. The usual dump data describes mercenary farmers cashing out a payout they planned for, whereas unexpected compensation reaches a different population, and on Polymarket that population is most active users, not a fringe."
+                    "text": "The dumping everyone cites comes overwhelmingly from mercenary farmers who acquired tokens specifically to sell, and a retrospective snapshot excludes exactly that population. What remains is ordinary profit-taking by people who never asked for the tokens, which is smaller and has never been measured on a compensated, non-farmer base. So the honest claim is that the largest documented source of selling is gone, and whether recipients hold is an open question rather than a known failure mode."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Doesn't compensating losers make Polymarket look like gambling and raise legal risk?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A one-time rebate does not change how the underlying product is classified, because that question turns on the nature of the contracts, not on whether money is returned afterward. Regulated brokers and licensed casinos both rebate part of what users lose without becoming something else. The real questions, securities treatment and taxes, attach to airdrops in general rather than to this design in particular. If anything the optics run toward consumer protection, the opposite of the worry. None of this is legal advice."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wouldn't the token budget be better spent rewarding the behavior you want, not past losses?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The design is retrospective on purpose. The goal is to retain the active paying base and reset the platform's public and regulatory standing, rather than to shape future behavior. The recipients are the most active users, not a fringe, so this spends the budget on the highest-value group to keep. Any program that instead pays for future behavior reintroduces the exact farmable metrics this proposal exists to remove."
                 }
             },
             {
@@ -538,22 +554,32 @@
 
         <div class="faq-item">
             <p class="faq-q">Can&rsquo;t farmers manufacture losses by wash trading between their own wallets?</p>
-            <p>No, because the proposal uses a retrospective snapshot, a past cutoff date that was never announced as a criterion. You cannot manufacture losses for a date that has already passed, so there was nothing to farm for. And since every loss is another wallet&rsquo;s gain, netting realized PnL across linked addresses cancels any self-dealing to zero before fees.</p>
+            <p>No. The snapshot I propose is retrospective, taken at a past cutoff that was never announced, so there was no date to farm toward. Wash trading also nets out, because one wallet&rsquo;s loss is another wallet&rsquo;s gain, so realized PnL clustered across linked wallets cancels self-dealing to zero before fees. The only residual is someone who wash-traded across deliberately unlinked wallets before the secret cutoff, which meant acting blind on an unknown date and still paying fees on every trade, so the leak is small and never worth pursuing.</p>
         </div>
 
         <div class="faq-item">
             <p class="faq-q">Doesn&rsquo;t paying losers reward reckless gambling and invite more of it?</p>
-            <p>What I propose is a one-time retrospective payout, not a standing policy, so it shapes no future bets. And nobody loses real money on purpose to chase a payout that is smaller than the loss itself.</p>
+            <p>What I propose is a one-time retrospective payout, not a standing policy, so it sets no incentive for future bets. Even a user who expects a repeat gains nothing by losing on purpose, because the payout is by construction smaller than the loss itself. And since the snapshot is unannounced and already in the past, there is nothing to plan around, and repeating it predictably would destroy that property anyway.</p>
         </div>
 
         <div class="faq-item">
             <p class="faq-q">Why reward losers instead of the sharp traders who make the odds accurate?</p>
-            <p>The losers fund the entire system. Sharps profit only because someone takes the other side, and platform fees scale with the volume the crowd brings. Profit already keeps the sharps here, while the losers are the ones with every reason to leave, so retention is best aimed at them.</p>
+            <p>The losing side is what funds the rest of the system. Sharps only profit because someone takes the other side, and platform fees scale with the volume the crowd brings. Retaining that losing flow therefore retains the sharps automatically, since it is the only thing they can profit from. Profit already keeps them here, and the losing traders are the ones with every reason to leave, which is why retention is best aimed at them.</p>
         </div>
 
         <div class="faq-item">
             <p class="faq-q">Won&rsquo;t recipients just dump the token?</p>
-            <p>No loss-based airdrop has been run, so this is untested. The usual dump data describes mercenary farmers cashing out a payout they planned for, whereas unexpected compensation reaches a different population, and on Polymarket that population is most active users, not a fringe.</p>
+            <p>The dumping everyone cites comes overwhelmingly from mercenary farmers who acquired tokens specifically to sell, and a retrospective snapshot excludes exactly that population. What remains is ordinary profit-taking by people who never asked for the tokens, which is smaller and has never been measured on a compensated, non-farmer base. So the honest claim is that the largest documented source of selling is gone, and whether recipients hold is an open question rather than a known failure mode.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">Doesn&rsquo;t compensating losers make Polymarket look like gambling and raise legal risk?</p>
+            <p>A one-time rebate does not change how the underlying product is classified, because that question turns on the nature of the contracts, not on whether money is returned afterward. Regulated brokers and licensed casinos both rebate part of what users lose without becoming something else. The real questions, securities treatment and taxes, attach to airdrops in general rather than to this design in particular. If anything the optics run toward consumer protection, the opposite of the worry. None of this is legal advice.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-q">Wouldn&rsquo;t the token budget be better spent rewarding the behavior you want, not past losses?</p>
+            <p>The design is retrospective on purpose. The goal is to retain the active paying base and reset the platform&rsquo;s public and regulatory standing, rather than to shape future behavior. The recipients are the most active users, not a fringe, so this spends the budget on the highest-value group to keep. Any program that instead pays for future behavior reintroduces the exact farmable metrics this proposal exists to remove.</p>
         </div>
 
         <div class="faq-item">
