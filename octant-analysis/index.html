@@ -1508,7 +1508,7 @@
             <div class="lb-full-body">
                 <div class="lb-search">
                     <input type="search" id="lbSearch" placeholder="Filter by project name...">
-                    <span class="count" id="lbCount">134 / 134</span>
+                    <span class="count" id="lbCount">137 / 137</span>
                 </div>
                 <div class="lb-table-scroll">
                     <table class="lb-table" id="lbTable">
@@ -1835,19 +1835,19 @@
                     All epochs except Epoch 0 returned clean data. Epoch 0 was missing from the API because it was a pre-launch curated round before the V1 mechanics went live, and it doesn’t fit the API schema.
                 </p>
                 <p>
-                    A small note on numbering. Octant counts epochs from zero. There have been 12 rounds total, from Epoch 0 to Epoch 11. The current launch starting in June 2026, the first on the new platform version, is called Epoch 12.
+                    A small note on numbering. Octant counts epochs from zero. There have been 13 rounds total, from Epoch 0 to Epoch 12. Epoch 12, which ran in mid 2026, is the first round on the new platform version (V2).
                 </p>
                 <p>
                     To close the Epoch 0 gap, I found the Octant distribution wallet in the docs (<code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code>) and pulled all its transactions via Python. That filled in the missing data and let me cross-validate between the two sources.
                 </p>
                 <p>
-                    Epoch 12 is the first round on Octant V2, which moved from quadratic funding to quadratic voting. Its results come from the V2 results API (<code>epoch.octant.app/api/v1/rounds/&hellip;/results</code>), verified against the on-chain vote blobs and the round&rsquo;s zk proof. The round distributed 87.98 WETH across 25 projects from 201 voters, out of a fixed 200 WETH prize pool, leaving 118.14 WETH (59%) unused. I merged its per-project totals into the cumulative leaderboard and categories. The V1-specific analyses below (QF leverage, the 96/4 staking-yield split, and per-epoch donor participation) remain scoped to V1 epochs, since V2 uses a different mechanism.
+                    Epoch 12 is the first round on Octant V2. It keeps the quadratic principle (Octant calls it properQF) but moves the computation on-chain: participants vote, votes are batched into blobs posted to Ethereum, and the result is proven with a zk proof. Its results come from the V2 results API (<code>epoch.octant.app/api/v1/rounds/&hellip;/results</code>), which I verified against the on-chain vote blobs and the round&rsquo;s zk proof. The round distributed 87.98 WETH across 25 projects from 201 voters, out of a fixed 200 WETH prize pool, leaving 118.14 WETH (59%) unused. Because its pool is also staking yield and its direct contributions are donated WETH rewards, the same structure as V1, I merged its per-project totals into the cumulative leaderboard, the categories, and the 96/4 funding split (which now covers epochs 1 to 12). Two views stay V1-only: the QF leverage analysis keeps to the full-pool rounds E4 to E11, and the cross-epoch donor-participation chart is omitted, because both need per-donor allocation data that the V2 results do not expose (they report voter counts, not addresses).
                 </p>
                 <p>
-                    To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level (298 after adding Epoch 12). Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
+                    To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level (298 after adding Epoch 12). Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 137 unique projects with total funding across the full history of Octant.
                 </p>
                 <p>
-                    Next I wanted to understand what Octant invests in thematically, but 134 names without grouping are hard to interpret. I needed categorization. I went through the list and assigned each project one of 9 categories:
+                    Next I wanted to understand what Octant invests in thematically, but 137 names without grouping are hard to interpret. I needed categorization. I went through the list and assigned each project one of 9 categories:
                 </p>
                 <ul class="cat-list">
                     <li><strong>Ethereum Infrastructure</strong>: core protocol, staking, MEV, attestations</li>
@@ -2099,14 +2099,16 @@ totals above. All-time total across E0 to E12 is 3,493 ETH.
 
 ## Epoch 12 (first V2 round, Quadratic Voting)
 
-Octant V2 replaced quadratic funding with quadratic voting. Epoch 12
-used a fixed 200 WETH prize pool. 201 unique voters cast 209 votes
-across 25 projects. Matched out: 81.86 WETH. Direct contributions:
-6.13 WETH. Total to projects: 87.98 WETH. Unused matching pool:
-118.14 WETH (59% of the pool). These per-project totals are merged
-into the cumulative leaderboard and category figures above; the
-V1-only analyses (QF leverage, 96/4 staking-yield split, donor
-participation) are not affected.
+Octant V2 keeps quadratic funding (properQF) but moves it on-chain as
+a voting round. Epoch 12 used a fixed 200 WETH prize pool. 201 unique
+voters cast 209 votes across 25 projects. Matched out: 81.86 WETH.
+Direct contributions: 6.13 WETH. Total to projects: 87.98 WETH.
+Unused matching pool: 118.14 WETH (59% of the pool). These per-project
+totals are merged into the cumulative leaderboard, categories, and the
+96/4 funding split (now epochs 1 to 12). Two views stay V1-only: the
+QF leverage analysis keeps to E4 to E11, and the cross-epoch
+donor-participation chart is omitted, because the V2 results report
+voter counts, not donor addresses.
 
 | Rank | Project (E12)                       | Total WETH | Direct | Matched | Voters |
 |------|-------------------------------------|-----------|--------|---------|--------|
