@@ -3,12 +3,12 @@
     "title": "Octant V1 chart data",
     "generated_at": "2026-05-21T14:56:29.170201",
     "eth_price_reference_usd": 3000,
-    "epochs_covered": "0-11 (12 rounds total)",
+    "epochs_covered": "0-12 (13 rounds total)",
     "qf_epochs": "4-11 (proportional matching in epochs 1-3)",
     "totals": {
-      "eth_distributed_all_time": 3404.64,
+      "eth_distributed_all_time": 3492.63,
       "eth_distributed_v1_only": 2869.59,
-      "unique_projects": 134,
+      "unique_projects": 137,
       "unique_donors": 1270,
       "total_allocations": 17595
     },
@@ -18,7 +18,16 @@
       "User allocations are the portion of personal staking rewards that users donated to projects",
       "Matching pool is the direct portion of Golem Foundation staking yield routed to projects",
       "Total V1 funding = user allocations + matching pool"
-    ]
+    ],
+    "v2": {
+      "epoch": 12,
+      "mechanism": "Quadratic Voting",
+      "prize_pool_weth": 200.0,
+      "matching_used_weth": 81.86,
+      "matching_leftover_weth": 118.14,
+      "unique_voters": 201,
+      "projects": 25
+    }
   },
   "charts": {
     "top_10_projects": {

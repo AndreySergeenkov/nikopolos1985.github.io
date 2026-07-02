@@ -1,0 +1,227 @@
+[
+  {
+    "rank": "1",
+    "project": "The Tor Project",
+    "project_index": "0",
+    "total_weth": 10.196086,
+    "direct_weth": 0.709291,
+    "matched_weth": 9.486795,
+    "contributors": 64
+  },
+  {
+    "rank": "2",
+    "project": "rotki",
+    "project_index": "10",
+    "total_weth": 8.740673,
+    "direct_weth": 0.554995,
+    "matched_weth": 8.185678,
+    "contributors": 58
+  },
+  {
+    "rank": "3",
+    "project": "L2BEAT",
+    "project_index": "2",
+    "total_weth": 8.593897,
+    "direct_weth": 0.671116,
+    "matched_weth": 7.922781,
+    "contributors": 62
+  },
+  {
+    "rank": "4",
+    "project": "SEAL 911",
+    "project_index": "15",
+    "total_weth": 7.755835,
+    "direct_weth": 0.441014,
+    "matched_weth": 7.314822,
+    "contributors": 60
+  },
+  {
+    "rank": "5",
+    "project": "Solidity",
+    "project_index": "1",
+    "total_weth": 6.745783,
+    "direct_weth": 0.498474,
+    "matched_weth": 6.247309,
+    "contributors": 48
+  },
+  {
+    "rank": "6",
+    "project": "growthepie",
+    "project_index": "9",
+    "total_weth": 5.476473,
+    "direct_weth": 0.170885,
+    "matched_weth": 5.305588,
+    "contributors": 65
+  },
+  {
+    "rank": "7",
+    "project": "Ethereum Economic Zone (EEZ)",
+    "project_index": "5",
+    "total_weth": 5.343344,
+    "direct_weth": 0.655095,
+    "matched_weth": 4.688249,
+    "contributors": 41
+  },
+  {
+    "rank": "8",
+    "project": "Dappnode",
+    "project_index": "3",
+    "total_weth": 4.751042,
+    "direct_weth": 0.173688,
+    "matched_weth": 4.577354,
+    "contributors": 58
+  },
+  {
+    "rank": "9",
+    "project": "Funding the Commons",
+    "project_index": "4",
+    "total_weth": 3.918112,
+    "direct_weth": 0.247345,
+    "matched_weth": 3.670767,
+    "contributors": 53
+  },
+  {
+    "rank": "10",
+    "project": "Protocol Guild",
+    "project_index": "19",
+    "total_weth": 3.431527,
+    "direct_weth": 0.220094,
+    "matched_weth": 3.211432,
+    "contributors": 53
+  },
+  {
+    "rank": "11",
+    "project": "Greenpill Dev Guild",
+    "project_index": "20",
+    "total_weth": 3.366663,
+    "direct_weth": 0.40699,
+    "matched_weth": 2.959672,
+    "contributors": 42
+  },
+  {
+    "rank": "12",
+    "project": "Shutter Network",
+    "project_index": "21",
+    "total_weth": 3.019989,
+    "direct_weth": 0.241369,
+    "matched_weth": 2.778621,
+    "contributors": 44
+  },
+  {
+    "rank": "13",
+    "project": "Revoke.cash",
+    "project_index": "24",
+    "total_weth": 3.002599,
+    "direct_weth": 0.19632,
+    "matched_weth": 2.806279,
+    "contributors": 54
+  },
+  {
+    "rank": "14",
+    "project": "Hypercerts Foundation",
+    "project_index": "6",
+    "total_weth": 2.271237,
+    "direct_weth": 0.177147,
+    "matched_weth": 2.094091,
+    "contributors": 44
+  },
+  {
+    "rank": "15",
+    "project": "OSO",
+    "project_index": "8",
+    "total_weth": 1.931028,
+    "direct_weth": 0.165744,
+    "matched_weth": 1.765285,
+    "contributors": 35
+  },
+  {
+    "rank": "16",
+    "project": "SheFi",
+    "project_index": "7",
+    "total_weth": 1.39681,
+    "direct_weth": 0.056286,
+    "matched_weth": 1.340525,
+    "contributors": 42
+  },
+  {
+    "rank": "17",
+    "project": "Blue Filter",
+    "project_index": "23",
+    "total_weth": 1.38128,
+    "direct_weth": 0.182139,
+    "matched_weth": 1.199141,
+    "contributors": 29
+  },
+  {
+    "rank": "18",
+    "project": "Gili Eco Trust for waste solutions",
+    "project_index": "11",
+    "total_weth": 1.201139,
+    "direct_weth": 0.081798,
+    "matched_weth": 1.119341,
+    "contributors": 30
+  },
+  {
+    "rank": "19",
+    "project": "ZachXBT",
+    "project_index": "22",
+    "total_weth": 1.053261,
+    "direct_weth": 0.038394,
+    "matched_weth": 1.014867,
+    "contributors": 50
+  },
+  {
+    "rank": "20",
+    "project": "Ethereum Attestation Service",
+    "project_index": "16",
+    "total_weth": 1.025683,
+    "direct_weth": 0.042966,
+    "matched_weth": 0.982717,
+    "contributors": 44
+  },
+  {
+    "rank": "21",
+    "project": "ECH Institute",
+    "project_index": "18",
+    "total_weth": 0.951865,
+    "direct_weth": 0.053283,
+    "matched_weth": 0.898582,
+    "contributors": 38
+  },
+  {
+    "rank": "22",
+    "project": "Remix Project",
+    "project_index": "17",
+    "total_weth": 0.781512,
+    "direct_weth": 0.054869,
+    "matched_weth": 0.726643,
+    "contributors": 32
+  },
+  {
+    "rank": "23",
+    "project": "EthStaker",
+    "project_index": "14",
+    "total_weth": 0.733744,
+    "direct_weth": 0.032387,
+    "matched_weth": 0.701357,
+    "contributors": 41
+  },
+  {
+    "rank": "24",
+    "project": "Crypto Altruists",
+    "project_index": "13",
+    "total_weth": 0.730002,
+    "direct_weth": 0.042508,
+    "matched_weth": 0.687494,
+    "contributors": 32
+  },
+  {
+    "rank": "25",
+    "project": "Aestus",
+    "project_index": "12",
+    "total_weth": 0.184743,
+    "direct_weth": 0.01171,
+    "matched_weth": 0.173033,
+    "contributors": 28
+  }
+]

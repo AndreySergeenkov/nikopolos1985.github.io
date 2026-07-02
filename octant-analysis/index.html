@@ -11,7 +11,7 @@
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="How Quadratic Funding Allocates Capital in Octant">
-    <meta property="og:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
+    <meta property="og:description" content="An empirical look at Octant: 3,493 ETH distributed to 137 projects across 13 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
     <meta property="og:url" content="https://sergeenkov.com/octant-analysis/">
     <meta property="og:site_name" content="Andrey Sergeenkov">
     <meta property="og:image" content="https://sergeenkov.com/octant-analysis/og-image.png">
@@ -21,7 +21,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How Quadratic Funding Allocates Capital in Octant">
-    <meta name="twitter:description" content="An empirical look at Octant: 3,405 ETH distributed to 134 projects across 12 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
+    <meta name="twitter:description" content="An empirical look at Octant: 3,493 ETH distributed to 137 projects across 13 epochs, where every payout comes from staking yield and a small base of donors decides where it goes.">
     <meta name="twitter:image" content="https://sergeenkov.com/octant-analysis/og-image.png">
     <meta name="twitter:image:alt" content="A research illustration: a hooded observer with a spyglass studies a starlit sky over a quiet desk with an hourglass and books.">
 
@@ -64,18 +64,18 @@
       "about": {
         "@type": "Thing",
         "name": "Octant V1",
-        "description": "Quadratic funding matching pool that distributed 3,405 ETH to 134 projects across 12 epochs (E0 to E11, August 2023 to early 2026), with 1,270 unique donors. Every payout comes from staking yield; donors earn a share of that yield and donate it back to decide where the matching pool goes."
+        "description": "Quadratic funding matching pool that distributed 3,493 ETH to 137 projects across 13 epochs (E0 to E12, August 2023 to mid 2026). In V1 (E0 to E11) every payout came from staking yield via quadratic funding; Epoch 12 is the first V2 round, run as quadratic voting with a fixed 200 WETH prize pool."
       },
       "keywords": ["Quadratic Funding", "Octant", "Ethereum", "Public Goods", "Matching Pool"],
       "mainEntity": {
         "@type": "Dataset",
         "name": "Octant V1 leaderboard and per-epoch breakdown",
-        "description": "134 projects with cumulative ETH funding, allocated/matched split, category and epochs participated. Plus 17,595 individual allocations from 1,270 unique donors across 11 V1 epochs.",
+        "description": "137 projects with cumulative ETH funding, allocated/matched split, category and epochs participated, across 13 rounds (V1 epochs E0 to E11 plus the first V2 round, Epoch 12). Includes 17,595 individual V1 allocations from 1,270 unique donors, plus Epoch 12 (V2 quadratic voting): 25 projects, 201 voters.",
         "creator": { "@id": "https://sergeenkov.com/#andrey" },
         "distribution": [
           {
             "@type": "DataDownload",
-            "name": "Cumulative leaderboard (134 projects, all epochs)",
+            "name": "Cumulative leaderboard (137 projects, all rounds)",
             "encodingFormat": "text/csv",
             "contentUrl": "https://sergeenkov.com/octant-analysis/octant_leaderboard_categorized_v1.csv"
           },
@@ -1454,7 +1454,7 @@
 
     <div class="draft-body">
         <p>
-            Golem Foundation stakes 100,000 ETH that funds Octant to direct the yield to impactful Ethereum projects through matching grants. Over 2.5 years it has distributed 3,405 ETH to 134 projects with no strings attached.
+            Golem Foundation stakes 100,000 ETH that funds Octant to direct the yield to impactful Ethereum projects through matching grants. Over nearly 3 years it has distributed 3,493 ETH to 137 projects with no strings attached.
         </p>
 
         <div class="key-findings" aria-label="Key findings">
@@ -1505,7 +1505,7 @@
         </div>
 
         <details class="lb-full">
-            <summary>Show full leaderboard · 134 projects</summary>
+            <summary>Show full leaderboard · 137 projects</summary>
             <div class="lb-full-body">
                 <div class="lb-search">
                     <input type="search" id="lbSearch" placeholder="Filter by project name...">
@@ -1548,7 +1548,7 @@
             </div>
             <div id="sparkTableHost"></div>
             <div class="chart-note">
-                Each mini-chart shows ETH a project received in epochs 1 to 11. Epoch 0 is not displayed because it predates the V1 API. Bar heights share a common scale across all 10 projects, with the maximum being Protocol Guild in Epoch 3 at 77 ETH. Empty slots are epochs where a project did not participate. For most of these projects that means E7, the climate themed round, and E9, the media themed round.
+                Each mini-chart shows ETH a project received in epochs 1 to 12. Epoch 0 is not displayed because it predates the V1 API. Epoch 12 is Octant&rsquo;s first V2 round, run as quadratic voting rather than quadratic funding. Bar heights share a common scale across all 10 projects, with the maximum being Protocol Guild in Epoch 3 at 77 ETH. Empty slots are epochs where a project did not participate. For most of these projects that means E7, the climate themed round, and E9, the media themed round.
             </div>
         </div>    </section>
 
@@ -1592,7 +1592,7 @@
         <!-- ============== ALT v2: returners slope chart ============== -->
         <div class="lb-summary" style="margin-top:32px;">
             <p>
-                The 37% of recurring projects received 84% of all funding. The remaining 63%, one-time projects, took the remaining 16%.
+                The 37% of recurring projects received 85% of all funding. The remaining 63%, one-time projects, took the remaining 15%.
             </p>
         </div>
         <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
@@ -1626,13 +1626,13 @@
                 <li><strong>Climate &amp; Regenerative</strong>: climate tech, ReFi, environmental</li>
             </ul>
             <p style="margin-top:16px;">
-                73% of all Octant funding went to five categories of the technical Ethereum stack. These categories also have the largest average payouts per project, up to 74 ETH in Ethereum Infrastructure versus 6 ETH in Media &amp; Storytelling.
+                73% of all Octant funding went to five categories of the technical Ethereum stack. These categories also have the largest average payouts per project, up to 75 ETH in Ethereum Infrastructure versus 6 ETH in Media &amp; Storytelling.
             </p>
             <p style="margin-top:16px;">
-                Within this top five, the order changes depending on whether Epoch 0 is included. By absolute volume, Public Goods Funding takes first place with 744 ETH (21.9% of total), but more than half of that comes from the pre-launch round, where Gitcoin, Giveth, Clr.fund, DAO Drops, and Drips took 417 of 535 ETH. Without Epoch 0, Ethereum Infrastructure and Developer Tools take the lead, having received matching consistently across all V1 epochs.
+                Within this top five, the order changes depending on whether Epoch 0 is included. By absolute volume, Public Goods Funding takes first place with 751 ETH (21.5% of total), but more than half of that comes from the pre-launch round, where Gitcoin, Giveth, Clr.fund, DAO Drops, and Drips took 417 of 535 ETH. Without Epoch 0, Ethereum Infrastructure and Developer Tools take the lead, having received matching consistently across all V1 epochs.
             </p>
             <p style="margin-top:16px;">
-                Themed rounds had the opposite effect, more projects and less money for each. Climate &amp; Regenerative (23 projects from the Epoch 7 climate round) and Media &amp; Storytelling (26 projects from the Epoch 9 Ethereum Stories round) together make up 37% of all unique projects in the data, but received only 13.6% of total funding. The average check was 13 ETH per climate project and 6 ETH per media project versus 74 ETH in Ethereum Infrastructure.
+                Themed rounds had the opposite effect, more projects and less money for each. Climate &amp; Regenerative (23 projects from the Epoch 7 climate round) and Media &amp; Storytelling (26 projects from the Epoch 9 Ethereum Stories round) together make up 37% of all unique projects in the data, but received only 13.4% of total funding. The average check was 13 ETH per climate project and 6 ETH per media project versus 75 ETH in Ethereum Infrastructure.
             </p>
         </div>
 
@@ -1641,14 +1641,14 @@
         </div>
         <div class="lb-card" id="catA">
             <div class="lb-card-head">
-                <div class="lb-card-title">Funding by category (cumulative, E0–E11)</div>
+                <div class="lb-card-title">Funding by category (cumulative, E0–E12)</div>
             </div>
             <div class="hbar-list" id="catAList"></div>
         </div>
 
         <div class="lb-summary" style="margin-top:32px;">
             <p>
-                Ethereum Infrastructure is Octant’s most concentrated bet. Just 7 projects or 5.2% of the total, but 15.2% of funding.
+                Ethereum Infrastructure is Octant’s most concentrated bet. Just 7 projects or 5.1% of the total, but 15.1% of funding.
             </p>
         </div>
 
@@ -1867,7 +1867,10 @@
                     To close the Epoch 0 gap, I found the Octant distribution wallet in the docs (<code>0x70a0a7be87deb51e1fab16d4f2bf00be1510e476</code>) and pulled all its transactions via Python. That filled in the missing data and let me cross-validate between the two sources.
                 </p>
                 <p>
-                    To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level. Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
+                    Epoch 12 is the first round on Octant V2, which moved from quadratic funding to quadratic voting. Its results come from the V2 results API (<code>epoch.octant.app/api/v1/rounds/&hellip;/results</code>), verified against the on-chain vote blobs and the round&rsquo;s zk proof. The round distributed 87.98 WETH across 25 projects from 201 voters, out of a fixed 200 WETH prize pool, leaving 118.14 WETH (59%) unused. I merged its per-project totals into the cumulative leaderboard and categories. The V1-specific analyses below (QF leverage, the 96/4 staking-yield split, and per-epoch donor participation) remain scoped to V1 epochs, since V2 uses a different mechanism.
+                </p>
+                <p>
+                    To consolidate the data, I merged the V1 API data (epochs 1–11) and the on-chain reconstruction (Epoch 0) into a single master CSV, which gave me 273 rows at the project-epoch level (298 after adding Epoch 12). Then I grouped by project and normalized names, because across epochs Octant occasionally wrote the same project with variations like “Tor Project” versus “The Tor Project” or “Hypercerts” versus “Hypercerts Foundation”. I collapsed all such cases to a single canonical name. The result was a cumulative leaderboard of 134 unique projects with total funding across the full history of Octant.
                 </p>
                 <p>
                     Next I wanted to understand what Octant invests in thematically, but 134 names without grouping are hard to interpret. I needed categorization. I went through the list and assigned each project one of 9 categories:
@@ -1884,7 +1887,7 @@
                     <li><strong>Climate &amp; Regenerative</strong>: climate tech, ReFi, environmental</li>
                 </ul>
                 <p>
-                    Categorization was manual. I went through 134 projects, either already knowing the topic or looking at the project’s website. Each got one of the 9 categories. Borderline cases (for example, a project that was both a security tool and a DAO governance system) were resolved by primary function. After that I could see which categories dominate by funding volume and by average check per project.
+                    Categorization was manual. I went through 137 projects, either already knowing the topic or looking at the project’s website. Each got one of the 9 categories. Borderline cases (for example, a project that was both a security tool and a DAO governance system) were resolved by primary function. After that I could see which categories dominate by funding volume and by average check per project.
                 </p>
                 <p>
                     Then I wanted to understand how allocations work and who these donors are. The Octant V1 API has an endpoint <code>/allocations/project/{address}/epoch/{N}</code> that returns all user donations to a specific project in a specific epoch with individual donor addresses. I ran this endpoint across all 263 project-epoch combinations in V1 (epochs 1–11) and assembled a dataset of 17,595 individual allocations. Of these, 11,702 allocations came from the 195 project-epochs in QF rounds (E4–E11), which are the basis for the leverage analysis. Each record contains a donor address, project address, epoch, and amount in ETH.
@@ -1947,11 +1950,11 @@ This appendix duplicates every figure shown in the interactive charts above
 as plain text, so it can be read without executing JavaScript.
 
 Period covered: Epoch 0 (August 2023, pre-launch curated round) through
-Epoch 11 (early 2026). 2.5 years, 12 funding rounds, 134 unique projects,
-1,270 unique donors, 17,595 individual allocations, 3,405 ETH distributed
+Epoch 12 (mid 2026). Nearly 3 years, 13 funding rounds, 137 unique projects,
+1,270 unique V1 donors, 17,595 individual V1 allocations, 3,493 ETH distributed
 in total. USD conversions use $3,000 per ETH unless stated otherwise.
 
-## Top 10 projects by cumulative ETH (E0–E11)
+## Top 10 projects by cumulative ETH (E0–E12)
 
 | Rank | Project                 | Total ETH | Epochs |
 |------|-------------------------|-----------|--------|
@@ -1966,7 +1969,7 @@ in total. USD conversions use $3,000 per ETH unless stated otherwise.
 | 9    | EthStaker               |  94.90    | 8      |
 | 10   | GrowThePie              |  94.18    | 5      |
 
-Top 10 share of total funding: 1,524 of 3,405 ETH = 44.8%.
+Top 10 share of total funding: 1,567 of 3,493 ETH = 44.9%.
 Top 30 share: 75.3%. Top 50 share: 88.2%.
 
 ## Top 10 projects: ETH per epoch (E1–E11)
@@ -1994,24 +1997,24 @@ E7 is the Climate-themed round and E9 is the Ethereum Stories
 
 | Group     | Projects   | % of projects | Total ETH | % of funding | Avg ETH/project |
 |-----------|------------|---------------|-----------|--------------|-----------------|
-| Recurring (2+ epochs)   | 50 | 37.3% | 2,874 | 84.4% | 57.5 |
-| One-time  (1 epoch)     | 84 | 62.7% |   531 | 15.6% |  6.3 |
+| Recurring (2+ epochs)   | 51 | 37.2% | 2,961 | 84.8% | 58.1 |
+| One-time  (1 epoch)     | 86 | 62.8% |   532 | 15.2% |  6.2 |
 
-Per-project average difference: 9.1× in favor of recurring projects.
+Per-project average difference: 9.4× in favor of recurring projects.
 
-## Funding by category (cumulative E0–E11)
+## Funding by category (cumulative E0–E12)
 
 | Category                    | Projects | Total ETH | % of total | Avg ETH/project |
 |-----------------------------|----------|-----------|------------|-----------------|
-| Public Goods Funding        | 14       | 744.48    | 21.9%      | 53.2            |
-| Ethereum Infrastructure     |  7       | 516.82    | 15.2%      | 73.8            |
-| Developer Tools             | 21       | 494.66    | 14.5%      | 23.6            |
-| Research &amp; Analytics    |  9       | 375.03    | 11.0%      | 41.7            |
-| Security &amp; Privacy      | 10       | 353.61    | 10.4%      | 35.4            |
-| Climate &amp; Regenerative  | 23       | 300.36    |  8.8%      | 13.1            |
-| Community &amp; Coordination| 16       | 229.21    |  6.7%      | 14.3            |
-| Education &amp; Onboarding  |  8       | 227.51    |  6.7%      | 28.4            |
-| Media &amp; Storytelling    | 26       | 162.96    |  4.8%      |  6.3            |
+| Public Goods Funding        | 14       | 750.65    | 21.5%      | 53.6            |
+| Ethereum Infrastructure     |  7       | 526.15    | 15.1%      | 75.2            |
+| Developer Tools             | 21       | 510.89    | 14.6%      | 24.3            |
+| Research &amp; Analytics    |  9       | 392.06    | 11.2%      | 43.6            |
+| Security &amp; Privacy      | 11       | 377.62    | 10.8%      | 34.3            |
+| Climate &amp; Regenerative  | 24       | 302.88    |  8.7%      | 12.6            |
+| Community &amp; Coordination| 17       | 237.93    |  6.8%      | 14.0            |
+| Education &amp; Onboarding  |  8       | 230.55    |  6.6%      | 28.8            |
+| Media &amp; Storytelling    | 26       | 163.71    |  4.7%      |  6.3            |
 
 Five technical-stack categories (PGF, Eth Infra, Dev Tools, R&amp;A,
 Security &amp; Privacy) hold 73% of all funding. Themed rounds
@@ -2118,15 +2121,41 @@ Cumulative ≥ N epochs (share of all 1,270 donors):
 | **Total V1**                               | 2,870    | 100%   |
 
 Epoch 0 (pre-launch, 535 ETH curated round) is not included in V1
-totals above. All-time total across E0–E11 is 3,405 ETH.
+totals above. All-time total across E0 to E12 is 3,493 ETH.
+
+## Epoch 12 (first V2 round, Quadratic Voting)
+
+Octant V2 replaced quadratic funding with quadratic voting. Epoch 12
+used a fixed 200 WETH prize pool. 201 unique voters cast 209 votes
+across 25 projects. Matched out: 81.86 WETH. Direct contributions:
+6.13 WETH. Total to projects: 87.98 WETH. Unused matching pool:
+118.14 WETH (59% of the pool). These per-project totals are merged
+into the cumulative leaderboard and category figures above; the
+V1-only analyses (QF leverage, 96/4 staking-yield split, donor
+participation) are not affected.
+
+| Rank | Project (E12)                       | Total WETH | Direct | Matched | Voters |
+|------|-------------------------------------|-----------|--------|---------|--------|
+| 1    | The Tor Project                     | 10.196    | 0.709  | 9.487   | 64     |
+| 2    | rotki                               | 8.741     | 0.555  | 8.186   | 58     |
+| 3    | L2BEAT                              | 8.594     | 0.671  | 7.923   | 62     |
+| 4    | SEAL 911                            | 7.756     | 0.441  | 7.315   | 60     |
+| 5    | Solidity                            | 6.746     | 0.498  | 6.247   | 48     |
+| 6    | growthepie                          | 5.476     | 0.171  | 5.306   | 65     |
+| 7    | Ethereum Economic Zone (EEZ)        | 5.343     | 0.655  | 4.688   | 41     |
+| 8    | Dappnode                            | 4.751     | 0.174  | 4.577   | 58     |
+| 9    | Funding the Commons                 | 3.918     | 0.247  | 3.671   | 53     |
+| 10   | Protocol Guild                      | 3.432     | 0.220  | 3.211   | 53     |
+
+Full 25-project results: octant_epoch12_v2_results.csv / .json.
 
 ## Data files
 
 The full machine-readable datasets used to build the article and
 the appendix above are available at:
 
-- https://sergeenkov.com/octant-analysis/octant_leaderboard_categorized_v1.csv (134 projects)
-- https://sergeenkov.com/octant-analysis/octant_donor_counts_v1.csv (263 project-epoch rows)
+- https://sergeenkov.com/octant-analysis/octant_leaderboard_categorized_v1.csv (137 projects)
+- https://sergeenkov.com/octant-analysis/octant_donor_counts_v1.csv (288 project-epoch rows, incl. Epoch 12)
 - https://sergeenkov.com/octant-analysis/octant_chart_data_v1.json (pre-computed chart data)
 </pre>
     </section>
@@ -2625,20 +2654,20 @@ the appendix above are available at:
     // total_full = canonical всех-эпох cumulative из octant_chart_data_v1.json → top_10_projects
     // (включая Epoch 0, которая большая для Gitcoin/Giveth/Hypercerts/PGF).
     const SPARKS = [
-        {rank:1,  name:'Protocol Guild', total_full:323, eth:[43.5,36.6,77.4,48.8,32.9,32.6, 0,17.2, 0,14.7, 0.6]},
-        {rank:2,  name:'Gitcoin',        total_full:270, eth:[ 8.2, 5.6, 0.2,   0,   0,   0, 0,   0, 0,   0,   0]},
-        {rank:3,  name:'Tor Project',    total_full:139, eth:[26.2, 8.9, 0.4,45.4,19.9,18.2, 0,   0, 0,   0,   0]},
-        {rank:4,  name:'Giveth',         total_full:134, eth:[13.8,10.2,13.3,   0,   0,   0, 0,   0, 0,   0,   0]},
-        {rank:5,  name:'L2BEAT',         total_full:128, eth:[   0,16.1, 0.1,16.1,15.6,37.1, 0,11.8, 0,30.7,   0]},
-        {rank:6,  name:'Rotki',          total_full:123, eth:[33.9,11.1,19.8,11.5,28.9, 8.7, 0,   0, 0,   0,   0]},
-        {rank:7,  name:'Revoke.cash',    total_full:116, eth:[   0,15.3, 0.1,24.7,22.3,29.2, 0,   0, 0,24.2,   0]},
-        {rank:8,  name:'Hypercerts',     total_full:103, eth:[27.7,16.4,27.7,13.1,12.7,   0, 0,   0, 0,   0,   0]},
-        {rank:9,  name:'EthStaker',      total_full: 95, eth:[ 6.8,18.3, 0.1,10.4, 5.7, 3.3, 0,   0, 0, 7.6,   0]},
-        {rank:10, name:'GrowThePie',     total_full: 94, eth:[   0,   0,52.2,   0,   0, 5.0, 0,   0, 0,   0,   0]},
+        {rank:1,  name:'Protocol Guild', total_full:327, eth:[43.5,36.6,77.4,48.8,32.9,32.6, 0,17.2, 0,14.7, 0.6, 3.4]},
+        {rank:2,  name:'Gitcoin',        total_full:270, eth:[ 8.2, 5.6, 0.2,   0,   0,   0, 0,   0, 0,   0,   0,   0]},
+        {rank:3,  name:'Tor Project',    total_full:149, eth:[26.2, 8.9, 0.4,45.4,19.9,18.2, 0,   0, 0,   0,   0,10.2]},
+        {rank:4,  name:'L2BEAT',         total_full:136, eth:[   0,16.1, 0.1,16.1,15.6,37.1, 0,11.8, 0,30.7,   0, 8.6]},
+        {rank:5,  name:'Giveth',         total_full:134, eth:[13.8,10.2,13.3,   0,   0,   0, 0,   0, 0,   0,   0,   0]},
+        {rank:6,  name:'Rotki',          total_full:132, eth:[33.9,11.1,19.8,11.5,28.9, 8.7, 0,   0, 0,   0,   0, 8.7]},
+        {rank:7,  name:'Revoke.cash',    total_full:119, eth:[   0,15.3, 0.1,24.7,22.3,29.2, 0,   0, 0,24.2,   0, 3.0]},
+        {rank:8,  name:'Hypercerts',     total_full:105, eth:[27.7,16.4,27.7,13.1,12.7,   0, 0,   0, 0,   0,   0, 2.3]},
+        {rank:9,  name:'GrowThePie',     total_full:100, eth:[   0,   0,52.2,   0,   0, 5.0, 0,   0, 0,   0,   0, 5.5]},
+        {rank:10, name:'EthStaker',      total_full: 96, eth:[ 6.8,18.3, 0.1,10.4, 5.7, 3.3, 0,   0, 0, 7.6,   0, 0.7]},
     ];
 
     function renderSparklines() {
-        const N = 11;
+        const N = 12;
         const spW = 240, spH = 28;
         const gap = 2;
         const barW = (spW - gap * (N - 1)) / N;
@@ -2665,7 +2694,7 @@ the appendix above are available at:
             </tr>`;
         }).join('');
 
-        const epochAxis = Array.from({length: 11}, (_, i) => `<span>E${i+1}</span>`).join('');
+        const epochAxis = Array.from({length: 12}, (_, i) => `<span>E${i+1}</span>`).join('');
 
         document.getElementById('sparkTableHost').innerHTML = `
             <table class="spark-table">
@@ -2698,24 +2727,26 @@ the appendix above are available at:
         const oneTimers = all.filter(d => d.n_epochs <  2);
         const totalN   = all.length;
         const totalEth = all.reduce((s,d) => s + d.total_eth, 0);
+        const recEth = returners.reduce((s,d)=>s+d.total_eth,0);
+        const oneEth = oneTimers.reduce((s,d)=>s+d.total_eth,0);
         const stats = [
             {
                 name: 'Recurring',
                 pctN: returners.length / totalN * 100,
-                pctEth: returners.reduce((s,d)=>s+d.total_eth,0) / totalEth * 100,
+                pctEth: recEth / totalEth * 100,
                 color: 'var(--orange)',
                 leftMeta: `${returners.length} projects`,
-                ethTotal: '2,874 ETH',
-                avgEach: '57 ETH per project',
+                ethTotal: `${Math.round(recEth).toLocaleString('en-US')} ETH`,
+                avgEach: `${Math.round(recEth / returners.length)} ETH per project`,
             },
             {
                 name: 'One-time',
                 pctN: oneTimers.length / totalN * 100,
-                pctEth: oneTimers.reduce((s,d)=>s+d.total_eth,0) / totalEth * 100,
+                pctEth: oneEth / totalEth * 100,
                 color: 'var(--teal)',
                 leftMeta: `${oneTimers.length} projects`,
-                ethTotal: '531 ETH',
-                avgEach: '6 ETH per project',
+                ethTotal: `${Math.round(oneEth).toLocaleString('en-US')} ETH`,
+                avgEach: `${Math.round(oneEth / oneTimers.length)} ETH per project`,
             },
         ];
 
