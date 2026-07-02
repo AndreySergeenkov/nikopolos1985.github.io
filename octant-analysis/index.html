@@ -1786,36 +1786,11 @@
         </div>
     </section>
 
-    <h2 class="section-h2">How donors participate across Octant’s epochs</h2>
-
-    <section class="lb-section" id="donors">
-        <div class="lb-summary">
-            <p>
-                Across 11 epochs, <strong>1,270</strong> unique donors participated in Octant. 61% of them came back for two or more epochs. <strong>11 people</strong> took part in every one of the 11 epochs, and 22 more missed only one.
-            </p>
-            <p style="margin-top:16px;">
-                Most donors come once. 39% of donors take part in a single round and never return. At the other end, <strong>33 people</strong> showed up in 10 or more of the 11 epochs. The number of donors at each level of participation drops sharply between these two extremes.
-            </p>
-        </div>
-
-        <div class="lb-actions lb-actions-top" style="margin-bottom:12px;">
-
-            <button class="btn" data-png="donorDistCard" data-name="octant-donor-distribution.png" type="button">⤓ Save chart as PNG</button>
-
-        </div>
-
-        <div class="lb-card" id="donorDistCard">
-            <div class="lb-card-head">
-                <div class="lb-card-title">Donors by the number of epochs they took part in</div>
-            </div>
-            <div class="lev-chart-wrap">
-                <svg id="donorDistSvg" viewBox="0 0 720 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Donor distribution across epochs"></svg>
-            </div>
-            <div class="chart-note">
-                1,270 unique donor addresses across epochs 1 to 11. The X axis shows the number of epochs a donor took part in. The Y axis shows how many donors fall into each bucket. 39.1% are one-time donors; 0.9% attended every one of the 11 epochs.
-            </div>
-        </div>
-    </section>
+    <!-- Section "How donors participate across Octant's epochs" hidden:
+         its cross-epoch donor-participation chart needs per-donor addresses,
+         and Epoch 12 (V2) results provide only voter counts, not addresses,
+         so it cannot be extended to E12. Hidden to keep the article scoped to
+         E0-E12 consistently. -->
 
     <h2 class="section-h2">All payouts come from staking yield; donated rewards decide where it goes</h2>
 
@@ -2477,7 +2452,7 @@ the appendix above are available at:
             renderMarginalEffect();
             renderLeverageCases();
             renderLeverageBuckets();
-            renderDonorDist();
+            // renderDonorDist();  // section hidden (needs E12 voter addresses)
             renderFundingSplit();
             renderSparklines();
             applyView();
