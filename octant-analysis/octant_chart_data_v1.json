@@ -311,18 +311,18 @@
       ]
     },
     "funding_split": {
-      "title": "Откуда funding в Octant V1 (эпохи 1-11)",
+      "title": "Funding sources across Octant epochs 1-12",
       "subtitle": "96% staking yield, 4% user-allocated personal rewards",
       "data": [
         {
           "source": "Matching pool (staking yield direct)",
-          "eth": 2760.08,
-          "share_pct": 96.2
+          "eth": 2841.94,
+          "share_pct": 96.1
         },
         {
           "source": "User allocations (personal rewards донатnутые проектам)",
-          "eth": 109.51,
-          "share_pct": 3.8
+          "eth": 115.64,
+          "share_pct": 3.9
         }
       ]
     },

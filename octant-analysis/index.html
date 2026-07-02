@@ -1822,7 +1822,7 @@
     <section class="lb-section" id="funding-split">
         <div class="lb-summary">
             <p>
-                Donors contributed <strong>109.51 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,760 ETH</strong>. So final payouts to projects break down as 96% from the matching pool and 4% from donated rewards, which decide where the yield goes.
+                Donors contributed <strong>115.64 ETH</strong> of their personal rewards directly to projects. On top of that, the matching pool from Octant’s staking yield added <strong>2,842 ETH</strong>. So final payouts to projects break down as 96% from the matching pool and 4% from donated rewards, which decide where the yield goes.
             </p>
             <p>
                 The 100,000 ETH that Golem Foundation stakes produces a yield, and that yield splits two ways: part is paid to users as personal rewards for locking GLM, the rest forms the matching pool. A user who earns rewards can withdraw them or donate them to a project, and only donating unlocks the matching. So both shares of the payout come from the same staking yield. The 4% is the part that passed through users who chose to send their rewards (paid in WETH) to projects instead of pocketing them. That choice still costs them the rewards they gave up, but its real function is as a signal: it decides where the other 96% of the yield flows.
@@ -1837,7 +1837,7 @@
 
         <div class="lb-card" id="fundingSplitCard">
             <div class="lb-card-head">
-                <div class="lb-card-title">Funding sources in Octant V1 (epochs 1 to 11)</div>
+                <div class="lb-card-title">Funding sources across Octant epochs 1 to 12</div>
             </div>
             <div class="split-wrap">
                 <svg id="splitSvg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Funding source split"></svg>
@@ -1904,7 +1904,7 @@
                     Match-per-donor analysis I did in two passes. First, a simple version. For each QF project-epoch (194 rows) I calculated avg donation size (<code>allocated / n_donors</code>) and match per donor (<code>matched / n_donors</code>). Bucketing project-epochs by average donation size, I got leverage of 93× for donations under $2 down to 9× for donations above $50. Then a weighted version, weighted by donor count across all 11,702 individual allocations in QF epochs. That gives $19 average donation, $500 average match per donor, 26× leverage. The weighted version reflects the typical donor experience rather than the typical project experience, and that’s what I used for the main claims in the article.
                 </p>
                 <p>
-                    User-versus-matching-pool split I calculated by summing. All <code>allocated_eth</code> across V1 epochs comes to 109.51 ETH (the portion of staking yield that flowed to users as personal rewards and that they directed to projects instead of keeping for themselves). All <code>matched_eth</code> comes to 2,760 ETH (the portion of staking yield that went straight into the matching pool). Total V1 funding to projects is 2,870 ETH. The split is 96/4 in favor of the matching pool.
+                    User-versus-matching-pool split I calculated by summing. All <code>allocated_eth</code> across epochs 1 to 12 comes to 115.64 ETH (the portion of staking yield that flowed to users as personal rewards and that they directed to projects instead of keeping for themselves). All <code>matched_eth</code> comes to 2,842 ETH (the portion that went straight into the matching pool). Total funding to projects across those rounds is 2,958 ETH. The split is 96/4 in favor of the matching pool. Epoch 12 (the first V2 round, properQF) is included here: its pool is also staking yield and its direct contributions are donated WETH rewards, the same structure as V1.
                 </p>
                 <p>
                     For USD conversions I used $3,000 per ETH as a rough average across QF epochs (August 2023 to January 2026). The real price ranged $1,600–$4,200. This isn’t critical for directional analysis (leverage ratios, distribution patterns), but it’s worth keeping in mind when interpreting specific USD numbers like “$500 average match per donor” or “$128,000 ZachXBT matching”.
@@ -2111,13 +2111,13 @@ Cumulative ≥ N epochs (share of all 1,270 donors):
 - ≥ 10: 2.6% (33 donors)
 - 11 (perfect attendance): 0.9% (11 donors)
 
-## Funding sources in Octant V1 (epochs 1–11)
+## Funding sources across epochs 1 to 12
 
 | Source                                     | ETH      | Share  |
 |--------------------------------------------|----------|--------|
-| Matching pool (staking yield direct)       | 2,760    | 96.2%  |
-| User allocations (personal rewards donated)|   109.51 |  3.8%  |
-| **Total V1**                               | 2,870    | 100%   |
+| Matching pool (staking yield direct)       | 2,842    | 96.1%  |
+| User allocations (personal rewards donated)|   115.64 |  3.9%  |
+| **Total (E1 to E12)**                      | 2,958    | 100%   |
 
 Epoch 0 (pre-launch, 535 ETH curated round) is not included in V1
 totals above. All-time total across E0 to E12 is 3,493 ETH.
@@ -2609,8 +2609,8 @@ the appendix above are available at:
 
     // Funding split donut: 96% matching pool vs 4% user donations.
     const FUNDING_SPLIT = [
-        { label: 'Matching pool',     sub: 'Staking yield direct',     eth: 2760.08, ethDisplay: '2,760', pct: 96, cls: 'split-seg-match', swatch: 'var(--orange)' },
-        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 109.51,  ethDisplay: '109.51', pct: 4,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
+        { label: 'Matching pool',     sub: 'Staking yield direct',     eth: 2841.94, ethDisplay: '2,842', pct: 96, cls: 'split-seg-match', swatch: 'var(--orange)' },
+        { label: 'User allocations',  sub: 'Personal rewards donated', eth: 115.64,  ethDisplay: '115.64', pct: 4,  cls: 'split-seg-user',  swatch: 'var(--teal)' },
     ];
 
     function renderFundingSplit() {
