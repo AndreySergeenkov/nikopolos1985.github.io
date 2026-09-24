@@ -160,7 +160,11 @@
         }
         .note a { color: #0645ad; }
         [id] { scroll-margin-top: 16px; }
-        li:target { background: #fff3cd; transition: background 0.3s; }
+        li:target { animation: target-flash 0.9s ease-out; }
+        @keyframes target-flash {
+            0%, 33% { background: #fff3cd; }
+            100% { background: transparent; }
+        }
         .section-rule { border: 0; border-top: 1px solid #a2a9b1; margin: 40px 0 20px; }
         .crisis-note { font-style: italic; color: #54595d; }
         .llm-copy-bar { margin-bottom: 20px; }
