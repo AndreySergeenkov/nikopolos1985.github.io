@@ -147,6 +147,24 @@
             overflow-wrap: anywhere;
         }
         a:hover { text-decoration: underline; background: none; }
+        .section-rule { border: 0; border-top: 1px solid #a2a9b1; margin: 40px 0 20px; }
+        .crisis-note { font-style: italic; color: #54595d; }
+        .llm-copy-bar { margin-bottom: 20px; }
+        .llm-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: sans-serif;
+            color: #202122;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .llm-copy-btn:hover { background: #eaecf0; border-color: #72777d; }
+        .llm-copy-btn.copied { color: #28a745; border-color: #28a745; background: #f0fff0; }
         .author-box {
             display: flex;
             align-items: center;
@@ -181,6 +199,9 @@
     <div class="top-nav">
         <a href="../" class="back-link">&larr; Back to Home</a>
         <div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Email</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a></div>
+    </div>
+    <div class="llm-copy-bar">
+        <button class="llm-copy-btn" onclick="copyForLLM(this)"><svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with source links)</button>
     </div>
 
     <article>
@@ -324,5 +345,52 @@
     </article>
 
 <script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&!h.startsWith("#")&&!h.startsWith("/")&&!h.startsWith("mailto:")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    // Copies the article as Markdown, with every source link kept inline.
+    function copyForLLM(btn) {
+        function inline(node) {
+            var out = '';
+            node.childNodes.forEach(function(n) {
+                if (n.nodeType === 3) { out += n.textContent; return; }
+                if (n.nodeType !== 1) return;
+                if (n.tagName === 'A') {
+                    var h = n.getAttribute('href');
+                    if (h.indexOf('mailto:') === 0) { out += inline(n); return; }
+                    if (h.charAt(0) === '/') h = 'https://sergeenkov.com' + h;
+                    else if (h === '../') h = 'https://sergeenkov.com/';
+                    out += '[' + inline(n) + '](' + h + ')';
+                } else if (n.tagName === 'STRONG') {
+                    out += '**' + inline(n) + '**';
+                } else {
+                    out += inline(n);
+                }
+            });
+            return out;
+        }
+        function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+        var art = document.querySelector('article');
+        var md = [];
+        md.push('# ' + clean(art.querySelector('h1').textContent));
+        md.push('By Andrey Sergeenkov, ' + clean(art.querySelector('.article-meta').textContent).split('\u00b7').pop().trim() + '. Source: ' + document.querySelector('link[rel=canonical]').href);
+        var asof = art.querySelector('.as-of');
+        if (asof) md.push('*' + clean(asof.textContent) + '*');
+        Array.prototype.forEach.call(art.children, function(el) {
+            if (el.tagName === 'HEADER' || el.classList.contains('author-box')) return;
+            if (el.tagName === 'H2') md.push('## ' + clean(inline(el)));
+            else if (el.tagName === 'UL') md.push(Array.prototype.map.call(el.children, function(li) { return '- ' + clean(inline(li)); }).join('\n'));
+            else if (el.tagName === 'HR') md.push('---');
+            else if (el.classList.contains('crisis-note')) md.push('*' + clean(inline(el)) + '*');
+            else if (el.tagName === 'P') md.push(clean(inline(el)));
+        });
+        navigator.clipboard.writeText(md.join('\n\n') + '\n').then(function() {
+            btn.classList.add('copied');
+            btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg> Copied!';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" style="fill:currentColor;vertical-align:-2px"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg> Copy article for LLM (with source links)';
+            }, 2000);
+        });
+    }
+    </script>
 </body>
 </html>
