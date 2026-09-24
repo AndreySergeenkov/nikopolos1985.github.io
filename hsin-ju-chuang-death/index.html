@@ -138,6 +138,7 @@
         }
         p { margin-bottom: 16px; font-size: 17px; }
         .as-of { font-style: italic; color: #54595d; font-size: 15px; margin: 0; }
+        .as-of + .as-of { margin-top: 6px; }
         a {
             color: #0645ad;
             text-decoration: none;
@@ -222,9 +223,8 @@
             <h1>What Can Be Verified About the Death of Hsin-Ju Chuang</h1>
             <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; September 24, 2026</div>
             <p class="as-of">Last updated: September 24, 2026. See updates at the end.</p>
+            <p class="as-of" id="latest-update">September 24, 2026: Added CHP’s <a href="#chp-response">response</a> confirming that its investigation is ongoing, <a href="#field-road-traffic">traffic</a> data for the Field Road exit, and an <a href="#lawyers-disclosure">explanation</a> of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case. Corrected the <a href="#weather-station">distance</a> to the Barstow-Daggett weather station from 20 km (12 miles) to 29 km (18 miles).</p>
         </header>
-
-        <div class="note" id="latest-update"><strong>Update, September 24, 2026:</strong> Added <a href="#chp-response">CHP’s response confirming that its investigation is ongoing</a>, <a href="#field-road-traffic">traffic data for the Field Road exit</a>, and <a href="#lawyers-disclosure">an explanation of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case</a>. Corrected <a href="#weather-station">the distance to the Barstow-Daggett weather station</a> from 20 km (12 miles) to 29 km (18 miles).</div>
 
         <p>This page collects everything I have been able to verify about the death of Hsin-Ju Chuang, a former partner at Hack VC. Please reach out (<a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a>) if anything is unclear, if something else would help your work, or if you have corrections.</p>
 
@@ -343,7 +343,7 @@
         <h2 id="updates">Updates</h2>
 
         <ul>
-            <li>September 24, 2026: Added <a href="#chp-response">CHP’s response confirming that its investigation is ongoing</a>, <a href="#field-road-traffic">traffic data for the Field Road exit</a>, and <a href="#lawyers-disclosure">an explanation of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case</a>. Corrected <a href="#weather-station">the distance to the Barstow-Daggett weather station</a> from 20 km (12 miles) to 29 km (18 miles).</li>
+            <li>September 24, 2026: Added CHP’s <a href="#chp-response">response</a> confirming that its investigation is ongoing, <a href="#field-road-traffic">traffic</a> data for the Field Road exit, and an <a href="#lawyers-disclosure">explanation</a> of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case. Corrected the <a href="#weather-station">distance</a> to the Barstow-Daggett weather station from 20 km (12 miles) to 29 km (18 miles).</li>
         </ul>
         <hr class="section-rule">
 
@@ -400,6 +400,8 @@
         md.push('By Andrey Sergeenkov, ' + clean(art.querySelector('.article-meta').textContent).split('\u00b7').pop().trim() + '. Source: ' + document.querySelector('link[rel=canonical]').href);
         var asof = art.querySelector('.as-of');
         if (asof) md.push('*' + clean(asof.textContent) + '*');
+        var upd = document.getElementById('latest-update');
+        if (upd) md.push('*' + clean(inline(upd)) + '*');
         Array.prototype.forEach.call(art.children, function(el) {
             if (el.tagName === 'HEADER' || el.classList.contains('author-box')) return;
             if (el.tagName === 'H2') md.push('## ' + clean(inline(el)));
