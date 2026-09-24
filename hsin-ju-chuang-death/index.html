@@ -147,6 +147,19 @@
             overflow-wrap: anywhere;
         }
         a:hover { text-decoration: underline; background: none; }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+        .note a { color: #0645ad; }
+        [id] { scroll-margin-top: 16px; }
+        li:target { background: #fff3cd; transition: background 0.3s; }
         .section-rule { border: 0; border-top: 1px solid #a2a9b1; margin: 40px 0 20px; }
         .crisis-note { font-style: italic; color: #54595d; }
         .llm-copy-bar { margin-bottom: 20px; }
@@ -208,8 +221,10 @@
         <header class="article-header">
             <h1>What Can Be Verified About the Death of Hsin-Ju Chuang</h1>
             <div class="article-meta">By <a href="../">Andrey Sergeenkov</a> &middot; September 24, 2026</div>
-            <p class="as-of">Information as of September 24, 2026.</p>
+            <p class="as-of">Last updated: September 24, 2026. See updates at the end.</p>
         </header>
+
+        <div class="note" id="latest-update"><strong>Update, September 24, 2026:</strong> Added <a href="#chp-response">CHP’s response confirming that its investigation is ongoing</a>, <a href="#field-road-traffic">traffic data for the Field Road exit</a>, and <a href="#lawyers-disclosure">an explanation of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case</a>. Corrected <a href="#weather-station">the distance to the Barstow-Daggett weather station</a> from 20 km (12 miles) to 29 km (18 miles).</div>
 
         <p>This page collects everything I have been able to verify about the death of Hsin-Ju Chuang, a former partner at Hack VC. Please reach out (<a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a>) if anything is unclear, if something else would help your work, or if you have corrections.</p>
 
@@ -218,9 +233,9 @@
         <ul>
             <li>On August 24 at 9:47 p.m. local time, the California Highway Patrol (CHP) responded to southbound I-15 at the Field Road exit in Harvard, Newberry Springs. Hsin-Ju Chuang, 37, of North Las Vegas, was pronounced dead at the scene. San Bernardino County Coroner case number: 702605767 (<a href="https://wp.sbcounty.gov/sheriff/media-center/coroner-press-release/">Sheriff-Coroner press releases</a>).</li>
             <li>She was found in a vehicle that officers had to enter by breaking a window (<a href="https://paininthepass.info/2026/09/05/37-year-old-las-vegas-female-who-was-found-dead-in-her-vehicle-on-i-15-last-month/">Pain in the Pass</a>).</li>
-            <li>The Field Road exit is on the main Los Angeles to Las Vegas route, where Caltrans counted an average of 45,000 vehicles a day in 2023 (<a href="https://caltrans-gis.dot.ca.gov/arcgis/rest/services/CHhighway/Traffic_AADT/FeatureServer/0/query?where=DESCRIPTION%3D%27FIELD+ROAD%27&amp;outFields=*&amp;f=html">Caltrans</a>). The exit itself has no services (<a href="https://www.google.com/maps/search/?api=1&amp;query=35.0115,-116.531">map</a>).</li>
-            <li>CHP is handling the investigation. Press inquiries go to the CHP Inland Division public information office: 801_PIO@chp.ca.gov. According to the coroner’s division, a final report that includes toxicology results takes six months to a year on average (<a href="https://wp.sbcounty.gov/sheriff/divisions/coroner/">County Coroner Division</a>).</li>
-            <li>The Barstow-Daggett weather station, 29 km (18 miles) from the scene, recorded a high of 108°F (42.2°C) that day and a low of 82°F (27.8°C) (<a href="https://mesonet.agron.iastate.edu/api/1/daily.json?station=DAG&amp;network=CA_ASOS&amp;year=2026&amp;month=8">station daily summary</a>). At about 9:50 p.m. it was 95°F (35°C) (<a href="https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DAG&amp;data=tmpf&amp;year1=2026&amp;month1=8&amp;day1=24&amp;year2=2026&amp;month2=8&amp;day2=25&amp;tz=America/Los_Angeles&amp;format=onlycomma&amp;latlon=no&amp;missing=M&amp;report_type=3">station hourly data</a>).</li>
+            <li id="field-road-traffic">The Field Road exit is on the main Los Angeles to Las Vegas route, where Caltrans counted an average of 45,000 vehicles a day in 2023 (<a href="https://caltrans-gis.dot.ca.gov/arcgis/rest/services/CHhighway/Traffic_AADT/FeatureServer/0/query?where=DESCRIPTION%3D%27FIELD+ROAD%27&amp;outFields=*&amp;f=html">Caltrans</a>). The exit itself has no services (<a href="https://www.google.com/maps/search/?api=1&amp;query=35.0115,-116.531">map</a>).</li>
+            <li id="chp-response">CHP is handling the investigation. On September 24, it told me the investigation is ongoing and referred questions about the cause of death to the coroner. Press inquiries go to the CHP Inland Division public information office: 801_PIO@chp.ca.gov. According to the coroner’s division, a final report that includes toxicology results takes six months to a year on average (<a href="https://wp.sbcounty.gov/sheriff/divisions/coroner/">County Coroner Division</a>).</li>
+            <li id="weather-station">The Barstow-Daggett weather station, 29 km (18 miles) from the scene, recorded a high of 108°F (42.2°C) that day and a low of 82°F (27.8°C) (<a href="https://mesonet.agron.iastate.edu/api/1/daily.json?station=DAG&amp;network=CA_ASOS&amp;year=2026&amp;month=8">station daily summary</a>). At about 9:50 p.m. it was 95°F (35°C) (<a href="https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DAG&amp;data=tmpf&amp;year1=2026&amp;month1=8&amp;day1=24&amp;year2=2026&amp;month2=8&amp;day2=25&amp;tz=America/Los_Angeles&amp;format=onlycomma&amp;latlon=no&amp;missing=M&amp;report_type=3">station hourly data</a>).</li>
             <li>At 7:22 a.m. that day, the National Weather Service issued an Extreme Heat Warning for the area, in effect through August 28 (<a href="https://mesonet.agron.iastate.edu/vtec/?year=2026&amp;wfo=KVEF&amp;phenomena=XH&amp;significance=W&amp;eventid=0005">NWS Las Vegas warning</a>).</li>
         </ul>
 
@@ -275,6 +290,9 @@
             <li>She wrote that about a month after the suicide attempt, the firm mishandled her COBRA health insurance and did not fix it for almost four months, until she hired lawyers (<a href="https://x.com/hsinju/status/2091571258869879015">her Aug 23 thread</a>). Under U.S. Department of Labor rules, the COBRA election notice should be sent to a former employee within 44 days of the qualifying event (<a href="https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/faqs/cobra-continuation-health-coverage-workers">U.S. Department of Labor</a>).</li>
             <li>Her lawyers were Sanford Heisler Sharp McKnight. According to the FAQ on the firm’s website, it often works on a contingency fee basis (<a href="https://sanfordheisler.com/faq/how-much-does-a-wrongful-termination-lawyer-cost/">firm FAQ</a>). The terms of her engagement are unknown.</li>
             <li>In her account, the negotiations lasted almost a year and reached the stage of preparing for private mediation and settlement (<a href="https://x.com/hsinju/status/2091571258869879015">her Aug 23 thread</a>). No lawsuit appears in public databases (CourtListener and California court searches were checked). The firm’s SEC brochure states that the firm and its supervised persons have no reportable disciplinary events (<a href="https://files.adviserinfo.sec.gov/IAPD/Content/Common/crd_iapd_Brochure.aspx?BRCHR_VRSN_ID=1053433">Form ADV Part 2A, Item 9</a>).</li>
+            <li id="lawyers-disclosure">The settlement her lawyers at Sanford Heisler were preparing would have required her to stay silent about what happened at Hack VC (<a href="https://x.com/hsinju/status/2091571258869879015">her Aug 23 thread</a>). To negotiate that condition, the firm would have needed to know what she would be staying silent about, so it likely holds at least part of the material she planned to publish.</li>
+            <li>The firm cannot share it on its own. Attorney-client privilege survives a client’s death (<a href="https://supreme.justia.com/cases/federal/us/524/399/">Swidler &amp; Berlin v. United States</a>), and lawyers must keep client confidences under professional conduct rules (<a href="https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_1_6_confidentiality_of_information/">ABA Model Rule 1.6</a>).</li>
+            <li>Disclosure becomes possible in two ways. In both California and Nevada, where she lived, the privilege passes to the personal representative of her estate, who can consent to disclosure (<a href="https://codes.findlaw.com/ca/evidence-code/evid-sect-953/">California Evidence Code 953</a>; <a href="https://www.clarkcountybar.org/?pg=News&amp;blAction=showEntry&amp;blogEntry=151354">NRS 49.105</a>). Documents that existed before she gave them to her lawyers, such as messages from Hack VC, do not become privileged by being in the firm’s files and can be obtained by subpoena or court order (<a href="https://supreme.justia.com/cases/federal/us/425/391/">Fisher v. United States</a>).</li>
             <li>On September 23, 2026, Alex Pack wrote that the firm had not spoken to her directly in over 10 months, that is, since about November 2025 (<a href="https://x.com/alpackaP/status/2102758451390595098">Pack’s post</a>).</li>
             <li>In 2026, before the thread, she barely posted on X.</li>
         </ul>
@@ -321,6 +339,12 @@
             <li>Chinese-language outlets: <a href="https://www.panewslab.com/en/articles/01a0cda5-c680-74d4-a6a0-2ab5122c7bef">PANews</a>, <a href="https://www.theblockbeats.info/flash/368603">BlockBeats</a>, <a href="https://www.odaily.news/zh-CN/post/5213129">Odaily</a>, <a href="https://wublock123.com/news/hack-vc-former-partner-hsin-ju-chuang-found-dead-accuses-former-employer-68866">WuBlockchain</a>, <a href="https://www.blocktempo.com/former-hack-vc-partner-hsin-ju-found-dead-mojave-desert/">BlockTempo</a>, <a href="https://m.cnyes.com/news/id/6614459">cnyes</a>.</li>
             <li>Her August thread with the allegations was covered by <a href="https://global.foresightnews.pro/article/17275">Foresight News</a> and <a href="https://www.kucoin.com/news/flash/former-hack-vc-partner-hsin-ju-refuses-settlement-plans-to-publicly-disclose-evidence">KuCoin News</a>.</li>
         </ul>
+
+        <h2 id="updates">Updates</h2>
+
+        <ul>
+            <li>September 24, 2026: Added <a href="#chp-response">CHP’s response confirming that its investigation is ongoing</a>, <a href="#field-road-traffic">traffic data for the Field Road exit</a>, and <a href="#lawyers-disclosure">an explanation of the circumstances under which Hsin-Ju Chuang’s former lawyers could disclose information about her case</a>. Corrected <a href="#weather-station">the distance to the Barstow-Daggett weather station</a> from 20 km (12 miles) to 29 km (18 miles).</li>
+        </ul>
         <hr class="section-rule">
 
         <p class="crisis-note">If you or someone you know is struggling or in crisis, help is available. In the U.S., call or text 988 to reach the <a href="https://988lifeline.org/">988 Suicide &amp; Crisis Lifeline</a>. In other countries, <a href="https://findahelpline.com/">Find A Helpline</a> lists free, confidential helplines in over 150 countries. If someone is in immediate danger, call your local emergency number.</p>
@@ -357,6 +381,7 @@
                 if (n.tagName === 'A') {
                     var h = n.getAttribute('href');
                     if (h.indexOf('mailto:') === 0) { out += inline(n); return; }
+                    if (h.charAt(0) === '#') h = document.querySelector('link[rel=canonical]').href + h;
                     if (h.charAt(0) === '/') h = 'https://sergeenkov.com' + h;
                     else if (h === '../') h = 'https://sergeenkov.com/';
                     out += '[' + inline(n) + '](' + h + ')';
@@ -380,6 +405,7 @@
             if (el.tagName === 'H2') md.push('## ' + clean(inline(el)));
             else if (el.tagName === 'UL') md.push(Array.prototype.map.call(el.children, function(li) { return '- ' + clean(inline(li)); }).join('\n'));
             else if (el.tagName === 'HR') md.push('---');
+            else if (el.classList.contains('note')) md.push(clean(inline(el)));
             else if (el.classList.contains('crisis-note')) md.push('*' + clean(inline(el)) + '*');
             else if (el.tagName === 'P') md.push(clean(inline(el)));
         });
