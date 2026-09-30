@@ -1,13 +1,15 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sergeenkov.com/</loc></url>
-  <url><loc>https://sergeenkov.com/citations/</loc></url>
-  <url><loc>https://sergeenkov.com/coverage/</loc></url>
-  <url><loc>https://sergeenkov.com/hsin-ju-chuang-death/</loc></url>
-  <url><loc>https://sergeenkov.com/loss-based-polymarket-airdrop/</loc></url>
-  <url><loc>https://sergeenkov.com/polymarket-profitability/</loc></url>
-  <url><loc>https://sergeenkov.com/fusaka-poison-attacks-ethereum/</loc></url>
-  <url><loc>https://sergeenkov.com/thedao-curators-220m-hack-victims/</loc></url>
-  <url><loc>https://sergeenkov.com/will-thedao-money-improve-ethereum-security/</loc></url>
-  <url><loc>https://sergeenkov.com/record-high-activity-ethereum-2026/</loc></url>
+{% for file in site.static_files %}
+{% if file.extname == '.html' %}
+{% assign url_path = file.path %}
+{% if file.name == 'index.html' %}
+{% assign url_path = url_path | remove: 'index.html' %}
+{% endif %}
+  <url><loc>https://sergeenkov.com{{ url_path | escape }}</loc></url>
+{% endif %}
+{% endfor %}
 </urlset>
