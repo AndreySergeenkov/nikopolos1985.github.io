@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /README.md
-Disallow: /octant-analysis/
 
 Sitemap: https://sergeenkov.com/feed.xml
