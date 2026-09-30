@@ -3,13 +3,18 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{% for file in site.static_files %}
-{% if file.extname == '.html' and file.name != '404.html' %}
+{% for file in site.html_files %}
+{% if file.name != '404.html' %}
 {% assign url_path = file.path %}
 {% if file.name == 'index.html' %}
 {% assign url_path = url_path | remove: 'index.html' %}
 {% endif %}
   <url><loc>https://sergeenkov.com{{ url_path | escape }}</loc></url>
+{% endif %}
+{% endfor %}
+{% for page in site.html_pages %}
+{% if page.name != '404.html' %}
+  <url><loc>https://sergeenkov.com{{ page.url | escape }}</loc></url>
 {% endif %}
 {% endfor %}
 </urlset>
