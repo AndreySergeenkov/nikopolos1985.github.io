@@ -4,7 +4,7 @@ layout: null
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for file in site.static_files %}
-{% if file.extname == '.html' %}
+{% if file.extname == '.html' and file.name != '404.html' %}
 {% assign url_path = file.path %}
 {% if file.name == 'index.html' %}
 {% assign url_path = url_path | remove: 'index.html' %}
