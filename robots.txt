@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /README.md
 
-Sitemap: https://sergeenkov.com/feed.xml
+Sitemap: https://sergeenkov.com/sitemap.xml
