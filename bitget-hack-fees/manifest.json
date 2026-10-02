@@ -5,7 +5,7 @@
     "slug": "bitget-hack-fees",
     "description": "Measured protocol, service and affiliate fees from swaps of funds stolen from Bitget, with full recipient addresses, transaction evidence and historical USD valuations.",
     "published_at": "2026-10-02T12:39:30+00:00",
-    "modified_at": "2026-10-02T12:39:30+00:00",
+    "modified_at": "2026-10-02T12:51:07+00:00",
     "reference_commit": "c6a9ae6b90c0907bdfc567186f4d8dac64ab037c",
     "author": {
       "@type": "Person",
@@ -52,6 +52,6 @@
     "data.json": "314eee50ed8f4046258576319a15dee34613c662c86186c92d2ca714f9df3107",
     "assets/og-image.png": "8b9694babec8e6d73f37f0f45e9c965072bdf594d5e481d057c4bf73728cb651"
   },
-  "article_source_sha256": "d22602e0585c4f092b41372c09815e7e851fd5be70500a93b6eaf32a807fe50b",
+  "article_source_sha256": "788024e03027949fedaee5e98ef6e6fe1c2f11d2d8130551272fbd99bcd77400",
   "checksum_scope": "Published static assets and data; article HTML is rendered by Jekyll."
 }
