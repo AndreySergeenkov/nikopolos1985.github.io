@@ -5,7 +5,7 @@
     "slug": "bitget-hack-fees",
     "description": "Fees from swaps of Bitget’s stolen funds and documented financial links between seven THORChain affiliate recipients and the hackers’ wallets.",
     "published_at": "2026-10-02T12:39:30+00:00",
-    "modified_at": "2026-10-02T13:07:01+00:00",
+    "modified_at": "2026-10-02T13:40:38+00:00",
     "reference_commit": "c6a9ae6b90c0907bdfc567186f4d8dac64ab037c",
     "author": {
       "@type": "Person",
@@ -43,7 +43,7 @@
   "files": {
     "assets/article-preview.css": "c6b42f5c3070dacee45b08ba9f54f80304d00d3aea3b233d35ec28c7e318e4c1",
     "assets/article-chrome.css": "f2eb78a9780483ae4d25e4c05a93c29e302322a4c571dcf6dc028281499fc9cf",
-    "assets/article-dashboard.js": "390126d1f13b2ce4f58d0afaf023fcc52c5d9d18ca828c35c2f0d2332dd6aedc",
+    "assets/article-dashboard.js": "05d1740852564423096437bd0c7a75b98269ca648f200b4cea7fbd656b8a2812",
     "assets/article-copy.js": "58e31ee8b765e1b2b59458ff2da5878970265a71c4262870d4df32de758b6956",
     "assets/chart.umd.min.js": "206b6e8bb00fc7bba2c7ee80ca41db3e9e05ba7be0aa35abeba9cfd5357f5d0e",
     "assets/html-to-image-1.11.13.js": "a90b42909d80964269ef6d5f3d1e4a5a7e2a4c263a5d2a76a9e7151901343262",
@@ -52,6 +52,6 @@
     "data.json": "314eee50ed8f4046258576319a15dee34613c662c86186c92d2ca714f9df3107",
     "assets/og-image.png": "8b9694babec8e6d73f37f0f45e9c965072bdf594d5e481d057c4bf73728cb651"
   },
-  "article_source_sha256": "631336cc3de267cc7f1ddf6f86541177f0027b13ed2f5febb24b69406727a31d",
+  "article_source_sha256": "cf79860ec85db6752f9a5ab88605ff097cf0d9176e90cc56cf544a195eed0cb3",
   "checksum_scope": "Published static assets and data; article HTML is rendered by Jekyll."
 }

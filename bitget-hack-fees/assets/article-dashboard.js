@@ -238,7 +238,11 @@
     if(image) {
       copy.querySelectorAll('.evidence-detail').forEach(element=>element.remove());
       copy.querySelectorAll('.recipient-unassigned').forEach(element=>element.open=true);
-      if(view==='linked') copy.querySelector('.chart-source').before(node('p','Supporting transactions are available in the article’s Evidence entries.','chart-note'));
+      // Publication images reuse chart content without adding article-navigation notes.
+      if(view==='recipients') {
+        copy.querySelector('.metric-label').textContent='Total fees with identified recipients';
+        copy.querySelector('.recipient-unassigned')?.remove();
+      }
     }
     [copy,...copy.querySelectorAll('[id]')].forEach(element=>element.removeAttribute('id'));
     copy.removeAttribute('aria-labelledby');
