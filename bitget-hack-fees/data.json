@@ -1,0 +1,867 @@
+{
+  "schema": 3,
+  "view_schema": 3,
+  "snapshot_id": "2026-10-02T102235Z",
+  "cutoff_utc": "2026-10-02T10:22:39+00:00",
+  "start_utc": "2026-09-24T18:31:00+00:00",
+  "published_utc": "2026-10-02T10:45:42.270424+00:00",
+  "registry_version": "2026-10-01.1",
+  "registry_sha256": "ce43b7a813de09eb6af5f5b70e7afe24797245721b08f5ffb179f93916ebc93d",
+  "evidence_checked_utc": "2026-10-01",
+  "mechanisms": [
+    {
+      "key": "thor_liquidity",
+      "label": "THORChain liquidity",
+      "description": "Swap liquidity fees",
+      "usd": "573225.63",
+      "source": "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions"
+    },
+    {
+      "key": "thor_affiliate",
+      "label": "THORChain affiliate",
+      "description": "Affiliate transfers and collector credits",
+      "usd": "465913.89",
+      "source": "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions"
+    },
+    {
+      "key": "metamask",
+      "label": "MetaMask",
+      "description": "Transfers to the Ethereum fee recipient",
+      "usd": "149416.68",
+      "source": "https://etherscan.io/address/0xf326e4de8f66a0bdc0970b79e0924e33c79f1915"
+    },
+    {
+      "key": "chainflip",
+      "label": "Chainflip",
+      "description": "Broker fees on matched swaps",
+      "usd": "26750.72",
+      "source": "https://explorer-service-processor.chainflip.io/graphql"
+    },
+    {
+      "key": "cow",
+      "label": "CoW EthFlow",
+      "description": "Executed protocol and partner fees",
+      "usd": "12332.44",
+      "source": "https://api.cow.fi/mainnet/api/v2/trades"
+    }
+  ],
+  "recipients": [
+    {
+      "id": "THORChain:thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4",
+      "chain": "THORChain",
+      "address": "thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4",
+      "role": "Affiliate recipient",
+      "usd": "177498.53",
+      "aliases": [
+        "thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "Ethereum:0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "chain": "Ethereum",
+      "address": "0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "role": "MetaMask fee contract",
+      "usd": "149416.68",
+      "aliases": [],
+      "accounting": [
+        "Direct transfer"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": "https://etherscan.io/address/0xf326e4de8f66a0bdc0970b79e0924e33c79f1915"
+    },
+    {
+      "id": "THORChain:thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "chain": "THORChain",
+      "address": "thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "role": "Affiliate recipient",
+      "usd": "102343.76",
+      "aliases": [
+        "naswap"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "chain": "THORChain",
+      "address": "thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "role": "Affiliate collector",
+      "usd": "92437.54",
+      "aliases": [
+        "w1",
+        "t",
+        "vi",
+        "-_",
+        "ss",
+        "dx",
+        "ej",
+        "symbiosis"
+      ],
+      "accounting": [
+        "Collector credit"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": true,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2",
+      "chain": "THORChain",
+      "address": "thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2",
+      "role": "Affiliate recipient",
+      "usd": "56513.57",
+      "aliases": [
+        "thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "Chainflip:cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "chain": "Chainflip",
+      "address": "cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "role": "Chainflip broker",
+      "usd": "26750.72",
+      "aliases": [
+        "swap.chainflip.io"
+      ],
+      "accounting": [
+        "Broker allocation"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl",
+      "chain": "THORChain",
+      "address": "thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl",
+      "role": "Affiliate recipient",
+      "usd": "18079.84",
+      "aliases": [
+        "thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "chain": "THORChain",
+      "address": "thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "role": "Affiliate recipient",
+      "usd": "7244.79",
+      "aliases": [
+        "tch"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x",
+      "chain": "THORChain",
+      "address": "thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x",
+      "role": "Affiliate recipient",
+      "usd": "4544.45",
+      "aliases": [
+        "thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "chain": "THORChain",
+      "address": "thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "role": "Affiliate recipient",
+      "usd": "2993.75",
+      "aliases": [
+        "ns"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs",
+      "chain": "THORChain",
+      "address": "thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs",
+      "role": "Affiliate recipient",
+      "usd": "2884.50",
+      "aliases": [
+        "thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "chain": "THORChain",
+      "address": "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "role": "Affiliate recipient",
+      "usd": "1176.43",
+      "aliases": [
+        "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz",
+      "chain": "THORChain",
+      "address": "thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz",
+      "role": "Affiliate recipient",
+      "usd": "196.43",
+      "aliases": [
+        "thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    },
+    {
+      "id": "THORChain:thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel",
+      "chain": "THORChain",
+      "address": "thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel",
+      "role": "Affiliate recipient",
+      "usd": "0.30",
+      "aliases": [
+        "thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "linked"
+      ],
+      "collector": false,
+      "explorer": ""
+    }
+  ],
+  "unlinked": [
+    {
+      "id": "Ethereum:0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "chain": "Ethereum",
+      "address": "0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "role": "MetaMask fee contract",
+      "usd": "149416.68",
+      "aliases": [],
+      "accounting": [
+        "Direct transfer"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": "https://etherscan.io/address/0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "chain": "THORChain",
+      "address": "thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "role": "Affiliate recipient",
+      "usd": "102343.76",
+      "aliases": [
+        "naswap"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "chain": "THORChain",
+      "address": "thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "role": "Affiliate collector",
+      "usd": "92437.54",
+      "aliases": [
+        "w1",
+        "t",
+        "vi",
+        "-_",
+        "ss",
+        "dx",
+        "ej",
+        "symbiosis"
+      ],
+      "accounting": [
+        "Collector credit"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": true,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "Chainflip:cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "chain": "Chainflip",
+      "address": "cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "role": "Chainflip broker",
+      "usd": "26750.72",
+      "aliases": [
+        "swap.chainflip.io"
+      ],
+      "accounting": [
+        "Broker allocation"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "chain": "THORChain",
+      "address": "thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "role": "Affiliate recipient",
+      "usd": "7244.79",
+      "aliases": [
+        "tch"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "chain": "THORChain",
+      "address": "thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "role": "Affiliate recipient",
+      "usd": "2993.75",
+      "aliases": [
+        "ns"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "chain": "THORChain",
+      "address": "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "role": "Affiliate recipient",
+      "usd": "1176.43",
+      "aliases": [
+        "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    }
+  ],
+  "protocol_mechanisms": [
+    {
+      "key": "thor_liquidity",
+      "label": "THORChain liquidity",
+      "description": "Swap liquidity fees",
+      "usd": "573225.63",
+      "source": "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions"
+    },
+    {
+      "key": "metamask",
+      "label": "MetaMask",
+      "description": "Transfers to the Ethereum fee recipient",
+      "usd": "149416.68",
+      "source": "https://etherscan.io/address/0xf326e4de8f66a0bdc0970b79e0924e33c79f1915"
+    },
+    {
+      "key": "chainflip",
+      "label": "Chainflip",
+      "description": "Broker fees on matched swaps",
+      "usd": "26750.72",
+      "source": "https://explorer-service-processor.chainflip.io/graphql"
+    },
+    {
+      "key": "cow",
+      "label": "CoW EthFlow",
+      "description": "Executed protocol and partner fees",
+      "usd": "12332.44",
+      "source": "https://api.cow.fi/mainnet/api/v2/trades"
+    }
+  ],
+  "protocol_recipients": [
+    {
+      "id": "Ethereum:0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "chain": "Ethereum",
+      "address": "0xf326e4de8f66a0bdc0970b79e0924e33c79f1915",
+      "role": "MetaMask fee contract",
+      "usd": "149416.68",
+      "aliases": [],
+      "accounting": [
+        "Direct transfer"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": "https://etherscan.io/address/0xf326e4de8f66a0bdc0970b79e0924e33c79f1915"
+    },
+    {
+      "id": "Chainflip:cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "chain": "Chainflip",
+      "address": "cFJySAo3RbrtKWWb9J86jqnfTjpDCXAQ4bcJR9kt6S37i7eey",
+      "role": "Chainflip broker",
+      "usd": "26750.72",
+      "aliases": [
+        "swap.chainflip.io"
+      ],
+      "accounting": [
+        "Broker allocation"
+      ],
+      "link_status": [
+        "not_assessed"
+      ],
+      "collector": false,
+      "explorer": ""
+    }
+  ],
+  "other_affiliates": [
+    {
+      "id": "THORChain:thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "chain": "THORChain",
+      "address": "thor148sahwr5pg44cy0n23zwc723ugy2fptw0m8sau",
+      "role": "Affiliate recipient",
+      "usd": "102343.76",
+      "aliases": [
+        "naswap"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "chain": "THORChain",
+      "address": "thor1dl7un46w7l7f3ewrnrm6nq58nerjtp0dradjtd",
+      "role": "Affiliate collector",
+      "usd": "92437.54",
+      "aliases": [
+        "w1",
+        "t",
+        "vi",
+        "-_",
+        "ss",
+        "dx",
+        "ej",
+        "symbiosis"
+      ],
+      "accounting": [
+        "Collector credit"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": true,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "chain": "THORChain",
+      "address": "thor1epz4l9jat4uqrag5j9d5aqrawrn0uhvdfxyxec",
+      "role": "Affiliate recipient",
+      "usd": "7244.79",
+      "aliases": [
+        "tch"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "chain": "THORChain",
+      "address": "thor1dz5le8q2gytyn5gkfgcma4wueat4y655meyvnx",
+      "role": "Affiliate recipient",
+      "usd": "2993.75",
+      "aliases": [
+        "ns"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    },
+    {
+      "id": "THORChain:thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "chain": "THORChain",
+      "address": "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar",
+      "role": "Affiliate recipient",
+      "usd": "1176.43",
+      "aliases": [
+        "thor1ul3wekxelwcyuc4d85eza5s0qkhxqa2y9n7dar"
+      ],
+      "accounting": [
+        "Affiliate transfer"
+      ],
+      "link_status": [
+        "unresolved"
+      ],
+      "collector": false,
+      "explorer": "",
+      "partial_allocation": false
+    }
+  ],
+  "protocol_unassigned": [
+    {
+      "key": "thor_liquidity",
+      "label": "THORChain liquidity",
+      "usd": "573225.63",
+      "reason": "Individual recipient shares have not been allocated",
+      "destinations": []
+    },
+    {
+      "key": "cow",
+      "label": "CoW EthFlow",
+      "usd": "12332.44",
+      "reason": "Individual recipient shares have not been allocated",
+      "destinations": []
+    }
+  ],
+  "affiliate_unassigned": [],
+  "linked": [
+    {
+      "id": "THORChain:thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4",
+      "address": "thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4",
+      "chain": "THORChain",
+      "usd": "177498.53",
+      "evidence": [
+        {
+          "alias": "thor18dvgrgpvxlh7rhhld4qjyrxs9c7tvwdakrkjm4",
+          "types": [
+            "shared_principal_destination"
+          ],
+          "labels": [
+            "Shared recipients of the main funds"
+          ],
+          "summary": "The XRP senders of these swaps are connected by transfers to Bitget's compromised XRP address. Some swaps sent their main BTC proceeds to the same recipients used by another reviewed affiliate route.",
+          "research_summary": "15 XRP-отправителей связаны переводами с официальным XRP-адресом Bitget. USDT от собственного обмена RUNE дошли до кошелька с меткой OKX; владелец affiliate и биржевого счёта не установлен. Основные BTC-получатели части обменов совпадают с маршрутом B.",
+          "checked_utc": "2026-09-30",
+          "urls": [
+            "https://xrpscan.com/tx/8F4376382000AE0D1C2FEA19565F9DE1004BAABE2AB521F66398FE10989537DE",
+            "https://xrpscan.com/tx/F3243564D81A2D11280B2A65D68DA5C3B69B8EFBE484BC03AC498CFF36B4A35F",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=1A74F8A90388D634EAC41B7AFCC6200A0FBB643E5071BCC2789DF8348F8A60BA",
+            "https://etherscan.io/tx/0xa4594caad08f45a4b389a0495c02f8094bd63c2984ae4f0d88d1ca233c2a37d0",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=F5226D3AB9DC53288DED32C1FA5C347E7CC4A0CF189E8C9EC8D6F9919914F7B8",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=728F961F225178A4DC4BD9325A9520A40BAF33B196721DC856839D14DA6823F6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2",
+      "address": "thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2",
+      "chain": "THORChain",
+      "usd": "56513.57",
+      "evidence": [
+        {
+          "alias": "thor1rj9f7m7n72nwslau7jzla09u0l4zr4ru8277d2",
+          "types": [
+            "shared_principal_destination"
+          ],
+          "labels": [
+            "Shared recipients of the main funds"
+          ],
+          "summary": "One swap sender is connected by transfers to Bitget's compromised EVM address. All four main BTC recipients match recipients used by another reviewed affiliate route.",
+          "research_summary": "Один из четырёх отправителей связан переводами с официальным EVM-адресом Bitget. Все четыре BTC-получателя совпадают с получателями более ранних свопов другого affiliate; владелец ключей не установлен.",
+          "checked_utc": "2026-09-30",
+          "urls": [
+            "https://etherscan.io/tx/0x32df608e29e71b2f20dbf276dabf929df55ed1c806cfe9f49ecec123ac1d13d5",
+            "https://etherscan.io/tx/0xc375fbd01aeb952c5ce2c73f90b8063b55db5f9d34c3220197ab944ba3d2f306",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=554A333F8504C9041E0C701259F9864F21727BD32601C49AFF9B32BF03211BA7",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=F5226D3AB9DC53288DED32C1FA5C347E7CC4A0CF189E8C9EC8D6F9919914F7B8",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=728F961F225178A4DC4BD9325A9520A40BAF33B196721DC856839D14DA6823F6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl",
+      "address": "thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl",
+      "chain": "THORChain",
+      "usd": "18079.84",
+      "evidence": [
+        {
+          "alias": "thor199tl2t4fkxqn7pawk8dgera79dl70rnczu6jsl",
+          "types": [
+            "fee_return"
+          ],
+          "labels": [
+            "Fee proceeds returned to a swap sender"
+          ],
+          "summary": "This address exchanged its fee RUNE and directed the proceeds to a wallet that had itself used this affiliate. That wallet later received ETH from Bitget's compromised EVM cluster.",
+          "research_summary": "Комиссия выведена на кошелёк, который сам использовал этот affiliate; далее его почти полный ETH-баланс вошёл в поток к Chainflip. Позднее кошелёк получил ETH из официального EVM-кластера Bitget; владелец не установлен.",
+          "checked_utc": "2026-09-30",
+          "urls": [
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=226A8738EB85AEED4554F4D5891787BDC5A0D578CF5DB15EA79D08C340C0C2BB",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=BFB1B334F0C2AE2737A1100D65A0636AF1403534EDE2665003B5D2C7A6C376C1",
+            "https://etherscan.io/tx/0x78c44a02b784c4df83276c8e5317a85fb3aeb8d851e1aa0e79e02977c80fa3c1",
+            "https://etherscan.io/tx/0xd12bec461c86b072c30e690145775f90ba1c421c83e5d491e856d8312b53098a",
+            "https://eth.blockscout.com/tx/0x1c9fa5b7668292f3307f3b3fa188788064ce4d72ad6f3fd09a4018e7fc2563a2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x",
+      "address": "thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x",
+      "chain": "THORChain",
+      "usd": "4544.45",
+      "evidence": [
+        {
+          "alias": "thor1c9wvfltxuj43622x8nc2ljf3qn7q9udc7dp79x",
+          "types": [
+            "shared_principal_destination"
+          ],
+          "labels": [
+            "Shared recipients of the main funds"
+          ],
+          "summary": "Swaps paying this affiliate sent their main BTC proceeds to two recipients also used by two other reviewed affiliate routes.",
+          "research_summary": "В обменах с этим affiliate основные BTC направлены двум получателям, использованным также в маршрутах A и B. Обратный перевод комиссии отправителю не установлен.",
+          "checked_utc": "2026-10-01",
+          "urls": [
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=2970F5B4625CF7F004AF54EB36B3376D8BCDB5BF58D64351A71E5E9186949815",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=80D737DEF639B9E8E935BEF7F08C6AEC9DBA2A830B646D2164A834AAA7111900",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=DA43A7168701C2D4FD62576634F36AD442E377F6077FB70FDDD37C4027EC221C",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=D62C2B7BBEE967BA26576C6C6DF604B913D0C4B16C11D0B8A0F9ED3146D28D80",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=D84F32F7C8B48539EF0270F0F0B44F0AE7758FFE52ADFF4716D128BB91E0A5AD",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=CFC846EF23C426A396D96AD9D377A72522C3458D0CC6E4D5A589A994C2E23DCA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs",
+      "address": "thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs",
+      "chain": "THORChain",
+      "usd": "2884.50",
+      "evidence": [
+        {
+          "alias": "thor1kufulp8x9r4r22ntl20rfhsj2wddujynyzxwxs",
+          "types": [
+            "shared_principal_destination"
+          ],
+          "labels": [
+            "Shared recipients of the main funds"
+          ],
+          "summary": "Swaps paying this affiliate share both an ETH sender and a main BTC recipient with swaps paying thor19ya…wkcwz. The ETH sender is connected by consecutive transfers to the original stolen-ETH address.",
+          "research_summary": "В просмотренных обменах совпадают отправитель 0x5c768bf29923f221bba75f2f3baab32d793eaea0 и получатель основных BTC с маршрутом thor19ya. Отправитель связан последовательными переводами с начальным адресом похищенных ETH. Собственного возврата комиссии этому отправителю не установлено.",
+          "checked_utc": "2026-10-01",
+          "urls": [
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=33223BEBDD3E8BB17F384D7D83734C7483DF6AC68F1E04B9666B1EF30559159A",
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=DD9BA2F7BBBF0F18F13F3620CF8E560B68CD83C044B950703A3638E15197B270",
+            "https://etherscan.io/tx/0xe66db5a0b2054e4603ad5445462ceab8989a571cd075511fc818680558d8c3dd",
+            "https://www.bitget.com/support/articles/12560603896108",
+            "https://etherscan.io/tx/0x32df608e29e71b2f20dbf276dabf929df55ed1c806cfe9f49ecec123ac1d13d5",
+            "https://etherscan.io/tx/0x5f226de3dc35fd09c9caa60bee36bcc4210e2da799a0874bef1ecc2a9a461b92",
+            "https://etherscan.io/tx/0x57a434de7b896cb48c720892a857a4d6c5076b2e40eba3a9153e803f94b1ae65"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz",
+      "address": "thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz",
+      "chain": "THORChain",
+      "usd": "196.43",
+      "evidence": [
+        {
+          "alias": "thor19ya3vcnzfdu4f9s5t3rjn75dzqf936djewkcwz",
+          "types": [
+            "fee_return"
+          ],
+          "labels": [
+            "Fee proceeds returned to a swap sender"
+          ],
+          "summary": "This address signed a swap of its fee RUNE and directed the ETH proceeds back to 0x5c768…eaea0, the sender of the swaps that generated its fees. An internal transfer confirms the payout. That sender is connected by consecutive transfers to the original stolen-ETH address.",
+          "research_summary": "Сам подписал обмен полученных RUNE с выплатой на 0x5c768bf29923f221bba75f2f3baab32d793eaea0 — отправителя обменов, давших ему комиссии. Internal transfer подтвердил поступление 0.0839525 ETH. Отправитель связан последовательными переводами с начальным адресом похищенных ETH.",
+          "checked_utc": "2026-10-01",
+          "urls": [
+            "https://gateway.liquify.com/chain/thorchain_midgard/v2/actions?txid=DD9BA2F7BBBF0F18F13F3620CF8E560B68CD83C044B950703A3638E15197B270",
+            "https://gateway.liquify.com/chain/thorchain_api/cosmos/tx/v1beta1/txs/564A689774C61308F6A0197FAADB0BE4985BF70178495CF98F91EA6600A027C2",
+            "https://etherscan.io/tx/0xf475ebb8e5a4f14f188804851760eb30c1c0013c697640e83250b9bd44155c91#internal",
+            "https://etherscan.io/tx/0xe66db5a0b2054e4603ad5445462ceab8989a571cd075511fc818680558d8c3dd",
+            "https://www.bitget.com/support/articles/12560603896108",
+            "https://etherscan.io/tx/0x32df608e29e71b2f20dbf276dabf929df55ed1c806cfe9f49ecec123ac1d13d5",
+            "https://etherscan.io/tx/0x5f226de3dc35fd09c9caa60bee36bcc4210e2da799a0874bef1ecc2a9a461b92",
+            "https://etherscan.io/tx/0x57a434de7b896cb48c720892a857a4d6c5076b2e40eba3a9153e803f94b1ae65"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THORChain:thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel",
+      "address": "thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel",
+      "chain": "THORChain",
+      "usd": "0.30",
+      "evidence": [
+        {
+          "alias": "thor1g5ajjv2lt5dhepfnj5amy7yd3dppc92mcazeel",
+          "types": [
+            "direct_transfer"
+          ],
+          "labels": [
+            "Transfer to another reviewed fee recipient"
+          ],
+          "summary": "This address signed a direct RUNE transfer to the reviewed affiliate recipient thor199tl…u6jsl. This later transfer establishes a connection and is not added to the fee total.",
+          "research_summary": "Сам подписал прямой перевод 8.44157530 RUNE на проверенный affiliate-адрес C. Перевод служит доказательством связи и не добавляется к сумме комиссий.",
+          "checked_utc": "2026-10-01",
+          "urls": [
+            "https://gateway.liquify.com/chain/thorchain_api/cosmos/tx/v1beta1/txs/957EA0822B42E18B1587FDC60D68EF4D36495ABD546F146ECEC4CAFEB6F4458A"
+          ]
+        }
+      ]
+    }
+  ],
+  "unassigned": [
+    {
+      "key": "thor_liquidity",
+      "label": "THORChain liquidity",
+      "usd": "573225.63",
+      "reason": "Individual recipient shares have not been allocated",
+      "destinations": []
+    },
+    {
+      "key": "cow",
+      "label": "CoW EthFlow",
+      "usd": "12332.44",
+      "reason": "Individual recipient shares have not been allocated",
+      "destinations": []
+    }
+  ],
+  "totals": {
+    "all_fees_usd": "1227639.36",
+    "protocols_services_usd": "761725.47",
+    "affiliate_usd": "465913.89",
+    "known_recipients_usd": "642081.29",
+    "unassigned_recipients_usd": "585558.07",
+    "linked_affiliates_usd": "259717.62",
+    "unlinked_recipients_usd": "382363.67",
+    "protocol_recipients_usd": "176167.40",
+    "protocol_unassigned_usd": "585558.07",
+    "other_affiliate_recipients_usd": "206196.27",
+    "affiliate_unassigned_usd": "0.00",
+    "unresolved_affiliates_usd": "206196.27"
+  },
+  "refresh": {
+    "status": "ok"
+  },
+  "schedule": {
+    "mode": "manual",
+    "interval_hours": null,
+    "next_attempt_utc": null,
+    "due": false
+  }
+}

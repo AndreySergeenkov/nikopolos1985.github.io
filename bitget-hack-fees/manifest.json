@@ -1,0 +1,56 @@
+{
+  "snapshot_id": "2026-10-02T102235Z",
+  "cutoff_utc": "2026-10-02T10:22:39+00:00",
+  "publication": {
+    "slug": "bitget-hack-fees",
+    "description": "Measured protocol, service and affiliate fees from swaps of funds stolen from Bitget, with full recipient addresses, transaction evidence and historical USD valuations.",
+    "published_at": "2026-10-02T12:39:30+00:00",
+    "modified_at": "2026-10-02T12:39:30+00:00",
+    "reference_commit": "c6a9ae6b90c0907bdfc567186f4d8dac64ab037c",
+    "author": {
+      "@type": "Person",
+      "name": "Andrey Sergeenkov",
+      "url": "https://sergeenkov.com",
+      "jobTitle": "Independent researcher",
+      "description": "Independent researcher covering crypto markets, prediction markets, and onchain security. Winner of the 2026 ACJR Best Crypto Op-Ed Award. Published in Forbes, CoinDesk, Blockworks, and Cointelegraph, and cited in 74 academic publications across 20+ countries.",
+      "award": "2026 ACJR Best Crypto Op-Ed Award",
+      "sameAs": [
+        "https://x.com/Nikopolos",
+        "https://www.linkedin.com/in/sergeenkov/",
+        "https://www.forbes.com/sites/andreysergeenkov/",
+        "https://www.coindesk.com/author/andrey-sergeenkov/",
+        "https://blockworks.co/author/andrey-sergeenkov",
+        "https://cointelegraph.com/authors/andrey-sergeenkov"
+      ]
+    }
+  },
+  "site_source": true,
+  "mode": "manual",
+  "totals": {
+    "all_fees_usd": "1227639.36",
+    "protocols_services_usd": "761725.47",
+    "affiliate_usd": "465913.89",
+    "known_recipients_usd": "642081.29",
+    "unassigned_recipients_usd": "585558.07",
+    "linked_affiliates_usd": "259717.62",
+    "unlinked_recipients_usd": "382363.67",
+    "protocol_recipients_usd": "176167.40",
+    "protocol_unassigned_usd": "585558.07",
+    "other_affiliate_recipients_usd": "206196.27",
+    "affiliate_unassigned_usd": "0.00",
+    "unresolved_affiliates_usd": "206196.27"
+  },
+  "files": {
+    "index.html": "d22602e0585c4f092b41372c09815e7e851fd5be70500a93b6eaf32a807fe50b",
+    "assets/article-preview.css": "87bf56714b96a264e7c76431752300306529ddac38605c83bf5dc1672c7a46ab",
+    "assets/article-chrome.css": "900748b0a7d148bfdfe804323d76662664ceaecef042b7656f1d015ca446a49d",
+    "assets/article-dashboard.js": "390126d1f13b2ce4f58d0afaf023fcc52c5d9d18ca828c35c2f0d2332dd6aedc",
+    "assets/article-copy.js": "58e31ee8b765e1b2b59458ff2da5878970265a71c4262870d4df32de758b6956",
+    "assets/chart.umd.min.js": "206b6e8bb00fc7bba2c7ee80ca41db3e9e05ba7be0aa35abeba9cfd5357f5d0e",
+    "assets/html-to-image-1.11.13.js": "a90b42909d80964269ef6d5f3d1e4a5a7e2a4c263a5d2a76a9e7151901343262",
+    "assets/html-to-image-LICENSE.txt": "9fe73723f7a9e91057f73aafc9b6a3c3b2174db2b3ddc0a3a6a8ddf2bad68e37",
+    "assets/favicon.ico": "d15f37804796eac021f383930144d2bd8211e80319fbf8ccb64c23d8eabb8a0e",
+    "data.json": "314eee50ed8f4046258576319a15dee34613c662c86186c92d2ca714f9df3107",
+    "assets/og-image.png": "8b9694babec8e6d73f37f0f45e9c965072bdf594d5e481d057c4bf73728cb651"
+  }
+}

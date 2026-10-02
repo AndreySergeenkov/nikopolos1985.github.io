@@ -5,8 +5,16 @@
     <link>https://sergeenkov.com</link>
     <description>Independent research on the digital economy, cryptocurrencies, and blockchain technology.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 12:39:30 +0000</lastBuildDate>
     <atom:link href="https://sergeenkov.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Who Earned Fees From the Laundering of Bitget’s Stolen Funds?</title>
+      <link>https://sergeenkov.com/bitget-hack-fees/</link>
+      <guid isPermaLink="true">https://sergeenkov.com/bitget-hack-fees/</guid>
+      <pubDate>Fri, 02 Oct 2026 12:39:30 +0000</pubDate>
+      <description>Measured protocol, service and affiliate fees from swaps of funds stolen from Bitget, with full recipient addresses, transaction evidence and historical USD valuations.</description>
+    </item>
 
     <item>
       <title>What Can Be Verified About the Death of Hsin-Ju Chuang</title>
