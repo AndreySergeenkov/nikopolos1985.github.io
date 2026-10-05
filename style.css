@@ -218,6 +218,12 @@ a:hover {
     line-height: 1.55;
     border-left: 4px solid #ffc107;
 }
+.commission-box-heading {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
 .commission-box p {
     margin: 0 0 12px;
     color: #333;
