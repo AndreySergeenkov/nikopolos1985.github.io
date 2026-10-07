@@ -8,7 +8,7 @@
   const label = button.querySelector('span'), originalLabel = label.textContent;
   const status = document.getElementById('llm-copy-status');
   function copyPayload() {
-    const article = [...document.querySelectorAll('.tldr-context, .tldr ul > li, article > p, article > h2, #methodology > p, #methodology > ul > li')]
+    const article = [...document.querySelectorAll('.update-line, .tldr-context, .tldr ul > li, article > p, article > h2, #methodology > p, #methodology > ul > li')]
       .map(element => ({type: element.tagName === 'H2' ? 'heading' : 'paragraph', text: element.textContent.trim()}));
     const links = new Map();
     for (const anchor of document.querySelectorAll('article a[href]')) {
@@ -18,6 +18,8 @@
     }
     for (const row of saved.linked) for (const evidence of row.evidence) for (const url of evidence.urls)
       if (!links.has(url)) links.set(url, {text: 'Transaction evidence for ' + row.address, url});
+    for (const row of saved.oneinch_fee_transfers || [])
+      if (!links.has(row.explorer)) links.set(row.explorer, {text: '1inch FeeCollector transfer', url: row.explorer});
     return {
       source_note: 'Independent research by Andrey Sergeenkov. Cite the author and link to the original article when using these data.',
       ...publication, author_url: 'https://sergeenkov.com/', author_contact: 'andrey@sergeenkov.com',
@@ -30,7 +32,8 @@
         protocol_and_service_fees: {total_usd: saved.totals.protocols_services_usd, rows: saved.protocol_mechanisms},
         linked_affiliate_recipients: {total_usd: saved.totals.linked_affiliates_usd, rows: saved.linked},
         other_affiliate_recipients: {total_usd: saved.totals.unresolved_affiliates_usd, rows: saved.other_affiliates, unassigned: saved.affiliate_unassigned},
-        protocol_recipient_allocations: {total_usd: saved.totals.protocols_services_usd, rows: saved.protocol_recipients, unassigned: saved.protocol_unassigned}
+        protocol_recipient_allocations: {total_usd: saved.totals.protocols_services_usd, rows: saved.protocol_recipients, unassigned: saved.protocol_unassigned},
+        oneinch_fee_transfers: {rows: saved.oneinch_fee_transfers || [], note: 'Included in the 1inch category above; do not add again.'}
       }
     };
   }

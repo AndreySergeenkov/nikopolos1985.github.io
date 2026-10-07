@@ -1,7 +1,7 @@
 /* One checked snapshot supplies all article panels. */
 (() => {
   'use strict';
-  const keys = ['thor_liquidity','thor_affiliate','metamask','chainflip','cow'];
+  const keys = ['thor_liquidity','thor_affiliate','metamask','chainflip','cow','oneinch'];
   const linkTypes = ['fee_return','direct_transfer','shared_principal_destination'];
   function cents(value) {
     if (typeof value !== 'string' || !/^\d+\.\d{2}$/.test(value)) throw Error('Invalid monetary amount');
@@ -22,7 +22,8 @@
         !validSchedule) throw Error('Invalid snapshot metadata');
     const t=data.totals, mechanisms=data.mechanisms, recipients=data.recipients, linked=data.linked;
     const strings=items=>Array.isArray(items) && items.every(item=>typeof item==='string');
-    if (mechanisms.length!==keys.length || !unique(mechanisms,'key') || mechanisms.some(row=>!keys.includes(row.key))) throw Error('Unexpected fee categories');
+    const expectedKeys=mechanisms.some(row=>row.key==='oneinch')?keys:keys.filter(key=>key!=='oneinch');
+    if (mechanisms.length!==expectedKeys.length || !unique(mechanisms,'key') || mechanisms.some(row=>!expectedKeys.includes(row.key))) throw Error('Unexpected fee categories');
     Object.values(t).forEach(cents);
     if (sum(mechanisms)!==cents(t.all_fees_usd) ||
         sum(mechanisms.filter(row=>row.key!=='thor_affiliate'))!==cents(t.protocols_services_usd) ||

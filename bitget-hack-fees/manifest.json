@@ -1,11 +1,11 @@
 {
-  "snapshot_id": "2026-10-02T102235Z",
-  "cutoff_utc": "2026-10-02T10:22:39+00:00",
+  "snapshot_id": "2026-10-07T095055Z",
+  "cutoff_utc": "2026-10-07T09:50:56+00:00",
   "publication": {
     "slug": "bitget-hack-fees",
     "description": "Fees from swaps of Bitget’s stolen funds and documented financial links between seven THORChain affiliate recipients and the hackers’ wallets.",
     "published_at": "2026-10-02T12:39:30+00:00",
-    "modified_at": "2026-10-02T13:40:38+00:00",
+    "modified_at": "2026-10-07T10:16:54+00:00",
     "reference_commit": "c6a9ae6b90c0907bdfc567186f4d8dac64ab037c",
     "author": {
       "@type": "Person",
@@ -22,36 +22,42 @@
         "https://blockworks.co/author/andrey-sergeenkov",
         "https://cointelegraph.com/authors/andrey-sergeenkov"
       ]
-    }
+    },
+    "updates": [
+      {
+        "date": "2026-10-07",
+        "text": "Added 1inch fees and refreshed all figures through October 7, 2026. The earlier version did not include 1inch.",
+        "link_text": "1inch fees",
+        "href": "#overview-fees"
+      }
+    ]
   },
   "site_source": true,
   "mode": "manual",
   "totals": {
-    "all_fees_usd": "1227639.36",
-    "protocols_services_usd": "761725.47",
+    "all_fees_usd": "1287860.16",
+    "protocols_services_usd": "821946.27",
     "affiliate_usd": "465913.89",
-    "known_recipients_usd": "642081.29",
-    "unassigned_recipients_usd": "585558.07",
+    "known_recipients_usd": "700748.69",
+    "unassigned_recipients_usd": "587111.47",
     "linked_affiliates_usd": "259717.62",
-    "unlinked_recipients_usd": "382363.67",
-    "protocol_recipients_usd": "176167.40",
-    "protocol_unassigned_usd": "585558.07",
+    "unlinked_recipients_usd": "441031.07",
+    "protocol_recipients_usd": "234834.80",
+    "protocol_unassigned_usd": "587111.47",
     "other_affiliate_recipients_usd": "206196.27",
     "affiliate_unassigned_usd": "0.00",
     "unresolved_affiliates_usd": "206196.27"
   },
   "files": {
-    "assets/article-preview.css": "c6b42f5c3070dacee45b08ba9f54f80304d00d3aea3b233d35ec28c7e318e4c1",
-    "assets/article-chrome.css": "f2eb78a9780483ae4d25e4c05a93c29e302322a4c571dcf6dc028281499fc9cf",
-    "assets/article-dashboard.js": "05d1740852564423096437bd0c7a75b98269ca648f200b4cea7fbd656b8a2812",
-    "assets/article-copy.js": "58e31ee8b765e1b2b59458ff2da5878970265a71c4262870d4df32de758b6956",
+    "assets/article-preview.css": "906e0a43ebc108299aa40d4d19e6ea1679c285d4755ca0d158064f45eb8fd01c",
+    "assets/article-chrome.css": "900748b0a7d148bfdfe804323d76662664ceaecef042b7656f1d015ca446a49d",
+    "assets/article-dashboard.js": "803665aa16fa40d1662f20d4adb6e888e713b063beb58e3f0bc7a54ff1c659d8",
+    "assets/article-copy.js": "a497e1c3d79b20b4ec2982cfecc810913d04ce8069233f999342489c29c01fe8",
     "assets/chart.umd.min.js": "206b6e8bb00fc7bba2c7ee80ca41db3e9e05ba7be0aa35abeba9cfd5357f5d0e",
     "assets/html-to-image-1.11.13.js": "a90b42909d80964269ef6d5f3d1e4a5a7e2a4c263a5d2a76a9e7151901343262",
     "assets/html-to-image-LICENSE.txt": "9fe73723f7a9e91057f73aafc9b6a3c3b2174db2b3ddc0a3a6a8ddf2bad68e37",
     "assets/favicon.ico": "d15f37804796eac021f383930144d2bd8211e80319fbf8ccb64c23d8eabb8a0e",
-    "data.json": "314eee50ed8f4046258576319a15dee34613c662c86186c92d2ca714f9df3107",
-    "assets/og-image.png": "8b9694babec8e6d73f37f0f45e9c965072bdf594d5e481d057c4bf73728cb651"
-  },
-  "article_source_sha256": "cf79860ec85db6752f9a5ab88605ff097cf0d9176e90cc56cf544a195eed0cb3",
-  "checksum_scope": "Published static assets and data; article HTML is rendered by Jekyll."
+    "data.json": "e96e0ab1a632741c0d9f9e3daa15289d8cd650965808810a5aa2c3aab9c677d4",
+    "assets/og-image.png": "95ccec4eb9a7aef78047d551b99d1f83be162586c69b656aa1565921f8d04948"
+  }
 }

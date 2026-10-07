@@ -160,3 +160,5 @@ article > p code { overflow-wrap: anywhere; }
 }
 
 .chart-btn svg { width: 12px; height: 12px; margin-right: 4px; fill: currentColor; flex-shrink: 0; }
+.as-of { font-style: italic; color: #54595d; font-size: 15px; margin: 0; }
+.as-of + .as-of { margin-top: 6px; }

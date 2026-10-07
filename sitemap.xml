@@ -14,7 +14,7 @@ layout: null
 {% endfor %}
 {% for page in site.html_pages %}
 {% if page.name != '404.html' %}
-  <url><loc>https://sergeenkov.com{{ page.url | escape }}</loc></url>
+  <url><loc>https://sergeenkov.com{{ page.url | escape }}</loc>{% if page.last_modified_at %}<lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}</url>
 {% endif %}
 {% endfor %}
 </urlset>
