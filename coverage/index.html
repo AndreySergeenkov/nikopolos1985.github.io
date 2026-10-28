@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Coverage - Andrey Sergeenkov</title>
-    <meta name="description" content="News articles and reports that have covered or referenced Andrey Sergeenkov's investigations into digital markets.">
+    <meta name="description" content="News coverage, industry reports, podcasts and technical discussions referencing Andrey Sergeenkov's research.">
     <meta name="author" content="Andrey Sergeenkov">
     <link rel="canonical" href="https://sergeenkov.com/coverage/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Media Coverage - Andrey Sergeenkov">
-    <meta property="og:description" content="News articles and reports that have covered or referenced Andrey Sergeenkov's investigations into digital markets.">
+    <meta property="og:description" content="News coverage, industry reports, podcasts and technical discussions referencing Andrey Sergeenkov's research.">
     <meta property="og:url" content="https://sergeenkov.com/coverage/">
     <meta property="og:site_name" content="Andrey Sergeenkov">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Media Coverage - Andrey Sergeenkov">
-    <meta name="twitter:description" content="News articles and reports that have covered or referenced Andrey Sergeenkov's investigations into digital markets.">
+    <meta name="twitter:description" content="News coverage, industry reports, podcasts and technical discussions referencing Andrey Sergeenkov's research.">
     <meta name="twitter:creator" content="@Nikopolos">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="Andrey Sergeenkov RSS Feed" href="/feed.xml">
@@ -107,6 +107,13 @@
         .col-publication { white-space: nowrap; }
         .col-author { max-width: 260px; }
         .col-title { min-width: 200px; }
+        .entry-type {
+            display: block;
+            margin-top: 4px;
+            color: #54595d;
+            font-size: 12px;
+            line-height: 1.4;
+        }
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
             table { font-size: 12px; }
@@ -119,7 +126,7 @@
 <body>
     <a href="/" class="back-link">&larr; Back to homepage</a>
     <h1>Media Coverage</h1>
-    <p class="subtitle">News articles and reports that have covered or referenced my investigative research.</p>
+    <p class="subtitle">News coverage, industry reports, podcasts and technical discussions referencing my research.</p>
 
     <div class="table-wrapper">
     <table id="coverage-table">
@@ -127,7 +134,7 @@
             <tr>
                 <th class="col-publication">Publication</th>
                 <th class="col-author">Author</th>
-                <th class="col-title">Article</th>
+                <th class="col-title">Article / Reference</th>
             </tr>
         </thead>
         <tbody id="coverage-body">
@@ -137,86 +144,139 @@
 
     <script>
     const coverage = [
-        {publication:"Le Parisien", author:"Paméla Rougerie", title:"« Je gagnerai plus d’un million de dollars cette année » : Polymarket, la plate-forme crypto où tous les paris sont permis", url:"https://www.leparisien.fr/economie/je-gagnerai-plus-dun-million-de-dollars-cette-annee-polymarket-la-plate-forme-crypto-ou-tous-les-paris-sont-permis-03-05-2026-LFE5OW3KRVCNLL3XYCTG2UNJEE.php"},
-        {publication:"Motley Fool", author:"Will Healy", title:"Scam Concerns Drive an 8% Plunge in Ethereum This Week", url:"https://www.fool.com/investing/2026/01/20/scam-concerns-drive-an-8-plunge-in-ethereum-this-w/"},
-        {publication:"Yahoo Finance", author:"Unchained", title:"THORChain Co-Founder Will Ask Its Treasury About Refunding Fees From Stolen Crypto", url:"https://finance.yahoo.com/markets/crypto/articles/thorchain-co-founder-ask-treasury-212520493.html"},
-        {publication:"RBC", author:"Олег Гордышев", title:"Рекордная активность в Ethereum связана с атаками address poisoning", url:"https://www.rbc.ru/crypto/news/699591be9a7947863225a745"},
-        {publication:"Vedomosti", author:"Антон Осипов", title:"Француз взломал Polymarket с помощью фена: новости, которые вы могли пропустить", url:"https://www.vedomosti.ru/politics/articles/2026/04/26/1193109-frantsuz-vzlomal-polymarket"},
-        {publication:"Anue", author:"金色財經", title:"誰在賺？誰在虧？Polymarket 250 萬錢包大數據揭秘鏈上生存法則", url:"https://m.cnyes.com/news/id/6411662"},
-        {publication:"CoinDesk", author:"Sam Reynolds, Aoyon Ashraf", title:"Ethereum Posts Record On-Chain Activity as Research Points to Possible Spam-Driven Growth", url:"https://www.coindesk.com/markets/2026/01/20/ethereum-posts-record-on-chain-activity-as-research-points-to-possible-spam-driven-growth-asia-morning-briefing"},
-        {publication:"CoinDesk", author:"Jamie Crawley", title:"Citi Sounds the Alarm on Address Poisoning Scams Flooding the Ethereum Network", url:"https://www.coindesk.com/markets/2026/01/22/citi-sounds-the-alarm-on-address-poisoning-scams-flooding-the-ethereum-network"},
-        {publication:"CoinDesk", author:"Jamie Crawley", title:"Ethereum Blockchain Beats Its Own Speed-Ups but There’s a Catch", url:"https://www.coindesk.com/tech/2026/01/23/ethereum-blockchain-beats-its-own-speed-ups-but-there-s-a-catch"},
-        {publication:"Cointelegraph", author:"Brayden Lindrea, Felix Ng", title:"99.99% of Polymarket Traders Shouldn’t Quit Their Day Jobs, Data Suggests", url:"https://cointelegraph.com/news/should-you-quit-your-job-trade-full-time-polymarket"},
-        {publication:"Cointelegraph", author:"Brayden Lindrea, Felix Ng", title:"Prediction Markets Showcase Wisdom of an Informed Minority, Not the Crowd: Study", url:"https://cointelegraph.com/news/prediction-market-showcase-widsom-of-an-informed-minority-not-the-crowd-study"},
-        {publication:"Cointelegraph", author:"Amin Haqshanas, Bryan O’Shea", title:"Polymarket Bets Removed From Google News After Brief Appearance: Report", url:"https://cointelegraph.com/news/polymarket-google-news-removed-error-report"},
-        {publication:"Cointelegraph", author:"Ezra Reguerra", title:"Address Poisoning Attack Adding Record Ethereum Network Activity, Says Researcher", url:"https://cointelegraph.com/news/address-poisoning-attack-adding-record-ethereum-network-activity-says-researcher"},
-        {publication:"Cointelegraph", author:"Ezra Reguerra", title:"Ethereum Mainnet More Popular: Daily Addresses Beat All L2", url:"https://cointelegraph.com/news/ethereum-mainnet-more-popular-daily-addresses-all-l2"},
-        {publication:"Galaxy Research", author:"Alex Thorn, Zack Pokorny, Lucas Tcheyan, Christopher Rosa", title:"Weekly Top Stories 01-23-26", url:"https://www.galaxy.com/insights/research/weekly-top-stories-01-23-26"},
-        {publication:"Börse Express", author:"Robert Sasse", title:"Ethereum: Spam-Schock", url:"https://www.boerse-express.com/news/articles/ethereum-spam-schock-859180"},
-        {publication:"FXStreet", author:"Ekta Mourya", title:"Ethereum Price Forecast: ETH Falls Below $3,000 as Researcher Suggests Address Poisoning Is Inflating Activity", url:"https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-eth-falls-below-3-000-as-researcher-suggests-address-poisoning-is-inflating-activity-202601201956"},
-        {publication:"FinanceFeeds", author:"Abdelaziz Fathi", title:"THORChain Liquidity Earned $573,000 From Bitget-Linked Laundering Swaps", url:"https://financefeeds.com/thorchain-liquidity-earned-573000-from-bitget-linked-laundering-swaps/"},
-        {publication:"Global Financial Market Review", author:"Global Financial Market Review", title:"Bitget Hack Laundering Generated $761,725 in Fees, Researcher Finds", url:"https://www.gfmreview.com/crypto/bitget-hack-laundering-generated-761-725-in-fees-researcher-finds"},
-        {publication:"Coin Metrics", author:"Tanay Ved", title:"State of the Network Issue 349", url:"https://coinmetrics.substack.com/p/state-of-the-network-issue-349"},
-        {publication:"MetaMask", author:"Luker", title:"Crypto Security Report 2026", url:"https://metamask.io/en-GB/news/crypto-security-report-2026"},
-        {publication:"DL News", author:"Tim Craig", title:"How a Crypto Scam Pushed Ethereum Transactions to an All-Time High", url:"https://www.dlnews.com/articles/defi/how-a-crypto-scam-pushed-ethereum-transactions-to-an-all-time-high/"},
-        {publication:"Unchained", author:"Unchained", title:"THORChain Co-Founder Will Ask Its Treasury About Refunding Fees From Stolen Crypto", url:"https://unchainedcrypto.com/thorchain-co-founder-will-ask-its-treasury-about-refunding-fees-from-stolen-crypto/"},
-        {publication:"Decrypt", author:"André Beganski", title:"Ethereum Record Usage: Costs Drop as Network Conditions Ease", url:"https://decrypt.co/354982/ethereum-record-usage-costs-drop-network-conditions-ease"},
-        {publication:"Decrypt", author:"André Beganski", title:"Signature Phishing Up 200% as January Losses Pass $6M", url:"https://decrypt.co/357450/signature-phishing-up-200-as-january-losses-pass-6m"},
-        {publication:"Cybernews", author:"Linas Kmieliauskas", title:"Ethereum Surge: Address Poisoning Scams After Fusaka Upgrade", url:"https://cybernews.com/crypto/ethereum-surge-address-poisoning-scams-fusaka-upgrade/"},
-        {publication:"The Defiant", author:"Olivia Capozzalo", title:"84% of Polymarket Traders Are Losing Money, New Research Finds", url:"https://thedefiant.io/news/research-and-opinion/polymarket-profitability-report-april-2026"},
-        {publication:"The Defiant", author:"Yohan Yun", title:"Fusaka Upgrade Fuels Record Address Poisoning on Ethereum", url:"https://thedefiant.io/news/blockchains/fusaka-upgrade-fuels-record-address-poisoning-on-ethereum"},
-        {publication:"The Defiant", author:"Yohan Yun", title:"Ethereum Mainnet ATH Activity: Address Poisoning Scam", url:"https://thedefiant.io/news/blockchains/ethereum-mainnet-ath-activity-address-poisoning-scam"},
-        {publication:"The Defiant", author:"Yohan Yun", title:"Fusaka Falls Short on Ethereum Revenue Expectations: Bitwise", url:"https://thedefiant.io/news/blockchains/fusaka-falls-short-on-ethereum-revenue-expectations-bitwise"},
-        {publication:"Protos", author:"Protos Staff", title:"This Bot Only Bets ‘No’ on Polymarket, and Its Creator Keeps Losing Money", url:"https://protos.com/this-bot-only-bets-no-on-polymarket-and-its-creator-keeps-losing-money/"},
-        {publication:"Protos", author:"Jake Harrison", title:"Ethereum Address Poisoning Spike: Wallets Aren’t Ready, Says Researcher", url:"https://protos.com/ethereum-address-poisoning-spike-wallets-arent-ready-says-researcher/"},
-        {publication:"Protos", author:"Jake Harrison", title:"Inside DeFi 001", url:"https://protos.com/inside-defi-001/"},
-        {publication:"Bitcoin.com News", author:"Terence Zimwara", title:"Why Long-Term Profitability Remains Elusive for 99% of Polymarket Users", url:"https://news.bitcoin.com/why-long-term-profitability-remains-elusive-for-99-of-polymarket-users/"},
-        {publication:"TechFlow", author:"深潮", title:"84% Polymarket 交易者亏损，0.033% 钱包瓜分大部分利润", url:"https://www.techflowpost.com/zh-CN/article/31018"},
-        {publication:"SpaceMoney", author:"Redação SpaceMoney", title:"Só 0,015% dos traders da Polymarket lucram de verdade", url:"https://www.spacemoney.com.br/investimentos/criptomoeda/traders-polymarket-lucratividade-dados"},
-        {publication:"DigitalToday", author:"Hyunwoo Choo", title:"Polymarket traders: 84 percent fail to make profits", url:"https://www.digitaltoday.co.kr/en/view/49006/polymarket-traders-84-percent-lose-money-in-prediction-market"},
-        {publication:"CryptoSlate", author:"Oluwapelumi Adejumo", title:"Ethereum’s Record Activity Clouded by Address Poisoning Scams", url:"https://cryptoslate.com/ethereums-record-activity-clouded-by-address-poisoning-scams/"},
-        {publication:"Grafa", author:"Heidi Cuthbert", title:"Polymarket Traders’ Profit Data", url:"https://grafa.com/en/news/crypto/polymarket-traders-profit-data"},
-        {publication:"ForkLog", author:"Editorial", title:"Ethereum’s Transaction Surge Linked to Spam Attack, Researcher Claims", url:"https://forklog.com/en/ethereums-transaction-surge-linked-to-spam-attack-researcher-claims/"},
-        {publication:"Bits.media", author:"Виктория Мысова", title:"Рост активности в Эфириуме объяснили криптопылевой атакой", url:"https://bits.media/rost-aktivnosti-v-efiriume-obyasnili-kriptopylevoy-atakoy/"},
-        {publication:"AMBCrypto", author:"Aaryamann Shrivastava", title:"Ethereum Hits 1.29M Active Addresses but Security Risks Loom – Why?", url:"https://ambcrypto.com/ethereum-hits-1-29m-active-addresses-but-security-risks-loom-why/"},
-        {publication:"AMBCrypto", author:"Aaryamann Shrivastava", title:"Strategy Must Clear $209 to Confirm MSTR’s Next Rally: Analyst", url:"https://ambcrypto.com/strategy-must-clear-209-to-confirm-mstrs-next-rally-analyst/"},
-        {publication:"The Decentralised", author:"Tim Craig", title:"Scams Push ETH Txns Higher", url:"https://thedecentralised.beehiiv.com/p/scams-push-eth-txns-higher"},
-        {publication:"Cryptopolitan", author:"Hristina Vasileva", title:"Over $740K Stolen in New Wave of Ethereum Address Poisoning", url:"https://www.cryptopolitan.com/over-740k-stolen-in-new-wave-of-ethereum"},
-        {publication:"Coinpaper", author:"Emir Abyazov", title:"Polymarket: Only 3.5% of Traders Make Most Profits and the Rest Pay the Price", url:"https://coinpaper.com/16608/polymarket-only-3-5-of-traders-make-most-profits-and-the-rest-pay-the-price"},
-        {publication:"CoinSpeaker", author:"Felix Mollen", title:"Ethereum Transaction Pumps Amid Crypto Scam", url:"https://www.coinspeaker.com/ethereum-transaction-pumps-amid-crypto-scam/"},
-        {publication:"Crypto.news", author:"Dorian Batycka", title:"Ethereum Bulls Face Deceptive On-Chain Spike as Address Poisoning Surges", url:"https://crypto.news/ethereum-bulls-face-deceptive-on-chain-spike-as-address-poisoning-surges/"},
-        {publication:"Crypto.news", author:"Rony Roy", title:"Bitget Hack Laundering Generated $761,725 in Fees, Researcher Finds", url:"https://crypto.news/bitget-hack-laundering-generated-761725-in-fees-researcher-finds/"},
-        {publication:"Crypto.news", author:"Olivia Stephanie", title:"Bitget Eyes Thai Crypto Exchange Takeover Weeks After $388M Hack", url:"https://crypto.news/bitget-thai-crypto-exchange-acquisition/"},
-        {publication:"CryptoNews", author:"Amin Ayan", title:"Ethereum Network Activity Surge Linked to Address Poisoning Attacks: Researcher", url:"https://cryptonews.com/news/ethereum-network-activity-surge-linked-to-address-poisoning-attacks-researcher/"},
-        {publication:"CoinTribune", author:"Evans S.", title:"Ethereum: Spike in Activity Possibly Tied to Dusting Attacks", url:"https://www.cointribune.com/en/ethereum-spike-in-activity-possibly-tied-to-dusting-attacks/"},
-        {publication:"CoinTribune", author:"Evans S.", title:"Polymarket, Kalshi: A Study Reveals the Extent of Losses on Prediction Markets", url:"https://www.cointribune.com/en/polymarket-kalshi-a-study-reveals-the-extent-of-losses-on-prediction-markets/"},
-        {publication:"Coincierge", author:"Martin Schwarz", title:"Reich mit Krypto & Polymarket? Diese Daten solltest du kennen", url:"https://coincierge.de/news/reich-mit-krypto-polymarket-diese-daten-solltest-du-kennen/"},
-        {publication:"Crypto Insiders DE", author:"Gino Presti", title:"Sorgen um Ethereum: Großanleger verkaufen und Aktivität ist Fake", url:"https://www.crypto-insiders.de/nachrichten/ethereum/sorgen-um-ethereum-grossanleger-verkaufen-und-aktivitaet-ist-fake/"},
-        {publication:"Crypto Insiders NL", author:"Marlies van der Schaar", title:"Volgens dit onderzoek verliest bijna iedereen op voorspellingsmarkten", url:"https://www.crypto-insiders.nl/nieuws/wallets-en-exchanges/volgens-dit-onderzoek-verliest-bijna-iedereen-op-voorspellingsmarkten/"},
-        {publication:"Newsbit", author:"Thom Derks", title:"Fast niemand verdient auf Polymarket genug, um den Job zu kündigen", url:"https://newsbit.de/fast-niemand-verdient-auf-polymarket-genug-um-den-job-zu-kuendigen/"},
-        {publication:"Cryptonaute", author:"Stéphane Daniel", title:"84 % des traders Polymarket seraient perdants, selon une étude", url:"https://cryptonaute.fr/traders-polymarket-perdants-etude-2026/"},
-        {publication:"SiGMA", author:"Anchal Verma", title:"Polymarket Data Shows Majority of Traders Lose Money", url:"https://sigma.world/news/polymarket-data-shows-majority-of-traders-lose-money/"},
-        {publication:"Hash Telegraph", author:"Ева Литвиненко", title:"Лишь 3,5% трейдеров Polymarket получают прибыль", url:"https://hashtelegraph.com/lish-35-trejderov-polymarket-poluchajut-pribyl/"},
-        {publication:"Fibo", author:"Victor Gillibert", title:"Polymarket Reinvents Itself: Native Stablecoin, Overhaul, and 84% of Traders Losing", url:"https://fibo-crypto.fr/en/blog/polymarket-stablecoin-overhaul-traders-losing/"},
-        {publication:"Startup Fortune", author:"Janet Harrison", title:"Polymarket Losses Show Prediction Markets Are Built for Sharper Traders", url:"https://startupfortune.com/polymarket-losses-show-prediction-markets-are-built-for-sharper-traders/"},
-        {publication:"Crypto Daily", author:"Elliot Veynor", title:"Address Poisoning in 2026: How the Attack Became an Industry — and Why Victims Still Have Options", url:"https://cryptodaily.co.uk/2026/04/address-poisoning-in-2026-how-the-attack-became-an-industry-and-why-victims-still-have-options"},
-        {publication:"Crypto Economy", author:"Isai Alexei", title:"Cheaper Fees on Ethereum Fuel Surge in Address Poisoning Scams", url:"https://crypto-economy.com/cheaper-fees-on-ethereum-fuel-surge-in-address-poisoning-scams/"},
-        {publication:"Frontier Beat", author:"Hermes Ladiz", title:"Nothing Ever Happens: Polymarket Bot Bets ‘No’", url:"https://frontierbeat.com/2026/04/15/nothing-ever-happens-polymarket-bot-bets-no/"},
-        {publication:"Crypto Times", author:"Ronak Kumar", title:"Crypto User Loses $500K USDT in Ethereum Address Poisoning Scam", url:"https://www.cryptotimes.io/2026/01/17/crypto-user-loses-500k-usdt-in-ethereum-address-poisoning-scam/"},
-        {publication:"Crypto Times", author:"Dhara Chavda", title:"Bitget Stolen Funds Generated $573K in THORChain Fees, Analysis Finds", url:"https://www.cryptotimes.io/2026/10/06/bitget-stolen-funds-generated-573k-in-thorchain-fees-analysis-finds/"},
-        {publication:"Blockonomi", author:"Michelle DG", title:"Next Crypto to Explode: DeepSnitch AI Outperforms ATOM and LTC", url:"https://blockonomi.com/next-crypto-to-explode-deepsnitch-ai-outperforms-atom-and-ltc-with-140-ahead-of-its-much-awaited-january-launch/"},
-        {publication:"Dinar Detectives", author:"Editorial", title:"Ethereum Address Poisoning Attack Losses: $740K", url:"https://dinardetectives.com/ethereum-address-poisoning-attack-losses-740k/"}
+        {"publication": "Le Parisien", "author": "Paméla Rougerie", "title": "« Je gagnerai plus d’un million de dollars cette année » : Polymarket, la plate-forme crypto où tous les paris sont permis", "url": "https://www.leparisien.fr/economie/je-gagnerai-plus-dun-million-de-dollars-cette-annee-polymarket-la-plate-forme-crypto-ou-tous-les-paris-sont-permis-03-05-2026-LFE5OW3KRVCNLL3XYCTG2UNJEE.php"},
+        {"publication": "The Motley Fool", "author": "Jack Caporal", "title": "Prediction Markets vs. the Stock Market: How Do the Average Returns Compare?", "url": "https://www.fool.com/research/prediction-markets-vs-stock-market-returns/", "type": "Research article"},
+        {"publication": "The Motley Fool", "author": "Will Healy", "title": "Scam Concerns Drive an 8% Plunge in Ethereum This Week", "url": "https://www.fool.com/investing/2026/01/20/scam-concerns-drive-an-8-plunge-in-ethereum-this-w/"},
+        {"publication": "Yahoo Finance", "author": "Unchained", "title": "THORChain Co-Founder Will Ask Its Treasury About Refunding Fees From Stolen Crypto", "url": "https://finance.yahoo.com/markets/crypto/articles/thorchain-co-founder-ask-treasury-212520493.html"},
+        {"publication": "eFinancialCareers", "author": "Alex McMurray", "title": "Quants Are Earning $1m+ on Kalshi. Trading Firms Have to Pay Double or Nothing to Hire Them.", "url": "https://www.efinancialcareers.com/news/traders-earning-1m-on-kalshi-are-offered-double-or-nothing-to-join-trading-firms", "type": "News article"},
+        {"publication": "RBC", "author": "Олег Гордышев", "title": "Рекордная активность в Ethereum связана с атаками address poisoning", "url": "https://www.rbc.ru/crypto/news/699591be9a7947863225a745"},
+        {"publication": "Vedomosti", "author": "Антон Осипов", "title": "Француз взломал Polymarket с помощью фена: новости, которые вы могли пропустить", "url": "https://www.vedomosti.ru/politics/articles/2026/04/26/1193109-frantsuz-vzlomal-polymarket"},
+        {"publication": "CoinDesk", "author": "Sam Reynolds, Aoyon Ashraf", "title": "Ethereum Posts Record On-Chain Activity as Research Points to Possible Spam-Driven Growth", "url": "https://www.coindesk.com/markets/2026/01/20/ethereum-posts-record-on-chain-activity-as-research-points-to-possible-spam-driven-growth-asia-morning-briefing"},
+        {"publication": "CoinDesk", "author": "Jamie Crawley", "title": "Citi Sounds the Alarm on Address Poisoning Scams Flooding the Ethereum Network", "url": "https://www.coindesk.com/markets/2026/01/22/citi-sounds-the-alarm-on-address-poisoning-scams-flooding-the-ethereum-network"},
+        {"publication": "CoinDesk", "author": "Jamie Crawley", "title": "Ethereum Blockchain Beats Its Own Speed-Ups but There’s a Catch", "url": "https://www.coindesk.com/tech/2026/01/23/ethereum-blockchain-beats-its-own-speed-ups-but-there-s-a-catch"},
+        {"publication": "Cointelegraph", "author": "Brayden Lindrea, Felix Ng", "title": "99.99% of Polymarket Traders Shouldn’t Quit Their Day Jobs, Data Suggests", "url": "https://cointelegraph.com/news/should-you-quit-your-job-trade-full-time-polymarket"},
+        {"publication": "Cointelegraph", "author": "Brayden Lindrea, Felix Ng", "title": "Prediction Markets Showcase Wisdom of an Informed Minority, Not the Crowd: Study", "url": "https://cointelegraph.com/news/prediction-market-showcase-widsom-of-an-informed-minority-not-the-crowd-study"},
+        {"publication": "Cointelegraph", "author": "Amin Haqshanas, Bryan O’Shea", "title": "Polymarket Bets Removed From Google News After Brief Appearance: Report", "url": "https://cointelegraph.com/news/polymarket-google-news-removed-error-report"},
+        {"publication": "Cointelegraph", "author": "Ezra Reguerra", "title": "Address Poisoning Attack Adding Record Ethereum Network Activity, Says Researcher", "url": "https://cointelegraph.com/news/address-poisoning-attack-adding-record-ethereum-network-activity-says-researcher"},
+        {"publication": "Cointelegraph", "author": "Ezra Reguerra", "title": "Ethereum Mainnet More Popular: Daily Addresses Beat All L2", "url": "https://cointelegraph.com/news/ethereum-mainnet-more-popular-daily-addresses-all-l2"},
+        {"publication": "Messari", "author": "Marc-Thomas Arjoon", "title": "Ethereum January 2026 Update", "url": "https://messari.io/report/ethereum-january-2026-update", "type": "Industry report"},
+        {"publication": "Law360 / Cravath", "author": "Sasha Rosenthal-Larrea, Daniel Barabander, Leslie Liu", "title": "Understanding China’s Crypto-Blockchain Dichotomy", "url": "https://www.cravath.com/a/web/96iBKmw2WWsNP9rcu1AbyK/87o4Pp/law360-understanding-chinas-crypto-blockchain-dichotomy.pdf", "type": "Legal analysis"},
+        {"publication": "Bitfinex", "author": "Maria Lobusova", "title": "Ethereum’s Record Throughput, Low Fee Paradox — Implications for Institutions and the EVM Ecosystem", "url": "https://blog.bitfinex.com/industry-news/ethereums-record-throughput-low-fee-paradox-implications-for-institutions-and-the-evm-ecosystem/", "type": "Industry analysis"},
+        {"publication": "Bankless", "author": "Bankless", "title": "ROLLUP: Gold & Silver ATHs | Fidelity’s Stablecoin | Ethereum’s Quantum Pivot | Tether Buys Gold", "url": "https://pocketcasts.com/podcast/bankless/3a2c0740-35e1-0138-9706-0acc26574db2/rollup-gold-silver-aths-fidelitys-stablecoin-ethereums-quantum-pivot-tether-buys-gold/d54b1b36-3d96-4f71-a46c-dac9ce6d4c77", "type": "Podcast show notes"},
+        {"publication": "Sports.ru / Кибер", "author": "Полина Захарова", "title": "Лишь 15,9% пользователей Polymarket получают прибыль, остальные 84% — в убытке", "url": "https://cyber.sports.ru/betting/1117131845-lish-15-9-polzovatelej-polymarket-poluchayut-pribyl-ostalnye-84-v-ubyt.html", "type": "News article"},
+        {"publication": "Galaxy Research", "author": "Alex Thorn, Zack Pokorny, Lucas Tcheyan, Christopher Rosa", "title": "Weekly Top Stories 01-23-26", "url": "https://www.galaxy.com/insights/research/weekly-top-stories-01-23-26"},
+        {"publication": "Coin Metrics", "author": "Tanay Ved", "title": "State of the Network Issue 349", "url": "https://coinmetrics.substack.com/p/state-of-the-network-issue-349"},
+        {"publication": "MetaMask", "author": "Luker", "title": "Crypto Security Report 2026", "url": "https://metamask.io/en-GB/news/crypto-security-report-2026"},
+        {"publication": "DL News", "author": "Tim Craig", "title": "How a Crypto Scam Pushed Ethereum Transactions to an All-Time High", "url": "https://www.dlnews.com/articles/defi/how-a-crypto-scam-pushed-ethereum-transactions-to-an-all-time-high/"},
+        {"publication": "Unchained", "author": "Unchained", "title": "THORChain Co-Founder Will Ask Its Treasury About Refunding Fees From Stolen Crypto", "url": "https://unchainedcrypto.com/thorchain-co-founder-will-ask-its-treasury-about-refunding-fees-from-stolen-crypto/"},
+        {"publication": "Decrypt", "author": "André Beganski", "title": "Ethereum Record Usage: Costs Drop as Network Conditions Ease", "url": "https://decrypt.co/354982/ethereum-record-usage-costs-drop-network-conditions-ease"},
+        {"publication": "Decrypt", "author": "André Beganski", "title": "Signature Phishing Up 200% as January Losses Pass $6M", "url": "https://decrypt.co/357450/signature-phishing-up-200-as-january-losses-pass-6m"},
+        {"publication": "The Defiant", "author": "Olivia Capozzalo", "title": "84% of Polymarket Traders Are Losing Money, New Research Finds", "url": "https://thedefiant.io/news/research-and-opinion/polymarket-profitability-report-april-2026"},
+        {"publication": "The Defiant", "author": "Yohan Yun", "title": "Fusaka Upgrade Fuels Record Address Poisoning on Ethereum", "url": "https://thedefiant.io/news/blockchains/fusaka-upgrade-fuels-record-address-poisoning-on-ethereum"},
+        {"publication": "The Defiant", "author": "Yohan Yun", "title": "Ethereum Mainnet ATH Activity: Address Poisoning Scam", "url": "https://thedefiant.io/news/blockchains/ethereum-mainnet-ath-activity-address-poisoning-scam"},
+        {"publication": "The Defiant", "author": "Yohan Yun", "title": "Fusaka Falls Short on Ethereum Revenue Expectations: Bitwise", "url": "https://thedefiant.io/news/blockchains/fusaka-falls-short-on-ethereum-revenue-expectations-bitwise"},
+        {"publication": "Protos", "author": "Protos Staff", "title": "This Bot Only Bets ‘No’ on Polymarket, and Its Creator Keeps Losing Money", "url": "https://protos.com/this-bot-only-bets-no-on-polymarket-and-its-creator-keeps-losing-money/"},
+        {"publication": "Protos", "author": "Jake Harrison", "title": "Ethereum Address Poisoning Spike: Wallets Aren’t Ready, Says Researcher", "url": "https://protos.com/ethereum-address-poisoning-spike-wallets-arent-ready-says-researcher/"},
+        {"publication": "Protos", "author": "Jake Harrison", "title": "Inside DeFi 001", "url": "https://protos.com/inside-defi-001/"},
+        {"publication": "Cybernews", "author": "Linas Kmieliauskas", "title": "Ethereum Surge: Address Poisoning Scams After Fusaka Upgrade", "url": "https://cybernews.com/crypto/ethereum-surge-address-poisoning-scams-fusaka-upgrade/"},
+        {"publication": "Gensyn", "author": "Gensyn", "title": "Nobody Is Paying for Good Forecasts on Purpose", "url": "https://www.gensyn.ai/research/nobody-is-paying-for-good-forecasts-on-purpose", "type": "Research article"},
+        {"publication": "River", "author": "River", "title": "Five Investments That Ruin Your Portfolio", "url": "https://river.com/content/five-bad-investments", "type": "Newsletter"},
+        {"publication": "Anue", "author": "金色財經", "title": "誰在賺？誰在虧？Polymarket 250 萬錢包大數據揭秘鏈上生存法則", "url": "https://m.cnyes.com/news/id/6411662"},
+        {"publication": "PANews", "author": "PA一线", "title": "Polymarket仅约16%交易地址盈利，大部分难以持续赚取稳定收入", "url": "https://www.panewslab.com/zh/articles/019d8655-2dcd-77af-8675-ab600d097003", "type": "News brief"},
+        {"publication": "PANews", "author": "PA一线", "title": "以太坊网络活跃激增或与地址投毒攻击有关，已致74万美元损失", "url": "https://www.panewslab.com/zh/articles/a777a587-3364-4c10-b2e4-238d27c0055c", "type": "News brief"},
+        {"publication": "ChainCatcher", "author": "ChainCatcher", "title": "分析：Polymarket 上84%的交易者处于亏损状态", "url": "https://www.chaincatcher.com/article/2257055", "type": "News brief"},
+        {"publication": "Odaily", "author": "Odaily", "title": "数据显示99%的Polymarket交易者不能连续稳定获利", "url": "https://www.odaily.news/zh-CN/newsflash/475944", "type": "News brief"},
+        {"publication": "TechFlow", "author": "深潮", "title": "84% Polymarket 交易者亏损，0.033% 钱包瓜分大部分利润", "url": "https://www.techflowpost.com/zh-CN/article/31018"},
+        {"publication": "TechFlow", "author": "深潮 TechFlow", "title": "印钞机的背面：Polymarket 250 万个账户中，84% 在亏钱", "url": "https://www.techflowpost.com/article/31934", "type": "Research article"},
+        {"publication": "Bloomingbit", "author": "이수현", "title": "이더리움, 온체인 활동 사상 최고치에도 가격 반응 제한…‘실수요 논쟁’ 재점화", "url": "https://bloomingbit.io/feed/news/104336", "type": "News article"},
+        {"publication": "TokenPost", "author": "김미래", "title": "폴리마켓 트레이더 84% 손실…예측 시장 열풍 이면 드러난 개인의 현실", "url": "https://www.tokenpost.kr/news/blockchain/346865", "type": "News article"},
+        {"publication": "DiarioBitcoin", "author": "Angel Di Matteo", "title": "Ethereum enfrenta nueva ola de “direcciones envenenadas” y ya suma robos por USD $740.000", "url": "https://www.diariobitcoin.com/ethereum/ethereum-enfrenta-nueva-ola-de-direcciones-envenenadas-y-ya-suma-robos-por-usd-740-000/", "type": "News article"},
+        {"publication": "DiarioBitcoin", "author": "Angel Di Matteo", "title": "Ethereum rompe récords de transacciones, pero Citi alerta que se debe a “direcciones envenenadas”", "url": "https://www.diariobitcoin.com/bancos-y-pagos-verticales/ethereum-rompe-records-de-transacciones-pero-citi-alerta-que-se-debe-a-direcciones-envenenadas/", "type": "News article"},
+        {"publication": "DiarioBitcoin", "author": "Canuto", "title": "Google News retira datos de Polymarket tras breve aparición en la sección", "url": "https://www.diariobitcoin.com/noticias/google-news-retira-datos-de-polymarket-tras-breve-aparicion-en-la-seccion/", "type": "News article"},
+        {"publication": "Siam Blockchain", "author": "Pairploy Denpairojsak", "title": "ข้อมูลเผย นักเทรด Polymarket กว่า 84% ขาดทุนยับ มีเพียง 0.03% ที่กำไรทะลุแสน", "url": "https://siamblockchain.com/2026/04/08/data-reveals-that-over-84-of-polymarket-traders-suffered-massive-losses-with-only-0-03-making-profits-exceeding-100000-baht/", "type": "News article"},
+        {"publication": "Rankia", "author": "Francisco Capaccioni", "title": "Polymarket: qué es, cómo funciona y si es legal", "url": "https://www.rankia.com/blog/blockchain-criptomonedas-bitcoin-ethereum/7378112-polymarket-que-como-funciona", "type": "Explainer"},
+        {"publication": "Observatorio Blockchain", "author": "José Maldonado", "title": "Cuidado: los hackers industrializan el robo en monederos de Ethereum", "url": "https://observatorioblockchain.com/ciberseguridad/cuidado-los-hackers-industrializan-el-robo-en-monederos-de-ethereum/", "type": "News article"},
+        {"publication": "Newsbit", "author": "Thom Derks", "title": "Fast niemand verdient auf Polymarket genug, um den Job zu kündigen", "url": "https://newsbit.de/fast-niemand-verdient-auf-polymarket-genug-um-den-job-zu-kuendigen/"},
+        {"publication": "Newsbit", "author": "Hidde Scheper", "title": "Polymarket tauchte fälschlicherweise in Google News auf", "url": "https://newsbit.de/polymarket-erscheint-versehentlich-in-google-news-google-spricht-von-einem-fehler/", "type": "News article"},
+        {"publication": "Pouce", "author": "Martin Lapouille", "title": "Comment Polymarket transforme l’actualité en casino addictif", "url": "https://pouce.media/dark-patterns/comment-polymarket-transforme-lactualite-en-casino-addictif/", "type": "Feature"},
+        {"publication": "Olas", "author": "Olas", "title": "3 out of 10 Polystrat Agents Were Profitable This Month. How Did They Outperform Polymarket Users?", "url": "https://olas.network/blog/polystrat-3-10", "type": "Industry analysis"},
+        {"publication": "Cryptopolitan", "author": "Hristina Vasileva", "title": "Over $740K Stolen in New Wave of Ethereum Address Poisoning", "url": "https://www.cryptopolitan.com/over-740k-stolen-in-new-wave-of-ethereum"},
+        {"publication": "Cryptopolitan", "author": "Hannah Collymore", "title": "Polymarket Unlocks a $54M Annual Revenue Stream With Its Stablecoin Launch", "url": "https://www.cryptopolitan.com/polymarket-annual-revenue-stablecoin-launch/", "type": "News article"},
+        {"publication": "Cryptopolitan", "author": "Hania Humayun", "title": "Prediction Markets Exposed as a System Where Majority of Participants Lose", "url": "https://www.cryptopolitan.com/prediction-markets-exposed-majority-lose/", "type": "News article"},
+        {"publication": "Cryptopolitan", "author": "Hannah Collymore", "title": "Bloomberg’s Polymarket Insider Trading Investigation Dismissed as Well-Timed Trades", "url": "https://www.cryptopolitan.com/bloomberg-polymarket-insider-trading/", "type": "News article"},
+        {"publication": "The Coinformer", "author": "The Coinformer Newsroom", "title": "Laundering Bitget’s Stolen Crypto Generated over $760K for Crypto Infra Providers", "url": "https://thecoinformer.com/news/laundering-bitget-stolen-crypto-generated-crypto-providers", "type": "News article"},
+        {"publication": "Ethereum Research", "author": "lavender", "title": "Solving Spam, State Bloat, and Fee Volatility with a Single Parameter", "url": "https://ethresear.ch/t/solving-spam-state-bloat-and-fee-volatility-with-a-single-parameter/24088", "type": "Research forum discussion"},
+        {"publication": "Börse Express", "author": "Robert Sasse", "title": "Ethereum: Spam-Schock", "url": "https://www.boerse-express.com/news/articles/ethereum-spam-schock-859180"},
+        {"publication": "FXStreet", "author": "Ekta Mourya", "title": "Ethereum Price Forecast: ETH Falls Below $3,000 as Researcher Suggests Address Poisoning Is Inflating Activity", "url": "https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-eth-falls-below-3-000-as-researcher-suggests-address-poisoning-is-inflating-activity-202601201956"},
+        {"publication": "FinanceFeeds", "author": "Abdelaziz Fathi", "title": "THORChain Liquidity Earned $573,000 From Bitget-Linked Laundering Swaps", "url": "https://financefeeds.com/thorchain-liquidity-earned-573000-from-bitget-linked-laundering-swaps/"},
+        {"publication": "Global Financial Market Review", "author": "Global Financial Market Review", "title": "Bitget Hack Laundering Generated $761,725 in Fees, Researcher Finds", "url": "https://www.gfmreview.com/crypto/bitget-hack-laundering-generated-761-725-in-fees-researcher-finds"},
+        {"publication": "Bitcoin.com News", "author": "Terence Zimwara", "title": "Why Long-Term Profitability Remains Elusive for 99% of Polymarket Users", "url": "https://news.bitcoin.com/why-long-term-profitability-remains-elusive-for-99-of-polymarket-users/"},
+        {"publication": "SpaceMoney", "author": "Redação SpaceMoney", "title": "Só 0,015% dos traders da Polymarket lucram de verdade", "url": "https://www.spacemoney.com.br/investimentos/criptomoeda/traders-polymarket-lucratividade-dados"},
+        {"publication": "DigitalToday", "author": "Hyunwoo Choo", "title": "Polymarket traders: 84 percent fail to make profits", "url": "https://www.digitaltoday.co.kr/en/view/49006/polymarket-traders-84-percent-lose-money-in-prediction-market"},
+        {"publication": "CryptoSlate", "author": "Oluwapelumi Adejumo", "title": "Ethereum’s Record Activity Clouded by Address Poisoning Scams", "url": "https://cryptoslate.com/ethereums-record-activity-clouded-by-address-poisoning-scams/"},
+        {"publication": "Grafa", "author": "Heidi Cuthbert", "title": "Polymarket Traders’ Profit Data", "url": "https://grafa.com/en/news/crypto/polymarket-traders-profit-data"},
+        {"publication": "ForkLog", "author": "Editorial", "title": "Ethereum’s Transaction Surge Linked to Spam Attack, Researcher Claims", "url": "https://forklog.com/en/ethereums-transaction-surge-linked-to-spam-attack-researcher-claims/"},
+        {"publication": "Bits.media", "author": "Виктория Мысова", "title": "Рост активности в Эфириуме объяснили криптопылевой атакой", "url": "https://bits.media/rost-aktivnosti-v-efiriume-obyasnili-kriptopylevoy-atakoy/"},
+        {"publication": "AMBCrypto", "author": "Aaryamann Shrivastava", "title": "Ethereum Hits 1.29M Active Addresses but Security Risks Loom – Why?", "url": "https://ambcrypto.com/ethereum-hits-1-29m-active-addresses-but-security-risks-loom-why/"},
+        {"publication": "AMBCrypto", "author": "Aaryamann Shrivastava", "title": "Strategy Must Clear $209 to Confirm MSTR’s Next Rally: Analyst", "url": "https://ambcrypto.com/strategy-must-clear-209-to-confirm-mstrs-next-rally-analyst/"},
+        {"publication": "The Decentralised", "author": "Tim Craig", "title": "Scams Push ETH Txns Higher", "url": "https://thedecentralised.beehiiv.com/p/scams-push-eth-txns-higher"},
+        {"publication": "Coinpaper", "author": "Emir Abyazov", "title": "Polymarket: Only 3.5% of Traders Make Most Profits and the Rest Pay the Price", "url": "https://coinpaper.com/16608/polymarket-only-3-5-of-traders-make-most-profits-and-the-rest-pay-the-price"},
+        {"publication": "CoinSpeaker", "author": "Felix Mollen", "title": "Ethereum Transaction Pumps Amid Crypto Scam", "url": "https://www.coinspeaker.com/ethereum-transaction-pumps-amid-crypto-scam/"},
+        {"publication": "Crypto.news", "author": "Dorian Batycka", "title": "Ethereum Bulls Face Deceptive On-Chain Spike as Address Poisoning Surges", "url": "https://crypto.news/ethereum-bulls-face-deceptive-on-chain-spike-as-address-poisoning-surges/"},
+        {"publication": "Crypto.news", "author": "Rony Roy", "title": "Bitget Hack Laundering Generated $761,725 in Fees, Researcher Finds", "url": "https://crypto.news/bitget-hack-laundering-generated-761725-in-fees-researcher-finds/"},
+        {"publication": "Crypto.news", "author": "Olivia Stephanie", "title": "Bitget Eyes Thai Crypto Exchange Takeover Weeks After $388M Hack", "url": "https://crypto.news/bitget-thai-crypto-exchange-acquisition/"},
+        {"publication": "CryptoNews", "author": "Amin Ayan", "title": "Ethereum Network Activity Surge Linked to Address Poisoning Attacks: Researcher", "url": "https://cryptonews.com/news/ethereum-network-activity-surge-linked-to-address-poisoning-attacks-researcher/"},
+        {"publication": "CoinTribune", "author": "Evans S.", "title": "Ethereum: Spike in Activity Possibly Tied to Dusting Attacks", "url": "https://www.cointribune.com/en/ethereum-spike-in-activity-possibly-tied-to-dusting-attacks/"},
+        {"publication": "CoinTribune", "author": "Evans S.", "title": "Polymarket, Kalshi: A Study Reveals the Extent of Losses on Prediction Markets", "url": "https://www.cointribune.com/en/polymarket-kalshi-a-study-reveals-the-extent-of-losses-on-prediction-markets/"},
+        {"publication": "Coincierge", "author": "Martin Schwarz", "title": "Reich mit Krypto & Polymarket? Diese Daten solltest du kennen", "url": "https://coincierge.de/news/reich-mit-krypto-polymarket-diese-daten-solltest-du-kennen/"},
+        {"publication": "Crypto Insiders DE", "author": "Gino Presti", "title": "Sorgen um Ethereum: Großanleger verkaufen und Aktivität ist Fake", "url": "https://www.crypto-insiders.de/nachrichten/ethereum/sorgen-um-ethereum-grossanleger-verkaufen-und-aktivitaet-ist-fake/"},
+        {"publication": "Crypto Insiders NL", "author": "Marlies van der Schaar", "title": "Volgens dit onderzoek verliest bijna iedereen op voorspellingsmarkten", "url": "https://www.crypto-insiders.nl/nieuws/wallets-en-exchanges/volgens-dit-onderzoek-verliest-bijna-iedereen-op-voorspellingsmarkten/"},
+        {"publication": "Cryptonaute", "author": "Stéphane Daniel", "title": "84 % des traders Polymarket seraient perdants, selon une étude", "url": "https://cryptonaute.fr/traders-polymarket-perdants-etude-2026/"},
+        {"publication": "SiGMA", "author": "Anchal Verma", "title": "Polymarket Data Shows Majority of Traders Lose Money", "url": "https://sigma.world/news/polymarket-data-shows-majority-of-traders-lose-money/"},
+        {"publication": "Hash Telegraph", "author": "Ева Литвиненко", "title": "Лишь 3,5% трейдеров Polymarket получают прибыль", "url": "https://hashtelegraph.com/lish-35-trejderov-polymarket-poluchajut-pribyl/"},
+        {"publication": "Fibo", "author": "Victor Gillibert", "title": "Polymarket Reinvents Itself: Native Stablecoin, Overhaul, and 84% of Traders Losing", "url": "https://fibo-crypto.fr/en/blog/polymarket-stablecoin-overhaul-traders-losing/"},
+        {"publication": "Startup Fortune", "author": "Janet Harrison", "title": "Polymarket Losses Show Prediction Markets Are Built for Sharper Traders", "url": "https://startupfortune.com/polymarket-losses-show-prediction-markets-are-built-for-sharper-traders/"},
+        {"publication": "Crypto Daily", "author": "Elliot Veynor", "title": "Address Poisoning in 2026: How the Attack Became an Industry — and Why Victims Still Have Options", "url": "https://cryptodaily.co.uk/2026/04/address-poisoning-in-2026-how-the-attack-became-an-industry-and-why-victims-still-have-options"},
+        {"publication": "Crypto Economy", "author": "Isai Alexei", "title": "Cheaper Fees on Ethereum Fuel Surge in Address Poisoning Scams", "url": "https://crypto-economy.com/cheaper-fees-on-ethereum-fuel-surge-in-address-poisoning-scams/"},
+        {"publication": "Frontier Beat", "author": "Hermes Ladiz", "title": "Nothing Ever Happens: Polymarket Bot Bets ‘No’", "url": "https://frontierbeat.com/2026/04/15/nothing-ever-happens-polymarket-bot-bets-no/"},
+        {"publication": "Crypto Times", "author": "Ronak Kumar", "title": "Crypto User Loses $500K USDT in Ethereum Address Poisoning Scam", "url": "https://www.cryptotimes.io/2026/01/17/crypto-user-loses-500k-usdt-in-ethereum-address-poisoning-scam/"},
+        {"publication": "Crypto Times", "author": "Dhara Chavda", "title": "Bitget Stolen Funds Generated $573K in THORChain Fees, Analysis Finds", "url": "https://www.cryptotimes.io/2026/10/06/bitget-stolen-funds-generated-573k-in-thorchain-fees-analysis-finds/"},
+        {"publication": "Blockonomi", "author": "Michelle DG", "title": "Next Crypto to Explode: DeepSnitch AI Outperforms ATOM and LTC", "url": "https://blockonomi.com/next-crypto-to-explode-deepsnitch-ai-outperforms-atom-and-ltc-with-140-ahead-of-its-much-awaited-january-launch/"},
+        {"publication": "Dinar Detectives", "author": "Editorial", "title": "Ethereum Address Poisoning Attack Losses: $740K", "url": "https://dinardetectives.com/ethereum-address-poisoning-attack-losses-740k/"}
     ];
 
     function renderTable(data) {
         const tbody = document.getElementById('coverage-body');
-        tbody.innerHTML = '';
+        tbody.replaceChildren();
         data.forEach(function(c) {
             const tr = document.createElement('tr');
-            tr.innerHTML =
-                '<td class="col-publication">' + c.publication + '</td>' +
-                '<td class="col-author">' + c.author + '</td>' +
-                '<td class="col-title"><a href="' + c.url + '" target="_blank" rel="noopener">' + c.title + '</a></td>';
+            const publicationCell = document.createElement('td');
+            publicationCell.className = 'col-publication';
+            publicationCell.textContent = c.publication;
+            tr.appendChild(publicationCell);
+            const authorCell = document.createElement('td');
+            authorCell.className = 'col-author';
+            authorCell.textContent = c.author;
+            tr.appendChild(authorCell);
+            const titleCell = document.createElement('td');
+            titleCell.className = 'col-title';
+            if (c.url) {
+                const link = document.createElement('a');
+                link.href = c.url;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.textContent = c.title;
+                titleCell.appendChild(link);
+            } else {
+                titleCell.textContent = c.title;
+            }
+            if (c.type) {
+                const label = document.createElement('span');
+                label.className = 'entry-type';
+                label.textContent = c.type;
+                titleCell.appendChild(label);
+            }
+            tr.appendChild(titleCell);
             tbody.appendChild(tr);
         });
     }
