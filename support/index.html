@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support My Research - Andrey Sergeenkov</title>
-    <meta name="description" content="Support Andrey Sergeenkov's independent research with a voluntary donation in ETH, BTC, SOL, or TRX.">
+    <meta name="description" content="Support Andrey Sergeenkov's independent research with USDT, USDC, ETH, BTC, SOL, or TRX on the listed networks.">
     <meta name="author" content="Andrey Sergeenkov">
     <link rel="canonical" href="https://sergeenkov.com/support/">
     <meta property="og:type" content="website">
@@ -24,17 +24,12 @@
         <a class="support-back" href="/">&larr; Andrey Sergeenkov</a>
         <h1>Support my research</h1>
         <p class="support-intro">I work independently. If you find my research useful, you can support future work with a voluntary donation.</p>
-        <p class="support-instructions">Choose the matching coin and network in your wallet. Each QR code contains the address only; enter any amount in your wallet.</p>
-        <nav class="coin-menu" aria-label="Choose a cryptocurrency">
-            <a href="#ethereum">Ethereum (ETH)</a>
-            <a href="#bitcoin">Bitcoin (BTC)</a>
-            <a href="#solana">Solana (SOL)</a>
-            <a href="#tron">TRON (TRX)</a>
-        </nav>
+        <p class="support-instructions">Select the exact network shown on the card. Coins and tokens listed together share its receiving address. QR codes contain only the address; choose the coin or token and amount in your wallet.</p>
         <div class="wallet-grid">
             <section class="wallet-card" id="ethereum" data-coin="Ethereum" aria-labelledby="ethereum-title">
-                <h2 id="ethereum-title">Ethereum <span class="wallet-ticker">ETH</span></h2>
-                <p class="wallet-network">Network: Ethereum mainnet</p>
+                <h2 id="ethereum-title">Ethereum</h2>
+                <p class="wallet-assets">Accepts: ETH, USDT, USDC</p>
+                <p class="wallet-network">Network: Ethereum mainnet &middot; ERC-20 tokens</p>
                 <img class="wallet-qr" src="/support/qr/ethereum.png" width="180" height="180" alt="QR code for the Ethereum donation address">
                 <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="ethereum-address">0x35bff9af8309aD0Aa70f4cE6c3c5c84bD23aa186</code>
@@ -45,7 +40,8 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="bitcoin" data-coin="Bitcoin" aria-labelledby="bitcoin-title">
-                <h2 id="bitcoin-title">Bitcoin <span class="wallet-ticker">BTC</span></h2>
+                <h2 id="bitcoin-title">Bitcoin</h2>
+                <p class="wallet-assets">Accepts: BTC</p>
                 <p class="wallet-network">Network: Bitcoin mainnet</p>
                 <img class="wallet-qr" src="/support/qr/bitcoin.png" width="180" height="180" alt="QR code for the Bitcoin donation address">
                 <span class="wallet-address-label">Address</span>
@@ -57,8 +53,9 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="solana" data-coin="Solana" aria-labelledby="solana-title">
-                <h2 id="solana-title">Solana <span class="wallet-ticker">SOL</span></h2>
-                <p class="wallet-network">Network: Solana mainnet</p>
+                <h2 id="solana-title">Solana</h2>
+                <p class="wallet-assets">Accepts: SOL, USDT, USDC</p>
+                <p class="wallet-network">Network: Solana mainnet &middot; SPL tokens</p>
                 <img class="wallet-qr" src="/support/qr/solana.png" width="180" height="180" alt="QR code for the Solana donation address">
                 <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="solana-address">HH8dKnEcAF5jjECkRr8itXDN3asvNwApJ75GAjY5rLUD</code>
@@ -69,8 +66,9 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="tron" data-coin="TRON" aria-labelledby="tron-title">
-                <h2 id="tron-title">TRON <span class="wallet-ticker">TRX</span></h2>
-                <p class="wallet-network">Network: TRON mainnet</p>
+                <h2 id="tron-title">TRON</h2>
+                <p class="wallet-assets">Accepts: TRX, USDT</p>
+                <p class="wallet-network">Network: TRON mainnet &middot; TRC-20 tokens</p>
                 <img class="wallet-qr" src="/support/qr/tron.png" width="180" height="180" alt="QR code for the TRON donation address">
                 <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="tron-address">TU7F67qgF1rDQaBmLohRqaqAQ4B7x5oz2S</code>

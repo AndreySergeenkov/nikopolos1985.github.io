@@ -41,13 +41,6 @@
 }
 .support-page .support-intro { max-width: 650px; margin: 0 0 14px; }
 .support-page .support-instructions { color: #54595d; font-size: 14px; margin: 0 0 22px; }
-.support-page .coin-menu {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    margin: 0 0 23px;
-    font-size: 14px;
-}
 .support-page .wallet-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -66,7 +59,7 @@
     font-weight: 500;
     line-height: 1.4;
 }
-.support-page .wallet-ticker { color: #54595d; font-size: 14px; font-weight: 400; }
+.support-page .wallet-assets { margin: 0 0 6px; color: #333; font-size: 14px; font-weight: 500; }
 .support-page .wallet-network { color: #54595d; font-size: 13px; margin: 0 0 15px; }
 .support-page .wallet-qr {
     display: block;
@@ -108,6 +101,5 @@
     .support-page .wallet-grid { grid-template-columns: 1fr; gap: 17px; }
     .support-page .wallet-card { padding: 20px; }
     .support-page .wallet-copy { min-height: 44px; }
-    .support-page .coin-menu a { display: inline-flex; align-items: center; min-height: 36px; }
     .support-prompt a.support-prompt-link { padding: 4px 6px; }
 }
