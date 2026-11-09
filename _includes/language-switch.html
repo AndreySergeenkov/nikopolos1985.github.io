@@ -3,6 +3,7 @@
 {%- if language != 'en' -%}
     {%- assign english_url = page.alternate_url -%}
 {%- endif -%}
+{%- assign portuguese_urls = site.html_pages | where: 'lang', 'pt-BR' | map: 'alternate_url' -%}
 {%- assign label = 'Page language' -%}
 {%- assign theme_label = 'Color theme' -%}
 {%- if language == 'ru' -%}
@@ -14,6 +15,9 @@
 {%- elsif language == 'es' -%}
     {%- assign label = 'Idioma de la página' -%}
     {%- assign theme_label = 'Tema de color' -%}
+{%- elsif language == 'pt-BR' -%}
+    {%- assign label = 'Idioma da página' -%}
+    {%- assign theme_label = 'Tema de cores' -%}
 {%- endif %}
 <div class="language-bar">
     <nav class="language-switch" aria-label="{{ label }}">
@@ -21,6 +25,9 @@
         <a href="/ru{{ english_url }}" lang="ru" hreflang="ru" aria-label="Русский"{% if language == 'ru' %} aria-current="page"{% endif %}>RU</a>
         <a href="/zh{{ english_url }}" lang="zh-Hans" hreflang="zh-Hans" aria-label="简体中文"{% if language == 'zh-Hans' %} aria-current="page"{% endif %}>中文</a>
         <a href="/es{{ english_url }}" lang="es" hreflang="es" aria-label="Español"{% if language == 'es' %} aria-current="page"{% endif %}>ES</a>
+        {% if portuguese_urls contains english_url -%}
+        <a href="/pt-br{{ english_url }}" lang="pt-BR" hreflang="pt-BR" aria-label="Português do Brasil"{% if language == 'pt-BR' %} aria-current="page"{% endif %}>PT-BR</a>
+        {% endif -%}
     </nav>
     <span class="theme-control" role="radiogroup" aria-label="{{ theme_label }}" hidden></span>
 </div>

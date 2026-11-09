@@ -48,7 +48,7 @@ html[lang="zh-Hans"] body {
 html[lang="zh-Hans"] body :is(h1, h2, h3, .article-meta, .top-nav, .llm-copy-btn) {
     font-family: inherit;
 }
-html:is([lang="ru"], [lang="zh-Hans"], [lang="es"]) .article-table :is(th, td) {
+html:is([lang="ru"], [lang="zh-Hans"], [lang="es"], [lang="pt-BR"]) .article-table :is(th, td) {
     overflow-wrap: anywhere;
 }
 @media (max-width: 560px) {
