@@ -1,7 +1,12 @@
 .language-bar {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-block: 0 12px;
+}
+.language-bar .theme-icon {
+    min-height: 28px;
 }
 .language-switch {
     display: inline-flex;
@@ -43,11 +48,11 @@ html[lang="zh-Hans"] body {
 html[lang="zh-Hans"] body :is(h1, h2, h3, .article-meta, .top-nav, .llm-copy-btn) {
     font-family: inherit;
 }
-html:is([lang="ru"], [lang="zh-Hans"]) .article-table :is(th, td) {
+html:is([lang="ru"], [lang="zh-Hans"], [lang="es"]) .article-table :is(th, td) {
     overflow-wrap: anywhere;
 }
 @media (max-width: 560px) {
-    html[lang="ru"] .pricing-table td {
+    html:is([lang="ru"], [lang="es"]) .pricing-table td {
         grid-template-columns: 6.2rem minmax(0, 1fr);
     }
 }

@@ -1,0 +1,546 @@
+---
+layout: null
+lang: es
+permalink: /es/record-high-activity-ethereum-2026/
+alternate_url: /record-high-activity-ethereum-2026/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=4"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico | Andrey Sergeenkov</title>
+<meta content="La actividad récord de Ethereum enmascaró un aumento en el envenenamiento de direcciones. El análisis en cadena examina nuevas direcciones, transferencias de importes ínfimos y actividad de los atacantes." name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="https://sergeenkov.com/es/record-high-activity-ethereum-2026/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico" property="og:title"/>
+<meta content="La actividad récord de Ethereum enmascaró un aumento en el envenenamiento de direcciones. El análisis en cadena examina nuevas direcciones, transferencias de importes ínfimos y actividad de los atacantes." property="og:description"/>
+<meta content="https://sergeenkov.com/es/record-high-activity-ethereum-2026/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico" name="twitter:title"/>
+<meta content="La actividad récord de Ethereum enmascaró un aumento en el envenenamiento de direcciones. El análisis en cadena examina nuevas direcciones, transferencias de importes ínfimos y actividad de los atacantes." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<!-- Ahrefs Web Analytics -->
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.7;
+        }
+        .note a {
+            color: #0645ad;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="2026-01-19" property="article:published_time"/><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico",
+  "description": "La actividad récord de Ethereum enmascaró un aumento en el envenenamiento de direcciones. El análisis en cadena examina nuevas direcciones, transferencias de importes ínfimos y actividad de los atacantes.",
+  "inLanguage": "es",
+  "url": "https://sergeenkov.com/es/record-high-activity-ethereum-2026/",
+  "mainEntityOfPage": "https://sergeenkov.com/es/record-high-activity-ethereum-2026/",
+  "datePublished": "2026-01-19",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  }
+}
+</script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/es/">← Volver al inicio</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Correo electrónico</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a> </div>
+</div>
+<article>
+<header class="article-header">
+<h1>Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico</h1>
+<div class="article-meta">Por Andrey Sergeenkov · 19 de enero de 2026</div>
+</header>
+<div class="note"><strong>Actualización:</strong> Realicé un estudio de seguimiento más detallado y descubrí que, después de la actualización Fusaka, los atacantes aumentaron el volumen de envenenamiento 5,6 veces, lo que resultó en pérdidas 13 veces mayores que antes de la actualización. Más detalles en el <a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/es/fusaka-poison-attacks-ethereum/">artículo de investigación completo</a>.</div>
+<div class="tldr">
+<div class="tldr-title">En resumen</div>
+<ul>
+<li>Ya se han robado más de 740 000 dólares, y esta cifra seguirá creciendo</li>
+<li>Esto fue posible gracias a la actualización Fusaka, que hizo que las transacciones de spam fueran lo suficientemente baratas como para ser rentables</li>
+<li>Este ataque está en curso ahora mismo</li>
+</ul>
+</div>
+{% include es/commission-box.html %}
+<p>El número de nuevas direcciones creció 2,7 veces en comparación con el nivel promedio de 2025. La semana pico del 12 de enero mostró 2,7 millones de nuevas direcciones, un 170 % más que los valores típicos.</p>
+<img alt="Aumento drástico de nuevas direcciones de Ethereum" class="article-image" src="/images/image1.png"/>
+<p class="image-caption">Aumento drástico de nuevas direcciones de Ethereum</p>
+<p>El número de transacciones en la red Ethereum creció un 63 %, de 10,5 millones por semana a un récord de 17,1 millones.</p>
+<img alt="Crecimiento de transacciones de Ethereum" class="article-image" src="/images/image4.png"/>
+<p>Quería encontrar la causa del aumento de direcciones, y resultó que este crecimiento inusual está impulsado en un 80 % por las stablecoins.</p>
+<img alt="Crecimiento impulsado por stablecoins" class="article-image" src="/images/image8.png"/>
+<p>Después de eso, necesitaba comprender la naturaleza de las transacciones de stablecoins. Calculé cuántos usuarios recibieron menos de un dólar como su primera transacción de stablecoin, y resultó que el 67 % de las direcciones encajan en este patrón. 3,86 millones de 5,78 millones de direcciones recibieron importes ínfimos como su primera transacción.</p>
+<img alt="Análisis de transacciones de importes ínfimos" class="article-image" src="/images/image3.png"/>
+<p>Para identificar las direcciones distribuidoras de importes ínfimos, filtré todos los remitentes de transferencias de USDT/USDC inferiores a 1 dólar para el período del 15 de diciembre de 2025 al 18 de enero de 2026, conté los destinatarios únicos para cada uno y filtré aquellos que enviaron a al menos 10 000 direcciones.</p>
+<img alt="Principales direcciones de contratos que distribuyen importes ínfimos a direcciones de cebo" class="article-image" src="/images/image6.png"/>
+<p class="image-caption">Principales direcciones de contratos que distribuyen importes ínfimos a direcciones de cebo</p>
+<p>Aquí están los 3 principales distribuidores de importes ínfimos:</p>
+<div class="code-block">0x455bf23ea7575a537b6374953fa71b5f3653272c - envió importes ínfimos a 690 000 direcciones<br/> 0x301d9bc22d66f7bc49329a9d9eb16d3ecc4a12b4 - envió a 589 000<br/> 0x2393d38400cad1d0ffae85b37d76de05bb7eddc6 - envió a 405 000</div>
+<p>Estos son contratos inteligentes que automatizan la distribución masiva de importes ínfimos de envenenamiento.</p>
+<p>El código fuente de uno de estos contratos tiene una función <code>fundPoisoners</code> que financia cientos de direcciones de envenenamiento en una sola transacción, enviando a cada una tokens de importes ínfimos y algo de ETH para gas.</p>
+<img alt="Código de la función fundPoisoners" class="article-image" src="/images/image2.png"/>
+<p>Estas direcciones de envenenamiento luego distribuyen importes ínfimos a millones de víctimas potenciales, creando entradas falsas en los historiales de transacciones.</p>
+<p>Las direcciones de envenenamiento se crean para que se parezcan a las direcciones legítimas de las víctimas (coincidiendo los primeros y últimos caracteres). La víctima ve una dirección "familiar" en el historial de transacciones, la copia sin verificación completa y envía fondos reales al atacante.</p>
+<div class="warning-box"><strong>Hasta ahora, se han robado más de 740 000 dólares de esta manera a 116 víctimas.</strong> Estas son estimaciones conservadoras y el número crecerá. En el caso de un ataque de envenenamiento importante <a href="https://www.chainalysis.com/blog/address-poisoning-scam/">anterior</a>, una campaña de 66 días obtuvo 68 millones de dólares, con la mayor parte robada el día 64, casi al final.</div>
+<img alt="Principales víctimas del ataque de envenenamiento" class="article-image" src="/images/image7.png"/>
+<p class="image-caption">Principales víctimas del ataque de envenenamiento a 19 de enero de 2026</p>
+<h2>¿Pero por qué los atacantes se activaron precisamente ahora?</h2>
+<p>Porque la tasa de conversión para tales ataques es extremadamente baja, aproximadamente del 0,01 %. Y el beneficio principal proviene de solo unas pocas víctimas (en la captura de pantalla anterior, una persona perdió 509 000 dólares de los 740 000 dólares estudiados). Esto significa que los atacantes siempre se enfrentaron al riesgo de que el gas gastado en millones de transacciones de importes ínfimos no valiera la pena. Hasta diciembre de 2025.</p>
+<p>El 3 de diciembre de 2025, los desarrolladores de Ethereum, liderados por Vitalik Buterin, mejoraron amablemente la infraestructura perfectamente para tales ataques al lanzar la actualización Fusaka, reduciendo las tarifas promedio aproximadamente 6 veces.</p>
+<img alt="Cambio en los costos de transferencia de ERC20 en 2025" class="article-image" src="/images/image5.png"/>
+<p class="image-caption">Cambio en los costos de transferencia de ERC20 en 2025</p>
+<p>Ahora el envenenamiento de direcciones se ha vuelto desproporcionadamente atractivo para los atacantes.</p>
+<p><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">Ya escribí sobre esto</a>: ¡no se puede escalar la infraestructura sin abordar primero la seguridad del usuario!</p>
+<p>Y mientras la industria de las criptomonedas celebra métricas récord, la gente está perdiendo sus fondos porque los desarrolladores de Ethereum mejoraron la infraestructura para ataques masivos.</p>
+<p>Lo que están haciendo los desarrolladores es una experimentación imprudente a expensas de los usuarios, disfrazada de revolución donde la gente común asume todos los riesgos.</p>
+<div class="highlight"><strong>A partir de la publicación, el ataque no solo continúa, sino que se está intensificando.</strong> En los últimos 4 días, se han lanzado nuevos contratos de envenenamiento, y el más grande ya distribuye importes ínfimos a 78 000 direcciones. Todos los contratos principales de los atacantes permanecen activos, con las últimas transacciones registradas mientras escribo esto.</div>
+<p><em>(Solo verifiqué las transacciones de stablecoins porque impulsaron el crecimiento de las métricas principales, pero la escala es mayor ya que los ataques de importes ínfimos también usan otros tokens).</em></p>
+<div class="author-box">
+<div class="author-info">
+{% include es/support-prompt.html %}
+{% include es/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">Correo electrónico</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Otras investigaciones</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/es/blockworks-ai-data/">Blockworks recorta su equipo de investigación mientras vende datos para agentes de IA</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/es/bitget-hack-fees/">¿Quién cobró comisiones por el lavado de los fondos robados a Bitget?</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/es/hsin-ju-chuang-death/">¿Qué se puede verificar sobre la muerte de Hsin-Ju Chuang?</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/es/loss-based-polymarket-airdrop/">Por qué Polymarket debería repartir su airdrop en función de las pérdidas</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/es/polymarket-profitability/">¿Cuántos operadores ganan dinero en Polymarket?</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/es/fusaka-poison-attacks-ethereum/">Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/es/will-thedao-money-improve-ethereum-security/">¿Hará más seguro a Ethereum el fondo de 220 millones de dólares de TheDAO?</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/es/thedao-curators-220m-hack-victims/">Los curadores de TheDAO sentaron un precedente al destinar 220 millones de dólares ajenos a sus propios fines</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<span class="lightbox-close">×</span>
+<img alt="Imagen ampliada" id="lightbox-img" src=""/>
+<div class="lightbox-hint">Haz clic en cualquier lugar o presiona Esc para cerrar</div>
+</div>
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.article-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

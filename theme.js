@@ -5,6 +5,7 @@
         en: ['Light mode', 'Dark mode'],
         ru: ['Светлая тема', 'Тёмная тема'],
         'zh-Hans': ['浅色主题', '深色主题'],
+        es: ['Tema claro', 'Tema oscuro'],
     };
     const [lightLabel, darkLabel] = labels[root.lang] ?? labels.en;
     let control;

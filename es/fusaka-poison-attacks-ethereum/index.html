@@ -1,0 +1,1097 @@
+---
+layout: null
+lang: es
+permalink: /es/fusaka-poison-attacks-ethereum/
+alternate_url: /fusaka-poison-attacks-ethereum/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=4"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka | Andrey Sergeenkov</title>
+<meta content="El análisis en cadena encuentra que el volumen de envenenamiento de direcciones aumentó 5,6 veces después de la actualización Fusaka de Ethereum, mientras que las pérdidas confirmadas de las víctimas aumentaron 13 veces." name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="https://sergeenkov.com/es/fusaka-poison-attacks-ethereum/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka" property="og:title"/>
+<meta content="El análisis en cadena encuentra que el volumen de envenenamiento de direcciones aumentó 5,6 veces después de la actualización Fusaka de Ethereum, mientras que las pérdidas confirmadas de las víctimas aumentaron 13 veces." property="og:description"/>
+<meta content="https://sergeenkov.com/es/fusaka-poison-attacks-ethereum/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka" name="twitter:title"/>
+<meta content="El análisis en cadena encuentra que el volumen de envenenamiento de direcciones aumentó 5,6 veces después de la actualización Fusaka de Ethereum, mientras que las pérdidas confirmadas de las víctimas aumentaron 13 veces." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<!-- Ahrefs Web Analytics -->
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 24px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px 20px;
+            border-radius: 0;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.7;
+        }
+        .note a {
+            color: #0645ad;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-box {
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 20px 20px 14px;
+            margin: 30px 0;
+            background: #fff;
+        }
+        .chart-box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 2px;
+            color: #333;
+        }
+        .chart-box .chart-subtitle {
+            font-size: 13px;
+            color: #666;
+            margin: 0 0 16px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        .chart-container canvas {
+            display: block;
+        }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .chart-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        .legend-line {
+            width: 16px;
+            height: 2px;
+            display: inline-block;
+        }
+        .legend-dash {
+            width: 16px;
+            height: 0;
+            border-top: 2px dashed #2a7a2a;
+            display: inline-block;
+        }
+        .chart-source {
+            text-align: right;
+            margin-top: 6px;
+        }
+        .chart-source a {
+            font-size: 10px;
+            color: #bbb;
+            background: none;
+            padding: 0;
+        }
+        .chart-source a:hover {
+            color: #999;
+            background: none;
+        }
+        .chart-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #888;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+        .chart-btn:hover {
+            color: #555;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none;
+        }
+        .chart-btn svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+        }
+        .chart-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .chart-modal-overlay.active {
+            display: flex;
+        }
+        .chart-modal {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 90vh;
+            position: relative;
+        }
+        .chart-modal h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 4px;
+            color: #333;
+        }
+        .chart-modal .chart-subtitle {
+            font-size: 13px;
+            color: #666;
+            margin: 0 0 16px;
+        }
+        .chart-modal-container {
+            position: relative;
+            width: 100%;
+            height: 420px;
+        }
+        .chart-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            padding: 4px;
+        }
+        .chart-modal-close:hover {
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            .chart-modal-container {
+                height: 280px;
+            }
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name { font-weight: 600; font-size: 16px; color: #202122; margin: 0 0 6px; font-family: sans-serif; }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .chart-box {
+                padding: 16px 10px 12px;
+            }
+            .chart-container {
+                height: 220px;
+            }
+            .chart-legend {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="2026-02-18" property="article:published_time"/><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka",
+  "description": "El análisis en cadena encuentra que el volumen de envenenamiento de direcciones aumentó 5,6 veces después de la actualización Fusaka de Ethereum, mientras que las pérdidas confirmadas de las víctimas aumentaron 13 veces.",
+  "inLanguage": "es",
+  "url": "https://sergeenkov.com/es/fusaka-poison-attacks-ethereum/",
+  "mainEntityOfPage": "https://sergeenkov.com/es/fusaka-poison-attacks-ethereum/",
+  "datePublished": "2026-02-18",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  }
+}
+</script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/es/">← Volver al inicio</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Correo electrónico</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a> </div>
+</div>
+<article>
+<header class="article-header">
+<h1>Las pérdidas por envenenamiento de direcciones se multiplicaron por 13 tras Fusaka</h1>
+<div class="article-meta">Por Andrey Sergeenkov · 18 de febrero de 2026</div>
+</header>
+<div class="tldr">
+<div class="tldr-title">Hallazgos principales</div>
+<ul>
+<li>Fusaka redujo las tarifas de gas 6 veces, haciendo que el spam de envenenamiento masivo fuera <a href="#finding-volume">lo suficientemente barato como para escalar</a></li>
+<li>Esto ayudó a los atacantes a aumentar el volumen de envenenamiento <a href="#finding-volume">5,6 veces</a></li>
+<li>En 73 días después de Fusaka, las víctimas perdieron <a href="#finding-losses">63,3 millones de dólares</a></li>
+<li>Esto es <a href="#finding-increase">13 veces más</a> que en el mismo período antes de la actualización (4,9 millones de dólares)</li>
+</ul>
+</div>
+<p>En mi <a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/es/record-high-activity-ethereum-2026/">artículo anterior</a>, quise averiguar qué causó la actividad récord en la red Ethereum, y resultó que el 80 % del crecimiento fue spam de envenenamiento de direcciones, hecho económicamente atractivo por la actualización Fusaka, que redujo las tarifas de gas 6 veces. En ese momento, solo contaba con datos limitados que respondían a la pregunta de qué había detrás del crecimiento.</p>
+<div class="note">Envenenamiento de direcciones: un ataque en el que los estafadores envían transacciones de importes ínfimos o de valor cero desde direcciones que coinciden con los primeros y últimos caracteres de los contactos reales de la víctima, con la esperanza de que la víctima copie la dirección incorrecta de su historial de transacciones.</div>
+<p>En este artículo, investigué cómo creció el envenenamiento de direcciones en general y cuáles fueron los resultados reales de estos ataques. ¿Cuál es el daño total?</p>
+<p>Para responder a esta pregunta, construí un sistema de detección que escanea la cadena de bloques de Ethereum desde el 1 de septiembre de 2025 hasta el 13 de febrero de 2026, cubriendo 93 días antes de Fusaka y 73 días después. Rastrea las transferencias de importes ínfimos en 101 tokens e identifica los pagos confirmados.</p>
+{% include es/commission-box.html %}
+<div class="chart-box">
+<h3>Transacciones de ataques de importes ínfimos antes y después de la actualización Fusaka</h3>
+<p class="chart-subtitle">Media móvil de 7 días. Cada transferencia de importe ínfimo = una transacción de ataque.</p>
+<div class="chart-container"><canvas id="chart1"></canvas></div>
+<div class="chart-legend"><span><span class="legend-line" style="background:#dc3545"></span> Transacciones de importes ínfimos (media de 7 días)</span> <span><span class="legend-dash"></span> Media pre-Fusaka</span></div>
+<div class="chart-actions">
+<button class="chart-btn" onclick="downloadChart('chart1','dust-transactions')"><svg viewbox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"></path></svg> Descargar</button>
+<button class="chart-btn" onclick="expandChart('chart1')"><svg viewbox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"></path></svg> Ampliar</button>
+</div>
+<div class="chart-source"><a data-source-href="https://sergeenkov.com" href="/es/">sergeenkov.com</a></div>
+</div>
+<p id="finding-volume">Antes de Fusaka, los atacantes enviaban un promedio de 30 000 transacciones de importes ínfimos por día. Después de la actualización, esto se disparó a 167 000 por día, un aumento de 5,6 veces.</p>
+<p>El pico de enero alcanzó las 510 000 transacciones en un solo día. Incluso excluyendo ese pico, el nivel sostenido posterior a Fusaka se mantiene entre 150 000 y 200 000 transacciones diarias.</p>
+<div class="note">Fusaka: una importante actualización de la red Ethereum (3 de diciembre de 2025) que amplió la capacidad de la red para procesar más transacciones a la vez, haciéndolas más baratas. La actualización forma parte del esfuerzo de Ethereum por atraer la adopción masiva mediante la reducción de las tarifas.</div>
+<div class="chart-box">
+<h3>Precio del gas vs. volumen de ataques de importes ínfimos antes y después de la actualización Fusaka</h3>
+<p class="chart-subtitle">Media móvil de 7 días. Precio medio del gas (gwei) de Dune Analytics superpuesto con transacciones de importes ínfimos.</p>
+<div class="chart-container"><canvas id="chart3"></canvas></div>
+<div class="chart-legend"><span><span class="legend-line" style="background:#e8a838"></span> Precio medio del gas, gwei (eje izquierdo)</span> <span><span class="legend-line" style="background:#dc3545"></span> Transacciones de importes ínfimos (eje derecho)</span></div>
+<div class="chart-actions">
+<button class="chart-btn" onclick="downloadChart('chart3','gas-vs-dust')"><svg viewbox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"></path></svg> Descargar</button>
+<button class="chart-btn" onclick="expandChart('chart3')"><svg viewbox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"></path></svg> Ampliar</button>
+</div>
+<div class="chart-source"><a data-source-href="https://sergeenkov.com" href="/es/">sergeenkov.com</a></div>
+</div>
+<p>El gráfico muestra una clara correlación inversa entre el precio del gas y el volumen de ataques de importes ínfimos. Las dos variables se mueven juntas continuamente: cuando el gas sube, la producción de importes ínfimos baja; cuando el gas baja, la producción de importes ínfimos sube. Esta relación dosis-respuesta es un fuerte indicador de que el vínculo es causal en lugar de coincidente.</p>
+<div class="note">Una relación dosis-respuesta significa que el efecto escala con la exposición: cuanto mayor es la dosis, mayor es la respuesta. Es uno de los criterios de Bradford Hill, un marco estándar para distinguir las causas genuinas de las correlaciones espurias. Aplicado aquí, el precio del gas es la dosis y el volumen de ataque es la respuesta.</div>
+<p>Debido a que los atacantes ajustan su producción día a día en proporción al costo del gas, los datos descartan la posibilidad de que ambas tendencias cambiaran aproximadamente al mismo tiempo por razones no relacionadas.</p>
+<p>Además, la precisión a nivel de día de esta correlación probablemente significa que el software de envenenamiento tiene un umbral de precio del gas incorporado que regula la intensidad del ataque automáticamente. Tales configuraciones son comunes tanto en bots legítimos como maliciosos de Ethereum.</p>
+<div class="chart-box">
+<h3>Carteras únicas atacadas antes y después de la actualización Fusaka</h3>
+<p class="chart-subtitle">Media móvil de 7 días. Una cartera = un ataque, independientemente de cuántas transacciones de importes ínfimos la afecten.</p>
+<div class="chart-container"><canvas id="chart2"></canvas></div>
+<div class="chart-legend"><span><span class="legend-line" style="background:#007bff"></span> Carteras únicas (media de 7 días)</span> <span><span class="legend-dash"></span> Media pre-Fusaka</span></div>
+<div class="chart-actions">
+<button class="chart-btn" onclick="downloadChart('chart2','unique-wallets')"><svg viewbox="0 0 16 16"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-5 2h10v1H3v-1z"></path></svg> Descargar</button>
+<button class="chart-btn" onclick="expandChart('chart2')"><svg viewbox="0 0 16 16"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"></path></svg> Ampliar</button>
+</div>
+<div class="chart-source"><a data-source-href="https://sergeenkov.com" href="/es/">sergeenkov.com</a></div>
+</div>
+<p>El número de carteras únicas que recibieron importes ínfimos de envenenamiento aumentó de 12 000 por día a 38 000 por día, un aumento de 3,1 veces.</p>
+<p id="finding-losses">Comparando ventanas iguales de 73 días antes y después de Fusaka:</p>
+<ul>
+<li>Pre-Fusaka (21 de septiembre – 2 de diciembre): 4,9 millones de dólares robados</li>
+<li>Post-Fusaka (3 de diciembre – 13 de febrero): 63,3 millones de dólares robados</li>
+</ul>
+<p id="finding-increase">Esto representa un aumento de 13 veces en los fondos robados y un aumento de 2,6 veces en los eventos de pago exitosos.</p>
+<p>Una transferencia representa una gran parte del total posterior a Fusaka: 50 millones de dólares en USDT el 19 de diciembre. Excluyéndola, el total posterior a Fusaka sigue siendo de 13,3 millones de dólares, un aumento de 2,7 veces con respecto a la tasa anterior a Fusaka.</p>
+<div class="highlight">El caso de los 50 millones de dólares no es una anomalía que deba excluirse. El envenenamiento de direcciones es un ataque de modelo de lotería con millones de transacciones de importes ínfimos baratas para unos pocos pagos grandes y raros. Así es como está diseñado el ataque para funcionar. Un gas más barato significa más boletos de lotería, lo que significa mayores probabilidades de atrapar a una ballena.</div>
+<p>El vínculo entre las tarifas bajas y el volumen de ataques ya estaba documentado antes de Fusaka.</p>
+<ul>
+<li>Un <a href="https://arxiv.org/html/2501.16681v1">estudio</a> de la Universidad Carnegie Mellon publicado diez meses antes de la actualización encontró <em>«una mayor prevalencia de ataques en cadenas con tarifas de transacción más bajas».</em></li>
+<li>Siete meses antes de la actualización, Jameson Lopp de Casa <a href="https://blog.lopp.net/bitcoin-address-poisoning-attacks/">concluyó</a> que el envenenamiento de direcciones solo es económicamente factible en entornos de bajas tarifas.</li>
+<li>Un <a href="https://arxiv.org/abs/2508.12107">estudio</a> de Penn State publicado tres meses antes de Fusaka probó 53 carteras de Ethereum y encontró que la mayoría no advertía a los usuarios sobre las transferencias de envenenamiento.</li>
+</ul>
+<p>A pesar de esto, la Fundación Ethereum procedió con la actualización Fusaka.</p>
+<p>El envenenamiento de direcciones no es el único tipo de ataque cuya economía depende del costo del gas. Los ataques sándwich, los airdrops de tokens falsos, los bots de barrido en carteras comprometidas y los drenajes masivos de aprobación se vuelven más rentables a medida que bajan las tarifas.</p>
+<div class="highlight">No hay nada de malo en reducir las tarifas, pero los problemas de seguridad que amplifican las transacciones baratas deberían haberse abordado antes de la actualización. Cuando la Fundación Ethereum afirma que está construyendo una seguridad de billones de dólares, la seguridad del usuario debe ser la prioridad más estricta sobre las métricas de crecimiento.</div>
+<h2>Metodología</h2>
+<p>El detector se ejecuta como una única canalización SQL en el conjunto de datos público de Ethereum de Google BigQuery. Primero identifica todas las transferencias legítimas de ERC-20 y ETH ≥ 1 $ y extrae una huella digital para cada dirección de destinatario (los primeros 3 + los últimos 4 caracteres hexadecimales). Luego detecta el envenenamiento haciendo coincidir direcciones similares con estas huellas digitales: transferencias de ERC-20 de valor cero iniciadas por terceros, y transferencias de importes ínfimos de ERC-20 o ETH &lt; 1 $ enviadas a las víctimas dentro de una ventana de 300 bloques. Un pago confirmado es cualquier transferencia posterior de ERC-20 o ETH ≥ 10 $ de la víctima a una dirección similar.</p>
+<p>Los gráficos de este artículo muestran solo la actividad de transferencia de importes ínfimos, ya que las transferencias de importes ínfimos son el principal vector de ataque medible. Las transferencias de valor cero no se muestran en los gráficos, pero el detector las utiliza internamente para construir un mapa completo de pares de direcciones de víctima a dirección similar.</p>
+<p>Los 101 tokens se valoran utilizando instantáneas semanales (23 fechas). Las direcciones de contrato se excluyen del grupo de víctimas. La canalización también filtra las direcciones de quema, las autotransferencias, las transferencias no iniciadas por la víctima y los casos en los que la dirección similar era un destinatario legítimo conocido antes del evento de envenenamiento. Una dirección de bot que generó miles de microtransferencias automatizadas a direcciones envenenadas se excluyó de las estadísticas de pago.</p>
+<p>El detector subestima tanto los ataques como los pagos. Solo detecta el envenenamiento contra direcciones que realizaron al menos una transferencia ≥ 1 $ durante el período de estudio, y solo rastrea 101 tokens. La cifra de 63,3 millones de dólares es un límite inferior confirmado. Sin embargo, las pruebas con varias muestras de tokens fuera de la lista blanca mostraron que los ataques que involucran tokens no listados representan menos del 1 % del total.</p>
+<p>Este estudio rastreó dos tipos de transferencias de envenenamiento: transferencias de importes ínfimos y transferencias de valor cero. También hay otros tipos, incluidas las transferencias de tokens falsificados, las transferencias de ETH falsas y las variantes basadas en aprobación. No las incluí porque construir tales consultas es significativamente más complejo y ejecutarlas en BigQuery es costoso. Las transferencias de importes ínfimos y de valor cero son suficientes para ver el panorama completo, porque los atacantes suelen combinar varios métodos diferentes contra el mismo objetivo, y los casos en los que una víctima recibe solo una transferencia de token falsificado sin envenenamiento de importes ínfimos o de valor cero que la acompañe son raros.</p>
+<div class="author-box">
+<div class="author-info">
+{% include es/support-prompt.html %}
+{% include es/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">Correo electrónico</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Otras investigaciones</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/es/blockworks-ai-data/">Blockworks recorta su equipo de investigación mientras vende datos para agentes de IA</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/es/bitget-hack-fees/">¿Quién cobró comisiones por el lavado de los fondos robados a Bitget?</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/es/hsin-ju-chuang-death/">¿Qué se puede verificar sobre la muerte de Hsin-Ju Chuang?</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/es/loss-based-polymarket-airdrop/">Por qué Polymarket debería repartir su airdrop en función de las pérdidas</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/es/polymarket-profitability/">¿Cuántos operadores ganan dinero en Polymarket?</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/es/record-high-activity-ethereum-2026/">Los ataques de envenenamiento de direcciones dispararon la actividad de Ethereum a un máximo histórico</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/es/will-thedao-money-improve-ethereum-security/">¿Hará más seguro a Ethereum el fondo de 220 millones de dólares de TheDAO?</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/es/thedao-curators-220m-hack-victims/">Los curadores de TheDAO sentaron un precedente al destinar 220 millones de dólares ajenos a sus propios fines</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<script>
+    (function() {
+        var RAW = "2025-09-01,12032,5917\n2025-09-02,19556,10435\n2025-09-03,20830,10035\n2025-09-04,19936,9691\n2025-09-05,23951,12360\n2025-09-06,30603,13850\n2025-09-07,28918,12757\n2025-09-08,24131,12230\n2025-09-09,35863,18287\n2025-09-10,48288,24221\n2025-09-11,52329,24617\n2025-09-12,36041,19528\n2025-09-13,32535,16077\n2025-09-14,26038,12478\n2025-09-15,21109,10391\n2025-09-16,10719,6652\n2025-09-17,17028,8854\n2025-09-18,9544,5297\n2025-09-19,19994,8842\n2025-09-20,20814,9584\n2025-09-21,20262,9135\n2025-09-22,13577,7857\n2025-09-23,17496,9573\n2025-09-24,11846,7792\n2025-09-25,4449,3515\n2025-09-26,9899,6299\n2025-09-27,11831,7399\n2025-09-28,34782,11277\n2025-09-29,15724,9037\n2025-09-30,20618,11131\n2025-10-01,35860,14162\n2025-10-02,24195,6561\n2025-10-03,17005,8790\n2025-10-04,24278,10332\n2025-10-05,26185,10540\n2025-10-06,17069,8120\n2025-10-07,16869,8065\n2025-10-08,26383,11583\n2025-10-09,24602,10984\n2025-10-10,20483,8491\n2025-10-11,2730,2073\n2025-10-12,17545,8035\n2025-10-13,18969,9080\n2025-10-14,17406,8593\n2025-10-15,21524,9880\n2025-10-16,22424,10926\n2025-10-17,8097,5464\n2025-10-18,23801,10430\n2025-10-19,20055,9171\n2025-10-20,30329,13096\n2025-10-21,33500,13116\n2025-10-22,39876,16104\n2025-10-23,48698,19547\n2025-10-24,33374,14854\n2025-10-25,26577,11674\n2025-10-26,25840,11054\n2025-10-27,27038,13070\n2025-10-28,33368,14610\n2025-10-29,41435,15501\n2025-10-30,16949,7629\n2025-10-31,30275,13033\n2025-11-01,51525,15483\n2025-11-02,46114,13435\n2025-11-03,16159,7763\n2025-11-04,8863,4534\n2025-11-05,12999,6967\n2025-11-06,8510,4778\n2025-11-07,7661,4311\n2025-11-08,21543,8911\n2025-11-09,32671,12558\n2025-11-10,36117,13970\n2025-11-11,42601,15820\n2025-11-12,39823,15505\n2025-11-13,34006,12685\n2025-11-14,26134,12252\n2025-11-15,66938,20248\n2025-11-16,49885,17555\n2025-11-17,54410,18778\n2025-11-18,42797,17386\n2025-11-19,42897,15471\n2025-11-20,25158,10241\n2025-11-21,23510,9421\n2025-11-22,33278,15107\n2025-11-23,24845,11739\n2025-11-24,38867,14638\n2025-11-25,52289,18349\n2025-11-26,88689,26450\n2025-11-27,83680,26057\n2025-11-28,79985,27289\n2025-11-29,47068,15835\n2025-11-30,47904,15245\n2025-12-01,79038,24892\n2025-12-02,84257,26424\n2025-12-03,77949,28038\n2025-12-04,77705,24659\n2025-12-05,77023,23721\n2025-12-06,85983,24551\n2025-12-07,35640,11371\n2025-12-08,30671,9811\n2025-12-09,59965,18333\n2025-12-10,62082,20120\n2025-12-11,79934,21275\n2025-12-12,50070,16757\n2025-12-13,57530,14443\n2025-12-14,72850,16125\n2025-12-15,87167,20858\n2025-12-16,111274,25974\n2025-12-17,100295,21718\n2025-12-18,95544,20442\n2025-12-19,92531,20658\n2025-12-20,100258,22466\n2025-12-21,102462,22040\n2025-12-22,102587,32526\n2025-12-23,121039,42009\n2025-12-24,152012,46226\n2025-12-25,108864,29058\n2025-12-26,141245,35913\n2025-12-27,150392,37330\n2025-12-28,146452,36766\n2025-12-29,128553,41817\n2025-12-30,129872,40903\n2025-12-31,111213,34101\n2026-01-01,122679,33643\n2026-01-02,136414,39403\n2026-01-03,115645,32154\n2026-01-04,109668,30829\n2026-01-05,128237,39356\n2026-01-06,111205,35172\n2026-01-07,128336,34863\n2026-01-08,154329,38225\n2026-01-09,199525,41107\n2026-01-10,230991,39878\n2026-01-11,212302,41103\n2026-01-12,251115,56023\n2026-01-13,314114,63122\n2026-01-14,454199,66892\n2026-01-15,473713,62659\n2026-01-16,434897,54847\n2026-01-17,510147,53423\n2026-01-18,362720,51878\n2026-01-19,421793,62610\n2026-01-20,230369,49940\n2026-01-21,172087,39569\n2026-01-22,231597,48353\n2026-01-23,220291,49717\n2026-01-24,194721,43066\n2026-01-25,214503,38937\n2026-01-26,261826,48545\n2026-01-27,244851,49446\n2026-01-28,257798,55053\n2026-01-29,168455,42993\n2026-01-30,136550,52371\n2026-01-31,134293,43755\n2026-02-01,162166,48852\n2026-02-02,146107,42700\n2026-02-03,166781,49003\n2026-02-04,185495,58395\n2026-02-05,129342,49370\n2026-02-06,177491,54531\n2026-02-07,151187,41444\n2026-02-08,191041,42983\n2026-02-09,332679,57081\n2026-02-10,352850,55154\n2026-02-11,313161,46773\n2026-02-12,202763,41736\n2026-02-13,302786,56301";
+
+        var GAS_RAW = "2025-09-01,1.7201\n2025-09-02,0.6625\n2025-09-03,0.7936\n2025-09-04,0.9930\n2025-09-05,0.7066\n2025-09-06,0.3270\n2025-09-07,0.2605\n2025-09-08,0.9337\n2025-09-09,0.7039\n2025-09-10,0.8298\n2025-09-11,0.6053\n2025-09-12,0.7226\n2025-09-13,0.3605\n2025-09-14,0.2900\n2025-09-15,1.1027\n2025-09-16,1.0277\n2025-09-17,0.7874\n2025-09-18,1.3403\n2025-09-19,0.6604\n2025-09-20,0.3317\n2025-09-21,0.2478\n2025-09-22,0.7822\n2025-09-23,0.6128\n2025-09-24,0.5844\n2025-09-25,1.4301\n2025-09-26,0.8742\n2025-09-27,0.4163\n2025-09-28,0.3206\n2025-09-29,1.4763\n2025-09-30,1.0401\n2025-10-01,1.0113\n2025-10-02,0.9541\n2025-10-03,0.7462\n2025-10-04,0.2779\n2025-10-05,0.2658\n2025-10-06,1.1161\n2025-10-07,0.9822\n2025-10-08,0.5984\n2025-10-09,0.8310\n2025-10-10,1.3988\n2025-10-11,1.6760\n2025-10-12,0.7355\n2025-10-13,0.8430\n2025-10-14,0.9975\n2025-10-15,0.9178\n2025-10-16,0.7823\n2025-10-17,1.7471\n2025-10-18,0.2720\n2025-10-19,0.2435\n2025-10-20,0.2913\n2025-10-21,0.4937\n2025-10-22,0.4171\n2025-10-23,0.2717\n2025-10-24,0.3541\n2025-10-25,0.1688\n2025-10-26,0.2013\n2025-10-27,0.6271\n2025-10-28,0.3804\n2025-10-29,0.5672\n2025-10-30,0.8695\n2025-10-31,0.3830\n2025-11-01,0.1502\n2025-11-02,0.2228\n2025-11-03,1.1484\n2025-11-04,2.1645\n2025-11-05,1.0092\n2025-11-06,1.3122\n2025-11-07,1.5660\n2025-11-08,0.2331\n2025-11-09,0.1496\n2025-11-10,0.5151\n2025-11-11,0.4085\n2025-11-12,0.3369\n2025-11-13,0.8431\n2025-11-14,0.8500\n2025-11-15,0.1265\n2025-11-16,0.2288\n2025-11-17,0.7353\n2025-11-18,0.5951\n2025-11-19,0.6493\n2025-11-20,0.9943\n2025-11-21,1.4760\n2025-11-22,0.1612\n2025-11-23,0.1331\n2025-11-24,0.4478\n2025-11-25,0.3218\n2025-11-26,0.1179\n2025-11-27,0.0694\n2025-11-28,0.1363\n2025-11-29,0.0576\n2025-11-30,0.0582\n2025-12-01,0.2707\n2025-12-02,0.1660\n2025-12-03,0.0766\n2025-12-04,0.0711\n2025-12-05,0.0713\n2025-12-06,0.0374\n2025-12-07,0.4823\n2025-12-08,0.4442\n2025-12-09,0.3388\n2025-12-10,0.2292\n2025-12-11,0.1875\n2025-12-12,0.1392\n2025-12-13,0.0650\n2025-12-14,0.0744\n2025-12-15,0.1724\n2025-12-16,0.0834\n2025-12-17,0.1003\n2025-12-18,0.0893\n2025-12-19,0.1333\n2025-12-20,0.0347\n2025-12-21,0.0384\n2025-12-22,0.0502\n2025-12-23,0.0579\n2025-12-24,0.0448\n2025-12-25,0.0434\n2025-12-26,0.0516\n2025-12-27,0.0387\n2025-12-28,0.0386\n2025-12-29,0.0988\n2025-12-30,0.1000\n2025-12-31,0.1072\n2026-01-01,0.0617\n2026-01-02,0.1120\n2026-01-03,0.0676\n2026-01-04,0.0649\n2026-01-05,0.1396\n2026-01-06,0.2064\n2026-01-07,0.1177\n2026-01-08,0.1063\n2026-01-09,0.0763\n2026-01-10,0.0388\n2026-01-11,0.0414\n2026-01-12,0.0759\n2026-01-13,0.1013\n2026-01-14,0.1192\n2026-01-15,0.1382\n2026-01-16,0.0510\n2026-01-17,0.0398\n2026-01-18,0.0366\n2026-01-19,0.0617\n2026-01-20,0.1036\n2026-01-21,0.1350\n2026-01-22,0.0806\n2026-01-23,0.0860\n2026-01-24,0.0572\n2026-01-25,0.0711\n2026-01-26,0.1045\n2026-01-27,0.0962\n2026-01-28,0.1142\n2026-01-29,0.1192\n2026-01-30,0.3234\n2026-01-31,0.2526\n2026-02-01,0.1835\n2026-02-02,0.3071\n2026-02-03,0.2407\n2026-02-04,0.2733\n2026-02-05,1.3111\n2026-02-06,0.5436\n2026-02-07,0.1675\n2026-02-08,0.0733\n2026-02-09,0.0982\n2026-02-10,0.0951\n2026-02-11,0.1153\n2026-02-12,0.1348\n2026-02-13,0.0791";
+
+        var PRE_AVG_TX = 30040;
+        var PRE_AVG_VIC = 12363;
+        var FUSAKA_DATE = "2025-12-03";
+
+        function parseData(raw) {
+            return raw.split("\n").map(function(line) {
+                var parts = line.split(",");
+                return { date: parts[0], dustTx: +parts[1], dustVic: +parts[2] };
+            });
+        }
+
+        function parseGas(raw) {
+            var map = {};
+            raw.split("\n").forEach(function(line) {
+                var parts = line.split(",");
+                map[parts[0]] = +parts[1];
+            });
+            return map;
+        }
+
+        function computeMA(data, field, windowSize, gasMap) {
+            return data.map(function(d, i) {
+                var start = Math.max(0, i - windowSize + 1);
+                var slice = data.slice(start, i + 1);
+                var sum = 0;
+                for (var j = 0; j < slice.length; j++) sum += slice[j][field];
+                var ma = Math.round(sum / slice.length);
+
+                var gasSum = 0, gasCount = 0;
+                for (var k = start; k <= i; k++) {
+                    var g = gasMap[data[k].date];
+                    if (g !== undefined) { gasSum += g; gasCount++; }
+                }
+                var gasMA = gasCount > 0 ? +(gasSum / gasCount).toFixed(4) : null;
+
+                return { date: d.date, ma: ma, gas: gasMA };
+            });
+        }
+
+        var data = parseData(RAW);
+        var gasMap = parseGas(GAS_RAW);
+        var maTx = computeMA(data, "dustTx", 7, gasMap);
+        var maVic = computeMA(data, "dustVic", 7, gasMap);
+
+        var labels = maTx.map(function(d) { return d.date.slice(5); });
+        var fullLabels = maTx.map(function(d) { return d.date; });
+        var fusakaIndex = fullLabels.indexOf(FUSAKA_DATE);
+
+        var chartFont = { family: "'Inter', sans-serif" };
+
+        function makeFusakaAnnotation(idx) {
+            return {
+                type: 'line',
+                xMin: idx, xMax: idx,
+                borderColor: '#dc3545',
+                borderWidth: 1.5,
+                borderDash: [4, 3],
+                label: {
+                    display: true,
+                    content: 'Fusaka',
+                    position: 'end',
+                    backgroundColor: '#fef2f2',
+                    color: '#dc3545',
+                    font: { size: 11, weight: 600, family: chartFont.family },
+                    padding: { top: 3, bottom: 3, left: 8, right: 8 },
+                    borderRadius: 3
+                }
+            };
+        }
+
+        function makeBaselineAnnotation(value, label) {
+            return {
+                type: 'line',
+                yMin: value, yMax: value,
+                borderColor: '#2a7a2a',
+                borderWidth: 1.5,
+                borderDash: [6, 3],
+                label: {
+                    display: true,
+                    content: label,
+                    position: 'end',
+                    backgroundColor: 'transparent',
+                    color: '#2a7a2a',
+                    font: { size: 11, weight: 500, family: chartFont.family },
+                    padding: 0,
+                    yAdjust: -12
+                }
+            };
+        }
+
+        function fmtK(n) {
+            if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+            if (n >= 1e3) return (n / 1e3).toFixed(0) + "K";
+            return n.toString();
+        }
+
+        var commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            events: ['mousemove', 'mouseout', 'click'],
+            layout: { padding: { top: 28 } },
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#999',
+                    bodyColor: '#333',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    titleFont: { size: 11, family: chartFont.family },
+                    bodyFont: { size: 12, family: chartFont.family },
+                    padding: { top: 6, bottom: 6, left: 10, right: 10 },
+                    boxPadding: 4,
+                    callbacks: {
+                        label: function(ctx) {
+                            if (ctx.dataset.label === 'baseline' || ctx.dataset.label === 'fill') return null;
+                            return ctx.dataset.label + ': ' + fmtK(ctx.parsed.y);
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 12 },
+                    grid: { display: false },
+                    border: { color: '#ddd' }
+                },
+                y: {
+                    ticks: { color: '#999', font: { size: 10, family: chartFont.family }, callback: fmtK },
+                    grid: { color: '#eee', drawBorder: false },
+                    border: { display: false }
+                }
+            }
+        };
+
+        window.chartConfigs = {};
+
+        // Chart 1: Dust transactions
+        var cfg1 = {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'fill',
+                        data: maTx.map(function(d) { return d.ma; }),
+                        backgroundColor: 'rgba(220,53,69,0.08)',
+                        borderWidth: 0,
+                        fill: true,
+                        pointRadius: 0,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Transacciones (media de 7 días)',
+                        data: maTx.map(function(d) { return d.ma; }),
+                        borderColor: '#dc3545',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: Object.assign({}, commonOptions, {
+                scales: Object.assign({}, commonOptions.scales, {
+                    y: Object.assign({}, commonOptions.scales.y, { max: 460000 })
+                }),
+                plugins: Object.assign({}, commonOptions.plugins, {
+                    annotation: {
+                        annotations: {
+                            fusaka: makeFusakaAnnotation(fusakaIndex),
+                            baseline: makeBaselineAnnotation(PRE_AVG_TX, 'Media anterior a Fusaka')
+                        }
+                    }
+                })
+            })
+        };
+        window.chartConfigs.chart1 = cfg1;
+        new Chart(document.getElementById('chart1').getContext('2d'), cfg1);
+
+        // Chart 2: Unique wallets
+        var cfg2 = {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'fill',
+                        data: maVic.map(function(d) { return d.ma; }),
+                        backgroundColor: 'rgba(0,123,255,0.08)',
+                        borderWidth: 0,
+                        fill: true,
+                        pointRadius: 0,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Carteras (media de 7 días)',
+                        data: maVic.map(function(d) { return d.ma; }),
+                        borderColor: '#007bff',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: Object.assign({}, commonOptions, {
+                plugins: Object.assign({}, commonOptions.plugins, {
+                    annotation: {
+                        annotations: {
+                            fusaka: makeFusakaAnnotation(fusakaIndex),
+                            baseline: makeBaselineAnnotation(PRE_AVG_VIC, 'Media anterior a Fusaka')
+                        }
+                    }
+                })
+            })
+        };
+        window.chartConfigs.chart2 = cfg2;
+        new Chart(document.getElementById('chart2').getContext('2d'), cfg2);
+
+        // Chart 3: Gas vs Dust (dual axis)
+        var cfg3 = {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Gas fill',
+                        data: maTx.map(function(d) { return d.gas; }),
+                        backgroundColor: 'rgba(232,168,56,0.15)',
+                        borderWidth: 0,
+                        fill: true,
+                        pointRadius: 0,
+                        tension: 0.3,
+                        yAxisID: 'yGas'
+                    },
+                    {
+                        label: 'Precio del gas',
+                        data: maTx.map(function(d) { return d.gas; }),
+                        borderColor: '#e8a838',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0.3,
+                        yAxisID: 'yGas'
+                    },
+                    {
+                        label: 'Transferencias de importes ínfimos',
+                        data: maTx.map(function(d) { return d.ma; }),
+                        borderColor: '#dc3545',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0.3,
+                        yAxisID: 'yTx'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                events: ['mousemove', 'mouseout', 'click'],
+                layout: { padding: { top: 28 } },
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#fff',
+                        titleColor: '#999',
+                        bodyColor: '#333',
+                        borderColor: '#ddd',
+                        borderWidth: 1,
+                        titleFont: { size: 11, family: chartFont.family },
+                        bodyFont: { size: 12, family: chartFont.family },
+                        padding: { top: 6, bottom: 6, left: 10, right: 10 },
+                        boxPadding: 4,
+                        callbacks: {
+                            label: function(ctx) {
+                                if (ctx.dataset.label === 'Gas fill') return null;
+                                if (ctx.dataset.yAxisID === 'yGas') return ctx.dataset.label + ': ' + (ctx.parsed.y != null ? ctx.parsed.y.toFixed(2) + ' gwei' : '—');
+                                return ctx.dataset.label + ': ' + fmtK(ctx.parsed.y);
+                            }
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            fusaka: makeFusakaAnnotation(fusakaIndex)
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#999', font: { size: 10, family: chartFont.family }, maxRotation: 0, autoSkip: true, maxTicksLimit: 12 },
+                        grid: { display: false },
+                        border: { color: '#ddd' }
+                    },
+                    yGas: {
+                        position: 'left',
+                        max: 2.5,
+                        ticks: { color: '#e8a838', font: { size: 10, family: chartFont.family }, callback: function(v) { return v.toFixed(1); } },
+                        grid: { color: '#eee', drawBorder: false },
+                        border: { display: false }
+                    },
+                    yTx: {
+                        position: 'right',
+                        max: 460000,
+                        ticks: { color: '#dc3545', font: { size: 10, family: chartFont.family }, callback: fmtK },
+                        grid: { display: false },
+                        border: { display: false }
+                    }
+                }
+            }
+        };
+        window.chartConfigs.chart3 = cfg3;
+        new Chart(document.getElementById('chart3').getContext('2d'), cfg3);
+    })();
+    </script>
+<div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
+<div class="chart-modal">
+<button class="chart-modal-close" onclick="closeModal()">×</button>
+<h3 id="modalTitle"></h3>
+<p class="chart-subtitle" id="modalSubtitle"></p>
+<div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
+</div>
+</div>
+<script>
+    var chartInstances = {};
+    document.querySelectorAll('.chart-container canvas').forEach(function(c) {
+        var inst = Chart.getChart(c);
+        if (inst) chartInstances[c.id] = inst;
+    });
+
+    function downloadChart(id, name) {
+        var chart = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!chart || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        var title = box.querySelector('h3').textContent;
+        var subtitle = box.querySelector('.chart-subtitle').textContent;
+        var legendItems = [];
+        box.querySelectorAll('.chart-legend > span').forEach(function(span) {
+            var line = span.querySelector('.legend-line');
+            var dash = span.querySelector('.legend-dash');
+            legendItems.push({
+                text: span.textContent.trim(),
+                color: line ? (line.style.backgroundColor || line.style.background) : dash ? getComputedStyle(dash).borderTopColor : '#999',
+                isDash: !!dash
+            });
+        });
+
+        var chartW = 1400;
+        var chartH = 620;
+        var pad = 48;
+        var topH = 110;
+        var botH = 80;
+
+        // Render chart natively at target size using an offscreen canvas
+        var offCanvas = document.createElement('canvas');
+        offCanvas.width = chartW;
+        offCanvas.height = chartH;
+
+        // Deep-clone annotation labels with scaled-up fonts for download size
+        var dlPlugins = Object.assign({}, cfg.options.plugins);
+        if (dlPlugins.annotation) {
+            var dlAnn = Object.assign({}, dlPlugins.annotation);
+            var dlAnns = Object.assign({}, dlAnn.annotations);
+            Object.keys(dlAnns).forEach(function(key) {
+                var orig = dlAnns[key];
+                if (orig.label) {
+                    var lbl = Object.assign({}, orig.label);
+                    lbl.font = Object.assign({}, lbl.font, { size: 20 });
+                    if (lbl.padding === 0) lbl.padding = 0;
+                    else if (lbl.padding) lbl.padding = { top: 5, bottom: 5, left: 14, right: 14 };
+                    if (lbl.yAdjust) lbl.yAdjust = lbl.yAdjust * 1.8;
+                    dlAnns[key] = Object.assign({}, orig, { label: lbl });
+                }
+            });
+            dlAnn.annotations = dlAnns;
+            dlPlugins.annotation = dlAnn;
+        }
+
+        var offChart = new Chart(offCanvas.getContext('2d'), {
+            type: cfg.type,
+            data: {
+                labels: chart.data.labels.slice(),
+                datasets: chart.data.datasets.map(function(ds) {
+                    return Object.assign({}, ds, { data: ds.data.slice() });
+                })
+            },
+            options: Object.assign({}, cfg.options, {
+                responsive: false,
+                animation: false,
+                devicePixelRatio: 1,
+                plugins: dlPlugins
+            })
+        });
+
+        // Compose final image
+        var tmp = document.createElement('canvas');
+        tmp.width = chartW + pad * 2;
+        tmp.height = chartH + topH + botH;
+        var ctx = tmp.getContext('2d');
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, tmp.width, tmp.height);
+
+        var fontBase = "Inter, -apple-system, sans-serif";
+        ctx.fillStyle = '#333';
+        ctx.font = '600 26px ' + fontBase;
+        ctx.fillText(title, pad, pad + 28);
+        ctx.fillStyle = '#888';
+        ctx.font = '20px ' + fontBase;
+        ctx.fillText(subtitle, pad, pad + 58);
+
+        ctx.drawImage(offCanvas, pad, topH);
+
+        var ly = topH + chartH + 36;
+        var lx = pad;
+        ctx.font = '18px ' + fontBase;
+        legendItems.forEach(function(item) {
+            var sw = 26;
+            if (item.isDash) {
+                ctx.save();
+                ctx.setLineDash([6, 4]);
+                ctx.strokeStyle = item.color;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(lx, ly - 6);
+                ctx.lineTo(lx + sw, ly - 6);
+                ctx.stroke();
+                ctx.restore();
+            } else {
+                ctx.fillStyle = item.color;
+                ctx.fillRect(lx, ly - 10, sw, 5);
+            }
+            lx += sw + 8;
+            ctx.fillStyle = '#555';
+            ctx.fillText(item.text, lx, ly);
+            lx += ctx.measureText(item.text).width + 36;
+        });
+
+        ctx.fillStyle = '#bbb';
+        ctx.font = '18px ' + fontBase;
+        ctx.textAlign = 'right';
+        ctx.fillText('sergeenkov.com', tmp.width - pad, tmp.height - 20);
+
+        offChart.destroy();
+
+        var link = document.createElement('a');
+        link.download = name + '.png';
+        link.href = tmp.toDataURL('image/png');
+        link.click();
+    }
+
+    var modalChart = null;
+    function expandChart(id) {
+        var src = chartInstances[id];
+        var cfg = window.chartConfigs[id];
+        if (!src || !cfg) return;
+        var box = document.getElementById(id).closest('.chart-box');
+        document.getElementById('modalTitle').textContent = box.querySelector('h3').textContent;
+        document.getElementById('modalSubtitle').textContent = box.querySelector('.chart-subtitle').textContent;
+        document.getElementById('chartModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+
+        var modalCfg = {
+            type: cfg.type,
+            data: {
+                labels: src.data.labels.slice(),
+                datasets: src.data.datasets.map(function(ds) {
+                    return Object.assign({}, ds, { data: ds.data.slice() });
+                })
+            },
+            options: cfg.options
+        };
+
+        var mCanvas = document.getElementById('modalCanvas');
+        modalChart = new Chart(mCanvas.getContext('2d'), modalCfg);
+    }
+
+    function closeModal() {
+        document.getElementById('chartModal').classList.remove('active');
+        document.body.style.overflow = '';
+        if (modalChart) { modalChart.destroy(); modalChart = null; }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>
