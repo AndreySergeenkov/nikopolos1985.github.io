@@ -5,7 +5,7 @@
     <link>https://sergeenkov.com</link>
     <description>Independent research on the digital economy, cryptocurrencies, and blockchain technology.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2026 17:40:09 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 15:10:54 +0000</lastBuildDate>
     <atom:link href="https://sergeenkov.com/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
@@ -13,6 +13,7 @@
       <link>https://sergeenkov.com/blockworks-ai-data/</link>
       <guid isPermaLink="true">https://sergeenkov.com/blockworks-ai-data/</guid>
       <pubDate>Sun, 08 Nov 2026 17:40:09 +0000</pubDate>
+      <atom:updated>2026-11-09T15:10:54+00:00</atom:updated>
       <description>Blockworks opened its MCP to everyone days before 0xResearch ended. Its job board shows what the company is hiring people to build and sell.</description>
     </item>
 
