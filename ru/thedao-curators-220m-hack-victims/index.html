@@ -1,0 +1,645 @@
+---
+layout: null
+lang: ru
+permalink: /ru/thedao-curators-220m-hack-victims/
+alternate_url: /thedao-curators-220m-hack-victims/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Как кураторы TheDAO распорядились $220 млн невостребованных средств</title>
+<meta content="Семь кураторов TheDAO взяли под контроль $220 млн и решили направить средства в стейкинг. Как приняли решение и какой прецедент оно создаёт для владельцев." name="description"/>
+<meta content="Андрей Сергеенков" name="author"/>
+<link href="https://sergeenkov.com/ru/thedao-curators-220m-hack-victims/" rel="canonical"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<!-- Ahrefs Web Analytics -->
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .image-download {
+            font-size: 13px;
+            text-align: right;
+            margin-top: -18px;
+            margin-bottom: 25px;
+        }
+        .image-download a {
+            color: #999;
+            background: none;
+            padding: 0;
+            font-size: 13px;
+        }
+        .image-download a:hover {
+            color: #666;
+            background: none;
+        }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.7;
+        }
+        .note a {
+            color: #0645ad;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="article" property="og:type"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="Как кураторы TheDAO распорядились $220 млн невостребованных средств" property="og:title"/>
+<meta content="Семь кураторов TheDAO взяли под контроль $220 млн и решили направить средства в стейкинг. Как приняли решение и какой прецедент оно создаёт для владельцев." property="og:description"/>
+<meta content="https://sergeenkov.com/ru/thedao-curators-220m-hack-victims/" property="og:url"/>
+<meta content="Андрей Сергеенков" property="og:site_name"/>
+<meta content="https://sergeenkov.com/" property="article:author"/>
+<meta content="2026-02-09" property="article:published_time"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Как кураторы TheDAO распорядились $220 млн невостребованных средств" name="twitter:title"/>
+<meta content="Семь кураторов TheDAO взяли под контроль $220 млн и решили направить средства в стейкинг. Как приняли решение и какой прецедент оно создаёт для владельцев." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как кураторы TheDAO распорядились $220 млн невостребованных средств",
+  "description": "Семь кураторов TheDAO взяли под контроль $220 млн и решили направить средства в стейкинг. Как приняли решение и какой прецедент оно создаёт для владельцев.",
+  "inLanguage": "ru",
+  "url": "https://sergeenkov.com/ru/thedao-curators-220m-hack-victims/",
+  "mainEntityOfPage": "https://sergeenkov.com/ru/thedao-curators-220m-hack-victims/",
+  "datePublished": "2026-02-09",
+  "author": {
+    "@type": "Person",
+    "name": "Андрей Сергеенков",
+    "alternateName": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/",
+    "sameAs": [
+      "https://x.com/Nikopolos",
+      "https://www.linkedin.com/in/sergeenkov/"
+    ]
+  }
+}
+</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/ru/">← На главную</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Цветовая тема" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<article>
+<header class="article-header">
+<h1>Как кураторы TheDAO распорядились $220 млн невостребованных средств</h1>
+<div class="article-meta">Андрей Сергеенков · 9 февраля 2026 года</div>
+</header>
+<p>29 января 2026 года основатель Giveth Грифф Грин <a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">объявил</a> о создании фонда TheDAO Security Fund. Фонд собирается задействовать около 75 тыс. ETH ($220 млн), которые остались невостребованными после взлома TheDAO в 2016 году.</p>
+<p>Сооснователь Ethereum Виталик Бутерин стал одним из семи кураторов. Они отправят средства в стейкинг, а полученные вознаграждения направят на гранты по безопасности Ethereum и на покрытие расходов по хранению средств.</p>
+<p>В ответ один из первых кураторов TheDAO Тимон Рапп 30 января 2026 года публично ушёл с этой роли. В 2016 году он стал одним из подписантов мультисига, чтобы помочь вернуть деньги людям, чьи случаи не укладывались в стандартную процедуру возврата.</p>
+<p>Он <a href="https://x.com/timonrapp/status/2017204823599268175">заявил</a>: <em>«Эти средства принадлежат первоначальным инвесторам DAO. Я считаю, что это нарушает первоначальный мандат и фидуциарные обязанности. Такое решение несёт огромные юридические риски и создаёт множество конфликтов интересов».</em></p>
+{% include ru/commission-box.html %}
+<img alt="Заявление Тимона Раппа об уходе" class="article-image" src="/thedao-curators-220m-hack-victims/images/image5.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image5.png" download="" href="/thedao-curators-220m-hack-victims/images/image5.png">Скачать изображение</a></p>
+<p>Другой куратор из первого состава, Джан Бокслер, тоже <a href="https://x.com/gianbochsler/status/2019731722636787977">ушёл</a>. В письменных ответах на мои вопросы он подтвердил, что <em>«не согласен ни с использованием средств в новых целях, ни с новой процедурой».</em></p>
+<h2>Как кураторы проголосовали за использование невостребованных средств?</h2>
+<p>Я задал этот вопрос Тимону Раппу. В письменном ответе он сказал, что официального голосования не было. Грифф собрал шестерых кураторов в группе в Signal и представил им план. Виталик, похоже, уже знал о нём и поддерживал его.</p>
+<div class="highlight">По словам Тимона, первоначальный вариант давал людям ещё год после создания новой DAO, чтобы забрать свои средства. По истечении года оставшиеся инвесторы потеряли бы право на возврат, а все средства перешли бы новой DAO.</div>
+<p>Сначала против плана был только Тимон. Через несколько недель адвокат Джана Бокслера посоветовал ему ни при каких обстоятельствах ничего не подписывать по этому вопросу. Позднее Бокслер объяснил: <em>«Я обратился за юридической консультацией. Мы с Тимоном настаивали, чтобы любое изменение назначения средств одобрил суд или чтобы решение приняли в рамках другой формальной процедуры. Мы считаем, что не вправе решать это единолично».</em></p>
+<p>По словам Тимона, Джан рассказал об этом совете Владу Замфиру и Алексею Ахунову, и на несколько дней они тоже выступили против.</p>
+<p>Затем Грифф существенно изменил план в двух местах.</p>
+<p>Во-первых, в окончательном варианте решили оставить возможность вывода средств бессрочной. Но, по словам Тимона, новые кураторы могут передумать: ничто не обязывает их выполнять это обещание в долгосрочной перспективе. После передачи средств прежними кураторами всё зависит от новой DAO.</p>
+<p>Во-вторых, вместо одного мультисига новой DAO создали два. Второй мультисиг требует три подписи из пяти и даёт отдельные полномочия, например устанавливать лимит на расходование вознаграждений от стейкинга. В число его подписантов вошли Влад и Алексей. По словам Тимона, возможность сохранить некоторый контроль над средствами через этот мультисиг могла убедить их изменить позицию.</p>
+<p>Вот как, по словам Тимона, выглядело окончательное голосование: <em>«В итоге Грифф, Алексей и Влад подписали транзакции, которые исключили Тимона Раппа и Джана Бокслера из числа подписантов мультисига и запустили перевод средств. Подписи под транзакциями в Ethereum и были голосованием».</em></p>
+<p>По словам Тимона Раппа, план Гриффа Грина также предусматривал, что связь между адресами и именами новых кураторов не будут раскрывать. Так они смогут отрицать, что подписали конкретную транзакцию.</p>
+<p>Тимон считает, что это делается для того, чтобы избежать юридической ответственности.</p>
+<h2>Маршалловы Острова</h2>
+<p>Грифф зарегистрировал компанию The DAO LLC на Маршалловых Островах.</p>
+<div class="note">Маршалловы Острова, как и многие офшорные юрисдикции, не признают автоматически решения судов США и других крупных экономик. Это делает такие юрисдикции привлекательными для структур, созданных для защиты активов. Как говорится в <a href="https://iclg.com/practice-areas/enforcement-of-foreign-judgments-laws-and-regulations/usa">обзоре International Comparative Legal Guides</a>, выиграв дело в суде США, нельзя просто исполнить решение на Маршалловых Островах. Потребуется заново подать иск и пройти разбирательство по местному законодательству.</div>
+<p>Это может затруднить возврат активов законным владельцам и взыскание дохода, полученного от стейкинга их средств.</p>
+<p>По словам Тимона, каждого нового куратора попросили подписать с этой компанией соглашение о возмещении убытков и расходов.</p>
+<p>Джан Бокслер подтвердил, что ему предлагали подписать такое соглашение, но он отказался: <em>«Я не согласился ни с выбором Маршалловых Островов в качестве юрисдикции, ни с самим соглашением».</em></p>
+<div class="note">По такому договору компания обязуется покрывать расходы, связанные с юридической ответственностью отдельных лиц. Если к участнику предъявят иск из-за действий в отношении фонда, компания оплатит юридические расходы, штрафы и возмещение ущерба. Формально участники действуют от имени компании, которая принимает риски на себя.</div>
+<p>Может ли получиться так, что законный владелец подаст иск к компании, а её защиту оплатят вознаграждениями от стейкинга его же средств?</p>
+<p>Когда я спросил Джана Бокслера, откуда возьмутся деньги на юридическую защиту, он ответил: <em>«Вероятно, придётся брать ETH из будущих вознаграждений за стейкинг. Когда я уходил, это ещё обсуждалось. Источником в любом случае будут невостребованные ETH».</em></p>
+<h2>Есть ли конфликт интересов?</h2>
+<p>По данным <a href="https://unchainedcrypto.com/exclusive-thedao-to-become-new-220-million-ethereum-security-fund/">Unchained</a>, условия участия в раундах грантов будет определять Ethereum Foundation.</p>
+<p>При этом никто не опубликовал официальных документов, которые закрепляли бы эту схему или объясняли, на каком правовом основании Ethereum Foundation получает полномочия распоряжаться средствами. Законные владельцы не давали согласия на то, чтобы Ethereum Foundation контролировала доступ к их деньгам.</p>
+<p>Средства владельцев также планируют отправить в стейкинг через DappNode, компанию, которую основали трое из семи кураторов.</p>
+<p>Жорди Байлина и Грифф Грин указаны как основатели, а Пол Лански занимает должность гендиректора и тоже числится сооснователем.</p>
+<img alt="Основатели DappNode" class="article-image" src="/thedao-curators-220m-hack-victims/images/image4.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image4.png" download="" href="/thedao-curators-220m-hack-victims/images/image4.png">Скачать изображение</a></p>
+<p>Получат ли кураторы прямую или косвенную финансовую выгоду от стейкинга активов примерно на $200 млн через инфраструктуру компании?</p>
+<div class="note">Согласно технической документации DappNode, компания <a href="https://docs.dappnode.io/docs/smooth/deep-dive-into-smooth/rewards/">удерживает</a> 7% со всех вознаграждений, распределяемых через её сервис стейкинга Smooth.</div>
+<p>На вопрос «Как будут покрываться операционные расходы DappNode?» куратор pcaversaccio <a href="https://x.com/pcaversaccio/status/2018992687849124183">ответил</a>: <em>«За счёт части вознаграждений от стейкинга».</em></p>
+<img alt="Ответ pcaversaccio о расходах DappNode" class="article-image" src="/thedao-curators-220m-hack-victims/images/image1.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image1.png" download="" href="/thedao-curators-220m-hack-victims/images/image1.png">Скачать изображение</a></p>
+<p>У Гриффа Грина уже спрашивали о пересечении финансовых интересов в структурах управления. В июле 2023 года делегаты Optimism Collective <a href="https://gov.optimism.io/t/we-need-to-talk-about-undisclosed-financial-interests/6424/4">выразили обеспокоенность</a> тем, что он использовал статус делегата, чтобы продвигать заявки на гранты для проектов, которые он соосновал или с которыми был финансово связан, включая DappNode и Giveth. За подготовку тех же заявок его компания General Magic брала от 7% до 50% суммы гранта.</p>
+<p>Делегат katie объяснила, в чём проблема: <em>«Это как если бы я помогла одной из своих портфельных компаний написать заявку на грант, продвигала её на форуме, допустила до голосования, а потом ещё взяла часть полученного гранта».</em></p>
+<p>11 февраля 2026 года TheDAO Security Fund <a href="https://paragraph.com/@thedao.fund/our-first-action-supporting-seal-911-and-seal">объявил</a> о первом распределении: 69 ETH для SEAL, 133,7 ETH для SEAL 911 и бессрочные потоки выплат через Superfluid для обеих организаций. Один из семи кураторов, pcaversaccio, соосновал SEAL 911 и руководит им. Другой куратор, Тейлор Монахан, участвует в SEAL 911 с момента запуска в 2023 году. Третий куратор, Виталик Бутерин, в 2024 году пожертвовал SEAL $500 тыс. Ethereum Foundation, которая определяет условия участия в грантовых раундах TheDAO Security Fund, входит в число крупных доноров и спонсоров SEAL. О новом партнёрстве <a href="https://www.coinspeaker.com/ethereum-foundation-partners-seal-wallet-drainers/">объявили</a> в феврале 2026 года.</p>
+<h2>Кураторы связали невостребованные средства с Tornado Cash</h2>
+<p>2 февраля 2026 года куратор pcaversaccio <a href="https://x.com/pcaversaccio/status/2018096078936318021">написал</a>, что для стейкинга перевели 69 420 ETH через адрес, ранее связанный с Tornado Cash.</p>
+<p>Он добавил: <em>«Теперь все будущие транзакции по выводу средств и выдаче грантов прекрасно и бесповоротно “запятнаны”».</em></p>
+<img alt="Заявление pcaversaccio о связи средств с Tornado Cash" class="article-image" src="/thedao-curators-220m-hack-victims/images/image7.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image7.png" download="" href="/thedao-curators-220m-hack-victims/images/image7.png">Скачать изображение</a></p>
+<p>Проблема в том, что через Tornado Cash регулярно отмывают украденные средства. Как объясняет компания по блокчейн-аналитике <a href="https://www.merklescience.com/blog/what-tornado-cashs-sanctions-reversal-means-for-crypto-compliance">Merkle Science</a>, <em>«использование миксера, даже когда оно законно, остаётся одним из факторов, по которым транзакцию или адрес относят к низкой, средней или высокой категории риска».</em></p>
+<p>Теперь власти и системы безопасности могут помечать адреса, взаимодействующие с этими средствами, как подозрительные. Управление по контролю за иностранными активами Минфина США (OFAC) <a href="https://home.treasury.gov/news/press-releases/jy0916">называло</a> Tornado Cash <em>«серьёзной угрозой национальной безопасности».</em></p>
+<p>Теперь у законных владельцев, которые запросят возврат, история перемещения средств будет связана с адресами Tornado Cash. Системы блокчейн-аналитики и биржи могут пометить такие адреса как подозрительные. Это создаёт риск блокировки аккаунта или проверки.</p>
+<p>Что будет с законными владельцами и получателями грантов фонда, если власти снова введут санкции против Tornado Cash?</p>
+<p>Минфин США не давал гарантий, что Tornado Cash не вернётся в санкционный список. В заявлении об исключении из списка ведомство <a href="https://home.treasury.gov/news/press-releases/sb0057">сообщило</a>, что <em>«воспользовалось своим правом усмотрения».</em></p>
+<p>Это означает, что ведомство приняло решение по своему усмотрению, а не во исполнение решения суда, и может его пересмотреть.</p>
+<p>pcaversaccio <a href="https://x.com/pcaversaccio/status/2018101985975902655">написал</a>, что намеренно «запятнал» средства законных владельцев, чтобы <em>«высмеять само слово “запятнанный”»</em> и показать, что это не грязные деньги.</p>
+<img alt="pcaversaccio объясняет, почему намеренно связал средства с Tornado Cash" class="article-image" src="/thedao-curators-220m-hack-victims/images/image6.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image6.png" download="" href="/thedao-curators-220m-hack-victims/images/image6.png">Скачать изображение</a></p>
+<p>Разве это не создаёт для владельцев лишних рисков при проверках комплаенса?</p>
+<p>Не становится ли это ещё одним препятствием для возврата средств?</p>
+<h2>Вправе ли подписанты мультисига решать, как использовать эти активы?</h2>
+<p>На этот вопрос Грифф Грин <a href="https://x.com/griffgreen/status/2017004016736092257">ответил</a>: <em>«Надёжно хранить криптовалюту на $200 млн стоит денег. Чтобы покрыть расходы, мы отправляем часть активов в стейкинг, сохраняя возможность вернуть владельцам основную сумму».</em></p>
+<img alt="Ответ Гриффа Грина о расходах" class="article-image" src="/thedao-curators-220m-hack-victims/images/image2.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image2.png" download="" href="/thedao-curators-220m-hack-victims/images/image2.png">Скачать изображение</a></p>
+<p>Кураторы обосновывают своё решение <a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">объявлением</a> от августа 2016 года. Тогда они сообщили, что, если средства останутся невостребованными после 31 января 2017 года, их направят на безопасность Ethereum. Они также утверждают, что хранение средств требует финансирования, а законные владельцы смогут забрать свои деньги в любой момент.</p>
+<p>Законодательство США может запрещать хранить невостребованные средства клиентов десять лет и получать доход от их стейкинга.</p>
+<p>В отношении криптовалют закон Калифорнии SB 822, вступивший в силу 1 января 2026 года, требует передавать цифровые финансовые активы в Управление контролёра штата после трёх лет бездействия.</p>
+<p>Раздел 3-57b Свода законов Коннектикута, действующий с 1 июля 2024 года, также предусматривает передачу виртуальной валюты после трёх лет бездействия. В Коннектикуте её нужно продать и перечислить выручку в течение 30 дней после подачи отчёта. Раздел 1319 закона штата Нью-Йорк о невостребованном имуществе, действующий с 22 ноября 2022 года, устанавливает для виртуальной валюты срок в пять лет.</p>
+<p>В большинстве штатов США действуют принципы Единообразного закона о невостребованном имуществе (Uniform Unclaimed Property Act). Согласно им, держатели выступают доверительными управляющими и не имеют имущественных прав на эти активы.</p>
+<p>TheDAO Security Fund удерживает средства около десяти лет и планирует получать от стейкинга доход для грантов на безопасность Ethereum и покрытия расходов по хранению.</p>
+<p>Регистрация TheDAO в форме LLC на Маршалловых Островах может не освобождать её от требований законов штатов США о невостребованном имуществе. В решении по делу Texas v. New Jersey (1965), установившем правило федерального общего права, Верховный суд США указал: <em>«Право и полномочие принять невостребованный долг должно принадлежать штату последнего известного адреса кредитора согласно учётным документам должника».</em></p>
+<p>Если владельцы средств проживают в США и их последние известные адреса находятся в Калифорнии, Коннектикуте, Нью-Йорке или других штатах, соответствующий штат может иметь преимущественное право на имущество независимо от места регистрации держателя.</p>
+<h2>Прецедент для хранения криптоактивов</h2>
+<p>История TheDAO Security Fund создаёт важный прецедент для криптоиндустрии.</p>
+<p>Согласно <a href="https://medium.com/curator-multisig-phf-official-channel/dao-token-holders-come-claim-your-money-b428f186572a">публикации</a> кураторов 2016 года, средства делятся на две части:</p>
+<ul>
+<li>Около 70 500 ETH в ExtraBalance. Адреса определены с помощью анализа блокчейна, средства можно забрать через контракт вывода</li>
+<li>Около 4 600 ETH в мультисиге кураторов. Это нестандартные случаи, в которых, по их словам, «нет явных претендентов»</li>
+</ul>
+<p>TheDAO Security Fund отправляет в стейкинг 69 420 ETH. Это значит, что туда попали и средства из ExtraBalance с установленными владельцами.</p>
+<p>Любой кошелёк с мультиподписью, будь то корпоративное казначейство, фонд DAO или личный кошелёк с доверенными лицами для восстановления, строится на одном принципе. Назначенным подписантам доверяют ключи от чужих активов для конкретной, ограниченной цели.</p>
+<p>Кураторы TheDAO показали, что подписанты могут сами расширить эту цель, если сочтут причину достаточной.</p>
+<p>Как <a href="https://x.com/BlockEnthusiast/status/2016950935327568052">отметил</a> Block Enthusiast 29 января 2026 года:</p>
+<div class="highlight"><em>«Одна из моих главных тревог связана с переходом Ethereum на кошельки на смарт-контрактах. Возникает прецедент: если люди какое-то время не трогают средства в смарт-контракте, их можно направить на разработку и безопасность Ethereum».</em></div>
+<p>Ethereum движется к кошелькам на смарт-контрактах по стандарту ERC-4337. Ожидается, что назначение доверенных лиц с правом подписи станет обычной практикой.</p>
+<p>Если признать прецедент TheDAO допустимым, средства в любом мультисиге или кошельке, управляемом доверенными лицами, можно будет использовать в других целях после произвольного периода бездействия.</p>
+<p>Это также означает, что кастодианы смогут:</p>
+<ul>
+<li>Отправлять средства клиентов с известных адресов в стейкинг без их согласия</li>
+<li>Подвергать клиентские средства дополнительным рискам, например риску штрафов за нарушения при стейкинге (слэшинга)</li>
+<li>Связывать клиентские средства с Tornado Cash, создавая для владельцев риски при проверках комплаенса</li>
+<li>Тратить вознаграждения от стейкинга на собственные операционные расходы</li>
+<li>Произвольно устанавливать сроки, после которых средства можно использовать</li>
+</ul>
+<p>Ещё в мае 2016 года, до взлома, Гэвин Вуд <a href="https://gavofyork.medium.com/why-ive-resigned-as-a-curator-of-the-dao-238528fbd447">ушёл</a> с должности куратора TheDAO. Он прямо предупреждал, что полномочия кураторов могут выйти за рамки изначальной задачи:</p>
+<div class="highlight"><em>«Роль “кураторов” в модели DAO от slock.it проста и полностью алгоритмична. От них не требуется выносить никаких суждений. Они нужны лишь для проверки личности. Они остаются на этой роли, пока это устраивает участников DAO, и могут быть заменены в любое время и по любой причине. Полномочий по надзору у них нет».</em></div>
+<p>Десять лет спустя новые кураторы TheDAO Security Fund сделали именно то, о чём предупреждал Вуд. Они по своему усмотрению приняли решения о распоряжении средствами и не посоветовались с людьми, чьи средства контролируют.</p>
+<h2>«Среди кураторов нет нечестных людей»</h2>
+<img alt="Нынешние кураторы TheDAO Security Fund" class="article-image" src="/thedao-curators-220m-hack-victims/images/image3.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image3.png" download="" href="/thedao-curators-220m-hack-victims/images/image3.png">Скачать изображение</a></p>
+<p>Выше перечислены нынешние кураторы. Среди них Виталик Бутерин, несколько известных выходцев из Ethereum Foundation, авторитетные исследователи безопасности и Грифф Грин, который в 2016 году руководил первоначальной операцией White Hat Group по спасению средств.</p>
+<p>Джан Бокслер, один из ушедших кураторов, подчеркнул, что, по его мнению, все участники действовали из добрых побуждений.</p>
+<p><em>«Среди кураторов нет нечестных людей»,</em> сказал он мне.</p>
+<p><em>«Все пытались найти лучшее практическое решение. И, честно говоря, то, что они до сих пор сделали для сообщества, заслуживает признания. Грифф с самого начала был выдающимся лидером».</em></p>
+<p>О мотивах Гриффа Грина Джан сказал: <em>«У Гриффа большое сердце, он никогда не стал бы действовать со злым умыслом… Он всегда хотел сохранить возможность для первоначальных владельцев забрать свои средства. Главными его целями были техническая защита мультисига и привлечение новых кураторов. Шести человек было слишком мало для ответственного управления такой суммой».</em></p>
+<p>Джан также выразил уверенность в новой структуре: <em>«Уверен, что Грифф, Виталик и новые кураторы примут все необходимые правовые меры. Для них интересы бенефициаров невостребованных средств будут на первом месте».</em></p>
+<p>Он также отметил, что <em>«средства могут подвергнуться атаке в любой момент»</em> и что <em>«безопасность мультисига явно нужно было повысить, поскольку за последние десять лет Solidity значительно изменился».</em> Он признал, что <em>«задача непростая»</em> и <em>«вся эта работа требует финансирования».</em></p>
+<h2>Как можно было поступить</h2>
+<p>Кураторы могли обратиться в суд, объяснить, что держат крупную сумму невостребованных средств, принадлежащих законным владельцам, предложить свой план и попросить указаний. Для судов это обычная практика.</p>
+<p>В английском праве такое решение известно как Benjamin Order по делу <a href="https://www.guildhallchambers.co.uk/2023/08/11/probate-missing-persons-recent-developments-part-1/">Re Benjamin [1902] 1 Ch 723</a>. Доверительный управляющий не мог найти бенефициара и получил у суда разрешение распределить наследственное имущество. Право пропавшего бенефициара предъявить требование сохранилось.</p>
+<p>Джан Бокслер в разговоре со мной сослался на Benjamin Order, назвав его <em>«конкретным прецедентом, позволяющим доверительным управляющим распределять средства на основании презумпции определённых фактов и защищающим их от ответственности».</em></p>
+<p>Он сказал: <em>«Если бы мы получили решение суда, то могли бы действовать в гораздо более ясных и безопасных правовых условиях».</em></p>
+<p>В США аналогом служит ходатайство о судебных указаниях. В деле <a href="https://goldesq.com/when-can-trustees-represent-themselves-in-court/">Donkin v. Donkin (2020)</a> калифорнийские доверительные управляющие обратились в суд, потому что не знали, как распределить активы семейного траста. В 2014 году управляющие <a href="https://berklawgroup.com/wp-content/uploads/2015/02/2014-12-19-Petition-S-Williams.pdf">трастом Робина Уильямса</a> сделали то же самое, когда не смогли определить, как разделить имущество.</p>
+<p>Если вы держите чужие деньги и не знаете, что с ними делать, обратитесь в суд.</p>
+<div class="highlight">Кураторы сами решили, как использовать эти деньги. Хотя сама идея криптовалюты возникла как ответ на то, что узкий круг людей распоряжается чужими деньгами без согласия владельцев.</div>
+<p><strong>Есть информация, которой вы хотели бы поделиться?</strong> Напишите мне <a href="mailto:andrey@sergeenkov.com">на почту</a>.</p>
+<hr/>
+<p>Но помогут ли эти средства решить проблемы безопасности Ethereum? Свою оценку я изложил в <a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/ru/will-thedao-money-improve-ethereum-security/">отдельной статье</a>.</p>
+<div class="author-box">
+<div class="author-info">
+{% include ru/support-prompt.html %}
+{% include ru/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Другие мои исследования</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/ru/blockworks-ai-data/">Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/ru/bitget-hack-fees/">Кто получил комиссии за отмывание украденных у Bitget средств</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/ru/hsin-ju-chuang-death/">Что удалось подтвердить о смерти Чжуан Синьжу</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/ru/loss-based-polymarket-airdrop/">Эйрдроп Polymarket: почему токены стоит раздать тем, кто потерял деньги</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/ru/polymarket-profitability/">Сколько трейдеров зарабатывают на Polymarket</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/ru/fusaka-poison-attacks-ethereum/">Потери от подмены адресов в Ethereum выросли в 13 раз после Fusaka</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/ru/record-high-activity-ethereum-2026/">Подмена адресов привела к рекордной активности в Ethereum</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/ru/will-thedao-money-improve-ethereum-security/">Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<span class="lightbox-close">×</span>
+<img alt="Увеличенное изображение" id="lightbox-img" src=""/>
+<div class="lightbox-hint">Нажмите в любом месте или клавишу Esc, чтобы закрыть</div>
+</div>
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.article-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+---
+layout: null
+lang: ru
+permalink: /ru/blockworks-ai-data/
+alternate_url: /blockworks-ai-data/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js"></script>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов</title>
+<meta content="Blockworks открыла MCP-сервер для Claude и ChatGPT, закрыла рассылку 0xResearch и планирует нанять не менее десяти сотрудников в отдел продаж в 2027 году." name="description"/>
+<meta content="Андрей Сергеенков" name="author"/>
+<link href="https://sergeenkov.com/ru/blockworks-ai-data/" rel="canonical"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<!-- Google tag (gtag.js) -->
+<!-- Ahrefs Web Analytics -->
+<link href="/support/support.css" rel="stylesheet"/>
+<style>
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+            font-size: 17px;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .top-follow { font-size: 14px; color: #54595d; font-family: sans-serif; }
+        .top-follow a, .author-bio a { color: #0645ad; background: none; padding: 0; }
+        .top-follow a:hover, .author-bio a:hover { text-decoration: underline; background: none; }
+        .article-header { margin-bottom: 40px; }
+        h1 {
+            font-size: 28px;
+            text-wrap: balance;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 10px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #54595d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+        .article-meta a { color: #0645ad; }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p { margin-bottom: 16px; font-size: 17px; }
+        .job-board-checks { margin: 8px 0 18px; font-size: 15px; }
+        .job-board-checks li + li { margin-top: 6px; }
+        .article-table { border-collapse: collapse; width: 100%; margin: 16px 0 20px; font-size: 15px; line-height: 1.45; }
+        .article-table caption { text-align: left; color: #54595d; font: 13px/1.5 sans-serif; margin-bottom: 7px; }
+        .article-table th, .article-table td { border-bottom: 1px solid #eaecf0; padding: 8px 10px; vertical-align: top; text-align: left; }
+        .article-table thead th { border-bottom-color: #a2a9b1; background: #f8f9fa; font: 600 13px/1.45 sans-serif; }
+        .departure-table td:last-child { white-space: nowrap; }
+        .customer-table tbody td:first-child { white-space: nowrap; }
+        .pricing-table th:first-child { width: 18%; }
+        .pricing-table thead th:not(:first-child) { width: 27%; }
+        .pricing-table td strong { display: block; }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            overflow-wrap: anywhere;
+        }
+        a:hover { text-decoration: underline; background: none; }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+        .note a { color: #0645ad; }
+        [id] { scroll-margin-top: 16px; }
+        li:target { animation: target-flash 0.9s ease-out; }
+        @keyframes target-flash {
+            0%, 33% { background: var(--theme-target-bg, #fff3cd); }
+            100% { background: transparent; }
+        }
+        .section-rule { border: 0; border-top: 1px solid #a2a9b1; margin: 40px 0 20px; }
+        .crisis-note { font-style: italic; color: #54595d; }
+        .llm-copy-bar { margin-bottom: 20px; }
+        .llm-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: sans-serif;
+            color: #202122;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .llm-copy-btn:hover { background: #eaecf0; border-color: #72777d; }
+        .llm-copy-btn.copied { color: #28a745; border-color: #28a745; background: #f0fff0; }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #a2a9b1;
+        }
+        .author-info { flex: 1; }
+        .author-bio { font-size: 15px; color: #54595d; font-family: sans-serif; }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #202122; margin-bottom: 8px; font-family: sans-serif; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { background: none; padding: 0; color: #0645ad; }
+        .other-research a:hover { background: none; text-decoration: underline; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+            .top-nav { flex-wrap: wrap; gap: 8px; }
+        }
+        .author-name { font-weight: 600; font-size: 16px; color: #202122; margin: 0 0 6px; font-family: sans-serif; }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+
+
+        .article-header { margin-bottom: 24px; }
+        .evidence { margin: 24px 0 30px; }
+        .evidence img { display: block; height: auto; }
+        .evidence img:not(.source-excerpt) { max-width: 100%; }
+        .evidence figcaption { margin-top: 7px; color: #54595d; font: 13px/1.5 sans-serif; }
+        .evidence figcaption a { margin-left: 5px; }
+        .evidence-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 18px 0 24px; }
+        .evidence-group .evidence { margin: 0; }
+        .source-excerpt { display: block; width: 100%; max-width: 570px; height: auto; overflow: hidden; background: #fff; border: 1px solid #e4e7eb; border-radius: 5px; }
+        .nick-posts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+        .role-excerpts .source-excerpt, .sales-excerpt .source-excerpt { max-width: 640px; }
+        .sales-deal-excerpt { position: relative; display: block; max-width: 640px; isolation: isolate; }
+        .sales-deal-highlight { position: absolute; left: 75.6%; top: 51.9%; width: 19.8%; height: 17.5%; background: #fff0a8; mix-blend-mode: multiply; pointer-events: none; }
+        #mcp-credit-claim .source-excerpt { max-width: 500px; }
+        .role-excerpts figcaption { margin: 0 0 4px; }
+        .evidence-details { margin: 12px 0 20px; }
+        .evidence-details summary { color: #0645ad; cursor: pointer; font: 14px/1.5 sans-serif; }
+        .evidence-details > .evidence-group { margin-top: 14px; }
+        @media (max-width: 560px) {
+            .nick-posts { grid-template-columns: minmax(0, 1fr); }
+            .sales-deal-highlight { left: 43%; top: 66.8%; width: 40.6%; height: 8%; }
+            .article-table th, .article-table td { padding: 7px 6px; }
+            .pricing-table, .pricing-table caption, .pricing-table tbody, .pricing-table tr { display: block; }
+            .pricing-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+            .pricing-table tbody th:first-child { width: auto; display: block; background: #f8f9fa; border-top: 1px solid #a2a9b1; }
+            .pricing-table td { display: grid; grid-template-columns: 5.7rem minmax(0, 1fr); gap: 8px; }
+            .pricing-table td::before { content: attr(data-label); font: 600 12px/1.5 sans-serif; padding-top: 2px; }
+            .customer-table, .customer-table caption, .customer-table thead, .customer-table tbody { display: block; }
+            .customer-table tr { display: grid; grid-template-columns: 6rem minmax(0, 1fr); }
+            .customer-table thead th:last-child { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+            .customer-table tbody tr > :nth-child(-n+2) { background: #f8f9fa; border-bottom: 0; }
+            .customer-table tbody td:last-child { grid-column: 1 / -1; }
+        }
+    </style>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="article" property="og:type"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов" property="og:title"/>
+<meta content="Blockworks открыла MCP-сервер для Claude и ChatGPT, закрыла рассылку 0xResearch и планирует нанять не менее десяти сотрудников в отдел продаж в 2027 году." property="og:description"/>
+<meta content="https://sergeenkov.com/ru/blockworks-ai-data/" property="og:url"/>
+<meta content="Андрей Сергеенков" property="og:site_name"/>
+<meta content="https://sergeenkov.com/" property="article:author"/>
+<meta content="2026-11-08T17:40:09+00:00" property="article:published_time"/>
+<meta content="https://sergeenkov.com/blockworks-ai-data/assets/social-card-v3.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Выпуски рассылки 0xResearch от 3 и 6 ноября и фрагмент статьи о Blockworks." property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов" name="twitter:title"/>
+<meta content="Blockworks открыла MCP-сервер для Claude и ChatGPT, закрыла рассылку 0xResearch и планирует нанять не менее десяти сотрудников в отдел продаж в 2027 году." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<meta content="https://sergeenkov.com/blockworks-ai-data/assets/social-card-v3.png" name="twitter:image"/>
+<meta content="Выпуски рассылки 0xResearch от 3 и 6 ноября и фрагмент статьи о Blockworks." name="twitter:image:alt"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов",
+  "description": "Blockworks открыла MCP-сервер для Claude и ChatGPT, закрыла рассылку 0xResearch и планирует нанять не менее десяти сотрудников в отдел продаж в 2027 году.",
+  "inLanguage": "ru",
+  "url": "https://sergeenkov.com/ru/blockworks-ai-data/",
+  "mainEntityOfPage": "https://sergeenkov.com/ru/blockworks-ai-data/",
+  "datePublished": "2026-11-08T17:40:09+00:00",
+  "author": {
+    "@type": "Person",
+    "name": "Андрей Сергеенков",
+    "alternateName": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/",
+    "sameAs": [
+      "https://x.com/Nikopolos",
+      "https://www.linkedin.com/in/sergeenkov/"
+    ]
+  },
+  "image": "https://sergeenkov.com/blockworks-ai-data/assets/social-card-v3.png"
+}
+</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav">
+<a class="back-link" data-source-href="https://sergeenkov.com/" href="/ru/">← На главную</a>
+<div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Цветовая тема" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<div class="llm-copy-bar">
+<button class="llm-copy-btn" id="copy-article" title="Скопировать статью со ссылками на источники" type="button"><svg aria-hidden="true" height="14" style="fill:currentColor;vertical-align:-2px" viewbox="0 0 16 16" width="14"><path d="M4 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"></path></svg><span class="copy-label">Скопировать статью для ИИ</span></button>
+<span id="copy-status" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></span></div>
+<main>
+<article>
+<header class="article-header">
+<h1>Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов</h1>
+<div class="article-meta"><a href="https://sergeenkov.com/">Андрей Сергеенков</a> · <time datetime="2026-11-08T17:40:09+00:00">8 ноября 2026 года</time></div>
+</header>
+<p>3 ноября Blockworks сообщила читателям <a href="https://blockworks.com/newsletter/0xresearch/issue/post_cd2f75d7-fefb-463e-bdf2-a0287933ccb3">рассылки 0xResearch</a>, что теперь они могут подключить Claude или ChatGPT к данным, на которых основаны её исследования. Через <a href="https://blockworks.com/insights/we-re-opening-up-blockworks-mcp-to-everyone">MCP-сервер Blockworks</a> ИИ-ассистенту можно задавать вопросы, с которыми обычно обращаются к аналитику. Через три дня вышел <a href="https://blockworks.com/newsletter/0xresearch/issue/post_5c8aa774-f08b-4522-9749-564454dce05d">последний выпуск</a> 0xResearch.</p>
+<figure class="evidence">
+<a href="/blockworks-ai-data/assets/0xresearch-nov-3-and-6.png"><img alt="Два выпуска 0xResearch. В выпуске от 3 ноября объявлено, что MCP-сервер Blockworks теперь доступен всем. Выпуск от 6 ноября называется Signing off («Прощаемся») и обозначен как последний." height="982" src="/blockworks-ai-data/assets/0xresearch-nov-3-and-6.png" width="1568"/></a>
+<figcaption>Выпуски 0xResearch от 3 и 6 ноября 2026 года. <a href="/blockworks-ai-data/assets/0xresearch-nov-3-and-6.png">Изображение целиком</a></figcaption>
+</figure>
+<h2 id="research">Час работы аналитика за один запрос</h2>
+<p>3 ноября аналитик Blockworks Ник Карпинито рассказал, что на некоторые вопросы раньше уходило <a href="https://x.com/0xMetaLight/status/2117661202059026785">по часу</a>: нужно было открыть несколько дашбордов и сверить данные из разных источников. С MCP хватало одного запроса. Через три дня он написал, что это его <a href="https://x.com/0xMetaLight/status/2118714136565559755">последняя неделя</a> в Blockworks.</p>
+<figure class="evidence" id="nick-posts">
+<div class="nick-posts">
+<img alt="3 ноября 2026 года: Карпинито пишет, что на вопросы, требовавшие часа работы, теперь можно ответить одним запросом." class="source-excerpt" height="424" src="/blockworks-ai-data/assets/nick-mcp-excerpt.png" width="720"/>
+<img alt="6 ноября 2026 года: Карпинито сообщает, что это его последняя неделя в Blockworks." class="source-excerpt" height="326" src="/blockworks-ai-data/assets/nick-departure-excerpt.png" width="720"/>
+</div>
+<figcaption>Два поста Карпинито с разницей в три дня. <a href="/blockworks-ai-data/assets/nick-carpinito-nov-3-and-6.png">Скриншоты целиком</a></figcaption>
+</figure>
+<p id="api-vs-mcp">Бывший сотрудник Blockworks, попросивший не называть его имени, рассказал мне, что автоматические уведомления проще было настроить через API. Зато через MCP удобнее было запрашивать данные по ходу работы. Иногда агент сам продолжал анализ, и для этого не требовалось задавать ещё один вопрос.</p>
+<p>По его словам, с MCP команда раньше замечала сигналы в данных, чаще писала в X и находила темы для рассылки и отчётов. Работать стало немного проще, но требования к его работе остались прежними.</p>
+<h2 id="who-left-blockworks">Кто ушёл из Blockworks</h2>
+<p id="departures">Я нашёл восемь публичных сообщений об уходе, опубликованных с 19 октября по 7 ноября. Согласно <a href="https://blockworks.com/financial-disclosures">документу Blockworks о раскрытии информации</a> от 2 ноября, пятеро из ушедших входили в команду аналитиков (Research), где числились девять человек. Ещё один работал в консалтинговом подразделении (Advisory).</p>
+<table class="article-table departure-table" id="departure-roster">
+<caption>Должности указаны по документу Blockworks от 2 ноября. Для Нихила Чата и Westie использованы другие открытые источники.</caption>
+<thead><tr><th scope="col">Имя</th><th scope="col">Команда или должность</th><th scope="col">Дата поста</th></tr></thead>
+<tbody>
+<tr><th scope="row">Nikhil Chat</th><td>Бывший аналитик</td><td>19 октября</td></tr>
+<tr><th scope="row">Kunal Doshi</th><td>Аналитика</td><td>5 ноября</td></tr>
+<tr><th scope="row">Westie</th><td>Данные и продукт</td><td>5 ноября</td></tr>
+<tr><th scope="row">Nick Carpinito</th><td>Аналитика</td><td>6 ноября</td></tr>
+<tr><th scope="row">Jake Koch-Gallup</th><td>Аналитика</td><td>6 ноября</td></tr>
+<tr><th scope="row">Silvio Busonero</th><td>Консалтинг</td><td>6 ноября</td></tr>
+<tr><th scope="row">AJC</th><td>Аналитика</td><td>6 ноября</td></tr>
+<tr><th scope="row">Sam Schubert</th><td>Аналитика</td><td>7 ноября</td></tr>
+</tbody>
+</table>
+<p>На сайте Blockworks Нихил Чат указан как <a href="https://app.blockworks.com/research/nikhil-chat">бывший аналитик</a>. Он <a href="https://x.com/0xnikhilchat/status/2112211701760131448">ушёл в октябре</a> и к моменту появления ноябрьских постов уже объявил о переходе в <a href="https://x.com/0xnikhilchat/status/2117633349951148369">криптовалютное подразделение Stripe</a>.</p>
+<p>Другой источник полагает, что Blockworks закроет и консалтинговое подразделение, когда выполнит текущие обязательства. О переменах ему рассказал человек, участвовавший в интеграции Messari в Blockworks. <a href="https://x.com/SilvioBusonero/status/2118746193232552272">Сообщение Сильвио Бузонеро об уходе</a> подтверждает, что команду покинул один сотрудник. Продолжит ли Blockworks оказывать консалтинговые услуги, мне подтвердить не удалось.</p>
+<p id="product-pivot-posts">Джейк Кох-Гэллап перешёл в Blockworks после того, как компания <a href="https://blockworks.com/insights/blockworks-acquires-messari">купила Messari</a>. В посте об уходе он написал, что Blockworks отдаёт приоритет развитию продуктов, а не исследованиям.</p>
+<figure class="evidence">
+<picture>
+<source height="482" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/jake-pivot-mobile.png" width="864"/>
+<img alt="Джейк Кох-Гэллап пишет, что Blockworks сместила фокус с исследований на развитие продуктов." class="source-excerpt" height="386" src="/blockworks-ai-data/assets/jake-pivot-2x.png" width="1184"/>
+</picture>
+<figcaption>Фрагмент поста Джейка Коха-Гэллапа от 6 ноября. <a href="https://x.com/immutablejacob/status/2118718498679525830">Пост целиком</a></figcaption>
+</figure>
+<p>Westie участвовал в создании команды аналитиков Blockworks, собрал команду по работе с данными, а затем занялся продуктами компании. Сообщая об уходе, он назвал развитие продуктов главным приоритетом Blockworks на 2026 год и последующие годы.</p>
+<figure class="evidence" id="westie-post">
+<picture>
+<source height="722" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/westie-pivot-mobile.png?v=2" width="864"/>
+<img alt="Пост Westie с выделенным фрагментом о запуске новых продуктов и приоритетах компании." class="source-excerpt" height="578" src="/blockworks-ai-data/assets/westie-pivot-2x.png?v=2" width="1184"/>
+</picture>
+<figcaption>Фрагмент поста Westie от 5 ноября. <a href="https://x.com/WestieCapital/status/2118403608186167696">Пост целиком</a></figcaption>
+</figure>
+<h2 id="automation">Что Blockworks уже автоматизировала</h2>
+<p>В сентябре Blockworks разрешила клиентам сервиса Monitoring получать часть уведомлений ещё до проверки аналитиком. Например, служба комплаенса могла сразу узнать о возможной проблеме и дождаться, пока аналитик подтвердит сигнал и объяснит, что произошло, прежде чем принимать меры.</p>
+<figure class="evidence" id="monitoring-announcement">
+<picture>
+<source height="526" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/monitoring-alert-review-mobile.png" width="714"/>
+<img alt="Blockworks пишет, что прежде уведомления проверял аналитик. С Agentic Detection результаты проверки системы доступны сразу." class="source-excerpt" height="332" src="/blockworks-ai-data/assets/monitoring-alert-review-2x.png" width="1202"/>
+</picture>
+<figcaption>Из <a href="https://blockworks.com/insights/introducing-agentic-detection-asset-monitoring-built-for-the-ai-era">анонса Blockworks от 17 сентября</a>.</figcaption>
+</figure>
+<p>В октябре Blockworks <a href="https://blockworks.com/insights/introducing-the-blockworks-mcp-our-data-your-agents">открыла доступ к MCP-серверу</a> подписчикам API, а в ноябре <a href="https://blockworks.com/insights/we-re-opening-up-blockworks-mcp-to-everyone">сделала его доступным</a> всем.</p>
+<p id="mcp-credits">Чтобы пользователи могли попробовать API и MCP, Blockworks предложила $100 на запросы. Сооснователь компании Джейсон Яновиц <a href="https://x.com/JasonYanowitz/status/2117638173425897958">рассказал об этом</a> в X. По словам Blockworks, когда пробный баланс заканчивается, ИИ-ассистент предлагает пользователю созвониться с компанией и обсудить полный доступ.</p>
+<p>Я зарегистрировался и попробовал получить обещанные $100, но сайт выдал ошибку.</p>
+<figure class="evidence" id="mcp-credit-claim">
+<a href="/blockworks-ai-data/assets/mcp-credit-claim.png">
+<svg aria-label="Blockworks предлагает $100 на пробные запросы к API. На скриншоте сообщение об ошибке: начислить средства не удалось." class="source-excerpt" role="img" viewbox="49 63 847 536">
+<image height="800" href="/blockworks-ai-data/assets/mcp-credit-claim.png" width="1017"/>
+</svg>
+</a>
+<figcaption>При попытке получить $100 сайт выдал ошибку. <a href="/blockworks-ai-data/assets/mcp-credit-claim.png">Скриншот целиком</a></figcaption>
+</figure>
+<p>20 октября Карпинито рассказал, что перестал вручную обновлять списки токенов для 0xResearch. Теперь токены отбираются каждый месяц по заданным правилам. Два индекса используют данные о выручке протоколов за предыдущие 90 дней из Blockworks Unified API. По тем же правилам он пересчитал и исторические значения индексов.</p>
+<figure class="evidence" id="index-rebuild">
+<picture>
+<source height="628" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/nick-indexes-mobile.png" width="864"/>
+<img alt="Карпинито объясняет, как правила отбора токенов и Blockworks Unified API заменили списки, которые раньше обновлялись вручную." class="source-excerpt" height="580" src="/blockworks-ai-data/assets/nick-indexes-2x.png" width="1184"/>
+</picture>
+<figcaption>Фрагмент поста Карпинито от 20 октября о пересчёте индексов. <a href="https://x.com/0xMetaLight/status/2112525545929937276">Пост целиком</a></figcaption>
+</figure>
+<p>В конце октября, когда появились сообщения о взломе Binance, Джейсон Яновиц написал об этом <a href="https://x.com/JasonYanowitz/status/2115970461263651107">в X</a>. По его словам, весь тред подготовил Claude с помощью Blockworks MCP.</p>
+<p>В <a href="https://blockworks.com/insights/introducing-blockworks-intel">анонсе Intel</a> Blockworks предположила, что значительную часть первичного анализа криптоактивов за инвесторов будут выполнять ИИ-агенты.</p>
+<h2 id="hiring">В 2027 году Blockworks рассчитывает нанять не менее десяти сотрудников в отдел продаж</h2>
+<p>На 7 ноября в <a href="https://api.ashbyhq.com/posting-api/job-board/Blockworks?includeCompensation=true">ленте вакансий Blockworks</a> было три объявления в отделе продаж, два в инженерной команде и одно в продуктовой.</p>
+<p>Обе инженерные вакансии были на сайте ещё в <a href="https://web.archive.org/web/20260514200907/https://jobs.ashbyhq.com/Blockworks">мае</a>. У остальных четырёх объявлений даты более поздние:</p>
+<ul>
+<li><strong>Август:</strong> менеджер по продажам.</li>
+<li><strong>Сентябрь:</strong> старший продакт-менеджер и <a href="https://jobs.ashbyhq.com/Blockworks/b1dd96f3-b7fa-4bcb-b292-3f7fa1b7a78e">специалист по развитию бизнеса</a>. По второму объявлению компания ищет двух человек, которые займутся активным поиском клиентов.</li>
+<li><strong>22 октября:</strong> руководитель отдела продаж.</li>
+</ul>
+<p>В <a href="https://jobs.ashbyhq.com/Blockworks/8892ea41-7a31-4372-aab4-67d52fb49bd0">вакансии руководителя отдела продаж</a> Blockworks пишет, что рассчитывает нанять <strong>не менее десяти сотрудников в отдел продаж</strong> в 2027 году. Руководитель будет подчиняться Джейсону Яновицу и поможет набрать новых менеджеров по продажам.</p>
+<p>Семь из восьми публичных <a href="#departure-roster">сообщений об уходе</a> появились уже после этой вакансии, в ноябре.</p>
+<figure class="evidence sales-excerpt" id="sales-hiring-plan">
+<a href="/blockworks-ai-data/assets/ashby-vp-hiring-2x.png">
+<picture>
+<source height="356" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-vp-hiring-mobile.png" width="674"/>
+<img alt="В объявлении о поиске руководителя отдела продаж Blockworks пишет, что рассчитывает нанять не менее десяти сотрудников в отдел продаж в 2027 году." class="source-excerpt" height="212" src="/blockworks-ai-data/assets/ashby-vp-hiring-2x.png" width="1372"/>
+</picture>
+</a>
+<figcaption>План найма из вакансии от 22 октября.</figcaption>
+</figure>
+<details class="evidence-details" id="ashby-open-positions">
+<summary>Список вакансий на 7 ноября</summary>
+<figure class="evidence">
+<a href="/blockworks-ai-data/assets/ashby-board-nov-7.png"><img alt="На странице вакансий Blockworks шесть объявлений: два в инженерной команде, одно в продуктовой и три в продажах." height="2352" loading="lazy" src="/blockworks-ai-data/assets/ashby-board-nov-7.png" width="1484"/></a>
+<figcaption>Страница вакансий Blockworks на 7 ноября 2026 года. <a href="https://jobs.ashbyhq.com/Blockworks">Текущий список</a></figcaption>
+</figure>
+</details>
+<details class="evidence-details" id="job-mirrors">
+<summary>Как я проверял даты публикации вакансий</summary>
+<p>Я сопоставил майские и ноябрьские объявления по их идентификаторам. Снимки показывают, какие вакансии были на сайте в эти два дня. В ленте указана <a href="https://developers.ashbyhq.com/docs/public-job-posting-api">дата последней публикации</a> каждого объявления.</p>
+<ul class="job-board-checks">
+<li><strong><a href="https://builtin.com/company/blockworks/jobs">Built In</a>:</strong> те же шесть вакансий. Два инженерных объявления датированы августом, тогда как в ленте самой компании указан февраль.</li>
+<li><strong><a href="https://cryptojobslist.com/companies/blockworks">CryptoJobsList</a>:</strong> две копии объявления о поиске бэкенд-разработчика от 26 сентября и 7 ноября. Обязанности и зарплата совпадают.</li>
+<li><strong>Web3.career:</strong> на сайте всё ещё была <a href="https://web3.career/advisory-research-analyst-solana-blockworks/140016">вакансия аналитика</a> от ноября 2025 года. В актуальном списке Blockworks её не было.</li>
+</ul>
+</details>
+<p>Из описаний вакансий видно, как устроена эта работа:</p>
+<p>Продакт-менеджер общается с биржами и институциональными инвесторами, чтобы понять, какие инструменты им нужны.<br/> <span aria-hidden="true">↓</span><br/> Инженер данных собирает данные с блокчейн-нод и из внешних источников.<br/> <span aria-hidden="true">↓</span><br/> Менеджер по продажам может объединить в одной сделке данные, доступ к API, мониторинг и инструменты для раскрытия информации.</p>
+<details class="evidence-details" id="job-responsibilities">
+<summary>Описания трёх вакансий</summary>
+<div class="evidence-group role-excerpts">
+<figure class="evidence">
+<figcaption><strong>Старший инженер данных</strong> <a href="https://jobs.ashbyhq.com/Blockworks/6b0b650d-fae6-4cf1-b70f-8225eb7f77f3">Вакансия целиком</a></figcaption>
+<a href="/blockworks-ai-data/assets/ashby-data-2x.png">
+<picture>
+<source height="452" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-data-mobile.png" width="596"/>
+<img alt="Инженер данных будет настраивать блокчейн-ноды, собирать данные из сторонних источников и проектировать внутренние схемы данных." class="source-excerpt" height="212" src="/blockworks-ai-data/assets/ashby-data-2x.png" width="1294"/>
+</picture>
+</a>
+</figure>
+<figure class="evidence">
+<figcaption><strong>Старший продакт-менеджер</strong> <a href="https://jobs.ashbyhq.com/Blockworks/9141b1dd-abd5-45ad-9778-41cb5395d08e">Вакансия целиком</a></figcaption>
+<a href="/blockworks-ai-data/assets/ashby-product-2x.png">
+<picture>
+<source height="308" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-product-mobile.png" width="596"/>
+<img alt="Продакт-менеджер будет выяснять у бирж, институциональных инвесторов и других компаний, какие задачи им нужно решить." class="source-excerpt" height="164" src="/blockworks-ai-data/assets/ashby-product-2x.png" width="1294"/>
+</picture>
+</a>
+</figure>
+<figure class="evidence">
+<figcaption><strong>Менеджер по продажам</strong> <a href="https://jobs.ashbyhq.com/Blockworks/77d53f7a-6dfe-4f6f-93c9-3c80495f21e1">Вакансия целиком</a></figcaption>
+<a class="sales-deal-excerpt" href="/blockworks-ai-data/assets/ashby-sales-2x.png">
+<picture>
+<source height="452" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-sales-mobile.png" width="674"/>
+<img alt="Менеджер по продажам будет предлагать данные, инструменты для раскрытия информации и работы с инвесторами, API, рейтинги и мониторинг активов. Несколько продуктов часто входят в одно предложение. Суммы сделок начинаются от $100 тыс. и могут превышать $500 тыс." class="source-excerpt" height="212" src="/blockworks-ai-data/assets/ashby-sales-2x.png" width="1372"/>
+</picture>
+<span aria-hidden="true" class="sales-deal-highlight"></span>
+</a>
+</figure>
+</div>
+</details>
+<h2 id="newsroom">Новостная редакция закрылась годом раньше</h2>
+<p>Когда в октябре 2025 года Blockworks <a href="https://x.com/JasonYanowitz/status/1983595058772238370">закрыла новостную редакцию</a>, сооснователь компании Джейсон Яновиц объяснил решение быстрым ростом бизнеса по продаже данных.</p>
+<p>Бывший редактор Blockworks Маколи Питерсон рассказал мне, что в компании «действительно придерживались редакционных принципов», а редакция работала отдельно от остальных подразделений. По его словам, она была «убыточным проектом, который работал на репутацию компании и не пережил её переориентации на данные».</p>
+<p>По словам Питерсона, к следующему лету из всей редакции в Blockworks остались только он и Дэвид Канеллис. Питерсон перешёл в команду аналитиков <a href="https://www.youtube.com/watch?v=q5QwLdeW0Ko&amp;t=235s">штатным редактором</a>: вычитывал все её материалы и искал темы для новых публикаций. В августе он <a href="https://x.com/yeluacaM/status/2094451639008546871">ушёл</a>. В сентябре Канеллис <a href="https://x.com/dcanellis/status/2096943222811430918">перешёл в MegaETH</a>, где возглавил работу над брендом и коммуникациями.</p>
+<h2 id="data-pricing">DefiLlama и Sandmark тоже делают ставку на платный доступ к данным</h2>
+<p>Ещё до закрытия 0xResearch два других криптомедиа свернули часть работы над новостями. В мае DL News <a href="https://finance.yahoo.com/markets/crypto/articles/dl-news-closing-191859051.html">закрыл свою прежнюю редакцию</a>, а его <a href="https://x.com/0xngmi/status/2052485702386913769">команда коммерческих исследований</a> перешла в DefiLlama. В августе Sandmark <a href="https://x.com/_sandmark_/status/2093003177998082309">перестал публиковать новости</a> и переключился на аналитику рынка криптоопционов.</p>
+<p>Все три компании теперь продают данные по схожей схеме: базовые данные можно посмотреть бесплатно, за инструменты анализа нужно платить, а подключение через собственное ПО или ИИ-агента обходится ещё дороже.</p>
+<table class="article-table pricing-table" id="plan-comparison">
+<caption>Что предлагали платформы на 7 ноября 2026 года</caption>
+<thead><tr><th scope="col">Платформа</th><th scope="col">Бесплатный доступ</th><th scope="col">Платные инструменты</th><th scope="col">Полный доступ к API и MCP</th></tr></thead>
+<tbody>
+<tr>
+<th scope="row"><a href="https://docs.llama.fi/pro-api">DefiLlama</a></th>
+<td data-label="Бесплатный доступ"><div>Базовые данные и часть методов API</div></td>
+<td data-label="Платные инструменты"><div><strong>$49 в месяц</strong> LlamaAI, свои дашборды и экспорт данных</div></td>
+<td data-label="Полный доступ к API и MCP"><div><strong>$300 в месяц</strong> Полный доступ к API и MCP</div></td>
+</tr>
+<tr>
+<th scope="row"><a href="https://www.sandmark.com/pricing/">Sandmark</a></th>
+<td data-label="Бесплатный доступ"><div>Базовые графики по опционам, пять запросов к ИИ в месяц</div></td>
+<td data-label="Платные инструменты"><div><strong>$69 в месяц</strong> Оценка стоимости стратегий, тестирование на исторических данных, уведомления</div></td>
+<td data-label="Полный доступ к API и MCP"><div><strong>$700 в месяц</strong> Данные с минутной детализацией, API и MCP</div></td>
+</tr>
+<tr>
+<th scope="row"><a href="https://app.blockworks.com/pricing">Blockworks</a></th>
+<td data-label="Бесплатный доступ"><div>Базовые дашборды, $100 на пробные запросы к API и MCP</div></td>
+<td data-label="Платные инструменты"><div><strong>$375 в месяц при оплате за год</strong> ИИ-чат, доступ к исследованиям и ограниченный доступ к API</div></td>
+<td data-label="Полный доступ к API и MCP"><div><strong>«Свяжитесь с отделом продаж»</strong></div><div><small>Согласно вакансии руководителя отдела продаж, большинство контрактов с корпоративными клиентами заключают на суммы от $50 тыс. до $500 тыс. в год.</small></div></td>
+</tr>
+</tbody>
+</table>
+<p>Бесплатные графики и пробный доступ позволяют понять, что можно сделать с этими данными, даже если рассылки больше нет.</p>
+<h2 id="what-clients-pay-for">Кто покупает данные и зачем</h2>
+<p><strong>DefiLlama.</strong> Цену LlamaAI рассчитывали на частных пользователей, но в апреле основатель DefiLlama 0xngmi <a href="https://x.com/0xngmi/status/2040048522582462854">рассказал</a>, что сервисом пользуются почти исключительно фонды, аналитики и исследователи. Они могут сравнивать протоколы и проверять инвестиционные идеи.</p>
+<p><strong>Sandmark.</strong> Тариф Pro рассчитан на трейдеров и небольшие компании. Торговая команда может оценить стоимость сделки с опционами, проверить её на исторических данных и настроить уведомления об изменениях волатильности.</p>
+<p><strong>Blockworks.</strong> В <a href="https://jobs.ashbyhq.com/Blockworks/8892ea41-7a31-4372-aab4-67d52fb49bd0">вакансии в отделе продаж</a> компания называет покупателями данных и инструментов мониторинга биржи, банки, брокеров и управляющих активами. <a href="https://blockworks.com/solutions/exchanges">Биржа</a> может проверить актив перед листингом, а затем следить за ним. Эмитенты покупают инструменты для раскрытия информации. По данным Blockworks, большинство сделок заключают на сумму <strong>от $50 тыс. до $500 тыс. в год</strong>.</p>
+<figure class="evidence sales-excerpt" id="ashby-vp-sales">
+<a href="/blockworks-ai-data/assets/ashby-vp-sales-2x.png">
+<picture>
+<source height="260" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-vp-sales-mobile.png" width="674"/>
+<img alt="В вакансии руководителя отдела продаж перечислены типы клиентов. Большинство сделок заключают на суммы от $50 тыс. до $500 тыс. в год." class="source-excerpt" height="164" src="/blockworks-ai-data/assets/ashby-vp-sales-2x.png" width="1372"/>
+</picture>
+</a>
+<figcaption>Фрагмент вакансии руководителя отдела продаж. <a href="/blockworks-ai-data/assets/ashby-vp-sales-2x.png">Увеличить скриншот</a></figcaption>
+</figure>
+<p>В вакансии менеджера по продажам Blockworks указывает суммы сделок <strong>от $100 тыс. до $500 тыс. и выше</strong>. Нередко в одно предложение включают сразу несколько продуктов.</p>
+<figure class="evidence sales-excerpt" id="ashby-ae-sales">
+<a class="sales-deal-excerpt" href="/blockworks-ai-data/assets/ashby-sales-2x.png">
+<picture>
+<source height="452" media="(max-width: 560px)" srcset="/blockworks-ai-data/assets/ashby-sales-mobile.png" width="674"/>
+<img alt="Менеджер по продажам часто включает несколько продуктов в одно предложение. Суммы сделок начинаются от $100 тыс. и могут превышать $500 тыс." class="source-excerpt" height="212" src="/blockworks-ai-data/assets/ashby-sales-2x.png" width="1372"/>
+</picture>
+<span aria-hidden="true" class="sales-deal-highlight"></span>
+</a>
+<figcaption>Фрагмент <a href="https://jobs.ashbyhq.com/Blockworks/77d53f7a-6dfe-4f6f-93c9-3c80495f21e1">вакансии менеджера по продажам</a>.</figcaption>
+</figure>
+<table class="article-table customer-table" id="customer-examples" role="table">
+<caption>Как команды используют API и MCP</caption>
+<thead><tr><th scope="col">Платформа</th><th scope="col">Пользователь</th><th scope="col">Как использует</th></tr></thead>
+<tbody>
+<tr><td>DefiLlama</td><th scope="row">BlockApex</th><td>Создала агрегатор доходности по стейблкоинам. В <a href="https://blockapex.io/building-a-yield-aggregator/">описании проекта от декабря 2025 года</a> подписка на Pro API за <strong>$300 в месяц</strong> указана как операционный расход.</td></tr>
+<tr><td>DefiLlama</td><th scope="row">Rei Network</th><td>Запустила собственный <a href="https://github.com/0xReisearch/crypto-mcp-beta">MCP-сервер в бета-версии</a> на базе Pro API. Агенты могут запрашивать через него объём заблокированных средств (TVL), данные о стейблкоинах и доходности. Для работы сервера нужен ключ Pro API.</td></tr>
+<tr><td>Blockworks</td><th scope="row">Solana Foundation</th><td>Через <a href="https://github.com/solana-foundation/solana-data-aggregator/blob/cde8c0f42352fb55b5202537ebe58193ae206627/providers/blockworks.py">Data API</a> получает данные о переводах стейблкоинов, объёмах торгов на децентрализованных биржах (DEX) и кредитовании для <a href="https://solana.com/data">публичного дашборда сети</a>.</td></tr>
+<tr><td>Blockworks</td><th scope="row">Stabledash</th><td>В октябре сообщила, что регулярно <a href="https://x.com/stabledash/status/2113353239512887370">пользуется MCP</a>, а в ноябре объявила о <a href="https://www.linkedin.com/posts/drewrogersmiz_cnbc-constantly-blares-in-my-grandpa-marvins-activity-7523856177580032000-3SwF">партнёрстве с Blockworks</a>: в прямых эфирах будут показывать данные о ценах, объёмах торгов и предложении токенов. Условия оплаты не раскрываются.</td></tr>
+<tr><td>Blockworks</td><th scope="row">Клиенты, которых компания не назвала</th><td>В <a href="https://blockworks.com/insights/introducing-the-blockworks-unified-api">анонсе API</a> Blockworks приводит три примера: биржа добавила на страницы активов выручку протоколов и ставки по займам; банк вывел новости и раскрытия информации на дашборд рисков; фонд подключил рыночные данные к собственному ИИ-агенту для исследований.</td></tr>
+</tbody>
+</table>
+<p>При обращении к <a href="https://defillama.com/mcp">MCP-серверу DefiLlama</a> расходуется тот же лимит, что и по платному тарифу API. Мне не удалось найти клиентов, которые открыто, от своего имени подтвердили бы, что платят за этот сервер либо за API или MCP Blockworks.</p>
+<p id="other-customer-examples">Быстрый поиск показал ещё несколько примеров того, как используют данные и инструменты этих платформ:</p>
+<p>GEODNET использует данные Blockworks для <a href="https://x.com/GEODNET/status/2103178630134394905">отчётности перед инвесторами</a>. У Jito есть <a href="https://www.jito.network/blog/march-monthly-roundup-2026/">портал Blockworks</a> для держателей токенов. Spark публикует на <a href="https://investors.defillama.com/spark">дашборде DefiLlama</a> прогнозы выручки, расходов и обратных выкупов токенов.</p>
+<p>Arbitrum DAO <a href="https://forum.arbitrum.foundation/t/ardc-v2-final-update-concluding-report/29652">сообщила</a>, что в 2025 году потратила $94 200 на исследования, которые заказала у DefiLlama. Пользователь под ником Poopman рассказал, что <a href="https://x.com/poopmandefi/status/2041872535407751550">оформил подписку на LlamaAI</a>, чтобы анализировать ончейн-данные и публикации в X, строить графики и выгружать данные в CSV.</p>
+<h2 id="decrypt">Decrypt предлагает торговать прямо со страниц сайта</h2>
+<p>Decrypt тоже сократил редакцию, но пошёл другим путём. В июле выпускающий редактор Эндрю Хейворд сообщил, что его уволили вместе с большей частью команды.</p>
+<figure class="evidence" id="hayward-departure">
+<svg aria-label="Эндрю Хейворд пишет, что Decrypt уволил его вместе с большей частью редакции." class="source-excerpt" height="232" role="img" viewbox="0 0 1096 232" width="1096">
+<image height="308" href="/blockworks-ai-data/assets/hayward-decrypt-layoffs.png" width="1096"/>
+</svg>
+<figcaption>Фрагмент поста Эндрю Хейворда от 14 июля. <a href="https://x.com/ahaywa/status/2077147145249919273">Пост целиком</a></figcaption>
+</figure>
+<p>За лето многие постоянные авторы перестали появляться на сайте. <a href="https://decrypt.co/author/decryptagent">Decrypt Agent</a> начал публиковать статьи 10 марта. К 29 октября включительно я насчитал 625 его материалов.</p>
+<figure class="evidence" id="decrypt-byline-chart">
+<a href="/blockworks-ai-data/assets/decrypt-byline-activity-2026.jpg"><img alt="Тепловая карта публикаций Decrypt по неделям и авторам с 1 января по 29 октября 2026 года. К концу лета многие авторы перестают публиковаться. Decrypt Agent продолжает выпускать материалы, всего их 625." height="1072" loading="lazy" src="/blockworks-ai-data/assets/decrypt-byline-activity-2026.jpg" width="1280"/></a>
+<figcaption>Сколько материалов в неделю публиковал каждый автор с 1 января по 29 октября 2026 года. <a href="/blockworks-ai-data/assets/decrypt-byline-activity-2026.jpg">График целиком</a></figcaption>
+</figure>
+<p>На <a href="https://decrypt.co/bitcoin">странице биткоина</a> в Decrypt можно посмотреть, как участники рынка прогнозов Myriad оценивают вероятность нового максимума. Myriad управляет материнская компания Decrypt, Dastan. Со страниц с котировками читатели могут покупать активы через Jupiter. В октябре Decrypt запустил <a href="https://decrypt.co/380436/decrypt-money-accounts-on-solana-to-power-the-information-exchange">кошелёк в сети Solana</a>, чтобы в этих продуктах можно было пользоваться единым балансом. Decrypt по-прежнему выпускает <a href="https://decrypt.co/381955/a-3m-hedge-a-midterm-test-and-retails-rise-prediction-markets-at-nextpredict">спонсорские материалы</a>, а Myriad уже взимает торговые комиссии.</p>
+<p>В <a href="https://decrypt.co/379655/introducing-the-information-exchange-powered-by-decrypt-and-myr">сентябрьском анонсе</a> Decrypt сообщил, что совокупный объём торгов на Myriad превысил $600 млн. На 7 ноября <a href="https://defillama.com/protocol/myriad-markets">DefiLlama</a> насчитала около $1 100 комиссий и $24 выручки протокола за 30 дней по тем контрактам Myriad, которые она отслеживает. Мне не удалось быстро выяснить, сколько всего зарабатывает Dastan и сколько Decrypt получает от свопов через Jupiter.</p>
+<h2 id="news-feed">На каких данных можно построить продукт?</h2>
+<p>Blockworks, DefiLlama и Sandmark показывают, как можно продавать данные, к которым клиенты обращаются из собственных ИИ-инструментов. Рынок специализированных данных давно вышел за пределы криптоиндустрии. Небольшая команда может построить продукт вокруг одного набора данных в области, которую хорошо знает.</p>
+<p>Но привести данные к единому формату и поддерживать их в актуальном состоянии бывает труднее, чем кажется. С <a href="https://x.com/anildelphi/status/2119077312054378816">этой проблемой</a> столкнулась, например, Delphi: она попробовала сделать продукт из собранных данных и решила больше не вкладывать ресурсы в проект.</p>
+<p>За какие данные клиенты готовы платить и сколько сил вы готовы тратить, чтобы эти данные оставались надёжными? Если найти баланс, на этом можно построить бизнес.</p>
+<div class="author-box">
+<div class="author-info">
+{% include ru/support-prompt.html %}
+{% include ru/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Другие мои исследования</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/ru/bitget-hack-fees/">Кто получил комиссии за отмывание украденных у Bitget средств</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/ru/hsin-ju-chuang-death/">Что удалось подтвердить о смерти Чжуан Синьжу</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/ru/polymarket-profitability/">Сколько трейдеров зарабатывают на Polymarket</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+<script src="/ru/blockworks-ai-data/article-copy.js"></script></body>
+</html>

@@ -1,0 +1,15 @@
+{% if page.lang == 'ru' -%}
+<div class="language-bar">
+    <nav class="language-switch" aria-label="Язык страницы">
+        <a href="{{ page.alternate_url }}" lang="en" hreflang="en" aria-label="English">EN</a>
+        <a href="{{ page.url }}" lang="ru" hreflang="ru" aria-label="Русский" aria-current="page">RU</a>
+    </nav>
+</div>
+{%- else -%}
+<div class="language-bar">
+    <nav class="language-switch" aria-label="Page language">
+        <a href="{{ page.url }}" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
+        <a href="{{ page.alternate_url }}" lang="ru" hreflang="ru" aria-label="Русский">RU</a>
+    </nav>
+</div>
+{%- endif %}

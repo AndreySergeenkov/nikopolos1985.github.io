@@ -1,0 +1,541 @@
+---
+layout: null
+lang: ru
+permalink: /ru/will-thedao-money-improve-ethereum-security/
+alternate_url: /will-thedao-money-improve-ethereum-security/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?</title>
+<meta content="Разбор фонда безопасности TheDAO: что гранты могут изменить, какие атаки остаются прибыльными и чем использование невостребованных средств грозит владельцам." name="description"/>
+<meta content="Андрей Сергеенков" name="author"/>
+<link href="https://sergeenkov.com/ru/will-thedao-money-improve-ethereum-security/" rel="canonical"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<!-- Ahrefs Web Analytics -->
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 24px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 6px;
+            color: #333;
+            font-style: normal;
+        }
+        .tldr li:last-child {
+            margin-bottom: 0;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="article" property="og:type"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?" property="og:title"/>
+<meta content="Разбор фонда безопасности TheDAO: что гранты могут изменить, какие атаки остаются прибыльными и чем использование невостребованных средств грозит владельцам." property="og:description"/>
+<meta content="https://sergeenkov.com/ru/will-thedao-money-improve-ethereum-security/" property="og:url"/>
+<meta content="Андрей Сергеенков" property="og:site_name"/>
+<meta content="https://sergeenkov.com/" property="article:author"/>
+<meta content="2026-02-09" property="article:published_time"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?" name="twitter:title"/>
+<meta content="Разбор фонда безопасности TheDAO: что гранты могут изменить, какие атаки остаются прибыльными и чем использование невостребованных средств грозит владельцам." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?",
+  "description": "Разбор фонда безопасности TheDAO: что гранты могут изменить, какие атаки остаются прибыльными и чем использование невостребованных средств грозит владельцам.",
+  "inLanguage": "ru",
+  "url": "https://sergeenkov.com/ru/will-thedao-money-improve-ethereum-security/",
+  "mainEntityOfPage": "https://sergeenkov.com/ru/will-thedao-money-improve-ethereum-security/",
+  "datePublished": "2026-02-09",
+  "author": {
+    "@type": "Person",
+    "name": "Андрей Сергеенков",
+    "alternateName": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/",
+    "sameAs": [
+      "https://x.com/Nikopolos",
+      "https://www.linkedin.com/in/sergeenkov/"
+    ]
+  }
+}
+</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/ru/">← На главную</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Цветовая тема" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<article>
+<header class="article-header">
+<h1>Сделает ли фонд TheDAO на $220 млн Ethereum безопаснее?</h1>
+<div class="article-meta">Андрей Сергеенков · 9 февраля 2026 года</div>
+</header>
+<p>В <a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/ru/thedao-curators-220m-hack-victims/">предыдущей статье</a> я разбирал, как семь кураторов получили контроль над $220 млн невостребованных средств TheDAO. По словам Гриффа Грина, задача в том, чтобы Ethereum «был готов стать основой мировой финансовой инфраструктуры». Инициатива входит в программу Trillion Dollar Security фонда Ethereum Foundation. Сделают ли эти деньги Ethereum безопаснее?</p>
+<div class="tldr">
+<div class="tldr-title">Главные выводы</div>
+<ul>
+<li>Использование $220 млн без согласия владельцев <a href="#means-destroy-end">подрывает гарантии права собственности</a>, на которых построен Ethereum.</li>
+<li>Этот прецедент <a href="#slippery-slope">касается любого неактивного кошелька на смарт-контракте</a>.</li>
+<li>Гранты DAO <a href="#dao-grants">редко достаются тем, кто действительно повышает безопасность</a>. Мешают эффект Матфея, сибил-атаки и связи с инсайдерами.</li>
+<li>Фонд <a href="#disconnected">открывает новые возможности для атак быстрее, чем деньги позволяют их закрывать</a>. После одного только обновления Fusaka потери от подмены адресов выросли в 13 раз, до <strong>$63,3 млн</strong>.</li>
+<li>Масштаб уже нанесённого ущерба выходит за рамки любого бюджета: <a href="#too-broken"><strong>$8,49 млрд</strong> в 220 инцидентах</a> и 4 400 сэндвич-атак в день.</li>
+</ul>
+</div>
+{% include ru/commission-box.html %}
+<h2 id="means-destroy-end">Средства подрывают цель</h2>
+<p>Право частной собственности неприкосновенно. На этом принципе держится цивилизация.</p>
+<p>Пятая поправка к Конституции США гласит: «Никто не может быть лишён жизни, свободы или собственности без надлежащей правовой процедуры. Частная собственность не может быть изъята для общественного пользования без справедливого возмещения». Тот же принцип закреплён в Европейской конвенции по правам человека и Всеобщей декларации прав человека.</p>
+<p>Какими бы благими ни были намерения, без явного согласия владельцев нельзя использовать чужие средства для получения прибыли, установления контроля или продвижения своих взглядов.</p>
+<p>Кураторы взяли под контроль $220 млн, чтобы сделать Ethereum безопаснее и надёжнее. Но распоряжение чужими деньгами без согласия владельцев, судебного решения и надлежащей правовой процедуры само по себе подрывает надёжность Ethereum.</p>
+<div class="highlight">Если средства в смарт-контракте можно направить на другие цели после периода бездействия, зачем доверять Ethereum как инфраструктуре на годы вперёд?</div>
+<h2 id="slippery-slope">Скользкий склон</h2>
+<p>Есть и проблема развития прецедента. Сегодня кураторы решили отправить в стейкинг невостребованные средства 2016 года и тратить вознаграждение. Каждый такой шаг облегчает следующий.</p>
+<p>Юджин Волох показал в <a href="https://www2.law.ucla.edu/volokh/slippery.pdf">Harvard Law Review</a>, что в Англии, Нью-Йорке и Австралии за введением регистрации оружия со временем последовало его изъятие. Регистрация сама по себе не требовала изъятия. Она сделала его дешевле и проще. Когда появилась необходимая инфраструктура, следующий шаг стал политически возможным.</p>
+<p>Волох назвал это «скользким склоном за счёт снижения издержек»: решение А не меняет взглядов на то, правильно ли решение Б, но удешевляет его реализацию, а потому повышает вероятность, что его примут.</p>
+<p>Сегодня аргумент такой: средства лежат без движения много лет, поэтому те, кто ими управляет, могут отправить их в стейкинг, а вознаграждение потратить на экосистему. Этот аргумент применим к любому кошельку на смарт-контракте, где средства давно не двигались, включая TheDAO.</p>
+<p>Когда закрепляется право использовать чужие деньги ради благой цели, может расшириться и само понятие благой цели, и круг средств, доступных для неё.</p>
+<h2 id="dao-grants">Деньги не решат проблему, которую продолжают создавать</h2>
+<p>С безопасностью Ethereum дело дошло до того, что одним финансированием проблему не решить.</p>
+<p>В лучшем случае нас ждёт очередное соревнование в популярности среди узкого круга получателей. Так бывает почти в каждом эксперименте DAO с финансированием, какой бы механизм ни использовался.</p>
+<p>Как писал <a href="https://www.dlnews.com/articles/defi/arbitrum-dao-approves-42m-dollar-grant-for-defi-projects/">DL News</a>, «гранты DAO редко обходятся без споров из-за предполагаемого фаворитизма и непрозрачности». <a href="https://www.gitcoin.co/blog/towards-computer-aided-governance-of-gitcoin-grants">BlockScience</a> изучила раунды квадратичного финансирования Gitcoin и обнаружила эффект Матфея, когда «богатые становятся богаче», а также постоянные сибил-атаки и сговор.</p>
+<p>Победители станут немного богаче и, возможно, выпустят несколько исправлений. Хакеры быстро найдут способ их обойти.</p>
+<h2 id="disconnected">Отрыв от реальности</h2>
+<p>Проблема глубже: руководство Ethereum, похоже, уже не видит последствий собственных решений. <a href="https://blockworks.co/news/ethereum-foundation-tradfi-push">Blockworks</a> описывал ситуацию как «распространённое мнение, что руководство Ethereum оторвано от реальности и утратило конкурентоспособность». Бесполезно латать пробоины, пока капитаны сверлят новые.</p>
+<p>Примеры:</p>
+<p>Руководство знало, что у Ethereum много нерешённых проблем с безопасностью. Тем не менее оно провело обновление Fusaka, которое снизило комиссии и сделало спам-атаки на Ethereum <a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/ru/record-high-activity-ethereum-2026/">экономически выгодными</a>.</p>
+<p>Связь между низкими комиссиями и масштабом атак уже была задокументирована. За десять месяцев до обновления <a href="https://arxiv.org/abs/2501.16681">исследование</a> Университета Карнеги Меллона показало, что «атаки чаще встречаются в сетях с более низкими комиссиями за транзакции». По <a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/ru/fusaka-poison-attacks-ethereum/">моим данным</a>, только атаки с подменой адресов за два месяца после Fusaka принесли $63,3 млн потерь. Это в 13 раз больше, чем за аналогичный период до обновления.</p>
+<p>EIP-7702, внедрённый в мае 2025 года в составе Pectra, активно используют для вывода средств из кошельков. По данным <a href="https://x.com/wintermute_t/status/1928501765865091400">Wintermute</a>, более 80% делегирований EIP-7702 связаны с вредоносными контрактами. В компании назвали «нелепым и жестоким то, что один и тот же скопированный байткод лежит в основе большинства авторизаций EIP-7702». К середине 2025 года, когда вышло исследование, потери в отдельных атаках уже доходили до $1,54 млн. Жертвы подписывали пакеты транзакций на мошеннических DeFi-сайтах.</p>
+<p>Компания по кибербезопасности <a href="https://www.fireblocks.com/blog/security-first-approach-to-eip-7702">Fireblocks</a> предупреждала за два месяца до запуска Pectra: «Безрассудно давать как можно больше свободы при делегировании. Это, скорее всего, очень быстро закончится потерей всех средств. Достаточно одного вредоносного делегирования».</p>
+<p>Теперь создаётся прецедент, который позволяет считать средства в смарт-контрактах заброшенными после периода бездействия и распоряжаться ими без согласия владельцев. Когда благодаря абстракции аккаунтов миллионы пользователей перейдут на кошельки на смарт-контрактах, риск возникнет для любого, кто просто хранит криптовалюту подолгу.</p>
+<h2 id="too-broken">Исправлений уже недостаточно</h2>
+<p>Даже если разработчики не допустят новых ошибок, в Ethereum уже столько уязвимостей и способов атаки, а хакеры так легко адаптируются и отмывают средства, что любые вложения в безопасность быстро иссякнут.</p>
+<p>После развёртывания смарт-контракты <a href="https://ethereum.org/developers/docs/smart-contracts/security/">нельзя исправить</a>. Поэтому по умолчанию уязвимость остаётся навсегда, а украденные активы практически невозможно вернуть. Каждое обновление протокола <a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.814977/full">открывает новые возможности для атак</a> быстрее, чем успевают реагировать специалисты по безопасности. Извлечение MEV заложено в самом механизме упорядочивания транзакций Ethereum: свыше <a href="https://cointelegraph.com/research/exclusive-data-from-eigenphi-reveals-that-sandwich-attacks-on-ethereum-have-waned">4 400 сэндвич-атак</a> в день и никакой единой защиты на уровне протокола.</p>
+<p>Механизм разрешений на списание ERC-20 лежит в основе стандарта. В 2021–2024 годах его эксплуатация в фишинговых атаках привела к потерям на <a href="https://www.secretservice.gov/newsroom/releases/2025/04/us-secret-service-analysts-work-canadian-officials-disrupt-ethereum">$2,7 млрд</a>. Секретная служба США даже провела отдельную операцию против таких схем в Ethereum. В журнале Frontiers in Blockchain описаны <a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2025.1713637/full">220 крупных инцидентов</a> с подтверждёнными потерями на $8,49 млрд. Авторы обзора 62 инструментов безопасности с открытым кодом за 2025 год выяснили, что <a href="https://www.mdpi.com/2073-431X/14/6/226">ни один из них</a> не охватывает все известные типы уязвимостей. Новые категории <a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.814977/full">возникают быстрее</a>, чем появляются способы их обнаружить.</p>
+<p>Авторы <a href="https://www.sciencedirect.com/science/article/pii/S2096720925000673">исследования</a> двух лет активности MEV в Ethereum, опубликованного в 2025 году на ScienceDirect, пришли к выводу, что злоумышленники действуют «всё изощрённее, поскольку объединяют разные типы атак», а «извлекаемая стоимость может помешать использованию Ethereum в будущих проектах». Как сформулировали авторы публикации <a href="https://dl.acm.org/doi/10.1145/3643895">ACM</a> ещё прямее: «Наши возможности по обеспечению безопасности Ethereum ограничены».</p>
+<div class="highlight">«Код есть закон», любят говорить шифропанки. Но плохой код даёт плохой закон. Код Ethereum ведёт нас к киберпанковской антиутопии вместо утопии шифропанков.</div>
+<p>Было это задумано или нет, в результате система непропорционально щедро вознаграждает нечестное поведение и тем самым его поощряет.</p>
+<p>Проблемы безопасности нужно решать на фундаментальном уровне. Подходы к этому есть. Возможно, я разберу некоторые из них в следующих статьях.</p>
+<div class="author-box">
+<div class="author-info">
+{% include ru/support-prompt.html %}
+{% include ru/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">Почта</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Другие мои исследования</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/ru/blockworks-ai-data/">Blockworks сокращает команду аналитиков и продаёт данные для ИИ-агентов</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/ru/bitget-hack-fees/">Кто получил комиссии за отмывание украденных у Bitget средств</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/ru/hsin-ju-chuang-death/">Что удалось подтвердить о смерти Чжуан Синьжу</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/ru/loss-based-polymarket-airdrop/">Эйрдроп Polymarket: почему токены стоит раздать тем, кто потерял деньги</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/ru/polymarket-profitability/">Сколько трейдеров зарабатывают на Polymarket</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/ru/fusaka-poison-attacks-ethereum/">Потери от подмены адресов в Ethereum выросли в 13 раз после Fusaka</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/ru/record-high-activity-ethereum-2026/">Подмена адресов привела к рекордной активности в Ethereum</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/ru/thedao-curators-220m-hack-victims/">Как кураторы TheDAO распорядились $220 млн невостребованных средств</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

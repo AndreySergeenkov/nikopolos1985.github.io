@@ -1,6 +1,8 @@
 (() => {
     const root = document.documentElement;
     const storageKey = 'sergeenkov-theme';
+    const lightLabel = root.lang === 'ru' ? 'Светлая тема' : 'Light mode';
+    const darkLabel = root.lang === 'ru' ? 'Тёмная тема' : 'Dark mode';
     let control;
 
     function applyTheme(theme) {
@@ -21,12 +23,12 @@
         control = document.querySelector('.theme-control');
         if (!control) return;
         control.innerHTML = `
-            <label class="theme-choice" title="Light mode">
-                <input type="radio" name="color-theme" value="light" aria-label="Light mode">
+            <label class="theme-choice" title="${lightLabel}">
+                <input type="radio" name="color-theme" value="light" aria-label="${lightLabel}">
                 <span class="theme-icon theme-icon-sun" aria-hidden="true"></span>
             </label>
-            <label class="theme-choice" title="Dark mode">
-                <input type="radio" name="color-theme" value="dark" aria-label="Dark mode">
+            <label class="theme-choice" title="${darkLabel}">
+                <input type="radio" name="color-theme" value="dark" aria-label="${darkLabel}">
                 <span class="theme-icon theme-icon-moon" aria-hidden="true"></span>
             </label>
         `;
