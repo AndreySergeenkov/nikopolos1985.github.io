@@ -1,0 +1,764 @@
+---
+layout: null
+lang: pt-BR
+permalink: /pt-br/loss-based-polymarket-airdrop/
+alternate_url: /loss-based-polymarket-airdrop/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=5"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Por que o Polymarket deveria distribuir seu airdrop com base nas perdas | Andrey Sergeenkov</title>
+<meta content="Proponho distribuir o airdrop do token da Polymarket apenas para aqueles que perderam dinheiro, proporcionalmente às suas perdas. Essa métrica é impossível de manipular ou falsificar." name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/pt-br/loss-based-polymarket-airdrop/" rel="canonical"/>
+<!-- Open Graph -->
+<meta content="article" property="og:type"/>
+<meta content="Por que o Polymarket deveria distribuir seu airdrop com base nas perdas" property="og:title"/>
+<meta content="Proponho distribuir o airdrop do token da Polymarket apenas para aqueles que perderam dinheiro, proporcionalmente às suas perdas. Essa métrica é impossível de manipular ou falsificar." property="og:description"/>
+<meta content="https://sergeenkov.com/pt-br/loss-based-polymarket-airdrop/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="https://sergeenkov.com/loss-based-polymarket-airdrop/images/og-image.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="https://sergeenkov.com" property="article:author"/>
+<meta content="2026-04-13" property="article:published_time"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://sergeenkov.com/loss-based-polymarket-airdrop/images/og-image.png" name="twitter:image"/>
+<meta content="Por que o Polymarket deveria distribuir seu airdrop com base nas perdas" name="twitter:title"/>
+<meta content="Proponho distribuir o airdrop do token da Polymarket apenas para aqueles que perderam dinheiro, proporcionalmente às suas perdas. Essa métrica é impossível de manipular ou falsificar." name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<!-- JSON-LD Structured Data -->
+
+
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<!-- Ahrefs Web Analytics -->
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+            font-size: 17px;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .top-follow { font-size: 14px; color: #54595d; font-family: sans-serif; }
+        .top-follow a, .author-bio a { color: #0645ad; background: none; padding: 0; }
+        .top-follow a:hover, .author-bio a:hover { text-decoration: underline; background: none; }
+        .article-header { margin-bottom: 40px; }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 10px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #54595d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+        .article-meta a { color: #0645ad; }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p { margin-bottom: 16px; font-size: 17px; }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+        a:hover { text-decoration: underline; background: none; }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 12px 16px;
+            border-radius: 0;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+        .note a { color: #0645ad; }
+        .chart-box {
+            border: 1px solid #a2a9b1;
+            padding: 16px 16px 12px;
+            margin: 24px 0;
+            background: #fff;
+        }
+        .chart-box h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 2px;
+            color: #202122;
+            font-family: sans-serif;
+        }
+        .chart-box .chart-subtitle {
+            font-size: 12px;
+            color: #54595d;
+            margin: 0 0 12px;
+            font-family: sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+        .chart-source { text-align: right; margin-top: 6px; }
+        .chart-source a { font-size: 10px; color: #a2a9b1; }
+        .article-image {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border: 1px solid #a2a9b1;
+            margin: 20px auto 5px;
+            cursor: zoom-in;
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #54595d;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-family: sans-serif;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 16px 20px;
+            border-radius: 0;
+            margin: 24px 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #a2a9b1;
+        }
+        .author-info { flex: 1; }
+        .author-bio { font-size: 15px; color: #54595d; font-family: sans-serif; }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #202122; margin-bottom: 8px; font-family: sans-serif; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { background: none; padding: 0; color: #0645ad; }
+        .other-research a:hover { background: none; text-decoration: underline; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .chart-actions { display: flex; gap: 8px; margin-top: 10px; }
+        .chart-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 10px; font-size: 11px; color: #54595d;
+            background: #f8f9fa; border: 1px solid #a2a9b1;
+            cursor: pointer; font-family: sans-serif;
+        }
+        .chart-btn:hover { color: #202122; background: #eaecf0; }
+        .chart-modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85); z-index: 9999;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .chart-modal-overlay.active { display: flex; }
+        .chart-modal {
+            background: #fff; padding: 24px; max-width: 960px;
+            width: 100%; max-height: 90vh; position: relative;
+        }
+        .chart-modal h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; font-family: sans-serif; }
+        .chart-modal .chart-subtitle { font-size: 13px; color: #54595d; margin: 0 0 16px; font-family: sans-serif; }
+        .chart-modal-container { position: relative; width: 100%; height: 420px; }
+        .chart-modal-close {
+            position: absolute; top: 12px; right: 16px; font-size: 24px;
+            color: #999; cursor: pointer; background: none; border: none;
+        }
+        .chart-modal-close:hover { color: #202122; }
+        .image-lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.9); z-index: 9999;
+            justify-content: center; align-items: center; padding: 20px; cursor: zoom-out;
+        }
+        .image-lightbox.active { display: flex; }
+        .image-lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+        }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 28px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+            font-family: sans-serif;
+        }
+        .tldr li { margin-bottom: 6px; color: #333; font-size: 14px; }
+        .faq-item { margin: 0 0 22px; }
+        .faq-q {
+            font-weight: 600;
+            font-size: 18px;
+            color: #000;
+            margin: 0 0 6px;
+            font-family: 'Linux Libertine', Georgia, serif;
+        }
+        .faq-item p { margin: 0; }
+        .author-name { font-weight: 600; font-size: 16px; color: #202122; margin: 0 0 6px; font-family: sans-serif; }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="pt_BR" property="og:locale"/><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Por que o Polymarket deveria distribuir seu airdrop com base nas perdas",
+  "description": "Proponho distribuir o airdrop do token da Polymarket apenas para aqueles que perderam dinheiro, proporcionalmente às suas perdas. Essa métrica é impossível de manipular ou falsificar.",
+  "inLanguage": "pt-BR",
+  "url": "https://sergeenkov.com/pt-br/loss-based-polymarket-airdrop/",
+  "mainEntityOfPage": "https://sergeenkov.com/pt-br/loss-based-polymarket-airdrop/",
+  "datePublished": "2026-04-13",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  },
+  "image": "https://sergeenkov.com/loss-based-polymarket-airdrop/images/og-image.png"
+}
+</script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/pt-br/">← Voltar ao início</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">E-mail</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a></div>
+</div>
+<article>
+<header class="article-header">
+<h1>Por que o Polymarket deveria distribuir seu airdrop com base nas perdas</h1>
+<!-- ANIMATION DISABLED — uncomment the div below to restore the falling-coins / growing-plants animation -->
+<!--
+            <div id="airdrop-anim-wrap" style="width:100%;max-width:700px;margin:16px 0 24px;border:1px solid #a2a9b1;display:none;">
+            <canvas id="airdropAnim" style="width:100%;height:280px;display:block;"></canvas>
+            </div>
+            -->
+<div class="article-meta">Por <a data-source-href="https://sergeenkov.com/" href="/pt-br/">Andrey Sergeenkov</a> · 13 de abril de 2026</div>
+</header>
+<div class="tldr">
+<div class="tldr-title">Principais resultados</div>
+<ul>
+<li>A Polymarket vende suas probabilidades como as <a href="#accuracy">melhores probabilidades de eventos em tempo real</a>.</li>
+<li>Mas essa precisão é paga pelas <a href="#wisdom">perdas da multidão</a>, 84% das quais vão para o 1% superior.</li>
+<li>Agora, um airdrop de tokens está chegando, e os farmers já estão <a href="#farming">fazendo wash trading para se qualificar</a>.</li>
+<li>Mas <a href="#airdrop-fate">88% dos airdrops</a> caem em três meses, a maioria perdendo de 60 a 90% à medida que os farmers despejam.</li>
+<li>Então, proponho pagá-lo <a href="#proposal">apenas àqueles que perderam dinheiro</a>, proporcionalmente às suas perdas.</li>
+<li>E quem se mover primeiro pode fazê-lo a partir de <a href="#competitor">dados públicos on-chain</a>. Até mesmo um rival.</li>
+</ul>
+</div>
+<p>Um <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6443103">estudo recente</a> descobriu que o 1% mais lucrativo dos usuários do Polymarket concentra 84% de todo o lucro das negociações, principalmente às custas de traders casuais. Os autores concluíram que “os benefícios informacionais dos mercados de previsão vêm com um custo para participantes não sofisticados”.</p>
+<p id="accuracy">O Polymarket faz da precisão das previsões seu principal argumento de venda. A plataforma se apresenta como a melhor fonte de probabilidades de eventos em tempo real e lançou recentemente um <a href="https://news.polymarket.com/p/new-polymarket-tools-for-journalists">portal</a> que ajuda jornalistas a incorporar as probabilidades da Polymarket diretamente em seus artigos.</p>
+<div class="highlight" id="wisdom">A sabedoria da multidão é real, mas o problema é que ela é financiada pelas perdas da multidão.</div>
+{% include pt-br/commission-box.html %}
+<p>Em outubro de 2025, o CMO da Polymarket, Matthew Modabber, <a href="https://www.coindesk.com/markets/2025/10/24/polymarket-will-launch-token-and-airdrop-after-u-s-relaunch-cmo-says">anunciou</a> que a plataforma está se preparando para um airdrop: “Haverá um token, haverá um airdrop.” A Polymarket não publicou uma data exata de TGE, critérios oficiais de elegibilidade ou porcentagens de alocação.</p>
+<p id="farming">Antes do airdrop, muitos grupos de “farmers” começaram a fazer wash trading para atender aos supostos critérios do airdrop.</p>
+<p>Pouco depois do anúncio, um estudo da <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">Columbia Business School</a> descobriu que aproximadamente 25% de todo o volume de negociação da Polymarket mostra sinais de atividade artificial. O coautor Allen Sirolly disse à <a href="https://decrypt.co/347842/columbia-study-25-polymarket-volume-wash-trading">Decrypt</a>: “É possivelmente relacionado ao farming de airdrops.”</p>
+<p>Os farmers estão otimizando para cada métrica que acreditam que pode determinar a elegibilidade: volume de negociação, provisão de liquidez, número de mercados negociados, dias ativos e até mesmo staking de UMA.</p>
+<p>O <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5714122">estudo da Columbia</a> observa que qualquer “potencial airdrop futuro deve ser projetado para excluir tais atividades” porque os farmers de airdrops não contribuem nem com liquidez nem com informações para o mercado de previsão.</p>
+<h2 id="airdrop-fate">Gráfico: A Maioria dos Airdrops Termina em Rug Pull</h2>
+<p>De acordo com um relatório da <a href="https://keyrock.com/airdrops-in-the-barren-desert/">Keyrock</a>, 88% dos tokens distribuídos em airdrops perdem valor em até três meses após o lançamento, e a maioria dos tokens DeFi perde de 60 a 90% de seu preço de lançamento à medida que os farmers encerram suas posições.</p>
+<img alt="Tweet de Andrey Sergeenkov perguntando aos usuários da Polymarket: Assim que receber o airdrop, você vai segurar ou vender? Resposta: Vou vender uma grande parte." class="article-image" src="/loss-based-polymarket-airdrop/images/airdrop-poll.jpg"/>
+<p>Um estudo de <a href="https://arxiv.org/abs/2312.02752">Messias e Yaish</a> descobriu que até 65,75% dos tokens foram vendidos logo após um airdrop, e os principais beneficiários foram os farmers, descritos como “usuários altamente qualificados que empregam táticas sofisticadas para aumentar a parcela de tokens que recebem”.</p>
+<p>Por exemplo, o airdrop de ETHFI (Ether.fi) em março de 2024. O token foi lançado a US$ 4,13 e caiu 25% em poucas horas, à medida que os farmers reivindicaram e venderam imediatamente suas alocações.</p>
+<div class="chart-box">
+<h3>Preço do ETHFI após o airdrop</h3>
+<p class="chart-subtitle">Preço de fechamento diário, março de 2024 – abril de 2026</p>
+<div class="chart-container"><canvas id="ethfiChart"></canvas></div>
+<div class="chart-actions"><button class="chart-btn" onclick="expandChart('ethfiChart')"><svg fill="currentColor" height="13" viewbox="0 0 16 16" width="13"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"></path></svg> Ampliar</button></div>
+<div class="chart-source"><a data-source-href="https://sergeenkov.com" href="/pt-br/">sergeenkov.com</a></div>
+</div>
+<p>Outro exemplo é o STRK (Starknet), que foi lançado a US$ 7,41 em fevereiro de 2024 e caiu para US$ 1,87 logo depois. Antes do airdrop, o desenvolvedor da Yearn.finance, Banteg, <a href="https://cointelegraph.com/news/starknet-strk-falls-nethermind-airdrop-hunters-dump-millions">alertou</a> que mais de 700.000 carteiras dos 1,3 milhão elegíveis para STRK estavam ligadas a contas controladas por caçadores de airdrops.</p>
+<div class="chart-box">
+<h3>Preço do STRK após o airdrop</h3>
+<p class="chart-subtitle">Preço de fechamento diário, fevereiro de 2024 – abril de 2026</p>
+<div class="chart-container"><canvas id="strkChart"></canvas></div>
+<div class="chart-actions"><button class="chart-btn" onclick="expandChart('strkChart')"><svg fill="currentColor" height="13" viewbox="0 0 16 16" width="13"><path d="M2 2h5v1H3v4H2V2zm12 0v5h-1V3h-4V2h5zM2 14v-5h1v4h4v1H2zm12 0h-5v-1h4v-4h1v5z"></path></svg> Ampliar</button></div>
+<div class="chart-source"><a data-source-href="https://sergeenkov.com" href="/pt-br/">sergeenkov.com</a></div>
+</div>
+<p>Se a Polymarket seguir o mesmo roteiro, repetiria o destino da maioria dos airdrops e daria um golpe sério na reputação da Polymarket em um ambiente regulatório já desafiador. A Polymarket é proibida em <a href="https://www.thestreet.com/crypto/trading/major-prediction-market-faces-34th-country-ban">34 países</a>, enfrenta processos em pelo menos <a href="https://startpolymarket.com/countries/united-states/">11 estados dos EUA</a>, e a <a href="https://www.federalregister.gov/documents/2026/03/16/2026-05105/prediction-markets">CFTC está buscando ativamente</a> comentários públicos sobre se os mercados de previsão servem ao interesse público.</p>
+<div class="note"><strong>Atualização, junho de 2026:</strong> Desde que este artigo foi publicado pela primeira vez em abril de 2026, a Polymarket sofreu golpes adicionais de credibilidade. No início de junho, a Polymarket <a href="https://www.coindesk.com/markets/2026/06/02/strategy-sold-bitcoin-in-late-may-and-told-the-market-in-june-here-s-how-polymarket-bettors-are-fighting-over-when-it-counts">reescreveu as regras de resolução</a> de um mercado de MicroStrategy de US$ 175 milhões mais de dez horas após o prazo do mercado. Quando os resultados são contestados, a decisão é tomada por <a href="https://www.bloomberg.com/news/videos/2026-05-26/nine-crypto-whales-dominate-polymarket-disputes-video">eleitores anônimos de terceiros</a> que frequentemente detêm posições nesses mercados e têm incentivo financeiro direto para influenciar o resultado. Em 21 de junho, uma <a href="https://www.wsj.com/business/media/polymarket-social-media-bets-prediction-market-441cdeb5">investigação do Wall Street Journal</a> descobriu que a Polymarket havia pago criadores de mídia social para filmar apostas vencedoras encenadas em cópias quase perfeitas de seu site.</div>
+<h2>Existe Outro Caminho</h2>
+<p>Quaisquer que sejam os critérios do airdrop, proponho que a equipe da Polymarket use este vácuo de informações em torno dos termos para reconsiderá-los.</p>
+<div class="highlight" id="proposal"><strong>Especificamente, proponho distribuir o token apenas para aqueles que perderam dinheiro na Polymarket, proporcionalmente às suas perdas.</strong></div>
+<p>Essa métrica é impossível de ser farmada ou falsificada, e certamente não poderia ter sido prevista.</p>
+<p>É uma forma gentil de agradecer às pessoas cujas perdas tornam a inteligência da Polymarket possível.</p>
+<p>O comportamento de usuários gratos que inesperadamente recebem compensação por suas perdas será muito diferente do de farmers que exploram deliberadamente a plataforma para um ganho único. Usuários que se sentem reconhecidos são mais propensos a manter e permanecer.</p>
+<p>E à luz dos golpes de credibilidade acima, a Polymarket precisa de tal movimento mais do que nunca. Um airdrop baseado em perdas aborda diretamente as próprias preocupações que estão sendo levantadas sobre a plataforma: wash trading, manipulação de mercado e se os mercados de previsão servem ao interesse público.</p>
+<p>Neste momento, a equipe da Polymarket tem a chance de transformar o airdrop de um empreendimento tipicamente fadado ao fracasso em um movimento estratégico de relações públicas e regulatório.</p>
+<h2 id="competitor">Um Airdrop de um Concorrente Poderia Levar os Melhores Usuários da Polymarket</h2>
+<p>Para os concorrentes da Polymarket, aqui está uma oportunidade a ser considerada.</p>
+<p>Cada negociação na Polymarket é liquidada na Polygon de forma totalmente pública. Você pode calcular a perda líquida de cada usuário da Polymarket a partir de dados on-chain e distribuir seu próprio token para esses traders, proporcionalmente ao que eles perderam. O grupo migrante mais valioso, usuários experientes que já perderam dinheiro em uma plataforma concorrente, pode ser alcançado hoje.</p>
+<p>Ataques vampiro desse tipo têm um histórico. A SushiSwap retirou mais de US$ 1 bilhão em liquidez da Uniswap semanas após o lançamento com recompensas de tokens para os provedores de liquidez da Uniswap em 2020. A Blur ultrapassou a OpenSea em volume de negociação de NFTs semanas após distribuir tokens para os traders da OpenSea em 2023. O mecanismo funciona porque usuários experientes já entendem o produto e têm interesse financeiro em um concorrente.</p>
+<p>Quem se mover primeiro com um airdrop baseado em perdas visando esse grupo herda a distribuição.</p>
+<h2>Perguntas frequentes</h2>
+<div class="faq-item">
+<p class="faq-q">Os farmers não podem fabricar perdas fazendo wash trading entre suas próprias carteiras?</p>
+<p>Não. O snapshot que proponho é retrospectivo, tirado em um corte passado que nunca foi anunciado, então não havia data para mirar no farming. O wash trading também se anula, porque a perda de uma carteira é o ganho de outra, logo o PnL realizado agrupado em carteiras vinculadas cancela a auto-negociação para zero antes das taxas. O único resíduo seria alguém que fez wash trading entre carteiras deliberadamente desvinculadas antes do corte secreto, o que significaria agir às cegas em uma data desconhecida e ainda pagar taxas em cada negociação; portanto, o vazamento é pequeno e nunca vale a pena perseguir.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Pagar perdedores não recompensa o jogo imprudente e convida a mais disso?</p>
+<p>O que proponho é um pagamento retrospectivo único, não uma política permanente, então não estabelece incentivo para apostas futuras. Mesmo um usuário que espera uma repetição não ganha nada perdendo de propósito, porque o pagamento é por construção menor do que a própria perda. E como o snapshot não é anunciado e já está no passado, não há nada para planejar, e repeti-lo previsivelmente destruiria essa propriedade de qualquer forma.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Por que recompensar os perdedores em vez dos traders astutos que tornam as probabilidades precisas?</p>
+<p>O lado perdedor é o que financia o resto do sistema. Os astutos só lucram porque alguém assume o outro lado, e as taxas da plataforma escalam com o volume que a multidão traz. Reter esse fluxo perdedor, portanto, retém os astutos automaticamente, já que é a única coisa com a qual eles podem lucrar. O lucro já os mantém aqui, e os traders perdedores são aqueles com todos os motivos para sair, razão pela qual a retenção é melhor direcionada a eles.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Isso não é injusto para os traders vencedores que assumiram o mesmo risco?</p>
+<p>O airdrop que proponho não tiraria nada dos vencedores. Eles manteriam cada dólar de lucro, e esse lucro é sua recompensa por estarem certos, então ninguém é penalizado por vencer. Os tokens seriam recém-emitidos, não pagos dos bolsos dos vencedores, então reconhecer o lado perdedor não custaria nada aos vencedores. Simplesmente iria para as pessoas cujas apostas tornam as probabilidades precisas e que saíram sem nada.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Por que não simplesmente fazer um airdrop para todos os ativos na plataforma?</p>
+<p>Pagar a cada usuário ativo é o modelo de volume e liquidez que os farmers já estão manipulando, e pagaria os vencedores uma segunda vez, além de seus lucros. Direcionar as perdas é a única métrica que não pode ser farmada, e enviaria os tokens para as pessoas que financiaram o sistema e não receberam nada em troca. Os vencedores ativos já são compensados, então o orçamento faria mais bem direcionado ao grupo com todos os motivos para sair.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Os destinatários simplesmente despejarão o token?</p>
+<p>O despejo citado por todos vem esmagadoramente de farmers mercenários que adquiriram tokens especificamente para vender, e um snapshot retrospectivo exclui exatamente essa população. O que resta é a realização de lucros comum por pessoas que nunca pediram os tokens, o que é menor e nunca foi medido em uma base compensada e não composta por farmers. Portanto, a afirmação honesta é que a maior fonte documentada de vendas desapareceu, e se os destinatários mantêm os tokens é uma questão aberta, e não um modo de falha conhecido.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Compensar os perdedores não faz a Polymarket parecer jogo de azar e aumenta o risco legal?</p>
+<p>Um reembolso único não altera como o produto subjacente é classificado, porque essa questão depende da natureza dos contratos, e não se o dinheiro é devolvido depois. Corretores regulamentados e cassinos licenciados ambos reembolsam parte do que os usuários perdem sem se tornarem outra coisa. As questões reais, tratamento de valores mobiliários e impostos, se aplicam aos airdrops em geral, e não a este design em particular. Se algo, a ótica se inclina para a proteção do consumidor, o oposto da preocupação. Nada disso é aconselhamento jurídico.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">O orçamento do token não seria melhor gasto recompensando o comportamento que você deseja, e não perdas passadas?</p>
+<p>O design é retrospectivo de propósito. O objetivo é reter a base ativa de pagadores e redefinir a posição pública e regulatória da plataforma, em vez de moldar o comportamento futuro. Os destinatários são os usuários mais ativos, não uma franja, então isso gasta o orçamento no grupo de maior valor para manter. Qualquer programa que, em vez disso, pague por comportamento futuro reintroduz as métricas exatas que esta proposta existe para remover.</p>
+</div>
+<div class="faq-item">
+<p class="faq-q">Como uma perda seria definida?</p>
+<p>Como PnL líquido realizado por carteira no snapshot, agrupado em endereços vinculados. A Polymarket já calcula isso para cada conta, então a proposta não adiciona nenhuma métrica nova ou manipulável.</p>
+</div>
+<div class="author-box">
+<div class="author-info">
+{% include pt-br/support-prompt.html %}
+{% include pt-br/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">E-mail</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">Outras pesquisas</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/pt-br/blockworks-ai-data/">Blockworks reduz a equipe de pesquisa enquanto vende dados para agentes de IA</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/pt-br/bitget-hack-fees/">Quem recebeu taxas na lavagem dos fundos roubados da Bitget?</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/pt-br/hsin-ju-chuang-death/">O que é possível verificar sobre a morte de Hsin-Ju Chuang?</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/pt-br/polymarket-profitability/">Quantos traders lucram no Polymarket?</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/pt-br/fusaka-poison-attacks-ethereum/">Perdas com envenenamento de endereços no Ethereum se multiplicaram por 13 após o Fusaka</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/pt-br/record-high-activity-ethereum-2026/">Ataques de envenenamento de endereços levaram a atividade do Ethereum a um recorde</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/pt-br/will-thedao-money-improve-ethereum-security/">O fundo de segurança de US$ 220 milhões da TheDAO vai mesmo tornar o Ethereum mais seguro?</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/pt-br/thedao-curators-220m-hack-victims/">Curadores dos US$ 220 milhões da TheDAO abrem precedente ao usar recursos de terceiros para seus próprios fins</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<script>
+    var chartConfigs={},chartInstances={};
+    document.querySelectorAll('.chart-container canvas').forEach(function(c){
+        var inst=Chart.getChart(c);if(inst)chartInstances[c.id]=inst;
+    });
+    var modalChart=null;
+    function expandChart(id){
+        // need to wait for charts to register
+        if(!chartInstances[id]){
+            document.querySelectorAll('.chart-container canvas').forEach(function(c){
+                var inst=Chart.getChart(c);if(inst)chartInstances[c.id]=inst;
+            });
+        }
+        var src=chartInstances[id];var cfg=chartConfigs[id];
+        if(!src||!cfg)return;
+        var box=document.getElementById(id).closest('.chart-box');
+        document.getElementById('modalTitle').textContent=box.querySelector('h3').textContent;
+        document.getElementById('modalSubtitle').textContent=box.querySelector('.chart-subtitle').textContent;
+        document.getElementById('chartModal').classList.add('active');
+        document.body.style.overflow='hidden';
+        if(modalChart){modalChart.destroy();modalChart=null;}
+        modalChart=new Chart(document.getElementById('modalCanvas').getContext('2d'),{
+            type:cfg.type,data:{labels:src.data.labels.slice(),datasets:src.data.datasets.map(function(ds){return Object.assign({},ds,{data:ds.data.slice()});})},
+            options:cfg.options
+        });
+    }
+    function closeModal(){
+        document.getElementById('chartModal').classList.remove('active');
+        document.body.style.overflow='';
+        if(modalChart){modalChart.destroy();modalChart=null;}
+    }
+    document.querySelectorAll('.article-image').forEach(function(img){
+        img.addEventListener('click',function(){
+            document.getElementById('lightboxImg').src=this.src;
+            document.getElementById('imageLightbox').classList.add('active');
+            document.body.style.overflow='hidden';
+        });
+    });
+    function closeLightbox(){
+        document.getElementById('imageLightbox').classList.remove('active');
+        document.body.style.overflow='';
+    }
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeLightbox();}});
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<div class="chart-modal-overlay" id="chartModal" onclick="if(event.target===this)closeModal()">
+<div class="chart-modal">
+<button class="chart-modal-close" onclick="closeModal()">×</button>
+<h3 id="modalTitle"></h3>
+<p class="chart-subtitle" id="modalSubtitle"></p>
+<div class="chart-modal-container"><canvas id="modalCanvas"></canvas></div>
+</div>
+</div>
+<div class="image-lightbox" id="imageLightbox" onclick="closeLightbox()">
+<img alt="" id="lightboxImg" src=""/>
+</div>
+<script>
+    (function(){
+        var chartFont={family:"'Linux Libertine',Georgia,serif"};
+        var commonOpts={
+            responsive:true,maintainAspectRatio:false,
+            interaction:{mode:'index',intersect:false},
+            plugins:{legend:{display:false},
+                tooltip:{backgroundColor:'#fff',titleColor:'#54595d',bodyColor:'#202122',borderColor:'#a2a9b1',borderWidth:1,
+                    titleFont:{size:11,family:'sans-serif'},bodyFont:{size:12,family:'sans-serif'},
+                    padding:{top:6,bottom:6,left:10,right:10},boxPadding:4,
+                    callbacks:{label:function(ctx){return '$'+ctx.parsed.y.toFixed(2);}}
+                }
+            },
+            scales:{
+                x:{ticks:{color:'#a2a9b1',font:{size:9,family:'sans-serif'},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false},border:{color:'#a2a9b1'}},
+                y:{ticks:{color:'#a2a9b1',font:{size:9,family:'sans-serif'},callback:function(v){return '$'+v;}},grid:{color:'#eaecf0',drawBorder:false},border:{display:false}}
+            }
+        };
+
+        // ETHFI
+        var ethfiLabels=["Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Apr '26", "Apr '26", "Apr '26", "Apr '26", "Apr '26"];
+        var ethfiData=[3.12,3.81,3.98,7.92,6.42,5.43,5.38,6.4,5.22,4.23,3.54,4.12,3.83,3.44,4.49,3.77,4.11,3.61,3.61,3.3,3.46,4.02,5.02,5.1,4.61,4.81,4.72,4.24,3.87,3.73,3.98,3.39,3.37,3.28,3.14,2.9,2.07,1.9,2.23,2.06,2.32,2.42,2.45,2.05,2.13,1.98,1.55,1.39,1.48,1.51,1.45,1.38,1.45,1.72,1.37,1.35,1.33,1.27,1.3,1.29,1.36,1.34,1.49,1.53,1.67,1.76,1.41,1.41,1.45,1.46,1.68,1.57,1.75,1.55,1.41,1.49,1.4,1.22,1.59,1.82,1.57,1.68,1.58,1.87,2.25,2.38,2.53,2.72,2.96,2.38,2.68,2.82,2.08,1.95,2.06,2.09,2.18,2.39,2.4,1.87,1.86,2.05,1.89,1.83,1.69,1.61,1.58,1.18,1.16,1.14,1.1,1.18,1.15,1.16,1.15,0.96,0.93,0.84,0.81,0.65,0.67,0.66,0.71,0.66,0.69,0.62,0.58,0.52,0.45,0.49,0.5,0.44,0.44,0.51,0.59,0.56,0.59,0.54,0.51,0.75,1.06,1.44,1.36,1.33,1.23,1.38,1.08,1.22,1.06,1.16,1.28,1.08,1.01,0.94,0.97,0.93,1.04,1.01,0.93,0.94,1.14,1.13,1.32,1.32,1.15,1.22,1.21,0.94,1.04,1.1,1.23,1.38,1.18,1.05,1.28,1.1,1.14,1.07,1.15,1.16,1.25,1.45,1.44,1.61,1.46,1.66,1.63,1.43,1.81,1.82,1.62,1.25,1.16,1.07,1.01,1.02,0.97,0.91,1.0,0.87,0.96,0.95,0.9,0.84,0.81,0.68,0.77,0.81,0.84,0.78,0.83,0.82,0.79,0.72,0.75,0.71,0.7,0.69,0.74,0.78,0.76,0.73,0.8,0.74,0.65,0.6,0.57,0.62,0.5,0.5,0.49,0.45,0.46,0.47,0.46,0.46,0.5,0.49,0.5,0.55,0.52,0.56,0.54,0.57,0.57,0.53,0.52,0.46,0.47,0.44,0.46,0.44,0.41];
+
+        var cfgEthfi={
+            type:'line',
+            data:{labels:ethfiLabels,datasets:[
+                {label:'ETHFI',data:ethfiData,borderColor:'#dc3545',borderWidth:1.5,fill:{target:'origin',above:'rgba(220,53,69,0.08)'},pointRadius:0,tension:0.2}
+            ]},
+            options:commonOpts
+        };
+        chartConfigs.ethfiChart=cfgEthfi;
+        var ethfiInst=new Chart(document.getElementById('ethfiChart').getContext('2d'),cfgEthfi);
+        chartInstances.ethfiChart=ethfiInst;
+
+        // STRK
+        var strkLabels=["Feb '24", "Feb '24", "Feb '24", "Feb '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Mar '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "Apr '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "May '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jun '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Jul '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Aug '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Sep '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Oct '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Nov '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Dec '24", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Jan '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Feb '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Mar '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "Apr '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "May '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jun '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Jul '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Aug '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Sep '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Oct '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Nov '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Dec '25", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Jan '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Feb '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Mar '26", "Apr '26", "Apr '26", "Apr '26", "Apr '26", "Apr '26"];
+        var strkData=[1.97,1.93,1.97,1.75,1.84,2.55,2.41,2.48,2.2,1.94,2.09,2.19,2.24,2.13,1.92,1.89,2.05,1.83,1.49,1.23,1.35,1.32,1.16,1.21,1.28,1.36,1.23,1.22,1.15,1.15,1.21,1.23,1.26,1.22,1.17,1.29,1.21,1.12,0.99,0.94,0.73,0.72,0.72,0.66,0.65,0.53,0.54,0.6,0.56,0.62,0.59,0.58,0.51,0.52,0.46,0.41,0.37,0.38,0.41,0.36,0.36,0.37,0.42,0.36,0.36,0.38,0.39,0.43,0.38,0.4,0.38,0.4,0.4,0.47,0.47,0.37,0.39,0.39,0.41,0.44,0.39,0.43,0.4,0.37,0.39,0.37,0.33,0.41,0.46,0.47,0.47,0.48,0.53,0.59,0.63,0.71,0.72,0.77,0.62,0.66,0.63,0.49,0.47,0.5,0.48,0.47,0.52,0.52,0.43,0.43,0.45,0.42,0.4,0.37,0.36,0.35,0.26,0.25,0.24,0.24,0.24,0.23,0.23,0.23,0.21,0.21,0.18,0.18,0.15,0.17,0.18,0.18,0.17,0.18,0.16,0.15,0.14,0.12,0.14,0.13,0.13,0.12,0.14,0.15,0.15,0.15,0.13,0.13,0.17,0.18,0.16,0.16,0.16,0.16,0.16,0.13,0.14,0.12,0.13,0.14,0.12,0.11,0.11,0.11,0.11,0.12,0.12,0.11,0.11,0.14,0.14,0.14,0.15,0.13,0.13,0.13,0.11,0.12,0.13,0.14,0.15,0.14,0.13,0.14,0.13,0.13,0.13,0.12,0.12,0.13,0.14,0.13,0.14,0.13,0.12,0.12,0.14,0.15,0.18,0.16,0.13,0.12,0.11,0.12,0.12,0.12,0.11,0.12,0.11,0.13,0.14,0.17,0.19,0.22,0.15,0.15,0.13,0.12,0.11,0.11,0.11,0.1,0.09,0.08,0.08,0.08,0.08,0.08,0.09,0.09,0.08,0.09,0.09,0.08,0.07,0.07,0.07,0.05,0.06,0.05,0.05,0.05,0.05,0.05,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.03,0.03,0.03,0.03,0.03,0.03];
+
+        var cfgStrk={
+            type:'line',
+            data:{labels:strkLabels,datasets:[
+                {label:'STRK',data:strkData,borderColor:'#6f42c1',borderWidth:1.5,fill:{target:'origin',above:'rgba(111,66,193,0.08)'},pointRadius:0,tension:0.2}
+            ]},
+            options:commonOpts
+        };
+        chartConfigs.strkChart=cfgStrk;
+        var strkInst=new Chart(document.getElementById('strkChart').getContext('2d'),cfgStrk);
+        chartInstances.strkChart=strkInst;
+    })();
+    </script>
+<!-- ANIMATION DISABLED — uncomment the script block below to restore the falling-coins / growing-plants animation -->
+<!--
+    <script>
+    (function(){
+      var c=document.getElementById('airdropAnim');
+      if(!c)return;
+      c.parentElement.style.display='block';
+      var dpr=window.devicePixelRatio||1;
+      var rect=c.getBoundingClientRect();
+      var W=rect.width,H=280;
+      c.style.height=H+'px';
+      c.width=W*dpr;c.height=H*dpr;
+      var ctx=c.getContext('2d');
+      ctx.scale(dpr,dpr);
+
+      var ground=H-6;
+      var ox=112.15,oy=294.25;
+      var logoScale=W<500?0.12:W<700?0.15:0.18;
+      var coinR=W<500?1.8:W<700?2.2:2.5;
+      var logoX=W*0.5,logoY=H*0.15,logoDir=1,logoSpeed=W<500?0.5:0.8;
+      var coins=[],plants=[],t=0,lastDrop=0;
+
+      function drawLogo(x,y,s){
+        ctx.save();ctx.translate(x,y);ctx.scale(s,-s);
+        ctx.fillStyle='#2E5CFF';ctx.beginPath();
+        ctx.moveTo(173.2-ox,363.2-oy);ctx.lineTo(51.1-ox,328.3-oy);
+        ctx.lineTo(51.1-ox,244.6-oy);ctx.lineTo(173.2-ox,209.7-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,296.2-oy);ctx.lineTo(71.6-ox,321.8-oy);
+        ctx.lineTo(161.4-ox,347.4-oy);ctx.closePath();
+        ctx.moveTo(62.9-ox,260.8-oy);ctx.lineTo(62.9-ox,312.1-oy);
+        ctx.lineTo(152.7-ox,286.5-oy);ctx.closePath();
+        ctx.moveTo(161.4-ox,225.3-oy);ctx.lineTo(71.6-ox,251-oy);
+        ctx.lineTo(161.4-ox,276.6-oy);ctx.closePath();
+        ctx.fill('evenodd');ctx.restore();
+      }
+
+      function drawCoin(x,y,r,alpha){
+        ctx.save();ctx.globalAlpha=alpha;
+        ctx.fillStyle='#ffd700';
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#daa520';ctx.lineWidth=0.5;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawPlant(p){
+        if(p.height<1)return;
+        ctx.save();ctx.globalAlpha=p.alpha;
+        var swayX=Math.sin(t*0.015+p.sway)*2;
+        ctx.strokeStyle='#4a7c3f';ctx.lineWidth=1.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.baseY);
+        ctx.quadraticCurveTo(p.x+swayX*0.5,p.baseY-p.height*0.5,p.x+swayX,p.baseY-p.height);
+        ctx.stroke();
+        var tipX=p.x+swayX,tipY=p.baseY-p.height;
+        for(var i=0;i<p.leaves;i++){
+          var ly=p.baseY-p.height*(0.4+i*0.25);
+          var lx=p.x+swayX*(ly-p.baseY)/(p.baseY-tipY+1);
+          var side=(i%2===0)?1:-1;
+          ctx.fillStyle='#2e7d32';
+          ctx.beginPath();ctx.ellipse(lx+side*5,ly,6,3,side*0.4,0,Math.PI*2);ctx.fill();
+        }
+        if(p.height>p.maxH*0.7){
+          ctx.fillStyle=p.flowerCol;
+          ctx.beginPath();ctx.arc(tipX,tipY,3.5,0,Math.PI*2);ctx.fill();
+          ctx.fillStyle='#ffeaa7';
+          ctx.beginPath();ctx.arc(tipX,tipY,1.5,0,Math.PI*2);ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function dropCoin(){
+        coins.push({
+          x:logoX+Math.random()*8-4,
+          y:logoY+14,
+          vy:0.4+Math.random()*0.5,
+          vx:(Math.random()-0.5)*1.2,
+          r:coinR+Math.random()*1,
+          landed:false,alpha:0.85
+        });
+      }
+
+      function spawnPlant(x){
+        plants.push({
+          x:x,baseY:ground,
+          height:0,maxH:W<500?(Math.random()<0.15?25+Math.random()*15:8+Math.random()*12):(Math.random()<0.15?50+Math.random()*30:15+Math.random()*25),
+          growSpeed:0.08+Math.random()*0.06,
+          sway:Math.random()*Math.PI*2,
+          leaves:1+Math.floor(Math.random()*3),
+          flowerCol:['#e84393','#fd79a8','#a29bfe','#fdcb6e','#e17055','#00cec9','#6c5ce7','#ff6b6b','#f39c12'][Math.floor(Math.random()*9)],
+          alpha:0
+        });
+      }
+
+      function draw(){
+        t++;
+        // move logo edge to edge
+        logoX+=logoSpeed*logoDir;
+        logoY=H*0.13+Math.sin(t*0.02)*6;
+        if(logoX>W-15)logoDir=-1;
+        if(logoX<15)logoDir=1;
+
+        if(t-lastDrop>30+Math.random()*20){
+          dropCoin();lastDrop=t;
+        }
+
+        ctx.clearRect(0,0,W,H);
+
+        // logo
+        ctx.globalAlpha=0.85;
+        drawLogo(logoX,logoY,logoScale);
+        ctx.globalAlpha=1;
+
+        // coins
+        for(var i=coins.length-1;i>=0;i--){
+          var co=coins[i];
+          if(!co.landed){
+            co.vy+=0.035;
+            co.y+=co.vy;
+            co.x+=co.vx;
+            co.rot+=0.1;
+            if(co.y>=ground-co.r){
+              co.landed=true;
+              co.y=ground-co.r;
+              spawnPlant(co.x);
+            }
+          }else{
+            co.alpha-=0.004;
+            if(co.alpha<=0){coins.splice(i,1);continue;}
+          }
+          drawCoin(co.x,co.y,co.r,co.alpha);
+        }
+
+        // plants
+        for(var i=0;i<plants.length;i++){
+          var p=plants[i];
+          if(p.height<p.maxH)p.height+=p.growSpeed;
+          if(p.alpha<0.7)p.alpha+=0.005;
+          drawPlant(p);
+        }
+        if(plants.length>50)plants.splice(0,8);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+    </script>
+    -->
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>
