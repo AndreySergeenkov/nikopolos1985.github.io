@@ -1,9 +1,9 @@
-{%- if page.lang == 'ru' %}
-    <link rel="alternate" hreflang="en" href="https://sergeenkov.com{{ page.alternate_url }}">
-    <link rel="alternate" hreflang="ru" href="https://sergeenkov.com{{ page.url }}">
-{%- else %}
-    <link rel="alternate" hreflang="en" href="https://sergeenkov.com{{ page.url }}">
-    <link rel="alternate" hreflang="ru" href="https://sergeenkov.com{{ page.alternate_url }}">
+{%- assign english_url = page.url %}
+{%- if page.lang == 'ru' or page.lang == 'zh-Hans' %}
+    {%- assign english_url = page.alternate_url %}
 {%- endif %}
-    <link rel="stylesheet" href="/language.css?v=2">
-    <script defer src="/language.js"></script>
+    <link rel="alternate" hreflang="en" href="https://sergeenkov.com{{ english_url }}">
+    <link rel="alternate" hreflang="ru" href="https://sergeenkov.com/ru{{ english_url }}">
+    <link rel="alternate" hreflang="zh-Hans" href="https://sergeenkov.com/zh{{ english_url }}">
+    <link rel="stylesheet" href="/language.css?v=3">
+    <script defer src="/language.js?v=3"></script>

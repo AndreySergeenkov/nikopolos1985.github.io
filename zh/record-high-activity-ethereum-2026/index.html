@@ -1,0 +1,548 @@
+---
+layout: null
+lang: zh-Hans
+permalink: /zh/record-high-activity-ethereum-2026/
+alternate_url: /record-high-activity-ethereum-2026/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=3"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>以太坊活跃度创纪录，背后是地址投毒攻击</title>
+<meta content="链上数据揭示以太坊活跃度创纪录背后的地址投毒攻击。分析新地址、稳定币尘埃转账，以及截至发稿时超过 74 万美元的被盗资金。" name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="https://sergeenkov.com/zh/record-high-activity-ethereum-2026/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="以太坊活跃度创纪录，背后是地址投毒攻击" property="og:title"/>
+<meta content="链上数据揭示以太坊活跃度创纪录背后的地址投毒攻击。分析新地址、稳定币尘埃转账，以及截至发稿时超过 74 万美元的被盗资金。" property="og:description"/>
+<meta content="https://sergeenkov.com/zh/record-high-activity-ethereum-2026/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="以太坊活跃度创纪录，背后是地址投毒攻击" name="twitter:title"/>
+<meta content="链上数据揭示以太坊活跃度创纪录背后的地址投毒攻击。分析新地址、稳定币尘埃转账，以及截至发稿时超过 74 万美元的被盗资金。" name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.7;
+        }
+        .note a {
+            color: #0645ad;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="zh_CN" property="og:locale"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "以太坊活跃度创纪录，背后是地址投毒攻击",
+  "description": "链上数据揭示以太坊活跃度创纪录背后的地址投毒攻击。分析新地址、稳定币尘埃转账，以及截至发稿时超过 74 万美元的被盗资金。",
+  "inLanguage": "zh-Hans",
+  "url": "https://sergeenkov.com/zh/record-high-activity-ethereum-2026/",
+  "mainEntityOfPage": "https://sergeenkov.com/zh/record-high-activity-ethereum-2026/",
+  "datePublished": "2026-01-19",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  }
+}
+</script>
+<meta content="2026-01-19" property="article:published_time"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/zh/">← 返回首页</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Color theme" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<article>
+<header class="article-header">
+<h1>以太坊活跃度创纪录，背后是地址投毒攻击</h1>
+<div class="article-meta">作者：Andrey Sergeenkov · 2026 年 1 月 19 日</div>
+</header>
+<div class="note"><strong>更新：</strong>我进行了更详细的后续研究，发现 Fusaka 升级后，攻击者的投毒量增加了 5.6 倍，造成的损失是升级前的 13 倍。更多详情见<a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/zh/fusaka-poison-attacks-ethereum/">完整研究文章</a>。</div>
+<div class="tldr">
+<div class="tldr-title">要点摘要</div>
+<ul>
+<li>已有超过 74 万美元被盗，且这一数字还将继续增长</li>
+<li>这之所以成为可能，要归功于 Fusaka 升级，该升级使垃圾交易的成本低到足以让攻击者获利</li>
+<li>此次攻击目前仍在进行中</li>
+</ul>
+</div>
+{% include zh/commission-box.html %}
+<p>新地址数量是 2025 年平均水平的 2.7 倍。1 月 12 日当周峰值显示有 270 万个新地址，比典型值高出 170%。</p>
+<img alt="以太坊新地址数量急剧增加" class="article-image" src="/images/image1.png"/>
+<p class="image-caption">以太坊新地址数量急剧增加</p>
+<p>以太坊网络上的交易数量从每周 1050 万笔增长了 63%，达到创纪录的 1710 万笔。</p>
+<img alt="以太坊交易增长" class="article-image" src="/images/image4.png"/>
+<p>我想找出导致地址增加的原因，结果发现这种异常增长有 80% 是由稳定币驱动的。</p>
+<img alt="稳定币驱动的增长" class="article-image" src="/images/image8.png"/>
+<p>此后，我需要了解稳定币交易的性质。我计算了有多少用户收到的第一笔稳定币交易金额低于 1 美元，结果发现有 67% 的地址符合这一模式。在 578 万个地址中，有 386 万个地址的第一笔交易收到的是尘埃转账。</p>
+<img alt="尘埃交易分析" class="article-image" src="/images/image3.png"/>
+<p>为了识别尘埃分发者地址，我筛选了 2025 年 12 月 15 日至 2026 年 1 月 18 日期间所有发送金额小于 1 美元的 USDT/USDC 转账的发件人，统计了每个发件人的唯一接收者数量，并筛选出向至少 10,000 个地址发送过资金的那些发件人。</p>
+<img alt="向诱饵地址分发尘埃的主要合约地址" class="article-image" src="/images/image6.png"/>
+<p class="image-caption">向诱饵地址分发尘埃的主要合约地址</p>
+<p>以下是排名前三的尘埃分发者：</p>
+<div class="code-block">0x455bf23ea7575a537b6374953fa71b5f3653272c - 向 69 万个地址发送了尘埃<br/> 0x301d9bc22d66f7bc49329a9d9eb16d3ecc4a12b4 - 向 58.9 万个地址发送了尘埃<br/> 0x2393d38400cad1d0ffae85b37d76de05bb7eddc6 - 向 40.5 万个地址发送了尘埃</div>
+<p>这些是自动化大规模分发投毒尘埃的智能合约。</p>
+<p>其中一个此类合约的源代码包含一个 <code>fundPoisoners</code> 函数，该函数可在单笔交易中为数百个投毒地址提供资金，向每个地址发送少量代币以及一些用于支付 Gas 的 ETH。</p>
+<img alt="fundPoisoners 函数代码" class="article-image" src="/images/image2.png"/>
+<p>随后，这些投毒地址将尘埃分发给数百万潜在受害者，在交易历史中制造虚假记录。</p>
+<p>创建投毒地址是为了使其看起来与受害者的合法地址相似（匹配首尾字符）。受害者在交易历史中看到“熟悉”的地址，未经充分验证便复制该地址，从而将真实资金发送给攻击者。</p>
+<div class="warning-box"><strong>截至目前，已有 116 名受害者以这种方式被盗走超过 74 万美元。</strong>这些都是保守估计，数字还会增长。在<a href="https://www.chainalysis.com/blog/address-poisoning-scam/">此前</a>一次重大投毒攻击中，为期 66 天的行动窃取了 6800 万美元，其中大部分是在第 64 天，也就是几乎在最后阶段被盗走的。</div>
+<img alt="投毒攻击的主要受害者" class="article-image" src="/images/image7.png"/>
+<p class="image-caption">截至 2026 年 1 月 19 日的投毒攻击主要受害者</p>
+<h2>但为什么攻击者偏偏在此时变得活跃？</h2>
+<p>因为此类攻击的转化率极低，约为 0.01%。主要利润仅来自少数几名受害者（在上述截图中，一人损失了 50.9 万美元，占所研究的 74 万美元总额的大部分）。这意味着攻击者一直面临着风险，即花费在数百万笔尘埃交易上的 Gas 可能无法收回成本。直到 2025 年 12 月之前都是如此。</p>
+<p>2025 年 12 月 3 日，由 Vitalik Buterin 领导的以太坊开发者推出了 Fusaka 升级，将平均费用降低了约 6 倍，恰好为此类攻击完善了基础设施。</p>
+<img alt="2025 年 ERC20 转账成本变化" class="article-image" src="/images/image5.png"/>
+<p class="image-caption">2025 年 ERC20 转账成本变化</p>
+<p>如今，地址投毒对攻击者来说变得极具吸引力，收益与成本严重不成比例。</p>
+<p><a href="https://cointelegraph.com/news/technical-and-human-vulnerabilities">我已就此写过文章</a>：如果不先解决用户安全问题，就无法扩展基础设施！</p>
+<p>当加密货币行业庆祝创纪录的指标时，人们却在失去资金，因为以太坊开发者改善了用于大规模攻击的基础设施。</p>
+<p>开发者们所做的是一种鲁莽的实验，让用户承担全部风险，却将其伪装成一场革命。</p>
+<div class="highlight"><strong>截至本文发布时，攻击不仅仍在继续，而且正在扩大规模。</strong>在过去 4 天内，新的投毒合约已启动，其中最大的一个已向 78,000 个地址分发尘埃。所有主要攻击者合约仍然活跃，在我撰写本文时仍记录到了最新交易。</div>
+<p><em>（我仅检查了稳定币交易，因为它们推动了主要指标的增长，但由于尘埃攻击也使用其他代币，实际规模更大。）</em></p>
+<div class="author-box">
+<div class="author-info">
+{% include zh/support-prompt.html %}
+{% include zh/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">我的其他研究</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/zh/blockworks-ai-data/">Blockworks 裁减研究员，并销售供 AI 智能体使用的数据</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/zh/bitget-hack-fees/">谁从 Bitget 被盗资金的洗钱交易中收取了手续费？</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/zh/hsin-ju-chuang-death/">Hack VC 前合伙人庄欣如去世：哪些情况可以核实？</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/zh/loss-based-polymarket-airdrop/">为什么 Polymarket 应按交易亏损发放空投</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/zh/polymarket-profitability/">Polymarket 上有多少交易者能赚钱？</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/zh/fusaka-poison-attacks-ethereum/">Fusaka 升级后，以太坊地址投毒造成的损失增至 13 倍</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/zh/will-thedao-money-improve-ethereum-security/">TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/zh/thedao-curators-220m-hack-victims/">TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<span class="lightbox-close">×</span>
+<img alt="放大图像" id="lightbox-img" src=""/>
+<div class="lightbox-hint">点击任意位置或按 Esc 键关闭</div>
+</div>
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.article-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

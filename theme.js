@@ -1,8 +1,12 @@
 (() => {
     const root = document.documentElement;
     const storageKey = 'sergeenkov-theme';
-    const lightLabel = root.lang === 'ru' ? 'Светлая тема' : 'Light mode';
-    const darkLabel = root.lang === 'ru' ? 'Тёмная тема' : 'Dark mode';
+    const labels = {
+        en: ['Light mode', 'Dark mode'],
+        ru: ['Светлая тема', 'Тёмная тема'],
+        'zh-Hans': ['浅色主题', '深色主题'],
+    };
+    const [lightLabel, darkLabel] = labels[root.lang] ?? labels.en;
     let control;
 
     function applyTheme(theme) {

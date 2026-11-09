@@ -1,0 +1,638 @@
+---
+layout: null
+lang: zh-Hans
+permalink: /zh/thedao-curators-220m-hack-victims/
+alternate_url: /thedao-curators-220m-hack-victims/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=3"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例</title>
+<meta content="TheDAO 管理人计划质押约 2.2 亿美元的无人认领资金，并将收益用于安全资助。这一决定如何作出，又为资金托管带来什么先例？" name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="https://sergeenkov.com/zh/thedao-curators-220m-hack-victims/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例" property="og:title"/>
+<meta content="TheDAO 管理人计划质押约 2.2 亿美元的无人认领资金，并将收益用于安全资助。这一决定如何作出，又为资金托管带来什么先例？" property="og:description"/>
+<meta content="https://sergeenkov.com/zh/thedao-curators-220m-hack-victims/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例" name="twitter:title"/>
+<meta content="TheDAO 管理人计划质押约 2.2 亿美元的无人认领资金，并将收益用于安全资助。这一决定如何作出，又为资金托管带来什么先例？" name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .image-download {
+            font-size: 13px;
+            text-align: right;
+            margin-top: -18px;
+            margin-bottom: 25px;
+        }
+        .image-download a {
+            color: #999;
+            background: none;
+            padding: 0;
+            font-size: 13px;
+        }
+        .image-download a:hover {
+            color: #666;
+            background: none;
+        }
+        .note {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            color: #202122;
+            font-size: 14px;
+            font-family: sans-serif;
+            line-height: 1.7;
+        }
+        .note a {
+            color: #0645ad;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="zh_CN" property="og:locale"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例",
+  "description": "TheDAO 管理人计划质押约 2.2 亿美元的无人认领资金，并将收益用于安全资助。这一决定如何作出，又为资金托管带来什么先例？",
+  "inLanguage": "zh-Hans",
+  "url": "https://sergeenkov.com/zh/thedao-curators-220m-hack-victims/",
+  "mainEntityOfPage": "https://sergeenkov.com/zh/thedao-curators-220m-hack-victims/",
+  "datePublished": "2026-02-09",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  }
+}
+</script>
+<meta content="2026-02-09" property="article:published_time"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/zh/">← 返回首页</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Color theme" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<article>
+<header class="article-header">
+<h1>TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例</h1>
+<div class="article-meta">作者：Andrey Sergeenkov · 2026 年 2 月 9 日</div>
+</header>
+<p>2026 年 1 月 29 日，Giveth 创始人 Griff Green <a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">宣布</a>成立 TheDAO 安全基金，该基金将激活自 2016 年 TheDAO 黑客事件以来一直无人认领的约 75,000 ETH（2.2 亿美元）。</p>
+<p>以太坊联合创始人 Vitalik Buterin 加入了由 7 名资金管理人（Curator）组成的团队，他们将质押这些资金，并利用产生的奖励为以太坊安全资助提供资金，同时覆盖托管运营成本。</p>
+<p>作为回应，Timon Rapp（TheDAO 的早期管理人之一，于 2016 年加入多签钱包以帮助受 DAO 边缘情况影响的人恢复资金）于 2026 年 1 月 30 日公开辞职。</p>
+<p>他<a href="https://x.com/timonrapp/status/2017204823599268175">表示</a>：<em>“这些资金属于原始的 DAO 投资者。我认为这违反了最初的授权和受托责任。此举伴随着巨大的法律风险，并引入了大量的利益冲突。”</em></p>
+{% include zh/commission-box.html %}
+<img alt="Timon Rapp 辞职声明" class="article-image" src="/thedao-curators-220m-hack-victims/images/image5.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image5.png" download="" href="/thedao-curators-220m-hack-victims/images/image5.png">下载图片</a></p>
+<p>另一位早期管理人 Gian Bochsler 也<a href="https://x.com/gianbochsler/status/2019731722636787977">辞职</a>了。在对我问题的书面回复中，Bochsler 确认他<em>“不认同对资金的重新用途安排以及新流程”。</em></p>
+<h2>管理人是如何投票决定使用无人认领资金的？</h2>
+<p>我就此询问了 Timon Rapp。在书面回复中，他告诉我没有正式的投票程序。Griff 将六名管理人拉入一个 Signal 群组并提出了计划。Vitalik 似乎已经知情并同意。</p>
+<div class="highlight">据 Timon 称，最初的提案允许人们在新 DAO 设立后再有一年时间认领资金。那一年之后，剩余的 DAO 投资者将被剥夺所有权，所有资金将转移到新 DAO。</div>
+<p>起初，Timon 是唯一反对该计划的人。几周后，Gian Bochsler 的律师建议他在任何情况下都不要就此事项签署任何文件。Bochsler 后来对此评论道：<em>“我就此事寻求了法律意见。Timon 和我支持要求法院批准或类似正式程序来处理任何资金重新用途，因为我们认为这样的决定不是我们可以单方面做出的。”</em></p>
+<p>据 Timon 称，Gian 将此建议分享给了 Vlad Zamfir 和 Alexey Akhunov，随后几天他们也加入了反对阵营。</p>
+<p>然而，Griff 后来以两种重要方式重构了该计划。</p>
+<p>首先，关于认领提取：最终提案对此做了修改，使提取通道无限期保持开放。然而，据 Timon 称，新任管理人可以随时改变这一决定，没有任何机制来长期强制执行这一点。一旦旧管理人签署将资金移交，这一承诺是否兑现就取决于新 DAO 了。</p>
+<p>其次，结构被更改为双多签钱包模式。除了使用新的 DAO 多签钱包外，还创建了第二个多签钱包（5 人中需 3 人签名），对资金拥有某些控制权，例如控制质押奖励的支出限额。这第二个多签钱包包括 Vlad 和 Alexey 作为成员。据 Timon 称，能够通过这个多签钱包保留对资金的一定控制权，可能是让 Alexey 和 Vlad 改变主意的原因。</p>
+<p>最终投票情况如下：<em>“最终，Griff、Alexey 和 Vlad 签署了将 Timon Rapp 和 Gian Bochsler 从多签钱包中移除并启动资金转移的交易。他们签署以太坊交易的行为就是实际的投票。”</em></p>
+<p>此外，据 Timon Rapp 称，Griff Green 的计划包括不公开新管理人的地址与管理人身份的映射关系，以便为谁签署了交易提供推诿空间。</p>
+<p>在 Timon 看来，他们制造这种推诿空间是为了避免法律暴露。</p>
+<h2>马绍尔群岛</h2>
+<p>Griff 在马绍尔群岛成立了“The DAO LLC”。</p>
+<div class="note">马绍尔群岛像许多离岸司法管辖区一样，不会自动承认美国或其他主要经济体的法院判决，这一特点使得这些司法管辖区对资产保护结构具有吸引力。根据《国际比较法律指南》<a href="https://iclg.com/practice-areas/enforcement-of-foreign-judgments-laws-and-regulations/usa">报告</a>，如果有人在美国法院赢得诉讼，他们不能直接在马绍尔群岛执行该判决。相反，他们需要重新提起诉讼，并根据马绍尔群岛法律再次审理案件。</div>
+<p>这可能为寻求收回资产或认领由其资金质押所产生费用的资金合法所有者造成障碍。</p>
+<p>据 Timon 称，每位新管理人都被要求与该有限责任公司签署赔偿协议。</p>
+<p>Gian Bochsler 确认他被要求签署赔偿协议但拒绝了：<em>“我不同意选择马绍尔群岛作为司法管辖区，也不同意该协议本身。”</em></p>
+<div class="note">赔偿协议是一种合同，其中有限责任公司承诺保护个人免受法律责任。如果有人因与基金相关的行为起诉成员，有限责任公司将承担法律费用、罚款和损害赔偿。形式上，他们代表公司行事，由公司承担所有风险。</div>
+<p>如果是这样，这难道不会造成一种局面：资金的合法所有者起诉该有限责任公司，而法律辩护的资金却取自由其自身资产产生的质押奖励？</p>
+<p>当我询问 Gian Bochsler 法律辩护资金将从何处来时，他表示：<em>“资金可能必须来自质押资金未来产生的 ETH，但在我离开时这一点仍在争论中。来源肯定是无人认领的 ETH。”</em></p>
+<h2>是否存在利益冲突？</h2>
+<p>据 <a href="https://unchainedcrypto.com/exclusive-thedao-to-become-new-220-million-ethereum-security-fund/">Unchained</a> 报道，以太坊基金会将定义赠款轮次的资格标准。</p>
+<p>然而，确立这种安排或以太坊基金会对资金拥有权力的法律依据的任何正式文件均未公开。资金的合法所有者从未同意以太坊基金会控制对其资金的访问权限。</p>
+<p>此外，所有者的资金将通过 DappNode 进行质押，这是一家由七名管理人中的三人创立的公司。</p>
+<p>Jordi Baylina 和 Griff Green 目前被列为创始人，Pol Lanski 担任首席执行官兼联合创始人。</p>
+<img alt="DappNode 创始人" class="article-image" src="/thedao-curators-220m-hack-victims/images/image4.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image4.png" download="" href="/thedao-curators-220m-hack-victims/images/image4.png">下载图片</a></p>
+<p>管理人是否会通过使用其基础设施质押约 2 亿美元而获得直接或间接的经济利益？</p>
+<div class="note">根据 DappNode 的技术文档，该公司从其 Smooth 质押服务分配的所有奖励中<a href="https://docs.dappnode.io/docs/smooth/deep-dive-into-smooth/rewards/">收取</a> 7% 的费用。</div>
+<p>当被问及“DappNode 的运营成本将如何支付？”时，管理人 pcaversaccio <a href="https://x.com/pcaversaccio/status/2018992687849124183">回答</a>：<em>“通过部分质押奖励。”</em></p>
+<img alt="pcaversaccio 关于 DappNode 成本的回应" class="article-image" src="/thedao-curators-220m-hack-victims/images/image1.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image1.png" download="" href="/thedao-curators-220m-hack-victims/images/image1.png">下载图片</a></p>
+<p>这并非 Griff Green 第一次面临关于治理结构中重叠财务利益的质疑。2023 年 7 月，Optimism Collective 的代表们<a href="https://gov.optimism.io/t/we-need-to-talk-about-undisclosed-financial-interests/6424/4">提出担忧</a>，指出 Green 利用其代表身份推进与他共同创立或有财务联系的项目（包括 DappNode 和 Giveth）的赠款提案。他的公司 General Magic 为撰写这些提案收取赠款金额的 7% 至 50%。</p>
+<p>代表 katie 总结了这一担忧：<em>“这就好比我在帮助我投资组合中的一家公司撰写赠款申请，在论坛上推广他们，批准他们进入投票阶段，然后还从他们获得的赠款中抽取一部分。”</em></p>
+<p>2026 年 2 月 11 日，TheDAO 安全基金<a href="https://paragraph.com/@thedao.fund/our-first-action-supporting-seal-911-and-seal">宣布</a>了其首次分配：向 SEAL 分配 69 ETH，向 SEAL 911 分配 133.7 ETH，并向这两家组织提供永久的 Superfluid 流支付。pcaversaccio 是七名管理人之一，也是 SEAL 911 的联合创始人兼负责人。另一位管理人 Taylor Monahan 自 2023 年 SEAL 911 推出以来一直参与其工作。第三位管理人 Vitalik Buterin 于 2024 年向 SEAL 捐赠了 50 万美元。以太坊基金会负责设定 TheDAO 安全基金赠款轮次的资格要求，它是 SEAL 的主要捐赠者和赞助商，并于 2026 年 2 月<a href="https://www.coinspeaker.com/ethereum-foundation-partners-seal-wallet-drainers/">宣布</a>了一项新的合作伙伴关系。</p>
+<h2>管理人使用 Tornado Cash 污染了无人认领的资金</h2>
+<p>2026 年 2 月 2 日，其中一名管理人 pcaversaccio <a href="https://x.com/pcaversaccio/status/2018096078936318021">发布帖子</a>称，他们使用了一个此前与 Tornado Cash 有关联的地址转移了 69,420 ETH 用于质押。</p>
+<p>他写道：<em>“这意味着未来的每次提款和赠款交易现在都完美地、不可逆转地被污染了。”</em></p>
+<img alt="pcaversaccio 关于受污染资金的声明" class="article-image" src="/thedao-curators-220m-hack-victims/images/image7.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image7.png" download="" href="/thedao-curators-220m-hack-victims/images/image7.png">下载图片</a></p>
+<p>问题在于，被盗资金经常通过 Tornado Cash 洗白。据 <a href="https://www.merklescience.com/blog/what-tornado-cashs-sanctions-reversal-means-for-crypto-compliance">Merkle Science</a>（一家链上分析公司）称：<em>“使用混币器虽然有时是合法的，但在判定某笔交易或某个地址属于低、中还是高风险时，它仍会被视为众多风险指标之一。”</em></p>
+<p>这意味着，与这些资金交互的地址现在可能被执法机构和各类安全系统标记为可疑。美国财政部外国资产控制办公室（OFAC）<a href="https://home.treasury.gov/news/press-releases/jy0916">称</a> Tornado Cash <em>“对国家安全构成重大威胁。”</em></p>
+<p>如今，每一位主张权利的合法所有者在请求提取资金时，都可能面临其提款链路与 Tornado Cash 相关地址存在托管关联的问题。链上分析系统和交易所可能会将这些地址标记为可疑，从而带来账户被冻结或接受调查的风险。</p>
+<p>如果政府决定再次对 Tornado Cash 实施制裁，该基金的正当所有者和资助受赠人将面临怎样的处境？</p>
+<p>财政部并未保证未来不会将 Tornado Cash 重新列入制裁名单。在其除名声明中，财政部<a href="https://home.treasury.gov/news/press-releases/sb0057">表示</a>，其<em>“行使了我们的裁量权。”</em></p>
+<p>这意味着该决定属于裁量性质，并非法院强制要求，且可随时重新审议。</p>
+<p>pcaversaccio <a href="https://x.com/pcaversaccio/status/2018101985975902655">写道</a>，他故意“污染”正当所有者的资金，以<em>“调侃‘污染’一词”</em>，并表明这些资金并非“脏钱”。</p>
+<img alt="pcaversaccio 对故意污染行为的解释" class="article-image" src="/thedao-curators-220m-hack-victims/images/image6.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image6.png" download="" href="/thedao-curators-220m-hack-victims/images/image6.png">下载图片</a></p>
+<p>这难道不会给资金所有者带来不必要的合规风险吗？</p>
+<p>这难道不会为他们申请返还资金增设一道障碍吗？</p>
+<h2>多签钱包的签署人是否有权决定如何使用这些资产？</h2>
+<p>当我提出这个问题时，Griff Green <a href="https://x.com/griffgreen/status/2017004016736092257">回应</a>道：<em>“妥善保护价值 2 亿美元的加密资产并非免费。为了为此提供资金，我们将部分资产进行质押，以便底层抵押品仍能被认领。”</em></p>
+<img alt="Griff Green 关于成本的回应" class="article-image" src="/thedao-curators-220m-hack-victims/images/image2.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image2.png" download="" href="/thedao-curators-220m-hack-victims/images/image2.png">下载图片</a></p>
+<p>管理人通过<a href="https://paragraph.com/@thedao.fund/thedao-security-fund-activating-75000-eth-for-ethereum-security">论证</a>为其控制这些资金的行为辩护：他们早在 2016 年 8 月就宣布，如果资金在 2017 年 1 月 31 日后仍未被认领，将用于支持以太坊安全。此外，他们还辩称托管需要资金支持，且正当所有者仍可随时认领其资金。</p>
+<p>根据美国法律，持有休眠客户资金长达 10 年并通过质押产生收益可能是被禁止的。</p>
+<p>就加密货币而言，加州 SB 822 法案（2026 年 1 月 1 日生效）要求数字金融资产在休眠 3 年后必须移交至州主计长办公室。</p>
+<p>康涅狄格州一般法规 § 3-57b（2024 年 7 月 1 日生效）也要求在休眠 3 年后转移虚拟货币，康涅狄格州还要求在提交报告后 30 天内完成清算并交付收益。纽约州《遗弃财产法》§ 1319（2022 年 11 月 22 日生效）为虚拟货币设定了 5 年的休眠期。</p>
+<p>在美国大多数州适用的《统一无人认领财产法》原则规定，持有人作为财产的受托人行事，对该财产不享有所有权权益。</p>
+<p>TheDAO 安全基金已持有这些资金约 10 年，并计划将其质押以产生收入，用于以太坊安全资助和托管运营成本。</p>
+<p>尽管 TheDAO 注册为马绍尔群岛有限责任公司，但这可能并不能使该组织免于美国各州无人认领财产法的约束。根据德克萨斯州诉新泽西州案（1965 年）的最高法院裁决（该案确立了联邦普通法）：<em>“将没收债务的权利和权力授予债务人账簿和记录中显示的债权人最后已知地址所在的州。”</em></p>
+<p>这意味着，如果资金所有者是美国居民，且其最后已知地址位于加利福尼亚州、康涅狄格州、纽约州或其他州，那么无论持有人在何处注册，这些州都可能对该财产拥有优先索赔权。</p>
+<h2>加密资产托管的先例</h2>
+<p>TheDAO 安全基金的情况为加密行业创造了一个重要先例。</p>
+<p>根据 2016 年管理人的一篇<a href="https://medium.com/curator-multisig-phf-official-channel/dao-token-holders-come-claim-your-money-b428f186572a">帖子</a>，这些资金包括：</p>
+<ul>
+<li>ExtraBalance 中约 70,500 ETH：通过区块链分析识别出的地址，可通过 withdraw 合约申领</li>
+<li>Curator Multisig 中约 4,600 ETH：管理人描述为“没有明确申领人”的边缘情况</li>
+</ul>
+<p>TheDAO 安全基金正在质押 69,420 ETH，这意味着他们正在质押包括 ExtraBalance 中具有可识别所有者的资金在内的资产。</p>
+<p>任何多签钱包（无论是企业金库、DAO 基金，还是配有恢复监护人的个人钱包）都遵循同一原则：指定签署人为特定、有限的目的持有他人资产的密钥。</p>
+<p>TheDAO 管理人已表明，只要他们认为理由充分，签署人便可自行扩大这一目的的范围。</p>
+<p>正如 Block Enthusiast 在 2026 年 1 月 29 日<a href="https://x.com/BlockEnthusiast/status/2016950935327568052">指出</a>的那样：</p>
+<div class="highlight"><em>“我核心的担忧之一是以太坊正推动所有人转向智能合约钱包。这树立了一个先例：如果人们在一段时间内未动用智能合约中的资金，这些资金就可能被改作他用，以支持以太坊开发/安全。”</em></div>
+<p>以太坊正朝着基于 ERC-4337 的智能合约钱包方向发展，其中任命具有签名权的监护人预计将成为标准做法。</p>
+<p>如果 TheDAO 的先例被视为合法，那就意味着任何由多签钱包或监护人管理钱包持有的资金，在任意一段不活动期后都可能被“改作他用”。</p>
+<p>这也意味着加密资产托管方可能：</p>
+<ul>
+<li>未经同意即对来自可识别地址的客户资金进行质押</li>
+<li>使客户资金暴露于额外风险之中（例如，因质押导致的罚没惩罚）</li>
+<li>通过 Tornado Cash “污染”客户资金，从而为所有者带来合规风险</li>
+<li>将质押奖励用于其自身的运营目的</li>
+<li>任意设定资金可被使用的截止日期</li>
+</ul>
+<p>早在 2016 年 5 月，甚至在黑客攻击发生之前，Gavin Wood 便<a href="https://gavofyork.medium.com/why-ive-resigned-as-a-curator-of-the-dao-238528fbd447">辞去</a> TheDAO 管理人职务，并特别警告管理人角色存在使命蔓延的风险：</p>
+<div class="highlight"><em>“在 slock.it 的 DAO 设计中，‘管理人’的角色无足轻重且完全属于算法性操作，无需任何判断。他们存在的目的纯粹是作为身份验证的手段。他们仅在 DAO 利益相关者的默许下留任，随时可能因任何原因被替换。他们没有任何监督权力。”</em></div>
+<p>十年后，TheDAO 安全基金的新管理人做了 Wood 所警告的事情。他们行使了判断力，做出了监督决策，并且是在未咨询其所控制资金的利益相关者的情况下进行的。</p>
+<h2>“管理人中没有人不诚实”</h2>
+<img alt="现任 TheDAO 安全基金管理人" class="article-image" src="/thedao-curators-220m-hack-victims/images/image3.png"/>
+<p class="image-download"><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/images/image3.png" download="" href="/thedao-curators-220m-hack-victims/images/image3.png">下载图片</a></p>
+<p>上述为现任管理人。其中包括 Vitalik Buterin、几位知名的以太坊基金会前成员、备受尊敬的安全研究员，以及领导了 2016 年原始白帽群体救援行动的 Griff Green。</p>
+<p>已辞职的管理人之一 Gian Bochsler 强调，他认为所有参与者的行为均出于善意。</p>
+<p>他告诉我：<em>“管理人中没有人不诚实，”</em></p>
+<p><em>“每个人都在努力寻找最佳的实用解决方案，说实话，他们迄今为止为社区所做的一切令人瞩目。Griff 从一开始就是一位杰出的领导者。”</em></p>
+<p>关于 Griff Green 的动机，Gian 表示：<em>“Griff 心地善良，绝不会做任何恶意之事……他一直希望保留原始所有者认领其资金的可能性。他的主要目标是从技术上确保多签钱包的安全，并引入新的管理人，因为六个人的数量太少，无法负责任地管理如此庞大的价值。”</em></p>
+<p>Gian 也对新结构表达了信心：<em>“我相信 Griff、Vitalik 和新管理人会采取一切必要的法律措施。他们将确保优先考虑任何无人认领资金的受益人的利益。”</em></p>
+<p>他还指出：<em>“这些资金随时可能遭受攻击”</em>，并且<em>“显然有必要升级多签钱包的安全性，因为在过去 10 年中，Solidity 已经发生了显著演变。”</em> 他承认局势的复杂性：<em>“这不是一项轻松的任务”</em>，并且<em>“开展所有这些工作需要资金支持。”</em></p>
+<h2>未曾选择的道路</h2>
+<p>管理人本可以诉诸法院，说明他们控制着一大笔属于正当所有者的无人认领资金，提出他们的计划，并寻求指导。法院对此类事务的处理司空见惯。</p>
+<p>在英国法中，这被称为 Benjamin 命令（Benjamin Order），得名于 <a href="https://www.guildhallchambers.co.uk/2023/08/11/probate-missing-persons-recent-developments-part-1/">Re Benjamin [1902] 1 Ch 723</a> 一案：一名受托人无法找到受益人，遂诉诸法院并获准分配遗产。失踪受益人的申领权利得以保留。</p>
+<p>Gian Bochsler 在我们的采访中提到了 Benjamin 命令，称其为<em>“一个特定的先例，允许受托人在假定某些事实的情况下分配资金，同时保护他们免受责任追究。”</em></p>
+<p>他表示：<em>“如果我们能获得法院对此事的裁决，我们就能够在更加清晰和安全的法律环境中运作。”</em></p>
+<p>在美国法律中，等效程序是请求指示请愿书。在 <a href="https://goldesq.com/when-can-trustees-represent-themselves-in-court/">Donkin v. Donkin (2020)</a> 案中，加利福尼亚州的受托人因不知如何分配家族信托而向法院请愿。2014 年，<a href="https://berklawgroup.com/wp-content/uploads/2015/02/2014-12-19-Petition-S-Williams.pdf">Robin Williams Trust</a> 的共同受托人在无法确定如何分割遗产时也采取了同样的做法。</p>
+<p>如果你持有他人的资金却不知如何处置，应当交由法院裁决。</p>
+<div class="highlight">他们自行决定这些资金应如何使用，尽管加密货币的整个理念正是为了回应一小群人未经他人同意就管理其资金这一问题而诞生的。</div>
+<p><strong>有更多信息要分享？</strong>你可以通过<a href="mailto:andrey@sergeenkov.com">电子邮件</a>联系我们。</p>
+<hr/>
+<p>但这些资金真的能帮助解决以太坊的安全问题吗？我在<a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/zh/will-thedao-money-improve-ethereum-security/">另一篇文章</a>中分享了我对此问题的看法。</p>
+<div class="author-box">
+<div class="author-info">
+{% include zh/support-prompt.html %}
+{% include zh/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">我的其他研究</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/zh/blockworks-ai-data/">Blockworks 裁减研究员，并销售供 AI 智能体使用的数据</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/zh/bitget-hack-fees/">谁从 Bitget 被盗资金的洗钱交易中收取了手续费？</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/zh/hsin-ju-chuang-death/">Hack VC 前合伙人庄欣如去世：哪些情况可以核实？</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/zh/loss-based-polymarket-airdrop/">为什么 Polymarket 应按交易亏损发放空投</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/zh/polymarket-profitability/">Polymarket 上有多少交易者能赚钱？</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/zh/fusaka-poison-attacks-ethereum/">Fusaka 升级后，以太坊地址投毒造成的损失增至 13 倍</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/zh/record-high-activity-ethereum-2026/">以太坊活跃度创纪录，背后是地址投毒攻击</a></li>
+<li><a data-source-href="https://sergeenkov.com/will-thedao-money-improve-ethereum-security/" href="/zh/will-thedao-money-improve-ethereum-security/">TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<span class="lightbox-close">×</span>
+<img alt="放大图片" id="lightbox-img" src=""/>
+<div class="lightbox-hint">点击任意位置或按 Esc 键关闭</div>
+</div>
+<script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.article-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

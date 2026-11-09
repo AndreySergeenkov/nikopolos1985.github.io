@@ -1,15 +1,17 @@
-{% if page.lang == 'ru' -%}
-<div class="language-bar">
-    <nav class="language-switch" aria-label="Язык страницы">
-        <a href="{{ page.alternate_url }}" lang="en" hreflang="en" aria-label="English">EN</a>
-        <a href="{{ page.url }}" lang="ru" hreflang="ru" aria-label="Русский" aria-current="page">RU</a>
-    </nav>
-</div>
-{%- else -%}
-<div class="language-bar">
-    <nav class="language-switch" aria-label="Page language">
-        <a href="{{ page.url }}" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a>
-        <a href="{{ page.alternate_url }}" lang="ru" hreflang="ru" aria-label="Русский">RU</a>
-    </nav>
-</div>
+{%- assign language = page.lang | default: 'en' -%}
+{%- assign english_url = page.url -%}
+{%- assign label = 'Page language' -%}
+{%- if language == 'ru' -%}
+    {%- assign english_url = page.alternate_url -%}
+    {%- assign label = 'Язык страницы' -%}
+{%- elsif language == 'zh-Hans' -%}
+    {%- assign english_url = page.alternate_url -%}
+    {%- assign label = '页面语言' -%}
 {%- endif %}
+<div class="language-bar">
+    <nav class="language-switch" aria-label="{{ label }}">
+        <a href="{{ english_url }}" lang="en" hreflang="en" aria-label="English"{% if language == 'en' %} aria-current="page"{% endif %}>EN</a>
+        <a href="/ru{{ english_url }}" lang="ru" hreflang="ru" aria-label="Русский"{% if language == 'ru' %} aria-current="page"{% endif %}>RU</a>
+        <a href="/zh{{ english_url }}" lang="zh-Hans" hreflang="zh-Hans" aria-label="简体中文"{% if language == 'zh-Hans' %} aria-current="page"{% endif %}>中文</a>
+    </nav>
+</div>

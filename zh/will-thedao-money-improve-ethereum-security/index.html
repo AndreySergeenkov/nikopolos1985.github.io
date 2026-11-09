@@ -1,0 +1,534 @@
+---
+layout: null
+lang: zh-Hans
+permalink: /zh/will-thedao-money-improve-ethereum-security/
+alternate_url: /will-thedao-money-improve-ethereum-security/
+last_modified_at: 2026-11-09
+---
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8"/>
+<script src="/theme.js?v=3"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？</title>
+<meta content="分析 TheDAO 安全基金如何运作，以及质押无人认领资金、分配安全资助和以太坊升级对用户安全与财产权的影响。" name="description"/>
+<meta content="Andrey Sergeenkov" name="author"/>
+<link href="https://sergeenkov.com/zh/will-thedao-money-improve-ethereum-security/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？" property="og:title"/>
+<meta content="分析 TheDAO 安全基金如何运作，以及质押无人认领资金、分配安全资助和以太坊升级对用户安全与财产权的影响。" property="og:description"/>
+<meta content="https://sergeenkov.com/zh/will-thedao-money-improve-ethereum-security/" property="og:url"/>
+<meta content="Andrey Sergeenkov" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？" name="twitter:title"/>
+<meta content="分析 TheDAO 安全基金如何运作，以及质押无人认领资金、分配安全资助和以太坊升级对用户安全与财产权的影响。" name="twitter:description"/>
+<meta content="@Nikopolos" name="twitter:creator"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://sergeenkov.com/feed.xml" rel="alternate" title="Andrey Sergeenkov RSS Feed" type="application/rss+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+
+<style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #202122;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .top-follow {
+            font-size: 14px;
+            color: #54595d;
+            font-family: sans-serif;
+        }
+        .top-follow a, .author-bio a {
+            color: #0645ad;
+        }
+        .article-header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 6px;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tldr-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #555;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Linux Libertine', Georgia, serif;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .tldr {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 16px;
+            margin: 0 0 24px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tldr-title {
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            background: #eaecf0;
+            margin: -16px -16px 12px;
+            padding: 8px;
+            border-bottom: 1px solid #a2a9b1;
+            color: #1a1a1a;
+        }
+        .tldr ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .tldr li {
+            margin-bottom: 6px;
+            color: #333;
+            font-style: normal;
+        }
+        .tldr li:last-child {
+            margin-bottom: 0;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            margin: 25px 0;
+            border: 1px solid #a2a9b1;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 1001;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 0;
+            margin: 30px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0;
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .author-desc { font-size: 15px; color: #54595d; margin: 0 0 12px; font-family: sans-serif; line-height: 1.55; }
+        .author-desc a { color: #0645ad; }
+        .author-bio {
+            font-size: 14px;
+            color: #54595d;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .stats-box {
+                grid-template-columns: 1fr;
+            }
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+        .other-research { margin-top: 20px; }
+        .other-research-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .other-research ul { margin: 0; padding-left: 20px; }
+        .other-research li { margin-bottom: 6px; font-size: 15px; }
+        .other-research a { color: #0645ad; background: none; padding: 0; }
+        .other-research a:hover { text-decoration: underline; background: none; }
+        article ul { list-style: none; padding-left: 0; }
+        article ul li { padding-left: 24px; position: relative; margin-bottom: 8px; }
+        article ul li::before { content: '\2726'; position: absolute; left: 0; color: #a2a9b1; font-size: 11px; top: 3px; }
+
+        .commission-box {
+            border: 1px solid #e2c97a;
+            background: #fff3cd;
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.55;
+            border-left: 4px solid #ffc107;
+        }
+        .commission-box-heading {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin: 0 0 6px;
+        }
+        .commission-box p {
+            margin: 0 0 12px;
+            color: #333;
+            font-size: 14px;
+        }
+.commission-lead { margin: 0 0 6px; }
+        .commission-box-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .commission-contact {
+            display: inline-flex;
+            align-items: stretch;
+        }
+        .commission-contact a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            border-right: none;
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .commission-contact a:hover {
+            background: #fffbeb;
+            text-decoration: underline;
+        }
+        .commission-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: #fff;
+            border: 1px solid #e2c97a;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        .commission-copy:hover {
+            background: #fffbeb;
+            color: #555;
+        }
+        .commission-copy svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+        .commission-copy.copied {
+            color: #2e7d32;
+            border-color: #2e7d32;
+        }
+    </style>
+<link href="/support/support.css" rel="stylesheet"/>
+<link href="/theme.css" rel="stylesheet"/>
+<meta content="zh_CN" property="og:locale"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？",
+  "description": "分析 TheDAO 安全基金如何运作，以及质押无人认领资金、分配安全资助和以太坊升级对用户安全与财产权的影响。",
+  "inLanguage": "zh-Hans",
+  "url": "https://sergeenkov.com/zh/will-thedao-money-improve-ethereum-security/",
+  "mainEntityOfPage": "https://sergeenkov.com/zh/will-thedao-money-improve-ethereum-security/",
+  "datePublished": "2026-02-09",
+  "author": {
+    "@type": "Person",
+    "name": "Andrey Sergeenkov",
+    "url": "https://sergeenkov.com/"
+  }
+}
+</script>
+<meta content="2026-02-09" property="article:published_time"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6FZQZRN4S3"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6FZQZRN4S3');
+    </script>
+<script async="" data-key="NPIdMif9bRIzbz2xRz7s/Q" src="https://analytics.ahrefs.com/analytics.js"></script>
+    {% include language-head.html %}
+</head>
+<body>
+    {% include language-switch.html %}
+
+<div class="top-nav"><a class="back-link" data-source-href="https://sergeenkov.com/" href="/zh/">← 返回首页</a><div class="top-follow"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a> <span aria-label="Color theme" class="theme-control" hidden="" role="radiogroup"></span></div>
+</div>
+<article>
+<header class="article-header">
+<h1>TheDAO 的 2.2 亿美元安全基金能让以太坊更安全吗？</h1>
+<div class="article-meta">作者：Andrey Sergeenkov · 2026 年 2 月 9 日</div>
+</header>
+<p>在我的<a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/zh/thedao-curators-220m-hack-victims/">上一篇文章</a>中，我探讨了七位管理人如何控制了 2.2 亿美元无人认领的 TheDAO 资金。Griff Green 将这一使命描述为确保以太坊“准备好成为世界金融基础设施的支柱”。该倡议是以太坊基金会万亿美元安全计划的一部分。但这笔钱真的会让以太坊更安全吗？</p>
+<div class="tldr">
+<div class="tldr-title">主要发现</div>
+<ul>
+<li>未经所有者同意重新利用 2.2 亿美元，<a href="#means-destroy-end">破坏了以太坊赖以建立的产权保障</a>。</li>
+<li>这一先例<a href="#slippery-slope">延伸至任何不活跃的智能合约钱包</a>。</li>
+<li>DAO 赠款<a href="#dao-grants">很少流向富有成效的防御者</a>（马太效应、女巫攻击、内部人士）。</li>
+<li>基金会<a href="#disconnected">开辟新攻击面的速度快于资金修补的速度</a>：仅 Fusaka 升级就造成了<strong>6330 万美元</strong>的地址投毒损失，增至 13 倍。</li>
+<li>现有损失超过任何预算：<a href="#too-broken"><strong>84.9 亿美元</strong>，涉及 220 起事件</a>，每天发生 4,400 次三明治攻击。</li>
+</ul>
+</div>
+{% include zh/commission-box.html %}
+<h2 id="means-destroy-end">手段摧毁了目的</h2>
+<p>私有财产权不可侵犯。这是文明建立的基础原则。</p>
+<p>美国宪法第五修正案规定：“非经正当法律程序，不得剥夺任何人的生命、自由或财产；非经公正补偿，不得将私有财产征为公用。”欧洲人权公约和世界人权宣言也保护同样的原则。</p>
+<p>在未获得所有者明确同意的情况下，不能以任何善意为借口使用他人的资金来牟利、建立控制权或推广意识形态立场。</p>
+<p>管理人控制了 2.2 亿美元，旨在使以太坊更安全、更可靠。但这一行为本身（实际上是在没有法院裁决、没有正当程序的情况下未经同意使用他人的资金）使以太坊变得不那么可靠。</p>
+<div class="highlight">如果智能合约中的资金可以在一段时间不活动后被挪作他用，谁还会信任以太坊作为长期基础设施？</div>
+<h2 id="slippery-slope">滑坡效应</h2>
+<p>还存在先例升级的问题。今天是管理人决定质押并花费其奖励的 2016 年无人认领资金。但每一步都降低了下一步的门槛。</p>
+<p>Eugene Volokh 在<a href="https://www2.law.ucla.edu/volokh/slippery.pdf">《哈佛法律评论》</a>中指出，当英国、纽约市和澳大利亚引入枪支登记时，最终随之而来的是枪支没收。这并不是因为登记在逻辑上要求这样做，而是因为它使没收变得更便宜、更容易实施。一旦基础设施存在，下一步就在政治上变得可行。</p>
+<p>Volokh 称此为“降低成本的滑坡”：决策 A 不会改变任何人关于 B 是对还是错的看法，但它降低了 B 的实际成本，使其更有可能发生。</p>
+<p>今天的理由是：这些资金已多年不活动，因此管理它们的人可以对其进行质押并将奖励用于生态系统。这一理由不仅适用于 TheDAO。它适用于任何资金长期未移动的智能合约钱包。</p>
+<p>一旦确立了为良好事业使用他人资金的权利，“良好事业”的定义就可以扩大，被认为可用于此目的的资金池也可以扩大。</p>
+<h2 id="dao-grants">你无法通过花钱来解决你不断制造的问题</h2>
+<p>至于以太坊的区块链安全，局势已经到了仅仅砸钱无济于事的地步。</p>
+<p>最好的情况是，我们会看到几乎每个 DAO 资助实验中都会出现的、在狭窄接收者圈子中的同一场人气竞赛，无论机制如何。</p>
+<p>正如<a href="https://www.dlnews.com/articles/defi/arbitrum-dao-approves-42m-dollar-grant-for-defi-projects/">DL News</a>所言，“DAO 主导的赠款从未远离源于涉嫌内部交易和缺乏透明度的争议。”<a href="https://www.gitcoin.co/blog/towards-computer-aided-governance-of-gitcoin-grants">BlockScience</a>研究了 Gitcoin 的二次融资轮次，发现此类系统表现出马太效应，即“富者愈富”的失控效应，同时伴随着持续的女巫攻击和共谋。</p>
+<p>获胜者会变得稍微富有，甚至可能产出一些补丁。而黑客很快就会绕过这些补丁。</p>
+<h2 id="disconnected">脱离现实</h2>
+<p>更深层次的问题是，以太坊的领导层似乎不再能够认识到自己行为的后果。<a href="https://blockworks.co/news/ethereum-foundation-tradfi-push">Blockworks</a>将这种情况描述为“以太坊领导层脱节且缺乏竞争力的当前叙事”。当船长们不断钻出新洞时，你无法堵住船上的漏洞。</p>
+<p>例如：</p>
+<p>尽管知道以太坊面临许多未解决的安全问题，领导层仍推进了 Fusaka 升级，该升级降低了费用，并使垃圾邮件攻击在以太坊区块链上<a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/zh/record-high-activity-ethereum-2026/">在经济上可行</a>。</p>
+<p>低费用与攻击量之间的联系已有记录：卡内基梅隆大学的一项<a href="https://arxiv.org/abs/2501.16681">研究</a>在升级前十个月发表，发现“交易费用较低的链中攻击更为普遍”。根据<a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/zh/fusaka-poison-attacks-ethereum/">我的数据</a>，仅在 Fusaka 升级后的两个月内，地址投毒攻击就造成了 6330 万美元的损失，比升级前同期增加了 13 倍。</p>
+<p>作为 Pectra 升级一部分于 2025 年 5 月引入的 EIP-7702 正被攻击者积极利用以掏空钱包。<a href="https://x.com/wintermute_t/status/1928501765865091400">Wintermute</a>报告称，超过 80% 的所有 EIP-7702 授权都与恶意合约有关，称“相同的复制字节码占据了大多数 EIP-7702 授权，这既荒谬又残酷”。截至 Wintermute 在 2025 年中期的研究时，个别攻击已造成高达 154 万美元的损失，受害者在欺诈性 DeFi 网站上签署了批量交易。</p>
+<p>安全公司<a href="https://www.fireblocks.com/blog/security-first-approach-to-eip-7702">Fireblocks</a>在 Pectra 启动前两个月警告说：“鲁莽的做法会力求允许尽可能开放和自由的授权，但这很可能很快导致所有资金丢失。只需一次恶意授权就足够了。”</p>
+<p>而现在他们正在开创一个先例：可以宣布智能合约中的资金在一段时间不活动后即被遗弃，并在未经所有者同意的情况下动用它们。当成千上万的用户通过账户抽象迁移到智能合约钱包时，这可能会给任何只是长期持有加密货币的人带来风险。</p>
+<h2 id="too-broken">破损严重，无法修补</h2>
+<p>但即使开发者不再犯新的错误，以太坊中漏洞、攻击类型和攻击向量的数量也如此庞大，而黑客又能够如此轻易地适应变化并洗白资金，以至于任何安全投入都只会被迅速耗尽。</p>
+<p>智能合约在部署后<a href="https://ethereum.org/developers/docs/smart-contracts/security/">无法修补</a>，这使得默认情况下每个漏洞都是永久性的，每个被盗资产几乎无法恢复。每次协议升级<a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.814977/full">引入新攻击面的速度</a>都快于防御者的响应速度。MEV 提取嵌入在以太坊的交易排序机制本身中，每天发生超过<a href="https://cointelegraph.com/research/exclusive-data-from-eigenphi-reveals-that-sandwich-attacks-on-ethereum-have-waned">4,400 次三明治攻击</a>，且在协议层面没有统一的保护。</p>
+<p>ERC-20 授权模型（核心设计选择）在 2021 年至 2024 年间被利用造成了<a href="https://www.secretservice.gov/newsroom/releases/2025/04/us-secret-service-analysts-work-canadian-officials-disrupt-ethereum">27 亿美元</a>的网络钓鱼损失，促使美国特勤局开展了一项专门针对以太坊授权诈骗的行动。Frontiers in Blockchain 的一项研究记录了<a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2025.1713637/full">220 起重大事件</a>，造成 84.9 亿美元的量化损失。一项对 62 种开源安全工具的 2025 年调查发现，<a href="https://www.mdpi.com/2073-431X/14/6/226">没有一种工具</a>涵盖所有已知漏洞类型，新类别<a href="https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.814977/full">出现的速度</a>快于工具构建以检测它们的速度。</p>
+<p>正如 2025 年 ScienceDirect 的一项关于以太坊两年 MEV 活动的<a href="https://www.sciencedirect.com/science/article/pii/S2096720925000673">研究</a>所总结的，攻击者正变得“更加老练，因为他们倾向于串联不同类型的攻击”，并且“提取的价值可能会阻碍以太坊在未来项目中的采用”。或者正如<a href="https://dl.acm.org/doi/10.1145/3643895">ACM</a>更直白地说：“我们保护以太坊系统的能力有限。”</p>
+<div class="highlight">“代码即法律”，密码朋克爱好者喜欢这样说。但糟糕的代码就是糟糕的法律。以太坊的代码正使我们更接近的不是密码朋克的乌托邦，而是赛博朋克的反乌托邦。</div>
+<p>无论是有意还是无意，结果都是一个过度奖励不诚实行为、从而对其形成激励的系统。</p>
+<p>安全问题需要从根本上解决。有一些方法可以做到这一点。我可能会在未来的文章中探讨其中一些方法。</p>
+<div class="author-box">
+<div class="author-info">
+{% include zh/support-prompt.html %}
+{% include zh/about-the-author.html %}
+
+<div class="author-bio"><a href="mailto:andrey@sergeenkov.com">电子邮件</a> · <a href="https://t.me/Nikopolos">Telegram</a> · <a href="https://www.linkedin.com/in/sergeenkov/">LinkedIn</a> · <a href="https://x.com/Nikopolos">X</a> · <a href="https://sergeenkov.com/feed.xml">RSS</a></div>
+<div class="other-research">
+<p class="other-research-title">我的其他研究</p>
+<ul>
+<li><a data-source-href="https://sergeenkov.com/blockworks-ai-data/" href="/zh/blockworks-ai-data/">Blockworks 裁减研究员，并销售供 AI 智能体使用的数据</a></li>
+<li><a data-source-href="https://sergeenkov.com/bitget-hack-fees/" href="/zh/bitget-hack-fees/">谁从 Bitget 被盗资金的洗钱交易中收取了手续费？</a></li>
+<li><a data-source-href="https://sergeenkov.com/hsin-ju-chuang-death/" href="/zh/hsin-ju-chuang-death/">Hack VC 前合伙人庄欣如去世：哪些情况可以核实？</a></li>
+<li><a data-source-href="https://sergeenkov.com/loss-based-polymarket-airdrop/" href="/zh/loss-based-polymarket-airdrop/">为什么 Polymarket 应按交易亏损发放空投</a></li>
+<li><a data-source-href="https://sergeenkov.com/polymarket-profitability/" href="/zh/polymarket-profitability/">Polymarket 上有多少交易者能赚钱？</a></li>
+<li><a data-source-href="https://sergeenkov.com/fusaka-poison-attacks-ethereum/" href="/zh/fusaka-poison-attacks-ethereum/">Fusaka 升级后，以太坊地址投毒造成的损失增至 13 倍</a></li>
+<li><a data-source-href="https://sergeenkov.com/record-high-activity-ethereum-2026/" href="/zh/record-high-activity-ethereum-2026/">以太坊活跃度创纪录，背后是地址投毒攻击</a></li>
+<li><a data-source-href="https://sergeenkov.com/thedao-curators-220m-hack-victims/" href="/zh/thedao-curators-220m-hack-victims/">TheDAO 的 2.2 亿美元：管理人开了自行处置他人资金的先例</a></li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<script>document.querySelectorAll("article a[href]").forEach(function(a){var h=a.getAttribute("href");if(h&&h.startsWith("http")&&h!="../")a.setAttribute("target","_blank");});</script>
+<script>
+    function commissionCopy(btn) {
+        var text = btn.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function() {
+            btn.classList.add('copied');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>';
+            setTimeout(function() {
+                btn.classList.remove('copied');
+                btn.innerHTML = orig;
+            }, 1500);
+        });
+    }
+    </script>
+</body>
+</html>

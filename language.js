@@ -1,9 +1,13 @@
 (() => {
-    const alternate = document.querySelector('.language-switch a:not([aria-current])');
-    if (!alternate) return;
+    const alternatives = Array.from(document.querySelectorAll('.language-switch a:not([aria-current])'),
+        link => ({ link, path: link.getAttribute('href') }));
+    if (alternatives.length === 0) return;
 
-    const path = alternate.getAttribute('href');
-    const update = () => alternate.setAttribute('href', path + window.location.hash);
-    update();
-    window.addEventListener('hashchange', update);
+    function updateLinks() {
+        for (const { link, path } of alternatives) {
+            link.setAttribute('href', path + window.location.hash);
+        }
+    }
+    updateLinks();
+    window.addEventListener('hashchange', updateLinks);
 })();
