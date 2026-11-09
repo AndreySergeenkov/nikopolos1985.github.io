@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support My Research - Andrey Sergeenkov</title>
     <meta name="description" content="Support Andrey Sergeenkov's independent research with USDT, USDC, ETH, BTC, SOL, or TRX on the listed networks.">
@@ -18,20 +19,23 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/support/support.css">
     <script defer src="/support/support.js"></script>
+    <link rel="stylesheet" href="/theme.css">
 </head>
 <body class="support-page">
     <main>
-        <a class="support-back" href="/">&larr; Andrey Sergeenkov</a>
+        <div class="theme-nav">
+            <a class="support-back" href="/">&larr; Andrey Sergeenkov</a>
+            <span class="theme-control" role="radiogroup" aria-label="Color theme" hidden></span>
+        </div>
         <h1>Support my research</h1>
         <p class="support-intro">I work independently. If you find my research useful, you can support future work with a voluntary donation.</p>
-        <p class="support-instructions">Select the exact network shown on the card. Coins and tokens listed together share its receiving address. QR codes contain only the address; choose the coin or token and amount in your wallet.</p>
+        <p class="support-instructions">Send only the listed assets on the network shown.</p>
         <div class="wallet-grid">
             <section class="wallet-card" id="ethereum" data-coin="Ethereum" aria-labelledby="ethereum-title">
-                <h2 id="ethereum-title">Ethereum</h2>
-                <p class="wallet-assets">Accepts: ETH, USDT, USDC</p>
-                <p class="wallet-network">Network: Ethereum mainnet &middot; ERC-20 tokens</p>
+                <h2 id="ethereum-title"><img class="wallet-logo" src="/support/icons/ethereum.svg" width="28" height="28" alt=""> Ethereum</h2>
+                <p class="wallet-assets">ETH, USDT, USDC</p>
+                <p class="wallet-network">Ethereum mainnet &middot; ERC-20 tokens</p>
                 <img class="wallet-qr" src="/support/qr/ethereum.png" width="180" height="180" alt="QR code for the Ethereum donation address">
-                <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="ethereum-address">0x35bff9af8309aD0Aa70f4cE6c3c5c84bD23aa186</code>
                 <div class="wallet-actions">
                     <button class="wallet-copy" type="button" data-copy-address="ethereum-address" aria-label="Copy Ethereum address">Copy address</button>
@@ -40,11 +44,10 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="bitcoin" data-coin="Bitcoin" aria-labelledby="bitcoin-title">
-                <h2 id="bitcoin-title">Bitcoin</h2>
-                <p class="wallet-assets">Accepts: BTC</p>
-                <p class="wallet-network">Network: Bitcoin mainnet</p>
+                <h2 id="bitcoin-title"><img class="wallet-logo" src="/support/icons/bitcoin.svg" width="28" height="28" alt=""> Bitcoin</h2>
+                <p class="wallet-assets">BTC</p>
+                <p class="wallet-network">Bitcoin mainnet</p>
                 <img class="wallet-qr" src="/support/qr/bitcoin.png" width="180" height="180" alt="QR code for the Bitcoin donation address">
-                <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="bitcoin-address">bc1qvuh3hwhf6pw85kusnq6ngh6tvfvz0k9kxuvxd8</code>
                 <div class="wallet-actions">
                     <button class="wallet-copy" type="button" data-copy-address="bitcoin-address" aria-label="Copy Bitcoin address">Copy address</button>
@@ -53,11 +56,10 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="solana" data-coin="Solana" aria-labelledby="solana-title">
-                <h2 id="solana-title">Solana</h2>
-                <p class="wallet-assets">Accepts: SOL, USDT, USDC</p>
-                <p class="wallet-network">Network: Solana mainnet &middot; SPL tokens</p>
+                <h2 id="solana-title"><img class="wallet-logo" src="/support/icons/solana.svg" width="28" height="28" alt=""> Solana</h2>
+                <p class="wallet-assets">SOL, USDT, USDC</p>
+                <p class="wallet-network">Solana mainnet &middot; SPL tokens</p>
                 <img class="wallet-qr" src="/support/qr/solana.png" width="180" height="180" alt="QR code for the Solana donation address">
-                <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="solana-address">HH8dKnEcAF5jjECkRr8itXDN3asvNwApJ75GAjY5rLUD</code>
                 <div class="wallet-actions">
                     <button class="wallet-copy" type="button" data-copy-address="solana-address" aria-label="Copy Solana address">Copy address</button>
@@ -66,11 +68,10 @@
                 <p class="wallet-status" role="status" aria-live="polite"></p>
             </section>
             <section class="wallet-card" id="tron" data-coin="TRON" aria-labelledby="tron-title">
-                <h2 id="tron-title">TRON</h2>
-                <p class="wallet-assets">Accepts: TRX, USDT</p>
-                <p class="wallet-network">Network: TRON mainnet &middot; TRC-20 tokens</p>
+                <h2 id="tron-title"><img class="wallet-logo" src="/support/icons/tron.svg" width="28" height="28" alt=""> TRON</h2>
+                <p class="wallet-assets">TRX, USDT</p>
+                <p class="wallet-network">TRON mainnet &middot; TRC-20 tokens</p>
                 <img class="wallet-qr" src="/support/qr/tron.png" width="180" height="180" alt="QR code for the TRON donation address">
-                <span class="wallet-address-label">Address</span>
                 <code class="wallet-address" id="tron-address">TU7F67qgF1rDQaBmLohRqaqAQ4B7x5oz2S</code>
                 <div class="wallet-actions">
                     <button class="wallet-copy" type="button" data-copy-address="tron-address" aria-label="Copy TRON address">Copy address</button>
@@ -80,8 +81,6 @@
             </section>
         </div>
         <noscript><p>You can select and copy any address above manually.</p></noscript>
-        <p class="support-thanks">Any amount is welcome. Thank you.</p>
-        <p class="support-contact">Questions? <a href="mailto:andrey@sergeenkov.com">andrey@sergeenkov.com</a></p>
     </main>
 </body>
 </html>

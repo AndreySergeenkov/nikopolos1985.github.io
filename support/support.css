@@ -54,11 +54,15 @@
     scroll-margin-top: 24px;
 }
 .support-page .wallet-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     margin: 0 0 3px;
     font-size: 19px;
     font-weight: 500;
     line-height: 1.4;
 }
+.support-page .wallet-logo { display: block; flex: none; }
 .support-page .wallet-assets { margin: 0 0 6px; color: #333; font-size: 14px; font-weight: 500; }
 .support-page .wallet-network { color: #54595d; font-size: 13px; margin: 0 0 15px; }
 .support-page .wallet-qr {
@@ -69,7 +73,6 @@
     margin: 0 auto 18px;
     background: #fff;
 }
-.support-page .wallet-address-label { display: block; color: #54595d; font-size: 12px; margin-bottom: 5px; }
 .support-page .wallet-address {
     display: block;
     min-height: 3.1em;
@@ -95,8 +98,6 @@
 .support-page a:focus-visible { outline: 2px solid #0645ad; outline-offset: 3px; }
 .support-page .wallet-qr-download { font-size: 13px; }
 .support-page .wallet-status { min-height: 1.5em; margin: 9px 0 0; color: #54595d; font-size: 12px; }
-.support-page .support-thanks { margin: 26px 0 0; }
-.support-page .support-contact { margin: 10px 0 0; color: #54595d; font-size: 14px; }
 @media (max-width: 620px) {
     .support-page .wallet-grid { grid-template-columns: 1fr; gap: 17px; }
     .support-page .wallet-card { padding: 20px; }

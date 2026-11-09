@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earlier Articles - Andrey Sergeenkov</title>
     <meta name="description" content="A searchable archive of Andrey Sergeenkov's articles published in Forbes, CoinDesk, Cointelegraph, CoinMarketCap, and other outlets.">
@@ -37,10 +38,14 @@
         .archive-count { margin: 10px 0 24px; }
         [hidden] { display: none !important; }
     </style>
+    <link rel="stylesheet" href="/theme.css">
 </head>
 <body>
     <main>
-        <a class="archive-back" href="/">&larr; Back to homepage</a>
+        <div class="theme-nav">
+            <a class="archive-back" href="/">&larr; Back to homepage</a>
+            <span class="theme-control" role="radiogroup" aria-label="Color theme" hidden></span>
+        </div>
         <h1>Earlier Articles</h1>
         <p class="archive-intro">Articles I wrote for other publications. For my current independent research, see the <a href="/">homepage</a>.</p>
         <label class="archive-search-label" for="archive-search">Search by title or publication</label>

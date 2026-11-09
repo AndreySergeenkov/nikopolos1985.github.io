@@ -1,0 +1,202 @@
+.theme-control {
+    display: inline-flex;
+    flex: none;
+    gap: 1px;
+    padding: 2px;
+    border: 1px solid #a2a9b1;
+    background: #fff;
+    vertical-align: middle;
+}
+.theme-control[hidden] { display: none; }
+.theme-choice { display: flex; position: relative; }
+.theme-choice input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.theme-icon {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    width: 27px;
+    min-height: 26px;
+    color: #54595d;
+    pointer-events: none;
+}
+.theme-icon::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: currentColor;
+    mask: var(--theme-icon) center / contain no-repeat;
+}
+.theme-icon-sun {
+    --theme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5'/%3E%3C/svg%3E");
+}
+.theme-icon-moon {
+    --theme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.9 13.34A9 9 0 0 1 10.66 3.1 9 9 0 1 0 20.9 13.34Z'/%3E%3C/svg%3E");
+}
+.theme-choice:hover .theme-icon { background: #f1f3f5; }
+.theme-choice input:checked + .theme-icon {
+    color: #202122;
+    background: #e4e8ed;
+    box-shadow: inset 0 0 0 1px #a2a9b1;
+}
+.theme-choice input:focus-visible + .theme-icon {
+    outline: 2px solid #0645ad;
+    outline-offset: -2px;
+}
+@media (forced-colors: active) {
+    .theme-icon::before { forced-color-adjust: none; background: ButtonText; }
+    .theme-choice input:checked + .theme-icon { border: 1px solid Highlight; }
+}
+.theme-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.theme-nav:has(.archive-back, .back-link) { margin-bottom: 20px; }
+.theme-nav :is(.archive-back, .back-link) { margin-bottom: 0; }
+.top-follow .theme-control { margin-inline-start: 8px; }
+@media (max-width: 600px) {
+    .top-nav { flex-wrap: wrap; gap: 8px; }
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --theme-page: #181818;
+    --theme-surface: #232323;
+    --theme-raised: #2c2c2c;
+    --theme-hover: #353535;
+    --theme-text: #e0e0e0;
+    --theme-muted: #bdbdbd;
+    --theme-link: #a5c3f2;
+    --theme-rule: #4e4e4e;
+    --theme-line: #3b3b3b;
+    --theme-accent: #787878;
+    --theme-caution: #b39f76;
+    --theme-highlight: #363431;
+    --theme-highlight-accent: #928678;
+    --theme-target-bg: var(--theme-highlight);
+    background-color: var(--theme-page);
+}
+html[data-theme="dark"] .theme-control {
+    border-color: var(--theme-rule);
+    background: var(--theme-surface);
+}
+html[data-theme="dark"] .theme-icon { color: var(--theme-muted); }
+html[data-theme="dark"] .theme-choice:hover .theme-icon { background: var(--theme-raised); }
+html[data-theme="dark"] .theme-choice input:checked + .theme-icon {
+    color: var(--theme-text);
+    background: var(--theme-hover);
+    box-shadow: inset 0 0 0 1px var(--theme-accent);
+}
+html[data-theme="dark"] .theme-choice input:focus-visible + .theme-icon { outline-color: var(--theme-link); }
+html[data-theme="dark"] body { background-color: var(--theme-page); color: var(--theme-text); }
+html[data-theme="dark"] body :is(h1, h2, h3, .author-name, .other-research-title, .award-line,
+    .toc-title, .tldr-title, .tldr li, .faq-q, .note, .wallet-address, .wallet-assets,
+    .connection-card summary span) { color: var(--theme-text); }
+html[data-theme="dark"] body :is(.role, .job-title, .publication-name, .top-follow, .article-meta,
+    .author-desc, .author-bio, .subtitle, .archive-intro, .archive-count, .archive-empty,
+    .entry-type, .cited-work, .as-of, .crisis-note, .image-caption, .evidence figcaption,
+    .article-table caption, .chart-subtitle, .chart-source, .chart-note, .chart-status,
+    .chart-legend span, .metric-label, .stat-label, .data-date, .recipient-search, small,
+    .wallet-network, .wallet-status, .support-instructions, .support-prompt) { color: var(--theme-muted); }
+html[data-theme="dark"] .connection-card summary::before { color: var(--theme-muted); }
+html[data-theme="dark"] body :is(a, .evidence-details summary, .methodology summary,
+    .recipient-unassigned summary, .connection-card summary, .evidence-detail summary) {
+    color: var(--theme-link);
+}
+html[data-theme="dark"] body :is(.chart-source a:hover, .image-download a:hover) {
+    color: var(--theme-link);
+}
+html[data-theme="dark"] body :is(h1, h2, .profile-photo, .author-box, .section-rule,
+    .table-wrapper, .chart-box, .tldr, .tldr-title, .note, .toc, .article-image,
+    .source-excerpt, .wallet-card, .support-prompt, .view-toggle) {
+    border-color: var(--theme-rule);
+}
+html[data-theme="dark"] body :is(.chart-box, .chart-modal, .tldr, .note, .toc, .info-card,
+    .code-block, .stat-item, .wallet-card, .fee-track) { background-color: var(--theme-surface); }
+html[data-theme="dark"] body :is(.tldr-title, thead th) { background-color: var(--theme-raised); }
+@media (max-width: 560px) {
+    html[data-theme="dark"] body :is(.pricing-table tbody th:first-child,
+        .customer-table tbody tr > :nth-child(-n+2)) { background-color: var(--theme-raised); }
+}
+html[data-theme="dark"] body :is(th, td, .article-table th, .article-table td,
+    .table-wrap th, .table-wrap td, .connection-card, .address-chart-table tr) {
+    color: var(--theme-text);
+    border-color: var(--theme-line);
+}
+html[data-theme="dark"] :is(.table-wrapper tbody tr:nth-child(even) td,
+    .table-wrap tbody tr:nth-child(even)) { background-color: var(--theme-surface); }
+html[data-theme="dark"] :is(.table-wrapper tbody tr:hover td, .table-wrap tbody tr:hover,
+    th.sortable:hover) { background-color: var(--theme-hover); }
+html[data-theme="dark"] :is(th.sorted-asc, th.sorted-desc) .sort-arrow::after {
+    color: var(--theme-text);
+}
+
+html[data-theme="dark"] body :is(.profile-menu a, .archive-search, .recipient-search input,
+    .wallet-copy, .llm-copy-btn, .chart-btn, .view-btn, .legend-toggle, .modal-close, .chart-modal-close) {
+    border-color: var(--theme-rule);
+    background-color: var(--theme-surface);
+    color: var(--theme-text);
+}
+html[data-theme="dark"] body .profile-menu a { color: var(--theme-link); }
+html[data-theme="dark"] body :is(.profile-menu a, .wallet-copy, .llm-copy-btn,
+    .chart-btn, .view-btn, .legend-toggle, .modal-close, .chart-modal-close):hover,
+html[data-theme="dark"] body :is(.view-btn.active, .legend-toggle.active) {
+    background-color: var(--theme-hover);
+    color: var(--theme-text);
+}
+html[data-theme="dark"] body :is(a, button, input):focus-visible {
+    outline-color: var(--theme-link);
+}
+html[data-theme="dark"] body :is(.commission-box, .highlight, .warning-box) {
+    background-color: var(--theme-surface);
+    border-color: var(--theme-rule);
+    color: var(--theme-text);
+}
+html[data-theme="dark"] body .commission-box {
+    border-inline-start-width: 2px;
+    border-inline-start-color: var(--theme-accent);
+}
+html[data-theme="dark"] body .highlight {
+    background-color: var(--theme-highlight);
+    border-inline-start: 2px solid var(--theme-highlight-accent);
+}
+html[data-theme="dark"] body .warning-box { border-inline-start-color: var(--theme-caution); }
+html[data-theme="dark"] body :is(.commission-box-heading, .commission-box p) { color: var(--theme-text); }
+html[data-theme="dark"] body :is(.commission-contact a, .commission-copy) {
+    color: var(--theme-link);
+    background-color: var(--theme-raised);
+    border-color: var(--theme-rule);
+}
+html[data-theme="dark"] body :is(.commission-contact a:hover, .commission-copy:hover) {
+    background-color: var(--theme-hover);
+}
+html[data-theme="dark"] body .support-prompt a.support-prompt-link {
+    padding-inline: 0;
+    background: transparent;
+    color: var(--theme-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+html[data-theme="dark"] body :is(.llm-copy-btn.copied, .commission-copy.copied) {
+    color: #a1dfb5;
+    border-color: #729f80;
+}
+html[data-theme="dark"] body :is(.stat-number, .chart-status.error) { color: #ffab92; }
+
+/* Canvas artwork uses a light surface for its embedded axis and label colors. */
+html[data-theme="dark"] canvas { background-color: #fff; }
+html[data-theme="dark"] .chart-export {
+    color-scheme: light;
+    --theme-surface: #fff;
+    --theme-raised: #f8f9fa;
+    --theme-text: #202122;
+    --theme-muted: #54595d;
+    --theme-link: #0645ad;
+    --theme-rule: #a2a9b1;
+    --theme-line: #eaecf0;
+    color: var(--theme-text);
+}
