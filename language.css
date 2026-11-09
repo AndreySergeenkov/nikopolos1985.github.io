@@ -24,35 +24,6 @@
     color: var(--theme-link, #0645ad);
     text-decoration: none;
 }
-.language-switch :is(.language-code, .language-flag) {
-    grid-area: 1 / 1;
-}
-.language-switch .language-flag {
-    width: 26px;
-    height: auto;
-    visibility: hidden;
-    pointer-events: none;
-}
-.language-switch a:focus-visible .language-code {
-    visibility: hidden;
-}
-.language-switch a:focus-visible .language-flag {
-    visibility: visible;
-}
-@media (hover: hover) {
-    .language-switch a:hover .language-code {
-        visibility: hidden;
-    }
-    .language-switch a:hover .language-flag {
-        visibility: visible;
-    }
-    .language-switch:has(a:hover) a:not(:hover) .language-code {
-        visibility: visible;
-    }
-    .language-switch:has(a:hover) a:not(:hover) .language-flag {
-        visibility: hidden;
-    }
-}
 .language-switch a:not([aria-current]):hover {
     background: var(--theme-raised, #f1f3f5);
 }
