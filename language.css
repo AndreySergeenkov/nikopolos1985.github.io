@@ -20,7 +20,7 @@
     place-items: center;
     min-width: 38px;
     min-height: 28px;
-    font: 600 12px/1 sans-serif;
+    font: 400 12px/1 sans-serif;
     color: var(--theme-link, #0645ad);
     text-decoration: none;
 }
