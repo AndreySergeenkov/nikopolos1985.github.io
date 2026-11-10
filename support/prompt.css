@@ -1,7 +1,7 @@
-html:has(body > .support-prompt.is-sticky) {
+html:has(body > .support-prompt.is-sticky:not([hidden])) {
     scroll-padding-block-end: var(--support-prompt-height, 0px);
 }
-body:has(> .support-prompt.is-sticky)::after {
+body:has(> .support-prompt.is-sticky:not([hidden]))::after {
     content: '';
     display: block;
     block-size: var(--support-prompt-height, 0px);
@@ -17,6 +17,9 @@ body:has(> .support-prompt.is-sticky)::after {
     background: var(--theme-page, #fff);
     color: var(--theme-muted, #54595d);
     font: 14px/1.55 'Inter', Arial, sans-serif;
+}
+.support-prompt.is-sticky[hidden] {
+    display: none;
 }
 .support-prompt-inner {
     box-sizing: border-box;
