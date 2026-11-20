@@ -92,6 +92,17 @@ html[data-theme="dark"] .theme-choice input:checked + .theme-icon {
     box-shadow: inset 0 0 0 1px var(--theme-accent);
 }
 html[data-theme="dark"] .theme-choice input:focus-visible + .theme-icon { outline-color: var(--theme-link); }
+.theme-icon-moon,
+.theme-choice input:checked + .theme-icon-moon,
+html[data-theme="dark"] .theme-icon-moon,
+html[data-theme="dark"] .theme-choice input:checked + .theme-icon-moon {
+    background: #303030;
+    color: #f0f0f0;
+}
+.theme-choice:hover .theme-icon-moon,
+html[data-theme="dark"] .theme-choice:hover .theme-icon-moon {
+    background: #414141;
+}
 html[data-theme="dark"] body { background-color: var(--theme-page); color: var(--theme-text); }
 html[data-theme="dark"] body :is(h1, h2, h3, .author-name, .other-research-title, .award-line,
     .toc-title, .tldr-title, .tldr li, .faq-q, .note, .wallet-address, .wallet-assets,
