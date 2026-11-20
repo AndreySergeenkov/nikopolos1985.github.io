@@ -14,7 +14,7 @@ body:has(> .support-prompt.is-sticky:not([hidden]))::after {
     margin: 0;
     padding: 0 0 env(safe-area-inset-bottom);
     border-top: 1px solid var(--theme-line, #ddd);
-    background: var(--theme-page, #fff);
+    background: var(--theme-surface, #f5f5f5);
     color: var(--theme-muted, #54595d);
     font: 14px/1.55 'Inter', Arial, sans-serif;
 }
